@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-blog",
-  "description": "Starter Gatsby Blog",
+  "name": "vojtechruzicka-blog",
+  "description": "Vojtech Ruzicka's Programming Blog",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Vojtech Ruzicka <vojtech.ruz@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
   },
@@ -35,15 +35,15 @@
     "gh-pages": "^1.1.0",
     "prettier": "^1.10.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
-    "gatsby"
+    "vojtech ruzicka"
   ],
   "license": "MIT",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "https://github.com/vojtechruz/vojtechruzicka-blog.git"
   },
   "scripts": {
     "dev": "gatsby develop",
