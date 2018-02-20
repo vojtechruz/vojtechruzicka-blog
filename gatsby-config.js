@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter Blog',
-    author: 'Kyle Mathews',
+    title: 'Vojtech Ruzicka\'s Programming Blog',
+    author: 'Vojtech Ruzicka',
     description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://gatsbyjs.github.io/gatsby-starter-blog/',
+    siteUrl: 'https://www.vojtechruzicka.com',
   },
   pathPrefix: '/gatsby-starter-blog',
   plugins: [
