@@ -24,13 +24,13 @@ Angular 2+ is way different than AngularJS. What's more, you usually write your 
 
 To install TypeDoc locally for your current project, just run:
 
-``` {lang="json"}
+```json
  npm install typedoc --save-dev
 ```
 
 To be able to run typedoc as an NPM script, you need to update your package.json -- the scripts section:
 
-``` {lang="json"}
+```json
 "scripts":{
    ...
    "typedoc":"typedoc --mode modules -module commonjs --exclude **/*.spec.ts --out docs/typedoc src/app"
@@ -55,13 +55,13 @@ While you can use TypeDoc to document Angular apps, it will treat your code as a
 
 To install compodoc, simply run
 
-``` {lang="json"}
+```json
  npm install --save-dev @compodoc/compodoc
 ```
 
 Then update your *package.json*
 
-``` {lang="json"}
+```json
 "scripts": {
     "compodoc": "compodoc -p tsconfig.json"
 }
@@ -69,7 +69,7 @@ Then update your *package.json*
 
 Then you can run compodoc as a normal npm script using
 
-``` {lang="json"}
+```json
 npm run compodoc
 ```
 

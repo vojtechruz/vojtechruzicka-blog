@@ -7,4 +7,7 @@
 
 22.2.2018
 - Grammarly premium
-- 2 post added, 1 previous post proofread
+- 3 posts added, 1 previous post proofread
+
+23.22018
+- posts added 2
