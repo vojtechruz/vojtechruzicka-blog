@@ -1,0 +1,230 @@
+---
+title: PostgreSQL’s JSONB type mapping using Hibernate
+date: "2017-03-16T22:12:03.284Z"
+---
+![postgresql-logo](./postgresql.jpg)
+
+PostgreSQL 9.4 added support for JSONB data type. Hibernate, however, currently does not support out of the box mapping for it. This post describes how to implement custom mapping for JSONB in Spring Boot application.
+
+JSONB
+-----
+
+In PostgreSQL 9.4 new JSONB type was introduced. It allows storing of JSON data and enforces they are represented in valid JSON format. It allows to query individual item in the JSON object and provides various JSON related [functions](https://www.postgresql.org/docs/9.5/static/functions-json.html).
+
+Implementing Custom Mapping
+---------------------------
+
+### Overview
+
+To implement Hibernate mapping for a JSONB type you need to do the following:
+
+1.  Create a custom Hibernate Dialect and register, that JSONB DB type will be represented as a Java object.
+2.  Register your custom dialect in Spring Boot's application properties.
+3.  Create a custom class that implements a UserType interface. This will contain all the logic of converting from and to JSON.
+4.  Register your new UserType class using @TypeDef annotation. This will link your class to the type name from the DB.
+
+### Creating custom Hibernate Dialect
+
+Hibernate's PostgreSQL94Dialect does not support JSONB Type. Because of that, you need to Create you custom dialect. There you need to register a new column type for JSONB. The good news is that you can directly extend PostgreSQL94Dialect and add just the column registration you need on top of the existing functionality.
+
+```java
+import java.sql.Types;
+
+public class CustomPostgreSqlDialect extends PostgreSQL94Dialect {
+
+    public CustomPostgreSqlDialect() {
+        this.registerColumnType(Types.JAVA_OBJECT, "jsonb");
+    }
+}
+```
+
+### Registering Custom Dialect in Spring Boot app
+
+This step is rather simple. All you need to do is to register your newly created Hibernate Dialect in application.properties of your Spring Boot app. Just add the following line:
+
+```java
+spring.jpa.properties.hibernate.dialect=com.vojtechruzicka.CustomPostgreSqlDialect
+```
+
+### Creating custom UserType for JSONB
+
+To convert from and to JSONB, you need to implement an interface org.hibernate.usertype.UserType, which provides various methods for custom type mapping.
+
+-   **int\[\] sqlTypes()** - This provides mapping to java.sql.Types, you should provide Types.JAVA\_OBJECT here.
+-   **Class returnedClass()** - Java Class which is the result of mapping from JSOB, return type of nullSafeGet().
+-   **Object nullSafeGet(ResultSet rs, String\[\] names, SessionImplementor session, Object owner)** - Create a new instance of the mapped class from JDBC resultset. JSON/Object mapping library required.
+-   **void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)** - Write an instance of the mapped class to a Prepared Statement. JSON/Object mapping library required.
+-   **boolean isMutable()** - This determines whether mapped classes are mutable or not.
+-   **boolean equals(Object x, Object y), int hashCode(Object x)** - Nothing special here.
+-   **Serializable disassemble(Object value), Object assemble(Serializable cached, Object owner)** - This methods are for converting object from/to its cacheable representation
+-   **Object replace(Object original, Object target, Object owner)**  - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.
+-   **Object deepCopy(Object value)** - Returns a deep copy of provided object. You can, for example, use Apache SerializationUtils.clone() to make deep copy using serialization/deserialization.
+
+The two primary methods for converting from/to JSON are nullSafeGet and nullSafeSet. You will need some library for transforming a JSON string to an object representation and vice versa. You can use for example GSON or Jackson.
+
+Then you need to decide to which class you will map to your JSON. This depends on the structure of JSON which is stored in your database. In my application, I was sure my JSON is just a flat map of key-value pairs, so I decided to use a java Map for the mapping for simplicity. Be aware that this may not always be the case as JSON can contain arrays and nested elements. In that case, an ordinary map could not be used.
+
+Example of implementation of UserType can be something like this:
+
+```java
+package com.vojtechruzicka.hibernate;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.type.SerializationException;
+import org.hibernate.usertype.UserType;
+import org.postgresql.util.PGobject;
+import org.springframework.util.ObjectUtils;
+
+import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
+
+public class JsonDataUserType implements UserType {
+
+    private final Gson gson = new GsonBuilder().serializeNulls().create();
+
+    @Override
+    public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
+        if (value == null) {
+            st.setNull(index, Types.OTHER);
+        } else {
+            st.setObject(index, gson.toJson(value, Map.class), Types.OTHER);
+        }
+    }
+
+    @Override
+    public Object deepCopy(Object originalValue) throws HibernateException {
+        if (originalValue == null) {
+            return null;
+        }
+
+        if (!(originalValue instanceof Map)) {
+            return null;
+        }
+
+        Map resultMap = new HashMap<>();
+
+        Map<?, ?> tempMap = (Map<?, ?>) originalValue;
+        tempMap.forEach((key, value) -> resultMap.put((String) key, (String) value));
+
+        return resultMap;
+    }
+
+    @Override
+    public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException {
+        PGobject o = (PGobject) rs.getObject(names[0]);
+        if (o.getValue() != null) {
+            return gson.fromJson(o.getValue(), Map.class);
+        }
+
+        return new HashMap();
+    }
+
+    @Override
+    public Serializable disassemble(Object value) throws HibernateException {
+        Object copy = deepCopy(value);
+
+        if (copy instanceof Serializable) {
+            return (Serializable) copy;
+        }
+
+        throw new SerializationException(String.format("Cannot serialize '%s', %s is not Serializable.", value, value.getClass()), null);
+    }
+
+    @Override
+    public Object assemble(Serializable cached, Object owner) throws HibernateException {
+        return deepCopy(cached);
+    }
+
+    @Override
+    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+        return deepCopy(original);
+    }
+
+    @Override
+    public boolean isMutable() {
+        return true;
+    }
+
+    @Override
+    public int hashCode(Object x) throws HibernateException {
+        if (x == null) {
+            return 0;
+        }
+
+        return x.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object x, Object y) throws HibernateException {
+        return ObjectUtils.nullSafeEquals(x, y);
+    }
+
+    @Override
+    public Class<?> returnedClass() {
+        return Map.class;
+    }
+
+    @Override
+    public int[] sqlTypes() {
+        return new int[]{Types.JAVA_OBJECT};
+    }
+
+}
+```
+
+### Registering UserType
+
+Once your UserType is created, you need to register it as a Type Definition using @TypeDef annotation.
+
+You can annotate your Domain Class directly:
+
+```java
+@Entity
+@Table(name = "person")
+@TypeDef(name = "JsonDataUserType", typeClass = JsonDataUserType.class)
+public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    @Type(type = "JsonDataUserType")
+    private Map additionalData;
+
+    ...
+}
+```
+
+Alternatively, you can create package-info.java file and annotate the package directly. In the annotation, you provide type name and a Java class for which it should be the default mapping.
+
+```java
+    @TypeDef(name = "JsonDataUserType", typeClass = JsonDataUserType.class)
+    package com.vojtechruzicka.hibernate;
+    import org.hibernate.annotations.TypeDef;
+```
+
+Source Code
+-----------
+
+An Example of the full Spring Boot Application with implemented JOSNB mapping is available [here](https://github.com/vojtechruz/jsonb-hibernate-example).
+
+Disadvantages
+-------------
+
+While PostgreSQL JSONB type provides flexibility, it should be used just when appropriate. The only check being performed is that stored data is actually in a valid JSON format. You cannot impose any other constraints as with regular columns - such as not null or enforce a particular Data Type (Integer, VarChar, Date). Therefore it is best suited for providing an additional optional set of data to an entity, where you cannot be sure before which data is would contain. And such data would differ a lot among each of the rows. Such example can be a user-provided set of additional data.    You should always carefully consider which data is better suited as regular columns and which should be stored as JSON.
+
+Furthermore, keep in mind that JSONB type is PostgreSQL specific and will not be available in other DBs. This may be a problem when you decide to later migrate to other RDS. Also, you will not be able to use in-memory DB in your integration tests at none of them supported by Spring currently supports the JSONB type.
+
+Also, note that using JSON types means a performance - [When to avoid JSONB in PostgreSQL schema](https://blog.heapanalytics.com/when-to-avoid-jsonb-in-a-postgresql-schema/).
