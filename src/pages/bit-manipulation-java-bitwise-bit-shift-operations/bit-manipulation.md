@@ -1,3 +1,7 @@
+---
+title: 'Bit Manipulation in Java – Bitwise and Bit Shift operations'
+date: "2017-09-02T22:12:03.284Z"
+---
 ![binary](binary.jpg)
 
 Java enables you to manipulate integers on a bit level, that means operating on specific bits, which represent an integer number. In some cases, it can be really handy.
@@ -57,12 +61,12 @@ Exclusive OR (XOR) results in 1 only if both the compared bits have a different 
 
 Below is a table showing a comparison of results of all the bitwise operators mentioned above based on different values of the compared bits (A and B).
 
-  A   B   A & B   A \| B   A \^ B
-  --- --- ------- -------- --------
-  1   0   0       1        1
-  0   1   0       1        1
-  1   1   1       1        0
-  0   0   0       0        0
+  A  | B | A & B | A \| B | A \^ B
+  ---|---|-------|--------|--------
+  1  | 0 | 0     | 1      | 1
+  0  | 1 | 0     | 1      | 1
+  1  | 1 | 1     | 1      | 0
+  0  | 0 | 0     | 0      | 0
 
 Bit Shift Operators
 -------------------
