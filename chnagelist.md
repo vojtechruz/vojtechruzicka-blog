@@ -9,5 +9,11 @@
 - Grammarly premium
 - 3 posts added, 1 previous post proofread
 
-23.22018
+23.2.2018
 - posts added 5
+
+24.2.2018
+- 2 post
+    - compact strings
+    - bit manipulation
+    - enhanced deprecation
