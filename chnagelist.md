@@ -13,9 +13,10 @@
 - posts added 5
 
 24.2.2018
-- 5 post
+- 6 post
     - compact strings
     - bit manipulation
     - enhanced deprecation
     - java 10 var
     - preventing clickjacking
+    - premium quality tests
