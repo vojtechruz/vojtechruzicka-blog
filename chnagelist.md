@@ -23,5 +23,5 @@
     - singleton pattern pitfalls
     
 25.2.2018 17/43
-- 0 posts
-    -     
+- 1 posts
+    - java cloning problems    
