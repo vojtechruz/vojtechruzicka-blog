@@ -23,6 +23,7 @@
     - singleton pattern pitfalls
     
 25.2.2018 17/43
-- 2 posts
+- 3 posts
     - java cloning problems    
     - protect your http cookies
+    - pramp
