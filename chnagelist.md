@@ -30,7 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 9 posts    
+- 10 posts    
    - field injection
    - intellij idea performance
    - lighthouse
@@ -40,3 +40,4 @@
    - spring core
    - career guide
    - javascript this
+   - javascript primitives
