@@ -30,7 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 13 posts    
+- 14 posts    
    - field injection
    - intellij idea performance
    - lighthouse
@@ -44,3 +44,4 @@
    - javascript hoisting
    - javascript constructor functions
    - spring web exam
+   - owasp top 10 2017
