@@ -12,7 +12,7 @@
 23.2.2018
 - posts added 5
 
-24.2.2018
+24.2.2018 17/43
 - 7 post
     - compact strings
     - bit manipulation
@@ -22,8 +22,13 @@
     - premium quality tests
     - singleton pattern pitfalls
     
-25.2.2018 17/43
-- 3 posts
+25.2.2018 21/43
+- 4 posts
     - java cloning problems    
     - protect your http cookies
     - pramp
+    - idea presentations
+    
+26.2.2018
+- 1 posts    
+   - field injection
