@@ -30,10 +30,11 @@
     - idea presentations
     
 26.2.2018
-- 6 posts    
+- 7 posts    
    - field injection
    - intellij idea performance
    - lighthouse
    - dependency check
    - springfox
    - SNYK
+   - spring core
