@@ -35,7 +35,7 @@ The feature was originally available in ReSharper, then [as a separate plugin](
 Displaying available templates
 ------------------------------
 
-It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: *Ctrl + J* (or *⌘ + J* on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to collection. 
+It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: *Ctrl + J* (or *⌘ + J* on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to a collection. 
 
 ![show-actions-postfix-code-completion](./show-actions-postfix-code-completion.png)
 
