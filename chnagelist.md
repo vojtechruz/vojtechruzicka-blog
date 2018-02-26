@@ -30,7 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 12 posts    
+- 13 posts    
    - field injection
    - intellij idea performance
    - lighthouse
@@ -43,3 +43,4 @@
    - javascript primitives
    - javascript hoisting
    - javascript constructor functions
+   - spring web exam
