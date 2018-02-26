@@ -30,7 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 7 posts    
+- 8 posts    
    - field injection
    - intellij idea performance
    - lighthouse
@@ -38,3 +38,4 @@
    - springfox
    - SNYK
    - spring core
+   - career guide
