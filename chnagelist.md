@@ -30,6 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 2 posts    
+- 3 posts    
    - field injection
    - intellij idea performance
+   - lighthouse
