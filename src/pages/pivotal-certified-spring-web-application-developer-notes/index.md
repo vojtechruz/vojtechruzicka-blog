@@ -12,9 +12,9 @@ Study materials and an exam review for Pivotal Certified Spring Web Application
 
 **UPDATE:** Certification can now be purchased separately for \$200, [you no longer need](https://spring.io/blog/2017/05/10/pivotal-announces-spring-curriculum-certification-changes) to purchase the four days training to receive the voucher. However, if you do so, you will still receive the free voucher. The voucher expiration period is no longer specifically stated in the study guide, but you should receive expiration date with your order.
 
-After finishing the official Spring Web Training, you receive a voucher for the certification exam. This voucher is free and cannot be obtained without the training. If you fail the exam, another voucher can be bought for \$ 150 and the exam can be taken after at least six weeks.
+~~After finishing the official Spring Web Training, you receive a voucher for the certification exam. This voucher is free and cannot be obtained without the training. If you fail the exam, another voucher can be bought for \$ 150 and the exam can be taken after at least six weeks.~~
 
-Beware, that in the previous versions of the exam, the certification voucher was valid for 12 months after the training. Official study guide (see below) also states 12 months. However, this was changed and the voucher now expires after only three months. However, I still recommend taking the exam not too long after the training, so the memory is still fresh.
+~~Beware, that in the previous versions of the exam, the certification voucher was valid for 12 months after the training. Official study guide (see below) also states 12 months. However, this was changed and the voucher now expires after only three months. However, I still recommend taking the exam not too long after the training, so the memory is still fresh.~~
 
 The Exam
 --------
