@@ -30,7 +30,7 @@
     - idea presentations
     
 26.2.2018
-- 14 posts    
+- 15 posts    
    - field injection
    - intellij idea performance
    - lighthouse
@@ -46,3 +46,4 @@
    - spring web exam
    - owasp top 10 2017
    - coverage
+   - idea postfix
