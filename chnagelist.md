@@ -30,5 +30,6 @@
     - idea presentations
     
 26.2.2018
-- 1 posts    
+- 2 posts    
    - field injection
+   - intellij idea performance
