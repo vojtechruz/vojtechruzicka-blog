@@ -30,7 +30,8 @@
     - idea presentations
     
 26.2.2018
-- 3 posts    
+- 4 posts    
    - field injection
    - intellij idea performance
    - lighthouse
+   - dependency check
