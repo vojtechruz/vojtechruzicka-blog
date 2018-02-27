@@ -24,6 +24,7 @@
     "gatsby-transformer-remark": "^1.7.32",
     "gatsby-transformer-sharp": "^1.6.19",
     "lodash": "^4.17.5",
+    "react-helmet": "^5.2.0",
     "react-responsive-grid": "^0.3.4",
     "typeface-merriweather": "0.0.54",
     "typeface-montserrat": "0.0.54",
@@ -37,7 +38,7 @@
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
-    "vojtech ruzicka"
+    "vojtech ruzicka blog"
   ],
   "license": "MIT",
   "main": "n/a",
