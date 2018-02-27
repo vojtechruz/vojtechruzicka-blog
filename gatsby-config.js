@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Vojtech Ruzicka\'s Programming Blog',
     author: 'Vojtech Ruzicka',
-    description: 'A starter blog demonstrating what Gatsby can do.',
+    description: 'Vojtech Ruzicka\'s Programming Blog.',
     siteUrl: 'https://www.vojtechruzicka.com',
   },
   pathPrefix: '/',
