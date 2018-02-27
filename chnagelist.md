@@ -54,3 +54,5 @@
 - 256 bloghacks   
 - idea rest client
 - idea settings synchronization
+- bem
+- FINISHED CONVERTING POSTS
