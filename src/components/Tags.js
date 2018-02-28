@@ -4,8 +4,9 @@ import React from 'react'
 import 'typeface-montserrat'
 import 'typeface-merriweather'
 
-import profilePic from './profile.jpg'
 import { rhythm } from '../utils/typography'
+import Link from "gatsby-link";
+const _ = require('lodash')
 
 class Tags extends React.Component {
 
@@ -20,7 +21,7 @@ return (
         <ul>
             {
                 this.props.tags.map((tag, index) => {
-                    return <li key={index}>{tag}</li>;
+                    return <li key={index}><Link to={'/tags/'+_.kebabCase(tag)}>{tag}</Link></li>;
                 })
             }
         </ul>
