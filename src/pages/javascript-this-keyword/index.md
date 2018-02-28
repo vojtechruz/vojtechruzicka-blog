@@ -1,6 +1,7 @@
 ---
 title: 'Javascript: Uncovering mysteries of ‘this’ keyword'
 date: "2018-02-13T22:12:03.284Z"
+tags: ['Javascript']
 ---
 
 ![javascript-this](./javascript-this.jpg)

@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Multiple Cursors'
 date: "2017-06-29T22:12:03.284Z"
+tags: ['IDEA']
 ---
 ![idea](./IntelliJIDEA_icon.png)
 

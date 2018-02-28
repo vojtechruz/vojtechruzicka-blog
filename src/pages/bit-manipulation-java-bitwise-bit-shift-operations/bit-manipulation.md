@@ -1,6 +1,7 @@
 ---
 title: 'Bit Manipulation in Java – Bitwise and Bit Shift operations'
 date: "2017-09-02T22:12:03.284Z"
+tags: ['Java']
 ---
 ![binary](binary.jpg)
 

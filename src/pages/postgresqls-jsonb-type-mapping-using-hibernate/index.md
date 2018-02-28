@@ -1,6 +1,7 @@
 ---
 title: PostgreSQL’s JSONB type mapping using Hibernate
 date: "2017-03-16T22:12:03.284Z"
+tags: ['Java', 'Spring', 'PostgreSQL', 'Hibernate']
 ---
 ![postgresql-logo](./postgresql.jpg)
 

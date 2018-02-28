@@ -1,6 +1,7 @@
 ---
 title: Preventing Clickjacking
 date: "2017-04-10T22:12:03.284Z"
+tags: ['Security']
 ---
 ![clickjacking](./clickjacking.jpg)
 

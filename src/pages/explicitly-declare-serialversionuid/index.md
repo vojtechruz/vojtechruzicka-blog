@@ -1,6 +1,7 @@
 ---
 title: Should I explicitly declare serialVersionUID?
 date: "2016-05-03T22:12:03.284Z"
+tags: ['Java']
 ---
 ![serialization](./serialization.jpg)
 

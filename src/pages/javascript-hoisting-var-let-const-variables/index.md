@@ -1,6 +1,7 @@
 ---
 title: 'Javascript hoisting, var, let and const variables'
 date: "2018-02-09T22:12:03.284Z"
+tags: ['Javascript']
 ---
 ![hoisting](hoisting.jpg)
 

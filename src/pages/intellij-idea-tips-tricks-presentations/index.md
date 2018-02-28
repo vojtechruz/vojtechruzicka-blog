@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Presentations'
 date: "2017-07-12T22:12:03.284Z"
+tags: ['IDEA']
 ---
 ![intellij-idea-presentations](./intellij-idea-presentation.jpg)
 

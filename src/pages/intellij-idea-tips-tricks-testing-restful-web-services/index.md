@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Testing RESTful web services with integrated HTTP Client'
 date: "2018-01-17T22:12:03.284Z"
+tags: ['IDEA', 'REST']
 ---
 ![IntelliJ IDEA](./IntelliJIDEA_icon.png)
 

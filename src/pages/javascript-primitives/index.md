@@ -1,6 +1,7 @@
 ---
 title: 'Javascript Primitives Guide'
 date: "2018-01-31T22:12:03.284Z"
+tags: ['Javascript']
 ---
 ![primitives](primitives.jpg)
 

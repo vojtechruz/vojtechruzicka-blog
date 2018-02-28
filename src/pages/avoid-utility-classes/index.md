@@ -1,6 +1,7 @@
 ---
 title: Avoid Utility Classes
 date: "2017-03-07T22:12:03.284Z"
+tags: ['OOP', 'Java']
 ---
 ![Utility Class](./avoid-utility-classes.jpg)
 

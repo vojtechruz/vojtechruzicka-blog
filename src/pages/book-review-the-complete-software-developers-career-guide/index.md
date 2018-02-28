@@ -1,6 +1,7 @@
 ---
 title: 'Book Review: The Complete Software Developer’s Career Guide'
 date: "2017-09-07T22:12:03.284Z"
+tags: ['Books', 'Career']
 ---
 ![career-guide](./career-guide.jpg)
 

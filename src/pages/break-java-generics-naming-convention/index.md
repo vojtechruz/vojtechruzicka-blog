@@ -1,6 +1,7 @@
 ---
 title: Break the Java Generics Naming Convention?
 date: "2016-04-30T22:12:03.284Z"
+tags: ['Java']
 ---
 ![featured-image](./break-java-generics-maning-convention.jpg)
 

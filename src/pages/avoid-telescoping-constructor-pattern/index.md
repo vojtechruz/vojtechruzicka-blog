@@ -1,6 +1,7 @@
 ---
 title: Telescoping Constructor Pattern alternatives
 date: "2016-05-11T22:12:03.284Z"
+tags: ['OOP', 'Java']
 ---
 ![telescoping-constructor](./telescoping-constructor.jpg)
  

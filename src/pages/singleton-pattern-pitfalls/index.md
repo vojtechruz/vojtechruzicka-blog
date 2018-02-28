@@ -1,6 +1,7 @@
 ---
 title: Singleton Pattern Pitfalls
 date: "2016-08-31T22:12:03.284Z"
+tags: ['Java', 'Design-Patterns']
 ---
 ![Singleton design pattern](./singleton.jpg)
 

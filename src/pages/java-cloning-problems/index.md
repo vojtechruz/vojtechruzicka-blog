@@ -1,6 +1,7 @@
 ---
 title: 'Java Cloning Problems'
 date: "2017-06-07T22:12:03.284Z"
+tags: ['Java']
 ---
 ![cloning](./clone.jpg)
 

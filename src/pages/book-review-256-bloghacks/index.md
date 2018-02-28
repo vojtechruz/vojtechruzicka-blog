@@ -1,6 +1,7 @@
 ---
 title: 'Book Review: 256 Bloghacks'
 date: "2017-10-09T22:12:03.284Z"
+tags: ['Books', 'Blogging']
 ---
 
 ![256 bloghacks](./cover.png)

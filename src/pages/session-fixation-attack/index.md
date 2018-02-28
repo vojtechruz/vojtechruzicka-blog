@@ -1,6 +1,7 @@
 ---
 title: Session Fixation Attack
 date: "2017-02-20T22:12:03.284Z"
+tags: ['Security', 'HTTP']
 ---
 ![session fixation](./session-fixation.jpg) 
 

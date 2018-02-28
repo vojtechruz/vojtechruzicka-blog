@@ -1,6 +1,7 @@
 ---
 title: Premium Quality Tests
 date: "2017-05-02T22:12:03.284Z"
+tags: ['Testing']
 ---
 ![premium-quality](./premium.png)
  Test quality is just as important as that of production code. Tests should not be excluded from quality checks and the same quality rules should be applied.

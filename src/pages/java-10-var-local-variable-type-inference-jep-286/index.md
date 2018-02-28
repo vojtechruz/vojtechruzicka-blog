@@ -1,6 +1,7 @@
 ---
 title: 'Java 10 – var – Local Variable Type Inference (JEP-286)'
 date: "2018-01-04T22:12:03.284Z"
+tags: ['Java']
 ---
 ![java10-var](./local-variable-inference-java-10.jpg)
 

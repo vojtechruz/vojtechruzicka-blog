@@ -1,6 +1,7 @@
 ---
 title: How to prepare for a phone screening interview
 date: "2017-11-02T22:12:03.284Z"
+tags: ['Career']
 ---
 ![phone-screening-interview](./phone-screening-interview.jpg)
 

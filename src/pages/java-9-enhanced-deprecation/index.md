@@ -1,6 +1,7 @@
 ---
 title: 'Java 9: Enhanced deprecation'
 date: "2017-05-17T22:12:03.284Z"
+tags: ['Java']
 ---
 
 ![Deprecated](deprecated.jpg)

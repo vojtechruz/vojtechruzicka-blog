@@ -1,6 +1,7 @@
 ---
 title: 'Learning IntelliJ IDEA keyboard shortcuts'
 date: "2016-05-08T22:12:03.284Z"
+tags: ['IDEA']
 ---
 ![idea](./IntelliJIDEA_icon.png) 
 

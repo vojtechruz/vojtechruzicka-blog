@@ -1,6 +1,7 @@
 ---
 title: 'Detecting dependencies with known vulnerabilities   '
 date: "2017-03-23T22:12:03.284Z"
+tags: ['Java', 'Security']
 ---
 ![dependency-check](./dc-large.png)
  

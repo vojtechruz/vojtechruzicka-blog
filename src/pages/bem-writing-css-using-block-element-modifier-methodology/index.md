@@ -1,6 +1,7 @@
 ---
 title: 'BEM – Writing CSS using Block Element Modifier Methodology'
 date: "2017-03-20T22:12:03.284Z"
+tags: ['CSS']
 ---
 
 ![BEM](./bem.jpg)

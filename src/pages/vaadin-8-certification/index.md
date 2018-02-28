@@ -1,6 +1,7 @@
 ---
 title: Vaadin 8 Certification
 date: "2017-09-19T22:12:03.284Z"
+tags: ['Career', 'Java']
 ---
 ![vaadin-certification](./vaadin-certification.jpg)
  

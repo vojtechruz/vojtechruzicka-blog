@@ -1,6 +1,7 @@
 ---
 title: 'How to protect your HTTP Cookies'
 date: "2018-01-18T22:12:03.284Z"
+tags: ['HTTP']
 ---
 
 ![protect-http-cookies](./protect-cookies.jpg)

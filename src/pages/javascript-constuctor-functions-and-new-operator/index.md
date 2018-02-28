@@ -1,6 +1,7 @@
 ---
 title: 'Javascript constuctor functions and new operator'
 date: "2018-02-02T22:12:03.284Z"
+tags: ['Javascript']
 ---
 ![](./constructor-functions.jpg)
 

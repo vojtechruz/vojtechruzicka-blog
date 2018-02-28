@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Postfix Code Completion'
 date: "2017-11-07T22:12:03.284Z"
+tags: ['IDEA']
 ---
 ![intellij](./IntelliJIDEA_icon.png)
 

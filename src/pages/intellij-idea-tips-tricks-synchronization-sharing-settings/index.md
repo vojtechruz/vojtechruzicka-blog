@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Synchronization and Sharing of Settings'
 date: "2018-01-24T22:12:03.284Z"
+tags: ['IDEA']
 ---
 ![IntelliJ IDEA](./IntelliJIDEA_icon.png)
 

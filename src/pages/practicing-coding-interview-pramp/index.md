@@ -1,6 +1,7 @@
 ---
 title: 'Practicing coding interviews online with a real interviewer using Pramp'
 date: "2017-08-17T22:12:03.284Z"
+tags: ['Career']
 ---
 ![pramp-interview](./practicing-coding-interview.jpg)
 

@@ -1,6 +1,7 @@
 ---
 title: Stop using Javadoc @author tag
 date: "2016-05-07T22:12:03.284Z"
+tags: ['Java']
 ---
 ![Clipboard02](./javadoc-author.jpg)
 
