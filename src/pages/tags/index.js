@@ -16,7 +16,10 @@ const TagsPage = ({
         <div>
             <h1>Tags</h1>
             <ul>
-                {group.map(tag => (
+                {group.sort((a, b) => {
+                    //TODO do sorting in graphql
+                    return b.totalCount - a.totalCount}
+                    ).map(tag => (
                     <li key={tag.fieldValue}>
                         <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
                             {tag.fieldValue} ({tag.totalCount})
