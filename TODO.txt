@@ -1,0 +1,3 @@
+- sorting of tag pages by number of posts
+- tag subpages show fewer items
+- 2x declared feed plugin with rss.xml and feed ????
