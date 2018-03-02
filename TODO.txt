@@ -1,3 +1,4 @@
-- sorting of tag pages by number of posts
-- tag subpages show fewer items
+- featured images
+- internal linking
+- compressed images for thumbs
 - 2x declared feed plugin with rss.xml and feed ????

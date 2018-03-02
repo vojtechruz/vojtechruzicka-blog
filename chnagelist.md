@@ -71,3 +71,5 @@ added custom theme
 - added disqus support
 - Added GA tracking ID
 - added favicon
+- added bootstrap typography theme
+- added support for excerpts
