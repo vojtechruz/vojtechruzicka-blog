@@ -4,9 +4,10 @@ date: "2018-01-31T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-primitives'
 ---
-![primitives](./primitives.jpg)
 
 What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?
+<!--more-->
+![primitives](./primitives.jpg)
 
 Primitives versus Objects
 -------------------------

@@ -4,9 +4,9 @@ date: "2017-09-07T22:12:03.284Z"
 tags: ['Books', 'Career']
 path: '/book-review-the-complete-software-developers-career-guide'
 ---
-![career-guide](./career-guide.jpg)
-
 Review of the new Book by John Sonmez. Is it a book, which every software developer should have on their bookshelf? Can it actually help in advancing your career?
+<!--more-->
+![career-guide](./career-guide.jpg)
 
 About the author
 ----------------

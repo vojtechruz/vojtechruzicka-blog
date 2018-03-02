@@ -4,9 +4,9 @@ date: "2016-05-03T22:12:03.284Z"
 tags: ['Java']
 path: '/explicitly-declare-serialversionuid'
 ---
-![serialization](./serialization.jpg)
-
 Should you explicitly declare serialVersionUID or leave it to be automatically generated?
+<!--more-->
+![serialization](./serialization.jpg)
 
 What is serialVersionUID?
 -------------------------

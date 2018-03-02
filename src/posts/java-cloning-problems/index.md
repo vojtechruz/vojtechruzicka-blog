@@ -4,9 +4,10 @@ date: "2017-06-07T22:12:03.284Z"
 tags: ['Java']
 path: '/java-cloning-problems'
 ---
-![cloning](./clone.jpg)
 
 Java\'s mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
+<!--more-->
+![cloning](./clone.jpg)
 
 Why clone objects?
 ------------------

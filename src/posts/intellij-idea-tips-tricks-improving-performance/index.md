@@ -4,8 +4,10 @@ date: "2017-08-01T22:12:03.284Z"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-improving-performance'
 ---
-![intellij-idea-slow](./intellij-idea-slow.jpg)
+
  Running IntelliJ IDEA IDE can be taxing on your machine, especially for large projects, here are a few tips, which can help you to achieve better performance.
+<!--more-->
+![intellij-idea-slow](./intellij-idea-slow.jpg)
 
 Unload Modules
 --------------

@@ -5,9 +5,9 @@ tags: ['HTTP']
 path: '/protect-http-cookies'
 ---
 
-![protect-http-cookies](./protect-cookies.jpg)
-
 Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.
+<!--more-->
+![protect-http-cookies](./protect-cookies.jpg)
 
 What are Cookies
 ----------------

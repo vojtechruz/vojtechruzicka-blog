@@ -5,8 +5,9 @@ tags: ['Books', 'Blogging']
 path: '/book-review-256-bloghacks'
 ---
 
-![256 bloghacks](./cover.png)
  A detailed review of a guide to blogging by Yegor Bugayenko.
+<!--more-->
+![256 bloghacks](./cover.png)
 
 About the author
 ----------------

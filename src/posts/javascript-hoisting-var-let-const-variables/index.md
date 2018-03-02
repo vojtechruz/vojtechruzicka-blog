@@ -4,9 +4,10 @@ date: "2018-02-09T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-hoisting-var-let-const-variables'
 ---
-![hoisting](./hoisting.jpg)
 
 One of the Javascript\'s oddities is that you can use variables and functions even before they are declared. It\'s called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.
+<!--more-->
+![hoisting](./hoisting.jpg)
 
 Hoisting
 --------

@@ -4,9 +4,10 @@ date: "2018-02-02T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-constuctor-functions-and-new-operator'
 ---
-![constructor-functions](./constructor-functions.jpg)
 
 What does Javascript\'s new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
+<!--more-->
+![constructor-functions](./constructor-functions.jpg)
 
 Creating objects
 ----------------

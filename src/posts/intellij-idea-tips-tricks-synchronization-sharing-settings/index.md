@@ -4,9 +4,10 @@ date: "2018-01-24T22:12:03.284Z"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-synchronization-sharing-settings'
 ---
-![IntelliJ IDEA](./IntelliJIDEA_icon.png)
 
 Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.
+<!--more-->
+![IntelliJ IDEA](./IntelliJIDEA_icon.png)
 
 The importance of synchronization
 ---------------------------------
