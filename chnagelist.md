@@ -70,3 +70,4 @@ added custom theme
 - tags are now rendered inline
 - added disqus support
 - Added GA tracking ID
+- added favicon
