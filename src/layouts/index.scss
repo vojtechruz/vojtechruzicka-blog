@@ -1,5 +1,13 @@
 @import "syntax-highlighting";
 
+a {
+  color: #007acc;
+}
+
+a:hover {
+  color: lighten(#007acc,5%);
+}
+
 .post-tags {
   list-style: none;
 
