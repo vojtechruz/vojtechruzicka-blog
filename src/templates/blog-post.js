@@ -2,7 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
-
+import Disqus from 'disqus-react';
 import Bio from '../components/Bio'
 import { rhythm, scale } from '../utils/typography'
 import Tags from "../components/Tags";
@@ -11,7 +11,12 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-
+      const disqusShortname = 'vojtechruzicka';
+      const disqusConfig = {
+          url: "http://vojtechruzicka.com"+post.frontmatter.path,
+          identifier: post.frontmatter.path,
+          title: post.frontmatter.title,
+      };
     return (
       <div>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
@@ -34,6 +39,7 @@ class BlogPostTemplate extends React.Component {
         />
         <Tags tags={post.frontmatter.tags} />
         <Bio />
+        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </div>
     )
   }
