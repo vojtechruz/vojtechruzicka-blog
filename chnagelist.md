@@ -68,3 +68,5 @@
 - figured out how to make syntax highlighting, reported coy theme bug, 
 added custom theme
 - tags are now rendered inline
+- added disqus support
+- Added GA tracking ID
