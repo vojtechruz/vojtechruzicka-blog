@@ -1,0 +1,16 @@
+@import "syntax-highlighting";
+
+.post-tags {
+  list-style: none;
+
+  ul {
+    display: inline;
+
+    li {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+  }
+
+  margin-bottom: 1rem;
+}

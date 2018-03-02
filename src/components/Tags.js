@@ -16,8 +16,8 @@ if(!this.props.tags) {
 }
 
 return (
-    <div>
-        <p>Tagged with:</p>
+    <div className='post-tags'>
+        <span>Tagged with: </span>
         <ul>
             {
                 this.props.tags.map((tag, index) => {

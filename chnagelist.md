@@ -56,3 +56,15 @@
 - idea settings synchronization
 - bem
 - FINISHED CONVERTING POSTS
+
+28.2.2018
+- working on tags
+
+1.3.2018
+- finished work on tags including sorting
+- posts are now in separate directory and contain path
+
+2.3.2018
+- figured out how to make syntax highlighting, reported coy theme bug, 
+added custom theme
+- tags are now rendered inline
