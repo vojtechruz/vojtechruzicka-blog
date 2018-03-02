@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { Container } from 'react-responsive-grid'
+require("prismjs/themes/prism-coy.css");
 
 import { rhythm, scale } from '../utils/typography'
 import './index.scss';
