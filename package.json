@@ -30,7 +30,7 @@
     "react-responsive-grid": "^0.3.4",
     "typeface-merriweather": "0.0.54",
     "typeface-montserrat": "0.0.54",
-    "typography-theme-wordpress-2016": "^0.15.10"
+    "typography-theme-bootstrap": "^0.16.7"
   },
   "devDependencies": {
     "eslint": "^4.18.1",
