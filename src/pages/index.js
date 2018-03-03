@@ -60,8 +60,8 @@ export const pageQuery = graphql`
             tags
             featuredImage {
                 childImageSharp{
-                    sizes(maxWidth: 50) {
-                        ...GatsbyImageSharpSizes
+                    sizes(maxWidth: 200) {
+                        ...GatsbyImageSharpSizes_tracedSVG
                     }
                 }
             }
