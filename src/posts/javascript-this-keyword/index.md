@@ -5,7 +5,7 @@ tags: ['Javascript']
 path: '/javascript-this-keyword'
 ---
 
-*This* is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
+'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
 <!--more-->
 ![javascript-this](./javascript-this.jpg)
 
