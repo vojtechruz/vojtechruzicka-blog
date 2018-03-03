@@ -3,6 +3,7 @@ title: 'Measuring Javascript and CSS coverage with Google Chrome Developer Tools
 date: "2017-07-27T22:12:03.284Z"
 tags: ['Javascript','CSS','Chrome']
 path: '/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools'
+featuredImage: ''
 ---
 
 A new feature in Google Chrome Developer Tools allows you to measure coverage of CSS and Javascript files. This allows you to easily detect and remove unused portions of the code.

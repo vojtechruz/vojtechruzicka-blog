@@ -3,6 +3,7 @@ title: 'BEM – Writing CSS using Block Element Modifier Methodology'
 date: "2017-03-20T22:12:03.284Z"
 tags: ['CSS']
 path: '/bem-writing-css-using-block-element-modifier-methodology'
+featuredImage: ''
 ---
 
 BEM is a lightweight front-end development methodology which makes your code more flexible, modular and reusable.

@@ -7,8 +7,6 @@ featuredImage: './telescoping-constructor.jpg'
 ---
 Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the alternative approaches and when should you use them?
 <!--more-->
-![telescoping-constructor](./telescoping-constructor.jpg)
-
 
 Telescoping Constructor
 -----------------------

@@ -3,6 +3,7 @@ title: Session Fixation Attack
 date: "2017-02-20T22:12:03.284Z"
 tags: ['Security', 'HTTP']
 path: '/session-fixation-attack'
+featuredImage: ''
 ---
 
 Session fixation is a type of attack, where the attacker can hijack user\'s session. What are some of the variants and how to prevent this type of attack?

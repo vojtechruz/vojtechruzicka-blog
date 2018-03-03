@@ -3,10 +3,10 @@ title: Avoid Utility Classes
 date: "2017-03-07T22:12:03.284Z"
 tags: ['OOP', 'Java']
 path: '/avoid-utility-classes'
+featuredImage: './avoid-utility-classes.jpg'
 ---
 Utility classes, while popular, have some serious implications and you should think twice before using them.
 <!--more-->
-![Utility Class](./avoid-utility-classes.jpg)
 
 What is Utility Class?
 ----------------------
