@@ -6,6 +6,7 @@ import Disqus from 'disqus-react';
 import Bio from '../components/Bio'
 import { rhythm, scale } from '../utils/typography'
 import Tags from "../components/Tags";
+import Img from 'gatsby-image'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class BlogPostTemplate extends React.Component {
       <div>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
         <h1>{post.frontmatter.title}</h1>
+
         <p
           style={{
             ...scale(-1 / 5),
@@ -31,6 +33,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
+        <Img sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
@@ -62,6 +65,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        featuredImage {
+            childImageSharp{
+                sizes(maxWidth: 1000) {
+                    ...GatsbyImageSharpSizes_tracedSVG
+                }
+            }
+        }
       }
     }
   }
