@@ -3,12 +3,11 @@ title: Preventing Clickjacking
 date: "2017-04-10T22:12:03.284Z"
 tags: ['Security']
 path: '/preventing-clickjacking'
-featuredImage: ''
+featuredImage: './clickjacking.jpg'
 ---
 
 Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?
 <!--more-->
-![clickjacking](./clickjacking.jpg)
 
 Clickjacking
 ------------

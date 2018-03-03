@@ -3,12 +3,11 @@ title: 'How to protect your HTTP Cookies'
 date: "2018-01-18T22:12:03.284Z"
 tags: ['HTTP']
 path: '/protect-http-cookies'
-featuredImage: ''
+featuredImage: './protect-cookies.jpg'
 ---
 
 Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.
 <!--more-->
-![protect-http-cookies](./protect-cookies.jpg)
 
 What are Cookies
 ----------------

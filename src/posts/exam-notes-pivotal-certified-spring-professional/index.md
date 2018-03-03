@@ -3,11 +3,10 @@ title: 'Exam Notes – Pivotal Certified Spring Professional'
 date: "2016-10-24T22:12:03.284Z"
 tags: ['Java', 'Spring', 'Career']
 path: '/exam-notes-pivotal-certified-spring-professional'
-featuredImage: ''
+featuredImage: './spring-core.jpg'
 ---
  Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study notes.
 <!--more-->
-![spring certified profession exam](./spring-core.jpg)
 
 Resources
 ---------

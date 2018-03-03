@@ -3,11 +3,10 @@ title: 'Web Page Audit with Chrome Developer Tools and Lighthouse'
 date: "2018-01-22T22:12:03.284Z"
 tags: ['Chrome']
 path: '/chrome-audit-lighthouse'
-featuredImage: ''
+featuredImage: './lighthouse.jpg'
 ---
 Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as Performance, SEO, Best Practices, Accessibility, Progressive Web Application compliance and more?
 <!--more-->
-![lighthouse](./lighthouse.jpg)
 
 Running an Audit
 ----------------

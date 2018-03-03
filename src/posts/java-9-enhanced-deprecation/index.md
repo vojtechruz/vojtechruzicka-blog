@@ -3,12 +3,11 @@ title: 'Java 9: Enhanced deprecation'
 date: "2017-05-17T22:12:03.284Z"
 tags: ['Java']
 path: '/java-9-enhanced-deprecation'
-featuredImage: ''
+featuredImage: './deprecated.jpg'
 ---
  
  @Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.
 <!--more-->
-![Deprecated](./deprecated.jpg)
 
 Java 8 Deprecation
 ------------------

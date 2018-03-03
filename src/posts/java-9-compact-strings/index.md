@@ -2,12 +2,11 @@
 title: 'Java 9: Compact Strings'
 date: "2017-05-23T22:12:03.284Z"
 path: '/java-9-compact-strings'
-featuredImage: ''
+featuredImage: './compact-strings.jpg'
 ---
 
 Java 9 brings a new, improved string, which in most cases, will reduce String memory consumption to half.
 <!--more-->
-![Compact Strings](./compact-strings.jpg) 
 
 String memory consumption
 -------------------------

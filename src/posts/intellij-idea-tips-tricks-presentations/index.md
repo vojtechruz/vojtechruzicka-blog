@@ -3,12 +3,11 @@ title: 'IntelliJ IDEA Tips & Tricks: Presentations'
 date: "2017-07-12T22:12:03.284Z"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-presentations'
-featuredImage: ''
+featuredImage: './intellij-idea-presentation.jpg'
 ---
 
 How to make the most of the IntelliJ IDEA\'s view modes to make best presentations possible including visualization of the keyboard input?
 <!--more-->
-![intellij-idea-presentations](./intellij-idea-presentation.jpg)
 
 Presentation Mode
 -----------------

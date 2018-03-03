@@ -3,12 +3,11 @@ title: Vaadin 8 Certification
 date: "2017-09-19T22:12:03.284Z"
 tags: ['Career', 'Java']
 path: '/vaadin-8-certification'
-featuredImage: ''
+featuredImage: './vaadin-certification.jpg'
 ---
  
  After releasing Vaadin 8 and 8.1, the certification [was updated](https://vaadin.com/blog/-/blogs/welcome-to-the-free-vaadin-8-certification-week-) to the version 8 as well. If you are considering taking the certification, this review will come in handy.
 <!--more-->
-![vaadin-certification](./vaadin-certification.jpg)
 
 Purchasing the voucher
 ----------------------

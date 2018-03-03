@@ -3,12 +3,11 @@ title: Singleton Pattern Pitfalls
 date: "2016-08-31T22:12:03.284Z"
 tags: ['Java', 'Design-Patterns']
 path: '/singleton-pattern-pitfalls'
-featuredImage: ''
+featuredImage: './singleton.jpg'
 ---
 
 Singleton, one of the most popular design patterns has a lot of serious drawbacks and some even consider it an anti-pattern. What are the pitfalls of the famous pattern?
 <!--more-->
-![Singleton design pattern](./singleton.jpg)
 
 What is Singleton?
 ------------------

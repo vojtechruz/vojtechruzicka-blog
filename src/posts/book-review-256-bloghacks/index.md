@@ -3,12 +3,11 @@ title: 'Book Review: 256 Bloghacks'
 date: "2017-10-09T22:12:03.284Z"
 tags: ['Books', 'Blogging']
 path: '/book-review-256-bloghacks'
-featuredImage: ''
+featuredImage: './cover.png'
 ---
 
  A detailed review of a guide to blogging by Yegor Bugayenko.
 <!--more-->
-![256 bloghacks](./cover.png)
 
 About the author
 ----------------

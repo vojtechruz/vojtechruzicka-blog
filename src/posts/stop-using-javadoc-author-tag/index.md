@@ -3,12 +3,11 @@ title: Stop using Javadoc @author tag
 date: "2016-05-07T22:12:03.284Z"
 tags: ['Java']
 path: '/stop-using-javadoc-author-tag'
-featuredImage: ''
+featuredImage: './javadoc-author.jpg'
 ---
 
 Are you still using @author Javadoc tag? Maybe it\'s time to reconsider. Let\'s discuss why the tag may be actually harmful and why you should stop using it.
 <!--more-->
-![javadoc-author](./javadoc-author.jpg)
 
 Javadoc @author tag
 -------------------
