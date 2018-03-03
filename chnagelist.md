@@ -73,3 +73,7 @@ added custom theme
 - added favicon
 - added bootstrap typography theme
 - added support for excerpts
+
+3.3.2018
+- added support for featured images
+- converted jshell draft
