@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 
 import { rhythm } from '../utils/typography'
 
@@ -22,6 +23,7 @@ class BlogIndex extends React.Component {
                   marginBottom: rhythm(1 / 4),
                 }}
               >
+              <Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
                 <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
                   {title}
                 </Link>
@@ -56,6 +58,13 @@ export const pageQuery = graphql`
             date(formatString: "DD MMMM, YYYY")
             title
             tags
+            featuredImage {
+                childImageSharp{
+                    sizes(maxWidth: 50) {
+                        ...GatsbyImageSharpSizes
+                    }
+                }
+            }
           }
         }
       }
