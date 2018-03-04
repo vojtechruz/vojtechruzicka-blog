@@ -18,18 +18,21 @@ class BlogIndex extends React.Component {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (
             <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-              <Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                <h4 className="front-post-title"
+                    style={{
+                        marginBottom: rhythm(1 / 4),
+                    }}>
+                    <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                        {title}
+                    </Link>
+                </h4>
+                <small className="front-post-info">{node.frontmatter.date}</small>
+                <div>
+                    <span className="front-post-image"><Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
+                    </span>
+                  <span className="front-post-excerpt" dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                </div>
+                <hr className="front-post-separator"/>
             </div>
           )
         })}
