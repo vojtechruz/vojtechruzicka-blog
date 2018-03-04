@@ -13,8 +13,10 @@ a:hover {
 
 .post-tags {
   list-style: none;
+  display: inline;
 
   ul {
+    margin-left: 0;
     display: inline;
 
     li {

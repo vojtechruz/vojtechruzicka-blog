@@ -17,11 +17,10 @@ if(!this.props.tags) {
 
 return (
     <div className='post-tags'>
-        <span>Tagged with: </span>
         <ul>
             {
                 this.props.tags.map((tag, index) => {
-                    return <li key={index}><Link to={'/tags/'+_.kebabCase(tag)}>{tag}</Link></li>;
+                    return <li key={index}><Link to={'/tags/'+_.kebabCase(tag)}>#{tag}</Link></li>;
                 })
             }
         </ul>

@@ -40,6 +40,7 @@ class BlogPostTemplate extends React.Component {
             marginBottom: rhythm(1),
           }}
         />
+        <span>Tagged with: </span>
         <Tags tags={post.frontmatter.tags} />
         <Bio />
         <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />

@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
 import { rhythm } from '../utils/typography'
+import Tags from "../components/Tags";
 
 class BlogIndex extends React.Component {
   render() {
@@ -26,7 +27,10 @@ class BlogIndex extends React.Component {
                         {title}
                     </Link>
                 </h4>
-                <small className="front-post-info">{node.frontmatter.date}</small>
+                <small className="front-post-info">
+                    <span className="front-post-info-date">{node.frontmatter.date}</span>
+                    <Tags tags={node.frontmatter.tags} />
+                    </small>
                 <div>
                     <span className="front-post-image"><Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
                     </span>
