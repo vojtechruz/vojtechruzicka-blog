@@ -2,3 +2,4 @@
 - internal linking
 - compressed images for thumbs
 - 2x declared feed plugin with rss.xml and feed ????
+- escape chars in excerpts

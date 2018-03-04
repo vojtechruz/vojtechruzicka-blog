@@ -77,3 +77,6 @@ added custom theme
 3.3.2018
 - added support for featured images
 - converted jshell draft
+
+4.3.2018
+- front page layout + tags on front page
