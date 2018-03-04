@@ -5,7 +5,10 @@ a {
 }
 
 a:hover {
-  color: lighten(#007acc,5%);
+  color: lighten(#007acc,7%);
+  svg {
+    fill: lighten(#007acc,7%);
+  }
 }
 
 .post-tags {
@@ -27,4 +30,12 @@ a:hover {
   ul {
     list-style: none;
   }
+}
+
+.about-icon {
+  height: 1rem;
+  display: inline;
+  margin-right: 0.25rem;
+  margin-bottom: 0rem;
+  fill: #007acc;
 }
