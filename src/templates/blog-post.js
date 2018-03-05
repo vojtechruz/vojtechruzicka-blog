@@ -33,6 +33,7 @@ class BlogPostTemplate extends React.Component {
               <meta property="og:image" content={siteUrl + post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
 
               <meta name="twitter:creator" content="@vojtechruzicka" />
+              <meta name="twitter:site" content="@vojtechruzicka" />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
         <p
