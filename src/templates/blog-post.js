@@ -11,6 +11,8 @@ class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl')
+
       const disqusShortname = 'vojtechruzicka';
       const disqusConfig = {
           url: "http://vojtechruzicka.com"+post.frontmatter.path,
@@ -28,7 +30,9 @@ class BlogPostTemplate extends React.Component {
               <meta property="og:type" content="article" />
               <meta property="og:title" content={post.frontmatter.title} />
               <meta property="og:description" content={post.excerpt} />
-              <meta property="og:image" content={post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
+              <meta property="og:image" content={siteUrl + post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
+
+              <meta name="twitter:creator" content="@vojtechruzicka" />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
         <p
@@ -65,6 +69,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
