@@ -25,10 +25,12 @@ class BlogPostTemplate extends React.Component {
     return (
       <div>
           <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-
+              <meta property="og:type" content="article" />
+              <meta property="og:title" content={post.frontmatter.title} />
+              <meta property="og:description" content={post.excerpt} />
+              <meta property="og:image" content={post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
-
         <p
           style={{
             ...scale(-1 / 5),
@@ -68,14 +70,16 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
+      excerpt
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         tags
         featuredImage {
-            childImageSharp{
+            childImageSharp {
                 sizes(maxWidth: 1000) {
                     ...GatsbyImageSharpSizes_tracedSVG
+                    originalImg
                 }
             }
         }

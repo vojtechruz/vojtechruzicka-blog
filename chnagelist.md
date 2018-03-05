@@ -83,4 +83,4 @@ added custom theme
 - front page layout + tags on front page
 
 5.3.2018
-- 
+- fixed site not building in production build
