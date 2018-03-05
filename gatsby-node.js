@@ -61,16 +61,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           });
 
         _.each(posts, (post, index) => {
-          const previous = index === posts.length - 1 ? false : posts[index + 1].node;
-          const next = index === 0 ? false : posts[index - 1].node;
+          const related = [post];
 
           createPage({
             path: post.node.fields.slug,
             component: blogPost,
             context: {
               slug: post.node.fields.slug,
-              previous,
-              next,
+              related
             },
           })
         })

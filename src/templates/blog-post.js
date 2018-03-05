@@ -24,7 +24,7 @@ class BlogPostTemplate extends React.Component {
       if(typeof window !== 'undefined') {
           disqus = <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig}/>
       }
-      const relatedPosts = get(this.props, 'data.allMarkdownRemark.edges');
+       const relatedPosts = this.props.pathContext.related;
 
 
     return (
@@ -101,32 +101,6 @@ export const pageQuery = graphql`
                     originalImg
                 }
             }
-        }
-      }
-    }
-    allMarkdownRemark(
-    sort: { fields: [frontmatter___date], order: DESC }
-    filter: { frontmatter: { tags: { in: ["Java"] } } }
-    limit: 5
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "DD MMMM, YYYY")
-            title
-            path
-            featuredImage {
-                childImageSharp{
-                    sizes(maxWidth: 200) {
-                        ...GatsbyImageSharpSizes_tracedSVG
-                    }
-                }
-            }
-          }
         }
       }
     }
