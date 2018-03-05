@@ -79,4 +79,8 @@ added custom theme
 - converted jshell draft
 
 4.3.2018
+- about page
 - front page layout + tags on front page
+
+5.3.2018
+- 
