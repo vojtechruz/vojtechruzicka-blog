@@ -6,6 +6,7 @@ import Bio from '../components/Bio'
 import { rhythm, scale } from '../utils/typography'
 import Tags from "../components/Tags";
 import Img from 'gatsby-image'
+import Link from "gatsby-link";
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -23,6 +24,8 @@ class BlogPostTemplate extends React.Component {
       if(typeof window !== 'undefined') {
           disqus = <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig}/>
       }
+      const relatedPosts = get(this.props, 'data.allMarkdownRemark.edges');
+
 
     return (
       <div>
@@ -56,6 +59,16 @@ class BlogPostTemplate extends React.Component {
         <span>Tagged with: </span>
         <Tags tags={post.frontmatter.tags} />
         <Bio />
+        <div className="similar-posts">
+            <p>Similar posts:</p>
+            <ul>
+            {
+                relatedPosts.map((post, index) => {
+                    return <li><Link key={index} to={post.node.frontmatter.path}>{post.node.frontmatter.title}</Link></li>;
+                })
+            }
+            </ul>
+        </div>
         {disqus}
       </div>
     )
@@ -88,6 +101,32 @@ export const pageQuery = graphql`
                     originalImg
                 }
             }
+        }
+      }
+    }
+    allMarkdownRemark(
+    sort: { fields: [frontmatter___date], order: DESC }
+    filter: { frontmatter: { tags: { in: ["Java"] } } }
+    limit: 5
+    ) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "DD MMMM, YYYY")
+            title
+            path
+            featuredImage {
+                childImageSharp{
+                    sizes(maxWidth: 200) {
+                        ...GatsbyImageSharpSizes_tracedSVG
+                    }
+                }
+            }
+          }
         }
       }
     }
