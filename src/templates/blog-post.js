@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
 import get from 'lodash/get'
 import Disqus from 'disqus-react';
 import Bio from '../components/Bio'
@@ -18,9 +17,16 @@ class BlogPostTemplate extends React.Component {
           identifier: post.frontmatter.path,
           title: post.frontmatter.title,
       };
+      var disqus = null;
+      if(typeof window !== 'undefined') {
+          disqus = <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig}/>
+      }
+
     return (
       <div>
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+          <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
+
+          </Helmet>
         <h1>{post.frontmatter.title}</h1>
 
         <p
@@ -43,7 +49,7 @@ class BlogPostTemplate extends React.Component {
         <span>Tagged with: </span>
         <Tags tags={post.frontmatter.tags} />
         <Bio />
-        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        {disqus}
       </div>
     )
   }
