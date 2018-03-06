@@ -2,6 +2,7 @@
 title: 'Java 9: Compact Strings'
 date: "2017-05-23T22:12:03.284Z"
 path: '/java-9-compact-strings'
+tags: ['Java']
 featuredImage: './compact-strings.jpg'
 ---
 
