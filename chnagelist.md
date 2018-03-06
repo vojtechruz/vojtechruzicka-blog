@@ -84,3 +84,8 @@ added custom theme
 
 5.3.2018
 - fixed site not building in production build
+- added twitter and facebook cards
+- skeleton for related posts
+
+6.3.2018
+- finished related posts
