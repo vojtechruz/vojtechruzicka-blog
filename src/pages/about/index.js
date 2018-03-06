@@ -31,7 +31,7 @@ const facebookIcon = <svg className="about-icon" xmlns="http://www.w3.org/2000/s
                 <ul>
                     <li><a href="https://twitter.com/vojtechruzicka">{twitterIcon}Follow @vojtechruzicka</a></li>
                     <li>{emailIcon}<a href="http://eepurl.com/bZ0waf">Receive new posts by email</a></li>
-                    <li>{rssIcon}<a href="http://vojtechruzicka.com/feed/">Subscribe to RSS Feed</a></li>
+                    <li>{rssIcon}<a href="http://www.vojtechruzicka.com/feed/">Subscribe to RSS Feed</a></li>
                     <li><a href="http://google.com/+Vojtechruzickablog">{gPlusIcon}Follow +Vojtechruzickablog</a></li>
                 </ul>
 

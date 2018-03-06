@@ -85,9 +85,7 @@ class BlogPostTemplate extends React.Component {
         <Bio />
         <hr/>
         <div>
-            <p><strong>Did you like this post?</strong></p>
-            <p>Get notifications about new posts:</p>
-            <p>And share it:</p>
+            <p><strong>Get notifications about new posts on <a href="https://twitter.com/vojtechruzicka">Twitter</a>, by <a href="http://www.vojtechruzicka.com/feed/">RSS</a> or by <a href="http://eepurl.com/bZ0waf">Email</a>.</strong></p>
             <div>
                 <FacebookShareButton url={siteUrl + this.props.pathContext.slug}>
                     <FacebookIcon round size={shareIconSize} />
