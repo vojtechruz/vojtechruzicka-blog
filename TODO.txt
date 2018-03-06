@@ -1,4 +1,3 @@
-- featured images
 - internal linking
 - compressed images for thumbs
 - 2x declared feed plugin with rss.xml and feed ????
