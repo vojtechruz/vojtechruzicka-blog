@@ -20,12 +20,25 @@ class BlogPostTemplate extends React.Component {
           identifier: post.frontmatter.path,
           title: post.frontmatter.title,
       };
-      var disqus = null;
+      let disqus = null;
       if(typeof window !== 'undefined') {
           disqus = <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig}/>
       }
        const relatedPosts = this.props.pathContext.related;
-
+      let similarPosts = null;
+      if(relatedPosts && relatedPosts.length > 0) {
+          similarPosts = (<div className="similar-posts">
+              <p>Similar posts:</p>
+              <ul>
+                  {
+                      relatedPosts.map((post, index) => {
+                          console.log(JSON.stringify(post.node.frontmatter))
+                          return <li key={post.node.frontmatter.path}><Link to={post.node.frontmatter.path}>{post.node.frontmatter.title}</Link></li>;
+                      })
+                  }
+              </ul>
+          </div>)
+      }
 
     return (
       <div>
@@ -59,17 +72,7 @@ class BlogPostTemplate extends React.Component {
         <span>Tagged with: </span>
         <Tags tags={post.frontmatter.tags} />
         <Bio />
-        <div className="similar-posts">
-            <p>Similar posts:</p>
-            <ul>
-            {
-                relatedPosts.map((post, index) => {
-                    console.log(JSON.stringify(post.node.frontmatter))
-                    return <li key={post.node.frontmatter.path}><Link to={post.node.frontmatter.path}>{post.node.frontmatter.title}</Link></li>;
-                })
-            }
-            </ul>
-        </div>
+        {similarPosts}
         {disqus}
       </div>
     )
