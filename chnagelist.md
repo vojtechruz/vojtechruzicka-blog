@@ -89,3 +89,4 @@ added custom theme
 
 6.3.2018
 - finished related posts
+- post social media share icons + bio
