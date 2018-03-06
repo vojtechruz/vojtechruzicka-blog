@@ -23,6 +23,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     title
                     tags
                     date
+                    path
                   }
                 }
               }
@@ -61,7 +62,25 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           });
 
         _.each(posts, (post, index) => {
-          const related = [post];
+          let related = posts.filter((p) => {
+              if(p.node.fields.slug === post.node.fields.slug) {
+                  return false;
+              }
+
+              var filteredTags = post.node.frontmatter.tags.filter((tag) => {
+                  if(p.node.frontmatter.tags.indexOf(tag) !== -1) {
+                      return true;
+                  }
+                  return false;
+              });
+              if(filteredTags && filteredTags.length > 0) {
+                  return true;
+              }
+
+              return false;
+          });
+
+          related = _.shuffle(related).slice(0,6);
 
           createPage({
             path: post.node.fields.slug,
