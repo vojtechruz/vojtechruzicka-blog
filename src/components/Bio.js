@@ -6,6 +6,7 @@ import 'typeface-merriweather'
 
 import profilePic from './profile.jpg'
 import { rhythm } from '../utils/typography'
+import Link from "gatsby-link";
 
 class Bio extends React.Component {
   render() {
@@ -13,7 +14,7 @@ class Bio extends React.Component {
       <div
         style={{
           display: 'flex',
-          marginBottom: rhythm(2.5),
+          marginBottom: rhythm(1.0),
           marginTop: rhythm(0.5)
         }}
       >
@@ -28,12 +29,7 @@ class Bio extends React.Component {
               height: rhythm(2),
           }}
         />
-        <div>
-            <div>Written by <strong>Vojtech Ruzicka</strong></div>
-          <a href="https://twitter.com/vojtechruzicka">
-            Follow me on Twitter
-          </a>
-        </div>
+        <div style={{paddingTop: 0.5+"rem"}}>Written by <strong><Link to='/about'>Vojtech Ruzicka</Link></strong></div>
       </div>
     )
   }

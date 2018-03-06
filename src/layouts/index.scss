@@ -76,3 +76,12 @@ a:hover {
   margin-top: 1rem;
   background: hsla(0, 0% ,0%, 0.1);
 }
+
+.SocialMediaShareButton, .SocialMediaShareButton div {
+  display: inline-block;
+}
+
+.SocialMediaShareButton {
+  margin: 0.25rem;
+  cursor: pointer;
+}

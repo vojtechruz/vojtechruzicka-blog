@@ -7,12 +7,22 @@ import { rhythm, scale } from '../utils/typography'
 import Tags from "../components/Tags";
 import Img from 'gatsby-image'
 import Link from "gatsby-link";
+import {
+    FacebookShareButton,
+    GooglePlusShareButton,
+    LinkedinShareButton,
+    TwitterShareButton,
+    RedditShareButton,
+    TumblrShareButton,
+    EmailShareButton, FacebookIcon, GooglePlusIcon, TwitterIcon, RedditIcon, LinkedinIcon, TumblrIcon, EmailIcon,
+} from 'react-share';
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     const siteUrl = get(this.props, 'data.site.siteMetadata.siteUrl')
+      const shareIconSize = 64;
 
       const disqusShortname = 'vojtechruzicka';
       const disqusConfig = {
@@ -28,7 +38,8 @@ class BlogPostTemplate extends React.Component {
       let similarPosts = null;
       if(relatedPosts && relatedPosts.length > 0) {
           similarPosts = (<div className="similar-posts">
-              <p>Similar posts:</p>
+              <hr/>
+              <p><strong>Similar posts:</strong></p>
               <ul>
                   {
                       relatedPosts.map((post, index) => {
@@ -72,7 +83,37 @@ class BlogPostTemplate extends React.Component {
         <span>Tagged with: </span>
         <Tags tags={post.frontmatter.tags} />
         <Bio />
+        <hr/>
+        <div>
+            <p><strong>Did you like this post?</strong></p>
+            <p>Get notifications about new posts:</p>
+            <p>And share it:</p>
+            <div>
+                <FacebookShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <FacebookIcon round size={shareIconSize} />
+                </FacebookShareButton>
+                <GooglePlusShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <GooglePlusIcon round size={shareIconSize} />
+                </GooglePlusShareButton>
+                <TwitterShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <TwitterIcon round size={shareIconSize}/>
+                </TwitterShareButton>
+                <LinkedinShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <LinkedinIcon round size={shareIconSize}/>
+                </LinkedinShareButton>
+                <RedditShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <RedditIcon round size={shareIconSize}/>
+                </RedditShareButton>
+                <TumblrShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <TumblrIcon round size={shareIconSize}/>
+                </TumblrShareButton>
+                <EmailShareButton url={siteUrl + this.props.pathContext.slug}>
+                    <EmailIcon round size={shareIconSize}/>
+                </EmailShareButton>
+            </div>
+        </div>
         {similarPosts}
+        <hr/>
         {disqus}
       </div>
     )
