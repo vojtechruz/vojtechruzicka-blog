@@ -26,7 +26,7 @@ const facebookIcon = <svg className="about-icon" xmlns="http://www.w3.org/2000/s
         return (
             <div className="about-page">
                 <Helmet title={siteTitle} />
-                <h1>About</h1>
+                <h1>About me</h1>
                 <strong>Get notified about the newest posts</strong>
                 <ul>
                     <li><a href="https://twitter.com/vojtechruzicka">{twitterIcon}Follow @vojtechruzicka</a></li>

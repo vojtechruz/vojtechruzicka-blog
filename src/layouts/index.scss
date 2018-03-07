@@ -89,3 +89,24 @@ a:hover {
   display: flex;
   justify-content: center;
 }
+
+.menu-items {
+  margin-bottom: 2rem;
+
+  a {
+    margin-right: 1rem;
+    text-decoration: none!important;
+    font-weight: bold;
+    color: hsla(204,12.449720506%,0%,0.77)!important;
+  }
+}
+
+.blog-name {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+
+  a {
+    text-decoration: none!important;
+    color: hsla(204,12.449720506%,0%,0.77)!important;
+  }
+}

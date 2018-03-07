@@ -1,4 +1,5 @@
 - internal linking
-- compressed images for thumbs
+- pagination
+- 404 page
 - 2x declared feed plugin with rss.xml and feed ????
 - escape chars in excerpts
