@@ -10,9 +10,10 @@ import Link from "gatsby-link";
 class Bio extends React.Component {
     render() {
         return (<div className="main-navigation">
-                        <img className="logo"
+                        <Link to="/"><img className="logo"
                             src={profilePic}
                             alt={`Vojtech Ruzicka`}/>
+                        </Link>
                     <div className="navigation">
                         <div className="blog-name"><Link to="/">Vojtech Ruzicka's Programming blog</Link></div>
                         <div className="menu-items">
