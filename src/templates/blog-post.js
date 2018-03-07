@@ -80,7 +80,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
-        <Img sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
+        <Img className="featured-image" sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
