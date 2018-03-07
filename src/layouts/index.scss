@@ -161,10 +161,19 @@ a:hover {
       fill: #f26522;
     }
 
+    &:hover.gplus svg {
+      fill: #dd4b39;
+    }
+
+    &:hover.github svg {
+      fill: #333;
+    }
+
+
     svg {
       height: 3rem;
       width: 3rem;
-      fill: darkgray;
+      fill: lighten(hsla(204,12.449720506%,0%,0.77), 10%);
     }
   }
 }
