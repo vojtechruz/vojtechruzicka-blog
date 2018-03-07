@@ -138,3 +138,37 @@ a:hover {
 .featured-image {
   margin-bottom: 1.25rem;
 }
+
+.follow-me {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .follow-me-icon {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+
+    &:hover.twitter svg {
+      fill: #00aced;
+    }
+
+    &:hover.linkedin svg {
+      fill: #007fb1;
+    }
+
+    &:hover.rss svg {
+      fill: #f26522;
+    }
+
+    svg {
+      height: 3rem;
+      width: 3rem;
+      fill: darkgray;
+    }
+  }
+}
+
+li {
+  margin-bottom: 0.3rem;
+}

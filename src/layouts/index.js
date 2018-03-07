@@ -1,10 +1,10 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import { Container } from 'react-responsive-grid'
 
 import { rhythm, scale } from '../utils/typography'
 import './index.scss';
 import Navigation from "../components/Navigation";
+import FollowMe from "../components/FollowMe";
 
 class Template extends React.Component {
   render() {
@@ -24,6 +24,7 @@ class Template extends React.Component {
       >
         <Navigation/>
         {children()}
+        <FollowMe/>
       </Container>
     )
   }

@@ -7,7 +7,7 @@ import profilePic from './profile.jpg'
 import {rhythm} from '../utils/typography'
 import Link from "gatsby-link";
 
-class Bio extends React.Component {
+class Navigation extends React.Component {
     render() {
         return (<div className="main-navigation">
                         <Link to="/"><img className="logo"
@@ -27,4 +27,4 @@ class Bio extends React.Component {
     }
 }
 
-export default Bio
+export default Navigation
