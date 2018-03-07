@@ -3,19 +3,23 @@ import React from 'react'
 // Import typefaces
 import 'typeface-montserrat'
 import 'typeface-merriweather'
-
+import profilePic from './profile.jpg'
 import {rhythm} from '../utils/typography'
 import Link from "gatsby-link";
 
 class Bio extends React.Component {
     render() {
-        return (<div>
-                    <h1 className="blog-name"><Link to="/">Vojtech Ruzicka's Programming blog</Link></h1>
-                    <div className="menu-items">
-                        <Link to="/">Home</Link>
-                        <Link to="/tags">Archives</Link>
-                        <Link to="/about">About me</Link>
-                        <hr/>
+        return (<div className="main-navigation">
+                        <img className="logo"
+                            src={profilePic}
+                            alt={`Vojtech Ruzicka`}/>
+                    <div className="navigation">
+                        <div className="blog-name"><Link to="/">Vojtech Ruzicka's Programming blog</Link></div>
+                        <div className="menu-items">
+                            <Link to="/">Home</Link>
+                            <Link to="/tags">Archives</Link>
+                            <Link to="/about">About me</Link>
+                        </div>
                     </div>
             </div>
         )

@@ -91,22 +91,46 @@ a:hover {
 }
 
 .menu-items {
-  margin-bottom: 2rem;
 
   a {
     margin-right: 1rem;
     text-decoration: none!important;
-    font-weight: bold;
+    font-weight: 500;
     color: hsla(204,12.449720506%,0%,0.77)!important;
   }
 }
 
 .blog-name {
-  font-size: 1.75rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  margin-bottom: 0rem;
+  font-weight: 500;
 
   a {
     text-decoration: none!important;
     color: hsla(204,12.449720506%,0%,0.77)!important;
+  }
+}
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.1rem;
+  border-bottom: 1px solid hsla(0, 0% ,0%, 0.3);;
+  padding-bottom: 0.5rem;
+
+  hr {
+    margin-bottom: 0;
+  }
+
+  .logo {
+    margin-right: 1rem;
+    margin-bottom: 0;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50px;
+  }
+
+  a:hover {
+    color: lighten(#007acc,7%)!important;
   }
 }
