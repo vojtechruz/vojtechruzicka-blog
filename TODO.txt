@@ -3,3 +3,5 @@
 - 404 page
 - 2x declared feed plugin with rss.xml and feed ????
 - escape chars in excerpts
+- add link to preview image on main page
+- add read more link to excerpt???
