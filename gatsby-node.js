@@ -7,8 +7,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
+    const pageSize = 10;
     const blogPost = path.resolve('./src/templates/blog-post.js');
     const tagTemplate = path.resolve("./src/templates/tag.js");
+    const paginatedPosts = path.resolve("./src/templates/paginated-posts.js");
     resolve(
       graphql(
         `
@@ -90,6 +92,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               related
             },
           })
+        })
+
+         // pagination
+        const chunkedPosts = _.chunk(posts, pageSize);
+        _.each(chunkedPosts, (chunk, index) => {
+            const postIds = chunk.map((p) => {
+                return p.node.fields.slug
+            })
+
+            let path = "/";
+            if(index > 0) {
+                path = `/pages/${index+1}/`
+            }
+                createPage({
+                    path: path,
+                    component: paginatedPosts,
+                    context: {
+                        pagePosts: postIds
+                    },
+                })
         })
       })
     )
