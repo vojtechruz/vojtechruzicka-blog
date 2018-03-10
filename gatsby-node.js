@@ -109,7 +109,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     path: path,
                     component: paginatedPosts,
                     context: {
-                        pagePosts: postIds
+                        pageSlugs: postIds,
                     },
                 })
         })
