@@ -181,3 +181,18 @@ a:hover {
 li {
   margin-bottom: 0.3rem;
 }
+
+.pagination  {
+  display: flex;
+  justify-content: center;
+
+  a {
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
+  }
+
+  .current-page {
+    font-weight: 500
+  }
+
+}

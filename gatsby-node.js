@@ -108,7 +108,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     context:
                         {
                             pageSize: pageSize,
-                            pageSkip: index*pageSize
+                            pageSkip: index*pageSize,
+                            pagesTotal: Math.ceil(posts.length / pageSize),
+                            currentPage: index+1
                         }
                     ,
                 })

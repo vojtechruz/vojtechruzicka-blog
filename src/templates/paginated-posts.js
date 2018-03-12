@@ -11,6 +11,35 @@ class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
+    const pagesTotal = get(this, 'props.pathContext.pagesTotal')
+    const currentPage = get(this, 'props.pathContext.currentPage')
+
+    let nextPage;
+    let prevPage;
+
+    if(currentPage > 1) {
+        let path = "/";
+        if(currentPage >2) {
+            path = "/pages/"+(currentPage-1);
+        }
+        prevPage = <Link to={path}>« Previous page</Link>
+    }
+
+    if(currentPage < pagesTotal) {
+        nextPage = <Link to={"/pages/"+(currentPage+1)}>Next page »</Link>
+    }
+    let pagesLinks=[];
+      for (var i = 1; i <= pagesTotal; i++) {
+          if(i === currentPage) {
+              pagesLinks.push(<span className="current-page">{i}</span>)
+          } else {
+              if(i === 1) {
+                  pagesLinks.push(<Link to="/" key={"pg"+i}>{i}</Link>)
+              } else {
+                  pagesLinks.push(<Link to={"/pages/"+i} key={"pg"+i}>{i}</Link>)
+              }
+          }
+      }
 
     return (
       <div>
@@ -40,6 +69,11 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
+        <div className="pagination">
+            {prevPage}
+            {pagesLinks}
+            {nextPage}
+        </div>
       </div>
     )
   }
