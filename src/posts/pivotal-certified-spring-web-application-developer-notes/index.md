@@ -40,7 +40,7 @@ Resources
 
 ### Study Guide
 
-There is an official [Spring\_Web\_4.2/4.3\_Study\_Guide](https://d1fto35gcfffzn.cloudfront.net/academy/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf), which describes the certification process and some FAQs. What\'s more important, there is a list of areas and topics covered in the exam. That is valuable as a checklist whether you are ready for the exam and also a guide to determine what to focus on when studying.
+There is an official [Spring Web 4.2/4.3 Study Guide](https://d1fto35gcfffzn.cloudfront.net/academy/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf), which describes the certification process and some FAQs. What\'s more important, there is a list of areas and topics covered in the exam. That is valuable as a checklist whether you are ready for the exam and also a guide to determine what to focus on when studying.
 
 ### Notes
 
