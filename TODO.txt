@@ -3,7 +3,7 @@
 - add link to preview image on main page
 - add read more link to excerpt???
 
--on mobile logo is not proportional
+- on mobile logo is not proportional
 - decrease h1 fontsize
 - google chrome logo in coverage is low res
 - archives links to proper archive page not tags
