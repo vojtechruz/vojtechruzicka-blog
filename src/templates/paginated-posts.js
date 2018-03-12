@@ -61,8 +61,8 @@ class BlogIndex extends React.Component {
                     <Tags tags={node.frontmatter.tags} />
                     </small>
                 <div>
-                    <span className="front-post-image"><Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
-                    </span>
+                    <Link to={node.fields.slug} className="front-post-image"><Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
+                    </Link>
                   <span className="front-post-excerpt" dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                 </div>
                 <hr className="front-post-separator"/>

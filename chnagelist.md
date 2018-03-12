@@ -103,3 +103,4 @@ added custom theme
 - replaced 4 featured images
 - fixed low res versions for 2 featured images
 - removed duplicate whitespace
+- add link to preview image on main page
