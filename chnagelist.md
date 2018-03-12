@@ -100,3 +100,5 @@ added custom theme
 - fixed escape chars in excerpts
 - deploy, dns settings, https
 - fixed internal linking to https
+- replaced 1 featured image
+- fixed low res versions for 2 featured images
