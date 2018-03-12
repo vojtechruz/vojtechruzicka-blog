@@ -61,7 +61,7 @@ If you have some extra time, there is a good book covering the certification exa
 Spring Core Exam
 ----------------
 
-In addition to this Spring Web certification, I have also prepared materials for the [Spring Core exam](http://vojtechruzicka.com/exam-notes-pivotal-certified-spring-professional/). This exam can be now also taken without the training just for \$200.
+In addition to this Spring Web certification, I have also prepared materials for the [Spring Core exam](https://www.vojtechruzicka.com/exam-notes-pivotal-certified-spring-professional/). This exam can be now also taken without the training just for \$200.
 
 Conclusion
 ----------

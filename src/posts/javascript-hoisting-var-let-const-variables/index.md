@@ -152,7 +152,7 @@ const
 
 Const behaves in a very similar way to let. It is also block scoped and cannot be used until declared. There is, however, one key difference. Once variable declared using *const* keyword is assigned a value, you cannot reassign it. You also need to initialize the variable immediately when declaring it.  It is useful as this prevents accidental reassignment of the variable. It also promotes good coding practices as it prohibits using a single variable for multiple purposes during its lifecycle, which is confusing and error-prone. And how can you even have a nice descriptive name of a variable which does multiple different things?
 
-While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of [primitives](http://vojtechruzicka.com/javascript-primitives/) such as numbers, strings or booleans, you are safe as they are immutable.
+While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of [primitives](https://www.vojtechruzicka.com/javascript-primitives/) such as numbers, strings or booleans, you are safe as they are immutable.
 
 let vs const
 ------------

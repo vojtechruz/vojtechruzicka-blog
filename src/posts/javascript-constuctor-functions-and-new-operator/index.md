@@ -12,7 +12,7 @@ What does Javascript's new operator do? What are constructor functions? Why is n
 Creating objects
 ----------------
 
-In your applications, most of the time you don\'t work with [primitives](http://vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create objects with object literal like this:
+In your applications, most of the time you don\'t work with [primitives](https://www.vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create objects with object literal like this:
 
 ```javascript
 var Person = {

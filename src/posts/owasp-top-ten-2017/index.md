@@ -12,7 +12,7 @@ OWASP released 2017 version of top 10 Web Application Security Vulnerabilities. 
 What is OWASP?
 --------------
 
-OWASP Stands for Open Web Application Security Project. It is a non-profit organization dedicated to improving the security of software, raising awareness of security issues and providing tools and resources to mitigate security risks. It consists of [numerous projects](https://www.owasp.org/index.php/Category:OWASP_Project) with various focuses. Examples of such projects are OWASP Application [Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project), [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project) or [OWASP Dependency-Check](http://vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/).
+OWASP Stands for Open Web Application Security Project. It is a non-profit organization dedicated to improving the security of software, raising awareness of security issues and providing tools and resources to mitigate security risks. It consists of [numerous projects](https://www.owasp.org/index.php/Category:OWASP_Project) with various focuses. Examples of such projects are OWASP Application [Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project), [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project) or [OWASP Dependency-Check](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/).
 
 OWASP Top Ten
 -------------

@@ -99,3 +99,4 @@ added custom theme
 - Added pagination support
 - fixed escape chars in excerpts
 - deploy, dns settings, https
+- fixed internal linking to https

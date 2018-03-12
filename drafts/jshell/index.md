@@ -44,7 +44,7 @@ Now you are in interactive mode and anything you write is evaluated by JShell. T
 Support In IntelliJ IDEA
 ------------------------
 
-![jshell-idea](http://vojtechruzicka.com/wp-content/uploads/2018/02/jshell-idea.png)
+![jshell-idea](./jshell-idea.png)
 
 Conclusion
 ----------

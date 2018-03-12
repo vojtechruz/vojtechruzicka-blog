@@ -51,7 +51,7 @@ Overall the exam was not too hard and you should be able to complete it if you p
 Spring Web Certification
 ------------------------
 
-In addition to this Spring Core certification, I have also prepared materials for the [Spring Web Application Developer exam](http://vojtechruzicka.com/pivotal-certified-spring-web-application-developer-notes/). This exam can be now also taken without the training just for \$200.
+In addition to this Spring Core certification, I have also prepared materials for the [Spring Web Application Developer exam](https://www.vojtechruzicka.com/pivotal-certified-spring-web-application-developer-notes/). This exam can be now also taken without the training just for \$200.
 
 Conclusion
 ----------
