@@ -3,7 +3,7 @@ title: 'Book Review: 256 Bloghacks'
 date: "2017-10-09T22:12:03.284Z"
 tags: ['Books', 'Blogging']
 path: '/book-review-256-bloghacks'
-featuredImage: './cover.png'
+featuredImage: './tomato.jpg'
 ---
 
  A detailed review of a guide to blogging by Yegor Bugayenko.
@@ -58,6 +58,8 @@ As the name suggests, this section covers SEO optimization and providing metadat
 ### Section 9 - Money (7 items)
 
 The last section continues where the first one finished. It\'s about the financial side of blogging. About the expenses that it will bring and about the benefits you will reap. Not directly, like with annoying ads, but more indirectly. How having a blog can boost your credibility, how it can be used as a marketing channel for your products (books in author\'s case) or services.
+
+![cover](./cover.png)
 
 Conclusion
 ----------

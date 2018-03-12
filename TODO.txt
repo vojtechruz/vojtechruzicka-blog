@@ -6,3 +6,4 @@
 -on mobile logo is not proportional
 - decrease h1 fontsize
 - google chrome logo in coverage is low res
+- archives links to proper archive page not tags
