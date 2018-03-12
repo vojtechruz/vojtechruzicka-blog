@@ -6,7 +6,7 @@ path: '/javascript-constuctor-functions-and-new-operator'
 featuredImage: './constructor-functions.jpg'
 ---
 
-What does Javascript\'s new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
+What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
 <!--more-->
 
 Creating objects

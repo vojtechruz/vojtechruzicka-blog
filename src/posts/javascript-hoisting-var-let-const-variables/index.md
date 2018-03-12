@@ -6,7 +6,7 @@ path: '/javascript-hoisting-var-let-const-variables'
 featuredImage: './hoisting.jpg'
 ---
 
-One of the Javascript\'s oddities is that you can use variables and functions even before they are declared. It\'s called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.
+One of the Javascript's oddities is that you can use variables and functions even before they are declared. It's called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.
 <!--more-->
 
 Hoisting

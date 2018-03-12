@@ -6,7 +6,7 @@ path: '/intellij-idea-tips-tricks-presentations'
 featuredImage: './intellij-idea-presentation.jpg'
 ---
 
-How to make the most of the IntelliJ IDEA\'s view modes to make best presentations possible including visualization of the keyboard input?
+How to make the most of the IntelliJ IDEA's view modes to make best presentations possible including visualization of the keyboard input?
 <!--more-->
 
 Presentation Mode

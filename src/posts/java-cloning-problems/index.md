@@ -6,7 +6,7 @@ path: '/java-cloning-problems'
 featuredImage: './clone.jpg'
 ---
 
-Java\'s mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
+Java's mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
 <!--more-->
 
 Why clone objects?

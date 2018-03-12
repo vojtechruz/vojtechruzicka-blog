@@ -6,7 +6,7 @@ path: '/session-fixation-attack'
 featuredImage: './session-fixation.jpg'
 ---
 
-Session fixation is a type of attack, where the attacker can hijack user\'s session. What are some of the variants and how to prevent this type of attack?
+Session fixation is a type of attack, where the attacker can hijack user's session. What are some of the variants and how to prevent this type of attack?
 <!--more-->
 
 Introduction

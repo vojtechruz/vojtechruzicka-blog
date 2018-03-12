@@ -6,7 +6,7 @@ path: '/prepare-phone-screening-interview'
 featuredImage: './phone-screening-interview.jpg'
 ---
 
-Phone screening interview is the first step in a hiring process. If you fail, you\'ll never get a chance to proceed to the real interview. Careful preparation is essential and this post will guide you through the preparation process.
+Phone screening interview is the first step in a hiring process. If you fail, you'll never get a chance to proceed to the real interview. Careful preparation is essential and this post will guide you through the preparation process.
 <!--more-->
 
 Phone screening interview
