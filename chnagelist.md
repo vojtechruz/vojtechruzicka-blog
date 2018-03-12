@@ -94,3 +94,8 @@ added custom theme
 7.3.2018
 - follow me icons
 - added navigation
+
+12.3.2018
+- Added pagination support
+- fixed escape chars in excerpts
+- deploy, dns settings, https
