@@ -17,7 +17,7 @@ Clickjacking is a type of attack, where the attacker tricks the victim into perf
 The attack scenario can be for example the following:
 
 1.  The malicious page contains a button, which is the victim supposed to click.
-2.   On top of this visible page, there is loaded another page in an iframe and it is styled as transparent.
+2.  On top of this visible page, there is loaded another page in an iframe and it is styled as transparent.
 3.  Because the victim is already authenticated with the attacked page in their current browser session, the page is successfully loaded in the frame and the user is fully authenticated.
 4.  The attacked page is positioned in a way that clicking on the visible button underneath actually triggers some desired action on the attacked page.
 

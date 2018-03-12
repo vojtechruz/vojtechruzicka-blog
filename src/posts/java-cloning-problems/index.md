@@ -66,7 +66,7 @@ Alternatives
 
 ### Copy Constructors
 
-One option to provide copy functionality to your class instead of implementing Cloneable is to provide a copy constructor(s) instead. A copy constructor is like a regular constructor, which returns a new instance of the class. As an input, it has an object, which is supposed to be copied.  Inside the body of the constructor, you implement your custom cloning logic.
+One option to provide copy functionality to your class instead of implementing Cloneable is to provide a copy constructor(s) instead. A copy constructor is like a regular constructor, which returns a new instance of the class. As an input, it has an object, which is supposed to be copied. Inside the body of the constructor, you implement your custom cloning logic.
 
 ```java
 public Person(Person personToCopy) {

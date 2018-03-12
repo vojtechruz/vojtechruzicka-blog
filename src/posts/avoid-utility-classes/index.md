@@ -33,7 +33,7 @@ public final class UtilityClass {
 Why are Util Classes so common?
 -------------------------------
 
-By the OOP principles,  an object should contain both data and a behavior performed over that data. Utility classes are just behavior, all the data are passed as inputs. It is in no way Object Oriented, it is a more of a Procedural way of thinking. When switching to OOP, developers with a procedural mindset usually used a lot of utility classes as it is closer to their way of thinking. Unnecessary Util Classes became very common even if there was a good OO alternative. And most people didn't question the pattern as it was so widespread.
+By the OOP principles, an object should contain both data and a behavior performed over that data. Utility classes are just behavior, all the data are passed as inputs. It is in no way Object Oriented, it is a more of a Procedural way of thinking. When switching to OOP, developers with a procedural mindset usually used a lot of utility classes as it is closer to their way of thinking. Unnecessary Util Classes became very common even if there was a good OO alternative. And most people didn't question the pattern as it was so widespread.
 
 These days, it is more about convenience. First of all, it is much easier to use Util Classes than regular ones, because there is no need to instantiate them, so it is just less code and overall simpler. The second of all, Util Classes are a convenient stash of methods which do not belong anywhere else. When adding some new functionality, it is much easier to put it in some generic Util Class, which already contains various methods barely having anything in common than to actually think about proper OO design.
 

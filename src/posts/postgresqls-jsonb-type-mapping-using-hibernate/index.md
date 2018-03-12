@@ -60,7 +60,7 @@ To convert from and to JSONB, you need to implement an interface org.hibernate.u
 -   **boolean isMutable()** - This determines whether mapped classes are mutable or not.
 -   **boolean equals(Object x, Object y), int hashCode(Object x)** - Nothing special here.
 -   **Serializable disassemble(Object value), Object assemble(Serializable cached, Object owner)** - This methods are for converting object from/to its cacheable representation
--   **Object replace(Object original, Object target, Object owner)**  - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.
+-   **Object replace(Object original, Object target, Object owner)** - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.
 -   **Object deepCopy(Object value)** - Returns a deep copy of provided object. You can, for example, use Apache SerializationUtils.clone() to make deep copy using serialization/deserialization.
 
 The two primary methods for converting from/to JSON are nullSafeGet and nullSafeSet. You will need some library for transforming a JSON string to an object representation and vice versa. You can use for example GSON or Jackson.
@@ -226,7 +226,7 @@ An Example of the full Spring Boot Application with implemented JOSNB mapping i
 Disadvantages
 -------------
 
-While PostgreSQL JSONB type provides flexibility, it should be used just when appropriate. The only check being performed is that stored data is actually in a valid JSON format. You cannot impose any other constraints as with regular columns - such as not null or enforce a particular Data Type (Integer, VarChar, Date). Therefore it is best suited for providing an additional optional set of data to an entity, where you cannot be sure before which data is would contain. And such data would differ a lot among each of the rows. Such example can be a user-provided set of additional data.    You should always carefully consider which data is better suited as regular columns and which should be stored as JSON.
+While PostgreSQL JSONB type provides flexibility, it should be used just when appropriate. The only check being performed is that stored data is actually in a valid JSON format. You cannot impose any other constraints as with regular columns - such as not null or enforce a particular Data Type (Integer, VarChar, Date). Therefore it is best suited for providing an additional optional set of data to an entity, where you cannot be sure before which data is would contain. And such data would differ a lot among each of the rows. Such example can be a user-provided set of additional data. You should always carefully consider which data is better suited as regular columns and which should be stored as JSON.
 
 Furthermore, keep in mind that JSONB type is PostgreSQL specific and will not be available in other DBs. This may be a problem when you decide to later migrate to other RDS. Also, you will not be able to use in-memory DB in your integration tests at none of them supported by Spring currently supports the JSONB type.
 

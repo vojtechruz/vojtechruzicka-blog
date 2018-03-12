@@ -123,4 +123,4 @@ As of Spring 4.x, the official recommendation from [Spring documentation](http:/
 Conclusion
 --------------
 
-Field injection should be mostly avoided. As a replacement, you should use either constructors or methods to inject your dependencies. Both have its advantages and disadvantages and the usage depends on the situation. However, as those approaches can be mixed, it is not an either-or choice and you can combine both setter and constructor injection in one class.  Constructors are more suitable for mandatory dependencies and when aiming for immutability. Setters are better for optional dependencies.
+Field injection should be mostly avoided. As a replacement, you should use either constructors or methods to inject your dependencies. Both have its advantages and disadvantages and the usage depends on the situation. However, as those approaches can be mixed, it is not an either-or choice and you can combine both setter and constructor injection in one class. Constructors are more suitable for mandatory dependencies and when aiming for immutability. Setters are better for optional dependencies.

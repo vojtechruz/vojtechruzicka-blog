@@ -14,7 +14,7 @@ Key promoter plugin
 
 There is a handy plugin, which helps you to learn all the required keyboard shortcuts in IntelliJ IDEA - Key promoter. How it works? It is quite simple:
 
-1.  Every time you click using your mouse on a button/command/menu item/\...  it shows you a pop-up displaying a keyboard shortcut for that action.
+1.  Every time you click using your mouse on a button/command/menu item/\... it shows you a pop-up displaying a keyboard shortcut for that action.
 2.  If you click the same action several times (can be configured), plugin suggest to set up the keyboard shortcut for given action.
 3.  The statistics of you top 10 missed keyboard shortcuts are calculated, so you know which shortcuts it is worth learning first.
 

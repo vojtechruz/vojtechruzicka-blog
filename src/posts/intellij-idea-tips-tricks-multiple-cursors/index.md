@@ -38,7 +38,7 @@ Multiple Cursors
 
 While the column selection mode is useful, it is limited to cases where places you need to edit are vertically aligned, which may not usually be the case. In other situations, you need to stick to a proper multiple cursor support. This is possible since [IDEA version 13.1](https://blog.jetbrains.com/idea/2014/03/intellij-idea-13-1-rc-introduces-sublime-text-style-multiple-selections/).
 
-When holding Alt + Shift  ( or ⌥ + ⇧ on Mac), clicking on a location creates a new cursor on that location in addition to the already existing cursors. Unlike column selection, these cursors can be anywhere and don\'t need to be vertically aligned. Pressing *Esc* will exit multiple cursors mode and will leave you with your first original single cursor.
+When holding Alt + Shift (or ⌥ + ⇧ on Mac), clicking on a location creates a new cursor on that location in addition to the already existing cursors. Unlike column selection, these cursors can be anywhere and don\'t need to be vertically aligned. Pressing *Esc* will exit multiple cursors mode and will leave you with your first original single cursor.
 
 ![multiple-cursors-mouse](./multiple-cursors-mouse.gif)
 
@@ -49,7 +49,7 @@ As of IntelliJ IDEA 14.1, you can not only insert multiple carets, but you can a
 
 ![multi-selection](./multi-selection.gif)
 
-This selection can be achieved by holding *Alt* + *Shift*  ( or ⌥ + ⇧ on Mac) and selecting the blocks by the mouse as usual. Another way of selecting multiple blocks of text with multiple cursors is *Select All Occurrences* command, which selects all the other occurrences in the current file of the already selected text. In case no text is selected, the closest word to the current cursor is selected.
+This selection can be achieved by holding *Alt* + *Shift* (or ⌥ + ⇧ on Mac) and selecting the blocks by the mouse as usual. Another way of selecting multiple blocks of text with multiple cursors is *Select All Occurrences* command, which selects all the other occurrences in the current file of the already selected text. In case no text is selected, the closest word to the current cursor is selected.
 
 ![select-all-occurences](./select-all-occurences.gif)
 

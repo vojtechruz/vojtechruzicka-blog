@@ -112,7 +112,7 @@ httpServletRequest.changeSessionId();
 
 Additionally, Servlets 3.1 provides new [HttpSessionIdListener](https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionIdListener.html), which can be used to get notifications whenever Session Id is changed.
 
-Please note - while servlet specification does not provide any session fixation protection out of the box, some of the application servers provide their own solution,  [like Tomcat](http://www.tomcatexpert.com/blog/2011/04/25/session-fixation-protection).
+Please note - while servlet specification does not provide any session fixation protection out of the box, some of the application servers provide their own solution, [like Tomcat](http://www.tomcatexpert.com/blog/2011/04/25/session-fixation-protection).
 
 Spring Security
 ---------------

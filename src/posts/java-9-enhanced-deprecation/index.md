@@ -79,7 +79,7 @@ This information is not extensible, is subjective and there is still no plain te
 
 ### JDK Deprecation
 
-The convention for JDK is that once a JDK API is marked as forRemoval=true in a certain Java version, [it will be removed](https://www.youtube.com/watch?v=T_O9merCgKw&feature=youtu.be&list=PLPIzp-E1msrYicmovyeuOABO4HxVPlhEA#t=17m05s) in the directly following major Java release. That means -  when something is marked as forRemoval=true in Java 9, it is supposed to be completely removed in Java 10. Keep that in mind when using API marked for removal.
+The convention for JDK is that once a JDK API is marked as forRemoval=true in a certain Java version, [it will be removed](https://www.youtube.com/watch?v=T_O9merCgKw&feature=youtu.be&list=PLPIzp-E1msrYicmovyeuOABO4HxVPlhEA#t=17m05s) in the directly following major Java release. That means - when something is marked as forRemoval=true in Java 9, it is supposed to be completely removed in Java 10. Keep that in mind when using API marked for removal.
 
 Note that this convention applies only to JDK itself and third-party libraries are free to choose any convention they see fit.
 

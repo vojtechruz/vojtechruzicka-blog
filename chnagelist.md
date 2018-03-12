@@ -21,14 +21,14 @@
     - preventing clickjacking
     - premium quality tests
     - singleton pattern pitfalls
-    
+
 25.2.2018 21/43
 - 4 posts
     - java cloning problems    
     - protect your http cookies
     - pramp
     - idea presentations
-    
+
 26.2.2018
 - 16 posts    
    - field injection
@@ -102,3 +102,4 @@ added custom theme
 - fixed internal linking to https
 - replaced 3 featured images
 - fixed low res versions for 2 featured images
+- removed duplicate whitespace

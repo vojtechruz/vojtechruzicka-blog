@@ -12,7 +12,7 @@ featuredImage: './intellij-idea-slow.jpg'
 Unload Modules
 --------------
 
-Working on a large project with many modules can greatly reduce the IDE performance. IDEA needs to process a huge amount of files when searching, refactoring or inspecting the code. However, it is often not necessary to work with all the modules at the same time. Maybe you are responsible for just one independent module. Maybe you are developing just frontend/backend part of the application. Or maybe the app contains a lot of legacy modules, which are hardly ever touched. In such cases, it would be really helpful to exclude some modules from IDEA\'s activity completely. Version 2017.2 [introduced a new feature](https://blog.jetbrains.com/idea/2017/06/intellij-idea-2017-2-eap-introduces-unloaded-modules/)called *Unload Modules,* which allows you to define which modules of the project should be excluded. This can greatly improve IDEA\'s performance. Once you need an unloaded module again, you can load it, so it is available to IDEA.
+Working on a large project with many modules can greatly reduce the IDE performance. IDEA needs to process a huge amount of files when searching, refactoring or inspecting the code. However, it is often not necessary to work with all the modules at the same time. Maybe you are responsible for just one independent module. Maybe you are developing just frontend/backend part of the application. Or maybe the app contains a lot of legacy modules, which are hardly ever touched. In such cases, it would be really helpful to exclude some modules from IDEA\'s activity completely. Version 2017.2 [introduced a new feature](https://blog.jetbrains.com/idea/2017/06/intellij-idea-2017-2-eap-introduces-unloaded-modules/) called *Unload Modules*, which allows you to define which modules of the project should be excluded. This can greatly improve IDEA\'s performance. Once you need an unloaded module again, you can load it, so it is available to IDEA.
 
 To enter Unload modules dialog, right-click a file or module in your Project View and select *Load/Unload Modules\...* In the dialog, you can see all the modules in the current project and you can assign them to either Loaded Modules or Unloaded Modules category.
 
@@ -23,7 +23,7 @@ IntelliJ IDEA is smart enough to warn you that if you are loading a previously u
 Excluding Files
 ---------------
 
-Unloading of modules works well when you can unload the whole module. It is not always appropriate. There are, however some files and file types, which can be safely ignored by IDEA across all the modules. An example can be - automatically generated files, minified CSS/JS, compiled files, documentation, logs and more. You can define ignored files either for all projects or on per project basis. The two approaches can be even combined. You can add ignored files/folders by pattern in  Settings *→ Editor → File Types → Ignore Files and Folders*
+Unloading of modules works well when you can unload the whole module. It is not always appropriate. There are, however some files and file types, which can be safely ignored by IDEA across all the modules. An example can be - automatically generated files, minified CSS/JS, compiled files, documentation, logs and more. You can define ignored files either for all projects or on per project basis. The two approaches can be even combined. You can add ignored files/folders by pattern in *Settings → Editor → File Types → Ignore Files and Folders*
 
 ![ignore-files](./ignore-files.png)
 
@@ -58,7 +58,7 @@ In addition to toggling of the Power Saving mode, you can set the level of inspe
 
 Depending on your setting, the Hector icon will indicate the current level of highlighting.
 
-When you are in Power Saving mode, you don\'t have to give up your precious inspections. You can just run them on demand instead of constant real-time evaluation using *Analyze* *→ Inspect Code* or *Run Inspection by Name\...*
+When you are in Power Saving mode, you don\'t have to give up your precious inspections. You can just run them on demand instead of constant real-time evaluation using *Analyze → Inspect Code* or *Run Inspection by Name\...*
 
 ![inspections](./inspections.png)
 
