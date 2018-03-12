@@ -97,9 +97,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
          // pagination
         const chunkedPosts = _.chunk(posts, pageSize);
         _.each(chunkedPosts, (chunk, index) => {
-            const postIds = chunk.map((p) => {
-                return p.node.fields.slug
-            })
 
             let path = "/";
             if(index > 0) {
@@ -108,9 +105,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 createPage({
                     path: path,
                     component: paginatedPosts,
-                    context: {
-                        pageSlugs: postIds,
-                    },
+                    context:
+                        {
+                            pageSize: pageSize,
+                            pageSkip: index*pageSize
+                        }
+                    ,
                 })
         })
       })

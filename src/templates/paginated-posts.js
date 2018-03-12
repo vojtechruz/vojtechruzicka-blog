@@ -48,15 +48,16 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query IndexQuery($pageSlugs: [String]) {
+  query IndexQuery($pageSize: Int, $pageSkip: Int) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
+        limit: $pageSize
+        skip: $pageSkip
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { fields: {slug: {in: $pageSlugs} } }
     ) {
       edges {
         node {
