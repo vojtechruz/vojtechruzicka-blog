@@ -104,3 +104,8 @@ added custom theme
 - fixed low res versions for 2 featured images
 - removed duplicate whitespace
 - add link to preview image on main page
+
+13.3.2018
+- forced HTTPS
+- updated outgoing links to https
+- preview builds for branches
