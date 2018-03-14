@@ -25,8 +25,9 @@ class BlogPostTemplate extends React.Component {
       const shareIconSize = 32;
 
       const disqusShortname = 'vojtechruzicka';
+      const url = "https://www.vojtechruzicka.com"+post.frontmatter.path;
       const disqusConfig = {
-          url: "https://www.vojtechruzicka.com"+post.frontmatter.path,
+          url: url,
           identifier: post.frontmatter.path,
           title: post.frontmatter.title,
       };
@@ -61,13 +62,18 @@ class BlogPostTemplate extends React.Component {
       return (
       <div>
           <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-              <meta property="og:type" content="summary_large_image" />
               <meta property="og:title" content={post.frontmatter.title} />
               <meta property="og:description" content={post.excerpt} />
               <meta property="og:image" content={siteUrl + post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
+              <meta property="og:url" content={url} />
+              <meta property="og:site_name" content={siteTitle} />
+              <meta property="og:type" content="blog" />
 
               <meta name="twitter:creator" content="@vojtechruzicka" />
               <meta name="twitter:site" content="@vojtechruzicka" />
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:title" content={post.frontmatter.title} />
+              <meta name="twitter:description" content={post.excerpt} />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
         <p
