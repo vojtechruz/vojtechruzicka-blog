@@ -15,7 +15,7 @@ class Navigation extends React.Component {
                             alt={`Vojtech Ruzicka`}/>
                         </Link>
                     <div className="navigation">
-                        <div className="blog-name"><Link to="/">Vojtech Ruzicka's Programming blog</Link></div>
+                        <div className="blog-name"><Link to="/">Vojtech Ruzicka's Programming Blog</Link></div>
                         <div className="menu-items">
                             <Link to="/">Home</Link>
                             <Link to="/tags">Archives</Link>

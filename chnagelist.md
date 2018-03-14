@@ -106,5 +106,9 @@ added custom theme
 - add link to preview image on main page
 
 13.3.2018
-- forced https
-- links to outgoing sites changed to https
+- forced HTTPS
+- updated outgoing links to https
+- preview builds for branches
+
+14.3.
+- fixed opengraph metadata and twitter cards, registered facebook app
