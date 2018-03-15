@@ -112,3 +112,6 @@ added custom theme
 
 14.3.
 - fixed opengraph metadata and twitter cards, registered facebook app
+
+15.3.
+- fixed PWA manifest, added bigger icons
