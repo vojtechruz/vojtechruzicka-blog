@@ -114,22 +114,27 @@ module.exports = {
       },
     },
       {
-          resolve: `gatsby-plugin-favicon`,
+          resolve: `gatsby-plugin-manifest`,
           options: {
-              logo: "./src/favicon.png",
-              injectHTML: true,
-              icons: {
-                  android: true,
-                  appleIcon: true,
-                  appleStartup: true,
-                  coast: false,
-                  favicons: true,
-                  firefox: true,
-                  twitter: false,
-                  yandex: false,
-                  windows: false
-              }
-          }
-      }
+              name: "Vojtech Ruzicka's Programming Blog",
+              short_name: "VR Blog",
+              start_url: "/",
+              background_color: "#fff",
+              theme_color: "#007acc",
+              display: "minimal-ui",
+              icons: [
+                  {
+                      src: `/favicons/favicon.png`,
+                      sizes: `64x64`,
+                      type: `image/png`,
+                  },
+                  {
+                      src: `/favicons/640x640.png`,
+                      sizes: `640x640`,
+                      type: `image/png`,
+                  }
+              ],
+          },
+      },
   ],
 }
