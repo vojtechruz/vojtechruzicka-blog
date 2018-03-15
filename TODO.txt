@@ -10,3 +10,5 @@
 
 add opengraph and twitter metadata also to non-article pages
  (then blog type should be used on main page???)
+
+ - add meta description to all pages, not only blog posts

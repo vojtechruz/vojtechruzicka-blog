@@ -115,3 +115,5 @@ added custom theme
 
 15.3.
 - fixed PWA manifest, added bigger icons
+- Fixed issue with missing array key and added language attribute to html
+- added meta description to blog posts
