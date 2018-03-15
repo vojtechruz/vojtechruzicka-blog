@@ -31,7 +31,7 @@ class BlogIndex extends React.Component {
     let pagesLinks=[];
       for (var i = 1; i <= pagesTotal; i++) {
           if(i === currentPage) {
-              pagesLinks.push(<span className="current-page">{i}</span>)
+              pagesLinks.push(<span className="current-page" key={"pg"+i}>{i}</span>)
           } else {
               if(i === 1) {
                   pagesLinks.push(<Link to="/" key={"pg"+i}>{i}</Link>)
