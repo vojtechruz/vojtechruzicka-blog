@@ -4,6 +4,7 @@ date: "2016-05-03T22:12:03.284Z"
 tags: ['Java']
 path: '/explicitly-declare-serialversionuid'
 featuredImage: './serialization.jpg'
+disqusArticleIdentifier: 
 ---
 Should you explicitly declare serialVersionUID or leave it to be automatically generated?
 <!--more-->

@@ -4,6 +4,7 @@ date: "2018-02-16T22:12:03.284Z"
 tags: ['REST', 'Spring', 'Java']
 path: '/documenting-spring-boot-rest-api-swagger-springfox'
 featuredImage: './springfox.jpg'
+disqusArticleIdentifier: '1628 http://vojtechruzicka.com/?p=1628'
 ---
 
 How to document your Spring Boot REST APIs using Swagger with SpringFox?

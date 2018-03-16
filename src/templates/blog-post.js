@@ -26,9 +26,15 @@ class BlogPostTemplate extends React.Component {
 
       const disqusShortname = 'vojtechruzicka';
       const url = "https://www.vojtechruzicka.com"+post.frontmatter.path;
+      let disqusArticleIdentifier;
+      if(post.frontmatter.disqusArticleIdentifier) {
+          disqusArticleIdentifier = post.frontmatter.disqusArticleIdentifier;
+      } else {
+          disqusArticleIdentifier = post.frontmatter.path;
+      }
       const disqusConfig = {
           url: url,
-          identifier: post.frontmatter.path,
+          identifier: disqusArticleIdentifier,
           title: post.frontmatter.title,
       };
       let disqus = null;

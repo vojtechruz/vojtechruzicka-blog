@@ -4,6 +4,7 @@ date: "2017-10-09T22:12:03.284Z"
 tags: ['Books', 'Blogging']
 path: '/book-review-256-bloghacks'
 featuredImage: './tomato.jpg'
+disqusArticleIdentifier: '1129 http://vojtechruzicka.com/?p=1129'
 ---
 
  A detailed review of a guide to blogging by Yegor Bugayenko.

@@ -4,6 +4,7 @@ date: "2016-05-11T22:12:03.284Z"
 tags: ['OOP', 'Java']
 path: '/avoid-telescoping-constructor-pattern'
 featuredImage: './telescoping-constructor.jpg'
+disqusArticleIdentifier: '236 http://vojtechruzicka.com/?p=236'
 ---
 Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the alternative approaches and when should you use them?
 <!--more-->

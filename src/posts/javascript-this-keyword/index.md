@@ -4,6 +4,7 @@ date: "2018-02-13T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-this-keyword'
 featuredImage: './javascript-this.jpg'
+disqusArticleIdentifier: 
 ---
 
 'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.

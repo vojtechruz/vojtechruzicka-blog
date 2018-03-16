@@ -4,6 +4,7 @@ date: "2017-11-07T22:12:03.284Z"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-postfix-code-completion'
 featuredImage: './IntelliJIDEA_icon.png'
+disqusArticleIdentifier: 
 ---
 Postfix completion is a very powerful feature, which lets you transform an existing expression using a postfix added. This greatly reduces backward caret movement and thus increases productivity.
 <!--more-->

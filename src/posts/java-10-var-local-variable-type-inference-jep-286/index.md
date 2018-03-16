@@ -4,6 +4,7 @@ date: "2018-01-04T22:12:03.284Z"
 tags: ['Java']
 path: '/java-10-var-local-variable-type-inference-jep-286'
 featuredImage: './local-variable-inference-java-10.jpg'
+disqusArticleIdentifier: 
 ---
 
 In Java 10, you no longer need to explicitly declare a type of local variables, which significantly reduces boilerplate and increases readability.

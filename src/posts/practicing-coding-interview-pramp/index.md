@@ -4,6 +4,7 @@ date: "2017-08-17T22:12:03.284Z"
 tags: ['Career']
 path: '/practicing-coding-interview-pramp'
 featuredImage: './practicing-coding-interview.jpg'
+disqusArticleIdentifier: 
 ---
 
 Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to practice. A lot. Solving problems on your own is a good start, but practicing online with a real person as an interviewer is much better.

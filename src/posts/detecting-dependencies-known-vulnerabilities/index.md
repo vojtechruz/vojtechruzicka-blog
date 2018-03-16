@@ -4,6 +4,7 @@ date: "2017-03-23T22:12:03.284Z"
 tags: ['Java', 'Security']
 path: '/detecting-dependencies-known-vulnerabilities'
 featuredImage: './dc-large.png'
+disqusArticleIdentifier: '808 http://vojtechruzicka.com/?p=808'
 --- 
  How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI and track vulnerable dependencies over time?
 <!--more-->

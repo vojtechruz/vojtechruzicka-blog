@@ -4,6 +4,7 @@ date: "2018-01-18T22:12:03.284Z"
 tags: ['HTTP']
 path: '/protect-http-cookies'
 featuredImage: './protect-cookies.jpg'
+disqusArticleIdentifier: 
 ---
 
 Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.
