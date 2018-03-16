@@ -62,7 +62,7 @@ class BlogPostTemplate extends React.Component {
       return (
       <div>
           <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-              <meta name="description" content={post.excerpt}>
+              <meta name="description" content={post.excerpt} />
 
               <meta property="og:title" content={post.frontmatter.title} />
               <meta property="og:description" content={post.excerpt} />
