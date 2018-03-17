@@ -94,6 +94,7 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {post.frontmatter.date}
+          <Tags tags={post.frontmatter.tags}/>
         </p>
         <Img className="featured-image" sizes={post.frontmatter.featuredImage.childImageSharp.sizes} />
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
