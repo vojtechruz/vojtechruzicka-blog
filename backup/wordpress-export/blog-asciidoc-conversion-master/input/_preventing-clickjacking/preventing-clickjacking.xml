@@ -1,0 +1,155 @@
+<item>
+    <title>Preventing Clickjacking</title>
+    <link>http://vojtechruzicka.com/preventing-clickjacking/</link>
+    <pubDate>Mon, 10 Apr 2017 12:39:30 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=827</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-829 size-full" title="clickjacking" src="http://vojtechruzicka.com/wp-content/uploads/2017/04/clickjacking.jpg" alt="clickjacking" width="900" height="600" />
+<p style="text-align: justify;">Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?</p>
+<!--more-->
+<h2>Clickjacking</h2>
+<p style="text-align: justify;">Clickjacking is a type of attack, where the attacker tricks the victim into performing a malicious action by hijacking their click. This usually involves transparent iframes. The victim thinks they are clicking on the visible page but instead they are clicking on the invisible page loaded in an iframe on the top of it.</p>
+<p style="text-align: justify;">The attack scenario can be for example the following:</p>
+
+<ol style="text-align: justify;">
+ 	<li>The malicious page contains a button, which is the victim supposed to click.</li>
+ 	<li> On top of this visible page, there is loaded another page in an iframe and it is styled as transparent.</li>
+ 	<li>Because the victim is already authenticated with the attacked page in their current browser session, the page is successfully loaded in the frame and the user is fully authenticated.</li>
+ 	<li>The attacked page is positioned in a way that clicking on the visible button underneath actually triggers some desired action on the attacked page.</li>
+</ol>
+<p style="text-align: justify;">A more specific example can be the following:</p>
+
+<ol>
+ 	<li style="text-align: justify;">Create a web page "You just won an iPad. Claim your prize HERE"</li>
+ 	<li style="text-align: justify;">Load my Twitter profile page in a transparent iframe on top of it</li>
+ 	<li style="text-align: justify;">Position the twitter frame in the way that when a victim means to click the "Claim Prize" button, they actually click the "Follow" button on my twitter profile.</li>
+</ol>
+<h2>Prevention</h2>
+<h3>Framebusting</h3>
+<p style="text-align: justify;">The oldest protection against clickjacking is using javascript to detect whether the page is running in a frame and then breaking the page out of that frame. For the legacy browsers, which do not support HTTP security headers mentioned later, it is the only option.</p>
+<p style="text-align: justify;">You can find various versions of frame-busting scripts, but many of them can be easily avoided. The usual implementation relies on the following:</p>
+
+<ol>
+ 	<li style="text-align: justify;">Detect that the page is running in a frame.</li>
+ 	<li style="text-align: justify;">If so, assign the page to its parent.</li>
+</ol>
+This, of course, has several disadvantages:
+<ul>
+ 	<li>If the client has javascript disabled, it does not work.</li>
+ 	<li>If you wrap the page in multiple nested frames, it does not work.</li>
+ 	<li>When declaring a frame, the attacker can disable the javascript inside (by declaring sandbox attribute in chrome or security="restricted" in IE) and the frame-busting script is not executed at all.</li>
+</ul>
+The solution is to flip the protection principle. In the header of the HTML page declare a style which hides the entire body:
+<pre lang="javascript">
+<style id="antiClickjack">body{display:none !important;}</style>
+</pre>
+
+Then, still in the header, declare a script, which removes the style by its ID making the body visible again.
+It will make it visible only when it detects the page is not running in a frame.
+<pre lang="javascript"><script type="text/javascript">
+   if (self === top) {
+       var antiClickjack = document.getElementById("antiClickjack");
+       antiClickjack.parentNode.removeChild(antiClickjack);
+   } else {
+       top.location = self.location;
+   }
+</script>
+</pre>
+
+This is the only version of a frame-busting script recommended by the OWASP <a href="https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet">Clickjacking defense cheat sheet</a>.
+<h3 style="text-align: justify;">X-Frame-Options</h3>
+<p style="text-align: justify;">A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header - X-Frame-Options. If the client's browser receives such header, it will respect it and not render the page. The possible values of the header are following:</p>
+
+<ul>
+ 	<li style="text-align: justify;"><strong>DENY</strong> - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.</li>
+ 	<li style="text-align: justify;"><strong>SAMEORIGIN</strong> - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.</li>
+ 	<li style="text-align: justify;"><strong>ALLOW-FROM</strong> - This allows you to define a trusted location from which your page can be rendered in a frame.</li>
+</ul>
+<p style="text-align: justify;">Please know that ALLOW-FROM option is not widely supported in the same way like DENY and SAMEORIGIN are. In case the client's browser is not compatible, it just ignores the header and you are left with no clickjacking protection whatsoever.</p>
+<p style="text-align: justify;">The image bellow shows the compatibility (<a href="http://caniuse.com/#feat=x-frame-options">see more</a>) of the X-Frame-Options header. Dark green (IE, Edge, Firefox) represent full compatibility. Lighter green represents just DENY and SAMEORIGIN, but unsupported ALLOW-FROM.</p>
+<img class="size-full wp-image-844 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/04/X-Frame-options-compatibility.png" alt="" width="2502" height="568" />
+<p style="text-align: justify;">Based on the current stats that is just <span class="support" title="12.79% Supported">12.79% of users will have full compatibility and </span><span class="partial" title="Partially Supported">82.13% will not support ALLOW-FROM. That means you should stick only with DENY and SAME-ORIGIN.</span></p>
+
+<h3>Content-Security-Policy</h3>
+<p style="text-align: justify;">While X-Frame-Options is widely supported (at least without ALLOW-FROM), it was never officially standardized. The standard, which is addressing whitelisting of frame sources, is newer Content Security Policy header. It comes in two levels - 1 and 2. Level 1 is widely supported, but it is the level 2 which adds frame-ancestors directive, which is supposed to replace X-Frame-Options. Level 2 is not widely supported <a href="http://caniuse.com/#search=Content%20security%20policy">yet</a> - currently 68.65% of the clients.</p>
+<img class="size-full wp-image-846 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/04/Content-Security-Policy-Level-2.png" alt="" width="2494" height="556" />
+<p style="text-align: justify;">Frame-ancestors specifies sources, from which elements frame, iframe, object, embed and applet can be loaded. </p>
+<p style="text-align: justify;">Specifiying 'none' is roughly equivalent of X-Frame-Options DENY.</p>
+
+<pre lang="java">Content-Security-Policy: frame-ancestors 'none';</pre>
+<p style="text-align: justify;">Alternatively, you can provide value 'self', which is similar to X-Frame-Options SAMEORIGIN - it allows just the same protocol, host and port.</p>
+
+<pre lang="java">Content-Security-Policy: frame-ancestors 'self';
+</pre>
+Instead of X-Frame-Options ALLOW-FROM, you explicitly specify uri to frame-ancestors directive:
+
+<pre lang="java">Content-Security-Policy: frame-ancestors [source] [someOtherSource];</pre>
+<h2 class="brush: bash line-numbers language-bash">Server-wide protection</h2>
+<p style="text-align: justify;">The easiest and the most robust way of adding security HTTP headers is not per application, but per server. If you know that all your applications and pages on the server will use the same framing policy, you can declare it directly on the whole server level. Most of the application and HTTP servers support that out of the box. You can easily find the configuration for your favorite server.
+
+For example - for Apache you just need to add</p>
+
+<pre lang="java">Header always append X-Frame-Options SAMEORIGIN
+</pre>or for nginx:
+<pre lang="java">add_header X-Frame-Options SAMEORIGIN;</pre>
+
+<h2>Spring Security</h2>
+<p style="text-align: justify;">The good news is that if you are using Spring Security, it <a href="http://docs.spring.io/spring-security/site/docs/current/reference/html/headers.html#default-security-headers">automatically</a> sends X-Frame-Options DENY with all responses. If you need to change this default, you need to configure it manually. The following example shows changing the default to SAMEORIGIN and also adding ContentSecurityPolicy headers.</p>
+<p style="text-align: justify;">To configure the headers in XML you can:</p>
+<pre lang="xml">
+<http>
+    <headers>
+        <content-security-policy policy-directives="frame-ancestors 'self'"/>
+        <frame-options policy="SAMEORIGIN"/>
+    </headers>
+</http>
+</pre>
+<p style="text-align: justify;">Or using Java Config:</p>
+<pre lang="java">
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().sameOrigin().contentSecurityPolicy("frame-ancestors 'self'");
+    }
+}
+</pre>
+<h2 style="text-align: justify;">Conclusion</h2>
+<div style="text-align: justify;">You should make sure you apply clickjacking protection to your site. If you do not use frames, the safest measure is to provide X-Frame-Options DENY HTTP header. If you use frames, but just from your origin, you should use X-Frame-Options SAMEORIGIN. If you need to allow frames from a trusted host, the situation is a bit trickier. Due to browser compatibility issues, you need to provide both X-Frame-Options ALLOW-FROM and Content Security Policy frame-ancestors directive to make sure you cover as many client browsers as possible. Of course, legacy browsers do not support either of the HTTP headers and you will need to deploy Framebuster javascript to reduce the risk.</div>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>827</wp:post_id>
+    <wp:post_date><![CDATA[2017-04-10 14:39:30]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-04-10 12:39:30]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[preventing-clickjacking]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="security"><![CDATA[Security]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[30]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[15]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1498579287;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:578;}i:1;a:1:{s:2:"id";i:357;}i:2;a:1:{s:2:"id";i:238;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+</item>

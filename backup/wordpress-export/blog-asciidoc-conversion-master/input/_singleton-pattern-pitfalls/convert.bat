@@ -1,0 +1,1 @@
+pandoc singleton-pattern-pitfalls.html --standalone --from=html --to=markdown --output=singleton-pattern-pitfalls.md --wrap=none

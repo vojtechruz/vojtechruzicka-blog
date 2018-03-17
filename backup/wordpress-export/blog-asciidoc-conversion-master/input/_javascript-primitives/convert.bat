@@ -1,0 +1,1 @@
+pandoc javascript-primitives.html --standalone --from=html --to=markdown --output=javascript-primitives.md --wrap=none

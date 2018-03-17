@@ -1,0 +1,108 @@
+<item>
+    <title>Vaadin 8 Certification</title>
+    <link>http://vojtechruzicka.com/vaadin-8-certification/</link>
+    <pubDate>Tue, 19 Sep 2017 15:48:43 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1095</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-1097 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2017/09/vaadin-certification.jpg" alt="" width="900" height="600" />
+
+After releasing Vaadin 8 and 8.1, the certification <a href="https://vaadin.com/blog/-/blogs/welcome-to-the-free-vaadin-8-certification-week-">was updated</a> to the version 8 as well. If you are considering taking the certification, this review will come in handy.
+
+<!--more-->
+<h2>Purchasing the voucher</h2>
+<div style="text-align: justify;">The certification voucher can be purchased directly on the Vaadin site under <a href="https://vaadin.com/pro/certification">My Account → Certification</a>. Each voucher costs $130 or €99. You can purchase as many vouchers as you want, each voucher grants one exam attempt.</div>
+<h2></h2>
+<h2>Taking the exam</h2>
+<div style="text-align: justify;">
+
+The certification consists of 40 questions. Each question is worth 1 point. Questions have two to four possible answers. The tricky part is that it is multiple choice. That means - all of the answers can be correct. Or none of them. Or any combination. That usually makes guessing really hard. You are allowed to use Vaadin Documentation and Java Doc freely, it is not considered cheating. So it is really useful to have them at hand during the exam. However, each question has a strict time limit of 90 seconds. That is not enough to search for a verification of all the possible answers. You need to know what is the question about, but you can usually verify one or two answers you are not so sure about.
+
+If you run out of time for a question, you continue to the next one. You can move only forward, there is no way to check back your previous questions. If you take as much time as possible for each question, the exam will take nearly one hour, but usually, it can be done faster.
+
+</div>
+<div></div>
+<div style="text-align: justify;">Before the exam starts, you will receive a warm-up question, which will show you how the exam looks like and what are the controls available.</div>
+<div></div>
+<div></div>
+&nbsp;
+<div><img class="aligncenter size-full wp-image-1109" src="http://vojtechruzicka.com/wp-content/uploads/2017/09/Screen-Shot-2017-09-18-at-16.04.12.png" alt="" width="1116" height="1062" /></div>
+<h2></h2>
+<h2>Pausing the exam</h2>
+<div style="text-align: justify;">Fortunately, the exam can be paused after each question. Clicking the Close button will trigger a dialog about suspending the exam.</div>
+<div></div>
+&nbsp;
+<div><img class="aligncenter size-full wp-image-1099" src="http://vojtechruzicka.com/wp-content/uploads/2017/09/Screen-Shot-2017-09-18-at-14.54.07.png" alt="" width="1022" height="422" /></div>
+<div></div>
+<div style="text-align: justify;">You need to make sure you already marked the answer for the current question and then click Close to suspend the exam. Otherwise, the current question would be marked as with an empty answer. When Resuming the exam, you will continue with the next question. This is a cool feature which allows you to pause the exam in case of some sudden situation, which requires your attention.</div>
+<h2></h2>
+<h2>Losing connection</h2>
+<p style="text-align: justify;">When taking the exam, make sure your connection is as stable as possible. However, if you happen to lose the connection during the exam, nothing is lost. You can continue the test later when you manage to reestablish the connection, however, the last question will be marked as incorrect.</p>
+
+<h2></h2>
+<h2>Failing the exam</h2>
+<div style="text-align: justify;">The passing limit is at least 60%. That is - you need at least 24 of the 40 questions right. If you do not meet the limit, you can buy another try, but you need to wait at least 30 days before doing so.</div>
+<div></div>
+<div style="text-align: justify;">Be sure to properly prepare for the exam. The questions are not devilishly hard or tricky, but multiple possible answers make the exam much more difficult. During the <a href="https://vaadin.com/blog/-/blogs/free-vaadin-8-certification-week-digest">free certification week in September 2017</a>, 270 developers out of 1250 made it. That is 21.6% pass rate. Which is not much. Possibly, many of the attendees tried the exam out of curiosity and did not prepare as much as if they had paid for the exam themselves. Still, you should not underestimate your preparation.</div>
+<h2></h2>
+<h2>Passing the exam</h2>
+<div style="text-align: justify;">If you manage to have at least 60% right, you will pass the exam. You will see your results immediately including a summary of categories of questions and how many you got right in each category.</div>
+<div></div>
+<div style="text-align: justify;">You will receive a PDF Certificate about the completion of the exam. Furthermore, you can show a certification badge on the Vaadin forums and also add the certificate automatically to your LinkedIn profile.</div>
+<h2></h2>
+<h2>Vaadin 7 vs 8</h2>
+<p style="text-align: justify;">The exam is just an updated version of previously available Vaadin 7 certification. That means, if you've already passed the previous exam, you will be more than familiar with the format and contents of the test. Many questions are very similar to what was available in the previous version and it should not be too hard to prepare for the updated exam if you already passed the original one.</p>
+
+<h2></h2>
+<h2>Study resources</h2>
+<ul>
+ 	<li><a href="https://vaadin.com/docs/-/part/framework/introduction/intro-overview.html">Official Vaadin Docs</a></li>
+ 	<li><a href="https://vaadin.com/docs/-/part/framework/tutorial.html">Vaadin Tutorial</a></li>
+ 	<li><a href="https://vaadin.com/api/">Vaadin JavaDoc</a></li>
+ 	<li><a href="https://vaadin.com/training">Vaadin Training Catalog</a></li>
+ 	<li><a href="https://www.youtube.com/watch?v=4qBg-jJZmRc">Vaadin Certification Webinar Video (for version 7)</a></li>
+</ul>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1095</wp:post_id>
+    <wp:post_date><![CDATA[2017-09-19 17:48:43]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-09-19 15:48:43]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[vaadin-8-certification]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="post_tag" nicename="certification"><![CDATA[certification]]></category>
+    <category domain="category" nicename="java"><![CDATA[Java]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[60]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[5]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1097]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1508393635;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:499;}i:1;a:1:{s:2:"id";i:553;}i:2;a:1:{s:2:"id";i:1027;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[The review of updated Vaadin 8 certification exam.]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+</item>

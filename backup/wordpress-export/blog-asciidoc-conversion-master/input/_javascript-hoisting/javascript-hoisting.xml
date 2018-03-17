@@ -1,0 +1,617 @@
+<item>
+    <title>Javascript hoisting, var, let and const variables</title>
+    <link>http://vojtechruzicka.com/javascript-hoisting-var-let-const-variables/</link>
+    <pubDate>Fri, 09 Feb 2018 11:28:15 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1573</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-1557 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2018/02/hoisting.jpg" alt="" width="900" height="599" />
+<p style="text-align: justify;">One of the Javascript's oddities is that you can use variables and functions even before they are declared. It's called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.</p>
+<!--more-->
+<h2>Hoisting</h2>
+<p style="text-align: justify;">Consider the following code:</p>
+
+<div></div>
+<pre lang="javascript">
+sayHi();
+
+function sayHi() {
+   console.log('Hi there!');
+}
+</pre>
+<p style="text-align: justify;">It works and prints 'Hi there!'. Even though the function is defined after it is used. Or another example:</p>
+
+<pre lang="javascript">john = 'John Doe';
+console.log(john); //John Doe
+var john;</pre>
+<p style="text-align: justify;">Variable john is declared after it is used, yet it still works. How is this possible? When your Javascript code is being processed, in the first iteration, before actually executing it line by line, all the variable and function declarations are detected. Then they are created in memory and space is allocated for them. Only after that, the code is executed line by line. This behaves exactly the same as if the declarations were moved on top of the scope (eg. function body). That means your code behaves as if the declarations of variables and functions were first and then the rest of the code. There is one caveat though. Consider the following line:</p>
+
+<pre lang="javascript">var john = 'John Doe';</pre>
+<p style="text-align: justify;">It is actually consisting of two parts:</p>
+
+<ul>
+ 	<li><em>var john</em> means that variable john is declared</li>
+ 	<li><em>= 'John Doe';</em> means that previously declared variable <em>john</em> is assigned a value of string 'John Doe'</li>
+</ul>
+It is basically one-liner for:
+<pre lang="javascript">var john; // declaration
+john = 'John Doe' //initialization
+</pre>
+<p style="text-align: justify;">The thing is that only declarations are hoisted, not initializations. That means you can access variable <em>john</em> before it is actually declared but its value will be undefined.</p>
+
+<pre lang="javascript">console.log(john) //undefined
+var john = 'John Doe';
+console.log(john) //'John Doe'
+</pre>
+<p style="text-align: justify;">Another thing to watch for is that while function declarations and variable declarations using <em>var</em> keyword are hoisted, class declarations are not. You cannot use class before it is declared.</p>
+
+<div>
+<pre lang="javascript">var john = newPerson('John', 'Doe'); //ReferenceError: Person is not defined
+
+class Person {
+    constructor(name, surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+}
+
+var jane = new Person('Jane', 'Doe'); //No problems here
+
+</pre>
+<h2>Best practices</h2>
+<p style="text-align: justify;">It is a good idea to always declare first before using a variable or function. And to group all the declarations on the top of the scope they apply to. It is much easier to see what variables are being used in a given scope and easier to find a variable declaration when looking for it. It is also much more natural to define a construct before using it than the other way around. Such code is much easier to read, understand and to reason about. And after all, some of the developers, especially when junior or switching from other languages, may not be familiar with the hosting and it would just cause unnecessary confusion.</p>
+
+<div></div>
+<h2>Block scope</h2>
+<p style="text-align: justify;">If you come from a different programming language than Javascript, the following behavior may be surprising to you.</p>
+
+<pre lang="javascript">for (var i = 0; i < 10; i++) {
+    // do something
+}
+
+console.log(i) // 10, What? 'i' still exists outside the for block!
+</pre>
+<div style="text-align: justify;">Unlike in many other languages, variables declared using <em>var</em> keyword do not respect block scope. That means you would expect that variable 'i' from a for loop would be accessible only inside the loop. Wrong. The scope of a variable declared in Javascript depends on where you declare it.</div>
+<ul>
+ 	<li>If you declare it inside of a function body, its scope is the whole function's body. And because of hoisting, it can be accessed anywhere in the body.</li>
+ 	<li>If you declare your variable on the root level it is in the global scope. It is actually a variable of the global object (eg. window).</li>
+</ul>
+<div style="text-align: justify;"></div>
+<div style="text-align: justify;">If we take our example with for loop, the variable <em>i</em> is actually now declared also as a property of window - that is <em>window.i</em>!</div>
+</div>
+<div>
+<pre lang="javascript">for (var i = 0; i < 10; i++) {
+  // do something
+}
+
+console.log(window.i)// 10, Oh the horror! 'i' is now on the global object
+</pre>
+</div>
+<div>
+<p style="text-align: justify;">That is terrifying. Function wide scope is usually a lot wider than you need. Often you have variables which only are needed inside of a loop, if statement or similar block. Minimizing the scope where a variable is available is very important. It makes your functions easier to understand and reason about. Most importantly, the smaller the scope is, the smaller is the risk that some code somewhere else will mess with your variables. The bottom line is - it's useful to have smaller encapsulated scopes, rather than a big scope for the whole function. And of course, your functions should be really small anyway, which reduces the scope of the variables within and decreases complexity.</p>
+
+</div>
+<div></div>
+<div>
+<h2>IIFE</h2>
+<p style="text-align: justify;">Because it is a good practice to minimize the scope a variable is accessible in and <em>var</em> can be accessed in the whole function scope, there were historically some workarounds to address this. One of them is IFFE, which represents <a href="http://adripofjavascript.com/blog/drips/an-introduction-to-iffes-immediately-invoked-function-expressions.html">Immediately Invoked Function Expression</a>. It is an artificial way to create a new local encapsulated scope. What you basically do is surround a block of code by a function expression and immediately call that function. Variables inside are not accessible from the surrounding code.</p>
+
+</div>
+<div>
+<pre lang="javascript">(function () {
+    var foo = 42;
+})();
+
+console.log(foo); // ReferenceError: foo is not defined
+</pre>
+<h2>let</h2>
+<p style="text-align: justify;">In ES6 in addition to <em>var</em>, there were two new variable types introduced - <em>let</em> and <em>const</em>. What are they good for if there already is <em>var</em>? One of the differences is that their scope is not the entire function but rather only the enclosing block. That is, some section of code wrapped in curly braces {}. Like the body of an <em>if</em> statement or <em>for</em> loop. Finally, you can minimize the scope of your variables to the bare minimum without ugly workarounds such as IIFE.</p>
+<p style="text-align: justify;">Another difference (and advantage) of <em>let</em> over <em>var</em> is how hoisting works. Variables declared using <em>var</em> can be accessed in the whole scope (and we already know that <em>var</em> has a bigger scope). You can access them before they are declared. In such case, their value would be undefined though, as only declarations and not initializations are hoisted. This is generally considered a bad practice. <em>Let</em> behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in the 'Temporal Dead Zone'.</p>
+<p style="text-align: justify;">To better understand the difference between <em>var</em> and <em>let</em>, we need to compare their life cycle. When a scope is entered, the first thing which happens is that the whole scope (function body, block) is searched for variable declarations. Then there is a memory space allocated for each of the variables. After this, the body of the function or block is executed line by line. That's basically how hoisting works and why you can access your variables before declaring them.</p>
+
+<div></div>
+<p style="text-align: justify;">There is one key difference how this behaves between <em>var</em> and<em> let/const</em> though.</p>
+
+<ul>
+ 	<li>In case of var, after creating variable definitions, before executing line by line each of the variables is initialized with the undefined value.</li>
+ 	<li>In case of var/const, the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in the <em>Temporal Dead Zone</em> and accessing it results in Reference Error.</li>
+</ul>
+<div></div>
+<p style="text-align: justify;">One of the advantages of <em>let</em> over <em>var</em> is also pollution of global scope. When you declare a variable using <em>var</em> on the root level, it is automatically declared on the global object:</p>
+
+<pre lang="javascript">var foo = 42;
+console.log(window.foo) //42
+</pre>
+When using <em>let</em> (and <em>const</em>), this does not happen:
+<pre lang="javascript">let foo = 42;
+console.log(window.foo) //undefined
+
+</pre>
+<h2>const</h2>
+<p style="text-align: justify;">Const behaves in a very similar way to let. It is also block scoped and cannot be used until declared. There is, however, one key difference. Once variable declared using <em>const</em> keyword is assigned a value, you cannot reassign it. You also need to initialize the variable immediately when declaring it.  It is useful as this prevents accidental reassignment of the variable. It also promotes good coding practices as it prohibits using a single variable for multiple purposes during its lifecycle, which is confusing and error-prone. And how can you even have a nice descriptive name of a variable which does multiple different things?</p>
+
+<div style="text-align: justify;"></div>
+<p style="text-align: justify;">While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of <a href="http://vojtechruzicka.com/javascript-primitives/">primitives</a> such as numbers, strings or booleans, you are safe as they are immutable.</p>
+
+<div></div>
+<h2>let vs const</h2>
+<p style="text-align: justify;">Because of the advantages of <em>const</em> described above, it is a good practice to prefer <em>const</em> over <em>let</em>. Actually, in most of the cases, you can safely use <em>const</em>. There are only a few cases where you really need <em>let</em>. One of the examples can be loops. Because the iterating variable gets changed with every step through the loop you cannot use <em>const</em>. However, you can avoid using loops in many cases in favor of more functional way such as - map, filter or reduce. When using a linter (and you should use it), it <a href="https://eslint.org/docs/rules/prefer-const">can check</a> for you cases where you can safely replace <em>let</em> with <em>const</em> as the variable is never reassigned.</p>
+
+<div></div>
+<h2>Conclusion</h2>
+<p style="text-align: justify;">Hoisting is one of the weird Javascript's concepts, yet it is very important to be familiar with it. It is good to stick to the convention where you declare first and use later. And all your declarations should be grouped together.</p>
+
+<div></div>
+<p style="text-align: justify;">To minimize hoisting problems and confusion, there are fortunately modern alternatives in ES6 - const and let. Their scope is block instead of the whole function and they cannot be used before they are declared. Because of this, you should prefer them over the good old var. Moreover, when possible the const is a safer choice over let because it cannot be reassigned.</p>
+
+</div>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1573</wp:post_id>
+    <wp:post_date><![CDATA[2018-02-09 12:28:15]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2018-02-09 11:28:15]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[javascript-hoisting-var-let-const-variables]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="javascript"><![CDATA[Javascript]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1557]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[60]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[24]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518668967;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:1511;}i:1;a:1:{s:2:"id";i:1592;}i:2;a:1:{s:2:"id";i:1548;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Javascript hoisting, var let and const variables]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[One of the Javascript’s oddities is that you can use variables and functions even before they are declared. It’s called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>283</wp:comment_id>
+        <wp:comment_author><![CDATA[VR]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtechruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[141.228.106.149]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-13 07:54:46]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-13 06:54:46]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[This is very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
+
+
+This
+When you are coming from another language, which his Object Oriented, such as Java, you are no doubt familiar with concept of this. This keyword is used inside of the class and refers to the current instance. No more, no less.
+
+In Javascript, this is yet another concept, which behaves in a unexpected way. Like other concept usch as new operator or classes, it tricks you into making same false assumptions based on concepts which you know from other languages. Because the syntax and naming is the same or very similar, yet the concept is different. What's more its behavior is somewhat different depending on whether you are in the strcit mode or not.
+
+This
+
+Function invocation
+When calling a function this is referring to the global object. The global object depends on how you run your code - if you are executing in a browser, it is the window object. In node.js it is an object called global.
+
+
+function logThis(){
+    console.log(this);
+}
+
+logThis();//globalobject-e.g.window
+
+Note that this aplies to function calls, where the function is not called as a property of an object. eg. object.function(). In such cases it is actually method invocation, which follows different rules (see bellow).
+
+Alright, so far so good. This in functions calls points to the global object. It is not so simple though. This behavior only applies when not in strict mode. When in strict mode, this in functions is undefined.
+
+function logThisInStrictMode(){
+    "use strict"
+    console.log(this);
+}
+
+logThisInStrictMode();//undefined
+
+
+
+Method invocation
+Methods is basically a function, which is attached to an object. In methods, the situation is simple - this refers to the object the methods is owned by.
+
+var john = {
+	name: 'John',
+	greet: function() {
+	            //this points to the enclosing object
+		console.log('Hi! My name is ' + this.name);
+	}
+}
+
+john.greet(); //methods are called through their object (john here)
+
+Be careful though. That does not apply to nested functions. If you declare a function inside a object's method, its this does not point to the original method's object. It is a regular function therefore it's this points to the global object (see above). Unless, of course, you are in strict mode. In such case it is undefined.
+varjohn={
+name:'John',
+greet:function(){
+
+//nestedfunctioninamethod
+functionsayHi(){
+console.log('Hi!Mynameis'+this.name);//thispointstotheglobalobject-window
+}
+
+//IIFE-Immediatelyinvokedfunctionexpression
+(function(){
+console.log('Hi!Mynameis'+this.name)//thispointstotheglobalobject-window
+})()
+}
+}
+
+Keep in mind that this points to the owner object ONLY when you call the method through the object:
+
+john.greet();
+
+If you take the very same method and call it in a different way, this will be different. Lets say we store the method to a variable and then invoke it.
+Suddenly, when it is not called on an object, it is just an ordirany function and, as we know, function's this points to the global object.
+
+var greetingFunction = john.greet;
+greetingFunction();  // Hi! My name is undefined
+
+
+In constructor functions
+When you are using constructor funcions with a new keyword  (TODO link), this behaves a bit differently than usual. In short, what new operator does is that:
+1.It creates a new blank object.
+2.It makes this to point to this newly created object inside the constructor function
+3. It sets the prototype of the newly created object to the constructor function's prototype.
+4.It makes the constructor function return the newly created object IF it is not returning anyhing.
+
+Long story short, when using new operator, this inside the constructor function points to the newly created object.
+
+Keep in mind that if you forget to include new operator and just call the function directly, this will point to something completely different based on where the constructor function is located.
+
+var Person = function(firstName,lastName){
+   //If you called this using new operator, it links to the new object
+   this.firstName=firstName;
+  this.lastName=lastName;
+}
+
+var john = new Person('John','Doe');
+
+In classes
+When using this inside of methods of an ES6 class, it poinst to the current object. That's nice.
+
+classPerson{
+constructor(name){
+this.name=name;
+}
+
+greet(){
+console.log('Hi!Mynameis'+this.name);
+}
+}
+
+varjohn=newPerson('JohnDoe');
+john.greet(); //Hi! My name is John Doe
+
+
+However, when using nested functions inside such methods, they behave as regular functions. Same as nested functions in object methods. There is one caveat though. Code inside classed is automatically executed in strict mode even if it is not explicitly declared! As we already know, strict mode changes behavior inside functions so this is undefined instead of pointing to the global object.
+classPerson{
+constructor(name){
+this.name=name;
+}
+
+greet(){
+functionsayHi(){
+console.log('Hi!Mynameis'+this.name);
+}
+
+//IIFE-Immediatelyinvokedfunctionexpression
+(function(){
+console.log('Hi!Mynameis'+this.name)
+})()
+
+}
+}
+
+Fat arrow functions]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[trash]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1518504886.3468859195709228515625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1518527664.17152309417724609375;s:5:"event";s:12:"status-trash";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
+            <wp:meta_value><![CDATA[0]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1518527664]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>285</wp:comment_id>
+        <wp:comment_author><![CDATA[VR]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtechruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[141.228.106.147]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-14 17:29:41]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-14 16:29:41]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[How to document your Spring Boot REST APIs using Swagger with SpringFox?
+
+
+Documenting REST API
+What is swagger?
+SpringFox
+Starting project
+	- github link
+
+Adding Dependencies
+To work with SpringFox in your project, you need to add the dependency to it first. If you are using maven, you can use the following.  You can check whether a newer version is available.
+
+
+io.springfox
+springfox-swagger2
+2.8.0
+
+
+Or if you are using gradle:
+
+compile "io.springfox:springfox-swagger2:2.8.0"
+
+
+Basic configuration
+After adding the dependency, you'll need to provide some basic spring configuration. While you can technically use one of your existing configuration files, it is better to have a separate file for it. The first thing you'll need to provide is @EnableSwagger2 annotation. Then you need to provide a Docket bean, which is the main bean used to configure SpringFox.
+
+@Configuration
+@EnableSwagger2
+publicclassSpringFoxConfig{
+
+@Bean
+publicDocketapi(){
+returnnewDocket(DocumentationType.SWAGGER_2)
+.select()
+.apis(RequestHandlerSelectors.any())
+.paths(PathSelectors.any())
+.build();
+}
+
+}
+
+This is a minimalistic configuration, which does the following:
+• @EnableSwagger2 enables SpringFox support for swagger 2
+• DocumentationType.SWAGGER_2 tells the Docket bean that we are using version 2 of Swagger specification
+• select() created a builder, which is used to define which controllers and which of their methods should be include in the generated documentation
+• apis() defines the controllers to be included. Here we are including all of them, but you can limit them by base package, class anotations and more.
+• paths() allow you to define which controller's methods should be included based on their path mappings. We are including all of them but you can limit it using regex and more.
+
+Of course you can provide many more configuration settings as we'll see later.
+
+
+Adding UI
+If you deploy your application now, swagger metadata describing your API are already being generated! You can check it out
+
+http://localhost:8080/v2/api-docs
+
+TODO screenshot
+
+Turns out is is just a big  JSON, not very human readable. But you can already verify it works. Just go to the Swagger Online Editor and paste the JSON there (TODO LINK https://editor.swagger.io/). Paste your generated JSON to the left panel and voila! You can now see your generated documentation as HTML page.
+
+Nice isnt it? It would be even nicer to have such documentation directly as a part of your application. Fortunately, it is quite easy do achieve this. The GUI displaying HTML documentation based on JSON input is called swagger-ui. To enable it is a spring boot app, you just need to add this dependency:
+
+
+Maven:
+
+io.springfox
+springfox-swagger-ui
+2.8.0
+
+
+Gradle:
+compile 'io.springfox:springfox-swagger-ui:2.8.0'
+
+The your documentation will be available on
+
+http://localhost:8080/swagger-ui.html
+
+TODO screenshot
+
+
+Adding ApiInfo
+By default, the header part of our documentation does look pretty generic:
+
+TODO Image.
+
+It's time to do something about it. We can change all the infromation there just by a simple consiguration change. In the SpringFoxConfiguration file, we need to add ApiInfo object, which provides general information about the api such  as Title, Version, contacts or licensing information.
+
+@Bean
+publicDocketapi(){
+returnnewDocket(DocumentationType.SWAGGER_2)
+.select()
+.apis(RequestHandlerSelectors.any())
+.paths(PathSelectors.any())
+.build()
+.apiInfo(getApiInfo());
+}
+
+privateApiInfogetApiInfo(){
+returnnewApiInfo(
+"TITLE",
+"DESCIPRION",
+"VERSION",
+"TERMSOFSERVICEURL",
+newContact("NAME","URL","EMAIL"),
+"LICENSE",
+"LICENSEURL",
+Collections.emptyList()
+);
+}
+
+Now our documentation header should look much better:
+TODO image
+
+
+Narrowing down processed APIs
+So far so good. When you take a closer look at the generated documentation, you'll see that in addtion to our Model and Controller classes which we use, there are also some spring specific classes such as  BasicErrorController in the controllers sections and also View and  ModelAndView under Models section.
+
+Sometimes it is useful to narrow down classes which will SpringFox detect as sources for documentation generation. Both Controller and model classes. You can easily configure this in the docket configuration. Remember like we used .apis(RequestHandlerSelectors.any() to include all the classes? Let's narrow it down just to our base backage:
+
+@Bean
+publicDocketapi(){
+returnnewDocket(DocumentationType.SWAGGER_2)
+.select()
+.apis(RequestHandlerSelectors.basePackage("com.vojtechruzicka"))
+.paths(PathSelectors.any())
+.build()
+.apiInfo(getApiInfo());
+}
+
+This is useful when you want to specify which classes should be included. Sometimes you also need to inlude only specific URL paths. Maybe you are using multiple versions of your api for backwards compatibility but don't want to include the historic ones. Maybe some part of the api is internal and should not be part of the public documentation. Either way, such inclusion based on URL matching can be configured also in the Docket. Remember
+.paths(PathSelectors.any())? instead of any, which matches all the paths, you can limit it just to some regex or ant-style path patterns TODO LINK http://ant.apache.org/manual/dirtasks.html#patterns.
+
+@Bean
+publicDocketapi(){
+returnnewDocket(DocumentationType.SWAGGER_2)
+.select()
+.apis(RequestHandlerSelectors.basePackage("com.vojtechruzicka"))
+.paths(PathSelectors.ant("/v2/**"))
+.build()
+.apiInfo(getApiInfo());
+}
+
+
+In case built-in options are not enough for you, you can always provide your own predicate for both apis() and paths().
+
+An alternative way of ignoring certain classes or methods is to annotate them with @ApiIgnore.
+
+Using JSR-303 annotations
+JSR 303: Bean Validation TODO LINK allows you to annotate fields of your java classes to declare constraints and validation rules. You can annotate individaul fields with rules such as - cannot be null, minimal value, maximal value, regular expressiom match and so on. Consider the following example.
+
+publicclassPerson{
+@NotNull
+privateintid;
+
+@NotBlank
+@Size(min=1,max=20)
+privateStringfirstName;
+
+@NotBlank
+@Pattern(regexp="[SOMEREGULAREXPRESSION]")
+privateStringlastName;
+
+@Min(0)
+@Max(100)
+privateintage;
+
+This is a common practice which is already widely used. The good news is that SpringFox can generate swagger documentation based on such annotations, so you can utulize what you already have in your project withou writing all the constraints manually! It is very useful as consuments of your API know what are restrictions on the values they should provide to your API and what values to expect. Without inclusion of such annotations,the generated documentation for our person model looks rather plain, nothing except for field names and their data type.
+
+TODO SCREEN
+
+With data from JSR-303 annotations, it will look much better:
+
+TODO SCREEN
+
+Unfortunately, JSR-303 based documentation does not work out of the box, you need an additional dependency:
+
+//Maven
+
+io.springfox
+springfox-bean-validators
+2.8.0
+
+
+//Gradle
+compile "io.springfox:springfox-bean-validators:2.8.0"
+
+
+And you need to import a configuration file on top of your swagger configuration class:
+
+@Configuration
+@EnableSwagger2
+@Import(BeanValidatorPluginsConfiguration.class)
+publicclassSpringFoxConfig{
+...
+}
+
+Addig Swagger Core annotation to your model classes
+The advantage of  using JSR-303 is that if you already use them you get extra documentation information with zero efforant and without changing any code. The problem is hat currenty springfox does not display validation messages specified in the annotations. Also you may have some more complcated constraints you need to document.
+
+In such cases, you can use Swagger Core annotations TODO LINK
+https://github.com/swagger-api/swagger-core/wiki/Annotations
+, which allow you to specify additional information such as description. Person Class annotated with these annotations can look something like this.
+
+@ApiModel(description="Classrepresentingapersontrackedbytheapplication.")
+publicclassPerson{
+@ApiModelProperty(notes="Uniqueidentifierofaperson.Notwopersonscanhavethesameid.",example="1",required=true,position=0)
+privateintid;
+@ApiModelProperty(notes="Firstnameoftheperson.",example="John",required=true,position=1)
+privateStringfirstName;
+@ApiModelProperty(notes="Lastnameoftheperson.",example="Doe",required=true,position=2)
+privateStringlastName;
+@ApiModelProperty(notes="Ageoftheperson.Non-negativeinteger",example="42",position=3)
+privateintage;
+
+// … Constructor, getters, setters
+}
+
+Oc class level you use @Apimodel annotation and on field level @ApiModelproperty.You can, of course mix and match with JSR-303 annotations.
+
+TODO example attribute is used to prefiil request when using as a client
+TODO when not specified position, it will be sorted alphabetically
+
+
+Addig Swagger Core annotation to your controller classes
+Loading Description from properties
+
+Conclusion]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[trash]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1518625781.2099020481109619140625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
+            <wp:meta_value><![CDATA[0]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1518699767]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1518699767.67236995697021484375;s:5:"event";s:12:"status-trash";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

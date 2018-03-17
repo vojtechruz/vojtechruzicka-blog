@@ -1,0 +1,1 @@
+pandoc compact-strings.html --standalone --from=html --to=markdown --output=compact-strings.md --wrap=none

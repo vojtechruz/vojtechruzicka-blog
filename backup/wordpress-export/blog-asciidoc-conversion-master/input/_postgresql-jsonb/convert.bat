@@ -1,0 +1,1 @@
+pandoc postgresql-jsonb.html --standalone --from=html --to=markdown --output=postgresql-jsonb.md --wrap=none

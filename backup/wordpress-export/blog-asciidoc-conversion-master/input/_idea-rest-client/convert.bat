@@ -1,0 +1,1 @@
+pandoc idea-rest-client.html --standalone --from=html --to=markdown --output=idea-rest-client.md --wrap=none

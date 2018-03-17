@@ -1,0 +1,126 @@
+<item>
+    <title>IntelliJ IDEA Tips &amp; Tricks: Multiple Cursors</title>
+    <link>http://vojtechruzicka.com/intellij-idea-tips-tricks-multiple-cursors/</link>
+    <pubDate>Thu, 29 Jun 2017 16:22:40 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=913</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="wp-image-356 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/IntelliJIDEA_icon.png" alt="" width="939" height="486" />
+<p style="text-align: justify;">Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.</p>
+<!--more-->
+<h2>Column Selection</h2>
+<p style="text-align: justify;">This feature is the oldest one, which was available even before the introduction of the proper multiple cursors support. It allows you to select a block of text and then start typing with multiple cursors starting on each selected line at the beginning of the selected block.</p>
+<img class="size-full wp-image-915 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/06/column-selection.gif" alt="" width="622" height="106" />
+<p style="text-align: justify;">You can then move the cursor, as usual, usual using the arrow keys and even commands like Home or End. Note that after I used End (go to the end of the line), the cursor was properly placed at the end of each line even if the cursors were no longer vertically aligned.</p>
+<p style="text-align: justify;">This feature can be toggled using <em>Edit → Column</em> selection mode or (⇧+ ⌘ + 8).</p>
+<p style="text-align: justify;">You can exit column selection mode also by using <em>Esc</em> key.</p>
+<p style="text-align: justify;">Column selection mode can be also used when using keyboard only. When in column selection mode and holding <em>Shift</em>, you can extend cursor to the line above/bellow by using ↑ ↓ keys.</p>
+
+<h2>Caret Cloning</h2>
+<p style="text-align: justify;">The same functionality of creating new cursors as with Shift + arrows can be achieved by <em>Clone caret above</em> and <em>Clone caret bellow</em> commands.</p>
+<p style="text-align: justify;">The commands are issued by pressing <em>Ctrl</em> (or ⌥ on Mac), then pressing it again and not releasing. While still holding <em>Ctrl</em>, you can press ↑ ↓ arrows to clone cursor to the line above or bellow.</p>
+<img class="size-full wp-image-918 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/06/clone-caret.gif" alt="" width="642" height="100" />
+<h2>Multiple Cursors</h2>
+<p style="text-align: justify;">While the column selection mode is useful, it is limited to cases where places you need to edit are vertically aligned, which may not usually be the case. In other situations, you need to stick to a proper multiple cursor support. This is possible since <a href="https://blog.jetbrains.com/idea/2014/03/intellij-idea-13-1-rc-introduces-sublime-text-style-multiple-selections/">IDEA version 13.1</a>.</p>
+<p style="text-align: justify;">When holding Alt + Shift  ( or ⌥ + ⇧ on Mac), clicking on a location creates a new cursor on that location in addition to the already existing cursors. Unlike column selection, these cursors can be anywhere and don't need to be vertically aligned. Pressing <em>Esc</em> will exit multiple cursors mode and will leave you with your first original single cursor.</p>
+<img class="size-full wp-image-917 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/06/multiple-cursors-mouse.gif" alt="" width="622" height="78" />
+<h2>Advanced selection</h2>
+<p style="text-align: justify;">As of IntelliJ IDEA 14.1, you can not only insert multiple carets, but you can also select multiple parts of the text and then start typing. This has several advantages. You can replace multiple blocks of text of various lengths by new ones. Also, when copying/cutting the selected blocks into the clipboard, you can later paste the results into a new place when still using multiple cursors and each copied block will be pasted to the corresponding cursor.</p>
+<img class="size-full wp-image-921 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/06/multi-selection.gif" alt="" width="642" height="120" />
+<p style="text-align: justify;">This selection can be achieved by holding <em>Alt</em> + <em>Shift</em>  ( or ⌥ + ⇧ on Mac) and selecting the blocks by the mouse as usual. Another way of selecting multiple blocks of text with multiple cursors is <em>Select All Occurrences</em> command, which selects all the other occurrences in the current file of the already selected text. In case no text is selected, the closest word to the current cursor is selected.<img class="size-full wp-image-922 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/06/select-all-occurences.gif" alt="" width="642" height="120" /></p>
+This command can be triggered by <em>Shift</em> + <em>Ctrl</em> + <em>Alt</em> or ⌃ + ⌘ + G on Mac.]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>913</wp:post_id>
+    <wp:post_date><![CDATA[2017-06-29 18:22:40]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-06-29 16:22:40]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[intellij-idea-tips-tricks-multiple-cursors]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="intellij-idea"><![CDATA[Intellij IDEA]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[60]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[11]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1509605789;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:935;}i:1;a:1:{s:2:"id";i:991;}i:2;a:1:{s:2:"id";i:357;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_focuskw_text_input]]></wp:meta_key>
+        <wp:meta_value><![CDATA[cursors]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key>
+        <wp:meta_value><![CDATA[cursors]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ IDEA Tips & Tricks: Multiple Cursors]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ IDEA supports having multiple cursors at once - you can type and edit at multiple locations at the same time.]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_linkdex]]></wp:meta_key>
+        <wp:meta_value><![CDATA[80]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[356]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>261</wp:comment_id>
+        <wp:comment_author><![CDATA[Confluence: EFETnet Hub]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[]]></wp:comment_author_email>
+        <wp:comment_author_url>https://confluence.ponton.de/display/EFETHub/CMH-IntelliJ</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[62.112.55.19]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-01-24 09:33:19]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-01-24 08:33:19]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[<strong>CMH-IntelliJ</strong>
+
+Authors: mmeske, Jörg Sievers Status: CMS Code St]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[trash]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[trackback]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1516782799.606812000274658203125;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1516800712.804850101470947265625;s:5:"event";s:12:"status-trash";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
+            <wp:meta_value><![CDATA[0]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1516800712]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

@@ -1,0 +1,193 @@
+<img class="aligncenter wp-image-1306 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2017/12/owasp.jpg" alt="" width="900" height="600" />
+<p>OWASP released 2017 version of top 10 Web Application Security Vulnerabilities. What are they, what is new and is your app vulnerable?</p>
+<!--more-->
+<h2>What is OWASP?</h2>
+<p>OWASP Stands for Open Web Application Security Project. It is a non-profit organization dedicated to improving the security of software, raising awareness of security issues and providing tools and resources to mitigate security risks. It consists of <a href="https://www.owasp.org/index.php/Category:OWASP_Project">numerous projects</a> with various focuses. Examples of such projects are OWASP Application <a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project">Security Verification Standard Project</a>, <a href="https://www.owasp.org/index.php/OWASP_Testing_Project">OWASP Testing Guide</a> or <a href="http://vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/">OWASP Dependency-Check</a>.</p>
+
+<h2>OWASP Top Ten</h2>
+<p>OWASP Top Ten is one of the OWASP projects, probably the most famous one. It is a list of Top 10 most critical web application security risks. It is not an exhaustive guide (there are other OWASP projects for that), but a rather short document, where each vulnerability is described on just one page. The intent is, therefore, to raise awareness about security vulnerabilities rather than provide a comprehensive description. This makes it a good starting point when you want to start taking your application’s security more seriously and also a nice 'executive summary' material when you need to convince the management, that you need to allocate some of your resources to security reinforcement.</p>
+<p>OWASP Top Ten is released periodically every few years. The most recent version was released in December of 2017. The previous versions were 2013, 2010 and 2007.</p>
+
+<h2>Top Ten 2017, the first attempt</h2>
+<p>The <a href="https://www.owasp.org/images/3/3c/OWASP_Top_10_-_2017_Release_Candidate1_English.pdf">first attempt</a> to release OWASP Top Ten 2017 was in April of 2017. It was <a href="https://danielmiessler.com/blog/comments-owasp-top-10-2017-draft/">heavily criticized</a> and the release was rescheduled after the first Release Candidate. What was wrong?</p>
+The changes were basically:
+<ul>
+ 	<li>One Item removed</li>
+ 	<li>Two similar items merged</li>
+ 	<li>Two new items added</li>
+</ul>
+The problem was  mainly with the two new items:
+<ol>
+ 	<li>Insufficient attack protection</li>
+ 	<li>Unprotected APIs</li>
+</ol>
+<p>First of all, the two items were not added based on the actual data gathered. They were not a result of a process and methodology applied to the other 8 items. They were chosen just based on the judgment of the authors. This gives you a weird mix of items, where some of them are added based on a methodology and data and some not. With no clear indication of which is which. Moreover, the independence of the project <a href="https://medium.com/@JoshCGrossman/behind-the-the-owasp-top-10-2017-rc1-df43236f79ff">was questioned</a> as one of the items was added based on a suggestion of a commercial company (and only on a suggestion of that company), which by coincidence offers a product addressing the issue. What's more, it was specifically mentioned in the OWASP Top Ten Document. The two new items were also rather general and not a specific exploitable vulnerability on the same level such as XSS or CSRF. The type and granularity of the 10 items were therefore not consistent.</p>
+
+<h2>Top Ten 2017, take two</h2>
+<p>After the widespread criticism of the first version, OWASP took the feedback seriously and made a lot of changes. First of all, there was a change in the leadership. Then the methodology. Everything is now available on <a href="https://github.com/OWASP/Top10">GitHub</a> - The document, issues, feedback, and even the <a href="https://github.com/OWASP/Top10/tree/master/2017/datacall">data gathered</a> based on which the top ten issues are chosen. What a refreshing change compared to mailing lists.</p>
+<p>Only 8 of 10 items are now chosen based on vulnerability data gathered from companies. The other 2 items are chosen based on a community survey. This way OWASP Top Ten contains both vulnerabilities based on current hard data as well as forward-looking items based on expert opinion of the community. The order of the items in the list is now determined by the risk factor rather than any other means.</p>
+After the first attempt failed, the new and shiny version of OWASP Top Ten 2017 was finally released in December 2017. It consists of the following ten items:
+
+<table>
+	<thead>
+	<tr>
+		<th>Item</th>
+		<th>Description</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>1. Injection</td>
+		<td>Injection flaws, such as SQL injection, occur when untrusted data is sent to an interpreter as part of a command or query. It can trick the interpreter into executing unintended commands or accessing data.</td>
+	</tr>
+	<tr>
+		<td>2. Broken Authentication</td>
+		<td>Application functions related to authentication and session management are often implemented incorrectly, allowing attackers to assume other users’ identities.</td>
+	</tr>
+	<tr>
+		<td>3. Sensitive Data
+			Exposure</td>
+		<td>Many web applications and APIs do not properly protect sensitive data. Attackers may steal or modify such weakly protected data. Sensitive data may be compromised without extra protection, such as encryption at rest or in transit.</td>
+	</tr>
+	<tr>
+		<td>4. XML External Entities (XXE)</td>
+		<td>External entities in XML can be used to disclose internal files, remote code execution or DDoS attacks.</td>
+	</tr>
+	<tr>
+		<td>5. Broken Access Control
+		</td>
+		<td>Attackers can exploit access restriction flaws to access unauthorized functionality and data.</td>
+	</tr>
+	<tr>
+		<td>6. Security Misconfiguration</td>
+		<td>Use of insecure default configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information.</td>
+	</tr>
+	<tr>
+		<td>7. Cross-Site Scripting (XSS)
+		</td>
+		<td>Applications use unsanitized user-supplied data in a web page. It allows execution of scripts in the victim’s browser.</td>
+	</tr>
+	<tr>
+		<td>8. Insecure Deserialization</td>
+		<td>Insecure deserialization often leads to remote code execution, replay attacks, injection attacks, and privilege escalation attacks. </td>
+	</tr>
+	<tr>
+		<td>9. Using Components with Known Vulnerabilities
+		</td>
+		<td>Components, such as libraries, frameworks run with the same privileges as the application. Components with known vulnerabilities may undermine application defenses.</td>
+	</tr>
+	<tr>
+		<td>10. Insufficient Logging &amp; Monitoring
+		</td>
+		<td>Insufficient logging and monitoring, with missing incident response, prevents rapid reaction and allows continuous probing for vulnerabilities.</td>
+	</tr>
+	</tbody>
+</table>
+
+<h2>What changed</h2>
+<h4>Cross-side request forgery removed</h4>
+<p>CSRF is a type of attack where an unsuspected authenticated user is tricked into performing restricted actions.</p>
+<p>Removing this is actually quite a big moment as CSRF was one of the evergreens in OWASP Top Ten. When it was included for the first time, basically no application was protected as the vulnerability was completely new. These days, fortunately, it is a wide-known vulnerability and many frameworks provide CSRF protection by including special CSRF tokens out of the box. Most of the applications are therefore safe even if the developers have no clue what CSRF actually is. According to the data gathered only about 5% of the apps were vulnerable.</p>
+
+<h4>Unvalidated redirects and forwards removed</h4>
+<p>This vulnerability uses redirect and forward mechanisms of trusted web applications to transfer users from trusted websites to malicious ones.</p>
+<p>This vulnerability still affects 8% of the applications, but it was edged out from the list by XXE.</p>
+
+<h4>Insecure Direct Object References merged with Missing function-level access control</h4>
+<p>The two items are no longer separate issues but are now merged into one item called Broken Access control.</p>
+
+<h4>New Item: XML External Entities</h4>
+<p>This is the only new item which is based on actual vulnerability data gathered and not from a community survey.</p>
+<p>The problem is that unlike Cross Site Scripting, Injection or Cross Site Request Forgery, this vulnerability is relatively unknown. Many of the current security tests do not take XXE into consideration. At the same time, consequences of a successful attack can be severe.</p>
+<p>XXE is a type of vulnerability, which usually occurs when processing XML using outdated or misconfigured XML processors. This vulnerability can be exploited in many ways including, but not limited to, remote code execution, denial of service, port scanning or sensitive data disclosure. To mitigate the risk, you should consider using other data formats such as JSON where possible. Always use up to date version of XML parsers and processors. Where possible turn off processing of XML external entities. Unfortunately, it is usually enabled by default and needs to be explicitly disabled. Consider validating XML content server-side using a whitelist of possible values when external entities are necessary. For more details see <a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet">OWASP XXE Prevention cheat-sheet</a>.</p>
+
+<h4>New Item: Insufficient Logging and Monitoring</h4>
+<p>This item was included based on community survey as one of the two items selected this way. Community-selected items were included for the first time in 2017.</p>
+<p>When an attacker is trying to exploit a vulnerability to perform a successful attack, they have to know about the vulnerability in the first place. Because of this, there is usually a lot of probing preceding the attack searching for common vulnerabilities. All the applications contain some kind of vulnerability and it is only a matter of time until it is found and exploited. When there is no detection of such probing, it can freely continue without any countermeasure. If the attack is successful, there needs to be some kind of intrusion detection mechanism, which will inform you that you were targeted by an attack. If you detect this early, you can usually prevent further damage. Sadly, the average time until such breach is detected is <a href="https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=SEL03130WWEN&amp;">191 days</a>, which gives the attacker a plenty of time to wreak havoc.</p>
+<p>The bottom line is - this vulnerability makes all your other vulnerabilities much more exploitable and makes it hard to do a rapid response after an attack. Make sure you don't neglect logging and all your logs are easily available. It is worth having automatic notifications in case of any not standard behavior. There is also an <a href="https://www.owasp.org/index.php/OWASP_Proactive_Controls#8:_Implement_Logging_and_Intrusion_Detection">OWASP guide</a> covering this topic and of course <a href="https://www.owasp.org/index.php/OWASP_AppSensor_Project">OWASP AppSensor</a>, which is a conceptual framework and methodology providing guidance to implement intrusion detection and automatic response into applications.</p>
+
+<h4>New Item: Insecure Deserialization</h4>
+<p>This is the second item included based on the community survey. While deserialization flaws are usually quite hard to detect and exploit, the impact can be devastating as it can lead to remote code execution, which is one of the worst attacks.</p>
+<p>An application is vulnerable when accepting serialized objects (note that this does not apply only to java serialization but the process in general) from external sources. If a malicious serialized object is provided, it can lead to unexpected behavior such as remote code execution or complete system takeover. This does not apply only to inter-system communication, where serialization is involved, but also in situations such as caching.</p>
+The only robust protection is to use serialization solutions, where only primitive data types are allowed. If that is not possible, there are some ways to mitigate the risk such as
+<ul>
+ 	<li>Logging all unexpected serialization inputs with automatic notifications to have early warning.</li>
+ 	<li>Deserialization modules should run with the least privileges possible.</li>
+ 	<li>Integrity checks of serialized objects to prevent data tampering</li>
+</ul>
+<table>
+	<thead>
+	<tr>
+		<th>2013</th>
+		<th>2017</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>1. Injection</td>
+		<td>1. Injection</td>
+	</tr>
+	<tr>
+		<td>2. Broken Authentication and Session Management</td>
+		<td>2. Broken Authentication</td>
+	</tr>
+	<tr>
+		<td>3. Cross-Site Scripting</td>
+		<td>3. Sensitive Data
+			Exposure</td>
+	</tr>
+	<tr>
+		<td>4. Insecure Direct Object References <span style='color: firebrick; font-weight: bold;'>(Merged with 7)</span></td>
+		<td>4. XML External Entities <span style='color: firebrick; font-weight: bold;'>(NEW)</span></td>
+	</tr>
+	<tr>
+		<td>5. Security Misconfiguration</td>
+		<td>5. Broken Access Control <span style='color: firebrick; font-weight: bold;'>(Merged 4+7)</span>
+		</td>
+	</tr>
+	<tr>
+		<td>6. Sensitive Data Exposure</td>
+		<td>6. Security Misconfiguration</td>
+	</tr>
+	<tr>
+		<td>7. Missing Function Level Access Control <span style='color: firebrick; font-weight: bold;'>(Merged with 4)</span></td>
+		<td>7. Cross-Site Scripting
+		</td>
+	</tr>
+	<tr>
+		<td>8. Cross-Site Request Forgery <span style='color: firebrick; font-weight: bold;'>(Removed)</span></td>
+		<td>8. Insecure Deserialization <br><span style='color: firebrick; font-weight: bold;'>(NEW, Community)</span></td>
+	</tr>
+	<tr>
+		<td>9. Using Components with Known Vulnerabilities</td>
+		<td>9. Using Components with Known Vulnerabilities
+		</td>
+	</tr>
+	<tr>
+		<td>10. Unvalidated Redirects and Forwards <span style='color: firebrick; font-weight: bold;'>(Removed)</span></td>
+		<td>10. Insufficient Logging &amp; Monitoring <span style='color: firebrick; font-weight: bold;'>(NEW, Community)</span>
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+<h2>More From OWASP</h2>
+<div>
+<p>Okay, you are now familiar with OWASP Top Ten. You’ve read the document back and forth. You are now zealously making sure your apps are as safe as possible. What’s next?</p>
+
+<div></div>
+</div>
+<p>First of all, you should realize, that Top Ten is just a tip of the iceberg. You shouldn’t definitely stop at 10. There are many, many more vulnerabilities and risks to look for. While top ten is good in raising awareness, it is by no means 'Security Bible'. For detailed guides and explanations, you’ll have to look elsewhere. But where to start? With other OWASP projects, of course!</p>
+
+<div>
+<div></div>
+<div>Some of the interesting projects are:</div>
+<ul>
+ 	<li><a href="https://www.owasp.org/index.php/OWASP_Guide_Project">OWASP Developer Guide</a></li>
+ 	<li><a href="https://www.owasp.org/index.php/OWASP_Testing_Project">OWASP Testing Guide</a></li>
+ 	<li><a href="https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series">OWASP Cheat Sheets</a></li>
+ 	<li><a href="https://www.owasp.org/index.php/Category:OWASP_Code_Review_Project">OWASP Code Review Guide</a></li>
+</ul>
+<p>One more thing worth mentioning is that Top Ten is not suitable for a security verification checklist due to its limited scope. Turns out there is a better match – an OWASP project specifically focused on this area - <a href="https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project">OWASP Application Security Verification Standard Project</a>.</p>
+
+</div>

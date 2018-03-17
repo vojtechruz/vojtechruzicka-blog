@@ -1,0 +1,1 @@
+pandoc pramp.html --standalone --from=html --to=markdown --output=pramp.md --wrap=none

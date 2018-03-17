@@ -1,0 +1,1 @@
+pandoc spring-core-certification.html --standalone --from=html --to=markdown --output=spring-core-certification.md --wrap=none

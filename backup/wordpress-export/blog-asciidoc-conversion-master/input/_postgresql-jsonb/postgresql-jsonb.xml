@@ -1,0 +1,521 @@
+<item>
+    <title>PostgreSQL&#039;s JSONB type mapping using Hibernate</title>
+    <link>http://vojtechruzicka.com/postgresqls-jsonb-type-mapping-using-hibernate/</link>
+    <pubDate>Thu, 16 Mar 2017 11:34:34 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=736</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="alignleft wp-image-733 " src="http://vojtechruzicka.com/wp-content/uploads/2017/03/PostgreSQL_logo.3colors.540x557.png" alt="PostgreSQL" width="165" height="170" />
+<div>PostgreSQL 9.4 added support for JSONB data type. Hibernate, however, currently does not support out of the box mapping for it. This post describes how to implement custom mapping for JSONB in Spring Boot application.</div>
+&nbsp;
+
+<!--more-->
+<h2>JSONB</h2>
+<div style="text-align: justify;">In PostgreSQL 9.4 new JSONB type was introduced. It allows storing of JSON data and enforces they are represented in valid JSON format. It allows to query individual item in the JSON object and provides various JSON related <a href="https://www.postgresql.org/docs/9.5/static/functions-json.html">functions</a>.</div>
+<div>
+<div></div>
+<h2></h2>
+<h2>Implementing Custom Mapping</h2>
+<div>
+<h3 style="text-align: justify;">Overview</h3>
+<div style="text-align: justify;">To implement Hibernate mapping for a JSONB type you need to do the following:</div>
+<div>
+<ol>
+ 	<li style="text-align: justify;">Create a custom Hibernate Dialect and register, that JSONB DB type will be represented as a Java object.</li>
+ 	<li style="text-align: justify;">Register your custom dialect in Spring Boot’s application properties.</li>
+ 	<li style="text-align: justify;">Create a custom class that implements a UserType interface. This will contain all the logic of converting from and to JSON.</li>
+ 	<li style="text-align: justify;">Register your new UserType class using @TypeDef annotation. This will link your class to the type name from the DB.</li>
+</ol>
+<h3>Creating custom Hibernate Dialect</h3>
+<p style="text-align: justify;">Hibernate’s PostgreSQL94Dialect does not support JSONB Type. Because of that, you need to Create you custom dialect. There you need to register a new column type for JSONB. The good new is that you can directly extend PostgreSQL94Dialect and add just the column registration you need on top of the existing functionality.</p>
+
+</div>
+</div>
+<div>
+<div>
+<pre lang="java">import java.sql.Types;
+
+public class CustomPostgreSqlDialect extends PostgreSQL94Dialect {
+
+    public CustomPostgreSqlDialect() {
+        this.registerColumnType(Types.JAVA_OBJECT, "jsonb");
+    }
+}
+</pre>
+</div>
+<h3>Registering Custom Dialect in Spring Boot app</h3>
+This step is rather simple. All you need to do is to register you newly created Hibernate Dialect in application.properties of your Spring Boot app. Just add the following line:
+<pre lang="java">spring.jpa.properties.hibernate.dialect=com.vojtechruzicka.CustomPostgreSqlDialect
+</pre>
+<h3>Creating custom UserType for JSONB</h3>
+<p style="text-align: justify;">To convert from and to JSOB, you need to implement an interface org.hibernate.usertype.UserType, which provides various methods for custom type mapping.</p>
+
+<ul style="text-align: justify;">
+ 	<li style="text-align: left;  margin-bottom: 5px;"><b style="color: black;">int[] sqlTypes()</b> - This provides mapping to java.sql.Types, you should provide Types.JAVA_OBJECT here.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">Class returnedClass()</b> - Java Class which is the result of mapping from JSOB, return type of nullSafeGet().</li>
+ 	<li style="text-align: left; margin-bottom: 3px;"><b style="color: black; margin-bottom: 3px;">Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)</b> - Create a new instance of the mapped class from JDBC resultset. JSON/Object mapping library required.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)</b> - Write an instance of the mapped class to a Prepared Statement. JSON/Object mapping library required.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">boolean isMutable()</b> - This determines whether mapped classes are mutable or not.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">boolean equals(Object x, Object y), int hashCode(Object x)</b> - Nothing special here.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">Serializable disassemble(Object value), Object assemble(Serializable cached, Object owner)</b> - This methods are for converting object from/to its cacheable representation</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">Object replace(Object original, Object target, Object owner) </b> - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.</li>
+ 	<li style="text-align: left; margin-bottom: 5px;"><b style="color: black; margin-bottom: 3px;">Object deepCopy(Object value)</b> - Returns a deep copy of provided object. You can, for example, use Apache SerializationUtils.clone() to make deep copy using serialization/deserialization.</li>
+</ul>
+</div>
+</div>
+<p style="text-align: justify;">The two main methods for converting from/to JSON are nullSafeGet and nullSafeSet. You will need some library for transforming a JSON string to an object representation and vice versa. You can use for example GSON or Jackson.</p>
+<p style="text-align: justify;">Then you need to decide to which class you will map to from JSON. This depends on the structure of JSON which is stored in your database. In my application, I was sure my JSON is just a flat map of key-value pairs, so I decide to use a java Map for the mapping for simplicity. Be aware that this may not always be the case as JSON can contain arrays and nested elements. In that case, an ordinary map could not be used.</p>
+<div>
+Example of implementation of UserType can be something like this:
+
+<pre lang="java">package com.vojtechruzicka.hibernate;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.type.SerializationException;
+import org.hibernate.usertype.UserType;
+import org.postgresql.util.PGobject;
+import org.springframework.util.ObjectUtils;
+
+import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
+
+public class JsonDataUserType implements UserType {
+
+    private final Gson gson = new GsonBuilder().serializeNulls().create();
+
+    @Override
+    public void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session) throws HibernateException, SQLException {
+        if (value == null) {
+            st.setNull(index, Types.OTHER);
+        } else {
+            st.setObject(index, gson.toJson(value, Map.class), Types.OTHER);
+        }
+    }
+
+    @Override
+    public Object deepCopy(Object originalValue) throws HibernateException {
+        if (originalValue == null) {
+            return null;
+        }
+
+        if (!(originalValue instanceof Map)) {
+            return null;
+        }
+
+        Map<String, String> resultMap = new HashMap<>();
+
+        Map<?, ?> tempMap = (Map<?, ?>) originalValue;
+        tempMap.forEach((key, value) -> resultMap.put((String) key, (String) value));
+
+        return resultMap;
+    }
+
+    @Override
+    public Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner) throws HibernateException, SQLException {
+        PGobject o = (PGobject) rs.getObject(names[0]);
+        if (o.getValue() != null) {
+            return gson.fromJson(o.getValue(), Map.class);
+        }
+
+        return new HashMap<String, String>();
+    }
+
+    @Override
+    public Serializable disassemble(Object value) throws HibernateException {
+        Object copy = deepCopy(value);
+
+        if (copy instanceof Serializable) {
+            return (Serializable) copy;
+        }
+
+        throw new SerializationException(String.format("Cannot serialize '%s', %s is not Serializable.", value, value.getClass()), null);
+    }
+
+    @Override
+    public Object assemble(Serializable cached, Object owner) throws HibernateException {
+        return deepCopy(cached);
+    }
+
+    @Override
+    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+        return deepCopy(original);
+    }
+
+    @Override
+    public boolean isMutable() {
+        return true;
+    }
+
+    @Override
+    public int hashCode(Object x) throws HibernateException {
+        if (x == null) {
+            return 0;
+        }
+
+        return x.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object x, Object y) throws HibernateException {
+        return ObjectUtils.nullSafeEquals(x, y);
+    }
+
+    @Override
+    public Class<?> returnedClass() {
+        return Map.class;
+    }
+
+    @Override
+    public int[] sqlTypes() {
+        return new int[]{Types.JAVA_OBJECT};
+    }
+
+}
+
+</pre>
+<h3>Registering UserType</h3>
+<div>
+
+Once your UserType is created, you need to register it as a Type Definition using @TypeDef annotation.
+
+</div>
+</div>
+<div></div>
+You can annotate your Domain Class directly:
+<div></div>
+<div></div>
+<div>
+<pre lang="java">@Entity
+@Table(name = "person")
+@TypeDef(name = "JsonDataUserType", typeClass = JsonDataUserType.class)
+public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String firstName;
+
+    private String lastName;
+
+    @Type(type = "JsonDataUserType")
+    private Map<String, String> additionalData;
+
+    ...
+}</pre>
+</div>
+<div>
+<div>
+<div style="text-align: justify;"></div>
+<p style="text-align: justify;">Alternatively, you can create package-info.java file and annotate the package directly. In the annotation, you provide type name and a Java class for which it should be the default mapping.</p>
+
+<div style="text-align: justify;"></div>
+<div style="text-align: justify;"></div>
+<div></div>
+<div>
+<pre lang="java">    @TypeDef(name = "JsonDataUserType", typeClass = JsonDataUserType.class)
+    package com.vojtechruzicka.hibernate;
+    import org.hibernate.annotations.TypeDef;
+</pre>
+</div>
+</div>
+</div>
+<div>
+<div></div>
+<div></div>
+<h2>Source Code</h2>
+<div>An Example of the full Spring Boot Application with implemented JOSNB mapping is available <a href="https://github.com/vojtechruz/jsonb-hibernate-example">here</a>.</div>
+</div>
+<div></div>
+<h2></h2>
+<h2>Disadvantages</h2>
+<p style="text-align: justify;">While PostgreSQL JSONB type provide flexibility, it should be used just when appropriate. The only check being performed is that stored data is actually in a valid JSON format. You cannot impose any other constraints as with regular columns - such as not null or enforce a particular Data Type (Integer, VarChar, Date). Therefore it is best suited for providing an additional optional set of data to an entity, where you cannot be sure before which data is would contain. And such data would differ a lot among each of the rows. Such example can be a user-provided set of additional data.    You should always carefully consider which data is better suited as regular columns and which should be stored as JSON.</p>
+<p style="text-align: justify;">Furthermore, keep in mind that JSONB type is PostgreSQL specific and will not be available in other DBs. This may be a problem when you decide to later migrate to other RDS. Also, you will not be able to use in-memory DB in your integration tests at none of them supported by spring currently supports the JSONB type.</p>
+<p style="text-align: justify;">Also, note that using JSON types means a performance - <a href="https://blog.heapanalytics.com/when-to-avoid-jsonb-in-a-postgresql-schema/">When to avoid JSONB in PostgreSQL schema</a>.</p>
+
+<div></div>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>736</wp:post_id>
+    <wp:post_date><![CDATA[2017-03-16 12:34:34]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-03-16 11:34:34]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[postgresqls-jsonb-type-mapping-using-hibernate]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="spring"><![CDATA[Spring]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[733]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[90]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[6]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518193642;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:238;}i:1;a:1:{s:2:"id";i:806;}i:2;a:1:{s:2:"id";i:1389;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_dont_email_post_to_subs]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>181</wp:comment_id>
+        <wp:comment_author><![CDATA[Ladislav Jech]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[archenroot@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/+LadislavJech</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[46.135.13.143]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-09-06 21:52:04]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-09-06 19:52:04]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[In general I would like to use JSONB same way as I use @Entities via JPARepository, CrudRepository, etc. I don't see this approach is capable of doing this]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>180</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1504727524.2550370693206787109375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>177</wp:comment_id>
+        <wp:comment_author><![CDATA[Ladislav Jech]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[archenroot@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/+LadislavJech</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[46.135.4.74]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-09-03 03:39:27]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-09-03 01:39:27]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Actually you can embed the postgresql for your integration tests:
+https://github.com/yandex-qatools/postgresql-embedded
+https://github.com/opentable/otj-pg-embedded
+
+But good stuff, I already found same/similar solution and it is really great. Thanks for sharing.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1504504404.5483798980712890625;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1504402767.4839079380035400390625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>178</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[155.91.64.15]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-09-04 07:54:19]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-09-04 05:54:19]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Cool, I didn't know, thanks for pointing this out, I will update the article.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>177</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1504504459.9426479339599609375;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>176</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[31.30.35.202]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-08-30 17:36:07]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-08-30 15:36:07]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Thanks for the tip, I will update the article and the code repo.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>173</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[jetpack]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1504107367.879168033599853515625;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>173</wp:comment_id>
+        <wp:comment_author><![CDATA[Sheu]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[gsheunesu@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[196.11.134.77]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-08-22 10:55:43]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-08-22 08:55:43]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[This line if (o.getValue() != null) { throws a NullPointerException if the column has null values.  I suggest testing for null as well before you the object]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1503392143.39881610870361328125;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1503428295.56678104400634765625;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>179</wp:comment_id>
+        <wp:comment_author><![CDATA[Ladislav Jech]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[archenroot@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/+LadislavJech</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[46.135.13.143]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-09-06 17:01:45]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-09-06 15:01:45]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Well, this is anyway just about storing/retrieving the json, or I can also query the JSONB data? I understand JSONB is not supported in JPA itself, so not sure if JPA based query will work or not.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1504710105.14500904083251953125;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>180</wp:comment_id>
+        <wp:comment_author><![CDATA[Ladislav Jech]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[archenroot@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/+LadislavJech</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[46.135.13.143]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-09-06 19:22:07]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-09-06 17:22:07]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[To be more precious. Imagine I have following code...
+
+Spring Data JPA repository:
+@RepositoryRestResource(collectionResourceRel = "business-processes", path = "business-processes")
+@Repository
+@Api(tags = "business-processes")
+public interface BusinessProcessRepository extends
+        JpaRepository,
+        QueryByExampleExecutor {
+
+    /**
+     * Method that returns a lista of clients doing a search by the passed name parameter.
+     * * * @param name * @return list of clients
+     */
+    //Page findAll(Pageable pageable);
+    List findByName(String name);
+}
+
+And following Spring Data Rest controller:
+ @RequestMapping(
+            params = {"name"},
+            method = RequestMethod.GET)
+    public ResponseEntity&lt;Collection&gt;
+    findBusinessProcessWithName(
+            @RequestParam(value = "name") String name) {
+        return new ResponseEntity(businessProcessRepository.findByName(name), HttpStatus.OK);
+    }
+
+now imagine my parameter "name" is part of JSONB document, will this approach work?]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>179</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1504718527.43564605712890625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>281</wp:comment_id>
+        <wp:comment_author><![CDATA[CNatka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[ssstarsarkar664@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[61.12.86.234]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-08 13:02:39]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-08 12:02:39]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hi Ladislav,
+
+Did you find solution for your query. I have a similar requirement in my hand for which I need to store jsonb object and use jpa query on that data. Could you please give me pointers to the solution..]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>181</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1518091358.5035870075225830078125;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1518091539.0127480030059814453125;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

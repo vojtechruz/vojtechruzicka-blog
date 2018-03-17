@@ -1,0 +1,137 @@
+<item>
+    <title>Learning IntelliJ IDEA keyboard shortcuts</title>
+    <link>http://vojtechruzicka.com/learning-intellij-idea-keyboard-shortucts/</link>
+    <pubDate>Sun, 08 May 2016 19:10:34 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=357</guid>
+    <description></description>
+    <content:encoded><![CDATA[<p style="text-align: justify;"><img class="size-full wp-image-358 alignleft" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/icon_IntelliJIDEA1.png" alt="icon_IntelliJIDEA[1]" width="128" height="128" />Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to learn IntelliJ IDEA shortcuts quicker than just by memorizing them one by one.</p>
+&nbsp;
+
+&nbsp;
+
+<!--more-->
+<h2>Key promoter plugin</h2>
+<p style="text-align: justify;">There is a handy plugin, which helps you to learn all the required keyboard shortcuts in IntelliJ IDEA - Key promoter. How it works? It is quite simple:</p>
+
+<ol style="text-align: justify;">
+ 	<li>Every time you click using your mouse on a button/command/menu item/...  it shows you a pop-up displaying a keyboard shortcut for that action.</li>
+ 	<li>If you click the same action several times (can be configured), plugin suggest to set up the keyboard shortcut for given action.</li>
+ 	<li>The statistics of you top 10 missed keyboard shortcuts are calculated, so you know which shortcuts it is worth learning first.</li>
+</ol>
+[caption id="attachment_406" align="alignnone" width="675"]<img class="wp-image-406 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/key-promoter.png" alt="key-promoter" width="675" height="282" /> Shortcut pop-up after clicking on Run command (IntelliJ IDEA 2016.1)[/caption]
+<p style="text-align: justify;">And that's it. The effect is two-fold. First, when you see a pop-up with the shortcut every time you click, sooner or later you remember the shortcut. And for your frequently clicked actions, the pop up becomes so annoying after a while, that you'll make anything (hopefully learn the shortcut) to avoid seeing it again. This plugin is especially useful when transitioning from a different IDE like Eclipse or NetBeans and you don't know any shortcuts at all.</p>
+
+
+[caption id="attachment_410" align="alignnone" width="326"]<img class="wp-image-410 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/key-promoter-stats.png" alt="key-promoter-stats" width="326" height="297" /> Top 10 missed keyboard shortcuts stats[/caption]
+<h2>Getting the plugin</h2>
+Grab the plugin from the following Git repository.
+
+<a href="https://github.com/athiele/key-promoter-fork/releases">https://github.com/athiele/key-promoter-fork/releases</a>
+<p style="text-align: justify;">Although there is a version of plugin available in JetBrains plugin repository, it is an older original version by <a href="https://www.linkedin.com/in/kadim">Dmitry Kashin</a>, which is no longer under active development. The link provided is a fork of that original plugin by <a href="https://github.com/athiele">Aimo Thiele</a>. The new version additionally provides better stats management. More important is, that starting with 2016.1 version of IDEA, the original plugin settings section is no longer accessible.</p>
+<p style="text-align: justify;">To install te plugin go to the  Settings→Plugins and select "Install Plugin from disk". Now just choose your previously downloaded file and restart the IDE.</p>
+
+<h2>You can't remember them all</h2>
+<p style="text-align: justify;">Knowing all the useful shortcuts is no doubt handy and a big time-saver. It does, however, take some time to learn them. In the meantime it is useful to remember some shortcuts, which can compensate your lack of knowledge of others. The first one is Find action (Ctrl+Shift+A or ⇧⌘A) dialog, which lets you search for specific actions and commands and quickly execute them.</p>
+<img class="alignnone size-full wp-image-411" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/find-action-popup.png" alt="find-action-popup" width="396" height="521" />
+
+And of course, if everything else fails, there is always the almighty Search everywhere feature using double Shift, which also lists actions.
+
+<img class="alignnone size-full wp-image-412" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/search-everywhe-repopup.png" alt="search-everywhe-repopup" width="620" height="660" />]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>357</wp:post_id>
+    <wp:post_date><![CDATA[2016-05-08 21:10:34]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2016-05-08 19:10:34]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[learning-intellij-idea-keyboard-shortucts]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="intellij-idea"><![CDATA[Intellij IDEA]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[356]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[11]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518839759;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:935;}i:1;a:1:{s:2:"id";i:991;}i:2;a:1:{s:2:"id";i:913;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_oembed_729b369ac79f0b6427adb1df2833dce1]]></wp:meta_key>
+        <wp:meta_value><![CDATA[<blockquote data-secret="XHE8kw4dee" class="wp-embedded-content"><a href="http://vojtechruzicka.com/learning-shortucts-intellij-idea-tips/">Learning IntelliJ IDEA shortcut keys</a></blockquote><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="http://vojtechruzicka.com/learning-shortucts-intellij-idea-tips/embed/#?secret=XHE8kw4dee" data-secret="XHE8kw4dee" width="500" height="282" title="&#8220;Learning IntelliJ IDEA shortcut keys&#8221; &#8212; Vojtech Ruzicka&#039;s Programming Blog" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wp_old_slug]]></wp:meta_key>
+        <wp:meta_value><![CDATA[intellij-idea-tips]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Let's discuss a trick to learn IntelliJ IDEA keyboard shortcut keys much faster than by just memorizing them.]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_focuskw_text_input]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_focuskw]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_linkdex]]></wp:meta_key>
+        <wp:meta_value><![CDATA[86]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_oembed_time_729b369ac79f0b6427adb1df2833dce1]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1462735315]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_oembed_9c1e1902a4df1c40bd1fb12837527615]]></wp:meta_key>
+        <wp:meta_value><![CDATA[{{unknown}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wp_old_slug]]></wp:meta_key>
+        <wp:meta_value><![CDATA[learning-shortucts-intellij-idea-tips]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>142</wp:comment_id>
+        <wp:comment_author><![CDATA[Dive into IntelliJ &#8211; learn the keys! &#8211; ThoughtArchive]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[]]></wp:comment_author_email>
+        <wp:comment_author_url>https://thoughtarchiveblog.wordpress.com/2017/07/03/dive-into-intellij/</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[192.0.85.168]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-07-05 10:52:22]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-07-05 08:52:22]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[[&#8230;] http://vojtechruzicka.com/learning-intellij-idea-keyboard-shortucts/ [&#8230;]]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[pingback]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1499629250.073873043060302734375;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1499244742.7602140903472900390625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

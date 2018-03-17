@@ -1,0 +1,1 @@
+pandoc owasp-top-ten-2017.html --standalone --from=html --to=markdown --output=owasp-top-ten-2017.md --wrap=none --wrap=none

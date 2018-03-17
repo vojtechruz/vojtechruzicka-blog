@@ -1,0 +1,1 @@
+pandoc enhanced-deprecation.html --standalone --from=html --to=markdown --output=enhanced-deprecation.md --wrap=none

@@ -1,0 +1,1 @@
+pandoc field-dependency-injection-considered-harmful.html --standalone --from=html --to=markdown --output=field-dependency-injection-considered-harmful.md --wrap=none

@@ -1,0 +1,135 @@
+<img class="aligncenter wp-image-1486 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/constructor-functions.jpg" alt="" width="900" height="587" />
+<p style="text-align: justify;">What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?</p>
+<!--more-->
+<h2>Creating objects</h2>
+<p style="text-align: justify;">In your applications, most of the time you don't work with <a href="http://vojtechruzicka.com/javascript-primitives/">primitives</a> but rather with objects. You can directly create objects with object literal like this:</p>
+
+<pre lang="javascript">var Person = {
+    firstName: 'John',
+    lastName: 'Doe'
+}
+</pre>
+<p style="text-align: justify;">This is sometimes good enough, but in many cases, you want to work with many objects, which share the same characteristics - that is: they have the same properties and methods. These can be users in your applications, bank accounts, cars or anything else. The point is, you'll want to work with 'Jane' and 'John' in the same way because they can both be considered a person - they have name, surname, age and so on.</p>
+
+<div></div>
+<p style="text-align: justify;">Alright, so how do you create objects which have the same methods and properties? Using constructor functions and the <em>new</em> operator.</p>
+
+<h2>The <em>new</em> operator</h2>
+<p style="text-align: justify;">Let's consider the following example:</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+var john = new Person('John', 'Doe');</pre>
+<p style="text-align: justify;">The <em>Person</em> is a constructor function. Its whole purpose is to create new objects which represent different persons. We can be sure that each person will have the first name and the last name, which are provided as parameters to this function. Notice that unlike regular functions, constructors begin by convention with a capital letter. This way you can easily tell them apart from ordinary functions.</p>
+
+<div></div>
+<p style="text-align: justify;">Then we are creating a specific person instance called <em>john</em> with <em>firstName</em> 'John' and <em>lastName</em> 'Doe'. Notice that there is a <em>new</em> keyword before the <em>Person</em> constructor function call. It is actually an operator and it is responsible for all the magic when creating new persons. It does actually quite a lot:</p>
+
+<div></div>
+<div>
+<ol>
+ 	<li>It creates a new blank object.</li>
+ 	<li>It makes <em>this</em> to point to this newly created object inside the constructor function</li>
+ 	<li>It sets the prototype of the newly created object to the constructor function's prototype.</li>
+ 	<li>It makes the constructor function return the newly created object <strong>IF</strong> it is not returning anything.</li>
+</ol>
+<p style="text-align: justify;">That is the reason why <em>John</em> is created even though the function <em>Person</em> does not have an explicit return statement. That's the reason why using <em>this.firstName=firstName;</em> sets the first name provided to the new object. Without the <em>new</em> keyword, <em>this</em> would point to the global object in our case and not to the newly created instance.</p>
+
+<h2>What if I forget to include <em>new</em>?</h2>
+<p style="text-align: justify;">There are some serious problems when using the <em>new</em> operator. In languages such as Java, it is strictly limited how you can use the new keyword. It can be used only to invoke methods, which are explicitly marked as constructors. Constructors are guaranteed to return a new instance of the class, performing all the required initialization. Constructors can be invoked only using the <em>new</em> keyword and the <em>new</em> keyword can be used only to invoke constructors.</p>
+<p style="text-align: justify;">In javascript, the situation is unfortunately not so strict.</p>
+
+<ul>
+ 	<li>You can use new operator on <strong>ANY</strong> function</li>
+ 	<li>You can call function intended as constructor <strong>WITH</strong> <strong>or WITHOUT</strong> the new keyword</li>
+</ul>
+<p style="text-align: justify;">So, calling function not designed as constructor will not result in an error. What's more, you'll get different behavior based on whether you call the constructor with or without the <em>new</em> keyword. And it is really easy to forget to include new. After all, there is no compile-time check as in Java. Let's look at an example.</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+var john = new Person('John', 'Doe');
+var jane = Person('Jane', 'Doe');
+</pre>
+<p style="text-align: justify;">First, there is a constructor function <em>Person</em> and then it is called twice. Once with <em>new</em> and once without. Can you guess what each variable contains?</p>
+
+<pre lang="javascript">console.log(john) // Person {firstName: 'John' , lastName: 'Doe'}
+console.log(jane) // undefined
+console.log(window) // Oh dear! The global object now has firstName and lastName!</pre>
+<p style="text-align: justify;">What just happened? Looks like John is doing well, but poor Jane is undefined. What's worse, it looks like <em>firstName</em> and <em>lastName</em> got stored on the global object (window in case of running in a browser). So my precious new object is undefined and I am polluting the global object instead. Nasty.</p>
+<p style="text-align: justify;">The reason why is that one of the actions <em>new</em> operator does is changing <em>this</em>, so it points to the newly created object. When <em>new</em> is not specified, the constructor is considered an ordinary function call and <em>this</em> remains the same as usual. In our case, when I just declared a function on the top level and called it from the top level, <em>this</em> is pointing to the global object. Global object differs in each environment (browser vs server side javascript), but in a browser it is <em>window</em>. That means I am now storing my properties directly on the <em>window</em> object.</p>
+<p style="text-align: justify;">Another action that <em>new</em> operator does is that makes the newly created object result of the whole new expression if the function does not return object specifically. It is the case here as you can see that the Person constructor does not explicitly call return (and yet, John is successfully created). When called without new, it is just a regular function call. And functions without explicit return statement return undefined.</p>
+
+<h2>Protecting against forgetting to include <em>new</em></h2>
+<p style="text-align: justify;">Alright, forgetting the new operator can have pretty nasty consequences. So what can you do to prevent such cases?</p>
+
+<h3>Capital letter convention</h3>
+<p style="text-align: justify;">You should always stick to the convention that constructor functions start with a capital letter and regular functions with a lowercase letter. This way you can immediately see that something is fishy when encountering a situation such as:</p>
+
+<div style="text-align: justify;">
+<pre lang="javascript">var person = Person('John', 'Doe'); // capital letter, I should use new
+</pre>
+<p style="text-align: justify;">It is also helpful when constructor names are nouns and regular functions are verbs:</p>
+
+<pre lang="javascript">var size = new computeSize(); // lowercase letter;  computeSize doesn't sound like noun</pre>
+<h3>Explicit check of <em>this</em></h3>
+<div style="text-align: justify;">Remember how one of the things new operator does is changing this to the newly created object and setting the prototype? One of the ways how to defend against the accidental omission of the new operator is checking what actually this points to in the constructor function.</div>
+<pre>var Person = function (firstName, lastName) {
+
+    if (!(this instanceof Person)) {
+        return new Person(firstName, lastName);
+    }
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+</pre>
+<p style="text-align: justify;">This way if <em>this</em> is not an instance of Person, we can detect it and properly call the constructor again and make sure we add the new keyword to the call. The result is same no matter whether you use the new keyword for your constructor or not.</p>
+<p style="text-align: justify;">The disadvantage is that it encourages developers to not worry about using new as it is still safe. Building such habit is not good as not all the code you'll work with will always have such safeguards. It is much better to stick to the convention of always using <em>new</em> instead of just sometimes and have the usage inconsistent across the codebase. As an alternative, you may consider using the check but to throw an error to fail fast and discover improper usage of your constructors early on.</p>
+
+<h3>Strict mode</h3>
+<p style="text-align: justify;">You can enable strict mode in your script or just a part of it using "use strict";. This basically makes some of the weird constructs result in real errors instead of silently failing or resulting in unexpected and unwanted behavior. An example can be a usage of an undeclared variable.</p>
+<p style="text-align: justify;">One of the issues it addresses is pointing <em>this</em> to the global object (window) when not calling a function as a method of an object. When the strict mode is activated, <em>this</em> is undefined instead of pointing to the global object. Forgetting the new operator before a constructor call would then result in an error saying that this is undefined. You would discover your mistake early on when the strict mode is enabled. Sometimes you cannot afford to use global strict mode as it would break all your existing code. In such cases, you can always enable strict mode just for the function.</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    "use strict";
+    this.firstName = firstName;// TypeError: Cannot set property 'firstName' of undefined
+    this.lastName = lastName;
+}
+
+</pre>
+<h3>Classes</h3>
+<p style="text-align: justify;">In ECMAScript 6, there is a new concept of classes, which aims to replace constructor functions and addresses its issues. The person from our examples above as a class would look like this.</p>
+
+<div style="text-align: justify;">
+<pre lang="javascript">class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}</pre>
+You can create new persons as usual:
+
+</div>
+<div>
+<pre lang="javascript">var john = new Person('John', 'Doe');</pre>
+<p style="text-align: justify;">What's really cool is that if you accidentally forget to include the <em>new</em> keyword when creating a new instance it results in an error instead of silently altering the global object.</p>
+
+<pre lang="javascript">var john = new Person('John', 'Doe'); // Person { firstName: 'John', lastName: 'Doe' }
+var jane = Person('Jane', 'Doe'); // TypeError: Class constructor Person cannot be invoked without 'new'</pre>
+<p style="text-align: justify;">What is unfortunate is that with classes and their syntax javascript gives a false impression that it uses class-based inheritance. Developers coming from other languages like Java are especially vulnerable to this. Instead, Javascript still uses prototype-based inheritance and classes are just a syntactic sugar on top of good old constructor functions.</p>
+
+<h2>Object creation alternatives</h2>
+<p style="text-align: justify;">In Javascript, there are many ways to create a new object. We already covered object literal, constructor functions and a brief mention of classes. There are more ways, which can be used as an alternative to new and constructor functions. For example, Douglas Crockford used to be a zealous advocate of not using new at all and using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><em>Object.create</em></a> instead. However, later on, <a href="https://youtu.be/PSGEjv3Tqo0?t=6m48s">he changed his mind</a> and stopped using even <em>Object.create</em>. Another example may be using factories instead, which have <a href="https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e">many advantages</a>, such as more flexibility or decoupling from a specific object type. And of course, many frameworks offer convenient ways of creating objects. There is no silver bullet so it is good to be aware of different approaches and their tradeoffs.</p>
+
+<h2>Conclusion</h2>
+<div style="text-align: justify;">When using constructor functions, make sure you don't forget the <em>new</em> operator. Otherwise weird things will happen. Stick to the naming conventions. The strict mode is your friend and should protect you against accidental omission. And of course, if you can use ES6, classes are a foolproof way to replace constructor function. Don’t get fooled though. Even though it does sound like class-based inheritance, it is just a syntactic sugar and Javascript has still prototype-based inheritance.</div>
+</div>
+</div>
+</div>

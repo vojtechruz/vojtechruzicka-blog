@@ -1,0 +1,125 @@
+<item>
+    <title>IntelliJ IDEA Tips &amp; Tricks: Synchronization and Sharing of Settings</title>
+    <link>http://vojtechruzicka.com/intellij-idea-tips-tricks-synchronization-sharing-settings/</link>
+    <pubDate>Wed, 24 Jan 2018 12:43:38 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1487</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter size-full wp-image-356" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/IntelliJIDEA_icon.png" alt="" width="1184" height="612" />
+<p style="text-align: justify;">Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.</p>
+<!--more-->
+<h2>The importance of synchronization</h2>
+<div>
+<p style="text-align: justify;">As a developer, you usually use multiple computers each with its own instance of your favorite IDE. It can be quite a hassle to keep settings the same on all of them. Rather than doing manually, it is much better to use automated synchronization. Setting up a new IDE is much easier this way and everything is also backed up online in the process.</p>
+
+<div></div>
+</div>
+<p style="text-align: justify;">And of course, you usually do not work alone but in a team. It is important to stick to some guidelines and standards for your project. And having same key settings of your IDE will help a lot. Not to mention that it makes onboarding a new developer and making them stick to conventions much easier.</p>
+
+<div>
+<h2>Settings Repositories</h2>
+<p style="text-align: justify;">The first way to synchronize settings is using Settings Repositories. The way it works is that it uses an external Git repository to share the settings. Each IDEA instance then connects to this repository to fetch the settings. In case one instance makes changes in the settings it can be propagated back to the repository. What’s nice is that it is a plain old Git repo. That means your settings are backed up and under version control. So you can track and rollback the changes if necessary or even allow other people to create Pull Requests with some tweaks to your settings.</p>
+
+<div></div>
+</div>
+<div>
+<p style="text-align: justify;">To enable this feature just go to:</p>
+
+<pre lang="json">File → Settings Repository</pre>
+<p style="text-align: justify;">And enter the URL of your git repo. If you are just starting an empty repo will do. When you are configuring Settings Repository this way, you can always check whether your local settings should overwrite those on the server, vice versa or if they should be merged.</p>
+<img class="aligncenter size-full wp-image-1491" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/settings-repo.jpg" alt="" width="1046" height="231" />
+<p style="text-align: justify;">And that’s it, you’re done. In most cases. However, IDEA offers a neat feature – you can actually define multiple Settings Repositories. What is it good for? Well, maybe there are some settings you want to share with your teammates to ensure consistency on your project. But then, of course, you want some of your setting to be personal and just for you. After all, every user has different preferences.</p>
+<p style="text-align: justify;">In such case, IDEA will consider one of the repositories primary. That is the one for your own settings. The synchronization works both ways – from the server to the client and the opposite way. The rest of the repositories are secondary and are read-only. You can only fetch settings from them but they are not affected by your local settings changes.</p>
+
+</div>
+<p style="text-align: justify;">To configure multiple repositories go to</p>
+
+<pre lang="json">Settings → Tools → Settings Repository</pre>
+<p style="text-align: justify;">Here you can see your primary repository, which you set up earlier. Underneath you can configure additional secondary repositories:</p>
+<img class="aligncenter size-full wp-image-1494" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/settings-repo-more.jpg" alt="" width="1987" height="935" />
+<p style="text-align: justify;">Note that you can also disable automatic synchronization and use just sync on demand by <em>VCS → Sync Settings.</em></p>
+
+<div>
+<h2>Sync settings using JetBrains Account</h2>
+<div></div>
+<p style="text-align: justify;">The second way of settings synchronization was available for some time as a standalone optional IDE plugin (which required an invitation to use), but now is integrated and enabled by default since 2017.3. It utilizes your JetBrains account to synchronize the data.</p>
+
+<div></div>
+</div>
+<p style="text-align: justify;">Under the hood, it actually uses a variation of Settings Repository mechanism, but you are shielded from it. It is much more convenient because you don’t have to create a Git Repo to store the settings and provide its address to your IDE. On top of that, unlike Settings Repositories, it allows you to also synchronize your installed plugins. pretty cool, right?</p>
+<p style="text-align: justify;">The first thing you need to do is to make sure you have a <a href="https://sales.jetbrains.com/hc/en-gb/articles/208459005-What-is-JetBrains-Account-">JetBrains account</a>. If you don’t have one, you can create it <a href="https://account.jetbrains.com/login">here</a>. Once you have your JetBrains account, you’ll need to Log in to IDEA using it. Just head to <em>Help → Register</em>. Then you just need to select <em>Activate new License with JetBrains Account</em> and enter your credentials. Then click <em>Activate</em>.</p>
+<img class="aligncenter size-full wp-image-1498" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-registration.png" alt="" width="412" height="462" />
+<p style="text-align: justify;">Before you link your IDE to JetBrains account, your status bar in the lower-right part of the window should look something like this:</p>
+<img class="aligncenter size-full wp-image-1500" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-without-login.jpg" alt="" width="645" height="52" />
+<p style="text-align: justify;">After your JetBrains account is linked, you should see a new Gears icon which is used to manage Settings synchronization:</p>
+<img class="aligncenter size-full wp-image-1501" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-after-login-ok.jpg" alt="" width="700" height="52" />
+<p style="text-align: justify;">If you click it, you’ll be able to enable the settings sycnchronization:</p>
+<img class="aligncenter size-full wp-image-1502" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-enable-sync.jpg" alt="" width="778" height="240" />
+<p style="text-align: justify;">When you enable it on another machine, you’ll be prompted how to manage settings conflict. You can either select to overwrite your local settings with the setting from the JetBrains account or vice versa.</p>
+<img class="aligncenter size-full wp-image-1504" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-reenable.jpg" alt="" width="1307" height="353" />
+<p style="text-align: justify;">Installed plugin synchronization is handled separately from the rest of the settings. You can either manually trigger plugin sync or enable silent automatic synchronization of your plugins in the background.</p>
+<img class="aligncenter size-full wp-image-1505" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/plugins-changed-in-another-idea.jpg" alt="" width="705" height="331" />
+<p style="text-align: justify;">If you prefer manual synchronization, you can have fine-grained control of what plugins are synchronized and how. That means you can decide for individual plugins and you can even force installation or uninstallation of plugins or your other instances of IDEA.</p>
+<img class="aligncenter size-full wp-image-1506" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-sync-plugins.jpg" alt="" width="1166" height="727" />
+<p style="text-align: justify;">And of course, if you no longer want to keep certain IDE instance synchronized, you can disable the synchronization using the gears icon in the status bar.</p>
+<img class="aligncenter size-full wp-image-1507" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/idea-settings-disable.jpg" alt="" width="1159" height="308" />
+<div></div>
+<div>
+<h2>Conclusion</h2>
+<p style="text-align: justify;">Being able to synchronize your Settings among multiple IDE instances is very important and handy feature. IntelliJ IDEA now supports two different ways of synchronization out of the box.</p>
+
+</div>
+<p style="text-align: justify;">The first one is using Settings Repositories. It allows you to define multiple Version Control Repositories, which will act as a storage for your settings. It is useful when you want to share the settings in your team. Because you can specify multiple repositories, some of the general settings can be shared with your team members while you can still have your personal settings on top of that synced among all your computers.</p>
+
+<div style="text-align: justify;"></div>
+<p style="text-align: justify;">The second one uses your JetBrains account to store your settings. Because of it, it is more suitable just for your own personal settings as you are not able to share your JetBrains account with your colleagues. On the other hand, it is able to manage plugin synchronization.</p>
+
+<div style="text-align: justify;"></div>
+<p style="text-align: justify;">In either case, it is useful to have your settings consistent and backed up in a remote repository.</p>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1487</wp:post_id>
+    <wp:post_date><![CDATA[2018-01-24 13:43:38]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2018-01-24 12:43:38]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[intellij-idea-tips-tricks-synchronization-sharing-settings]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="intellij-idea"><![CDATA[Intellij IDEA]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[356]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[30]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[11]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1517389416;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:357;}i:1;a:1:{s:2:"id";i:1389;}i:2;a:1:{s:2:"id";i:991;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ IDEA Tips & Tricks: Synchronization and Sharing of Settings]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.]]></wp:meta_value>
+    </wp:postmeta>
+</item>

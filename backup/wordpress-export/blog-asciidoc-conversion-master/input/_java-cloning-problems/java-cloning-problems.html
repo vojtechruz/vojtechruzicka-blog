@@ -1,0 +1,115 @@
+<img class="wp-image-551 size-full aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2016/09/clone.jpg" alt="cloning" width="900" height="600" />
+
+Java's own mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
+
+<!--more-->
+<h2>Why clone objects?</h2>
+<div style="text-align: justify;">There are several reasons why you may want to create a copy of an already existing object. For example - you may want to create just a slightly different version based on an existing object. The most common scenario would be probably making <a href="http://www.javacreed.com/what-is-defensive-copying/">defensive copies</a> of objects. That is - if you are providing internal data of an object to other objects, you often want to make sure that instead of providing a reference to your actual internal state, you rather provide a copy. This means that no matter what the consumers do with the data, your original object is safe and is not affected.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<h2>Cloneable</h2>
+<div style="text-align: justify;">Java provides a mechanism for cloning of objects. Unfortunately, this mechanism is seriously flawed. There is the Cloneable interface. You would expect the interface to have a clone() method, which would return a copy of the object. Sadly, it is not the case. Cloneable is just a marker interface. That means, it has no methods whatsoever, it just marks the class as suitable for cloning. The clone method is present on the Object class instead.</div>
+<div style="text-align: justify;"></div>
+<div style="text-align: justify;">The description of the Object’s clone() method is the following (from the JavaDoc):</div>
+<blockquote>
+<p style="text-align: justify;">The method {@code clone} for class {@code Object} performs a specific cloning operation. First, if the class of this object does not implement the interface {@code Cloneable}, then a {@code CloneNotSupportedException} is thrown. ... Otherwise, this method creates a new instance of the class of this object and initializes all its fields with exactly the contents of the corresponding fields of this object, as if by assignment; the contents of the fields are not themselves cloned. Thus, this method performs a "shallow copy" of this object, not a "deep copy" operation.</p>
+<p style="text-align: justify;">The class {@code Object} does not itself implement the interface* {@code Cloneable}, so calling the {@code clone} method on an object whose class is {@code Object} will result in throwing an exception at run time.</p>
+</blockquote>
+<div style="text-align: justify;">The implementation of Object's clone() method is - first check whether the current class actually implements Cloneable. If yes, proceed with the cloning execution. If not, throw CloneNotSupportedException checked exception.</div>
+<div style="text-align: justify;"></div>
+<div style="text-align: justify;">The problem with the object's clone() method is that it is protected. That is a serious issue. By implementing Cloneable, the class does not actually provide cloning functionality. You cannot be sure that a class implementing Clonable actually overrides the clone method. What's worse, you cannot accept objects of type Clonable in your method and call clone(). You need to know the exact type (eg. Person) to be able to call clone(). The use of Clonable interface is highly inconsistent with the regular use of interfaces. Instead of committing to be able to provide some functionality to the callers, implementing Cloneable instead modifies the behavior of a protected method in a whole different class.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<h3>Implementation</h3>
+<p style="text-align: justify;">The first thing you need to do for your class to support cloning is to implement Cloneable interface. Even if you don't want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call super.clone().</p>
+<p style="text-align: justify;">The basic implementation of the clone method in a class implementing Cloneable interface would be similar to this:</p>
+
+<pre lang="java">@Override
+public Object clone() throws CloneNotSupportedException {
+    return super.clone();
+}
+
+</pre>
+<p style="text-align: justify;">Note that the clone method returns Object. The caller would then need to cast the object every time the method is called. Fortunately, since Java 5, you can <a href="https://www.java-tips.org/covariant-return-types.html">change the return type</a> of overriding method as long as the new type is a subtype of the original type. That means, If you are writing the clone method for a Person class, you can return directly Person. You still need to cast inside the clone method, but you remove this burden from the callers. Also, it is valid to <a href="https://www.javatpoint.com/exception-handling-with-method-overriding">remove exception</a> declaration from an overriding method. Therefore, we can safely remove the checked exception (throws CloneNotSupportedException) to make the usage a bit more convenient - callers are not forced to catch checked exception CloneNotSupportedException anymore.</p>
+
+<div>
+<div>
+<pre lang="java">@Override
+public Person clone() throws CloneNotSupportedException {
+    return (Person)super.clone();
+}</pre>
+</div>
+<div>
+<h3>Deep copy</h3>
+<p style="text-align: justify;">The implementation above utilizes Object's implementation of cloning thus returning a <a href="https://stackoverflow.com/q/184710/4560142">shallow copy</a> of the object. That means, if the copied object contains references to other objects, these objects are not cloned. This results in copied object pointing to the same objects as the original. A deep copy would clone even referenced objects. It may be fine in some cases, but not in others. Usually, you want your copies to be independent and changes in one should not result in unwanted changes in the other.</p>
+<p style="text-align: justify;">Nevertheless, the shallow copy could be sufficient in some cases. One of the cases is if the object is immutable (including its references). If the object cannot change state, it safe to provide just a shallow copy functionality. The same applies if all the fields of the object's fields are primitives (and/or immutables). Primitives are copied by value, not by reference, which means the copied instance will be completely independent on the original.</p>
+<p style="text-align: justify;">In other cases, it is necessary to provide deep copy functionality. The problem is that you can no longer use Object's clone mechanism for that and you need to implement your own. In such cases, it may be easier to try on of the alternative cloning approaches (see Alternatives bellow). If you want to implement it anyway, you have basically two options. First - do all the cloning manually - create a new instance using a constructor and fill all the fields. Second - still use super.clone(), but instead of returning the cloned object directly, just manually copy the fields which are not safe - that is primitive or immutable.</p>
+<p style="text-align: justify;">The problem with the second approach is that it does not work well with final fields as you cannot receive an already constructed object and then assign its final fields. That goes directly against maximizing immutability.</p>
+
+</div>
+</div>
+<h2>Alternatives</h2>
+<h3>Copy Constructors</h3>
+<div style="text-align: justify;">One option to provide copy functionality to your class instead of implementing Cloneable is to provide a copy constructor(s) instead. A copy constructor is like a regular constructor, which returns a new instance of the class. As an input, it has an object, which is supposed to be copied.  Inside the body of the constructor, you implement your custom cloning logic.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<pre lang="java">public Person(Person personToCopy) {
+    this.firstName = personToCopy.firstName;
+    this.lastName = personToCopy.lastName;
+    ...
+}</pre>
+<p style="text-align: justify;">This has several advantages. You don't need to implement any interface. You can accept any interface your class implements as an input and use it as a source of the clone instead (however, then this is rather a conversion constructor then, but can be useful under some circumstances). It does not force you to throw CloneNotSupportedException checked exception (and the caller is not forced to catch the exception).</p>
+
+<h3>Static Factory Methods</h3>
+<div style="text-align: justify;">This approach is similar to copy constructors and has similar advantages. The difference is that instead of a constructor, it utilizes a static method, which takes an object to be copied as an input and returns a copied instance.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div></div>
+<pre lang="java">public static Person deepCopyPerson(Person personToCopy) {
+    Person copiedPerson = new Person();
+    copiedPerson.firstName = personToCopy.firstName;
+    copiedPerson.lastName = personToCopy.lastName;
+    ...
+    return copiedPerson;
+}</pre>
+<p style="text-align: justify;">I find it useful to include in the method's name whether it is a deep or a shallow copy, so it is immediately obvious from the code and it does not need to be documented separately. Depending on the needs you can choose whether you need a shallow or a deep copy or provide both. Unlike with copy constructors, you can decide whether to return an instance of the same class or rather any subclass.</p>
+
+<h3>Serialization/Deserialization</h3>
+<p style="text-align: justify;">Cloning and creating new instances through copy constructors and static factory methods are not the only ways to create a new instance of a class. A new instance is also created when deserializing a previously serialized object. Therefore, instead of cloning, you can serialize an object and then immediately deserialize it. That would result in a new instance created.</p>
+<p style="text-align: justify;">The good news is, that there are already libraries supporting cloning using serialization/deserialization, such as <a href="https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/SerializationUtils.html">Apache Commons Serialization Utils</a>. This makes it very easy to clone objects using SerializationUtils.clone()</p>
+
+<pre lang="java">public static T clone(T object)</pre>
+<p style="text-align: justify;">The serialization approach has some advantages:</p>
+
+<ul>
+ 	<li style="text-align: justify;">Simple alternative to cloning, especially when using library such as Apache Commons</li>
+ 	<li style="text-align: justify;">Provides Deep Cloning</li>
+ 	<li style="text-align: justify;">Suitable even for complex object graphs</li>
+ 	<li style="text-align: justify;">Can be used on existing classes that currently provide just shallow copy</li>
+</ul>
+This has also some limitations and disadvantages:
+<ul>
+ 	<li>All the classes in the object graph needs to implement Serializable</li>
+ 	<li>Transient fields are not cloned (Transient means not to be serialized)</li>
+ 	<li>Way more expensive than clone or copy constructors/factory methods</li>
+</ul>
+<p style="text-align: justify;">In some cases, this can be used, but you don't always have the luxury of having all the objects Serializable and with no transient fields. Especially when using third party classes. Also, the performance hit is very significant. Depending on the amount of cloning required and performance requirements, it can be easily too much. More info about performance hit and the serialization approach in general can be found in <a href="http://www.javaworld.com/article/2077578/learn-java/java-tip-76--an-alternative-to-the-deep-copy-technique.html">Java Tip 76: An alternative to the deep copy technique</a>.</p>
+
+<h3 style="text-align: justify;">Reflection</h3>
+<p style="text-align: justify;">Reflection is yet another way of making a copy of an object. Using reflection you can read all the fields of a class, then copy them and then assign them to a new instance even if the fields are not publicly accessible. There are various libraries and utilities providing this functionality.</p>
+<p style="text-align: justify;">If you are following JavaBeans convention and a shallow copy is enough for you (maybe all the fields are immutable/primitives?), you can use <a href="https://commons.apache.org/proper/commons-beanutils/javadocs/v1.8.3/apidocs/org/apache/commons/beanutils/BeanUtils.html#cloneBean(java.lang.Object)">Apache Commons BeanUtils.cloneBean()</a>, which provides this functionality. Alternatively, if you are using Spring, you can use similar util - <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/BeanUtils.html">Spring BeanUtils.copyProperties()</a>.</p>
+<p style="text-align: justify;">If you are looking for a deep copy, you cannot use BeanUtils. There are some other alternatives, such as <a href="https://github.com/kostaskougios/cloning">uk.com.robust-it.cloning library</a> or <a href="https://github.com/EsotericSoftware/kryo#copyingcloning">Kryo's deep cloning feature</a>.</p>
+<p style="text-align: justify;">This approach can be used even if the classes don't implement the Serializable and therefore is well suited also for third party libraries, where you cannot modify the code to support serialization or regular cloning. The performance is also much better that the regular serialization.</p>
+
+<h2>Conclusion</h2>
+<div>The process to make your class cloneable is the following:</div>
+<ol>
+ 	<li>Implement the Cloneable interface</li>
+ 	<li>Override the clone() method.</li>
+ 	<li>Call super.clone() if a shallow copy is sufficient.</li>
+ 	<li>Implement custom cloning logic, if a deep copy is required.</li>
+</ol>
+Alternatively, you can use various existing third-party libraries, which are usually based on serialization/deserialization or reflection approach.
+<h2>Further Reading</h2>
+<ul>
+ 	<li>
+<div><a href="http://www.artima.com/intv/bloch13.html">Josh Bloch on Design - Copy Constructor versus Cloning</a></div></li>
+ 	<li><a href="http://www.artima.com/intv/issues3.html">Java Design Issues - A Conversation with Ken Arnold, Part VI - The clone Dilemma</a></li>
+ 	<li><a href="https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683">Effective Java, 2nd Edition, Item 11: Override clone judiciously</a></li>
+</ul>

@@ -1,0 +1,270 @@
+<item>
+    <title>How to protect your HTTP Cookies</title>
+    <link>http://vojtechruzicka.com/protect-http-cookies/</link>
+    <pubDate>Thu, 18 Jan 2018 13:46:09 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1444</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-1449 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/protect-cookies.jpg" alt="" width="900" height="600" />
+<p style="text-align: justify;">Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.</p>
+<!--more-->
+<h2>What are Cookies</h2>
+<p style="text-align: justify;">HTTP protocol itself is stateless. That means that when a server receives two requests it cannot tell whether they originate from the same user. There is no conversation context preserved between requests. While it has many advantages such as good scalability, often you want to identify a user you already interacted with and keep state. For example, a user should be usually able to log-in and after that, all their requests should be considered as those of an authenticated user. In other words, you want to recognize such user when they send their next request.</p>
+
+<div></div>
+<p style="text-align: justify;">But how can you achieve this? One way is using Cookies. Whenever a server receives a request from a client, it can provide a special HTTP response header called <em>Set-Cookie</em>. It can look something like this:</p>
+
+<div></div>
+<pre lang="json">Set-Cookie: [cookie_name]=[cookie_value]</pre>
+<div></div>
+<p style="text-align: justify;">What it basically says is: Here is a little piece of information (cookies are key-value pairs). I want you to remember it. And I want you to send it back to me with your future requests. So I know it is you. The client’s browser receives this information and stores the cookie on the client’s machine. Whenever that client makes a request to the server, the browser checks all the cookies, selects these which are relevant to the current server, and sends them as HTTP headers.</p>
+
+<pre lang="json">Cookie:=[cookie_name]=[cookie_value]; [other_cookie_name]=[other_cookie_value]
+
+</pre>
+<div>
+<h2>Securing the cookies</h2>
+<p style="text-align: justify;">Okay, so cookies can be used to store information on the client and then sent to a server with each request. Information such as the unique identifier of a logged in user. And it is sent in a form of HTTP header. Now imagine someone gets their dirty hands on your precious cookie. Since your session cookie represents your identity, the attacker can use it to impersonate you. To perform restricted actions as if they were you. Transfer money, steal sensitive information, delete important data – this kind of stuff. This means you need to make sure your cookies are as protected as possible. So what are the ways you can mitigate the risk of someone stealing your cookies?</p>
+
+</div>
+<div>
+<h2>Preventing Cross Site Scripting with HttpOnly attribute</h2>
+<p style="text-align: justify;">Cookies can be directly accessed from javascript. It is very easy:</p>
+
+<pre lang="javascript">var cookies = document.cookie;</pre>
+</div>
+<p style="text-align: justify;">Not only it is easy to steal cookies this way, but the attacker can tamper with existing cookies or create new ones:</p>
+
+<pre lang="javascript">document.cookie = "my_precious_cookie=some_harmful_value";</pre>
+<p style="text-align: justify;">You may think you are safe because you are in control of what javascript gets executed on your pages. Wrong. If your application contains Cross-Site Scripting vulnerability, it is easy for an attacker to inject any malicious javascript to be executed on the victim’s machines. Once they do that, it is easy to steal your cookies and send them to the attacker.</p>
+<p style="text-align: justify;">Because of such situations, it would be really handy to disable access to your cookies from javascript. Fortunately, you can do it quite easily. When the server sets cookies, you can provide some additional attributes. One of them is <a href="https://www.owasp.org/index.php/HttpOnly">HttpOnly</a>, which says that the cookie will not be accessible in the client's browser from javascript:</p>
+
+<pre lang="json">Set-Cookie: [cookie_name]=[cookie_value]; HttpOnly
+
+</pre>
+<div>
+<h2>Protect Cookies during transport with Secure attribute</h2>
+<p style="text-align: justify;">Alright, we’ve mitigated the risk that the attacker will steal or change our cookies from javascript. But there are more ways to steal our cookies. One of them is in-transit. That means someone can read the request on its way to the server and they will be able to see the cookie as it is just an HTTP header. How do we prevent this?</p>
+<p style="text-align: justify;">You should use HTTPS of course, so your data is secure even in-transit. This way man-in-the-middle cannot read your cookies. Unless… Well, there are ways a client can access your HTTPS site using regular HTTP. Maybe they manually type http://. Maybe you have mixed content. Maybe you do use HTTP Strict Transport Security to enforce HTTPS, but the client’s browser does not support it yet. Either way, you risk your precious cookies transmitted over an unsecured channel.</p>
+<p style="text-align: justify;">Fortunately, there is a way to prevent this. Similar to <em>HttpOnly</em>, there is another attribute that instructs the browser that it should only send the cookie over a secured channel.</p>
+
+<div></div>
+<pre lang="json">Set-Cookie: [cookie_name]=[cookie_value]; Secure</pre>
+<h2>Prevent Cross-Site Request Forgery with SameSite attribute</h2>
+<div>
+<p style="text-align: justify;">When a browser reads a page, there are usually some resources from other domains, which are loaded as well such as images, scripts or social media buttons. The default browser behavior is that it sends cookies which browser has for the external site with the request. Since cookies are sent with cross-domain requests, this can be exploited to trick a previously authenticated user into performing some restricted action on the external site. This type of attack is called <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross-Site Request Forgery</a> (or CSRF).</p>
+
+</div>
+<p style="text-align: justify;">Fortunately, when setting a cookie, you can specify that browser should send it to you only if the request is originating from the same origin (is not cross-domain). This cookie parameter is called <em>SameSite</em>. It has two possible values:</p>
+
+<ol>
+ 	<li>strict</li>
+ 	<li>lax</li>
+</ol>
+<p style="text-align: justify;"><em>Strict</em> option prevents sending cookies from different origin altogether. While this is safe it can be really painful for the users. For example, if you click a link to a social media or GitHub you would be redirected there without being logged in and you would need to authenticate again.</p>
+<p style="text-align: justify;">The second option, <em>lax</em>, is more forgiving. It will allow sending the cookie cross-origin as long as the HTTP method is GET only and you are navigating to the root (top level).</p>
+
+<div>
+<p style="text-align: justify;">While this is a really good protection against some sorts of CSRF (still does not help if the session ID is, for example, transferred a URL parameter), it is not yet widely supported by the browsers (as of 1/2018). You can check current support on <a href="https://caniuse.com/#search=samesite">Can I Use</a>.</p>
+<img class="aligncenter wp-image-1463 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/cookies-2.jpg" alt="" width="900" height="582" />
+<h2>Minimize Cookie Availability</h2>
+<h3>Don’t Share cookies with subdomains</h3>
+<p style="text-align: justify;">By default, when not specified otherwise, a cookie is only sent to a sub-domain, which set the cookie. That means that if you set a cookie from <em>account.example.com</em> it will not be sent to <em>forum.example.com</em>. You can, however, specify the <em>Domain</em> attribute of the cookie.</p>
+
+<pre lang="json">Set-Cookie: [cookie_name]=[cookie_value]; Domain=account.example.com</pre>
+<p style="text-align: justify;">If you specify just a root domain (<em>example.com</em>) and not the subdomain (<em>account.example.com</em>), the cookie will be sent to ANY subdomain of the root domain. Don’t do this as you want to minimize the number of places your cookies are sent to.</p>
+
+<div>
+<h3>Don’t share cookies with other applications</h3>
+<p style="text-align: justify;">There is another parameter which can be used to define the scope of the cookie, similar to <em>Domain</em>. It is called <em>Path</em>. It is used to define resources under the domain, to which the cookie will be sent. For example, path '<em>/'</em> means everything, <em>/blog</em> means every resource starting with '<em>blog'</em>, eg:</p>
+
+<pre lang="json">http://www.example.com/blog/2017/</pre>
+<p style="text-align: justify;">By default, if unspecified, it is set to the path of the resource which set the cookie. Be careful not to set manually a value which is too permissive. When you set '/' that means that all the resources on the given domain will receive the cookie. This can be dangerous when you have multiple applications sitting on the same domain which are different only in their path:</p>
+
+<pre lang="json">http://www.example.com/first-app
+http://www.example.com/second-app
+</pre>
+<p style="text-align: justify;">In this case, the apps would be sharing cookies. That means that if one of them is vulnerable it can make the other one vulnerable as well as you could steal the other app’s cookies, for example, using Cross Site Scripting.</p>
+
+</div>
+<div>
+<h3>Limit cookie lifespan</h3>
+<p style="text-align: justify;">In the same way like you want to reduce the cookie’s scope to minimize the number of places where it can be stolen, you want to minimize the cookie’s lifespan to decrease the time when the cookie is vulnerable.</p>
+
+</div>
+<p style="text-align: justify;">Cookie lifespan is, if not specified, just for one session. That means until the user closes their browser. Well, at least in theory. These days browsers usually have some mechanisms for session restoration or continue to run in the background so you <a href="http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/">cannot depend</a> on session cookies being immediately wiped.</p>
+You can specify cookie expiration or lifespan using <em>Max-Age</em> and <em>Expires</em> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie">attributes.</a>
+<p style="text-align: justify;">For sensitive cookies use the shortest sufficient lifespan possible. Using these parameters you can set cookie lifespan to infinity, which is obviously not a good idea. It is also worth mentioning that to further limit the lifespan of your session cookies, you should limit session duration server side and provide your users with a means of manually terminating their session (logout).</p>
+
+</div>
+<div>
+<h2>Conclusion</h2>
+<p style="text-align: justify;">It is extremely important to protect your sensitive cookies, such as these containing session identifiers. If such a cookie is lost, an attacker can assume your identity and do everything you have permissions to do. You should protect your cookies against Cross Site Scripting with HttpOnly attribute so they are not available from javascript.</p>
+
+</div>
+<p style="text-align: justify;">Cookies are also vulnerable during transport, so you should apply HTTPS and make sure your sensitive cookies are not transmitted using plain HTTP by specifying <em>Secured</em> cookie attribute.</p>
+<p style="text-align: justify;">To defend against Cros Site Request Forgery you should add the <em>SameSite</em> attribute with either <em>strict</em> or <em>lax</em> value. But be aware of currently limited browser support.</p>
+<p style="text-align: justify;">The limit attack vectors you should keep the availability of your cookie at the minimum. That means limiting the scope (<em>Domain</em> and <em>Path</em>) and lifespan (<em>Expires</em> and <em>Max-Age</em>).</p>
+
+</div>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1444</wp:post_id>
+    <wp:post_date><![CDATA[2018-01-18 14:46:09]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2018-01-18 13:46:09]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[protect-http-cookies]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="post_tag" nicename="http"><![CDATA[http]]></category>
+    <category domain="category" nicename="security"><![CDATA[Security]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[60]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[15]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1517389243;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:578;}i:1;a:1:{s:2:"id";i:1389;}i:2;a:1:{s:2:"id";i:1225;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1449]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_oembed_93e74b6ce3aa3556fa35ad571cebd1c3]]></wp:meta_key>
+        <wp:meta_value><![CDATA[{{unknown}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>259</wp:comment_id>
+        <wp:comment_author><![CDATA[VR]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtechruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[141.228.106.149]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-01-22 14:15:21]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-01-22 13:15:21]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.
+
+The importance of synchronization
+As a developer, you usually use multiple computers each with its own instance of your favorite IDE. It can be quite a hassle to keep settings the same on all of them. Rather than doing manually it is much better to use automated synchronization. Setting up a new IDE is much easier this way and everything is also backed up online in the process.
+
+And of course, you usually do not work alone but in a team. It is important to stick to some guidelines and standards on your project. And having same key settings of your IDE will help a lot. Not to menton that it makes onboarding a new developer and making them stick to conventions much easier.
+
+Settings Repositories
+The first way to synchronize settings is using Settings Repositories. The way it works is that it uses an external git repository to stare the settings. Each IDEA instance then connects to this repository to fetch the settings. In case one instance makes changes in the settings it can be propagated back to the repository. What's nice is that it is a plain old Git repo. That means your settings are backed up and under version control. So you can track and rollback the changes if necessary or even allow other people to create Pull Requests with some tweaks to your settings.
+
+To enable this feature just go to:
+
+File -&gt; Settings Repository
+
+And enter the URL of your git repo. If you are just starting anempty repo will do. When you are configuring Settings Repository this way, you can always check whether your local settings should overwrite those on server, vice versa or if they should be merged.
+
+TODO image of setting external settings repo
+
+And that's it, you're done. In most cases. However, IDEA offers a net feature - you can actually define multiple setting repositories.  What is it good for? Well maybe there are some settings you want to share with your teammates to ensure consistency on your project. But then of course, you want some of your setting to be personal and just for you. After all, every user has different preferences.
+
+in such case IDEA will consider on of the repositories primary. That is the one for your own settings. The synchronization works both ways - from server to client and the opposite way. The rest of the repositories are secondary and are read only. You can only fetch settings from them but they are not affected by your local settings changes.
+
+To configure multiple repositories go to
+
+Settings -&gt; Tools -&gt; Settings Repository
+
+Here you can see your primary repository, which you set up earlier. Underneath you can configure additional secondary repositories:
+
+TODO repo settings image
+
+Note that you can also disable automatic synchronization and use just sync on demand:
+
+VCS -&gt; Sync Settings
+
+Sync settings using Jetbrains Account
+The second way of settings synchronization was available for some time as a standalone optional IDE plugin (which required  an invitation to use), but now is integrated and enabled by default since 2017.3. It utilizes your JetBrains account to synchronize the data.
+
+Under the hood it actually uses a variation of Settings Repository mechanism, but you are shielded from it. It is much more convenient because you don’t have to create a Git Repo to store the settings and provide its address to your IDE. On top of that, unlike Settings Repositories, it allows you to also sycnhronzie your installed plugins. pretty cool, right?
+
+First thing you need to do is to make sure you have a JetBrains account (TODO
+https://sales.jetbrains.com/hc/en-gb/articles/208459005-What-is-JetBrains-Account-
+). If you don't have one, you can create it here (TODO https://account.jetbrains.com/login).
+
+Once you have your Jetbrains account, you'll need to Log in to IDEA using it. Just head to Help -&gt; Register. The you just need to  select Activate new License with JetBrains Account and enter your credentials. Then click Activate.
+
+TODO PIC of registration screen.
+
+Before you link your IDE to JetBrains account, your status bar in the lower-right part of the window should look something like this:
+
+TODO image withiout gears icon
+
+After your JetBrains account is linked, you should see a new Gears icon which is used to manage Settings sycnhronization.
+
+TODO image with gears icon
+
+If you click it, you'll be able to enable the settings sycnchronization:
+
+TODO image with open sync menu
+
+When you enable it on another machine, you'll be promptet how to manage settings conflict. You can either select to owerrite your local settings with the setting from the JetBrains account or vice versa.
+
+TODO image of dialog of selecting local or server
+
+Installed plugin synchronization is handled separately from the rest of the settings. You can either manually trigger pluging sync or enable silent automatic sycnhronization of your plugins in the background.
+
+TODO sync plugins menu image
+
+If you prefer manual synchronization, you can have fine- grained control of what plugins are sycnhronized and how. That means you can decide for individiual plugins and you can even force installation or uninstallation of plugins or your other instances of IDEA.
+
+TODO image with plugin dialog
+
+And of course, if you no longer want to keep certain IDE instance synchronized, you can disable the synchronization using the gears icon in the status bar.
+
+TODO disable dialog.
+
+
+Conclusion
+Being able to synchronize your Settings among multiple IDE instances is very important and handy feature. IntelliJ IDEA now supports two different ways of synchronization out of the box.
+
+The first one is using Settings Repositories. It allows you to define multiple Version Control Repositories, which will act as a storage for your settings. It is useful when you want to share the settings in your team. Because you can specify multiple repositories, some of the general settings can be shared with your team members while you can still have your personal settings on top of that synced among all your computers.
+
+The second one uses your JetBrains account to store your settings. Because of it it is more suitable just for your own personal settings as you are not able to share your JetBrains account with your colleagues. On the other hand it is able to manage plugin synchronization.
+
+In either case, it is useful to have your settings consistent and backed up in a remote repository.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[trash]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1516695329]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
+            <wp:meta_value><![CDATA[0]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1516626921.6552999019622802734375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1516695329.584568023681640625;s:5:"event";s:12:"status-trash";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

@@ -1,0 +1,343 @@
+<item>
+    <title>Javascript constuctor functions and new operator</title>
+    <link>http://vojtechruzicka.com/javascript-constuctor-functions-and-new-operator/</link>
+    <pubDate>Fri, 02 Feb 2018 07:53:04 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1548</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-1486 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/constructor-functions.jpg" alt="" width="900" height="587" />
+<p style="text-align: justify;">What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?</p>
+<!--more-->
+<h2>Creating objects</h2>
+<p style="text-align: justify;">In your applications, most of the time you don't work with <a href="http://vojtechruzicka.com/javascript-primitives/">primitives</a> but rather with objects. You can directly create objects with object literal like this:</p>
+
+<pre lang="javascript">var Person = {
+    firstName: 'John',
+    lastName: 'Doe'
+}
+</pre>
+<p style="text-align: justify;">This is sometimes good enough, but in many cases, you want to work with many objects, which share the same characteristics - that is: they have the same properties and methods. These can be users in your applications, bank accounts, cars or anything else. The point is, you'll want to work with 'Jane' and 'John' in the same way because they can both be considered a person - they have name, surname, age and so on.</p>
+
+<div></div>
+<p style="text-align: justify;">Alright, so how do you create objects which have the same methods and properties? Using constructor functions and the <em>new</em> operator.</p>
+
+<h2>The <em>new</em> operator</h2>
+<p style="text-align: justify;">Let's consider the following example:</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+var john = new Person('John', 'Doe');</pre>
+<p style="text-align: justify;">The <em>Person</em> is a constructor function. Its whole purpose is to create new objects which represent different persons. We can be sure that each person will have the first name and the last name, which are provided as parameters to this function. Notice that unlike regular functions, constructors begin by convention with a capital letter. This way you can easily tell them apart from ordinary functions.</p>
+
+<div></div>
+<p style="text-align: justify;">Then we are creating a specific person instance called <em>john</em> with <em>firstName</em> 'John' and <em>lastName</em> 'Doe'. Notice that there is a <em>new</em> keyword before the <em>Person</em> constructor function call. It is actually an operator and it is responsible for all the magic when creating new persons. It does actually quite a lot:</p>
+
+<div></div>
+<div>
+<ol>
+ 	<li>It creates a new blank object.</li>
+ 	<li>It makes <em>this</em> to point to this newly created object inside the constructor function</li>
+ 	<li>It sets the prototype of the newly created object to the constructor function's prototype.</li>
+ 	<li>It makes the constructor function return the newly created object <strong>IF</strong> it is not returning anything.</li>
+</ol>
+<p style="text-align: justify;">That is the reason why <em>John</em> is created even though the function <em>Person</em> does not have an explicit return statement. That's the reason why using <em>this.firstName=firstName;</em> sets the first name provided to the new object. Without the <em>new</em> keyword, <em>this</em> would point to the global object in our case and not to the newly created instance.</p>
+
+<h2>What if I forget to include <em>new</em>?</h2>
+<p style="text-align: justify;">There are some serious problems when using the <em>new</em> operator. In languages such as Java, it is strictly limited how you can use the new keyword. It can be used only to invoke methods, which are explicitly marked as constructors. Constructors are guaranteed to return a new instance of the class, performing all the required initialization. Constructors can be invoked only using the <em>new</em> keyword and the <em>new</em> keyword can be used only to invoke constructors.</p>
+<p style="text-align: justify;">In javascript, the situation is unfortunately not so strict.</p>
+
+<ul>
+ 	<li>You can use new operator on <strong>ANY</strong> function</li>
+ 	<li>You can call function intended as constructor <strong>WITH</strong> <strong>or WITHOUT</strong> the new keyword</li>
+</ul>
+<p style="text-align: justify;">So, calling function not designed as constructor will not result in an error. What's more, you'll get different behavior based on whether you call the constructor with or without the <em>new</em> keyword. And it is really easy to forget to include new. After all, there is no compile-time check as in Java. Let's look at an example.</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+var john = new Person('John', 'Doe');
+var jane = Person('Jane', 'Doe');
+</pre>
+<p style="text-align: justify;">First, there is a constructor function <em>Person</em> and then it is called twice. Once with <em>new</em> and once without. Can you guess what each variable contains?</p>
+
+<pre lang="javascript">console.log(john) // Person {firstName: 'John' , lastName: 'Doe'}
+console.log(jane) // undefined
+console.log(window) // Oh dear! The global object now has firstName and lastName!</pre>
+<p style="text-align: justify;">What just happened? Looks like John is doing well, but poor Jane is undefined. What's worse, it looks like <em>firstName</em> and <em>lastName</em> got stored on the global object (window in case of running in a browser). So my precious new object is undefined and I am polluting the global object instead. Nasty.</p>
+<p style="text-align: justify;">The reason why is that one of the actions <em>new</em> operator does is changing <em>this</em>, so it points to the newly created object. When <em>new</em> is not specified, the constructor is considered an ordinary function call and <em>this</em> remains the same as usual. In our case, when I just declared a function on the top level and called it from the top level, <em>this</em> is pointing to the global object. Global object differs in each environment (browser vs server side javascript), but in a browser it is <em>window</em>. That means I am now storing my properties directly on the <em>window</em> object.</p>
+<p style="text-align: justify;">Another action that <em>new</em> operator does is that makes the newly created object result of the whole new expression if the function does not return object specifically. It is the case here as you can see that the Person constructor does not explicitly call return (and yet, John is successfully created). When called without new, it is just a regular function call. And functions without explicit return statement return undefined.</p>
+
+<h2>Protecting against forgetting to include <em>new</em></h2>
+<p style="text-align: justify;">Alright, forgetting the new operator can have pretty nasty consequences. So what can you do to prevent such cases?</p>
+
+<h3>Capital letter convention</h3>
+<p style="text-align: justify;">You should always stick to the convention that constructor functions start with a capital letter and regular functions with a lowercase letter. This way you can immediately see that something is fishy when encountering a situation such as:</p>
+
+<div style="text-align: justify;">
+<pre lang="javascript">var person = Person('John', 'Doe'); // capital letter, I should use new
+</pre>
+<p style="text-align: justify;">It is also helpful when constructor names are nouns and regular functions are verbs:</p>
+
+<pre lang="javascript">var size = new computeSize(); // lowercase letter;  computeSize doesn't sound like noun</pre>
+<h3>Explicit check of <em>this</em></h3>
+<div style="text-align: justify;">Remember how one of the things new operator does is changing this to the newly created object and setting the prototype? One of the ways how to defend against the accidental omission of the new operator is checking what actually this points to in the constructor function.</div>
+<pre>var Person = function (firstName, lastName) {
+
+    if (!(this instanceof Person)) {
+        return new Person(firstName, lastName);
+    }
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+
+</pre>
+<p style="text-align: justify;">This way if <em>this</em> is not an instance of Person, we can detect it and properly call the constructor again and make sure we add the new keyword to the call. The result is same no matter whether you use the new keyword for your constructor or not.</p>
+<p style="text-align: justify;">The disadvantage is that it encourages developers to not worry about using new as it is still safe. Building such habit is not good as not all the code you'll work with will always have such safeguards. It is much better to stick to the convention of always using <em>new</em> instead of just sometimes and have the usage inconsistent across the codebase. As an alternative, you may consider using the check but to throw an error to fail fast and discover improper usage of your constructors early on.</p>
+
+<h3>Strict mode</h3>
+<p style="text-align: justify;">You can enable strict mode in your script or just a part of it using "use strict";. This basically makes some of the weird constructs result in real errors instead of silently failing or resulting in unexpected and unwanted behavior. An example can be a usage of an undeclared variable.</p>
+<p style="text-align: justify;">One of the issues it addresses is pointing <em>this</em> to the global object (window) when not calling a function as a method of an object. When the strict mode is activated, <em>this</em> is undefined instead of pointing to the global object. Forgetting the new operator before a constructor call would then result in an error saying that this is undefined. You would discover your mistake early on when the strict mode is enabled. Sometimes you cannot afford to use global strict mode as it would break all your existing code. In such cases, you can always enable strict mode just for the function.</p>
+
+<pre lang="javascript">var Person = function (firstName, lastName) {
+    "use strict";
+    this.firstName = firstName;// TypeError: Cannot set property 'firstName' of undefined
+    this.lastName = lastName;
+}
+
+</pre>
+<h3>Classes</h3>
+<p style="text-align: justify;">In ECMAScript 6, there is a new concept of classes, which aims to replace constructor functions and addresses its issues. The person from our examples above as a class would look like this.</p>
+
+<div style="text-align: justify;">
+<pre lang="javascript">class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}</pre>
+You can create new persons as usual:
+
+</div>
+<div>
+<pre lang="javascript">var john = new Person('John', 'Doe');</pre>
+<p style="text-align: justify;">What's really cool is that if you accidentally forget to include the <em>new</em> keyword when creating a new instance it results in an error instead of silently altering the global object.</p>
+
+<pre lang="javascript">var john = new Person('John', 'Doe'); // Person { firstName: 'John', lastName: 'Doe' }
+var jane = Person('Jane', 'Doe'); // TypeError: Class constructor Person cannot be invoked without 'new'</pre>
+<p style="text-align: justify;">What is unfortunate is that with classes and their syntax javascript gives a false impression that it uses class-based inheritance. Developers coming from other languages like Java are especially vulnerable to this. Instead, Javascript still uses prototype-based inheritance and classes are just a syntactic sugar on top of good old constructor functions.</p>
+
+<h2>Object creation alternatives</h2>
+<p style="text-align: justify;">In Javascript, there are many ways to create a new object. We already covered object literal, constructor functions and a brief mention of classes. There are more ways, which can be used as an alternative to new and constructor functions. For example, Douglas Crockford used to be a zealous advocate of not using new at all and using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create"><em>Object.create</em></a> instead. However, later on, <a href="https://youtu.be/PSGEjv3Tqo0?t=6m48s">he changed his mind</a> and stopped using even <em>Object.create</em>. Another example may be using factories instead, which have <a href="https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e">many advantages</a>, such as more flexibility or decoupling from a specific object type. And of course, many frameworks offer convenient ways of creating objects. There is no silver bullet so it is good to be aware of different approaches and their tradeoffs.</p>
+
+<h2>Conclusion</h2>
+<div style="text-align: justify;">When using constructor functions, make sure you don't forget the <em>new</em> operator. Otherwise weird things will happen. Stick to the naming conventions. The strict mode is your friend and should protect you against accidental omission. And of course, if you can use ES6, classes are a foolproof way to replace constructor function. Don’t get fooled though. Even though it does sound like class-based inheritance, it is just a syntactic sugar and Javascript has still prototype-based inheritance.</div>
+</div>
+</div>
+</div>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1548</wp:post_id>
+    <wp:post_date><![CDATA[2018-02-02 08:53:04]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2018-02-02 07:53:04]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[javascript-constuctor-functions-and-new-operator]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="javascript"><![CDATA[Javascript]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[30]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[24]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518597269;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:1511;}i:1;a:1:{s:2:"id";i:236;}i:2;a:1:{s:2:"id";i:806;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1486]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Javascript constuctor functions and new operator]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>282</wp:comment_id>
+        <wp:comment_author><![CDATA[VR]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtechruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[141.228.106.147]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-08 14:38:57]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-08 13:38:57]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[One of the Javascript's oddities is that you can use variables and functions even before they were declared. It's called hoisting. Fortunatelly, in ES6 let and const variables offer much better behavior.
+
+Hoisting
+Consider the following code:
+
+sayHi();
+
+functionsayHi(){
+   console.log('Hithere!')
+}
+
+It works and prints 'Hi there!'. Even though the function is defined after it is used. Or another example:
+
+john='JohnDoe'
+console.log(john)
+varjohn;
+
+Variable john is declared after it is used, yet it still works. How is this possible? When you Javascript code is being processed, in the first iteration, before actually executing it line by line, all the variable and function declarations are detected. Then they are created in memory and space is allocated for them. Only after that the code is executed line by line. This behaves exactly the same as if the declarations were moved on top of the scope (eg. function body). That means your code behave as if the declarations of variables and functions were first and then the rest of the code.
+
+There is one caveat though. Consider the folloving line:
+
+var john = 'John Doe';
+
+It is actually consisting of two parts:
+	/ var john means that variable john is declared
+	/ = 'John Doe' means that previously declared variable john is assigned a value of string 'John Doe'
+
+it is basically one liner for
+var john; // declaration
+john = 'John Doe' //initialization
+
+The thign is that only declarations are hoisted, not initializations. That means you can access variable john before it is actually declared but its value will be undefined.
+
+console.log(john)//undefined
+varjohn='JohnDoe';
+console.log(john)//'JohnDoe'
+
+Another thing to watch for is that while function declarations and variable declarations using var keyword are hoisted, class declarations are not. You cannot use class before it is declared.
+
+varjohn=newPerson('John','Doe');//ReferenceError:Personisnotdefined
+
+classPerson{
+constructor(name,surname){
+this.name=name;
+this.surname=surname;
+}
+}
+
+varjane=newPerson('Jane','Doe');//Noproblemshere
+
+
+Best practices
+It is a good idea to always declare first before using a variable or function. And to group all the declarations on the top of the scope they apply to. It is much easier to see what variables are being used in a given scope and easier to find a variable declaration when looking for it. It is also much more natural to define a construct before using it then other way around. Such code is much easier to read, understand and to reason about. And after all, some of the developers, especially when junior or swiching from other languages, may not be familiar with the hoisting and it would just cause unnecessary confusion.
+
+Block scope
+If you come from a different programming language than Javascript, the following behavior may be surprising to you.
+
+for(vari=0;i&lt;10;i++){
+//dosomething
+}
+
+console.log(i)//10,What? &#039;i&#039;stillexistsoutsidetheforblock!
+
+Unlike in many other languages, variables declared using var keyword do not respect block scope. That means you would expect that variable &#039;I&#039; from a for loop would be accessible only inside the loop. Wrong. The cope of a variable declared in javascript depends on where you declare it.
+ * If you declare it inside of a function body, its scope is the whole function&#039;s body. And because of hoisting it can be accessed anywhere in the body.
+*If you declare your variable on the root level it is in global scope. It is actually a variable of the global object (eg. window).
+
+If we take our example with for loop, the variable I is actually now declared also as a property of window - that is window.i!
+
+for(vari=0;i&lt;10;i++){
+//dosomething
+}
+
+console.log(window.i)//10,Ohthehorror!&#039;i&#039;isnowontheglobalobject
+
+That is terryfying. Function wide scope is usually a lot wider than you need. Often you have variables which only are need inside of a loop, if statement or similar block. Minimizing scope where a variable is available is very important. It makes your functions leasier to understand and reason about. Most importantly the smaller he cope is the smaller is the risk that some code somewhere else will mess with your variables. The bottom line is - it&#039;s useful to have smaller encapsulated scopes, rather than a big scope for the whole function. And of course, your functions should be really small anyway, which reduces the scope of the variables withing and reduces complexity.
+
+IIFE
+	Because it is a good practice to minimize the scope a variable is accessible in and var can be accessed in the whole function scope, ther were historically some workarounds to address this. One of them is IFFE, which represents Imediately Invoked Function Expression TODO LINK http://adripofjavascript.com/blog/drips/an-introduction-to-iffes-immediately-invoked-function-expressions.html. It is an artificial way to create a new local encapsulated scope. What you basically do is surround a block of code by a function expression and immediately call that function. Variables inside are not accessible from the surrounding code.
+
+	(function(){
+	varfoo=42;
+	})();
+
+	console.log(foo)//ReferenceError:fooisnotdefined
+
+
+let
+In ES6 in addition to var, there were two new variable types introduced - let and const. What are they good for if ther already is var? One of the differences is that their scope is not the entire function but rather only the enclosing block. That is, some section of code wrapped in  curly braces {}. Like body of if statement of for loop. Finally, you can minimze scope of your variables to bare minimum without ugly workarounds such as IIFE.
+
+Another difference (and advantage) of let over var is how hoisting works. Variables declared using var can be accessed in the whole scope (And we already know that var has bigger scope). You can acces them before they are declared. In such case their value woul be undefined thoug as only declarations and not initializations are hoisted. This is generally considered a bad practice. Let behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in &#039;Temporal Dead Zone&#039;.
+
+To better understand the difference between var and let, we need to comapre their life cycle. When a scope is entered, the first thing which happens is that the whole scope (function body, block) is searched for variable declarations. Then there is a memory space allocated for each of the variables. After this, the body of the function or block is executed line by line. That&#039;s basically how hoisting works and why you can access your variables before declaring them.
+
+There is one key difference how this behaves between var and let/const though.
+- In case of var, after creating variable definitions, before executing line by line each of the variables is initialized with undefined value.
+- In case of var/cosnt the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in Temporal Dead Zone and accessing it results in Reference Error.
+
+One of the advantages of let over var is also pollution of global scope. When you declare a variable using var on the root level, it is automatically declared on the global object:
+
+var foo = 42;
+console.log(window.foo) //42
+
+When using let (and const), this does not happen:
+
+let foo = 42;
+console.log(window.foo) //undefined
+
+
+const
+Const behaves is very similar way to let. It is also block scoped and cannot be used until declared. There is, however, one key difference. Once variable declared using const keyword is assigned a value, you cannot reassign it. You also need to initialized the variable  immediately when declaring it.  It is useful as this prevents accidental reassignment of the variable. It also promotes good coding practices as it prohibits using single variable for multiple purposes during its lifecycle, which is confusing and error prone. And how can you even have a nice descriptive name of a variable which does multiple different thigs?
+
+While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of primitives (TODO link) such as numbers, strings or booleans, you are safe as they are immutable.
+
+let vs const
+Because of the advantages of const described above, it is  a good practice to prefer const over let. Actually, in most of the cases you can safely use const. There are only a few cases wher you really need let. One of the examples can be loops. Because the iterating variable gets changed with every step throught the loop you cannot use const. However, you can avoid using loops in many cases in favor of more functional way such as - map, filter or reduce. When using a linter (you should use it), it will check for you cases where you can safely replace const let with const as the variable is never reassigned. TODO link https://eslint.org/docs/rules/prefer-const
+
+Conclusion
+Hoisting is of of the weird Javascript&#039;s concepts, yet it is very important to be familiar wit it . It is good to stick to convention where you declare first and use later. And all your declarations should be grouped together.
+
+To minimize hoisting problems and confusion, there are fortunately modern alternatives in ES6 - const and let. Their scope is block instead of the whole function and they cannot be used before they are declared. Because of this you should prefer them over the good old var. Moreover, when possible the const is a safer choice over let because it cannot be reassigned.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[trash]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1518097137.2744119167327880859375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1518171045.992527008056640625;s:5:"event";s:12:"status-trash";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_status]]></wp:meta_key>
+            <wp:meta_value><![CDATA[0]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[_wp_trash_meta_time]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1518171046]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

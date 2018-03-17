@@ -1,0 +1,1 @@
+pandoc phone-interview.html --standalone --from=html --to=markdown --output=phone-interview.md --wrap=none

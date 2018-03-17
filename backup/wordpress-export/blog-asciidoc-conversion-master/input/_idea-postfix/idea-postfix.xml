@@ -1,0 +1,206 @@
+<item>
+    <title>IntelliJ IDEA Tips &amp; Tricks: Postfix Code Completion</title>
+    <link>http://vojtechruzicka.com/intellij-idea-tips-tricks-postfix-code-completion/</link>
+    <pubDate>Tue, 07 Nov 2017 07:59:44 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=1159</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter size-full wp-image-356" src="http://vojtechruzicka.com/wp-content/uploads/2016/05/IntelliJIDEA_icon.png" alt="" width="1184" height="612" />
+<p style="text-align: justify;">Postfix completion is a very powerful feature, which lets you transform an existing expression using a postfix added. This greatly reduces backward caret movement and thus increases productivity.</p>
+<!--more-->
+<h2>Postfix completion</h2>
+<p style="text-align: justify;">Whenever you have an existing expression, you can append a specific postfix after a dot and apply it using a Tab key. IntelliJ IDEA takes the expression and transforms it based on the postfix provided.</p>
+
+<div></div>
+<div style="text-align: justify;">Let's say you have a list of strings called <em>items</em>. You can then type <em>items.for </em>and then press Tab. It creates a <em>for-each</em> iterating over the items.</div>
+<div><img class="aligncenter size-full wp-image-1201" src="http://vojtechruzicka.com/wp-content/uploads/2017/11/postfix.gif" alt="" width="224" height="78" /></div>
+<p style="text-align: justify;">Pretty cool, right? Note that the resulting <em>for-each</em> has the proper type of items - that is String. Or let's  have another example - <em>.try </em>postfix. It surrounds an expression with a try-catch block.</p>
+<img class="aligncenter size-full wp-image-1208" src="http://vojtechruzicka.com/wp-content/uploads/2017/11/postfix-try.gif" alt="" width="367" height="101" />
+
+<em> </em>There are many more templates available, such as (for Java):
+<ul>
+ 	<li>fori - for iterating with an index over a collection</li>
+ 	<li>forr - iterates with index in reverse order</li>
+ 	<li>switch - produces switch statement with the expression</li>
+ 	<li>sout - Prints the expression using <em>System.out.println</em></li>
+ 	<li>null - check if an expression is null</li>
+ 	<li>notnull - checks if an expression is not null</li>
+</ul>
+<p style="text-align: justify;">It looks cool and all but what is it good for you say? You can achieve similar results using the regular live templates in most cases anyway. Often you realize later, that you need to do something with the expression you have already written (maybe add not null check just to be sure?) and it saves you backward caret movement. Also, for many people, it is more natural to think in order of - subject and THEN action which needs to be performed with it. In a given context, there are usually very few subjects to choose from (keep your methods short, remember?), but many actions available. It is easier, when you are offered just the relevant actions when triggering postfix completion.</p>
+<p style="text-align: justify;">The feature was originally available in ReSharper, then <a href="https://plugins.jetbrains.com/plugin/7342-postfix-completion">as a separate plugin</a> for IDEA and was later introduced as a core part of the IDE <a href="https://blog.jetbrains.com/idea/2014/03/postfix-completion/">in version 13.1</a>. It is currently (as of 2017.2.5) available for Java, Scala, JavaScript and Kotlin.</p>
+
+<h2>Displaying available templates</h2>
+<div style="text-align: justify;">It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: <em>Ctrl + J</em> (or <em>⌘ + J</em> on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to collections. <img class="aligncenter size-full wp-image-1178" src="http://vojtechruzicka.com/wp-content/uploads/2017/11/show-actions-postfix-code-completion.png" alt="" width="487" height="239" /></div>
+<h2>Configuration</h2>
+<p style="text-align: justify;">You can browse available postfix templates in Settings under <em>Editor → General → Postfix Completion. </em>You can disable individual templates or the feature as a whole.</p>
+
+<div></div>
+<div><img class="aligncenter size-full wp-image-1179" src="http://vojtechruzicka.com/wp-content/uploads/2017/11/settings-postfix-code-completion.png" alt="" width="768" height="651" /></div>
+<h2>Writing Custom postfix templates</h2>
+<p style="text-align: justify;">While IDEA offers quite a lot of built-in templates, it does not, unfortunately, allow you to define your own. But fear not, there is an IDE plugin just for that. It's called <a href="https://github.com/xylo/intellij-postfix-templates/">Custom Postfix Templates</a>.</p>
+<p style="text-align: justify;">The plugin comes with a wide variety of additional templates, which you can use or edit to better suit your needs. But what's more - you can actually add your own. The plugin currently supports Java language, but according to the roadmap, more are to follow.</p>
+<p style="text-align: justify;">What's really nice about the plugin is that the template syntax is really easy to read and write. Let's look at a specific example:</p>
+
+<pre lang="xml">.toInt : convert to int
+    java.lang.String → Integer.parseInt($expr$)
+    java.lang.Number → $expr$.intValue()
+    NUMBER → ((int) ($expr$))</pre>
+The first line consists of postfix, which triggers the template (.<em>toInt</em>) and after the colon, there is a text description.
+
+Then there is a number of lines, which define what result should be generated based on a different input type to which is the postfix applied.
+<p style="text-align: justify;">That means that the same postfix can define different results when applied to different types. In the example above, you can see that converting String to Integer using <em>.toInt</em> postfix will result in <em>Integer.parseInt($expr$)</em>. However, applying the same prefix to a number will result in a type cast (<em>(int) ($expr$)</em>).</p>
+<p style="text-align: justify;">The plugin adds a new section in Settings under <em>Editor → Custom Postfix Templates</em>. There you can see the list of all the templates and also edit it in case you want to alter them or add your own. What's handy is that the plugin will show you a DIFF against the default state, so you can tell what you've changed.</p>
+<img class="aligncenter size-full wp-image-1195" src="http://vojtechruzicka.com/wp-content/uploads/2017/11/postfix-completion-custom-templates.png" alt="" width="760" height="575" />
+<h2>Conclusion</h2>
+<p style="text-align: justify;">Postfix code completion is a really powerful feature, which can boost your productivity quite a bit. Remember, the list of all the available actions in the current context is available via <em>Ctrl + J</em> (or <em>⌘ + J</em> on Mac). And if the built-in actions are not enough for you, be sure to try <a href="https://github.com/xylo/intellij-postfix-templates/">Custom Postfix Templates for IntelliJ IDEA plugin</a>.</p>
+
+<h2>More Resources</h2>
+<ul>
+ 	<li><a href="https://plugins.jetbrains.com/plugin/8150-mockito-postfix-completion-plugin">Postfix completion for Mockito</a></li>
+ 	<li><a href="https://github.com/takahirom/android-postfix-plugin">Android postfix plugin for AndroidStudio</a></li>
+</ul>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>1159</wp:post_id>
+    <wp:post_date><![CDATA[2017-11-07 08:59:44]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-11-07 07:59:44]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[intellij-idea-tips-tricks-postfix-code-completion]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="intellij-idea"><![CDATA[Intellij IDEA]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[356]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ IDEA Tips & Tricks: Postfix Code Completion]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[90]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[11]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518852458;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:991;}i:1;a:1:{s:2:"id";i:236;}i:2;a:1:{s:2:"id";i:1389;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_metadesc]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Postfix completion is a very powerful feature, which lets you transform an existing expression using a postfix added. This greatly reduces caret movement and increases productivity.]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>241</wp:comment_id>
+        <wp:comment_author><![CDATA[arsensimonean]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[arsensim08@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://arsensimonean.wordpress.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[93.116.204.117]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-12-28 22:39:11]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-12-28 21:39:11]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Nice post, I used to only use sout as a postfix, didn't come to mind to learn other ones until now. Java is a pretty boilerplate language and this is a very nice feature of the IDE.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1514622383.051557064056396484375;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[108185491]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_wpcom_id_sig]]></wp:meta_key>
+            <wp:meta_value><![CDATA[f1e75e0890ce07e6494861997d2e278dcb5335a1]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[wordpress]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[http://0.gravatar.com/avatar/f0a1bcfcc70affcf67eeb92d7d6fe38d?s=25&d=https%3A%2F%2Fs2.wp.com%2Fwp-content%2Fmu-plugins%2Fhighlander-comments%2Fimages%2Fwplogo.png&r=G]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1514497151.4015100002288818359375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>243</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[80.243.99.152]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-12-30 09:29:19]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-12-30 08:29:19]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Thanks, glad you  like it. Exactly, it is so much useful especially in boilerplate-heavy languages. I especially like those for iteration of collections because you use them so often.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>241</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1514622559.6930849552154541015625;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[jetpack]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>288</wp:comment_id>
+        <wp:comment_author><![CDATA[Antonín Brettšnajdr]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[antonin.brettsnajdr@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://svetylkovo.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[31.30.52.241]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-16 20:27:35]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-16 19:27:35]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[.try looks pretty cool :-), there is still so much to learn about IDEA ...]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[0]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1518809255.3772470951080322265625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>

@@ -1,0 +1,1 @@
+pandoc idea-postfix.html --standalone --from=html --to=markdown --output=idea-postfix.md --wrap=none

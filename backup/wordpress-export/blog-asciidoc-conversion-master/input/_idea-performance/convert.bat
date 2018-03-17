@@ -1,0 +1,1 @@
+pandoc idea-performance.html --standalone --from=html --to=markdown --output=idea-performance.md --wrap=none

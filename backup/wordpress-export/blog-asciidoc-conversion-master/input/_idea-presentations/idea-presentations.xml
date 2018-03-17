@@ -1,0 +1,84 @@
+<item>
+    <title>IntelliJ IDEA Tips &amp; Tricks: Presentations</title>
+    <link>http://vojtechruzicka.com/intellij-idea-tips-tricks-presentations/</link>
+    <pubDate>Wed, 12 Jul 2017 17:02:18 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=935</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="aligncenter wp-image-936 size-full" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/intellij-idea-presentation.jpg" alt="" width="900" height="600" />
+
+How to make the most of the IntelliJ IDEA's view modes to make best presentations possible including visualization of the keyboard input?
+
+<!--more-->
+<h2>Presentation Mode</h2>
+<p style="text-align: justify;">Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking <em>View → Enter Presentation Mode</em>. The IDE switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is better readable from the distance.</p>
+<img class="size-full wp-image-946 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/IntelliJ-IDEA-Presentation-Mode.png" alt="" width="3360" height="2100" />
+
+The font size in Presentation Mode can be configured in Settings under <em>Appearance &amp; Behavior</em> <em>→ Appearance → Presentation Mode.</em>
+
+<img class="size-full wp-image-944 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/IntelliJ-IDEA-Presentation-Mode-Font-Size.png" alt="" width="1960" height="1030" />
+<h2>Distraction Free Mode</h2>
+<p style="text-align: justify;">Distraction Free mode is another view mode you can use. It is similar to Presentation Mode at a first glance but has several important distinctions.</p>
+<p style="text-align: justify;">It hides everything except the Editor window and centers it. All the toolbars and panels are gone. Unlike Presentation Mode, it does not increase the font size, but it rather keeps it unchanged. Unlike Presentation mode, It does not enter full screen, so you can use it even in a small window. That may be useful when having code editor on half of the screen and something else (like a browser window or terminal) in the other half.</p>
+<img class="wp-image-951 size-full aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/IntelliJ-IDEA-Distractio-Free-Mode-1.png" alt="" width="3580" height="2268" />
+<p style="text-align: justify;">As the name suggests, it is intended as a convenient way to hide all the visual clutter, when you need to focus just on some particular piece of code. After the Presentation mode was introduced, many were using it not only for presenting but also as a Distraction Free mode, which was later released as a separate feature in IDEA 14.1.</p>
+<p style="text-align: justify;">While the Distraction Free Mode was not originally intended for presentation purposes, there are situations, where it can be more appropriate that original Presentation Mode. Because the size of the font is not changed, you can see a much bigger portion of the code at the same time. This gives you the much better context that seeing just a small snippet of code at once without the surrounding code. This may not be suitable for regular presentations with one big screen and listeners, who may be too far away to read the code. However, it is much better for scenarios where each listener has their own screen and can read even the smaller font. Such situations would be for example video conferences with screen sharing or webinars. For this purpose, you should consider Distraction Free mode as a viable alternative to the regular Presentation Mode.</p>
+<p style="text-align: justify;">Note that Presentation and Distraction Free Mode are not mutually exclusive and can be active at the same time.</p>
+
+<h2>Presentation Assistant Plugin</h2>
+<p style="text-align: justify;">After you achieve a basic level of proficiency with your IDE and already know which features it offers, your next goal is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where possible. Great way to learn IntelliJ IDEA shortcuts is to use<a href="http://vojtechruzicka.com/learning-intellij-idea-keyboard-shortucts/"> Key Promoter plugin</a>. Once you use mainly keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation friendly. Your audience can get quickly confused and lose the track of the core topic you are presenting about while trying to figure out what the hell just happened.</p>
+Fortunately, there is a nice tool, which helps you exactly with this issue. It is <a href="https://plugins.jetbrains.com/plugin/7345-presentation-assistant">Presentation Assistant Plugin</a>  (<a href="https://github.com/chashnikov/IntelliJ-presentation-assistant">Github</a>). Every time you trigger an action (no matter whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What's more, it shows the shortcut both for Mac and Linux/Windows.
+
+<img class="size-full wp-image-953 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/Presentation-Assistant.png" alt="" width="1940" height="1265" />
+<p style="text-align: justify;">This is obviously very handy when having a presentation as the audience exactly knows which actions are you triggering using the keyboard and what shortcut is associated with them. Usually, this way they can learn not only about your main topic but also a handful of new and useful IDE features/keyboard shortcuts. And your talk is not constantly being interrupted by questions about actions and shortcuts you just used.</p>
+<p style="text-align: justify;">This is not only useful while presenting, but also when pair programming. This way your partner can keep track of your actions and maybe even learn a thing or two. Last but not least, using this plugin can help you to learn new shortcuts because it shows the shortcut info even for actions triggered by the mouse. That means that eventually, you will learn shortcuts for actions that you currently use only by mouse. However, you may consider using Key Promoter plugin for this scenario.</p>
+
+<h2>Keyboard shortcuts</h2>
+<p style="text-align: justify;">Both the Presentation and Distraction free modes have no keyboard shortcuts associated by default. By default, they are only accessible from <em>View→ Enter Presentation Mode</em> and <em>View→ Enter Distraction Mode</em>. You can, however, assign custom shortcuts to these actions as usual.</p>
+<p style="text-align: justify;">Alternatively, you can use Quick Switch Theme action (Ctrl + ` or ⌃ + ` on Mac) and Then press 4 (View Mode). From the subsequent popup menu, you can pick either Presentation or Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel or color schemes.</p>
+<img class="size-full wp-image-955 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/Quick-Switch-Theme.gif" alt="" width="958" height="300" />
+<h2>Conclusion</h2>
+<p style="text-align: justify;">The regular Presentation mode offers a good tool for presentations with one big screen. For webinars and other situations, where each viewer has their own screen, it may be better to use Distraction Free Mode, where the font size is not changed, therefore the viewers can see more code at once, so it offers more context. This way you are always ready for these two possibilities without the need to manually alter font size in the settings before each presentation. In either case, it is really handy to use Presentation Assistant plugin, which lets your viewers clearly see all the actions and keyboard shortcuts performed.</p>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>935</wp:post_id>
+    <wp:post_date><![CDATA[2017-07-12 19:02:18]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-07-12 17:02:18]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[intellij-idea-tips-tricks-presentations]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="intellij-idea"><![CDATA[Intellij IDEA]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[30]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[11]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1499973221;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:913;}i:1;a:1:{s:2:"id";i:357;}i:2;a:1:{s:2:"id";i:236;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[936]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[IntelliJ IDEA Tips & Tricks: Presentations]]></wp:meta_value>
+    </wp:postmeta>
+</item>

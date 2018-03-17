@@ -1,0 +1,1 @@
+pandoc avoid-utility-classes.html --standalone --from=html --to=markdown --output=avoid-utility-classes.md --wrap=none

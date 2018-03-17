@@ -1,0 +1,1 @@
+pandoc chrome-coverage.html --standalone --from=html --to=markdown --output=chrome-coverage.md --wrap=none

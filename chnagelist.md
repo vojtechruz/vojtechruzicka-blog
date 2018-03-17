@@ -117,3 +117,9 @@ added custom theme
 - fixed PWA manifest, added bigger icons
 - Fixed issue with missing array key and added language attribute to html
 - added meta description to blog posts
+
+17.3.
+- fixed comments
+- fixed broken meta description
+- fixed low res singleton image
+- added backup files

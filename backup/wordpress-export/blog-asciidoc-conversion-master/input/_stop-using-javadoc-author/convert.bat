@@ -1,0 +1,1 @@
+pandoc stop-using-javadoc-author.html --standalone --from=html --to=markdown --output=stop-using-javadoc-author.md --wrap=none

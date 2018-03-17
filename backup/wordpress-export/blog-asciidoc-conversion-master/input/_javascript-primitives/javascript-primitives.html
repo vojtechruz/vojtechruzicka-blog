@@ -1,0 +1,208 @@
+<img class="aligncenter size-full wp-image-1485" src="http://vojtechruzicka.com/wp-content/uploads/2018/01/primitives.jpg" alt="" width="900" height="617" />
+<p style="text-align: justify;">What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them? <!--more--></p>
+
+<div>
+<h2>Primitives versus Objects</h2>
+<p style="text-align: justify;">Javascript offers six primitive types: number, string, boolean, undefined, null and symbol. Everything else is not a primitive. It is an object. Dates, arrays, functions, regular expressions – everything.</p>
+
+</div>
+<p style="text-align: justify;">A simple example of an object can be a plain object created by object literal like this:</p>
+
+<pre lang="javascript">{
+   firstName: 'John',
+   lastName: 'Doe'
+}
+</pre>
+<div style="text-align: justify;">Examples of primitives are 61, 'Kitty' or false.</div>
+<div></div>
+<div>
+<h3>Mutability</h3>
+<div style="text-align: justify;">In the example above, you can see that object is basically a collection of name-value pairs. You can change their values ('mutate' them, we say that objects are mutable) or you can even add your own new properties or remove existing ones.</div>
+</div>
+<div></div>
+<div>
+<pre>var john = {
+    firstName: 'John',
+    lastName: 'Doe'
+}
+
+john.lastName = 'Smith';
+john.age = 40;
+delete john.firstName;</pre>
+</div>
+<div></div>
+<p style="text-align: justify;">In contrast, the primitives are immutable, their value cannot be changed. You can, of course, reassign a variable with a new primitive, but the old one cannot be changed.</p>
+
+<div></div>
+<div>
+<h3>Comparison</h3>
+<p style="text-align: justify;">Primitives are compared by value, objects are compared by reference. What does it mean though? If you compare two primitives having the same value, they are considered equal.</p>
+
+<div>
+<div></div>
+<pre lang="javascript">42 === 42 //true
+'John' === 'John' //true
+</pre>
+<p style="text-align: justify;">However, when comparing two objects you need to be more careful. They are compared by their identity. That means it does not matter if the two objects have same properties with the same values. they are equal only if they are the same instance. That is – if comparing two variables, they are equal only if they point to the very same object.</p>
+
+<pre lang="javascript">var john = {name: 'John', name: 'Doe'};
+var stillJohn = john;
+var evilTwin = {name: 'John', name: 'Doe'};
+
+john === john //true
+john === stillJohn //true
+john === evilTwin //false</pre>
+<p style="text-align: justify;">You can see that two variables can point to the same object. That is because variable containing object holds only a reference to that object. When you assign the reference to a new variable, now you have two variables holding the reference to the same object. That means changing properties of the object stored in either of the variables will affect them both. This does not apply to primitives as they are not using references, their value is copied instead every time. The bottom line is – be careful when passing your objects around – somebody else can change them and you will be affected. For more info check <a href="http://www.javascripttutorial.net/javascript-primitive-vs-reference-values">this tutorial</a>.</p>
+
+<h2>Primitive Types</h2>
+<div>
+<h3>String</h3>
+<p style="text-align: justify;">Strings are basically Unicode text, 16-bits per character. You may be surprised that string is actually primitive value as it is not that common. For example, Java has primitives as well, but String is not a primitive there. Another surprise may be that there is no type representing a single character like in many other languages. You just have to simply use a string with one char instead.</p>
+
+<div></div>
+</div>
+<div>
+<div>
+<h3>Number</h3>
+<p style="text-align: justify;">Unlike many other languages, JavaScript has just one type for representing numbers. That means no distinction between integer and decimal values, no distinction between signed and unsigned or single and double precision floating numbers. Javascript uses 64-bit floating point numbers.</p>
+
+</div>
+<p style="text-align: justify;">Except for regular numeric values, there are also some special values. There is NaN (Not a Number), which is a result of operations such as 0/0. Then there is Infinity, which can be both positive and negative. You can check for minimum and maximum values fo prevent overflow/underflow - <em>Number.MIN_VALUE</em> and <em>Number.MAX_VALUE</em>. And then, of course, there is +0 and -0 in Javascript (0 is just an alias for +0).</p>
+<p style="text-align: justify;">Be careful when working with NaN as this value behaves in an unexpected way – it is the only value in javascript that is not equal to itself, that means you cannot test that something is NaN by</p>
+
+<div>
+<pre lang="javascript">something === NaN //Does not work, always false
+NaN === NaN //false
+</pre>
+</div>
+<p style="text-align: justify;">You can use <a href="http://adripofjavascript.com/blog/drips/the-problem-with-testing-for-nan-in-javascript.html">isNaN or Number.IsNaN</a> (ES6+) instead of direct comparison.</p>
+
+<div></div>
+<div>
+<h3>Boolean</h3>
+<p style="text-align: justify;">Boolean type contains just two values – <em>true</em> and <em>false</em>.</p>
+
+<h3>Symbol</h3>
+<p style="text-align: justify;">This is a new primitive type introduced in ES6. There is no symbol literal, so all the symbols need to be created using <em>Symbol()</em> function. Each symbol is unique, which makes them ideal for use as object properties to avoid clashes. Or in other cases where you need to have unique values. For more info see <a href="http://exploringjs.com/es6/ch_symbols.html">this post</a>.</p>
+
+<div></div>
+</div>
+<div>
+<div>
+<h3>Null &amp; Undefined</h3>
+<p style="text-align: justify;">Both <em>null</em> and <em>undefined</em> are primitive types representing the absence of value. Null is usually explicitly returned and assigned and because of this it generally represents that the value is intentionally missing. The undefined, on the other hand, means that the value does not exist in cases, such as:</p>
+
+</div>
+<div>
+<ol>
+ 	<li>A variable was declared but not initialized</li>
+ 	<li>Return value of methods that do not return anything</li>
+ 	<li>Value of function parameters when called did not provide value</li>
+ 	<li>Accessing a property of an object which does not exist</li>
+</ol>
+<div style="text-align: justify;"></div>
+</div>
+<p style="text-align: justify;">One caveat to watch for and which is confusing is that even though null is a primitive, calling <em>typeof null </em><a href="https://stackoverflow.com/q/18808226/4560142">returns <em>object</em></a>. In contrast typeof undefined returns undefined.</p>
+
+<div></div>
+</div>
+</div>
+<div>
+<h2>Object Wrappers</h2>
+<p style="text-align: justify;">Alright, we know that objects have properties, which you can access using a dot. Like <em>person.name = 'john'</em>. Primitives don’t have anything like that, they are just a single value. And strings are primitives. How come that the following will work then?</p>
+
+<div></div>
+</div>
+<pre lang="javascript">var name = 'John';
+console.log(name.length); //prints 4
+console.log(name.toUpperCase()); //prints JOHN
+</pre>
+<p style="text-align: justify;">String are not objects, you can try it by using:</p>
+
+<pre lang="javascript">typeof 'John' //string
+</pre>
+<p style="text-align: justify;">Turns out that for certain primitives (number, boolean, string) JavaScript offers Wrapper objects, which can be used when an object is needed and provide some extra convenience methods. So what happens in the example above:</p>
+
+<ol>
+ 	<li>Javascript detects that you are trying to access a property of a string primitive.</li>
+ 	<li>It creates a wrapper object String to wrap the original string primitive.</li>
+ 	<li>It accesses the length and toUpperCase on the wrapper object instead of the original primitive.</li>
+ 	<li>It discards the wrapper object, frees the memory and continues.</li>
+</ol>
+<p style="text-align: justify;">This way you can use all the helpful methods on strings to make a substring, convert it to lowercase, split it and so on. Note that primitives are immutable so all these methods just return a new instance of the string and don't modify the original.</p>
+
+<h3>Manually creating wrappers</h3>
+<p style="text-align: justify;">In the example above, JavaScript creates wrapper objects automatically under the hood. There is also a way to create such objects explicitly.</p>
+
+<pre lang="javascript">new Number(4)
+new String('Hi')
+new Boolean(true)
+</pre>
+<p style="text-align: justify;">These are not primitives anymore, but objects, which contain the primitive value and add some extra goodies.</p>
+
+<pre lang="javascript">typeof 4 //number
+typeof 'Hi' //string
+typeof true //boolean
+
+typeof new Number(4) //object
+typeof new String('Hi') //object
+typeof new Boolean(true) //object
+</pre>
+<p style="text-align: justify;">This has some serious implications. You cannot really compare wrapper objects and primitives:</p>
+
+<pre lang="javascript">'Hi' === new String('Hi') //false</pre>
+<p style="text-align: justify;">Also, be aware that objects are considered truthy, that means that you need to watch for this:</p>
+
+<pre lang="javascript">if (false) {
+    //This does not execute
+}
+
+if (new Boolean(false)) {
+    //This executes
+}
+</pre>
+<p style="text-align: justify;">Because of this, explicitly creating wrappers using the <em>new</em> operator is considered a bad practice. On the other hand, calling the function without the <em>new</em> operator is perfectly valid as it just tries to convert the input into the corresponding primitive type and returns a primitive value.</p>
+
+<pre lang="javascript">typeof new Number('42') //object, not recommended
+typeof Number('42') //number, safe
+</pre>
+<h2>valueOf and toString</h2>
+<div>
+<p style="text-align: justify;">When you are working with objects, there are some cases when you would rather need a primitive representation of the object. Actually, javascript offers two methods for it which each object inherits:</p>
+
+</div>
+<div>
+<ul>
+ 	<li>valueOf() returns primitive representation of the object</li>
+ 	<li>toString() returns string representation of the object</li>
+</ul>
+<p style="text-align: justify;">A good example can be Date. <em>toString()</em> returns a human-readable description of the date, while <em>valueOf()</em> returns a number representing the date as the number of passed milliseconds since 1 January 1970 00:00:00 UTC and the date.</p>
+
+<pre lang="javascript">var date = new Date();
+console.log(date.toString()); //Wed Jan 24 2018 14:12:07 GMT+0100 (Central Europe Standard Time)
+console.log(date.valueOf()); //1516817671281
+</pre>
+<p style="text-align: justify;">You rarely need to call <em>valueOf()</em> yourself, but javascript does it under the hood when a primitive is expected, for example when using + operator. You can even define your own implementation of <em>valueOf()</em> and <em>toString()</em>:</p>
+
+<pre lang="javascript">var john = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 45,
+    valueOf: function () {
+        return this.age;
+    },
+    toString: function () {
+        return `${this.firstName} ${this.lastName}, ${this.age}`
+    }
+}
+
+console.log(john.toString()) //John Doe, 45
+console.log(john + 1) //46
+
+</pre>
+<h2>Summary</h2>
+<p style="text-align: justify;">Javascript provides six primitive types – number, boolean, string, null, undefined and symbol. Primitives are immutable and are compared by value. When needed, Javascript wraps a primitive by an object wrapper. It is not recommended to create these wrappers explicitly. If the conversion needs to be done the other way around – from an object to a prototype, the <em>valueOf</em> method is called to obtain a primitive value. You can use your own implementation of <em>valueOf</em>.</p>
+
+</div>
+</div>
+</div>

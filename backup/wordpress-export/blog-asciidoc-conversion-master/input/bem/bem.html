@@ -1,0 +1,73 @@
+<p style="text-align: justify;"><img class="alignleft wp-image-787" src="http://vojtechruzicka.com/wp-content/uploads/2017/03/BEM.png" alt="" width="166" height="166" />BEM is a lightweight front-end development methodology which makes your code more flexible, modular and reusable.</p>
+<!--more-->
+<h2>What is BEM?</h2>
+<p style="text-align: justify;">Block Element Modifier is not a framework, it is a methodology. It was originally introduced by Yandex. The Core of this methodology is a simple naming convention - the structure of the page is divided into three types of building blocks - blocks, elements and modifiers. These days people usually use just the HTML/CSS naming convention, but originally the methodology was much broader. It covers Javascript, project file structure and generation of HTML from BEM tree templates. This article focuses just on the HTML/CSS part.</p>
+
+<h3>Block</h3>
+<p style="text-align: justify;">A Block represents a standalone reusable entity, which usually contains other blocks and/or elements.</p>
+
+<h3>Element</h3>
+<p style="text-align: justify;">An Element is not a standalone entity and can be used only inside of a block. It is tied to its parent block and has no meaning on its own.</p>
+
+<h3>Modifier</h3>
+<p style="text-align: justify;">A Modifier is a flag, which is used on blocks and elements. It represents a state or variation of blocks and elements. With a modifier you can for example mark that element is disabled, smaller or larger than usual, selected, hovered etc.</p>
+
+<h2>Example</h2>
+<img class="alignleft size-full wp-image-793" src="http://vojtechruzicka.com/wp-content/uploads/2017/03/bem-block-element-modifier.png" alt="" width="1912" height="584" />
+<p style="text-align: justify;">In the image above, blocks are marked by green, elements by red and modifiers by blue. You can see that elements are only inside blocks, not standalone. Both main navigation items and follow buttons make sense only within their respective blocks. Blocks, such as links, can be used on their own. You can see, that blocks can be nested - "post-preview" block contains several "link" blocks. Both of these block types can be used on their own. Modifiers add additional variants such as that some links are bigger (preview post heading), navigation item of current section is highlighted or social follow buttons are blue on mouse over.</p>
+
+<h2 style="text-align: justify;">Naming</h2>
+<p style="text-align: justify;">All the HTML elements are marked just by class. In CSS, you can reference just class, no HTML tags, no IDs.</p>
+<p style="text-align: justify;">Blocks are named as usual by CSS class. For example - "main-navigation".</p>
+<p style="text-align: justify;">Element's class also contains the name of the block. Block name is first, then two underscores (__) and then element's name. For example "main-navigation__navigation item".</p>
+<p style="text-align: justify;">The Modifier is appended to the block's or element's name with two hyphens (--). For example "main-navigation__navigation item--active" or "link--large".</p>
+<p style="text-align: justify;">Note that there is no nesting. Every item contains all the necessary information - that is - element in its class name contains its parent block's name and even the modifier.</p>
+
+<h2>Advantages</h2>
+<h3>Performance</h3>
+<p style="text-align: justify;">When using BEM, all the CSS selector are flat. There are no descendant selectors (such as ".header .nav .nav-item"), which are way more expensive to calculate. Because of that, the page should be rendered as fast as possible.</p>
+
+<h3>Readability</h3>
+<p style="text-align: justify;">When examining an element or a block, you get all the required information directly from the HTML element. You can immediately tell to which block the element belongs and which modifier it has. And you can immediately search for corresponding CSS block related to it. You don't need to investigate whether this element behaves differently based on the context in which it is present. No need to check the whole cascade for hidden dependencies.</p>
+
+<h3>Selector Specificity</h3>
+<p style="text-align: justify;">Because all the CSS selectors are flat and only ".class" selector is used, everything is kept simple and there is no need to struggle with <a href="https://css-tricks.com/specifics-on-css-specificity/">selector specificity issues</a>.</p>
+
+<h3>Flexibility</h3>
+<p style="text-align: justify;">Because each block is completely independent, you can move them around without worrying that something would break up - eg. styles getting screwed because the rule was taking into account moved block's parent or a specific position in the DOM.</p>
+<p style="text-align: justify;">Furthermore, you can safely duplicate a block, which was originally intended to be "singleton". BEM uses only classes, so you don't need to worry about any selector pointing to ID or that you will suddenly have multiple occurrences of the same ID on the page.</p>
+<p style="text-align: justify;">Because BEM uses only classes and does not allow any selectors tied to specific HTML tags (anchors, tables, ...), you can safely change tags without breaking anything. This gives you much more flexibility and freedom for refactoring. What's more, it gives you the confidence to refactor. Without it, large applications with a lot of  CSS tend to rot, because you can't be really sure that you will not break something with your changes without even noticing it.</p>
+
+<h3>Unified naming</h3>
+<p style="text-align: justify;">There is a methodology for unified naming of blocks, elements and modifiers. It makes the communication among the team members much easier. With unique identifiers, you can point to specific parts of the page in a much simpler manner without ambiguity.</p>
+
+<h3 style="text-align: justify;">Simplicity</h3>
+<p style="text-align: justify;">While there are other approaches to HTML/CSS naming conventions and methodologies, this one is very simple. There are just three types of entities with a few simple rules and simple, unambiguous naming (block, element, modifier), which makes the terminology immediately obvious. It is very easy to learn and adopt this methodology, unlike some others.</p>
+
+<h2>BEM + SASS</h2>
+Using SASS CSS Preprocessor, you can achieve logical nesting of blocks and elements in you SCSS files, while generated output will be still flat. You can use the  "&amp;" feature, which represents parent CSS selector when nesting.
+<pre lang="css">.block {
+
+    //Block specific CSS here
+
+    &__element {
+
+        //Element specific css here
+
+        &--modifier {
+            // Element with modifier specific CSS here
+        }
+    }
+}</pre>
+<p style="text-align: justify;">While this approach helps you to have better-structured CSS code, it has some disadvantages too. You cannot simply search your project for CSS class of an element or nested block, because it is constructed when compiling and is not present in your source SCSS in the same form as it is in your HTML. This makes navigating to corresponding SASS code harder, not to mention automatic renaming by your IDE when refactoring class names.</p>
+<p style="text-align: justify;">Alternatively, you can check <a href="https://github.com/jsng/bem-sass">BEM-SASS library</a>, which provides some mixins to make SASS integration easier.</p>
+
+<h2>Alternatives</h2>
+<p style="text-align: justify;">BEM is not the only CSS methodology out there. Examples of some other very popular ones are <a href="https://smacss.com/">Scalable and Modular Architecture for CSS (SMACSS)</a> or <a href="https://github.com/stubbornella/oocss/wiki">Object Oriented CSS</a>.</p>
+
+<h2>Further Reading</h2>
+<ul>
+ 	<li><a href="http://getbem.com/">Official BEM Site</a></li>
+ 	<li><a href="http://A New Front-End Methodology: BEM">A New Front-End Methodology: BEM</a></li>
+ 	<li><a href="https://www.smashingmagazine.com/2013/02/the-history-of-the-bem-methodology/">The Evolution Of The BEM Methodology</a></li>
+</ul>

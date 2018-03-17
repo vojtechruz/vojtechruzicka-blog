@@ -1,0 +1,415 @@
+<item>
+    <title>Measuring Javascript and CSS coverage with Google Chrome Developer Tools</title>
+    <link>http://vojtechruzicka.com/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools/</link>
+    <pubDate>Thu, 27 Jul 2017 11:46:54 +0000</pubDate>
+    <dc:creator><![CDATA[vojtechruzicka]]></dc:creator>
+    <guid isPermaLink="false">http://vojtechruzicka.com/?p=959</guid>
+    <description></description>
+    <content:encoded><![CDATA[<img class="wp-image-984 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/Google_Chrome_for_Android_Icon_2016.svg_.png" alt="" width="170" height="170" />
+<p style="text-align: justify;">A new feature in Google Chrome Developer Tools allows you to measure coverage of CSS and Javascript files. This allows you to easily detect and remove unused portions of the code.</p>
+<!--more-->
+<h2>Why is it useful</h2>
+<p style="text-align: justify;">This feature was added in Google <a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes">Chrome 59</a> along with several other useful features such as full-page screenshots and blocking of requests. It allows you to record your session and when you are done, you can check which parts of your Javascript and CSS code were actually used during the session and which not. Each application usually accumulates a lot of JS and CSS code over time and a significant amount of it usually consists of code which is no longer used. Removing this dead code is important as it will speed up the loading times of your pages. What's more, your code will become less complex, which will make the maintenance and further development of your application easier and less painful.</p>
+
+<h2>Enabling Code Coverage</h2>
+<p style="text-align: justify;">Code coverage is measured on a Coverage tab in Developer Tools. To open Dev Tools press <em>⌘+</em>⌥<em>+I</em> (Mac) or<em> Control+Shift+I</em> (Windows, Linux). After this, you can access the Coverage from the Command Menu:<em>⌘+⇧+P</em> (Mac) or<em> Ctrl+Shift+P</em> (Windows, Linux) and then typing <em>Show Coverage</em>.</p>
+<img class="size-full wp-image-963 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/show-coverage.gif" alt="" width="640" height="320" />
+<p style="text-align: justify;">Alternatively, you can show the <em>Coverage</em> tab from Dev Tools menu by choosing <em>More tools → Coverage</em>.</p>
+<img class="size-full wp-image-961 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/enable-code-coverage.png" alt="" width="746" height="730" />
+<p style="text-align: justify;">When you manage to open the coverage tab, it will look like this:</p>
+<img class="size-full wp-image-966 aligncenter" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/coverage-tab.png" alt="" width="1282" height="426" />
+<h2>Capturing Code Coverage</h2>
+<p style="text-align: justify;">After opening the <em>Coverage</em> tab, you just need to press the record button (<em>Instrument Coverage</em>). Then you start to execute the desired use case. That is - you start to navigate the application, click buttons, fill forms and such. When you are finished you just press the button again to stop recording and show the coverage results. This is an example of  coverage results from browsing stackoverflow.com:</p>
+<img class="aligncenter size-full wp-image-968" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/stack-overflow-coverage.png" alt="" width="1438" height="632" />
+<p style="text-align: justify;">As you can see the table shows all the JS and CSS files which were downloaded during my session there. Each file contains information how big portion of the file was actually used in my session - both as percentage and size in bytes. On the very bottom in the status bar, there is a summary. You can tell that whole 83% was not used, that is 795 KB.</p>
+<p style="text-align: justify;">This is a nice overview, but you can actually display a per-line report of each of these files by double-clicking a row in the summary table:</p>
+<img class="wp-image-972 alignnone" src="http://vojtechruzicka.com/wp-content/uploads/2017/07/per-line-coverage-300x272.png" alt="" width="400" height="363" />
+<p style="text-align: justify;">Green lines mean that the code on the line was executed fully, red lines were not used during the recording session at all. Red/green lines were executed partially - only some fraction of the code was used, but not all.</p>
+
+<h2>Dynamic coverage</h2>
+<p style="text-align: justify;">When using the coverage feature you need to be careful not to jump to conclusions too quickly. Coverage data shown is gathered dynamically based on your behavior and actions in your application. That means it is gathered and computed only based on actions you actually performed during your recorded session. Many elements on the page are usually rendered dynamically only under certain conditions. Some of them may be rendered only in certain corner cases which rarely occur and which you did not encounter while recording the session. Such code would be marked as unused, but you cannot really remove it as it would be missing in some scenarios. Always be careful when removing portions of code that you consider unused as it always does not have to be the case.</p>
+
+<h2>Conclusion</h2>
+<p style="text-align: justify;">Google Chrome's new feature adds integrated support for calculating dynamic code coverage for Javascript and CSS files, which can be used to detect unused code or code which is used just in some specific scenarios. Such code is a good candidate for removal or Lazy Loading, where you can greatly speed up initial load time for your application.</p>]]></content:encoded>
+    <excerpt:encoded><![CDATA[]]></excerpt:encoded>
+    <wp:post_id>959</wp:post_id>
+    <wp:post_date><![CDATA[2017-07-27 13:46:54]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2017-07-27 11:46:54]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[open]]></wp:ping_status>
+    <wp:post_name><![CDATA[measuring-javascript-and-css-coverage-with-google-chrome-developer-tools]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_parent>0</wp:post_parent>
+    <wp:menu_order>0</wp:menu_order>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <wp:post_password><![CDATA[]]></wp:post_password>
+    <wp:is_sticky>0</wp:is_sticky>
+    <category domain="category" nicename="uncategorized"><![CDATA[Uncategorized]]></category>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_content_score]]></wp:meta_key>
+        <wp:meta_value><![CDATA[60]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_edit_last]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_primary_category]]></wp:meta_key>
+        <wp:meta_value><![CDATA[]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_jetpack_related_posts_cache]]></wp:meta_key>
+        <wp:meta_value><![CDATA[a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1518068127;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:1466;}i:1;a:1:{s:2:"id";i:1268;}i:2;a:1:{s:2:"id";i:786;}}}}]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_yoast_wpseo_title]]></wp:meta_key>
+        <wp:meta_value><![CDATA[Measuring Javascript and CSS coverage with Google Chrome Developer Tools]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_wpas_done_all]]></wp:meta_key>
+        <wp:meta_value><![CDATA[1]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:postmeta>
+        <wp:meta_key><![CDATA[_thumbnail_id]]></wp:meta_key>
+        <wp:meta_value><![CDATA[984]]></wp:meta_value>
+    </wp:postmeta>
+    <wp:comment>
+        <wp:comment_id>221</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[213.220.217.109]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-11-19 14:44:36]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-11-19 13:44:36]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[You can undock the whole dev tools into a separate window as usual. However, what you cannot do as far as I know is to separate coverage sub-window into a separate window. Is this what you meant?]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>220</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1511099076.5599710941314697265625;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[jetpack]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>174</wp:comment_id>
+        <wp:comment_author><![CDATA[shar]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[sharanya.raju@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[57.96.7.78]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-08-29 11:41:46]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-08-29 09:41:46]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Is there any way to download/save/export the coverage report?]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1503999706.8993740081787109375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1504106458.1262800693511962890625;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>175</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[31.30.35.202]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-08-30 17:25:12]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-08-30 15:25:12]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[It would be really useful. I was trying to find if it is possible, however I was not able to find a way. Might be added in future releases though.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>174</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[jetpack]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1504106712.6172549724578857421875;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>201</wp:comment_id>
+        <wp:comment_author><![CDATA[kapil agarwal]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[kagarwal29@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/114018915137322148553</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[52.95.75.0]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-10-06 14:08:31]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-10-06 12:08:31]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hey,
+
+Did you find any way to download or export the coverage report ? I really need this coverage report on my system.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>175</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1507570669.07310390472412109375;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1507291711.385962009429931640625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>204</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[213.220.217.109]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-10-09 19:38:54]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-10-09 17:38:54]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[No luck, unfortunatelly. If you find a way, be sure to share it here :)]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>201</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1507570734.576641082763671875;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_post_as]]></wp:meta_key>
+            <wp:meta_value><![CDATA[jetpack]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_avatar]]></wp:meta_key>
+            <wp:meta_value><![CDATA[https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[hc_foreign_user_id]]></wp:meta_key>
+            <wp:meta_value><![CDATA[1]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>220</wp:comment_id>
+        <wp:comment_author><![CDATA[Arno]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[acerunyan@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[141.206.246.10]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2017-11-17 19:06:19]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2017-11-17 18:06:19]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[would be cool if capturing works in a separated dev tool window]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1511098932.530867099761962890625;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1510941979.82275295257568359375;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>279</wp:comment_id>
+        <wp:comment_author><![CDATA[Fasil kk]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[kk.fasil2@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>https://plus.google.com/114305573046765653836</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[137.97.183.32]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-04 12:03:08]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-04 11:03:08]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[How to record find unused css in multiple pages. ? Tried all the ways not working.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1517742188.8315680027008056640625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1518024960.905323028564453125;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>266</wp:comment_id>
+        <wp:comment_author><![CDATA[Matthias Kupperschmidt]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[matthias.kupperschmidt@resolutionmedia.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[93.178.178.26]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-01-26 16:09:16]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-01-26 15:09:16]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hey,
+
+did you find a way to download only the used lines meanwhile? :)
+
+Greets from Copenhagen,]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>204</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1517137851.631472110748291015625;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1516979356.5073969364166259765625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>267</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[213.220.217.109]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-01-28 12:11:52]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-01-28 11:11:52]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hi :) Sorry, I'm afraid not.]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>266</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1517137912.07194995880126953125;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>275</wp:comment_id>
+        <wp:comment_author><![CDATA[Dmytro]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[povesma@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[91.199.119.247]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-01 16:43:07]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-01 15:43:07]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hi Vojtech, thanks for article!
+Is there any way how to get code coverage info programmatically? Is there any API?
+For instance, when using headless Chrome or Google Lighthouse]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>0</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1517499787.66384601593017578125;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1517514480.3113129138946533203125;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>276</wp:comment_id>
+        <wp:comment_author><![CDATA[Vojtech Ruzicka]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[vojtech.ruz@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url>http://vojtechruzicka.com</wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[213.220.217.109]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-01 20:49:29]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-01 19:49:29]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[Hi. As far as I know, there is currently no way to retrieve programmatically coverage data through API. Let's hope it will be included in a future release. :)]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>275</wp:comment_parent>
+        <wp:comment_user_id>1</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1517514569.11050510406494140625;s:5:"event";s:9:"check-ham";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+    <wp:comment>
+        <wp:comment_id>277</wp:comment_id>
+        <wp:comment_author><![CDATA[Dmytro Povesma]]></wp:comment_author>
+        <wp:comment_author_email><![CDATA[povesma@gmail.com]]></wp:comment_author_email>
+        <wp:comment_author_url></wp:comment_author_url>
+        <wp:comment_author_IP><![CDATA[213.57.61.152]]></wp:comment_author_IP>
+        <wp:comment_date><![CDATA[2018-02-02 07:25:37]]></wp:comment_date>
+        <wp:comment_date_gmt><![CDATA[2018-02-02 06:25:37]]></wp:comment_date_gmt>
+        <wp:comment_content><![CDATA[What about
+https://chromedevtools.github.io/devtools-protocol/tot/Profiler
+
+Can it help somehow?]]></wp:comment_content>
+        <wp:comment_approved><![CDATA[1]]></wp:comment_approved>
+        <wp:comment_type><![CDATA[]]></wp:comment_type>
+        <wp:comment_parent>276</wp:comment_parent>
+        <wp:comment_user_id>0</wp:comment_user_id>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:3:{s:4:"time";d:1517651221.21549701690673828125;s:5:"event";s:15:"status-approved";s:4:"user";s:14:"vojtechruzicka";}]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_result]]></wp:meta_key>
+            <wp:meta_value><![CDATA[false]]></wp:meta_value>
+        </wp:commentmeta>
+        <wp:commentmeta>
+            <wp:meta_key><![CDATA[akismet_history]]></wp:meta_key>
+            <wp:meta_value><![CDATA[a:2:{s:4:"time";d:1517552737.38523101806640625;s:5:"event";s:9:"check-ham";}]]></wp:meta_value>
+        </wp:commentmeta>
+    </wp:comment>
+</item>
