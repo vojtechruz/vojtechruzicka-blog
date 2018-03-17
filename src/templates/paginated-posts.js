@@ -10,6 +10,7 @@ import Tags from "../components/Tags";
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
+    const siteDescription = get(this, 'props.data.site.siteMetadata.description')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const pagesTotal = get(this, 'props.pathContext.pagesTotal')
     const currentPage = get(this, 'props.pathContext.currentPage')
@@ -43,7 +44,9 @@ class BlogIndex extends React.Component {
 
     return (
       <div>
-        <Helmet title={siteTitle} />
+          <Helmet title={siteTitle}>
+              <meta name="description" content={siteDescription} />
+          </Helmet>
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
           return (
@@ -86,6 +89,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(

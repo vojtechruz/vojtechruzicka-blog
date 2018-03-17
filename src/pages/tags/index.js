@@ -9,10 +9,12 @@ import Helmet from "react-helmet";
 import Link from "gatsby-link";
 
 const TagsPage = ({
-                      data: { allMarkdownRemark: { group }, site: { siteMetadata: { title } } },
+                      data: { allMarkdownRemark: { group }, site: { siteMetadata: { title, description } } },
                   }) => (
     <div>
-        <Helmet title={title} />
+        <Helmet title={`Tags | ${title}`}>
+            <meta name="description" content={description} />
+        </Helmet>
         <div>
             <h1>Tags</h1>
             <ul>
@@ -56,6 +58,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(

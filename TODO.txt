@@ -1,9 +1,7 @@
 - 404 page
 - 2x declared feed plugin with rss.xml and feed ????
 - add read more link to excerpt???
-
 - decrease h1 fontsize
-- google chrome logo in coverage is low res
 - archives links to proper archive page not tags
 -verify RSS is still working
 -RSS does not show featured images in feedly
