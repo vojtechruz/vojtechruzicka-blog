@@ -4,7 +4,7 @@ date: "2018-01-31T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-primitives'
 featuredImage: './primitives.jpg'
-disqusArticleIdentifier: 
+disqusArticleIdentifier: '1511 http://vojtechruzicka.com/?p=1511'
 ---
 
 What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?

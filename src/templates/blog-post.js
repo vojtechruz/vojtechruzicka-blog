@@ -50,7 +50,6 @@ class BlogPostTemplate extends React.Component {
               <ul>
                   {
                       relatedPosts.map((post, index) => {
-                          console.log(JSON.stringify(post.node.frontmatter))
                           return <li key={post.node.frontmatter.path}><Link to={post.node.frontmatter.path}>{post.node.frontmatter.title}</Link></li>;
                       })
                   }
@@ -168,6 +167,7 @@ export const pageQuery = graphql`
                 }
             }
         }
+        disqusArticleIdentifier
       }
     }
   }

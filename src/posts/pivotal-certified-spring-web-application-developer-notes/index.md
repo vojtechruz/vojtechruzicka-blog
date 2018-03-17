@@ -4,7 +4,7 @@ date: "2016-08-22T22:12:03.284Z"
 tags: ['Java', 'Spring', 'Career']
 path: '/pivotal-certified-spring-web-application-developer-notes'
 featuredImage: './spring-web.jpg'
-disqusArticleIdentifier: 
+disqusArticleIdentifier: '499 http://vojtechruzicka.com/?p=499'
 ---
 
 Study materials and an exam review for Pivotal Certified Spring Web Application Developer Exam 4.2, with flash-cards and study notes.

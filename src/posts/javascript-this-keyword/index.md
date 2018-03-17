@@ -4,7 +4,7 @@ date: "2018-02-13T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-this-keyword'
 featuredImage: './javascript-this.jpg'
-disqusArticleIdentifier: 
+disqusArticleIdentifier: '1592 http://vojtechruzicka.com/?p=1592'
 ---
 
 'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
@@ -111,7 +111,7 @@ greetingFunction(); // Hi! My name is undefined
 In constructor functions
 ------------------------
 
-When you are using [constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constuctor-functions-and-new-operator/), *this* behaves a bit differently than usual. In short, what *new* operator does is that:
+When you are using [constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constructor-functions-and-new-operator/), *this* behaves a bit differently than usual. In short, what *new* operator does is that:
 
 1.  It creates a new blank object.
 2.  It makes *this* to point to this newly created object inside the constructor function
