@@ -28,6 +28,23 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.tag-links {
+  li {
+    display: inline;
+    margin-right: 0.65rem;
+  }
+
+  margin-bottom: 1.1rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.tag-count {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
 .about-page {
   ul {
     list-style: none;
@@ -197,6 +214,10 @@ li {
     font-weight: 500
   }
 
+}
+
+h1 {
+  //font-size: 2rem;
 }
 
 @media only screen and (max-width: 40em) {

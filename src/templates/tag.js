@@ -19,7 +19,12 @@ const Tag = ({ pathContext, data }) => {
             <Helmet title={`${tag} | ${siteTitle}`}>
                 <meta name="description" content={siteDescription} />
             </Helmet>
-            <h1>{tagHeader}</h1>
+            <h1>{tag}</h1>
+            <ul className='tag-links'>
+                <li><Link to="/tags">All tags</Link></li>
+                <li><Link to="/archives">Archives</Link></li>
+            </ul>
+            <div className="tag-count">{tagHeader}</div>
             <ul>
                 {edges.map(({ node }) => {
                     const { path, title } = node.frontmatter;
@@ -30,7 +35,6 @@ const Tag = ({ pathContext, data }) => {
                     );
                 })}
             </ul>
-            <Link to="/tags">All tags</Link>
         </div>
     );
 };

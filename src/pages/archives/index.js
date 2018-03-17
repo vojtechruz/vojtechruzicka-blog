@@ -3,11 +3,11 @@ import kebabCase from "lodash/kebabCase";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
 
-const TagsPage = ({
+const ArchivesPage = ({
                       data: { allMarkdownRemark: { group }, site: { siteMetadata: { title, description } } },
                   }) => (
     <div>
-        <Helmet title={`Tags | ${title}`}>
+        <Helmet title={`Archives | ${title}`}>
             <meta name="description" content={description} />
         </Helmet>
         <div>
@@ -28,10 +28,10 @@ const TagsPage = ({
     </div>
 );
 
-export default TagsPage;
+export default ArchivesPage;
 
 export const pageQuery = graphql`
-  query TagsQuery {
+  query ArchivesQuery {
     site {
       siteMetadata {
         title

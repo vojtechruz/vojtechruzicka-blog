@@ -18,7 +18,7 @@ class Navigation extends React.Component {
                         <div className="blog-name"><Link to="/">Vojtech Ruzicka's Programming Blog</Link></div>
                         <div className="menu-items">
                             <Link to="/">Home</Link>
-                            <Link to="/tags">Archives</Link>
+                            <Link to="/archives">Archives</Link>
                             <Link to="/about">About me</Link>
                         </div>
                     </div>

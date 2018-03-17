@@ -7,6 +7,8 @@ Bootstrap.overrideThemeStyles = () => ({
   },
 })
 
+Bootstrap.scaleRatio = 1.75;
+
 const typography = new Typography(Bootstrap)
 
 // Hot reload typography in development.

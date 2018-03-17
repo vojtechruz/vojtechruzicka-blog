@@ -123,3 +123,6 @@ added custom theme
 - fixed broken meta description
 - fixed low res singleton image
 - added backup files
+- added title and description for each page
+-separated tags and archives pages. 
+- Decreased headings font size
