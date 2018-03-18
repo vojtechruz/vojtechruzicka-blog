@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "disqus-react": "^1.0.5",
-    "gatsby": "^1.9.233",
+    "gatsby": "^1.9.236",
     "gatsby-image": "^1.0.42",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-favicon": "^2.1.1",
@@ -17,7 +17,7 @@
     "gatsby-plugin-manifest": "^1.0.15",
     "gatsby-plugin-offline": "^1.0.15",
     "gatsby-plugin-react-helmet": "^2.0.8",
-    "gatsby-plugin-sass": "^1.0.21",
+    "gatsby-plugin-sass": "^1.0.23",
     "gatsby-plugin-sharp": "^1.6.41",
     "gatsby-plugin-typography": "^1.7.18",
     "gatsby-remark-copy-linked-files": "^1.5.30",
@@ -37,7 +37,7 @@
     "typography-theme-bootstrap": "^0.16.7"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.0",
     "eslint-plugin-react": "^7.7.0",
     "prettier": "^1.11.1"
   },
