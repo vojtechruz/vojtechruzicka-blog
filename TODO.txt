@@ -4,3 +4,10 @@
 -verify RSS is still working
 -RSS does not show featured images in feedly
  - comments not imported for field dependency injection
+
+Check social:
+ /root ok
+ /tag ok
+ /tags ok
+ /archive ok
+ /about
