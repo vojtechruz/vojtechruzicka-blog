@@ -75,8 +75,11 @@ module.exports = {
                                   description: edge.node.excerpt,
                                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                                  custom_namespaces: {
+                                      "webfeeds": "http://webfeeds.org/rss/1.0"
+                                  },
                                   custom_elements: [
-                                      { "content:encoded": edge.node.html},
+                                      { "content:encoded": "<img class='webfeedsFeaturedVisual' src='"+site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.sizes.originalImg+"' >"+edge.node.html},
                                       {"webfeeds:logo": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:icon": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:accentColor": "007acc"},
