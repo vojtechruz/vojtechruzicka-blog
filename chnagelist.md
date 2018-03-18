@@ -126,3 +126,4 @@ added custom theme
 - added title and description for each page
 -separated tags and archives pages. 
 - Decreased headings font size
+- added tags to the top of the post also
