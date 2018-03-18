@@ -130,4 +130,4 @@ added custom theme
 
 18.3.
 - updated blog description
-- added social cards info to non-post pages also
+- added social cards info to non-post pages also-0

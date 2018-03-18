@@ -51,6 +51,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
     allMarkdownRemark {
