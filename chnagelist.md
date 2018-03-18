@@ -127,3 +127,7 @@ added custom theme
 -separated tags and archives pages. 
 - Decreased headings font size
 - added tags to the top of the post also
+
+18.3.
+- updated blog description
+- added social cards info to non-post pages also

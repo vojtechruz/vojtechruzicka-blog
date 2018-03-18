@@ -3,7 +3,4 @@
 - add read more link to excerpt???
 -verify RSS is still working
 -RSS does not show featured images in feedly
-
-add opengraph and twitter metadata also to non-article pages
- (then blog type should be used on main page???)
  - comments not imported for field dependency injection
