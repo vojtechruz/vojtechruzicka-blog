@@ -34,8 +34,8 @@ const facebookIcon = <svg className="about-icon" xmlns="https://www.w3.org/2000/
 
                     <meta property="og:title" content={title} />
                     <meta property="og:description" content={siteDescription} />
-                    <meta property="og:image" content={profilePic} />
-                    <meta property="og:url" content={siteUrl+"/about"} />
+                    <meta property="og:image" content={siteUrl+profilePic} />
+                    <meta property="og:url" content={siteUrl+"/about/"} />
                     <meta property="og:site_name" content={siteTitle} />
                     <meta property="og:type" content="website" />
                     <meta property="fb:app_id" content="2072264049710958" />

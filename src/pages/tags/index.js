@@ -13,8 +13,8 @@ const TagsPage = ({
 
             <meta property="og:title" content={`Tags | ${title}`} />
             <meta property="og:description" content={description} />
-            <meta property="og:image" content={profilePic} />
-            <meta property="og:url" content={siteUrl+"/tags"} />
+            <meta property="og:image" content={siteUrl+profilePic} />
+            <meta property="og:url" content={siteUrl+"/tags/"} />
             <meta property="og:site_name" content={title} />
             <meta property="og:type" content="website" />
             <meta property="fb:app_id" content="2072264049710958" />
