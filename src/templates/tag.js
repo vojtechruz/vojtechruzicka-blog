@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import profilePic from '../components/profile.jpg'
+import profilePic from '../components/profile-big.jpg'
 import Link from "gatsby-link";
 import {Helmet} from "react-helmet";
 

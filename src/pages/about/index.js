@@ -1,7 +1,7 @@
 import React from 'react'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import profilePic from '../../components/profile.jpg'
+import profilePic from '../../components/profile-big.jpg'
 
 import { rhythm } from '../../utils/typography'
 

@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 
 import { rhythm } from '../utils/typography'
 import Tags from "../components/Tags";
-import profilePic from '../components/profile.jpg'
+import profilePic from '../components/profile-big.jpg'
 
 class BlogIndex extends React.Component {
   render() {

@@ -2,7 +2,7 @@ import React from "react";
 import kebabCase from "lodash/kebabCase";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
-import profilePic from '../../components/profile.jpg'
+import profilePic from '../../components/profile-big.jpg'
 
 const TagsPage = ({
                       data: { allMarkdownRemark: { group }, site: { siteMetadata: { title, description, siteUrl } } },
