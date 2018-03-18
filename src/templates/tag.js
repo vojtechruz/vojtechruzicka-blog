@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-// Components
+import profilePic from '../components/profile.jpg'
 import Link from "gatsby-link";
 import {Helmet} from "react-helmet";
 
@@ -10,14 +9,30 @@ const Tag = ({ pathContext, data }) => {
     const { edges, totalCount } = data.allMarkdownRemark;
     const siteTitle = data.site.siteMetadata.title;
     const siteDescription = data.site.siteMetadata.description;
+    const siteUrl = data.site.siteMetadata.siteUrl;
     const tagHeader = `${totalCount} post${
         totalCount === 1 ? "" : "s"
         } tagged with "${tag}"`;
+    const title = `${tag} | ${siteTitle}`;
 
     return (
         <div>
-            <Helmet title={`${tag} | ${siteTitle}`}>
+            <Helmet title={title}>
                 <meta name="description" content={siteDescription} />
+
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={siteDescription} />
+                <meta property="og:image" content={profilePic} />
+                <meta property="og:url" content={siteUrl+"/tags"+tag} />
+                <meta property="og:site_name" content={siteTitle} />
+                <meta property="og:type" content="website" />
+                <meta property="fb:app_id" content="2072264049710958" />
+
+                <meta name="twitter:creator" content="@vojtechruzicka" />
+                <meta name="twitter:site" content="@vojtechruzicka" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:description" content={siteDescription} />
             </Helmet>
             <h1>{tag}</h1>
             <ul className='tag-links'>
@@ -68,6 +83,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
     allMarkdownRemark(

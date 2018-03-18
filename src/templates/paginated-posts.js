@@ -6,11 +6,13 @@ import Img from 'gatsby-image'
 
 import { rhythm } from '../utils/typography'
 import Tags from "../components/Tags";
+import profilePic from '../components/profile.jpg'
 
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const siteDescription = get(this, 'props.data.site.siteMetadata.description')
+    const siteUrl = get(this, 'props.data.site.siteMetadata.siteUrl')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
     const pagesTotal = get(this, 'props.pathContext.pagesTotal')
     const currentPage = get(this, 'props.pathContext.currentPage')
@@ -46,6 +48,20 @@ class BlogIndex extends React.Component {
       <div>
           <Helmet title={siteTitle}>
               <meta name="description" content={siteDescription} />
+
+              <meta property="og:title" content={siteTitle} />
+              <meta property="og:description" content={siteDescription} />
+              <meta property="og:image" content={profilePic} />
+              <meta property="og:url" content={siteUrl} />
+              <meta property="og:site_name" content={siteTitle} />
+              <meta property="og:type" content="website" />
+              <meta property="fb:app_id" content="2072264049710958" />
+
+              <meta name="twitter:creator" content="@vojtechruzicka" />
+              <meta name="twitter:site" content="@vojtechruzicka" />
+              <meta name="twitter:card" content="summary" />
+              <meta name="twitter:title" content={siteTitle} />
+              <meta name="twitter:description" content={siteDescription} />
           </Helmet>
         {posts.map(({ node }) => {
           const title = get(node, 'frontmatter.title') || node.fields.slug
@@ -90,6 +106,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
     allMarkdownRemark(

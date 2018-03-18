@@ -2,13 +2,28 @@ import React from "react";
 import kebabCase from "lodash/kebabCase";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
+import profilePic from '../../components/profile.jpg'
 
 const ArchivesPage = ({
-                      data: { allMarkdownRemark: { group }, site: { siteMetadata: { title, description } } },
+                      data: { allMarkdownRemark: { group }, site: { siteMetadata: { title, description, siteUrl } } },
                   }) => (
     <div>
         <Helmet title={`Archives | ${title}`}>
             <meta name="description" content={description} />
+
+            <meta property="og:title" content={`Archives | ${title}`} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={profilePic} />
+            <meta property="og:url" content={siteUrl+"/archives"} />
+            <meta property="og:site_name" content={title} />
+            <meta property="og:type" content="website" />
+            <meta property="fb:app_id" content="2072264049710958" />
+
+            <meta name="twitter:creator" content="@vojtechruzicka" />
+            <meta name="twitter:site" content="@vojtechruzicka" />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content={`Archives | ${title}`} />
+            <meta name="twitter:description" content={description} />
         </Helmet>
         <div>
             <h1>Tags</h1>
