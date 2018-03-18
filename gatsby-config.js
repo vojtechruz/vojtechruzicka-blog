@@ -71,15 +71,23 @@ module.exports = {
                   {
                       serialize: ({ query: { site, allMarkdownRemark } }) => {
                           return allMarkdownRemark.edges.map(edge => {
+                              let coverImage
                               return Object.assign({}, edge.node.frontmatter, {
                                   description: edge.node.excerpt,
                                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   custom_elements: [
-                                      { "content:encoded": edge.node.html,
-                                        "webfeeds:logo": "https://www.vojtechruzicka.com/favicon.svg",
-                                        "webfeeds:accentColor": "007acc"
-                                  }],
+                                      { "content:encoded": edge.node.html},
+                                      {"webfeeds:logo": "https://www.vojtechruzicka.com/favicon.svg"},
+                                      {"webfeeds:icon": "https://www.vojtechruzicka.com/favicon.svg"},
+                                      {"webfeeds:accentColor": "007acc"},
+                                      {"webfeeds:analytics": "UA-76533683-1"},
+                                      {"webfeeds:cover":
+                                              {_attr: {
+                                                image: 'CHO'
+                                               }},
+                                      }
+                                  ],
                               });
                           });
                       },
