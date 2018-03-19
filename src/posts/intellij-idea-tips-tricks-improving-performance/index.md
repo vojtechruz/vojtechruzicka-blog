@@ -6,6 +6,7 @@ path: '/intellij-idea-tips-tricks-improving-performance'
 featuredImage: './intellij-idea-slow.jpg'
 disqusArticleIdentifier: '991 http://vojtechruzicka.com/?p=991'
 ---
+![idea improving performance](./intellij-idea-slow.jpg)
 
  Running IntelliJ IDEA IDE can be taxing on your machine, especially for large projects, here are a few tips, which can help you to achieve better performance.
 <!--more-->

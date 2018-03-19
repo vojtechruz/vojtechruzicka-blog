@@ -6,3 +6,4 @@
  - comments not imported for field dependency injection
 
 sitemap
+getpocket images not working

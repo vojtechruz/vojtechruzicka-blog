@@ -6,6 +6,7 @@ path: '/book-review-256-bloghacks'
 featuredImage: './tomato.jpg'
 disqusArticleIdentifier: '1129 http://vojtechruzicka.com/?p=1129'
 ---
+![256 bloghacks](./tomato.jpg)
 
  A detailed review of a guide to blogging by Yegor Bugayenko.
 <!--more-->

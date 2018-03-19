@@ -6,6 +6,8 @@ path: '/book-review-the-complete-software-developers-career-guide'
 featuredImage: './career-guide.jpg'
 disqusArticleIdentifier: '1015 http://vojtechruzicka.com/?p=1015'
 ---
+![complete developers career guide](./career-guide.jpg)
+
 Review of the new Book by John Sonmez. Is it a book, which every software developer should have on their bookshelf? Can it actually help in advancing your career?
 <!--more-->
 

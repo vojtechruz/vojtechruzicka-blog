@@ -79,7 +79,7 @@ module.exports = {
                                       "webfeeds": "http://webfeeds.org/rss/1.0"
                                   },
                                   custom_elements: [
-                                      { "content:encoded": "<img class='webfeedsFeaturedVisual' src='"+site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.sizes.originalImg+"' >"+edge.node.html},
+                                      { "content:encoded": edge.node.html},
                                       {"webfeeds:logo": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:icon": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:accentColor": "007acc"},

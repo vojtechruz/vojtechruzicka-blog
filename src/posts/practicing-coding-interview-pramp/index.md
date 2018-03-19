@@ -6,6 +6,7 @@ path: '/practicing-coding-interview-pramp'
 featuredImage: './practicing-coding-interview.jpg'
 disqusArticleIdentifier: '1027 http://vojtechruzicka.com/?p=1027'
 ---
+![pramp coding interview](./practicing-coding-interview.jpg)
 
 Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to practice. A lot. Solving problems on your own is a good start, but practicing online with a real person as an interviewer is much better.
 <!--more-->

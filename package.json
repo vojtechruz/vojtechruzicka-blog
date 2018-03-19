@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "disqus-react": "^1.0.5",
-    "gatsby": "^1.9.236",
+    "gatsby": "^1.9.237",
     "gatsby-image": "^1.0.42",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-favicon": "^2.1.1",

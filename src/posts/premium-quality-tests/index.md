@@ -6,6 +6,7 @@ path: '/premium-quality-tests'
 featuredImage: './premium.png'
 disqusArticleIdentifier: '865 http://vojtechruzicka.com/?p=865'
 ---
+![premium quality tests](./premium.png)
 
  Test quality is just as important as that of production code. Tests should not be excluded from quality checks and the same quality rules should be applied.
 <!--more-->

@@ -6,6 +6,8 @@ path: '/exam-notes-pivotal-certified-spring-professional'
 featuredImage: './spring-core.jpg'
 disqusArticleIdentifier: '553 http://vojtechruzicka.com/?p=553'
 ---
+![pivotal certified  spring professional](./spring-core.jpg)
+
  Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study notes.
 <!--more-->
 

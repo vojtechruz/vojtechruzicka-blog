@@ -6,6 +6,7 @@ path: '/break-java-generics-naming-convention'
 featuredImage: './break-java-generics-maning-convention.jpg'
 disqusArticleIdentifier: '203 http://vojtechruzicka.com/?p=203'
 ---
+![break java generics naming convention](./break-java-generics-maning-convention.jpg)
 
 Choosing descriptive, intent-revealing names is one of the key principles of writing clean code, which is easy to read and understand and usually requires little to no comments. According to the official convention, generic type parameter names are supposed to be just one capital letter. Should you break this convention to make your names more descriptive?
 <!--more-->

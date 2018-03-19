@@ -6,6 +6,7 @@ path: '/javascript-this-keyword'
 featuredImage: './javascript-this.jpg'
 disqusArticleIdentifier: '1592 http://vojtechruzicka.com/?p=1592'
 ---
+![javascript this](./javascript-this.jpg)
 
 'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
 <!--more-->

@@ -6,6 +6,7 @@ path: '/stop-using-javadoc-author-tag'
 featuredImage: './javadoc-author.jpg'
 disqusArticleIdentifier: '316 http://vojtechruzicka.com/?p=316'
 ---
+![javadoc author tag](./javadoc-author.jpg)
 
 Are you still using @author Javadoc tag? Maybe it's time to reconsider. Let's discuss why the tag may be actually harmful and why you should stop using it.
 <!--more-->

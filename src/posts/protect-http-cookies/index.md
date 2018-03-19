@@ -6,6 +6,7 @@ path: '/protect-http-cookies'
 featuredImage: './protect-cookies.jpg'
 disqusArticleIdentifier: '1444 http://vojtechruzicka.com/?p=1444'
 ---
+![protect cookies](./protect-cookies.jpg)
 
 Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.
 <!--more-->
