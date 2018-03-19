@@ -5,11 +5,11 @@ tags: ['Security']
 path: '/preventing-clickjacking'
 featuredImage: './clickjacking.jpg'
 disqusArticleIdentifier: '827 http://vojtechruzicka.com/?p=827'
+excerpt: 'Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?'
 ---
 ![preventing clickjacking](./clickjacking.jpg)
 
 Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?
-<!--more-->
 
 Clickjacking
 ------------

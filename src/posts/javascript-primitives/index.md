@@ -5,11 +5,11 @@ tags: ['Javascript']
 path: '/javascript-primitives'
 featuredImage: './primitives.jpg'
 disqusArticleIdentifier: '1511 http://vojtechruzicka.com/?p=1511'
+excerpt: 'What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?'
 ---
 ![javascript primitives](./primitives.jpg)
 
 What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?
-<!--more-->
 
 Primitives versus Objects
 -------------------------

@@ -5,11 +5,11 @@ path: '/java-9-compact-strings'
 tags: ['Java']
 featuredImage: './compact-strings.jpg'
 disqusArticleIdentifier: '874 http://vojtechruzicka.com/?p=874'
+excerpt: 'Java 9 brings a new, improved string, which in most cases, will reduce String memory consumption to half.'
 ---
 ![java compact strings](./compact-strings.jpg)
 
 Java 9 brings a new, improved string, which in most cases, will reduce String memory consumption to half.
-<!--more-->
 
 String memory consumption
 -------------------------

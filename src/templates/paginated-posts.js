@@ -82,7 +82,7 @@ class BlogIndex extends React.Component {
                 <div>
                     <Link to={node.fields.slug} className="front-post-image"><Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
                     </Link>
-                  <span className="front-post-excerpt" dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                  <span className="front-post-excerpt" dangerouslySetInnerHTML={{ __html: node.frontmatter.excerpt }} />
                 </div>
                 <hr className="front-post-separator"/>
             </div>
@@ -116,11 +116,11 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt
           fields {
             slug
           }
           frontmatter {
+            excerpt
             date(formatString: "DD MMMM, YYYY")
             title
             tags

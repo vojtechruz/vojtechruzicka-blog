@@ -24,7 +24,6 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        excerpt_separator: `<!--more-->`,
         plugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -72,14 +71,14 @@ module.exports = {
                       serialize: ({ query: { site, allMarkdownRemark } }) => {
                           return allMarkdownRemark.edges.map(edge => {
                               return Object.assign({}, edge.node.frontmatter, {
-                                  description: edge.node.excerpt,
+                                  description: edge.node.frontmatter.excerpt,
                                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   custom_namespaces: {
                                       "webfeeds": "http://webfeeds.org/rss/1.0"
                                   },
                                   custom_elements: [
-                                      { "content:encoded": edge.node.html},
+                                      {"content:encoded": edge.node.html},
                                       {"webfeeds:logo": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:icon": site.siteMetadata.siteUrl+"/favicon.svg"},
                                       {"webfeeds:accentColor": "007acc"},
@@ -100,10 +99,10 @@ module.exports = {
               ) {
                 edges {
                   node {
-                    excerpt
                     html
                     fields { slug }
                     frontmatter {
+                      excerpt
                       title
                       date
                       featuredImage {

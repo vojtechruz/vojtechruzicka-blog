@@ -67,10 +67,10 @@ class BlogPostTemplate extends React.Component {
       return (
       <div>
           <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-              <meta name="description" content={post.excerpt} />
+              <meta name="description" content={post.frontmatter.excerpt} />
 
               <meta property="og:title" content={post.frontmatter.title} />
-              <meta property="og:description" content={post.excerpt} />
+              <meta property="og:description" content={post.frontmatter.excerpt} />
               <meta property="og:image" content={siteUrl + post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
               <meta property="og:url" content={url} />
               <meta property="og:site_name" content={siteTitle} />
@@ -82,7 +82,7 @@ class BlogPostTemplate extends React.Component {
               <meta name="twitter:site" content="@vojtechruzicka" />
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:title" content={post.frontmatter.title} />
-              <meta name="twitter:description" content={post.excerpt} />
+              <meta name="twitter:description" content={post.frontmatter.excerpt} />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
         <p
@@ -154,8 +154,8 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
-      excerpt
       frontmatter {
+        excerpt
         title
         date(formatString: "MMMM DD, YYYY")
         tags

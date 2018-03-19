@@ -5,11 +5,11 @@ tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
 disqusArticleIdentifier: '1389 http://vojtechruzicka.com/?p=1389'
+excerpt: 'It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.'
 ---
 ![testing restful web services idea](./IntelliJIDEA_icon.png)
 
 It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.
-<!--more-->
 
 Integrated HTTP Client
 ----------------------

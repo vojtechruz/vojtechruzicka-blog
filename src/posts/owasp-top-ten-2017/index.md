@@ -5,11 +5,11 @@ tags: ['Security']
 path: '/owasp-top-ten-2017'
 featuredImage: './owasp.jpg'
 disqusArticleIdentifier: '1305 http://vojtechruzicka.com/?p=1305'
+excerpt: 'OWASP released 2017 version of top 10 Web Application Security Vulnerabilities. What are they, what is new and is your app vulnerable?'
 ---
 ![owasp top ten](./owasp.jpg)
 
 OWASP released 2017 version of top 10 Web Application Security Vulnerabilities. What are they, what is new and is your app vulnerable?
-<!--more-->
 
 What is OWASP?
 --------------

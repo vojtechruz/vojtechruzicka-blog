@@ -5,11 +5,11 @@ tags: ['Javascript']
 path: '/javascript-this-keyword'
 featuredImage: './javascript-this.jpg'
 disqusArticleIdentifier: '1592 http://vojtechruzicka.com/?p=1592'
+excerpt: ''This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.'
 ---
 ![javascript this](./javascript-this.jpg)
 
 'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
-<!--more-->
 
 What the hell is *this*?
 ------------------------

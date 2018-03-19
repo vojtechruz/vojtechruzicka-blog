@@ -5,11 +5,11 @@ tags: ['Chrome']
 path: '/chrome-audit-lighthouse'
 featuredImage: './lighthouse.jpg'
 disqusArticleIdentifier: '1466 http://vojtechruzicka.com/?p=1466'
+excerpt: 'Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as Performance, SEO, Best Practices, Accessibility, Progressive Web Application compliance and more?'
 ---
 ![lighthouse](./lighthouse.jpg)
 
 Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as Performance, SEO, Best Practices, Accessibility, Progressive Web Application compliance and more?
-<!--more-->
 
 Running an Audit
 ----------------

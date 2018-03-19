@@ -5,11 +5,11 @@ tags: ['Java']
 path: '/java-9-enhanced-deprecation'
 featuredImage: './deprecated.jpg'
 disqusArticleIdentifier: '871 http://vojtechruzicka.com/?p=871'
+excerpt: '@Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.'
 ---
- ![java enhanced deprecation](./deprecated.jpg)
+![java enhanced deprecation](./deprecated.jpg)
 
- @Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.
-<!--more-->
+@Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.
 
 Java 8 Deprecation
 ------------------
