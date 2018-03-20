@@ -142,3 +142,4 @@ added custom theme
 - decreased image size for paginated posts to match actual onscreen size
 - removed unused dependencies and imports
 - decreased profile image size
+- fixed blur up for post images + replaced traced svg with blur up on paginated posts for consistency
