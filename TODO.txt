@@ -1,8 +1,5 @@
 - 404 page
-- 2x declared feed plugin with rss.xml and feed ????
-- add read more link to excerpt???
 -verify RSS is still working
--RSS does not show featured images in feedly
  - comments not imported for field dependency injection
 
 sitemap

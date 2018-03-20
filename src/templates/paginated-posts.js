@@ -126,7 +126,7 @@ export const pageQuery = graphql`
             tags
             featuredImage {
                 childImageSharp{
-                    sizes(maxWidth: 200) {
+                    sizes(maxWidth: 180) {
                         ...GatsbyImageSharpSizes_tracedSVG
                     }
                 }

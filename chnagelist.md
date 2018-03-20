@@ -130,4 +130,12 @@ added custom theme
 
 18.3.
 - updated blog description
-- added social cards info to non-post pages also-0
+- added social cards info to non-post pages also
+
+19.3.
+- featured images now part of the article
+- excerpts now part of frontmatter due to bug
+
+20.3.
+- added aria labels to share icons to get 100 pwa score
+- switched plugins order to get 100 pwa score
