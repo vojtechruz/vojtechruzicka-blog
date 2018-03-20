@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
 
   return new Promise((resolve, reject) => {
-    const pageSize = 10;
+    const pageSize = 8;
     const blogPost = path.resolve('./src/templates/blog-post.js');
     const tagTemplate = path.resolve("./src/templates/tag.js");
     const paginatedPosts = path.resolve("./src/templates/paginated-posts.js");
