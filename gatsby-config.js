@@ -137,7 +137,7 @@ module.exports = {
           options: {
               name: "Vojtech Ruzicka's Programming Blog",
               short_name: "VR Blog",
-              start_url: "/",
+              start_url: "http://www.vojtechruzicka.com",
               background_color: "#fff",
               theme_color: "#007acc",
               display: "minimal-ui",
