@@ -141,3 +141,4 @@ added custom theme
 - switched plugins order to get 100 pwa score
 - decreased image size for paginated posts to match actual onscreen size
 - removed unused dependencies and imports
+- decreased profile image size
