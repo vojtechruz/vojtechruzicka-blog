@@ -109,25 +109,25 @@ class BlogPostTemplate extends React.Component {
         <div>
             <p><strong>Get notifications about new posts on <a href="https://twitter.com/vojtechruzicka">{twitterIcon}Twitter</a>, <a href="https://www.vojtechruzicka.com/feed/">{rssIcon}RSS</a> or <a href="https://eepurl.com/bZ0waf">{emailIcon}Email</a>.</strong></p>
             <div className="share-icons">
-                <FacebookShareButton url={siteUrl + this.props.pathContext.slug}>
+                <FacebookShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Facebook share button"}}>
                     <FacebookIcon round size={shareIconSize} />
                 </FacebookShareButton>
-                <GooglePlusShareButton url={siteUrl + this.props.pathContext.slug}>
+                <GooglePlusShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Google plus share button"}}>
                     <GooglePlusIcon round size={shareIconSize} />
                 </GooglePlusShareButton>
-                <TwitterShareButton url={siteUrl + this.props.pathContext.slug}>
+                <TwitterShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Twitter share button"}}>
                     <TwitterIcon round size={shareIconSize}/>
                 </TwitterShareButton>
-                <LinkedinShareButton url={siteUrl + this.props.pathContext.slug}>
+                <LinkedinShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "LinkedIn share button"}}>
                     <LinkedinIcon round size={shareIconSize}/>
                 </LinkedinShareButton>
-                <RedditShareButton url={siteUrl + this.props.pathContext.slug}>
+                <RedditShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Reddit share button"}}>
                     <RedditIcon round size={shareIconSize}/>
                 </RedditShareButton>
-                <TumblrShareButton url={siteUrl + this.props.pathContext.slug}>
+                <TumblrShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Tumblr share button"}}>
                     <TumblrIcon round size={shareIconSize}/>
                 </TumblrShareButton>
-                <EmailShareButton url={siteUrl + this.props.pathContext.slug}>
+                <EmailShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Share by email button"}}>
                     <EmailIcon round size={shareIconSize}/>
                 </EmailShareButton>
             </div>
