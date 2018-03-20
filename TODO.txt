@@ -4,3 +4,7 @@
 
 sitemap
 getpocket images not working
+- remove lodash dependency??? (4kb)
+profile image either progressive or gatsby-image
+netlify gatsby plugin
+remove typography styling and move to CSS
