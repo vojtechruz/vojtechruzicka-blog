@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-responsive-grid'
 
-import { rhythm, scale } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 import './index.scss';
 import Navigation from "../components/Navigation";
 import FollowMe from "../components/FollowMe";

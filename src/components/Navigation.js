@@ -1,10 +1,6 @@
 import React from 'react'
 
-// Import typefaces
-import 'typeface-montserrat'
-import 'typeface-merriweather'
 import profilePic from './profile.jpg'
-import {rhythm} from '../utils/typography'
 import Link from "gatsby-link";
 
 class Navigation extends React.Component {
