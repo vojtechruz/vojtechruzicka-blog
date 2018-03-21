@@ -3,11 +3,11 @@ title: 'IntelliJ IDEA Tips & Tricks: Multiple Cursors'
 date: "2017-06-29T22:12:03.284Z"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-multiple-cursors'
-featuredImage: './IntelliJIDEA_icon.png'
+featuredImage: './intellij-idea-multiple-cursors.jpg'
 disqusArticleIdentifier: '913 http://vojtechruzicka.com/?p=913'
 excerpt: 'Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.'
 ---
-![idea multiple cursors](./IntelliJIDEA_icon.png)
+![idea multiple cursors](./intellij-idea-multiple-cursors.jpg)
 
 Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.
 

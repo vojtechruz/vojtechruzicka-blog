@@ -143,3 +143,6 @@ added custom theme
 - removed unused dependencies and imports
 - decreased profile image size
 - fixed blur up for post images + replaced traced svg with blur up on paginated posts for consistency
+
+21.3.
+- replaced 3 featured images for idea articles
