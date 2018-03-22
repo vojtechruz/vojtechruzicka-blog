@@ -4,9 +4,12 @@ date: ""
 tags: ['Java']
 path: '/jshell-repl'
 featuredImage: './jshell.jpg'
+disqusArticleIdentifier: ''
+excerpt: ''
 ---
 
-<!--more-->
+![jshell repl](./jshell.jpg)
+
 REPL
 ----
 
