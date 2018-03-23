@@ -8,3 +8,5 @@ getpocket images not working
 profile image either progressive or gatsby-image
 netlify gatsby plugin
 remove typography styling and move to CSS
+
+missing fonts
