@@ -12,7 +12,7 @@ excerpt: 'How and Why I migrated from WordPress to static JAM Stack site built w
 
 How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.
 
-#Before
+##Before
 When I started my blog back in 2016, I wanted to focus as much as possible on creating content rather than
 creating the blog infrastructure. Of course, there was a siren's call to build everything from scratch or spend weeks
 researching all the possible platforms. It would be no doubt a lot of fun. But I resisted as I wanted to start as soon as possible. 
