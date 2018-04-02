@@ -10,3 +10,5 @@ netlify gatsby plugin
 remove typography styling and move to CSS
 
 missing fonts
+
+h2 and h3 have same size of 1.5rem
