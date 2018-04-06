@@ -149,4 +149,4 @@ added custom theme
 
 4.6.
 - added redirect for /author/vojtechruzicka/  to /
-- 
+- added old WP images for backwards compatibility
