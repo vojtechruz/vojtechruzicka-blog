@@ -146,3 +146,7 @@ added custom theme
 
 21.3.
 - replaced 3 featured images for idea articles
+
+4.6.
+- added redirect for /author/vojtechruzicka/  to /
+- 
