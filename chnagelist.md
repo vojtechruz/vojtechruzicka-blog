@@ -155,3 +155,5 @@ added custom theme
 10.4.
 - added feedly follow icon
 - All follow me icons now open in new tab
+- fixed disqus undefiend error & restarted disqus
+- added back netlify plugin
