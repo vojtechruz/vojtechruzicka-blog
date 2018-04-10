@@ -171,6 +171,14 @@ a:hover {
       fill: #00aced;
     }
 
+    &:hover.feedly svg {
+      fill: #6CC655;
+
+      .inner {
+        fill: #fff;
+      }
+    }
+
     &:hover.linkedin svg {
       fill: #007fb1;
     }
