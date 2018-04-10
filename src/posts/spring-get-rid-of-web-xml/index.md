@@ -4,7 +4,7 @@ date: "2018-04-02T22:12:03.284Z"
 tags: ['Java', 'Spring']
 path: '/spring-get-rid-of-web-xml'
 featuredImage: './get-rid-of-webxml.jpg'
-disqusArticleIdentifier: 'spring-get-rid-of-web-xml'
+disqusArticleIdentifier: '99002 https://www.vojtechruzicka.com/spring-get-rid-of-web-xml/'
 excerpt: 'From Servlet 3.0 on, web.xml is optional. How to get rid of it in your Spring MVC app and what is the replacement?'
 ---
 
