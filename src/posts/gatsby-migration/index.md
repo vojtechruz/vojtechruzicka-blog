@@ -4,7 +4,7 @@ date: "2018-03-25T22:12:03.284Z"
 tags: ['Blogging']
 path: '/gatsby-migration'
 featuredImage: './jam.jpg'
-disqusArticleIdentifier: '99001 https://www.vojtechruzicka.com/gatsby-migration/'
+disqusArticleIdentifier: '99001 https://www.vojtechruzicka.com/gatsby-migration/?p=99001'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.'
 ---
 
