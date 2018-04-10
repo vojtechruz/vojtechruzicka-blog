@@ -85,7 +85,7 @@ class BlogPostTemplate extends React.Component {
               <meta name="twitter:description" content={post.frontmatter.excerpt} />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
-        <p
+        <div
           style={{
             ...scale(-1 / 5),
             display: 'block',
@@ -95,7 +95,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
           <Tags tags={post.frontmatter.tags}/>
-        </p>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
