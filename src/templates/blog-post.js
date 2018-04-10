@@ -168,6 +168,7 @@ export const pageQuery = graphql`
             }
         }
         disqusArticleIdentifier
+        path
       }
     }
   }
