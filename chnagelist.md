@@ -147,6 +147,10 @@ added custom theme
 21.3.
 - replaced 3 featured images for idea articles
 
-4.6.
+6.4.
 - added redirect for /author/vojtechruzicka/  to /
 - added old WP images for backwards compatibility
+- fixed images for existing posts for faceboog and gplus
+
+10.4.
+- added feedly follow icon
