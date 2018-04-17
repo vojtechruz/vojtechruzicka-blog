@@ -38,18 +38,18 @@ Dle nové metodiky se nyní osm z deseti položek určuje na základě dat o zra
 
 Po předchozím neúspěchu v dubnu, zbrusu nová verze byla konečně zveřejněna v prosinci. Obsahuje následujících deset položek:
 
-  Položka                                             | Popis
+  Položka                                          | Popis
   -------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  1\. Injection                                    | Injection flaws, such as SQL injection, occur when untrusted data is sent to an interpreter as part of a command or query. It can trick the interpreter into executing unintended commands or accessing data.
-  2\. Broken Authentication                        | Application functions related to authentication and session management are often implemented incorrectly, allowing attackers to assume other users' identities.
-  3\. Sensitive Data Exposure                      | Many web applications and APIs do not properly protect sensitive data. Attackers may steal or modify such weakly protected data. Sensitive data may be compromised without extra protection, such as encryption at rest or in transit.
-  4\. XML External Entities (XXE)                  | External entities in XML can be used to disclose internal files, remote code execution or DDoS attacks.
-  5\. Broken Access Control                        | Attackers can exploit access restriction flaws to access unauthorized functionality and data.
-  6\. Security Misconfiguration                    | Use of insecure default configurations, incomplete or ad hoc configurations, open cloud storage, misconfigured HTTP headers, and verbose error messages containing sensitive information.
-  7\. Cross-Site Scripting (XSS)                   | Applications use unsanitized user-supplied data in a web page. It allows execution of scripts in the victim's browser.
-  8\. Insecure Deserialization                     | Insecure deserialization often leads to remote code execution, replay attacks, injection attacks, and privilege escalation attacks.
-  9\. Using Components with Known Vulnerabilities  | Components, such as libraries, frameworks run with the same privileges as the application. Components with known vulnerabilities may undermine application defenses.
-  10\. Insufficient Logging & Monitoring           | Insufficient logging and monitoring, with missing incident response, prevents rapid reaction and allows continuous probing for vulnerabilities.
+  1\. Injekce                                      | Zranitelnosti vsunutím škodlivého kódu jako např. SQL injection. Nastává, pokud neověřená data jsou použita v dotazu nebo příkazu. Může vést k úniku a ztrátě dat nebo provedení nežádoucích příkazů.
+  2\. Nefunkční autentizace                        | Autentizace je často implementována chybně nebo nedostatečně. Může vést k převzetí uživatelských účtů nebo celého systému.
+  3\. Nezabezpečení citlivých dat                  | Nezabezpečený přenost a uchovávání citivých dat. Útočník může tato data změnit nebo zneužít k dalším útokům.
+  4\. XML External Entities (XXE)                  | Externí entity v XML mohou být zneužity k přístupu k chráněným souborům, spuštění škodlivého kódu nebo DDoS útokům.
+  5\. Nefunkční kontrola přístupu                  | Útočník může využít chyb v kontrole přístupu, aby se dostal k citlivým datům a chráněným funkcím systému.
+  6\. Chybná konfigurace                           | Použití výchozí konfigurace, nekompletní konfigurace, detailní výpis chyb na klientovi, špatné HTTP hlavičky a další.
+  7\. Cross-Site Scripting (XSS)                   | Pokud není sanitizován vstup od uživatele, může útočník spustit škodlivý javascriptový kód v prohlížeči oběti.
+  8\. Nezabezpečená Deserializace                  | Nezabezpečená deserializace může vést k řadě útoků včetně spuštění škodlivého kódu.
+  9\. Použití komponent se známými zranitelnostmi  | Útočník může využít zranitelnosti v komponentách a frameworcích třetích stran, zvláště pokud jsou použity neaktualizované verze se známými zranitelnostmi.
+  10\. Nedostatečné logování a monitorování        | Nedostatečné logování a monitorování včetně chybějící automatické notifikace znemožňuje včasnou reakci na útoky a umožňuje útočníkům nerušeně hledat zranitelnosti v aplikaci.
 
 Co se změnilo
 ------------
@@ -93,41 +93,38 @@ Tato zranitelnost je důležitá hlavně kvůli tomu, že dává útočníkovi s
 
 Toto je druhá položka zařazená na základě komunitní ankety. Zranitelnosti v deserializaci jsou sice na jednu stranu poměrně tězko zjistitelné a zneužitelné, ale na druhou stranu mohou mít velmi závažné následky.
 
-An application is vulnerable when accepting serialized objects (note that this does not apply only to java serialization but the process in general) from external sources. If a malicious serialized object is provided, it can lead to unexpected behavior such as remote code execution or complete system takeover. This does not apply only to inter-system communication, where serialization is involved, but also in situations such as caching.
+Aplikace je zranitelná, pokud přijímá serializované objekty z externích zdrojů. Deserializace škodlivého objektu může mít různé následky, k nejzávažnějším pak patří vykonání škodlivého kódu poskytnutého útočníkem. To může vést až k získání plné kontroly nad systémem. Je důležité si uvědomit, že se nemusí jednat pouze o scénáře, kdy serizalizace je použita ke komunikaci mezi dvěma systémy. Je potřeba ji chápat v širším smyslu. Může se jednat tedy i o případy, kdy serializovaná reprezentace je používána jen jedním systémem lokálně, například při cachování.
 
-The only robust protection is to use serialization solutions, where only primitive data types are allowed. If that is not possible, there are some ways to mitigate the risk such as
+Jedinou skutečně efektivní ochranou je používat serializaci pouze v případech, kdy jen primitivní datové typy jsou povoleny. Pokud to není možné, lze snížit riziko pomocí kroků jako například:
 
--   Logging all unexpected serialization inputs with automatic notifications to have early warning.
--   Deserialization modules should run with the least privileges possible.
--   Integrity checks of serialized objects to prevent data tampering
-
+- Logování všech serializovaných vstupů s neočekávanými hodnotami včetně automatických notifikací. To umožní včasnou detekci útoku a následná protiopatření.
+- Moduly pracující s deserializací by měly běžet s co možná nejmenšími právy a izolovaně.
+- Kontrola integrity přijímaných objektů, aby se zamezilo manipulaci s nimi.
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  2013                                                                                                       |2017
-  -----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------
-  1\. Injection                                                                                              | 1\. Injection
-  2\. Broken Authentication and Session Management                                                           | 2\. Broken Authentication
-  3\. Cross-Site Scripting                                                                                   | 3\. Sensitive Data Exposure
-  4\. Insecure Direct Object References **(Merged with 7)**                                                  | 4\. XML External Entities **(NEW)**
-  5\. Security Misconfiguration                                                                              | 5\. Broken Access Control **(Merged 4+7)**
-  6\. Sensitive Data Exposure                                                                                | 6\. Security Misconfiguration
-  7\. Missing Function Level Access Control **(Merged with 4)**                                              | 7\. Cross-Site Scripting
-  8\. Cross-Site Request Forgery **(Removed)**                                                               | 8\. Insecure Deserialization **(NEW, Community)**
-  9\. Using Components with Known Vulnerabilities                                                            | 9\. Using Components with Known Vulnerabilities
-  10\. Unvalidated Redirects and Forwards **(Removed)**                                                      | 10\. Insufficient Logging & Monitoring **(NEW, Community)**
+  2013                                                                                                      |2017
+ -----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------
+  1\. Injekce                                                                                               | 1\. Injekce
+  2\. Nefunkční autentizace a správa sessions                                                               | 2\. Nefunkční autentizace
+  3\. Cross-Site Scripting                                                                                  | 3\. Nezabezpečení citlivých dat 
+  4\. Přímé odkazy na objekty **(Sloučeno s 7)**                                                            | 4\. XML External Entities **(Nové)**
+  5\. Chybná konfigurace                                                                                    | 5\. Nefunkční kontrola přístupu **(Sloučeno 4+7)**
+  6\. Nezabezpečení citlivých dat                                                                           | 6\. Chybná konfigurace
+  7\. Chybějící kontrola přístupu na úrovni funkcí **(Sloučeno s 4)**                                       | 7\. Cross-Site Scripting
+  8\. Cross-Site Request Forgery **(Odstraněno)**                                                           | 8\. Nezabezpečená Deserializace **(Nové, od komunity)**
+  9\. Použití komponent se známými zranitelnostmi                                                           |  9\. Použití komponent se známými zranitelnostmi
+  10\. Nezabecnečené přesměrování **(Odstraněno)**                                                          | 10\. Nedostatečné logování a monitorování **(Nové, od komunity)**
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-More From OWASP
+Další projekty OWASP
 ---------------
 
-Okay, you are now familiar with OWASP Top Ten. You've read the document back and forth. You are now zealously making sure your apps are as safe as possible. What's next?
-
-First of all, you should realize, that Top Ten is just a tip of the iceberg. You shouldn't definitely stop at 10. There are many, many more vulnerabilities and risks to look for. While top ten is good in raising awareness, it is by no means \'Security Bible\'. For detailed guides and explanations, you'll have to look elsewhere. But where to start? With other OWASP projects, of course!
-
+OWASP Top 10 se hodí k získání základního povědomí o bezpečnosti webových aplikací, ale rozhodně nejde příliš do hloubky. Je třeba si uvědomit, že vybraných deset položek je pouze špička ledovce. Rozhodně nelze očekávat, že když pokryjete tyto zranitelnost, máte vyhráno. Zranitelností je nepřeberné množství a technik jak se jim bránit jakbysmet. Top 10 není bezpečnostní Biblí, není to vyčerpávající příručka o tom, jak zabezpečit Vaše aplikace. Pouze zvyšuje všeobecné povědomí o hrozbách. Po detailních návodech se musíte poohlížet jinde. Kde ale začít? Samozřejmě u ostatních projektů OWASPu. Těch je mnoho, ale pro začátek za zmínku stojí například:
 Some of the interesting projects are:
 
--   [OWASP Developer Guide](https://www.owasp.org/index.php/OWASP_Guide_Project)
--   [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project)
--   [OWASP Cheat Sheets](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)
--   [OWASP Code Review Guide](https://www.owasp.org/index.php/Category:OWASP_Code_Review_Project)
+-   [OWASP Příručka pro vývojáře](https://www.owasp.org/index.php/OWASP_Guide_Project)
+-   [OWASP Příručka pro testery](https://www.owasp.org/index.php/OWASP_Testing_Project)
+-   [OWASP Taháky](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)
+-   [OWASP Příručka pro Code Review](https://www.owasp.org/index.php/Category:OWASP_Code_Review_Project)
 
-One more thing worth mentioning is that Top Ten is not suitable for a security verification checklist due to its limited scope. Turns out there is a better match -- an OWASP project specifically focused on this area - [OWASP Application Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project).
+Top 10 se může na první pohled zdát jako vhodný "checklist" ke kontrole Vaší aplikace, jestli jste nezapomněli na nějakou zásadní zranitelnost. Díky svému omezenému rozsahu pro tento účel není příliš vhodný. Naštestí OWASP zastřešuje projekt, který se na tuto problematiku přímo zaměřuje:
+OWASP Application Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project).
