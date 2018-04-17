@@ -42,7 +42,7 @@ Po předchozím neúspěchu v dubnu, zbrusu nová verze byla konečně zveřejn�
   -------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   1\. Injekce                                      | Zranitelnosti vsunutím škodlivého kódu jako např. SQL injection. Nastává, pokud neověřená data jsou použita v dotazu nebo příkazu. Může vést k úniku a ztrátě dat nebo provedení nežádoucích příkazů.
   2\. Nefunkční autentizace                        | Autentizace je často implementována chybně nebo nedostatečně. Může vést k převzetí uživatelských účtů nebo celého systému.
-  3\. Nezabezpečení citlivých dat                  | Nezabezpečený přenost a uchovávání citivých dat. Útočník může tato data změnit nebo zneužít k dalším útokům.
+  3\. Nezabezpečení citlivých dat                  | Nezabezpečený přenos a uchovávání citivých dat. Útočník může tato data změnit nebo zneužít k dalším útokům.
   4\. XML External Entities (XXE)                  | Externí entity v XML mohou být zneužity k přístupu k chráněným souborům, spuštění škodlivého kódu nebo DDoS útokům.
   5\. Nefunkční kontrola přístupu                  | Útočník může využít chyb v kontrole přístupu, aby se dostal k citlivým datům a chráněným funkcím systému.
   6\. Chybná konfigurace                           | Použití výchozí konfigurace, nekompletní konfigurace, detailní výpis chyb na klientovi, špatné HTTP hlavičky a další.
