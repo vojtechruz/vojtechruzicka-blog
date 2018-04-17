@@ -104,7 +104,7 @@
     <h4>Cross-side request forgery odstraněno</h4>
     <p>CSRF je typ útoku, kdy jsou jménem přihlášeného uživatele vykonány nechtěné akce.</p>
     <p>Jedna z nejznámějších zranitelností vůbec a evergreen v OWASP Top Ten. Odtranění této položky je zásadní krok a historický moment. V době, kdy byla poprvé zařazena do tohoto senzmau, jednalo se o novou a prakticky neznámou hrozbu. Od té doby se naštěstí lecos změnilo a nyní jde o dobře známou zranitelnost. Řada frameworků ji řeší ve výchozím nastavení, tím, že posílá speciální CSRF token. Mnoho aplikací je tedy zabezpečeno, a to i v případě, že vývojáři nemají ani páru o tom, co to CSRF je. Podle posledního průzkumu OWASP bylo ohroženo pouze asi 5% aplikací, což je oproti dřívějšímu stavu obrovský úspěch. CSRF tedy uvolnilo své místo v seznamu jiným zranitelnostem.</p>
-    <h4>Nezabecnečené přesměrování odstraněno</h4>
+    <h4>Nezabezpečené přesměrování odstraněno</h4>
     <p>Tato zranitelnost využívala nezabezpečených přesměrování v aplikacích (redirect a froward) k tomu, aby z důvěryhodné stránky přesměrovala nic netušícího uživatele na stránku škodlivou.</p>
     <p>Zranitelnost je obsažena v osmi procentech analyzovaných aplikací, ale ze seznamu byla vytlačena zranitelností XXE.</p>
     <h4>Sloučeno: Přímé odkazy na objekty a chybějící kontrola přístupu na úrovni funkcí</h4>
@@ -216,7 +216,7 @@
         <tr>
             <td>10
                 .
-                Nezabecnečené přesměrování
+                Nezabezpečené přesměrování
                 <strong>(Odstraněno)</strong></td>
             <td>10
                 .

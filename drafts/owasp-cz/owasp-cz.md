@@ -63,7 +63,7 @@ CSRF je typ útoku, kdy jsou jménem přihlášeného uživatele vykonány necht
 Jedna z nejznámějších zranitelností vůbec a evergreen v OWASP Top Ten. Odtranění této položky je zásadní krok a historický moment. V době, kdy byla poprvé zařazena do tohoto senzmau, jednalo se o novou a prakticky neznámou hrozbu. Od té doby se naštěstí lecos změnilo a nyní jde o dobře známou zranitelnost. Řada frameworků ji řeší ve výchozím nastavení, tím, že posílá speciální CSRF token. Mnoho aplikací je tedy zabezpečeno, a to i v případě, že vývojáři nemají ani páru o tom, co to CSRF je. Podle posledního průzkumu OWASP bylo ohroženo pouze asi 5% aplikací, což je oproti dřívějšímu stavu obrovský úspěch. CSRF tedy uvolnilo své místo v seznamu jiným zranitelnostem.
 
 
-#### Nezabecnečené přesměrování odstraněno
+#### Nezabezpečené přesměrování odstraněno
 
 Tato zranitelnost využívala nezabezpečených přesměrování v aplikacích (redirect a froward) k tomu, aby z důvěryhodné stránky přesměrovala nic netušícího uživatele na stránku škodlivou.
 
@@ -114,7 +114,7 @@ Jedinou skutečně efektivní ochranou je používat serializaci pouze v přípa
 7\. Chybějící kontrola přístupu na úrovni funkcí **(Sloučeno s 4)**                                       | 7\. Cross-Site Scripting
 8\. Cross-Site Request Forgery **(Odstraněno)**                                                           | 8\. Nezabezpečená Deserializace **(Nové, od komunity)**
 9\. Použití komponent se známými zranitelnostmi                                                           |  9\. Použití komponent se známými zranitelnostmi
-10\. Nezabecnečené přesměrování **(Odstraněno)**                                                          | 10\. Nedostatečné logování a monitorování **(Nové, od komunity)**
+10\. Nezabezpečené přesměrování **(Odstraněno)**                                                          | 10\. Nedostatečné logování a monitorování **(Nové, od komunity)**
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Další projekty OWASP
