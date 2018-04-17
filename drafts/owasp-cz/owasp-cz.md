@@ -75,17 +75,17 @@ Tyto dvě položky už nejsou nadále samostatné a byly sloučeny do jedné - N
 
 #### Nová položka: XML External Entities
 
-Jediná nově zařazená položka, která byla zahrnuta na základě nasbíraných dat a ne komunitní ankety.
+Jediná nově zařazená položka, která byla zahrnuta na základě nasbíraných dat a ne veřejného hlasování.
 
 Problém s touto zranitelností spočívá v tom, že na rozdíl od Cross Site Scripting nebo Cross Site Request Forgery je málo známá. Velká část dnešních bezpečnostních testů ji neberou v úvahu. Přitom dopad jejího zneužití může být velmi závažný.
 
-XXE je typem zranitelnosti při zpracování XML pomocí zastaralých nebo špatně konfigurovaných procesorů. Konkrétní zneužití může mít mnoho podob včetně Denial of Service, skenování portů nebo úniku citlivých dat. K zmírnění rizika této zranitelnosti je nutné použít nové verze XML procesorů a pokud to není nebzbytně nutné, tak vypnout zpracování externích entit. A zvážit jestli v daném případě je formát XML nezbytně nutný. Zda nepostačí jiný formát jako třeba JSON. Bohužel zpracování externích XML entit je zpravidla povoleno ve výchozím nastavení a je třeba jej explicitně zakázat. Zvažte také valdiaci XML na straně serveru oproti whitelistu možných hodnot, pokud se použití externích XML entit nelze vyhnout. Více detailů poskytje [OWASP XXE Prevention cheat-sheet](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet).
+XXE je typem zranitelnosti při zpracování XML pomocí zastaralých nebo špatně konfigurovaných procesorů. Konkrétní zneužití může mít mnoho podob včetně Denial of Service, skenování portů nebo úniku citlivých dat. K zmírnění rizika této zranitelnosti je nutné použít nové verze XML procesorů a pokud to není nezbytně nutné, tak vypnout zpracování externích entit. A zvážit jestli v daném případě je formát XML nezbytně nutný, zda nepostačí jiný formát, jako třeba JSON. Bohužel zpracování externích XML entit je zpravidla povoleno ve výchozím nastavení a je třeba jej explicitně zakázat. Zvažte také valdiaci XML na straně serveru oproti whitelistu možných hodnot, pokud se použití externích XML entit nelze vyhnout. Více detailů poskytuje [OWASP XXE Prevention cheat-sheet](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet).
 
 #### Nová položka: Nedostatečné logování a monitorování
 
 Tato nová položka byla zařazena na základě veřejné ankety a ne na základě nasbíraných dat. Položky určené anketou jsou zahrnuty vůbec poprvé ve verzi 2017.
 
-Aby byl útočník schopen využít zranitelnosti v aplikaci k úspěšnému útoku, musí o ní nejdříve vědět. Proto většinou útoku předchází "oťukávání" aplikace a hledání běžných zranitelností. Každá, sebelépe zabezpečená, aplikace obsahuje nějaku zranitelnost a je jen otázkou času a vynaloženého úsilí ji najít. Pokud aplikace nepoksytuje žádný způsob jak takové pokusy odhalit, útočník má volné pole působnosti. 
+Aby byl útočník schopen využít zranitelnosti v aplikaci k úspěšnému útoku, musí o ní nejdříve vědět. Proto většinou útoku předchází "oťukávání" aplikace a hledání běžných zranitelností. Každá, sebelépe zabezpečená, aplikace obsahuje nějaku zranitelnost a je jen otázkou času a vynaloženého úsilí ji najít. Pokud aplikace neposkytuje žádný způsob jak takové pokusy odhalit, útočník má volné pole působnosti. 
 
 Aplikace by měla poskytnout nejem možnost odhalit takové pokusy, ale hlavně by měla mít mechanismus, který detekuje, že došlo k úspěšnému prolomení. Pokud je takový mechanismus automatizovaný, umožňuje to rychle reagovat a minimalizovat škody. Bohužel, často k odhalení úspěšného útoku dojde až pozdě nebo vůbec. Průměrně to trvá [191 dní](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=SEL03130WWEN&), což útočníkovi poskytuje spoustu času.
 
