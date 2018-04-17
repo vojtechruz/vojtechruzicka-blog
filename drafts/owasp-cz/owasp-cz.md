@@ -1,3 +1,5 @@
+Text vyšel původně na [autorově blogu](https://www.vojtechruzicka.com/owasp-top-ten-2017/)
+
 Organizace OWASP vydala novou verzi deseti nejnebezpečnějších zranitelností webových aplikací. O jaké zranitelnosti se jedná a co se změnilo od minulé verze? Jsou Vaše aplikace zranitelné?
 
 Co je to OWASP?
