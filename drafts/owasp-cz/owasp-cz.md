@@ -34,7 +34,7 @@ Další problém byl s rozdílnou granularitou zranitelností. Vedle specifický
 Top Ten 2017, pokus druhý
 ----------------------
 
-Kritiku první verze nebral OWASP na lehkou váhu a rozhodl se učinit řadu změn. Prvním zásadním krokem byla obměna vedení. Pak metodiky. A transparentnost především. Vše je nyní veřejně na [GitHubu](https://github.com/OWASP/Top10) - dokument samotný, zpětná vazba, úkoly i [nasbíraná data](https://github.com/OWASP/Top10/tree/master/2017/datacall), na základě kterých jsou položky do seznamu zahrnuty. Už žádné další informace pohřbené v historii diskuzí v mailing listech.
+Kritiku první verze nebral OWASP na lehkou váhu a rozhodl se učinit řadu změn. Prvním zásadním krokem byla obměna vedení, následně metodiky. A transparentnost především - vše je nyní veřejně na [GitHubu](https://github.com/OWASP/Top10) - dokument samotný, zpětná vazba, úkoly i [nasbíraná data](https://github.com/OWASP/Top10/tree/master/2017/datacall), na základě kterých jsou položky do seznamu zahrnuty. Už žádné další informace pohřbené v historii diskuzí v mailing listech.
 
 Dle nové metodiky se nyní osm z deseti položek určuje na základě dat o zranitelnostech nasbíraných od mnoha růzých společností a aplikací. Zbylé dvě položky se zařazují na základě veřejné ankety mezi členy komunity. Díky tomu Top 10 obsahuje jak položky reflektující reálná data ze současných aplikací, tak názor odborné veřejnosti, na základě kterého se zařadí i nové zranitelnosti, které zatím nejsou sice široce rozšířeny, ale znamenají hrozbu do budoucnosti. Seznam se přece jen aktualizuje pouze jednou za několik let. Určování pořadí položek se také změnilo, nyní je pouze na základě rizikovosti dané zranitelnosti.
 
