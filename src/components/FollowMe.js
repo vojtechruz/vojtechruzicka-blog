@@ -10,6 +10,8 @@ class FollowMe extends React.Component {
             <a aria-label="Feedly link" target="blank" href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.vojtechruzicka.com%2Ffeed%2F" target="blank"><svg xmlns="http://www.w3.org/2000/svg" width="2500" height="2213" viewBox="51.622 205.389 487.385 431.346"><path className="inner" fill="#FFF" d="M111.615 420.945L297.64 234.92l186.025 186.025L297.64 606.97 111.615 420.945z"/><path d="M201.837 622.782L64.179 484.193c-16.742-16.742-16.742-53.017 0-68.829l197.187-198.117c15.812-15.812 51.156-15.812 66.969 0L526.45 415.364c16.742 16.742 16.742 53.018 0 68.829L388.792 622.782c-8.371 8.371-21.393 13.952-34.415 13.952H234.392c-12.092 0-24.184-5.581-32.555-13.952zm125.567-53.947c2.791-2.79 2.791-8.371 0-11.161L300.43 530.7c-2.79-2.791-8.37-2.791-11.161 0l-26.974 26.974c-2.79 2.79-2.79 8.371 0 11.161l21.393 20.463h22.323l21.393-20.463zm0-114.405c1.86-1.86 1.86-6.511 0-8.371l-28.834-28.834c-1.859-1.86-6.51-1.86-8.37 0l-83.712 83.711c-2.79 2.791-2.79 9.302 0 12.092l19.533 19.533h22.323l79.06-78.131zm0-113.476c1.86-1.86 2.791-7.441 0-9.301L299.5 303.749c-1.86-1.86-7.44-1.86-10.231 0L148.82 444.198c-1.859 1.86-2.79 7.441-.93 9.301l22.323 21.394h21.393l135.798-133.939z"/></svg>
             </a></div>;
 
+        const facebookIcon = <div className="follow-me-icon facebook"><a target="blank" aria-label="Facebook link" href="https://www.facebook.com/vojtechruzickablog"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 80v352c0 26.5-21.5 48-48 48h-85.3V302.8h60.6l8.7-67.6h-69.3V192c0-19.6 5.4-32.9 33.5-32.9H384V98.7c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9H184v67.6h60.9V480H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"/></svg></a></div>;
+
         const linkedInIcon = <div className="follow-me-icon linkedin"><a target="blank" aria-label="Linkedin link" href="https://www.linkedin.com/in/vojtechruzicka"><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.3 480H7.4V180.9h92.9V480zM53.8 140.1C24.1 140.1 0 115.5 0 85.8 0 56.1 24.1 32 53.8 32c29.7 0 53.8 24.1 53.8 53.8 0 29.7-24.1 54.3-53.8 54.3zM448 480h-92.7V334.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V480h-92.8V180.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V480z"/></svg></a></div>;
 
         const gplusIcon = <div className="follow-me-icon gplus"><a target="blank" aria-label="Google plus link" href="https://google.com/+Vojtechruzickablog"><svg className="about-icon" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z"/></svg></a></div>;
@@ -20,9 +22,10 @@ class FollowMe extends React.Component {
                 {twitterIcon}
                 {rssIcon}
                 {feedlyIcon}
+                {facebookIcon}
                 {linkedInIcon}
-                {gplusIcon}
                 {githubIcon}
+                {gplusIcon}
             </div>
         )
     }
