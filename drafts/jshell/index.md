@@ -62,21 +62,134 @@ Conclusion
 Finally even Java has its own REPL called JShell. It is a useful tool for quick prototyping, teaching or demonstration purposes. It is easy to use as it removes the need of much of the boilerplate Java normally requires. And if you use an IDE, which integrates JShell, the whole process gets even easier.
 
 Expressions
-     -semicolons
+-----------
+The simplest way to start with JShell is  to write a simple expression. It can be a simple mathematical expression:
+
+```jshelllanguage
+jshell> 7*(3+12)
+$1 ==> 105
+|  created scratch variable $1 : int
+```
+
+As you can see the expression is immediately evaluated and the result is printed to the console. No need to declare any variables first. For our convenience, however, a temporary variable called $1 was created, which we can use from now on. Note that type of the variable was inferred to int.
+
+However, expressions are not limited to simple mathematical ones like above. That would not be very useful. You can do pretty much anything you can do in Java.
+
+```jshelllanguage
+jshell> Math.sqrt($1)+7
+$2 ==> 17.246950765959596
+```
+
+First of all, notice that we were able to use $1 variable from the previous example. The state is preserved between each command. Another interesting feature is that, as you can see, semicolons are optional in most cases.
+
 Variables
-  - no static or final
-  - no access modifiers
-  -list all variables
+---------
+Even though JShell reclares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare variables as you would local variables. 
+
+```jshelllanguage
+jshell> int myVariable = 42
+myVariable ==> 42
+|  created variable myVariable : int
+```
+
+Access modifiers and static/final are ignored for top-level variable and function declarations:
+
+```jshelllanguage
+jshell> final int myFinalVariable = 18
+|  Warning:
+|  Modifier 'final'  not permitted in top-level declarations, ignored
+|  final int myFinalVariable = 18;
+|  ^---^
+myFinalVariable ==> 18
+|  created variable myFinalVariable : int
+```
+
+After some time you may get confused what variables you already declared and what are their values. There is a special command exactly for this - just type `/vars`.
+
+```jshelllanguage
+jshell> /vars
+|    int $1 = 105
+|    double $2 = 17.246950765959596
+|    int myVariable = 42
+|    int myFinalVariable = 18
+```
+
+If you are on Java 10 already, you can use [var instead of declaring the type explicitly](https://www.vojtechruzicka.com/java-10-var-local-variable-type-inference-jep-286/).
+
 Methods 
-  - dopredna reference
-  - =top level methods without class
-  - list all methods
+-------
+As we saw above, you can declare variables on the root level, not inside any class. You can do the same for methods. Again, you don't need to worry about any modifiers such as public, static or final. You just start with the return type and the name of the method with possible parameters:
+
+```jshelllanguage
+jshell> String sayHello(String name) {
+   ...> return "Hello, my name is "+name;
+   ...> }
+|  created method sayHello(String)
+
+jshell> sayHello("Joe")
+$7 ==> "Hello, my name is Joe"
+|  created scratch variable $7 : String
+```
+
+In the example above, you can see we declared a method and then called it. Please not that unlike on top level, inside methods and classes semicolons are not optional.
+
+A common scenario is when a method uses another method or variable, which is not declared yet. It is called the forward reference and JShell allows you to do that. However, you cannot use such methods until all of its dependencies are declared also.
+
+```jshelllanguage
+jshell> String myMethod(String name) {
+   ...> return otherMethodNotDeclared();
+   ...> }
+|  created method myMethod(String), however, it cannot be invoked until method otherMethodNotDeclared() is declared
+```
+
+Similar to `/vars` for variables, you can list all currently declared methods with `/methods`.
+
 Types
-  - list all types
-Using external classes
-   -imports
-   -classpath
-   -modules
+-----
+Top level variables and methods are useful, but often you need to declare and use regular classes, enums or interfaces. You can do it as usual, nothing JShell specific here. Just keep in mind that in this case semicolons are required as usual. You can list all declared types by `/types`.
+
+```jshelllanguage
+jshell> class Person {
+   ...>     private String name;
+            [more code here]
+   ...> }
+|  created class Person
+```
+
+Using external code
+-------------------
+Defining all your classes as in the example above is a tedious task. What's more often you want to use already existing classes from JDK or even your own.
+
+For the JDK classes you can use `import` as usual. For your convenience, many of the common classes are already imported by default. Not only usual java.lang, but also java.io, java.math, java.util or java.nio.file. You can list all the current imports by `/import`. 
+
+Of course, import is useless if JShell does not have access to the classes needed.
+
+```jshelllanguage
+jshell> import com.vojtechruzicka.*;
+|  Error:
+|  package com.vojtechruzicka does not exist
+|  import com.vojtechruzicka.*;
+|  ^
+```
+
+Your classes need to be on classpath. First option is using CLASSPATH environmental variable. Or you can specify classpath when launching JShell:
+
+```jshelllanguage
+jshell --class-path foo-1.0.0.jar
+```
+
+You can provide multiple jars separated by either ; or : depending on your OS. Alternatively you can define classpath directly from jshell:
+
+```jshelllanguage
+jshell> /env -class-path foo-1.0.0.jar
+```
+
+If you are using Java 9 module system, you can specify modules to be imported when starting JShell:
+
+```jshelllanguage
+jshell --add-modules some.module
+```
+
 Exceptions
     -checked exceptions not caught
 Commands
