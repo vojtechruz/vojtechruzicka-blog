@@ -5,7 +5,6 @@ import Disqus from 'disqus-react';
 import Bio from '../components/Bio'
 import { rhythm, scale } from '../utils/typography'
 import Tags from "../components/Tags";
-import Img from 'gatsby-image'
 import Link from "gatsby-link";
 import {
     FacebookShareButton,
@@ -16,6 +15,7 @@ import {
     TumblrShareButton,
     EmailShareButton, FacebookIcon, GooglePlusIcon, TwitterIcon, RedditIcon, LinkedinIcon, TumblrIcon, EmailIcon,
 } from 'react-share';
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -107,7 +107,7 @@ class BlogPostTemplate extends React.Component {
         <Bio />
         <hr/>
         <div>
-            <p><strong>Get notifications about new posts on <a href="https://twitter.com/vojtechruzicka">{twitterIcon}Twitter</a>, <a href="https://www.vojtechruzicka.com/feed/">{rssIcon}RSS</a> or <a href="https://eepurl.com/bZ0waf">{emailIcon}Email</a>.</strong></p>
+            <p><strong>Get notifications about new posts on <OutboundLink href="https://twitter.com/vojtechruzicka">{twitterIcon}Twitter</OutboundLink>, <OutboundLink href="https://www.vojtechruzicka.com/feed/">{rssIcon}RSS</OutboundLink> or <OutboundLink href="https://eepurl.com/bZ0waf">{emailIcon}Email</OutboundLink>.</strong></p>
             <div className="share-icons">
                 <FacebookShareButton url={siteUrl + this.props.pathContext.slug} additionalProps={{"aria-label": "Facebook share button"}}>
                     <FacebookIcon round size={shareIconSize} />

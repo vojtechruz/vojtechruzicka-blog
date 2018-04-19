@@ -2,7 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import profilePic from '../../components/profile-big.jpg'
-
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import { rhythm } from '../../utils/typography'
 
 class AboutPage extends React.Component {
@@ -49,23 +49,23 @@ const facebookIcon = <svg className="about-icon" xmlns="https://www.w3.org/2000/
                 <h1>About me</h1>
                 <strong>Get notified about the newest posts</strong>
                 <ul>
-                    <li><a href="https://twitter.com/vojtechruzicka">{twitterIcon}Follow @vojtechruzicka</a></li>
-                    <li>{emailIcon}<a href="https://eepurl.com/bZ0waf">Receive new posts by email</a></li>
-                    <li>{rssIcon}<a href="https://www.vojtechruzicka.com/feed/">Subscribe to RSS Feed</a></li>
-                    <li><a href="https://google.com/+Vojtechruzickablog">{gPlusIcon}Follow +Vojtechruzickablog</a></li>
+                    <li><OutboundLink href="https://twitter.com/vojtechruzicka">{twitterIcon}Follow @vojtechruzicka</OutboundLink></li>
+                    <li>{emailIcon}<OutboundLink href="https://eepurl.com/bZ0waf">Receive new posts by email</OutboundLink></li>
+                    <li>{rssIcon}<OutboundLink href="https://www.vojtechruzicka.com/feed/">Subscribe to RSS Feed</OutboundLink></li>
+                    <li><OutboundLink href="https://google.com/+Vojtechruzickablog">{gPlusIcon}Follow +Vojtechruzickablog</OutboundLink></li>
                 </ul>
 
                 <strong>Contact me</strong>
                 <ul>
-                    <li><a href="mailto:vojtech.ruz@gmail.com">{emailIcon}vojtech.ruz@gmail.com</a></li>
+                    <li><OutboundLink href="mailto:vojtech.ruz@gmail.com">{emailIcon}vojtech.ruz@gmail.com</OutboundLink></li>
                 </ul>
 
                 <strong>Additional links</strong>
                 <ul>
-                    <li><a href="https://www.linkedin.com/in/vojtechruzicka">{linkedInIcon}LinkedIn profile</a></li>
-                    <li><a href="https://github.com/vojtechruz">{githubIcon}GitHub profile</a></li>
-                    <li><a href="https://stackoverflow.com/users/4560142/vojtech-ruzicka">{stackOverflowIcon}Stack Overflow profile</a></li>
-                    <li><a href="https://www.facebook.com/vojtechruzickablog">{facebookIcon}Facebook page</a></li>
+                    <li><OutboundLink href="https://www.linkedin.com/in/vojtechruzicka">{linkedInIcon}LinkedIn profile</OutboundLink></li>
+                    <li><OutboundLink href="https://github.com/vojtechruz">{githubIcon}GitHub profile</OutboundLink></li>
+                    <li><OutboundLink href="https://stackoverflow.com/users/4560142/vojtech-ruzicka">{stackOverflowIcon}Stack Overflow profile</OutboundLink></li>
+                    <li><OutboundLink href="https://www.facebook.com/vojtechruzickablog">{facebookIcon}Facebook page</OutboundLink></li>
                 </ul>
             </div>
         )
