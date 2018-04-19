@@ -157,3 +157,7 @@ added custom theme
 - All follow me icons now open in new tab
 - fixed disqus undefiend error & restarted disqus
 - added back netlify plugin
+
+19.4.
+- Added GA outbound links for social media
+- added blog sitemap gatsby plugin
