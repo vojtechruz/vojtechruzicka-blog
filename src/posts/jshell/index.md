@@ -1,10 +1,10 @@
 ---
 title: 'JShell - New REPL tool in Java 9 for quick prototyping'
-date: ""
+date: "2018-04-20T22:12:03.284Z"
 tags: ['Java']
 path: '/jshell-repl'
 featuredImage: './jshell.jpg'
-disqusArticleIdentifier: ''
+disqusArticleIdentifier: '99003 http://vojtechruzicka.com/?p=99003'
 excerpt: 'From version 9, Java now has its own interactive REPL console, which is useful for quick checks, prototyping and educational purposes.'
 ---
 
@@ -21,7 +21,7 @@ While prototyping and quick code verification are important, there is another re
 
 The interactive console does not require class with main and immediately shows you output. You can try various constructs and you see results immediately. You don\'t need any IDE. You can start programming with minimal setup and minimal knowledge of all the advanced concepts, learning just one construct at the time. This high barrier of entry also resulted in many schools and institutions abandoning Java as their introduction to programming language choice. The educational aspect was actually primary motivation for the feature as stated in the JEP222:
 
-> Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial `"Hello, world!"` program.
+> Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial "Hello, world!" program.
 
 Running JShell
 --------------
@@ -43,23 +43,6 @@ jshell>
 ```
 
 Now you are in interactive mode and anything you write is evaluated by JShell. To exit again just type `/exit`.
-
-Support In IntelliJ IDEA
-------------------------
-
-The good news is that if you use IntelliJ IDEA, you don't need to worry about having JShell on classpath, as IDEA offers nice integration with JShell out of the box directly in the IDE. This means you get all the useful features such as code completion, syntax highlighting, error detection and more.
-
-To access JShell from IDEA, simply go to *Tools → JShell Console...*.
-
-Whats also useful is that you can prepare all the code in advance and then just run it on demand rather than in the interactive console mode, which is often much more convenient.
-
-![jshell-idea](./jshell-idea.png)
-
-Unlike when running directly from console, IDEA automatically adds your current project to the classpath, so you can work with your custom classes out of the box with no setup needed.
-
-Conclusion
-----------
-Finally even Java has its own REPL called JShell. It is a useful tool for quick prototyping, teaching or demonstration purposes. It is easy to use as it removes the need of much of the boilerplate Java normally requires. And if you use an IDE, which integrates JShell, the whole process gets even easier.
 
 Expressions
 -----------
@@ -198,7 +181,7 @@ Saving and loading your work
 ----------------------------
 When you work with JShell in more complicated use cases, it is often handy to be able to save your work and to continue later. Or to simply save your session for future reference. The good news is that JShell supports saving and loading sessions using `/save` and `/open commands`:
 
-```
+```jshelllanguage
 jshell> /save myfile.jsh
 
 jshell> /open myfile.jsh
@@ -208,16 +191,47 @@ Using an External Editor
 ------------------------
 While you can write and edit everything directly in the JShell console, it is not always the best approach. The editing ca be tedious and cumbersome. It is often better to use a dedicated external text editor for the editing. To open all the code snippets you entered so far in an external editor, simply type `/edit`.
 
-TODO Edit image
+![JShell Default Editor](./jshell-editor.png)
 
-
+Not very cutting edge, is it? Fortunately, you can configure your own editor to open when executing the `/edit` command. One way is to sen the environmental variable `JSHELLEDITOR`. Alternatively you can set the editor directly from JShell. Use `-retain` option to persist this setting between sessions.
 
 ```jshelllanguage
+jshell> /set editor myEditor
+|  Editor set to: myEditor
 ```
 
-   - built-in
-   - change
-Using JShell programatically
+If your editor is not on PATH, you'll need to provide the full path to the executable.
+
+Using JShell programmatically
+----------------------------
+
+
+
 Alternatives
-Commands
-https://github.com/bhagatsingh/try-artifact
+------------
+
+The first interesting alternative to plain JShell is called [Try Artifact](https://github.com/bhagatsingh/try-artifact). Instead of obtaining jar dependencies manually and adding them to classpath, it allows you to download and use Maven artifacts directly from the console.
+
+```jshelllanguage
+jshell> /resolve org.apache.commons:commons-lang3:jar:3.4
+|  Path /home/kawasima/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar added to classpath
+```
+
+Another useful alternative is using a REPL directly in the browser. You can try either [Java REPL](http://www.javarepl.com/term.html) or [repl.it](https://repl.it).
+
+Support In IntelliJ IDEA
+------------------------
+
+The good news is that if you use IntelliJ IDEA, you don't need to worry about having JShell on classpath, as IDEA offers nice integration with JShell out of the box directly in the IDE. This means you get all the useful features such as code completion, syntax highlighting, error detection and more.
+
+To access JShell from IDEA, simply go to *Tools → JShell Console...*.
+
+Whats also useful is that you can prepare all the code in advance and then just run it on demand rather than in the interactive console mode, which is often much more convenient.
+
+![jshell-idea](./jshell-idea.png)
+
+Unlike when running directly from console, IDEA automatically adds your current project to the classpath, so you can work with your custom classes out of the box with no setup needed.
+
+Conclusion
+----------
+Finally even Java has its own REPL called JShell. It is a useful tool for quick prototyping, teaching or demonstration purposes. It is easy to use as it removes the need of much of the boilerplate Java normally requires. And if you use an IDE, which integrates JShell, the whole process gets even easier.
