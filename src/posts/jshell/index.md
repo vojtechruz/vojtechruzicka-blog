@@ -205,7 +205,25 @@ If your editor is not on `PATH`, you'll need to provide the full path to the exe
 Using JShell programmatically
 ----------------------------
 
+A very interesting option is to integrate your Java applications with JShell. You can create a JShell instance programmatically and then use it in your app. All the required classes are under `jdk.jshell`. First, you need to create a JShell instance and then you can use it to evaluate code snippets.
 
+```java
+JShell shell = JShell.create();
+List<SnippetEvent> events = shell.eval("String hello = \"Hello JShell!\";");
+```
+
+The `eval` method evaluates the code snippet and returns you a list of [events](https://docs.oracle.com/javase/9/docs/api/jdk/jshell/SnippetEvent.html), which occurred during the evaluation. From these, you can tell whether some exceptions occurred and whether the snippet is valid. To access details about the snippet itself, you need to call `snippetEvent.snippet()`.
+
+```java
+JShell shell = JShell.create();
+List<SnippetEvent> events = shell.eval("String hello = \"Hello JShell!\";");
+SnippetEvent event = events.get(0);
+Snippet snippet = event.snippet();
+Snippet.Kind kind = snippet.kind();
+String source = snippet.source();
+```
+
+To obtain the full source code of the snippet, you can use `snippet.source()`. To determine the type of the snippet (variable declaration, importm, method declaration, ...) you can use `snippet.kind()`.
 
 Alternatives
 ------------
