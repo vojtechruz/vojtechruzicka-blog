@@ -16,7 +16,7 @@ Vulnerable Dependencies
 
 Making sure your application contains security vulnerabilities is not only about securing your own code. Your application likely contains a lot of other libraries - third-party dependencies. They introduce a lot of security vulnerabilities as well, many of which you are not even aware. Once they are discovered, they are usually fixed in a new version. When you are using an old version of a library, without recent security fixes, you are at risk. When an attacker identifies you are using an old version of particular dependency, they can easily exploit that. There are even public databases of security vulnerabilities of third-party libraries, so it is quite easy to determine which ones to exploit.
 
-OWASP, Open Web Application Security Project, periodically releases Top Ten list of Web Application Security Vulnerabilities. \"[Using Components with Known Vulnerabilities](https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities)\" is one of the items on their latest list:
+OWASP, Open Web Application Security Project, periodically releases [Top Ten list of Web Application Security Vulnerabilities](https://www.vojtechruzicka.com/owasp-top-ten-2017/). \"[Using Components with Known Vulnerabilities](https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities)\" is one of the items on their latest list:
 
 > Components, such as libraries, frameworks, and other software modules, almost always run with full privileges. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications using components with known vulnerabilities may undermine application defenses and enable a range of possible attacks and impacts.
 
