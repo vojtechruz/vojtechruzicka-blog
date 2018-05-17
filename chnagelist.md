@@ -166,7 +166,7 @@ added custom theme
 
 17.5.
 - Updated vaadin cert excerpt, so it does not contain uncompiled markdown
-
+- added twitter image meta tag
 
 ----------------------
 contentking

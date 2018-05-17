@@ -83,6 +83,7 @@ class BlogPostTemplate extends React.Component {
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:title" content={post.frontmatter.title} />
               <meta name="twitter:description" content={post.frontmatter.excerpt} />
+              <meta name="twitter:image" content={siteUrl + post.frontmatter.featuredImage.childImageSharp.sizes.originalImg} />
           </Helmet>
         <h1>{post.frontmatter.title}</h1>
         <div
