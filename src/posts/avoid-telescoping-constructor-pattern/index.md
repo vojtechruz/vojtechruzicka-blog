@@ -74,11 +74,11 @@ One of the disadvantages of having multiple constructors is reduced readability.
         this.lastName = lastName;
     }
 
-    public Person createNamedPerson(String firstName, String lastName) {
+    public static Person createNamedPerson(String firstName, String lastName) {
         return new Person(firstName, lastName);
     }
 
-    public Person createUnknownPerson() {
+    public static Person createUnknownPerson() {
         return new Person("John", "Doe");
     }
 ```
@@ -123,7 +123,7 @@ There are two basic builder approaches.
 
 The choice is mostly a matter of preference. Many people consider convenient having the builder as an inner class, bundled all together. Also having private constructor is quite common. Personally I generally avoid inner classes and as such, I like to have my Builders separate (although in the same package). I like having separate construction of the class from the class itself, I consider it two different responsibilities according to Single Responsibility Principle. I also rarely prohibit direct instantiation, unless there is a special need for it. If necessary, having the constructor package private means you can still have a separate builder in the same package while preventing instantiation from the outside.
 
-### Automatic Builder Generation {#automatic-builder-generation style="text-align: justify;"}
+### Automatic Builder Generation
 
 The builder is fortunately quite easy to generate. The best way is to use your favorite IDE for that. For example, there is a nice plugin for IntelliJ IDEA [innerbuilder](https://github.com/analytically/innerbuilder), which can be used to generate inner class builders from your classes.
 
