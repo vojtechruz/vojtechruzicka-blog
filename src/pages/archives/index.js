@@ -26,7 +26,7 @@ const ArchivesPage = ({
             <meta name="twitter:description" content={description} />
         </Helmet>
         <div>
-            <h1>Tags</h1>
+            <h1>Archives</h1>
             <ul>
                 {group.sort((a, b) => {
                     //TODO do sorting in graphql

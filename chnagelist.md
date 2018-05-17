@@ -172,3 +172,4 @@ added custom theme
 contentking
 -------------------
 health:775 / 1000
+platform-health: 940/100
