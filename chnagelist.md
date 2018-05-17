@@ -168,6 +168,9 @@ added custom theme
 - Updated vaadin cert excerpt, so it does not contain uncompiled markdown
 - added twitter image meta tag
 - added sitemap link to robots.txt
+- added canonical urls
+- tags andarchive no longer have duplicate h1
+- removed temp images
 ----------------------
 contentking
 -------------------

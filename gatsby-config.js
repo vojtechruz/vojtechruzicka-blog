@@ -155,6 +155,12 @@ module.exports = {
               ],
           },
       },
+      {
+          resolve: `gatsby-plugin-canonical-urls`,
+          options: {
+              siteUrl: `https://www.vojtechruzicka.com`,
+          },
+      },
       `gatsby-plugin-sitemap`,
       `gatsby-plugin-offline`,
       `gatsby-plugin-netlify`
