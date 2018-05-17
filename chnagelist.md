@@ -171,7 +171,10 @@ added custom theme
 - added canonical urls
 - tags andarchive no longer have duplicate h1
 - removed temp images
+-disavowed bad image backlinks
+-Fixed broken link for angulardoc
+health:775 -> 836/ 1000
 ----------------------
 contentking
 -------------------
-health:775 / 1000
+health:836 / 1000
