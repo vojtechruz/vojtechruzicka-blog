@@ -161,3 +161,14 @@ added custom theme
 19.4.
 - Added GA outbound links for social media
 - added blog sitemap gatsby plugin
+
+
+
+17.5.
+- Updated vaadin cert excerpt, so it does not contain uncompiled markdown
+
+
+----------------------
+contentking
+-------------------
+health:775 / 1000
