@@ -173,7 +173,7 @@ added custom theme
 - removed temp images
 -disavowed bad image backlinks
 -Fixed broken link for angulardoc
-health:775 -> 836/ 1000
+health:775 -> 905/ 1000
 ----------------------
 contentking
 -------------------

@@ -2,7 +2,7 @@
 -verify RSS is still working
  - comments not imported for field dependency injection
 
-sitemap
+sitemap generating only non postpages
 getpocket images not working
 - remove lodash dependency??? (4kb)
 profile image either progressive or gatsby-image
