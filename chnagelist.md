@@ -177,4 +177,7 @@ health:775 -> 905/ 1000
 ----------------------
 contentking
 -------------------
-health:836 / 1000
+health:905 / 1000
+
+21.5.
+- increased post width by 10%
