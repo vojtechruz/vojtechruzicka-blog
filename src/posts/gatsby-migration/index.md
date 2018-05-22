@@ -86,3 +86,8 @@ My blog is now deployed on Netlify CDN, which means the user will be served fast
 Quite a difference, right? Long story short - Gatsby is great. You should give it a try, especially if you are a front-end developer. And keep watching its development as I am sure we can look forward to even more awesomeness in the future. If Gatsby is not your cup of the, you should still consider switching to a static site generator as the advantages are too good to ignore.
 
 To learn more about Gatsby check out [this curated list](https://github.com/prayasht/awesome-gatsby) of Gatsby-related resources.
+
+## Deployment
+This article covered GatsbyJS part of the migration. But that's not all you need to do, you need to set up a build and deployment process for yor site.
+
+I decided to use Netlify to set up a continuous deployment of my site, you can learn more here: [Migration to JAM stack and Netlify from WordPress](https://www.vojtechruzicka.com/jamstack-migration-netlify/).
