@@ -228,3 +228,13 @@ li {
     height: inherit;
   }
 }
+
+body {
+  background-color: hsla(0, 0% ,0%, 0.04);
+}
+
+.content-root {
+  background-color: #fff;
+  border-right: 1px solid hsla(0, 0% ,0%, 0.1);
+  border-left: 1px solid hsla(0, 0% ,0%, 0.1);
+}
