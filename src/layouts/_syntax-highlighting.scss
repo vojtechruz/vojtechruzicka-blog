@@ -117,3 +117,7 @@ pre[class*="language-"] {
 .token.italic {
   font-style: italic;
 }
+
+.gatsby-highlight-code-line {
+  background-color: hsla(0, 0% ,0%, 0.1);
+}

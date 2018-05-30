@@ -1,7 +1,7 @@
 ---
 title: 'Migration to GatsbyJS and JAM stack from WordPress'
 date: "2018-03-25T22:12:03.284Z"
-tags: ['Blogging']
+tags: ['Blogging', 'JAMStack']
 path: '/gatsby-migration'
 featuredImage: './jam.jpg'
 disqusArticleIdentifier: '99001 https://www.vojtechruzicka.com/gatsby-migration/?p=99001'

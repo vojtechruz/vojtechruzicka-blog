@@ -1,7 +1,7 @@
 ---
 title: 'Migration to JAM stack and Netlify from WordPress'
 date: "2018-05-21T22:12:03.284Z"
-tags: ['Blogging']
+tags: ['Blogging', 'JAMStack']
 path: '/jamstack-migration-netlify'
 featuredImage: './jamstack-migration-netlify.jpg'
 disqusArticleIdentifier: '99004 http://vojtechruzicka.com/?p=99004'
