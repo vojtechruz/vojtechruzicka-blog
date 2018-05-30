@@ -332,7 +332,7 @@ If you build again, you should see a new section about path params in your docum
 
 ![Path Parameters Documentation](./path-parameters.png)
 
-# Documenting request and response payload
+## Documenting request and response payload
 Our controller's method getPersonById() returns a person represented as JSON. 
 
 ```json
@@ -382,11 +382,39 @@ If you add documentation also for the `age` field and build again, it will gener
 
 ![Response Fields Documentation](./response-fields.png)
 
+You can see Spring also inferred data type of the fields without us specifying it explicitly.
+
 Documenting the request payload is pretty much same. Just use `requestFields()` method and `request-fields.adoc` fragment.
 
-TODO request params and headers
+## Documenting request parameters
+Request parameters can be passed it two ways. First, you can add them after question mark at the end of an URL:
+
+```java
+this.mockMvc.perform(RestDocumentationRequestBuilders.get("/persons?limit=100&order=asc"))
+```
+
+Or in a body of a post request:
+
+```java
+this.mockMvc.perform(RestDocumentationRequestBuilders.post("/persons").param("limit", "100").param("order", "asc"))
+```
+
+Either way, documenting request params is the same:
+
+```java
+.andDo(document("persons/get-all", requestParameters(
+			parameterWithName("limit").description("Limit the number of persons obtained to this number."),
+			parameterWithName("order").description("Orders persons by name alphabetically in either ascending (asc) or descending (desc) order.")
+	)));
+```
+
+The resulting snippet is `request-parameters.adoc`.
+
+## More documentation options
+That's of course not all you can document. [There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, Hypermedia links or multipart requests. However the pattern is still the same. Include a method in your tests, run the tests, include the generated snippet in your asciidoc and finally run the maven build. 
+
+
 TODO rest autodocs
-TODO sample html output to the sample repo
 TODO? serving in spring boot app static content
 
 
