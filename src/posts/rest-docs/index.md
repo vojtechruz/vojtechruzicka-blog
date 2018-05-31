@@ -58,6 +58,8 @@ For the behavior described above to work, Spring Rest Docs need to be integrated
 ### Starting repository
 To follow this tutorial, you can use any Spring/Spring Boot application with REST controllers. You can either use your own or build on top of a sample [starter repository](https://github.com/vojtechruz/rest-docs-starter) I prepared for this purpose.
 
+The final source code for this tutorial is available in [this repository](https://github.com/vojtechruz/spring-rest-docs-example).
+
 ### Creating Spring MVC Tests
 First, before diving deep into Spring Rest Docs specifics, you'll need some regular tests of your controllers. Let's create a simple one, which calls a controller's method and checks whether HTTP response code is 200 OK and the content type of the response is JSON. Of course, you can test much more, such as the response data, HTTP headers, cookies and so on.
 
@@ -97,7 +99,7 @@ public class PersonControllerTest {
 So far, nothing REST Docs specific, but this is the base we'll be building on.
 
 ### Adding the dependencies
-The first thing you'll need to do is provide the Spring Rest Docs dependency. You'll need to use a different one depending on whether you want to use Spring MVC Test, WebTestClient or RestAssured. For Spring MVC Test you'll need the following (use the latest version).
+The first thing you'll need to do is provide the Spring Rest Docs dependency. You'll need to use a different one depending on whether you want to use Spring MVC Test, WebTestClient or RestAssured. For Spring MVC Test use the following (the latest version).
 
 ```xml
 <dependency> 
@@ -115,7 +117,7 @@ testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.1.RELEASE'
 ```
 
 ### Configuring your tests - Junit 4
-Let'so add a specific `@Rule` for REST documentation and then use it when building the mockMvc object. Only highlighted lines below are, the rest is the original code sample we already saw.
+Let's add a specific `@Rule` for REST documentation and then use it when building the mockMvc object. Only the highlighted lines below are new. The rest is the original code sample we already saw.
 
 ```java{10-11,17}
 @RunWith(SpringRunner.class)
@@ -145,7 +147,7 @@ public class PersonControllerJunit4Test {
 ### Configuring your tests - Junit 5
 For JUnit 5, the configuration is also easy. You need to use `RestDocumentationExtension.class` extension in addition to Spring's one you would use normally. Then when constructing the mockMvc object apply the configuration. You're adding just the highlighted lines in the example below.
 
-```java{2,12}
+```java{2,9,12}
 @SpringBootTest
 @ExtendWith({ RestDocumentationExtension.class, SpringExtension.class})
 public class PersonControllerJunit5Test {
@@ -180,11 +182,11 @@ Now when we have the test configuration ready, it's time to write some documenta
     }
 ```
 
-Now let's run the tests to make sure everything works fine. They should pass. Now in your `target/generated-snippets` should be a sub-folder with a name matching the string you provided in `andDo(document("[documentation snippet's name]"))`. Inside, there should be a bunch of `.adoc` files.
+Now let's run the tests to make sure everything works fine. They should pass and in your `target/generated-snippets` should be a sub-folder with a name matching the string you provided in `andDo(document("[documentation snippet's name]"))`. Inside, there should be a bunch of `.adoc` files.
 
 ![Generated Snippets](./generated-snippets.png)
 
-If you don't want to provide snippet's name manually, you can provide placeholders, such as:
+If you don't want to provide snippet's name explicitly, you can provide placeholders, such as:
 
 ```java
 andDo(document("{ClassName}/{methodName}")
@@ -193,7 +195,8 @@ andDo(document("{ClassName}/{methodName}")
 ### AsciiDoc vs. Markdown 
 The files inside are fragments of your documentation. They contain information such as HTTP request and response or curl commands to call your endpoints.
 
-The resulting API documentation should be, of course, HTML. However, as you can see, it is in a different format now. It's called AsciiDoc and is very similar to [MarkDown](https://www.markdownguide.org/getting-started). That means it's a simple markup language for text formatting written in plain text. MarkDown is widespread, well-known language, so why to introduce another one? Why not stick with MarkDown?
+The resulting API documentation should be, of course, HTML. However, as you can see, it is in a different format now. It's called AsciiDoc and it
+is very similar to [MarkDown](https://www.markdownguide.org/getting-started). That means it's a simple markup language for text formatting written in plain text. MarkDown is widespread, well-known language, so why to introduce another one? Why not stick with MarkDown?
 
 [Why You Shouldn’t Use Markdown for Documentation](http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/#why-you-shouldn-t-use-markdown-for-documentation) sums the reasons pretty well. 
 
@@ -204,7 +207,7 @@ In the last few years, [Commonmark](http://commonmark.org/) was developed as a s
 You can read more about the differences in [this comparison](https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/asciidoc-vs-markdown.adoc).
 
 ### Converting AsciiDoc
-Since AsciiDoc cannot be directly rendered by a browser, we need a way to convert the documentation from AsciiDoc to HTML. There's a tool called AsciiDoctor, which is also [available as a Maven plugin](https://github.com/asciidoctor/asciidoctor-maven-plugin). Just include the following in your `pom.xml` file.
+Since AsciiDoc cannot be directly rendered by a browser, we need a way to convert the documentation from AsciiDoc to HTML. There's a tool called AsciiDoctor, which is also [available as a Maven plugin](https://github.com/asciidoctor/asciidoctor-maven-plugin) ([there's also one for Gradle](https://asciidoctor.org/docs/asciidoctor-gradle-plugin/)). Just include the following in your `pom.xml` file.
 
 ```xml
 <build>
@@ -307,7 +310,7 @@ Let's document the following endpoint more:
     }
 ```
 
-First, let's document the PathVariable. That means that id of the person is passed in the URL as `/persons/{id}`.
+Let's start with the PathVariable. That means that id of the person is passed in the URL as `/persons/{id}`.
 
 ```java{7}
 @Test
@@ -333,7 +336,7 @@ If you build again, you should see a new section about path params in your docum
 ![Path Parameters Documentation](./path-parameters.png)
 
 ## Documenting request and response payload
-Our controller's method getPersonById() returns a person represented as JSON. 
+Our controller's method `getPersonById()` returns a person represented as JSON. 
 
 ```json
 {
@@ -390,22 +393,28 @@ Documenting the request payload is pretty much same. Just use `requestFields()` 
 Request parameters can be passed in two ways. First, you can add them after question mark at the end of an URL:
 
 ```java
-this.mockMvc.perform(RestDocumentationRequestBuilders.get("/persons?limit=100&order=asc"))
+this.mockMvc.perform(RestDocumentationRequestBuilders
+    .get("/persons?limit=100&order=asc"))
 ```
 
 Or in a body of a POST request:
 
 ```java
-this.mockMvc.perform(RestDocumentationRequestBuilders.post("/persons").param("limit", "100").param("order", "asc"))
+this.mockMvc.perform(RestDocumentationRequestBuilders
+    .post("/persons")
+    .param("limit", "100")
+    .param("order", "asc"))
 ```
 
 Either way, documenting request params is the same:
 
 ```java
 .andDo(document("persons/get-all", requestParameters(
-            parameterWithName("limit").description("Limit the number of persons obtained to this number."),
-            parameterWithName("order").description("Orders persons by name alphabetically in either ascending (asc) or descending (desc) order.")
-    )));
+    parameterWithName("limit")
+        .description("Limit the number of persons obtained to this number."),
+    parameterWithName("order")
+        .description("Orders persons by name alphabetically in either ascending (asc) or descending (desc) order.")
+)));
 ```
 
 The resulting snippet is `request-parameters.adoc`.
@@ -423,8 +432,8 @@ TODO? serving in spring boot app static content
 
 
 ## Conclusion
-While Swagger and SpringFox are not a bad choice, Spring Rest Docs offers some powerful benefits you should definitely consider. The main one is having your docs always up to date, because if the documentation goes out of sync, the tests start to fail. Another one is that it motivates you to write tests of your controllers as they are requried to create your API documentation.
+While Swagger and SpringFox are not a bad choice, Spring Rest Docs offers some powerful benefits you should definitely consider. The main one is having your docs always up to date, because if the documentation goes out of sync, the tests start to fail. Another one is that it motivates you to write tests of your controllers as they are required to create your API documentation.
 
-Also, with Spring rest docs it is much easier to write documentation not only of your API directly, but also add any other necessary info such as tables, blocks of text, images, code blocks and so on. And of course, your production code is no longer plagued by all the documentation annotations, which make it so hard to read.
+Also, with Spring Rest Docs it is much easier to write documentation not only of your API directly, but also add any other necessary info such as tables, blocks of text, images, code blocks and so on. And of course, your production code is no longer plagued by all the documentation annotations, which make it so hard to read.
 
 Swagger, on the other hand, offers a compelling option to call your API directly from the documentation. Also, it effortlessly generates basic information about your API without you writing anything. It can be useful for a legacy codebase to have at least some documentation in no time. Of course, without custom descriptions and explanations, but at least it is something.
