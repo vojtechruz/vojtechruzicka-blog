@@ -335,6 +335,11 @@ To make this work you need to:
 3.  Instead of annotation text insert a placeholder - e.g. *\${person.id}*
 4.  Register the property file in your configuration on class level - eg. *@PropertySource(\"classpath:swagger.properties\")*
 
+## Alternatives
+SpringFox and Swagger are a solid choice. However, you may want to try an alternative before choosing it. There is a very interesting project, which is actually a part of the Spring Framework. It's called Spring Rest Docs. One of its advantages is that it is tightly integrated with your tests. That means it can make sure your documentation is always up to date. Otherwise, your tests no longer pass. Add a request param without documenting it and your tests are no longer green. Remove a param without updating your docs and your tests fail. You can learn more in the following article:
+
+[Spring REST Docs - Test driven documentation of your REST API](https://www.vojtechruzicka.com/spring-rest-docs/)
+
 Conclusion
 ----------
 
