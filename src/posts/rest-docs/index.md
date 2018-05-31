@@ -404,8 +404,12 @@ Either way, documenting request params is the same:
 ```java
 .andDo(document("persons/get-all", requestParameters(
 			parameterWithName("limit").description("Limit the number of persons obtained to this number."),
-			parameterWithName("order").description("Orders persons by name alphabetically in either ascending (asc) or descending (desc) order.")
+			parameterWithName("order").description("Orders pe
 	)));
+Also, with Spring rest docs it is much easier to write documentation not only of your API directly, but also add any other necessary info such as tables, blocks of text, irsons by name alphabetically in either ascending (asc) or descending (desc) order.")mages, code blocks and so on. And of course, your production code is no longer plagues by all the documentation annotations, which make it so hard to read.
+
+Swagger on the other turn offers a powerful option to try your API directly in the documentation. Also, it will effortlessly generate basic information about your api without you writing anything. It can be useful for legacy codebase to have at least some documentation in no time. Of course, without custom descriptions and explanations, but at least it is something.
+
 ```
 
 The resulting snippet is `request-parameters.adoc`.
@@ -413,15 +417,14 @@ The resulting snippet is `request-parameters.adoc`.
 ## More documentation options
 That's of course not all you can document. [There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, Hypermedia links or multipart requests. However the pattern is still the same. Include a method in your tests, run the tests, include the generated snippet in your asciidoc and finally run the maven build. 
 
+## Extras
+TODO
+https://github.com/ePages-de/restdocs-wiremock
+https://github.com/ScaCap/spring-auto-restdocs
 
-TODO rest autodocs
+
 TODO? serving in spring boot app static content
-
 
 
 ## Conclusion
 While Swagger and SpringFox are not a bad choice, SpringFox offers some poweful benefits you should definitely consider. The main one is having your docs always up to date, because if the documentation goes out of sync, the tests start to fail. Other one is it will actually motivate you to write tests of your controllers as they are requried to write your documentation.
-
-Also, with Spring rest docs it is much easier to write documentation not only of your API directly, but also add any other necessary info such as tables, blocks of text, images, code blocks and so on. And of course, your production code is no longer plagues by all the documentation annotations, which make it so hard to read.
-
-Swagger on the other turn offers a powerful option to try your API directly in the documentation. Also, it will effortlessly generate basic information about your api without you writing anything. It can be useful for legacy codebase to have at least some documentation in no time. Of course, without custom descriptions and explanations, but at least it is something.
