@@ -1,6 +1,6 @@
 ---
 title: 'Spring REST Docs - Test driven documentation of your REST API'
-date: "2018-05-25T22:12:03.284Z"
+date: "2018-05-31T22:12:03.284Z"
 tags: ['Spring', 'REST', 'Java']
 path: '/spring-rest-docs'
 featuredImage: './rest-docs.jpg'
