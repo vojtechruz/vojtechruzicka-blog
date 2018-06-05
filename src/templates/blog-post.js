@@ -139,19 +139,22 @@ class BlogPostTemplate extends React.Component {
             }
           />
         </Helmet>
-        <h1>{post.frontmatter.title}</h1>
-        <div
-          style={{
-            ...scale(-1 / 5),
-            display: "block",
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1)
-          }}
-        >
-          {post.frontmatter.date}
-          <Tags tags={post.frontmatter.tags} />
+        {/*This class marks contents searchable by algolia docs search*/}
+        <div className="docSearch-content">
+          <h1>{post.frontmatter.title}</h1>
+          <div
+            style={{
+              ...scale(-1 / 5),
+              display: "block",
+              marginBottom: rhythm(1),
+              marginTop: rhythm(-1)
+            }}
+          >
+            {post.frontmatter.date}
+            <Tags tags={post.frontmatter.tags} />
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
             marginBottom: rhythm(1)
