@@ -23,7 +23,7 @@ class Bio extends React.Component {
                 apiKey: '467e44d2366ac0de7f99703feb47c8b6',
                 indexName: 'vojtechruzicka',
                 inputSelector: '.search-box',
-                debug: true
+                debug: false,
             });
         }
     }
