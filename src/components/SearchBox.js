@@ -1,7 +1,6 @@
 import React from "react";
 
 import {rhythm} from "../utils/typography";
-import docsearch from "docsearch.js";
 
 class Bio extends React.Component {
 
@@ -19,7 +18,7 @@ class Bio extends React.Component {
 
     componentDidMount() {
         if(window) {
-            docsearch({
+            window.docsearch({
                 apiKey: '467e44d2366ac0de7f99703feb47c8b6',
                 indexName: 'vojtechruzicka',
                 inputSelector: '.search-box',
@@ -29,7 +28,6 @@ class Bio extends React.Component {
     }
 
     handleSearchIconClick() {
-        console.log("SEARCH")
         this.searchInput.focus();
     }
 }
