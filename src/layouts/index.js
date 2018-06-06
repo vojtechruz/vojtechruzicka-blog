@@ -6,7 +6,6 @@ import "./index.scss";
 import Navigation from "../components/Navigation";
 import FollowMe from "../components/FollowMe";
 import { Helmet } from "react-helmet";
-import SearchBox from "../components/SearchBox";
 
 class Template extends React.Component {
   render() {
@@ -29,7 +28,6 @@ class Template extends React.Component {
           <link rel="icon" type="image/png" href="/favicon.png" />
         </Helmet>
         <Navigation />
-        <SearchBox/>
         {children()}
         <FollowMe />
       </Container>

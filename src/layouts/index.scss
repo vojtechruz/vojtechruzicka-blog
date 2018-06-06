@@ -109,6 +109,8 @@ a:hover {
 
 .menu-items {
 
+  margin-top: 2px;
+
   a {
     margin-right: 1rem;
     text-decoration: none!important;
@@ -246,4 +248,23 @@ body {
   margin-bottom: 1rem;
   background-color: hsla(0, 0% ,0%, 0.01);
   border:1px solid hsla(0, 0% ,0%, 0.1);
+}
+
+.search-box {
+  border: 1px solid hsla(0, 0% ,0%, 0.01);
+  color: hsla(0, 0% ,0%, 0.85);
+  padding: 0 0 0 3px;
+}
+
+.search-box:focus {
+  color:hsla(0, 0% ,0%, 0.95);
+  background-color: hsla(0, 0% ,0%, 0.1);
+  outline: none;
+}
+
+.search-icon {
+  display: inline-block;
+  height: 1.3rem;
+  color: hsla(0, 0% ,0%, 0.2);
+  vertical-align: middle;
 }

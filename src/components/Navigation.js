@@ -2,6 +2,7 @@ import React from "react";
 
 import profilePic from "./profile.jpg";
 import Link from "gatsby-link";
+import SearchBox from "./SearchBox";
 
 class Navigation extends React.Component {
   render() {
@@ -18,7 +19,9 @@ class Navigation extends React.Component {
             <Link to="/">Home</Link>
             <Link to="/archives">Archives</Link>
             <Link to="/about">About me</Link>
+            <SearchBox/>
           </div>
+
         </div>
       </div>
     );
