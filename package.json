@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "disqus-react": "^1.0.5",
+    "docsearch.js": "^2.5.2",
     "gatsby": "^1.9.270",
     "gatsby-image": "^1.0.51",
     "gatsby-link": "^1.6.44",
