@@ -189,3 +189,4 @@ health:905 / 1000
 7.6.
 - added link to var styleguide to java 10 var article
 - added back missing space wetween written by Vojtech Ruzicka
+- added link to snyk article from owasp dependency check post
