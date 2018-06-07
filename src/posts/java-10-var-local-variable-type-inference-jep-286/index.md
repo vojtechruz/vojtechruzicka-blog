@@ -142,6 +142,10 @@ Try It
 
 Even though Java 10 is not released yet, you can already try the feature. Download [JDK 10](http://jdk.java.net/10/). IntelliJ IDEA already has [good support](https://blog.jetbrains.com/idea/2017/11/intellij-idea-2017-3-eap-brings-support-for-local-variable-type-inference/) for this feature.
 
+Updated: Style guide 
+-----------
+Check out this useful guide for 'var' best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
+
 Conclusion
 ----------
 

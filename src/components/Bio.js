@@ -26,7 +26,7 @@ class Bio extends React.Component {
           }}
         />
         <div style={{ paddingTop: 0.5 + "rem" }}>
-          Written by
+          Written by&nbsp;
           <strong>
             <Link to="/about">Vojtech Ruzicka</Link>
           </strong>

@@ -181,3 +181,11 @@ health:905 / 1000
 
 21.5.
 - increased post width by 10%
+- added post background
+
+6.6.
+- added search
+
+7.6.
+- added link to var styleguide to java 10 var article
+- added back missing space wetween written by Vojtech Ruzicka
