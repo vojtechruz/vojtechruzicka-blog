@@ -1,12 +1,14 @@
 ---
 title: 'Easy git hooks with Husky'
-date: ""
+date: "2018-03-25T22:12:03.284Z"
 tags: ['Git']
 path: '/githooks-husky'
 featuredImage: './husky.jpg'
 disqusArticleIdentifier: '99006 http://vojtechruzicka.com/?p=99006'
 excerpt: ''
 ---
+
+![Husky](husky.jpg)
 
 Git hooks
 What is it good for?
@@ -16,6 +18,7 @@ What is it good for?
     linting
 Prblems
     distribution to team members
+        git config core.hooksPath git-hooks
     windows
 Husky
 Autofixing w/ lint-staged
