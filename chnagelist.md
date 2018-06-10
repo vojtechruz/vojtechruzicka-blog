@@ -190,3 +190,6 @@ health:905 / 1000
 - added link to var styleguide to java 10 var article
 - added back missing space wetween written by Vojtech Ruzicka
 - added link to snyk article from owasp dependency check post
+
+8.6.
+- added gdpr fields to email subscribe form
