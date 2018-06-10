@@ -22,12 +22,18 @@ With server generating your pages, search is easy. WordPress offers search optio
 ## Client-side search
 One option to enable search for your application is to use full client-side search with libraries such as [js-search](https://github.com/bvaughn/js-search). The idea is simple. When you build your static site using your favorite static site generator, you also generate a search index of your pages. That basically means generating a lot of JSON with the contents of your site and then distributing this along with your static files. The search is lightning-fast because everything happends on the client. The problem is that this solution may not be good for full-text search. Bringing this much data to the client just for search can mean a significant performance hit. Especially if your site has a lot of content. And just a fraction of users is likely to use the search option. The rest just download useless junk. You sacrifice one of the greatest advantages of going static - performance just for adding search option.
  
-## Good old google custom search
+## Good old Google Custom Search
 Alright, so for full-text search it may not be such a good idea to donwload the whole search index to the client. Since our static site does not have a dedicated backend, we need to use third-party to handle the search.
 
 The first obvious choice is to use Google search. [Google Custom Search](https://cse.google.com) to be precise.
-    not fit for your page
-Algolia DocsSearch
+
+The advantage is it doesn't need to download the whole search index, you just use Google to search your site only. There are some disadvantages though. First one is that Google will inject ads to your search results. The second one is that even though you can customize look and feel of the search results page to some degree, it is still obvious that you utilize Google. The results page will likely not fit very well the look and feel of your page and arguably it will not look very well integrated and professional. Especially with the ads. Like you didn't care enough to provide custom search as other sites do.
+
+TODO image of google custom search
+
+If you don't care about the downsides much, this can be very easy and quick way to add search for your static site. If you don't like it, there are still alternatives.
+
+## Algolia DocsSearch
     on your own infrastructure
 Algolia Search
 Conclusion        
