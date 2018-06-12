@@ -13,7 +13,19 @@ excerpt: 'How to add search option to your static JAMStack Site using Algolia Se
 ## Searching static sites
 Few months ago I finally managed to migrate my blog from WodrPress to a static site build with GatsbyJS and deployed on [Netlify](https://www.vojtechruzicka.com/jamstack-migration-netlify/).
 
-TODO link to gatsby article
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/gatsby-migration/" style="box-shadow: none;">Migration to GatsbyJS and JAM stack from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">25 March, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging"><!-- react-text: 292 -->#<!-- /react-text --><!-- react-text: 293 -->Blogging<!-- /react-text --></a></li><li><a href="/tags/jam-stack"><!-- react-text: 296 -->#<!-- /react-text --><!-- react-text: 297 -->JAMStack<!-- /react-text --></a></li></ul></div></small><div><a class="front-post-image" href="/gatsby-migration/"><div class=" gatsby-image-outer-wrapper" style="position: relative;"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAVAQEBAAAAAAAAAAAAAAAAAAACBP/aAAwDAQACEAMQAAABK1R50KdE/wD/xAAcEAEAAgEFAAAAAAAAAAAAAAACAAEEAxESExT/2gAIAQEAAQUCBPJ9cuzv59OLFNqsYVP/xAAXEQADAQAAAAAAAAAAAAAAAAAAAQIS/9oACAEDAQE/AVBhn//EABURAQEAAAAAAAAAAAAAAAAAABBx/9oACAECAQE/Aaf/xAAZEAADAQEBAAAAAAAAAAAAAAAAAREhEjH/2gAIAQEABj8CjQnlH4Yoy9M3Wf/EABsQAQACAgMAAAAAAAAAAAAAAAEAETFRIZHB/9oACAEBAAE/ISUbe2Cw9nkUyZRs5NlwIRRuBZ7mf//aAAwDAQACAAMAAAAQhD//xAAWEQEBAQAAAAAAAAAAAAAAAAAAUWH/2gAIAQMBAT8Qo2f/xAAZEQACAwEAAAAAAAAAAAAAAAAAAREhMUH/2gAIAQIBAT8QTnRS6f/EAB8QAQEAAgEEAwAAAAAAAAAAAAERACExQVFxgbHB8P/aAAgBAQABPxBWjRCxeqp8ZHuqI/j7xwRU7MQlBYUx8OsiEA4d9+MkDVVkX0Z//9k=" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><img alt="" srcset="/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-3c244.jpg 45w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f58d6.jpg 90w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f7f9a.jpg 180w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-870e7.jpg 270w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-dbc85.jpg 360w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ac624.jpg 540w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ab68c.jpg 900w" src="/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f7f9a.jpg" sizes="(max-width: 180px) 100vw, 180px" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;"><noscript><img src="/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f7f9a.jpg" srcset="/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-3c244.jpg 45w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f58d6.jpg 90w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-f7f9a.jpg 180w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-870e7.jpg 270w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-dbc85.jpg 360w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ac624.jpg 540w,
+/static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ab68c.jpg 900w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.</span></div></div>
 
 I was very impress with the results of the migration, especially performance-wise. I was able to migrate all the functionality, except site-wide search.
 
