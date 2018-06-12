@@ -193,3 +193,6 @@ health:905 / 1000
 
 8.6.
 - added gdpr fields to email subscribe form
+
+12.6.
+- added link to spring certification blog articles from github repo
