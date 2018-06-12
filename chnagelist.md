@@ -196,3 +196,4 @@ health:905 / 1000
 
 12.6.
 - added link to spring certification blog articles from github repo
+- replaced images for spring cert articles

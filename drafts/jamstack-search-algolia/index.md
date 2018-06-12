@@ -5,7 +5,7 @@ tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
 disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
-excerpt: ''
+excerpt: 'How to add search option to your static JAMStack Site using Algolia Search and Algolia DocSearch.'
 ---
 
 ![Search](search.jpg)
@@ -33,7 +33,7 @@ TODO image of google custom search
 
 If you don't care about the downsides much, this can be very easy and quick way to add search for your static site. If you don't like it, there are still alternatives.
 
-## Algolia DocsSearch
+## Algolia DocSearch
     on your own infrastructure
 Algolia Search
 Conclusion        
