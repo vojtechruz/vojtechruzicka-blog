@@ -1,6 +1,6 @@
 ---
 title: 'Adding search to your static JAMStack site'
-date: "2018-03-25T22:12:03.284Z"
+date: "2018-06-14T22:12:03.284Z"
 tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
@@ -27,7 +27,7 @@ Few months ago I finally managed to migrate my blog from WodrPress to a static s
 /static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ac624.jpg 540w,
 /static/jam-6d0ca080a3f6e8043ca2f2f8f7c54a8f-ab68c.jpg 900w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.</span></div></div>
 
-I was very impress with the results of the migration, especially performance-wise. I was able to migrate all the functionality, except site-wide search.
+I was very impressed with the results of the migration, especially performance-wise. I was able to migrate all the functionality, except site-wide search.
 
 With server generating your pages, search is easy. WordPress offers search option out of the box. With static sites with no dynamic backend, this gets more tricky. 
 
@@ -46,6 +46,12 @@ TODO image of google custom search
 If you don't care about the downsides much, this can be very easy and quick way to add search for your static site. If you don't like it, there are still alternatives.
 
 ## Algolia DocSearch
-    on your own infrastructure
-Algolia Search
-Conclusion        
+
+
+
+![Algolia DocSearch](./docsearch.png)
+
+But even if your request is rejected, nothing is lost. The whole DocSearch is open-source and you can install and run it [on your own infrastructure](https://community.algolia.com/docsearch/documentation/docsearch-scraper/overview/). It's the search metadata is still managed and stored externally and collected by DocSearch scraper.
+
+## Algolia Search
+## Conclusion        
