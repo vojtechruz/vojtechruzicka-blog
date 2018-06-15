@@ -47,7 +47,7 @@ If you don't care about the downsides much, this can be very easy and quick way 
 
 ## Algolia DocSearch
 
-
+[Algolia DocSearch](https://community.algolia.com/docsearch/)
 
 ![Algolia DocSearch](./docsearch.png)
 
