@@ -144,7 +144,7 @@ You can run specific configuration by right-clicking the run icon in the gutter:
 
 ### HTTP Proxy
 
-In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under Appearance & Behavior *→* System Settings *→* HTTP Proxy.
+In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under *Appearance & Behavior → System Settings → HTTP Proxy*.
 
 History
 -------

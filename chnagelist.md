@@ -197,3 +197,6 @@ health:905 / 1000
 12.6.
 - added link to spring certification blog articles from github repo
 - replaced images for spring cert articles
+
+16.6.
+- Fixed typo in heading and corrupted text for idea REST article
