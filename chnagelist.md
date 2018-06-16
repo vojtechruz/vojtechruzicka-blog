@@ -200,3 +200,4 @@ health:905 / 1000
 
 16.6.
 - Fixed typo in heading and corrupted text for idea REST article
+- replaced blurry idea images in 2 articles
