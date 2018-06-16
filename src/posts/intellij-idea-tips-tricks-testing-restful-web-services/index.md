@@ -22,7 +22,7 @@ The Old Way - Test RESTFul Web Service
 This feature has been in IDEA for quite some time. You can access the REST client by going to:
 
 ```json
- Tools → Test Restful Web Service
+ Tools → HTTP Client → Test Restful Web Service
 ```
 
 This will open a new tool window called REST client.
@@ -91,11 +91,11 @@ But HTTP headers are not enough. For methods such as POST, you\'ll also want to 
 
 ```json
 POST http://localhost:8090/persons/add/
-Content-Type:'application/json'
+Content-Type: application/json
 
 {
-    "name":"JohnDoe",
-    "age":29
+    "name": "JohnDoe",
+    "age": 29
 }
 ```
 
@@ -103,7 +103,7 @@ Alternatively, you can specify, that the body should be read from an external fi
 
 ```json
 POST http://localhost:8090/persons/add/
-Content-Type:'application/json'
+Content-Type: application/json
 
 < person.json
 ```
@@ -153,7 +153,7 @@ What's cool is that IDEA automatically stores the history of all the requests yo
 
 ```json
 POST http://localhost:8090/persons/add
-Content-Type: 'application/json'
+Content-Type: application/json
 
 < C:/_MY/rest-demo/person.json
 
