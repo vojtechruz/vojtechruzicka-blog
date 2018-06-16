@@ -1,5 +1,5 @@
 ---
-title: 'IntelliJ IDEA Tips & Tricks: Testing RES services with integrated HTTP Client'
+title: 'IntelliJ IDEA Tips & Tricks: Testing REST services with integrated HTTP Client'
 date: "2018-01-17T22:12:03.284Z"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
