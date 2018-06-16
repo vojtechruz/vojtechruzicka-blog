@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "disqus-react": "^1.0.5",
-    "gatsby": "^1.9.270",
+    "gatsby": "^1.9.271",
     "gatsby-image": "^1.0.53",
     "gatsby-link": "^1.6.44",
     "gatsby-plugin-canonical-urls": "^1.0.18",
@@ -27,7 +27,7 @@
     "gatsby-remark-prismjs": "^1.2.24",
     "gatsby-remark-responsive-iframe": "^1.4.19",
     "gatsby-source-filesystem": "^1.5.38",
-    "gatsby-transformer-remark": "^1.7.42",
+    "gatsby-transformer-remark": "^1.7.43",
     "gatsby-transformer-sharp": "^1.6.26",
     "graphql-skip-limit": "^1.0.11",
     "lodash": "^4.17.10",
