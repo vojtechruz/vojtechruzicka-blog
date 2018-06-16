@@ -29,7 +29,7 @@ This will open a new tool window called REST client.
 
 ![idea-rest-client](./idea-rest-client.png)
 
-The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. [You can provide additional data on the ]{style="text-align: justify;"}*Request* tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate *Cookies* tab.
+The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. You can provide additional data on the *Request* tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate *Cookies* tab.
 
 ![Cookies](./cookies.png)
 
@@ -140,7 +140,7 @@ GET http://{{host}}:8090/persons/all/
 
 You can run specific configuration by right-clicking the run icon in the gutter: 
 
-![](./run-environments.png)
+![Run Environments](./run-environments.png)
 
 ### HTTP Proxy
 
