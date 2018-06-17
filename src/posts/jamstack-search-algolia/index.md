@@ -39,7 +39,7 @@ All right, so for full-text search, it may not be such a good idea to download t
 
 The advantage is it doesn't need to download the whole search index. You use Google to search your site only. There are some disadvantages though. First one is that Google injects ads to your search results. The second one is that even though you can customize the look and feel of the search results page to some degree, it is still obvious that you utilize Google. The results page will likely not fit very well the look and feel of your page and arguably it does not look very well integrated and professional. Especially with the ads. Like you didn't care enough to provide custom search as other sites do.
 
-TODO image of google custom search
+![Google Custom Search](./google-custom-search.png)
 
 Alternatively, if you don't mind doing some extra work, custom search offers an [API](https://developers.google.com/custom-search/json-api/v1/overview), so you can retrieve results programmatically and seamlessly integrate them in your page. This, however, somewhat negates the most significant advantage of Google Custom search, which is its easy setup.
 
