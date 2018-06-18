@@ -172,7 +172,7 @@ It shows all your dependencies and issues by severity. It will not only monitor 
 
 ![snyk-pr-check](./snyk-pr-check.jpg)
 
-What's even cooler, after testing your project Snyk will check its database whether there are any solutions for the issues found. That is -- if it can find any new versions fixing the vulnerabilities found. Or at least, if there are any patches. If there is something, what can be done, it creates automatically a Pull Request, which introduces the fix. How cool is that? You can see example PR [here](https://github.com/vojtechruz/snyk-example/pull/1):
+What's even cooler, after testing your project Snyk will check its database whether there are any solutions for the issues found. That is -- if it can find any new versions fixing the vulnerabilities found. Or at least, if there are any patches. If there is something, what can be done, it creates automatically a Pull Request, which introduces the fix. How cool is that? You can see example PR [here](https://github.com/vojtechruz/snyk-example/pull/2):
 
 ![snyk-pull-request-github](./snyk-pull-request-github.jpg)
 
