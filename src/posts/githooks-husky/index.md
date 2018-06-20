@@ -61,7 +61,7 @@ When you try to enable git hooks by removing the `.sample` extension on Windows,
 In unix-based systems it is called \"shebang\" and it basically says that that this file is a script and then path to it. Even though git for Windows does offer some limited support for running such scripts and can execute hooks files, it is unable to resolve path `/bin/sh`. On Windows, you'll be able to run the file as long as you provide a correct path to the `sh.exe` executable. Such as:
 
 ```cmd
-#!C:/Program\ Files/Git/bin/sh.exe 
+#!C:/Program\ Files/Git/bin/sh.exe
 ```
 
 Note that you need to escape spaces if they are present in the path and slashes are different than on windows.
