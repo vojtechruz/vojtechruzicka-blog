@@ -11,8 +11,7 @@ excerpt: 'Field injection is a very popular practice in Dependency Injection fr
 
 Field injection is a very popular practice in Dependency Injection frameworks, such as Spring. It has, however, several serious trade-offs and should generally be avoided.
 
-Injection Types
----------------
+## Injection Types
 
 There are three main ways to inject your dependencies into your class. Constructor, Setter (Method) and Field injection. Let\'s quickly compare the code of the same dependencies injected by all the approaches.
 
@@ -67,8 +66,7 @@ private DependencyB dependencyB;
 private DependencyC dependencyC;
 ```
 
-What is wrong?
---------------
+## What is wrong?
 
 As you can see, the Field variant looks very nice. It is very short, concise, there is no boilerplate code. The code is easy to read and navigate. Your class can just focus on the important and is not polluted by DI boilerplate. You just put the @Autowired annotation above the fields and that\'s it. No special constructors or setters just for DI container to provide your dependencies. Java is very verbose as is, so every opportunity to make your code shorter is welcome, right?
 
@@ -93,8 +91,7 @@ However, when injecting directly into fields, you provide no direct way of insta
 
 Unlike constructor, field injection cannot be used to assign dependencies to final fields effectively rendering your objects mutable.
 
-Constructor vs Setter Injection
------------------------------------
+## Constructor vs Setter Injection
 
 So the Field injection may not be the way to go. What\'s left? Setters and Constructors. Which one should be used?
 
@@ -122,7 +119,11 @@ As of Spring 4.x, the official recommendation from [Spring documentation](http:/
 >
 > Setter injection should primarily only be used for optional dependencies that can be assigned reasonable default values within the class. Otherwise, not-null checks must be performed everywhere the code uses the dependency. One benefit of setter injection is that setter methods make objects of that class amenable to reconfiguration or re-injection later.
 
-Conclusion
---------------
+## UPDATE: IntelliJ IDEA support
+Since this article was published, IDEA introduced some sweet support for detecting and easily fixing Field Injection. It can automatically remove the `@Autowired` annotation from the field and instead create a constructor with `@Autowired` dependency, effectively replacing field injection with constructor injection.
+
+![IntelliJ IDEA field injection fix](./indea-field-injection.gif)
+
+## Conclusion
 
 Field injection should be mostly avoided. As a replacement, you should use either constructors or methods to inject your dependencies. Both have its advantages and disadvantages and the usage depends on the situation. However, as those approaches can be mixed, it is not an either-or choice and you can combine both setter and constructor injection in one class. Constructors are more suitable for mandatory dependencies and when aiming for immutability. Setters are better for optional dependencies.

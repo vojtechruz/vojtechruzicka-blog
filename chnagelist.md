@@ -203,4 +203,5 @@ health:905 / 1000
 - replaced blurry idea images in 2 articles
 
 21.6.
-Added github link to the about section.
+- Added github link to the about section.
+- Updated field dependency injection article with intellij idea fix example
