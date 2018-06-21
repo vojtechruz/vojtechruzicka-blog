@@ -201,3 +201,6 @@ health:905 / 1000
 16.6.
 - Fixed typo in heading and corrupted text for idea REST article + fixed several code examples + fixed changed action menu position
 - replaced blurry idea images in 2 articles
+
+21.6.
+Added github link to the about section.
