@@ -205,3 +205,6 @@ health:905 / 1000
 21.6.
 - Added github link to the about section.
 - Updated field dependency injection article with intellij idea fix example
+
+24.6.
+- Added info about intellij detection of enhanced deprecation

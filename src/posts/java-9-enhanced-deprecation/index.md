@@ -11,8 +11,7 @@ excerpt: '@Deprecated annotation, introduced in Java 5, received several enhance
 
 @Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.
 
-Java 8 Deprecation
-------------------
+## Java 8 Deprecation
 
 ### @deprecated JavaDoc tag
 
@@ -38,8 +37,7 @@ Java 5 added another mechanism for marking deprecation - @Deprecated annotation.
 
 The annotation itself does not have any attributes, it just marks whether the API is deprecated or not.
 
-Problems with the old deprecation
----------------------------------
+## Problems with the old deprecation
 
 Since the old @Deprecated annotation does not provide any attributes, all the information needs to be provided using JavaDoc tag. But the tag itself does not have any defined structure, it is just a free text. There is no standardized way to provide additional info about deprecation, such as since when is it deprecated or whether it is supposed to be terminal deprecation or not. That is - whether the API is planned to be removed in a future release or whether it is planned to be kept for a backward compatibility. This is a critical information, which plays a major role in the decision whether it dangerous to keep the deprecated API or whether it is safe to keep using it for now.
 
@@ -47,8 +45,7 @@ With such a vague definition of deprecation, many programmers were confused when
 
 Even if the information about future removal was provided in JavaDoc, there was no way to check this using static code analysis tools, because JavaDoc does not provide a unified way of specifying such information.
 
-Java 9 Enhanced Deprecation
----------------------------
+## Java 9 Enhanced Deprecation
 
 ### New features
 
@@ -99,7 +96,13 @@ In the JDK from version 9 on, there is included a special tool for analyzing cod
 
 More info about the _jdeprscan_ tool can be found [here](https://docs.oracle.com/javase/9/tools/jdeprscan.htm#JSWOR-GUID-2B7588B0-92DB-4A88-88D4-24D183660A62).
 
-Conclusion
-----------
+## IDE Support
+
+Current IDEs already offer nice support for warning you when you are using some deprecated code. IntelliJ IDEA, for example, will strikethrough any usage of deprecated code. With java 9+ and the enhanced deprecation, it will even show you a stronger warning when the deprecated code is issued for removal - the strikethrough is red in such case.
+
+![IDEA Enhanced deprecation](./enhanced-deprecation-idea.png)
+
+
+## Conclusion
 
 The new enhanced deprecation annotation provides two more attributes - since which version was the deprecation introduced and whether it is supposed to be removed. The forRemoval parameter provides a unified way of declaring that the API is not safe for use and will be removed in a future version. It can be automatically checked by IDEs and static code analysis tools, which provides a safer detection of discontinued APIs, which are a subject for removal. The @depreacted JavaDoc tag should still be used along with the annotation to provide additional details about the reason of deprecation and the alternatives, which should be used instead. Be careful when using deprecated JDK APIs as they will be removed directly in the next major version of Java.
