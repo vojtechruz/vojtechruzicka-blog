@@ -1,12 +1,14 @@
 ---
 title: 'Detecting build version at runtime in Spring Boot'
-date: "2018-06-23T22:12:03.284Z"
+date: "2018-06-24T22:12:03.284Z"
 tags: ['Spring']
 path: '/spring-boot-version'
 featuredImage: './spring-boot-version.jpg'
 disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
 excerpt: 'How to obtain artifact version and other build information in a Spring Boot app at runtime?'
 ---
+
+![Spring boot Version Info](./spring-boot-version.jpg)
 
 # Obtaining build information
 It can be often useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to obtain these when the application is running.
@@ -66,6 +68,47 @@ buildProperties.getArtifact();
 buildProperties.getGroup();
 ```
 # Adding custom properties
+If predefined properties are not enough, you can pass your own properties from pom.xml file to BuildProperties.
+
+```xml{9-14}
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+        <execution>
+            <goals>
+                <goal>build-info</goal>
+            </goals>
+            <configuration>
+                <additionalProperties>
+                    <java.version>${java.version}</java.version>
+                    <some.custom.property>some value</some.custom.property>
+                </additionalProperties>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+You can pass a value directly or use your custom properties defined in the `<properties>` section of your `pom.xml` and then referenced using `${property.name}` placeholder.
+
+you can access custom properties defined this way by calling `buildProperties.getProperty("property.name")`.
+
+For Gradle projects custom properties can be defined this way:
+
+```json
+springBoot {
+    buildInfo {
+        properties {
+            additional = [
+                'property.name': 'property value',
+                'other.property': 'different.value'
+            ]
+        }
+    }
+}
+```
+
 # How it works under the hood
 When `build-info` of `spring-boot-maven-plugin` is run, it generates a property file containing all the build information. By default, it is located at `${project.build.outputDirectory}/META-INF/build-info.properties`, but you can customize it by providing `outputFile` parameter. The file looks something like this:
 
@@ -92,8 +135,6 @@ public BuildProperties buildProperties() throws Exception {
             "build"));
 }
 ```
-
-
 
 # Detecting Spring profiles
 It is no doubt useful to know which version of your artifact is deployed and when it was built. However, it is usually not enough. Often Spring applications use various profiles, which can significantly change the way they behave. Common usage is, for example, having a separate profile for each environment (DEV, UAT, PROD, ...) . Depending on the profile correct environmental configuration can be loaded such as DB connection and more.
