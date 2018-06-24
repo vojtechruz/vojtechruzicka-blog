@@ -79,6 +79,22 @@ build.artifact=spring-rest-docs-example
 build.time=2018-06-23T13\:58\:56.742472800Z
 ```
 
+When Spring detects there is this file on the classpath, it will create `BuildProperties` bean unless it is explicitly declared. This is configured in `org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration`. This is a nice exmple of Spring Boot Auto-Configuration, where certain beans can be created jus by having certain files on classpath.
+
+```java
+@ConditionalOnResource(resources = 
+"${spring.info.build.location:classpath:META-INF/build-info.properties}")
+@ConditionalOnMissingBean
+@Bean
+public BuildProperties buildProperties() throws Exception {
+    return new BuildProperties(
+            loadFrom(this.properties.getBuild().getLocation(), 
+            "build"));
+}
+```
+
+
+
 # Detecting Spring profiles
 It is no doubt useful to know which version of your artifact is deployed and when it was built. However, it is usually not enough. Often Spring applications use various profiles, which can significantly change the way they behave. Common usage is, for example, having a separate profile for each environment (DEV, UAT, PROD, ...) . Depending on the profile correct environmental configuration can be loaded such as DB connection and more.
 
@@ -93,8 +109,10 @@ environment.getActiveProfiles();
 
 What's more, since you already have environment object, you can obtain any environmental properties by calling `environment.getProperty("property.name")`.
 
-# Spring Actuator
+# Spring Actuator & Admin
+While this approach gives you basic build and version info, sometimes you may need a more powerful tool. [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) is a sub-project of Spring Boot, which adds some production grade monitoring and management tools exposed as REST and JMX endpoints. In fact, it can easily be configured to use build information provided by `BuildProperties` and provide them through one of its endpoints. 
 
+[Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) is a community project, which provides a nice user interface on top of Spring Actuator endpoints, so the app is easier to manage thorugh a nice admin GUI.
 
 # Conclusion
 Having access to version and build information at runtime can be quite useful. In Spring boot application, you can easily obtain the info by altering the Spring Boot MAven/Gradle plugin configuration to generate the `build.properties` file and then accessing it through `BuildProperties` object.
