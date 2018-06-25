@@ -1,19 +1,19 @@
 ---
-title: 'Detecting build version at runtime in Spring Boot'
-date: "2018-06-24T22:12:03.284Z"
+title: 'Detecting build version and time at runtime in Spring Boot'
+date: "2018-06-25T22:12:03.284Z"
 tags: ['Spring']
 path: '/spring-boot-version'
 featuredImage: './spring-boot-version.jpg'
 disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
-excerpt: 'How to obtain artifact version and other build information in a Spring Boot app at runtime?'
+excerpt: 'How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?'
 ---
 
 ![Spring boot Version Info](./spring-boot-version.jpg)
 
 # Obtaining build information
-It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to obtain these when the application is running.
+It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to retreive these when the application is running.
 
-Having such information at runtime can be useful. For example, imagine a scenario, where you expose a REST endpoint, which can tell the client what your current version of the application is, when was it built and so on. It can be useful because you can quickly determine what version of the app is currently deployed. This can be especially useful in non-production environments, where the app is frequently deployed or even with continuous deployment in production. In such cases, it is vital to know what build exactly is currently running when testing and submitting bug reports. Maybe the issue reported is already fixed in a newer version or maybe the bug still occurs because the new version is implemented but not deployed yet.
+Having such information at runtime can be useful. For example, imagine a scenario, where you expose a REST endpoint, which can tell the client what your current version of the application is, when was it built and so on. It can be useful because you can quickly determine what version of the app is currently deployed. This can be especially important in non-production environments, where the app is frequently deployed or even with continuous deployment in production. In such cases, it is vital to know what build exactly is currently running when testing and submitting bug reports. Maybe the issue reported is already fixed in a newer version or maybe the bug still occurs because the new version is implemented, but not deployed yet.
 
 In any case, having build information can be handy and it is useful to know how to obtain it at runtime. In Spring Boot, it is fortunately quite easy.
 
@@ -46,7 +46,7 @@ springBoot {
 ```
 
 ## Accessing Build Properties
-After configuring your `spring-boot-maven-plugin` and building your application, you can access information about your application's build through `BuildProperties` object. Let the spring inject it for you:
+After configuring your `spring-boot-maven-plugin` and building your application, you can access information about your application's build through `BuildProperties` object. Let the Spring inject it for you:
 
 ```java
 @Autowired
@@ -68,7 +68,7 @@ buildProperties.getArtifact();
 buildProperties.getGroup();
 ```
 # Adding custom properties
-If predefined properties are not enough, you can pass your own properties from pom.xml file to BuildProperties.
+If predefined properties are not enough, you can pass your own properties from `pom.xml` file to `BuildProperties`.
 
 ```xml{9-14}
 <plugin>
@@ -94,7 +94,7 @@ You can pass a value directly or use your custom properties defined in the `<pro
 
 you can access custom properties defined this way by calling `buildProperties.getProperty("property.name")`.
 
-For Gradle projects custom properties can be defined this way:
+For Gradle projects, custom properties can be defined this way:
 
 ```json
 springBoot {
@@ -137,7 +137,7 @@ public BuildProperties buildProperties() throws Exception {
 ```
 
 # Detecting Spring profiles
-It is no doubt useful to know which version of your artifact is deployed and when it was built. However, it is usually not enough. Often Spring applications use various profiles, which can significantly change the way they behave. Typical usage is, for example, having a separate profile for each environment (DEV, UAT, PROD, ...). Depending on the profile correct environmental configuration can be loaded such as DB connection and more.
+It is no doubt useful to know which version of your artifact is deployed and when it was built. However, it is usually not enough. Often Spring applications use various profiles, which can significantly change the behavior. Typical usage is, for example, having a separate profile for each environment (DEV, UAT, PROD, ...). Depending on the profile, the correct environmental configuration can be loaded such as DB connection and more.
 
 It is useful to be able to determine current profiles as sometimes the app can be run with different profiles than expected. To detect the current profiles, you need just to inject `Environment` object and then you can simply obtain them by calling `getActiveProfiles()`.
 
@@ -158,4 +158,4 @@ While this approach gives you basic build and version info, sometimes you may ne
 # Conclusion
 Having access to version and build information at runtime can be quite useful. In Spring boot application, you can easily obtain the info by altering the Spring Boot Maven/Gradle plugin configuration to generate the `build.properties` file and then accessing it through `BuildProperties` object.
 
-For simple scenarios, this is an easy and quick solution and should work for you, if you need something more powerful, look at Spring Actuator or Spring Admin, which can provide the build metadata functionality plus a lot extra on top.
+For simple scenarios, this is an easy and quick solution and should work for you. If you need something more powerful, look at Spring Actuator or Spring Admin, which can provide the build metadata functionality plus a lot more.
