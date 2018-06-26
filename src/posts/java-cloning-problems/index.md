@@ -14,7 +14,7 @@ Java's mechanism for copying objects is deeply flawed. What are the alternatives
 Why clone objects?
 ------------------
 
-There are several reasons why you may want to create a copy of an already existing object. For example - you may want to create just a slightly different version based on an existing object. The most common scenario would be probably making [defensive copies](http://www.javacreed.com/what-is-defensive-copying/) of objects. That is - if you are providing internal data of an object to other objects, you often want to make sure that instead of providing a reference to your actual internal state, you rather provide a copy. This means that no matter what the consumers do with the data, your original object is safe and is not affected.
+There are several reasons why you may want to create a copy of an already existing object. For example - you may want to create just a slightly different version based on an existing object. The most common scenario would be probably making [defensive copies](http://www.javapractices.com/topic/TopicAction.do?Id=15) of objects. That is - if you are providing internal data of an object to other objects, you often want to make sure that instead of providing a reference to your actual internal state, you rather provide a copy. This means that no matter what the consumers do with the data, your original object is safe and is not affected.
 
 Cloneable
 ---------
