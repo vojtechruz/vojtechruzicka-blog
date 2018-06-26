@@ -208,3 +208,6 @@ health:905 / 1000
 
 24.6.
 - Added info about intellij detection of enhanced deprecation
+
+26.6
+- fixed broken link in java cloning problems
