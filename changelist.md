@@ -214,3 +214,4 @@ health:905 / 1000
 - updated java 10 var article about java 11 var lambda updates
 - updated springfox version
 - updated key promoter article with new info and screenshots
+- Merged tags and archives pages as they were the same

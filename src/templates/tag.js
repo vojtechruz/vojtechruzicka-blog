@@ -12,7 +12,7 @@ const Tag = ({ pathContext, data }) => {
   const siteUrl = data.site.siteMetadata.siteUrl;
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`;
+  } tagged with #${tag}`;
   const title = `${tag} | ${siteTitle}`;
 
   return (
@@ -34,13 +34,10 @@ const Tag = ({ pathContext, data }) => {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={siteDescription} />
       </Helmet>
-      <h1>{tag}</h1>
+      <h1>#{tag}</h1>
       <ul className="tag-links">
         <li>
-          <Link to="/tags">All tags</Link>
-        </li>
-        <li>
-          <Link to="/archives">Archives</Link>
+          <Link to="/archives">Browse All Tags</Link>
         </li>
       </ul>
       <div className="tag-count">{tagHeader}</div>
