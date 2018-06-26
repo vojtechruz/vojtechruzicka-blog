@@ -25,7 +25,7 @@ Starting project
 
 To start, you\'ll need a Spring Boot application with some Rest Controllers, I\'ve prepared a simple one [here](https://github.com/vojtechruz/rest-docs-starter).
 
-For this article, I used SpringFox 2.8.0 and Spring Boot 1.5.10.RELEASE. It uses version 2 of the Swagger specification. Version 3 is already out, but it is not yet (as of 2/2018) supported by SpringFox. The support should be available in the [next version](https://github.com/springfox/springfox/releases).
+For this article, I used SpringFox 2.9.2 and Spring Boot 1.5.10.RELEASE. It uses version 2 of the Swagger specification. Version 3 is already out, but it is not yet (as of 2/2018) supported by SpringFox. The support should be available in the [next version](https://github.com/springfox/springfox/releases).
 
 The source code of final project built with all the features described in this blog post is available on [GitHub](https://github.com/vojtechruz/springfox-example).
 
@@ -38,14 +38,14 @@ To work with SpringFox in your project, you need to add it as a dependency first
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger2</artifactId>
-    <version>2.8.0</version>
+    <version>2.9.2</version>
 </dependency>
 ```
 
 Or if you are using Gradle:
 
 ```json
-compile "io.springfox:springfox-swagger2:2.8.0"
+compile "io.springfox:springfox-swagger2:2.9.2"
 ```
 
 Basic configuration
@@ -94,11 +94,11 @@ Turns out it is just a big JSON, not very human readable. But you can already ve
 <dependency>
     <groupId>io.springfox</groupId>
     <artifactId>springfox-swagger-ui</artifactId>
-    <version>2.8.0</version>
+    <version>2.9.2</version>
 </dependency>
 
 //GRADLE 
-compile "io.springfox:springfox-swagger-ui:2.8.0"
+compile "io.springfox:springfox-swagger-ui:2.9.2"
 ```
 
 The documentation will be automatically available here:
@@ -223,11 +223,11 @@ Unfortunately, JSR-303 based documentation does not work out of the box, you nee
 <dependency>
    <groupId>io.springfox</groupId>
    <artifactId>springfox-bean-validators</artifactId>
-   <version>2.8.0</version>
+   <version>2.9.2</version>
 </dependency>
  
 //GRADLE
-compile "io.springfox:springfox-bean-validators:2.8.0"
+compile "io.springfox:springfox-bean-validators:2.9.2"
 ```
 
 And you need to import *BeanValidatorPluginsConfiguration* configuration file on top of your swagger configuration class:
