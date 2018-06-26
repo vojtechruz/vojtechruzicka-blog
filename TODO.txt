@@ -1,12 +1,10 @@
 - 404 page
--verify RSS is still working
- - comments not imported for field dependency injection
-
 sitemap generating only non postpages
 getpocket images not working
 - remove lodash dependency??? (4kb)
 profile image either progressive or gatsby-image
-netlify gatsby plugin
 remove typography styling and move to CSS
 missing fonts
 h2 and h3 have same size of 1.5rem
+
+consider converting links im markdown to reloadless links with https://www.gatsbyjs.org/packages/gatsby-plugin-catch-links/?=
