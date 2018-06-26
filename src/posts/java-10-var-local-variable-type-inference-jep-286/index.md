@@ -11,8 +11,7 @@ excerpt: 'In Java 10, you no longer need to explicitly declare a type of local v
 
 In Java 10, you no longer need to explicitly declare a type of local variables, which significantly reduces boilerplate and increases readability.
 
-Type inference in Java 7 - The Diamond operator
------------------------------------------------
+## Type inference in Java 7 - The Diamond operator
 
 There is no denying that Java can be very verbose. Take variable declaration and assignment for example.
 
@@ -34,8 +33,7 @@ Map<User, List> accounts = new HashMap<>();
 
 Much better, right?
 
-JEP 286: Local-Variable Type Inference
---------------------------------------
+## JEP 286: Local-Variable Type Inference
 
 Even though the diamond operator helps a bit, you can use it for generics only, and there is still a lot of boilerplate. What if you could just write \'var\' instead of an explicit type like this:
 
@@ -53,8 +51,7 @@ How is this possible? Well, if you are declaring a variable and initializing it 
 
 This feature is likely to be part of Java 10 and is described in detail in [Java Enhancement Proposal 286](http://openjdk.java.net/jeps/286).
 
-Better readability
-------------------
+## Better readability
 
 The main benefit of this feature is not that you can WRITE less code. Optimizations of writing speed are greatly overrated and are much less important than reading speed and readability. After all, you are going to spend much more time reading a piece of code than writing it.
 
@@ -74,8 +71,7 @@ Map<User, List<PersonalAccount>> userAccounts = userService.getUserAccounts();
 List<PersonalAccount> myAccounts = userAccounts.get(ME);
 ```
 
-Limitations
------------
+## Limitations
 
 Locations and situations where you can use var are actually somewhat limited. As the name suggests, you can use it only for local variables. Not for class fields, not for method return types. The only place where you can use them is in for and for-each loops:
 
@@ -106,8 +102,7 @@ var users = new HashHap<>();
 
 In this case, you are forcing the compiler to infer both left and right-hand side. Usually, it will result in a compiler error. Or in some cases, it will just infer Object as a generic type parameter.
 
-Backwards compatibility
------------------------
+## Backwards compatibility
 
 How does this feature affect your existing applications? Will they be compatible? Adding a new keyword would mean that you no longer can use it as an identifier, which would break existing applications. In fact, var is not a keyword, but rather a reserver type name.  That means you can still use var as variable, package or method name. You cannot, however, use it now as a class or interface name. Applications doing so will no longer compile. Fortunately, such name conflicts with Java naming convention, so you should be safe. As long as you follow the convention, that is.
 
@@ -116,8 +111,7 @@ Performance
 
 If you are concerned about a performance hit this feature could bring, don\'t be. Remember, the types are not inferred at runtime but at compile time. That means the resulting bytecode is the same as with explicit type declaration - it does include the information about the type. That means no extra processing at runtime.
 
-Criticism
----------
+## Criticism
 
 ### Readability decreased
 
@@ -137,16 +131,28 @@ While var + val variant was a clear winner by a number of votes (48% vs 23%), it
 
 There are more reasons of course. One of them is a clash with final keyword. Val would basically mean *final var* leading to inconsistency of final keyword usage. For local variables, val would not be so important anyway as they are usually [effectively final](http://ilkinulas.github.io/programming/java/2016/03/27/effectively-final-java.html) anyway and immutability is much more important on field level than on method level, where each method is ideally very short.
 
-Try It
-------
+## Try It
 
 Even though Java 10 is not released yet, you can already try the feature. Download [JDK 10](http://jdk.java.net/10/). IntelliJ IDEA already has [good support](https://blog.jetbrains.com/idea/2017/11/intellij-idea-2017-3-eap-brings-support-for-local-variable-type-inference/) for this feature.
 
-Updated: Style guide 
------------
+## Updated: Style guide 
 Check out this useful guide for 'var' best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
 
-Conclusion
-----------
+## Updated: Java 11
+Currently (even pre-java 10), for lambdas you can omit explicit type declaration and it will be inferred.
+
+```java
+(x, y) -> x.process(y)
+```
+
+From Java 11, you'll be able to use `var ` here also, so the syntax is uniform. 
+
+```java
+(var x, var y) -> x.process(y)
+```
+
+See [JEP 323: Local-Variable Syntax for Lambda Parameters](http://openjdk.java.net/jeps/323) for more details.
+
+## Conclusion
 
 The Local Variable Inference is a nice feature, which reduces boilerplate and increases readability. As always, var on its own is no silver bullet. You need to make sure that you use descriptive variable names and in case type information is not apparent you can still use good old explicit type declaration.

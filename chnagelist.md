@@ -211,3 +211,5 @@ health:905 / 1000
 
 26.6
 - fixed broken link in java cloning problems
+- updated java 10 var article about java 11 var lambda updates
+- updated springfox version
