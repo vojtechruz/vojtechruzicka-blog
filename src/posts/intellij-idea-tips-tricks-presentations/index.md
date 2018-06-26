@@ -18,7 +18,7 @@ Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking *View �
 
 ![intellij-idea-presentation-mode](./IntelliJ-IDEA-Presentation-Mode.png)
  
- The font size in Presentation Mode can be configured in Settings under *Appearance & Behavior* *→ Appearance → Presentation Mode.* 
+ The font size in Presentation Mode can be configured in Settings under *Appearance & Behavior→ Appearance → Presentation Mode*.
  
  ![intellij-idea-presentation-mode-font-size](./IntelliJ-IDEA-Presentation-Mode-Font-Size.png)
 
@@ -40,7 +40,7 @@ Note that Presentation and Distraction Free Mode are not mutually exclusive and 
 Presentation Assistant Plugin
 -----------------------------
 
-After you achieve a basic level of proficiency with your IDE and already know which features it offers, your next goal is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where possible. Great way to learn IntelliJ IDEA shortcuts is to use [Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortucts/). Once you use mainly keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation friendly. Your audience can get quickly confused and lose track of the core topic you are presenting about while trying to figure out what the hell just happened.
+After you achieve a basic level of proficiency with your IDE and already know which features it offers, your next goal is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where possible. Great way to learn IntelliJ IDEA shortcuts is to use [Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/). Once you use mainly keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation friendly. Your audience can get quickly confused and lose track of the core topic you are presenting about while trying to figure out what the hell just happened.
 
 Fortunately, there is a nice tool, which helps you exactly with this issue. It is [Presentation Assistant Plugin](https://plugins.jetbrains.com/plugin/7345-presentation-assistant)  ([Github](https://github.com/chashnikov/IntelliJ-presentation-assistant)). Every time you trigger an action (no matter whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What\'s more, it shows the shortcut both for Mac and Linux/Windows. 
 
