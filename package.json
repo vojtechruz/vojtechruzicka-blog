@@ -39,7 +39,7 @@
   "devDependencies": {
     "eslint": "^5.0.1",
     "eslint-plugin-react": "^7.10.0",
-    "prettier": "^1.13.6"
+    "prettier": "^1.13.7"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
