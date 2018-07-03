@@ -4,7 +4,7 @@ date: "2018-06-17T22:12:03.284Z"
 tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
-disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
+disqusArticleIdentifier: '89007 http://vojtechruzicka.com/?p=89007'
 excerpt: 'How to add search option to your static JAMStack site using Algolia Search and Algolia DocSearch.'
 ---
 
