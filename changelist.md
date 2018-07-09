@@ -215,3 +215,6 @@ health:905 / 1000
 - updated springfox version
 - updated key promoter article with new info and screenshots
 - Merged tags and archives pages as they were the same
+
+7.9.
+- fixed mistake and typo in spring boot runtime version article

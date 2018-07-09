@@ -11,7 +11,7 @@ excerpt: 'How to obtain artifact version, build time and other build information
 ![Spring boot Version Info](./spring-boot-version.jpg)
 
 # Obtaining build information
-It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to retreive these when the application is running.
+It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to retrieve these when the application is running.
 
 Having such information at runtime can be useful. For example, imagine a scenario, where you expose a REST endpoint, which can tell the client what your current version of the application is, when was it built and so on. It can be useful because you can quickly determine what version of the app is currently deployed. This can be especially important in non-production environments, where the app is frequently deployed or even with continuous deployment in production. In such cases, it is vital to know what build exactly is currently running when testing and submitting bug reports. Maybe the issue reported is already fixed in a newer version or maybe the bug still occurs because the new version is implemented, but not deployed yet.
 
@@ -92,7 +92,7 @@ If predefined properties are not enough, you can pass your own properties from `
 
 You can pass a value directly or use your custom properties defined in the `<properties>` section of your `pom.xml` and then referenced using `${property.name}` placeholder.
 
-you can access custom properties defined this way by calling `buildProperties.getProperty("property.name")`.
+You can access custom properties defined this way by calling `buildProperties.get("property.name")`.
 
 For Gradle projects, custom properties can be defined this way:
 
