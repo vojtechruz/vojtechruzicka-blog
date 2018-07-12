@@ -37,7 +37,7 @@
     "typography-theme-bootstrap": "^0.16.7"
   },
   "devDependencies": {
-    "eslint": "^5.0.1",
+    "eslint": "^5.1.0",
     "eslint-plugin-react": "^7.10.0",
     "prettier": "^1.13.7"
   },
