@@ -16,7 +16,7 @@ Resources
 
 ### Study Guide
 
-There is an official [Core Spring 4.2/4.3 Study Guide](https://d1fto35gcfffzn.cloudfront.net/academy/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf), which describes the certification process and some FAQs. What's more important, there is a list of areas and topics covered in the exam. That is valuable as a checklist whether you are ready for the exam and also a guide to determine what to focus on when studying.
+There is an official [Core Spring 4.2/4.3 Study Guide](./Core-Spring-4.2-4.3-Certification-Study-Guide.pdf), which describes the certification process and some FAQs. What's more important, there is a list of areas and topics covered in the exam. That is valuable as a checklist whether you are ready for the exam and also a guide to determine what to focus on when studying.
 
 ### Notes
 
@@ -54,7 +54,21 @@ Overall the exam was not too hard and you should be able to complete it if you p
 Spring Web Certification
 ------------------------
 
-In addition to this Spring Core certification, I have also prepared materials for the [Spring Web Application Developer exam](https://www.vojtechruzicka.com/pivotal-certified-spring-web-application-developer-notes/). This exam can be now also taken without the training just for \$200.
+In addition to this Spring Core certification, I have also prepared materials for the *Spring Web Application Developer exam*. This exam can be now also taken without the training just for \$200.
+
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/pivotal-certified-spring-web-application-developer-notes/" style="box-shadow: none;">Exam Notes – Pivotal Certified Spring Web Application Developer</a></h4><small class="front-post-info"><span class="front-post-info-date">22 August, 2016</span><div class="post-tags"><ul><li><a href="/tags/java"><!-- react-text: 359 -->#<!-- /react-text --><!-- react-text: 360 -->Java<!-- /react-text --></a></li><li><a href="/tags/spring"><!-- react-text: 363 -->#<!-- /react-text --><!-- react-text: 364 -->Spring<!-- /react-text --></a></li><li><a href="/tags/career"><!-- react-text: 367 -->#<!-- /react-text --><!-- react-text: 368 -->Career<!-- /react-text --></a></li></ul></div></small><div><a class="front-post-image" href="/pivotal-certified-spring-web-application-developer-notes/"><div class=" gatsby-image-outer-wrapper" style="position: relative;"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6875%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMCBAX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAv/aAAwDAQACEAMQAAABvScoYZpMf//EABoQAAMBAAMAAAAAAAAAAAAAAAABAgMSISL/2gAIAQEAAQUC5aULI8SN93Lo1aiv/8QAGBEAAgMAAAAAAAAAAAAAAAAAAAECAyH/2gAIAQMBAT8BHbBYf//EABURAQEAAAAAAAAAAAAAAAAAAAAi/9oACAECAQE/AVP/xAAcEAEAAgEFAAAAAAAAAAAAAAABABEhECIygZH/2gAIAQEABj8Cwezc3KxpyQlAdz//xAAbEAACAwADAAAAAAAAAAAAAAAAAREhUTFBcf/aAAgBAQABPyF0Y1olt7YPJ9GBiqjlLsmfKJpJ/9oADAMBAAIAAwAAABDoD//EABgRAQEAAwAAAAAAAAAAAAAAAAEAEWGh/9oACAEDAQE/EDcgrPL/xAAYEQACAwAAAAAAAAAAAAAAAAAAEQEhgf/aAAgBAgEBPxCWqMH/xAAdEAEAAgEFAQAAAAAAAAAAAAABABEhMUFRYaGR/9oACAEBAAE/EEbL9B8iM4eYCYSGDRF+xD2hqLHD9QHRlNhXtn//2Q==" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><img alt="" srcset="/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-3c244.jpg 45w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f58d6.jpg 90w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f7f9a.jpg 180w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-870e7.jpg 270w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-dbc85.jpg 360w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-ac624.jpg 540w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-7d936.jpg 1600w" src="/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f7f9a.jpg" sizes="(max-width: 180px) 100vw, 180px" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;"><noscript><img src="/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f7f9a.jpg" srcset="/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-3c244.jpg 45w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f58d6.jpg 90w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-f7f9a.jpg 180w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-870e7.jpg 270w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-dbc85.jpg 360w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-ac624.jpg 540w,
+/static/spring-web-a9777aab4458cf63bbcafdb903de2bde-7d936.jpg 1600w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt">Study materials and an exam review for&nbsp;Pivotal Certified Spring Web Application Developer Exam 4.2, with&nbsp;flash-cards and study notes.</span></div></div>
 
 Conclusion
 ----------

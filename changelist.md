@@ -216,5 +216,10 @@ health:905 / 1000
 - updated key promoter article with new info and screenshots
 - Merged tags and archives pages as they were the same
 
-7.9.
+9.7.
 - fixed mistake and typo in spring boot runtime version article
+
+12.7.
+- added spring pivotal study notes pdf to fix broken backlinks
+- removed incorrect reference for unavailable study guide for spring web
+- replaced simple links with linked article with thumbnail for both posts
