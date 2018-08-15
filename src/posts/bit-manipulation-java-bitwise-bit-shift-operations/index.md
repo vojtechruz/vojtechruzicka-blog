@@ -90,13 +90,13 @@ becomes
 00000000 00000000 00000000 00101000
 ```
 
-You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2^*n*^.
+You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2^*n*.
 
 There are several additional interesting aspects to this:
 
 -   Even though you can use shifting of byte, short or char, they are promoted to 32-bit integer before the shifting
 -   Bit-shift operators never throw an exception
--   The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \>\>35 is equivalent to 5 \>\> 3.
+-   The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \<\<35 is equivalent to 5 \<\< 3.
 
 ### Negative Integers in Java
 
@@ -108,11 +108,11 @@ Java uses another approach, which is called *two\'s complement*. Negative number
 
 ### Signed Right Shift \[\>\>\]
 
-Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2*^n^*. Or division by 2^*n*^ -1 in case of odd numbers.
+Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2*^n*. Or division by 2^*n* -1 in case of odd numbers.
 
 ### Unsigned Right Shift \[\>\>\>\]
 
-Unlike signed shift, the unsigned one does not take sign bits into consideration, it just shifts all the bits to the right and pads the result with zeros from the left. That means that for negative numbers, the result is always positive. Signed and unsigned right shifts have the same result for positive numbers.
+Unlike the signed shift, the unsigned one does not take sign bits into consideration, it just shifts all the bits to the right and pads the result with zeros from the left. That means that for negative numbers, the result is always positive. Signed and unsigned right shifts have the same result for positive numbers.
 
 Conclusion
 ----------

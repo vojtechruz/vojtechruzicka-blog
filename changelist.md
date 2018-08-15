@@ -223,3 +223,6 @@ health:905 / 1000
 - added spring pivotal study notes pdf to fix broken backlinks
 - removed incorrect reference for unavailable study guide for spring web
 - replaced simple links with linked article with thumbnail for both posts
+
+15.8
+- Fixed minor issues in java bitwise operators article
