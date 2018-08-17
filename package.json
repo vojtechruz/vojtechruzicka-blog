@@ -33,7 +33,7 @@
     "lodash": "^4.17.10",
     "react-helmet": "^5.2.0",
     "react-responsive-grid": "^0.3.4",
-    "react-share": "^2.2.0",
+    "react-share": "^2.3.0",
     "typography-theme-bootstrap": "^0.16.7"
   },
   "devDependencies": {
