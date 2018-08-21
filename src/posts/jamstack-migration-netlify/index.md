@@ -59,9 +59,12 @@ Having a secure HTTPS connection enabled on a site like a blog, where no sensiti
 
 First of all, sites using HTTPS get a [ranking boost](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) in search results on Google. That means your site is displayed above the similar sites not using HTTPS, which can bring much traffic. Moreover, Google Chrome is going to show "Not Secure" on all the pages not using HTTPS [soon enough](https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html), which can scare off your visitors. When running over HTTP, you also risk public networks injecting content and advertisements into your pages, which can ruin user experience and lead to loss of users.
 
-If you want to use [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/) and enjoy its benefits such as increased performance, you need to migrate to HTTPS.
+**UPDATE:**
+As of July 2018, [All new sites on Netlify are HTTPS by default](https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/). You no longer need to explicitly enable it. Netlify utilizes [Let's Encrypt](https://letsencrypt.org/) - a free, automated, and open Certificate Authority.
 
-The bottom line is, you seriously should consider switching to HTTPS if you are not using it already. With Netlify, this is super simple - just one click away. And it's free - Netlify utilizes [Let's Encrypt](https://letsencrypt.org/) - a free, automated, and open Certificate Authority. 
+~~If you want to use [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/) and enjoy its benefits such as increased performance, you need to migrate to HTTPS.~~
+
+~~The bottom line is, you seriously should consider switching to HTTPS if you are not using it already. With Netlify, this is super simple - just one click away. And it's free - Netlify utilizes [Let's Encrypt](https://letsencrypt.org/) - a free, automated, and open Certificate Authority.~~
 
 ### Deploy preview per branch
 By default, Netlify deploys only changes in one configured branch. However, you can configure it to extend this behavior to multiple branches or even to all of them. In such case, whenever you make changes in such branch, Netlify builds and deploys your pages, but not to your primary domain. Instead, it creates a custom domain just for your branch, where you can check how your site works before going public. You can share it with others to gather feedback on your new version, perform testing and so on. It is handy as you can test your site in a production-like environment before actually publishing it. No more "It works on my machine" excuses.
