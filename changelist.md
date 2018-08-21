@@ -226,3 +226,6 @@ health:905 / 1000
 
 15.8
 - Fixed minor issues in java bitwise operators article
+
+21.8.
+- Updated netlify article: HTTP is now enabled by default
