@@ -19,7 +19,7 @@ class Template extends React.Component {
     return (
       <Container className="content-root"
         style={{
-          maxWidth: rhythm(28),
+          maxWidth: rhythm(32),
           padding: `${rhythm(1.5)} ${rhythm(1.5)}`
         }}
       >

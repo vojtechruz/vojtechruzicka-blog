@@ -229,3 +229,7 @@ health:905 / 1000
 
 21.8.
 - Updated netlify article: HTTP is now enabled by default
+
+23.8.
+- Images for: staticman,git-tags
+- increased width
