@@ -233,3 +233,4 @@ health:905 / 1000
 23.8.
 - Images for: staticman,git-tags
 - increased width
+- Fixed incorrect rendering of search field on mobile safari

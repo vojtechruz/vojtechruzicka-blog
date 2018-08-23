@@ -253,6 +253,8 @@ body {
   border: 1px solid hsla(0, 0% ,0%, 0.01);
   color: hsla(0, 0% ,0%, 0.85);
   padding: 0 0 0 3px;
+  // Mobile Safari shows inner shadow in the field
+  -webkit-appearance: none;
 }
 
 .search-box:focus {
