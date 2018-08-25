@@ -4,7 +4,7 @@ date: ""
 tags: ['Javascript']
 path: '/spread-javascript'
 featuredImage: './spread-2.jpg'
-disqusArticleIdentifier: '99009 http://vojtechruzicka.com/?p=99010'
+disqusArticleIdentifier: '99010 http://vojtechruzicka.com/?p=99010'
 excerpt: ''
 ---
 
