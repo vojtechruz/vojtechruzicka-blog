@@ -1,6 +1,6 @@
 ---
 title: 'Actuator: Spring Boot Production Monitoring and Management'
-date: "2018-08-24T22:12:03.284Z"
+date: "2018-08-31T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-actuator'
 featuredImage: './spring-boot-actuator.jpg'
@@ -138,6 +138,15 @@ management.endpoint.health.enabled=false
 management.endpoints.enabled-by-default=false
 
 ```
+
+# Securing Actuator endpoints
+
+# Actuator 1.x vs 2.x
+https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/
+
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator
+
+https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
 
 # Source code
 Source code of example application using Spring Boot Actuator can be found [here](https://github.com/vojtechruz/spring-boot-actuator-example).
