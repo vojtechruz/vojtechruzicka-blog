@@ -5,7 +5,7 @@ tags: ['Spring', 'Java']
 path: '/spring-boot-actuator'
 featuredImage: './spring-boot-actuator.jpg'
 disqusArticleIdentifier: '99008 http://vojtechruzicka.com/?p=99008'
-excerpt: 'Monitor and manage your application in production with Spring Boot Actuator. Gather metrics or check health easily.'
+excerpt: 'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.'
 ---
 
 ![Spring Boot Actuator](spring-boot-actuator.jpg)
@@ -147,9 +147,19 @@ management.endpoints.enabled-by-default=false
 # Securing Actuator endpoints
 
 # Actuator 1.x vs 2.x
-https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/
+Many of the changes brought with Spring Boot 2.0 are in fact in the Actuator module.
 
-https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator
+Actuator endpoint are now technology independent. Before, they relied on Spring MVC. Now it does not matter whether you use MVC, Jersey or the new Spring WebFlux.
+
+In v 1.x there was a special security configuration just for actuator endpoints. This was dropped and you now use Spring Security directly as you would for any other endpoint. It is much simpler and more consistent.
+
+The old version of Actuator used to have proprietary metrics, but 2.x uses [Micrometer](https://micrometer.io/). This was later [backported](https://micrometer.io/docs/ref/spring/1.5) even to 1.x.
+
+There were some new endpoints introduced, some were  renamed to more descriptive names. The configuration properties were also reworked and are now neatly grouped together by common prefix.
+
+More detailed description of the changes can be found in [Spring Boot 2.0 actuator change analysis](https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/). If you are migrating from version 1.x [this guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator) may come in handy.
+
+
 
 https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
 
