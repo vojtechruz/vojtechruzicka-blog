@@ -144,7 +144,62 @@ management.endpoints.enabled-by-default=false
 
 ```
 
+# /health
+As we already saw, the information provided by `/health` endpoint is rather unimpressive.
+
+```json
+{"status":"UP"}
+```
+
+Fortunately, this is just the default state and we can show much more details.
+
+```properties
+management.endpoint.health.show-details=always
+```
+
+Now the information available is much richer. The exact details will deped on your specific dependencies - Eg. Whether you use a data source and which one etc.
+
+```json
+{
+  "status": "UP",
+  "details": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "database": "H2",
+        "hello": 1
+      }
+    },
+    "diskSpace": {
+      "status": "UP",
+      "details": {
+        "total": 497336446976,
+        "free": 202989006848,
+        "threshold": 10485760
+      }
+    }
+  }
+}
+```
+
+Of course, it may not be such a good idea to publicly show such information to everyone. Fortunately, you can restrict access so the details are available to users with certain roles only. Instead on `always`, you rather use `when-authorized` and then you can specify allowed roles.
+
+```properties
+management.endpoint.health.show-details=when-authorized
+management.endpoint.health.roles=ADMIN
+```
+
+
+
+# /info
+
+# /metrics
+https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+
+
+
 # Securing Actuator endpoints
+
 
 # Actuator 1.x vs 2.x
 Many of the changes brought with Spring Boot 2.0 are in fact in the Actuator module.
@@ -158,10 +213,6 @@ The old version of Actuator used to have proprietary metrics, but 2.x uses [Micr
 There were some new endpoints introduced, some were  renamed to more descriptive names. The configuration properties were also reworked and are now neatly grouped together by common prefix.
 
 More detailed description of the changes can be found in [Spring Boot 2.0 actuator change analysis](https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/). If you are migrating from version 1.x [this guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator) may come in handy.
-
-
-
-https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
 
 # Adding Graphical User Interface
 Actuator endpoints are great, but monitoring and managing your application just throught JXM and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really great in cloud environment with many dynamic instances of your app.
