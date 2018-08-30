@@ -234,3 +234,6 @@ health:905 / 1000
 - Images for: staticman,git-tags
 - increased width
 - Fixed incorrect rendering of search field on mobile safari
+
+29.8.
+- Docsearch css does no longer block rendering

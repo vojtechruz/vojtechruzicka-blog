@@ -32,6 +32,9 @@ While this can be handy, it is usually not sufficient. There is a lot more you a
 # Spring Boot Actuator
 In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds Monitoring and Management support for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
 
+# Source code
+Source code of example application using Spring Boot Actuator can be found [here](https://github.com/vojtechruz/spring-boot-actuator-example).
+
 # Adding Dependencies
 Basic setup is really simple, you just need to add one dependency to your project - `spring-boot-starter-actuator`. 
 
@@ -148,7 +151,9 @@ https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Gu
 
 https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
 
-# Source code
-Source code of example application using Spring Boot Actuator can be found [here](https://github.com/vojtechruz/spring-boot-actuator-example).
+# Adding Graphical User Interface
+Actuator endpoints are great, but monitoring and managing your application just throught JXM and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really great in cloud environment with many dynamic instances of your app.
+
+![Spring Boot Admin](spring-boot-admin.png)
 
 # Conclusion
