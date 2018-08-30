@@ -32,6 +32,8 @@ While this can be handy, it is usually not sufficient. There is a lot more you a
 # Spring Boot Actuator
 In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds Monitoring and Management support for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
 
+This post covers Actuator 2.x. If you're using Spring Boot 1.x, be aware that there were many changes in the version 2 and you should look for version 1.x specific configuration instead.
+
 # Source code
 Source code of example application using Spring Boot Actuator can be found [here](https://github.com/vojtechruz/spring-boot-actuator-example).
 
@@ -157,3 +159,4 @@ Actuator endpoints are great, but monitoring and managing your application just 
 ![Spring Boot Admin](spring-boot-admin.png)
 
 # Conclusion
+Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator Endpoints. But bear in mind that having public endpoints which allow you to tinker with your app and expose sensitive data is not a good idea. Always be sure to secure your endpoints. 
