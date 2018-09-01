@@ -237,3 +237,6 @@ health:905 / 1000
 
 29.8.
 - Docsearch css does no longer block rendering
+
+9.1.
+- Fixed mistake in article about javascript hoisting

@@ -132,8 +132,8 @@ To better understand the difference between *var* and *let*, we need to compare 
 
 There is one key difference how this behaves between *var* and *let/const* though.
 
--   In case of var, after creating variable definitions, before executing line by line each of the variables is initialized with the undefined value.
--   In case of var/const, the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in the *Temporal Dead Zone* and accessing it results in Reference Error.
+-   In case of *var*, after creating variable definitions, before executing line by line each of the variables is initialized with the undefined value.
+-   In case of *let/const*, the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in the *Temporal Dead Zone* and accessing it results in Reference Error.
 
 One of the advantages of *let* over *var* is also pollution of global scope. When you declare a variable using *var* on the root level, it is automatically declared on the global object:
 

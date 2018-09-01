@@ -192,6 +192,7 @@ management.endpoint.health.roles=ADMIN
 
 
 # /info
+When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`.
 
 # /metrics
 https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
