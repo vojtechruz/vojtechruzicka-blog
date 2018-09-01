@@ -1,6 +1,6 @@
 ---
 title: 'Actuator: Spring Boot Production Monitoring and Management'
-date: "2018-08-31T22:12:03.284Z"
+date: "2018-09-02T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-actuator'
 featuredImage: './spring-boot-actuator.jpg'
@@ -192,7 +192,100 @@ management.endpoint.health.roles=ADMIN
 
 
 # /info
-When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`.
+When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do better. Let's examine various different ways we can display more info.
+
+## Build Properties
+In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The ide is simple, configure Spring Boot Maven/Gradle plugin to generatoe `build-info.properties` file, which contains required information. 
+
+What's great is that if you do use Actuator, it will automatically detect `build-info.properties` file and display its contents through the `/info` endpoint. All you need to do is to add simple config to your Spring Boot Maven/Gradle Plugin.
+
+Maven `pom.xml` file:
+```xml{4-11}
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>build-info</id>
+            <goals>
+                <goal>build-info</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+Gradle `build.gradle` file:
+
+```json
+springBoot {
+    buildInfo()
+}
+```
+
+Info endpoint will now provide build info information:
+
+```json
+{
+  "build": {
+    "version": "1.0.0-SNAPSHOT",
+    "artifact": "spring-boot-actuator-example",
+    "name": "spring-boot-actuator-example",
+    "group": "com.vojtechruzicka",
+    "time": "2018-09-01T19:03:06.446Z"
+  }
+}
+```
+
+## Git Properties
+Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate, you'll just need to add a specific plugin to your build config.
+
+In Maven `pom.xml`:
+```xml
+<plugin>
+    <groupId>pl.project13.maven</groupId>
+    <artifactId>git-commit-id-plugin</artifactId>
+</plugin>
+```
+
+Gradle uses a [different plugin](https://github.com/n0mer/gradle-git-properties):
+```
+plugins {
+	id "com.gorylenko.gradle-git-properties" version "1.5.1"
+}
+```
+
+This will add some useful information to the `/info` endpoint.
+```json
+{
+  "git": {
+    "commit": {
+      "time": "2018-09-01T19:46:31Z",
+      "id": "493f071"
+    },
+    "branch": "master"
+  }
+}
+```
+
+## Environment properties
+Finally, Actuator will automatically detect all the environmental properties, which start with `info.`. You can try it by adding a new property to your `application.properties`, which starts with `info.`.
+
+```properties
+info.my-custom-property=What a nice property!
+```
+
+Then it will be returned by the `/info` endpoint.
+
+```json
+{"my-custom-property":"What a nice property!"}
+```
+
+What's useful is that it will show properties from various sources, not only `application.properties`.
+- Environment variables
+- Command line arguments
+- Servlet Config/Context params
+- And [many more](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
 
 # /metrics
 https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
