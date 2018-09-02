@@ -353,7 +353,50 @@ Metrics were completely reworked in version 2. Version 1 uses its own proprietar
 So in addition to dimensional focus, you now have a nice facade to integrate various popular existing solutions such as Prometheus, Atlas, CloudWatch, Ganglia or New Relic. You can read more details in [Micrometer: Spring Boot 2's new application metrics collector](https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector)
 
 # Securing Actuator endpoints
+Leaving your actuator endpoints exposed for anybody to access is not a good idea. That's why vast majority of them are not exposed by default. Once you do expose them, you should make sure they are properly protected.
 
+The good news is that if you use Spring Security, Actuator endpoints are secured by default. If you're not using Spring Security, you can just add this dependency:
+
+```
+Maven:
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+Gradle:
+compile 'org.springframework.boot:spring-boot-starter-security'
+```
+
+If you rebuild and restart your app, you'll notice that now your require to log in if accessing the actuator endpoints. By default, the username is `user` and the password is randomly generated and printed to the console every time the application starts:
+
+```
+Using generated security password: f7b833aa-5a1c-42f4-b913-70c1abe47cb6
+```
+
+Protecting all the endpoints like this may be sufficient in many cases, you'll just usually change how user's credentials ae valdiated. If you need more fine-graidend control, you should create a configuration class extending `WebSecurityConfigurerAdapter` and override the `configure` method:
+
+```java
+@Configuration
+public class ActuatorSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .requestMatchers(EndpointRequest.to(ShutdownEndpoint.class))
+                .hasRole("ADMIN")
+            .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class))
+                .permitAll()
+            .requestMatchers(EndpointRequest.toAnyEndpoint())
+                .fullyAuthenticated()
+            .and().httpBasic();
+    }
+}
+```
+
+In the example above, the '/shutdown' endpoint is accessible only for an authenticated user with role ADMIN. Edpoints `/health` and `/info` are accessbile for anybody. All the other endpoints are accessible only for fully authenticated users.
+
+Notice that we are not mathcing by url of the endpoints but rather by class, so we are not tightly coupled to the URL to which an endpoint is mapped to. If URLs are reconfigured, we don't need to change our security config.
 
 # Actuator 1.x vs 2.x
 Many of the changes brought with Spring Boot 2.0 are in fact in the Actuator module.
