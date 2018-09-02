@@ -288,9 +288,69 @@ What's useful is that it will show properties from various sources, not only `ap
 - And [many more](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
 
 # /metrics
-https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+This endpoint exposes information about various metrics. By calling `/metrics` you get names of all which are available.
 
+```json
+{
+  "names": [
+    "jvm.memory.max",
+    "jvm.memory.used",
+    "jdbc.connections.active",
+    "http.server.requests",
+    "jvm.gc.memory.promoted",
+    "system.cpu.usage",
+    "tomcat.cache.hit",
+    "tomcat.cache.access",
+    "jvm.gc.max.data.size",
+    "jdbc.connections.max",
+    "jdbc.connections.min",
+    "jvm.memory.committed",
+    "system.cpu.count",
+    "logback.events",
+    ...
+  ]
+}
+```
 
+If you want to display data for a specific metric, instead of calling `/metrics` you call `/metrics/{metric-name}`. For example, calling `/metrics/jvm.memory.used` will return response similar to this:
+
+```json
+{
+  "name": "jvm.memory.used",
+  "measurements": [
+    {
+      "statistic": "VALUE",
+      "value": 2.44780736E8
+    }
+  ],
+  "availableTags": [
+    {
+      "tag": "area",
+      "values": [
+        "heap",
+        "nonheap"
+      ]
+    },
+    {
+      "tag": "id",
+      "values": [
+        "Compressed Class Space",
+        "PS Survivor Space",
+        "PS Old Gen",
+        "Metaspace",
+        "PS Eden Space",
+        "Code Cache"
+      ]
+    }
+  ]
+}
+```
+
+Metrics were completely reworked in version 2. Version 1 uses its own proprietary metric system, which is hierarchical. This does not work very well in cloud with many application instances. Actuator version 2 uses a completely new system for managing metrics. It is dimensional in nature and it is build on top of [Multimeter](https://micrometer.io/).
+
+> Micrometer provides a simple facade over the instrumentation clients for the most popular monitoring systems, allowing you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for metrics.
+
+So in addition to dimensional focus, you now have a nice facade to integrate various popular existing solutions such as Prometheus, Atlas, CloudWatch, Ganglia or New Relic. You can read more details in [Micrometer: Spring Boot 2's new application metrics collector](https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector)
 
 # Securing Actuator endpoints
 
