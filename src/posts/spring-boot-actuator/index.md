@@ -1,6 +1,6 @@
 ---
 title: 'Actuator: Spring Boot Production Monitoring and Management'
-date: "2018-09-02T22:12:03.284Z"
+date: "2018-09-03T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-actuator'
 featuredImage: './spring-boot-actuator.jpg'
