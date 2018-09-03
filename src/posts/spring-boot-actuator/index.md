@@ -11,26 +11,56 @@ excerpt: 'Monitor and manage your application in production with Spring Boot Act
 ![Spring Boot Actuator](spring-boot-actuator.jpg)
 
 # Basic build information
-In one of my previous articles, I described how to obtain some basic information about the current build of the application at runtime in spring boot.
+In one of my previous articles, I described how to obtain some basic information about the current build of your application at runtime in Spring Boot.
 
-<div class="linked-post"><h4 class="front-post-title" style="margin-bottom:0.375rem;" data-reactid="21"><a style="box-shadow:none;" href="/spring-boot-version/" data-reactid="22">Detecting build version and time at runtime in Spring Boot</a></h4><small class="front-post-info" data-reactid="23"><span class="front-post-info-date" data-reactid="24">25 June, 2018</span><div class="post-tags" data-reactid="25"><ul data-reactid="26"><li data-reactid="27"><a href="/tags/spring" data-reactid="28"><!-- react-text: 29 -->#<!-- /react-text --><!-- react-text: 30 -->Spring<!-- /react-text --></a></li></ul></div></small><div data-reactid="31"><a class="front-post-image" href="/spring-boot-version/" data-reactid="32"><div class=" gatsby-image-outer-wrapper" style="position:relative;" data-reactid="33"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;" data-reactid="34"><div style="width:100%;padding-bottom:66.5%;" data-reactid="35"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/2gAMAwEAAhADEAAAAauyMjSDrCP/xAAaEAADAQADAAAAAAAAAAAAAAAAAQIRAxIT/9oACAEBAAEFAuIqOxjQqcnpRur/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8Bsa//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BlY//xAAbEAACAgMBAAAAAAAAAAAAAAAAIQERAhBBUf/aAAgBAQAGPwKULGV4OKEX3X//xAAbEAEAAgIDAAAAAAAAAAAAAAABABExQRAhUf/aAAgBAQABPyEDslS7GgmIi8eIUZ9IUFDE/9oADAMBAAIAAwAAABDP3//EABYRAQEBAAAAAAAAAAAAAAAAABEBEP/aAAgBAwEBPxCi4//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxAMCP/EABwQAQACAwADAAAAAAAAAAAAAAEAESExQVFhgf/aAAgBAQABPxAzA7Iioho0/YA8o7CZJhb0uJa101gp2J2ZgCHXqf/Z" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;" data-reactid="36"><img alt="" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom:0.375rem;"><a
+        style="box-shadow:none;" href="/spring-boot-version/">Detecting build version and time at
+    runtime in Spring Boot</a></h4>
+    <small class="front-post-info"><span class="front-post-info-date">25 June, 2018</span>
+        <div class="post-tags">
+            <ul>
+                <li><a href="/tags/spring" >#Spring</a></li>
+            </ul>
+        </div>
+    </small>
+    <div><a class="front-post-image" href="/spring-boot-version/">
+        <div class=" gatsby-image-outer-wrapper" style="position:relative;">
+            <div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;">
+                <div style="width:100%;padding-bottom:66.5%;"></div>
+                <img alt=""
+                     src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/2gAMAwEAAhADEAAAAauyMjSDrCP/xAAaEAADAQADAAAAAAAAAAAAAAAAAQIRAxIT/9oACAEBAAEFAuIqOxjQqcnpRur/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8Bsa//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BlY//xAAbEAACAgMBAAAAAAAAAAAAAAAAIQERAhBBUf/aAAgBAQAGPwKULGV4OKEX3X//xAAbEAEAAgIDAAAAAAAAAAAAAAABABExQRAhUf/aAAgBAQABPyEDslS7GgmIi8eIUZ9IUFDE/9oADAMBAAIAAwAAABDP3//EABYRAQEBAAAAAAAAAAAAAAAAABEBEP/aAAgBAwEBPxCi4//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxAMCP/EABwQAQACAwADAAAAAAAAAAAAAAEAESExQVFhgf/aAAgBAQABPxAzA7Iioho0/YA8o7CZJhb0uJa101gp2J2ZgCHXqf/Z"
+                     style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"
+                     ><img alt="" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f58d6.jpg 90w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg 180w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-870e7.jpg 270w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-dbc85.jpg 360w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ac624.jpg 540w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w" src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg" sizes="(max-width: 180px) 100vw, 180px" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;"><noscript data-reactid="37"><img src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w"
+                                            src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg"
+                                            sizes="(max-width: 180px) 100vw, 180px"
+                                            style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;">
+                <noscript><img
+                        src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f58d6.jpg 90w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg 180w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-870e7.jpg 270w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-dbc85.jpg 360w,
 /static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ac624.jpg 540w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt" data-reactid="38">How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?</span></div></div>
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w" alt=""
+                        sizes="(max-width: 180px) 100vw, 180px"
+                        style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
+                </noscript>
+            </div>
+        </div>
+    </a><span class="front-post-excerpt">How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?</span>
+    </div>
+</div>
 
 While this can be handy, it is usually not sufficient. There is a lot more you are usually interested in. And most importantly, it does not involve just the information known at build time, but rather what is the application's current status at runtime. In these situations, you should use Spring Boot Actuator.
 
 # Spring Boot Actuator
-In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds Monitoring and Management support for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
+In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds monitoring and management support for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
 
 This post covers Actuator 2.x. If you're using Spring Boot 1.x, be aware that there were many changes in the version 2 and you should look for version 1.x specific configuration instead.
 
@@ -94,7 +124,7 @@ Not very impressive so far. Of course, Actuator offers much more than this. Othe
 | info  | Info about the application  |
 | env  | Properties from environment  |
 | metrics  | Various metrics about the app  |
-| mappings  | `@REquestMapping` Controller mappings  |
+| mappings  | `@RequestMapping` Controller mappings  |
 | shutdown  | Triggers application shutdown  |
 | httptrace  | HTTP request/response log  |
 | loggers  | Display and configure logger info  |
@@ -139,7 +169,7 @@ management.endpoint.[endpoint-name].enabled=false
 management.endpoint.health.enabled=false
 
 # Instead of enabled by default, you can change to mode
-# Where endpoints need to be explicitly enabled
+# where endpoints need to be explicitly enabled
 management.endpoints.enabled-by-default=false
 
 ```
@@ -182,14 +212,12 @@ Now the information available is much richer. The exact details vary based on yo
 }
 ```
 
-Of course, it may not be such a good idea to show such information to everyone publicly. Fortunately, you can restrict access, so the details are available to users with specific roles only. Instead of `always`, you rather use `when-authorized` and then you can specify allowed roles.
+Of course, it may not be a good idea to show such information to everyone publicly. Fortunately, you can restrict access, so the details are available to users with specific roles only. Instead of `always`, you rather use `when-authorized` and then you can specify the allowed roles.
 
 ```properties
 management.endpoint.health.show-details=when-authorized
 management.endpoint.health.roles=ADMIN
 ```
-
-
 
 # /info
 When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do better. Let's examine various ways we can display more info.
@@ -197,7 +225,7 @@ When we tried to call `/info` endpoint before, all we've got was just an empty r
 ## Build Properties
 In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information. 
 
-What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and display its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
+What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
 
 Maven `pom.xml` file:
 ```xml{4-11}
@@ -238,7 +266,7 @@ Info endpoint now provides build info information:
 ```
 
 ## Git Properties
-Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate, you'll need to add a specific plugin to your build config.
+Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate it, you'll need to add a specific plugin to your build config.
 
 In Maven `pom.xml`:
 ```xml
@@ -255,7 +283,7 @@ plugins {
 }
 ```
 
-This adds some useful information to the `/info` endpoint.
+After rebuilding and restarting the `/info` endpoint displays some git info.
 ```json
 {
   "git": {
@@ -346,7 +374,7 @@ If you want to display data for a specific metric, instead of calling `/metrics`
 }
 ```
 
-Metrics were completely reworked in version 2. Version 1 uses its own proprietary metric system, which is hierarchical. This does not work very well in the cloud with many application instances. Actuator version 2 uses an entirely new system for managing metrics. It is dimensional in nature and it is built on top of [Multimeter](https://micrometer.io/).
+Metrics were completely reworked in version 2. Version 1 uses its own proprietary metric system, which is hierarchical. This does not work very well in the cloud with many application instances. Actuator version 2 uses an entirely new system for managing metrics. It is dimensional in nature and it utilizes [Micrometer](https://micrometer.io/).
 
 > Micrometer provides a simple facade over the instrumentation clients for the most popular monitoring systems, allowing you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for metrics.
 
@@ -394,7 +422,7 @@ public class ActuatorSecurityConfiguration extends WebSecurityConfigurerAdapter 
 }
 ```
 
-In the example above, the '/shutdown' endpoint is accessible only for an authenticated user with role ADMIN. Endpoints `/health` and `/info` are accessible for anybody. All the other endpoints are accessible only for fully authenticated users.
+In the example above, the `/shutdown` endpoint is accessible only for an authenticated user with role ADMIN. Endpoints `/health` and `/info` are accessible for anybody. All the other endpoints are accessible only for fully authenticated users.
 
 Notice that we are not matching by URL of the endpoints but rather by class, so we are not tightly coupled to the URL to which an endpoint is mapped to. If URLs are reconfigured, we don't need to change our security config.
 
@@ -412,7 +440,7 @@ There were some new endpoints introduced, some were renamed to more descriptive 
 More detailed description of the changes can be found in [Spring Boot 2.0 actuator change analysis](https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/). If you are migrating from version 1.x [this guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator) may come in handy.
 
 # Adding Graphical User Interface
-Actuator endpoints are great, but monitoring and managing your application just through JMX and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really great in the cloud environment with many dynamic instances of your app.
+Actuator endpoints are great, but monitoring and managing your application just through JMX and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really useful in the cloud environment with many dynamic instances of your app.
 
 ![Spring Boot Admin](spring-boot-admin.png)
 

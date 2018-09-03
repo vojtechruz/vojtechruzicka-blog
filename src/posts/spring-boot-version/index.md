@@ -1,7 +1,7 @@
 ---
 title: 'Detecting build version and time at runtime in Spring Boot'
 date: "2018-06-25T22:12:03.284Z"
-tags: ['Spring']
+tags: ['Spring', 'Java']
 path: '/spring-boot-version'
 featuredImage: './spring-boot-version.jpg'
 disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
