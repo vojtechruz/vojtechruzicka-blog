@@ -10,6 +10,22 @@ excerpt: 'How to obtain artifact version, build time and other build information
 
 ![Spring boot Version Info](./spring-boot-version.jpg)
 
+This post covers obtaining simple build-related information without adding any additional dependencies. For much more detailed info, various metrics and health monitoring you should consider using Spring Boot Actuator:
+
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/spring-boot-actuator/" style="box-shadow: none;">Actuator: Spring Boot Production Monitoring and Management</a></h4><small class="front-post-info"><span class="front-post-info-date">03 September, 2018</span><div class="post-tags"><ul><li><a href="/tags/spring"><!-- react-text: 381 -->#<!-- /react-text --><!-- react-text: 382 -->Spring<!-- /react-text --></a></li><li><a href="/tags/java"><!-- react-text: 385 -->#<!-- /react-text --><!-- react-text: 386 -->Java<!-- /react-text --></a></li></ul></div></small><div><a class="front-post-image" href="/spring-boot-actuator/"><div class=" gatsby-image-outer-wrapper" style="position: relative;"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 75%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAABSozacLmxh//EABkQAAMBAQEAAAAAAAAAAAAAAAECAwARBP/aAAgBAQABBQJfSy6NjXMOFYdMgqEnf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABwQAAEEAwEAAAAAAAAAAAAAAAEAEBESAiEiYf/aAAgBAQAGPwLWIRuA02hcmT63/8QAGxAAAwACAwAAAAAAAAAAAAAAAAERITFRYXH/2gAIAQEAAT8hxQ4VCaiFzWvDPkTpUYaTnAg8I//aAAwDAQACAAMAAAAQLy//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPxBn/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAgEBPxDCXt//xAAcEAEBAAIDAQEAAAAAAAAAAAABEQAhMUGhUcH/2gAIAQEAAT8QcAUfi/ua5pehiIh5DtbvLNasVe5XjuNFruGJLn2l4e/c/9k=" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><img alt="" srcset="/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-3c244.jpg 45w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f58d6.jpg 90w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f7f9a.jpg 180w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-870e7.jpg 270w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-dbc85.jpg 360w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-ac624.jpg 540w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-7d936.jpg 1600w" src="/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f7f9a.jpg" sizes="(max-width: 180px) 100vw, 180px" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;"><noscript><img src="/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f7f9a.jpg" srcset="/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-3c244.jpg 45w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f58d6.jpg 90w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-f7f9a.jpg 180w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-870e7.jpg 270w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-dbc85.jpg 360w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-ac624.jpg 540w,
+/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-7d936.jpg 1600w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt">Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.</span></div></div>
+
 # Obtaining build information
 It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to retrieve these when the application is running.
 
@@ -151,7 +167,7 @@ environment.getActiveProfiles();
 What's more, since you already have environment object, you can obtain any environmental properties by calling `environment.getProperty("property.name")`.
 
 # Spring Actuator & Admin
-While this approach gives you basic build and version info, sometimes you may need a more powerful tool. [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) is a sub-project of Spring Boot, which adds some production-grade monitoring and management tools exposed as REST and JMX endpoints. In fact, it can easily be configured to use build information provided by `BuildProperties` and provide them through one of its endpoints. 
+While this approach gives you basic build and version info, sometimes you may need a more powerful tool. [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready) is a sub-project of Spring Boot, which adds some production-grade monitoring and management tools exposed as REST and JMX endpoints. In fact, it can easily be configured to use build information provided by `BuildProperties` and provide them through one of its endpoints.
 
 [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin) is a community project, which provides a nice user interface on top of Spring Actuator endpoints, so the app is more comfortable to manage through a nice admin GUI.
 
