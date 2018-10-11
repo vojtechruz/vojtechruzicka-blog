@@ -133,15 +133,19 @@ Now on your pre-commit action, you execute `lint-staged` instead of your linter 
 When you try to commit now, lint-staged can change your files before the commit is executed. However, what's really cool is that you are linting only files staged to commit, not your whole project. That means the whole process is way faster.
 
 ### JetBrains IDE bug
-The good news is that git hooks configured in this way are executed not only when you use git from your command line, but also from an IDE. The bad news is that JetBrains IDEs (IDEA, Webstorm, ...) have currently a [nasty bug](https://github.com/okonet/lint-staged/issues/151) (see [IDEA-135454](https://youtrack.jetbrains.com/issue/IDEA-135454)) and doesn't work well with this setup.
-
-The issue is not resolved for several years, but fortunately, there is a workaround. You just need to add this post-commit hook:
+**UPDATE:** The bug described below [is fixed](https://youtrack.jetbrains.com/issue/IDEA-135454#focus=streamItem-27-3068711-0-0) in version 2018.3, if you are using an older version you can use this workaround:
 
 ```json
 "post-commit": "git update-index -g"
 ```
 
-Of course, this is just workaround until the issue is fixed. JetBrains's issue tracker contains voting functionality, so be sure to vote for this issue to be resolved if it causes you trouble.
+~~The good news is that git hooks configured in this way are executed not only when you use git from your command line, but also from an IDE. The bad news is that JetBrains IDEs (IDEA, Webstorm, ...) have currently a [nasty bug](https://github.com/okonet/lint-staged/issues/151) (see [IDEA-135454](https://youtrack.jetbrains.com/issue/IDEA-135454)) and doesn't work well with this setup.~~
+
+~~The issue is not resolved for several years, but fortunately, there is a workaround. You just need to add this post-commit hook:~~
+
+~~"post-commit": "git update-index -g"~~
+
+~~Of course, this is just workaround until the issue is fixed. JetBrains's issue tracker contains voting functionality, so be sure to vote for this issue to be resolved if it causes you trouble.~~
 
 ### Continuous integration
 One thing to note is that Husky installs the hooks only when not running on a Continuous Integration server. Husky [can detect](https://github.com/watson/is-ci) it is running as a part of CI job and will not install any hooks. 
