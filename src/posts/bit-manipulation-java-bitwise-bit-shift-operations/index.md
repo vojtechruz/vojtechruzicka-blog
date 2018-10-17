@@ -11,8 +11,7 @@ excerpt: 'Java enables you to manipulate integers on a bit level, that means ope
 
 Java enables you to manipulate integers on a bit level, that means operating on specific bits, which represent an integer number. In some cases, it can be really handy.
 
-Bitwise operators
------------------
+## Bitwise operators
 
 You are no doubt familiar with arithmetic operators such as + - \* / or %. You also know for sure logical operators such as & or \|. Turns out there is another, a slightly less known set of operators, which manipulate numbers on bit level. Internally, every number is stored in a binary format - that is 0 and 1.
 
@@ -114,7 +113,32 @@ Signed right shift moves all the bits by given number of positions to the right.
 
 Unlike the signed shift, the unsigned one does not take sign bits into consideration, it just shifts all the bits to the right and pads the result with zeros from the left. That means that for negative numbers, the result is always positive. Signed and unsigned right shifts have the same result for positive numbers.
 
-Conclusion
-----------
+### Compound Assignment Operators
+Java offers a shorter syntax for assigning results of arithmetic or bitwise operations. So instead of writing this:
+
+```java
+x = x + 1;
+```
+
+You can use a shorter version, which will handle both addition and assignment with just one operator:
+
+```java
+x += 1;
+```
+
+You are probably familiar with compound assignment operators for arithmetic operations such as `+=`, `-=` or `*=`. But in addition to these, Java also offers variants for bitwise operators:
+
+  Operator  | Example  | Is equivalent to |
+------------|----------|------------------|
+  \|=       | x \|= 5  | x = x \| 5       |
+  ^=        | x ^= 5   | x = x ^ 5        |
+  &=        | x &= 5   | x = x & 5        |
+  <<=       | x <<= 5  | x = x << 5       |
+  >>=       | x >>= 5  | x = x >> 5       |
+  >>>=      | x >>>= 5 | x = x >>> 5      |
+  
+Note that there is no compound assignment operator for Unary bitwise complement operator \[\~\].
+
+## Conclusion
 
 Bit manipulation can be very handy in some cases and is really efficient. Increased performance, however, comes at its cost. The readability suffers a lot at it can be really puzzling for somebody who is not familiar with the bit manipulation concept. If the scenario you are using is not performance-critical, you may want to consider, whether the tradeoff of performance for readability is really worth it and maybe rewrite your solution in a more readable way. Don\'t use bit manipulation everywhere possible just because you learned a cool new concept.

@@ -240,3 +240,9 @@ health:905 / 1000
 
 9.1.
 - Fixed mistake in article about javascript hoisting
+
+11.10.
+- Updated information about pre commit hook bug in intellij  when using Husky: the bug is now fixed
+
+17.10.
+- Added binary compound operators to bit manipulation article
