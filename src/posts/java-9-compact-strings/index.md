@@ -9,12 +9,12 @@ excerpt: 'Java 9 brings a new, improved string, which in most cases, will reduce
 ---
 ![java compact strings](./compact-strings.jpg)
 
-Java 9 brings a new, improved string, which in most cases, will reduce String memory consumption to half.
+Java 9 brings a new, improved string, which in most cases, will greatly reduce String memory consumption.
 
 String memory consumption
 -------------------------
 
-The value of each String is internally contained in a char\[\] array. Each character is two bytes, sixteen bits. As this is UTF-16, it allows even representation of all the special characters. The problem is, that the vast majority of the strings in applications can be expressed by just one byte using ISO-8859-1/Latin-1 as they contain no special characters. If such strings could be represented with just one byte per character, that would mean only half of the memory would be used.
+The value of each String is internally contained in a char\[\] array. Each character is two bytes, sixteen bits. As this is UTF-16, it allows even representation of all the special characters. The problem is, that the vast majority of the strings in applications can be expressed by just one byte using ISO-8859-1/Latin-1 as they contain no special characters. If such strings could be represented with just one byte per character, that would mean only half of the memory would be used to store the String's characters. Of course, that does not mean that the whole memory consumed by a String object is now only 50% of the original. Not all the memory allocated by strings is used to store the characters. There is some [additional data](https://www.javamex.com/tutorials/memory/string_memory_usage.shtml) such as cached hash code or padding.
 
 String instances are stored on the heap. Quite a big portion of the heap memory is actually consumed by Strings. According to [some studies](http://cr.openjdk.java.net/~shade/density/state-of-string-density-v1.txt), Strings usually occupy as much as 25% of the heap memory. Making String twice as small would mean not only a significant memory consumption reduction but also a substantial reduction of Garbage Collection overhead.
 

@@ -246,3 +246,6 @@ health:905 / 1000
 
 17.10.
 - Added binary compound operators to bit manipulation article
+
+22.10.
+- Updated compact string article to be more accurate
