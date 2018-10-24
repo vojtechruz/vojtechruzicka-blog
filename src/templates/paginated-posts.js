@@ -19,8 +19,8 @@ class BlogIndex extends React.Component {
     );
     const siteUrl = get(this, "props.data.site.siteMetadata.siteUrl");
     const posts = get(this, "props.data.allMarkdownRemark.edges");
-    const pagesTotal = get(this, "props.pathContext.pagesTotal");
-    const currentPage = get(this, "props.pathContext.currentPage");
+    const pagesTotal = get(this, "props.pageContext.pagesTotal");
+    const currentPage = get(this, "props.pageContext.currentPage");
 
     let nextPage;
     let prevPage;

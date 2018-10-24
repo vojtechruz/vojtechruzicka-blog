@@ -55,7 +55,7 @@ class BlogPostTemplate extends React.Component {
         />
       );
     }
-    const relatedPosts = this.props.pathContext.related;
+    const relatedPosts = this.props.pageContext.related;
     let similarPosts = null;
     if (relatedPosts && relatedPosts.length > 0) {
       similarPosts = (
@@ -184,43 +184,43 @@ class BlogPostTemplate extends React.Component {
           </p>
           <div className="share-icons">
             <FacebookShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Facebook share button" }}
             >
               <FacebookIcon round size={shareIconSize} />
             </FacebookShareButton>
             <GooglePlusShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Google plus share button" }}
             >
               <GooglePlusIcon round size={shareIconSize} />
             </GooglePlusShareButton>
             <TwitterShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Twitter share button" }}
             >
               <TwitterIcon round size={shareIconSize} />
             </TwitterShareButton>
             <LinkedinShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "LinkedIn share button" }}
             >
               <LinkedinIcon round size={shareIconSize} />
             </LinkedinShareButton>
             <RedditShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Reddit share button" }}
             >
               <RedditIcon round size={shareIconSize} />
             </RedditShareButton>
             <TumblrShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Tumblr share button" }}
             >
               <TumblrIcon round size={shareIconSize} />
             </TumblrShareButton>
             <EmailShareButton
-              url={siteUrl + this.props.pathContext.slug}
+              url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Share by email button" }}
             >
               <EmailIcon round size={shareIconSize} />
