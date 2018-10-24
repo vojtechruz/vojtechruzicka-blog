@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-responsive-grid";
 
 import { rhythm } from "../utils/typography";
-import "./index.scss";
+import "../styles/index.scss";
 import Navigation from "../components/Navigation";
 import FollowMe from "../components/FollowMe";
 import { Helmet } from "react-helmet";
