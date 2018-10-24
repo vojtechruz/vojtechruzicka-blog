@@ -102,9 +102,7 @@ class BlogIndex extends React.Component {
               </small>
               <div>
                 <Link to={node.fields.slug} className="front-post-image">
-                  <Img
-                    sizes={node.frontmatter.featuredImage.childImageSharp.sizes}
-                  />
+                  <Img fluid={node.frontmatter.featuredImage.childImageSharp.sizes} />
                 </Link>
                 <span
                   className="front-post-excerpt"
@@ -153,8 +151,8 @@ export const pageQuery = graphql`
             tags
             featuredImage {
               childImageSharp {
-                sizes(maxWidth: 180) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 180) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

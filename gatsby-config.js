@@ -108,7 +108,7 @@ module.exports = {
                       date
                       featuredImage {
                         childImageSharp {
-                            sizes(maxWidth: 1000) {
+                            fluid(maxWidth: 1000) {
                                 originalImg
                             }
                         }
