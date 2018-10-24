@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import profilePic from "../components/profile-big.jpg";
 import Link from "gatsby-link";
 import { Helmet } from "react-helmet";
+import Layout from "../components/layout"
 
 const Tag = ({ pathContext, data }) => {
   const { tag } = pathContext;
@@ -16,7 +17,7 @@ const Tag = ({ pathContext, data }) => {
   const title = `${tag} | ${siteTitle}`;
 
   return (
-    <div>
+    <Layout>
       <Helmet title={title}>
         <meta name="description" content={siteDescription} />
 
@@ -51,7 +52,7 @@ const Tag = ({ pathContext, data }) => {
           );
         })}
       </ul>
-    </div>
+    </Layout>
   );
 };
 

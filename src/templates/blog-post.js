@@ -23,6 +23,7 @@ import {
   EmailIcon
 } from "react-share";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
+import Layout from "../components/layout"
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -108,7 +109,7 @@ class BlogPostTemplate extends React.Component {
     );
 
     return (
-      <div>
+      <Layout>
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
           <meta name="description" content={post.frontmatter.excerpt} />
 
@@ -228,7 +229,7 @@ class BlogPostTemplate extends React.Component {
         {similarPosts}
         <hr />
         {disqus}
-      </div>
+      </Layout>
     );
   }
 }

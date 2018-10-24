@@ -3,6 +3,7 @@ import kebabCase from "lodash/kebabCase";
 import Helmet from "react-helmet";
 import Link from "gatsby-link";
 import profilePic from "../../components/profile-big.jpg";
+import Layout from "../../components/layout"
 
 const ArchivesPage = ({
   data: {
@@ -12,7 +13,7 @@ const ArchivesPage = ({
     }
   }
 }) => (
-  <div>
+  <Layout>
     <Helmet title={`Archives | ${title}`}>
       <meta name="description" content={description} />
 
@@ -47,7 +48,7 @@ const ArchivesPage = ({
           ))}
       </ul>
     </div>
-  </div>
+  </Layout>
 );
 
 export default ArchivesPage;

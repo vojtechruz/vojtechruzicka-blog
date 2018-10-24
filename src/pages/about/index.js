@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import profilePic from "../../components/profile-big.jpg";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 import { rhythm } from "../../utils/typography";
+import Layout from "../../components/layout"
 
 class AboutPage extends React.Component {
   render() {
@@ -95,87 +96,89 @@ class AboutPage extends React.Component {
     );
 
     return (
-      <div className="about-page">
-        <Helmet title={title}>
-          <meta name="description" content={siteDescription} />
+      <Layout>
+        <div className="about-page">
+          <Helmet title={title}>
+            <meta name="description" content={siteDescription} />
 
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={siteDescription} />
-          <meta property="og:image" content={siteUrl + profilePic} />
-          <meta property="og:url" content={siteUrl + "/about/"} />
-          <meta property="og:site_name" content={siteTitle} />
-          <meta property="og:type" content="website" />
-          <meta property="fb:app_id" content="2072264049710958" />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={siteDescription} />
+            <meta property="og:image" content={siteUrl + profilePic} />
+            <meta property="og:url" content={siteUrl + "/about/"} />
+            <meta property="og:site_name" content={siteTitle} />
+            <meta property="og:type" content="website" />
+            <meta property="fb:app_id" content="2072264049710958" />
 
-          <meta name="twitter:creator" content="@vojtechruzicka" />
-          <meta name="twitter:site" content="@vojtechruzicka" />
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content={title} />
-          <meta name="twitter:description" content={siteDescription} />
-        </Helmet>
-          <h1>About</h1>
-        <h2>Stay informed</h2>
-        <strong>Get notified about the newest posts</strong>
-        <ul>
-          <li>
-            <OutboundLink href="https://twitter.com/vojtechruzicka">
-              {twitterIcon}Follow @vojtechruzicka
-            </OutboundLink>
-          </li>
-          <li>
-            {emailIcon}
-            <OutboundLink href="https://eepurl.com/bZ0waf">
-              Receive new posts by email
-            </OutboundLink>
-          </li>
-          <li>
-            {rssIcon}
-            <OutboundLink href="https://www.vojtechruzicka.com/feed/">
-              Subscribe to RSS Feed
-            </OutboundLink>
-          </li>
-          <li>
-            <OutboundLink href="https://google.com/+Vojtechruzickablog">
-              {gPlusIcon}Follow +Vojtechruzickablog
-            </OutboundLink>
-          </li>
-        </ul>
-          <h2>About me</h2>
-        <strong>Contact me</strong>
-        <ul>
-          <li>
-            <OutboundLink href="mailto:vojtech.ruz@gmail.com">
-              {emailIcon}vojtech.ruz@gmail.com
-            </OutboundLink>
-          </li>
-        </ul>
+            <meta name="twitter:creator" content="@vojtechruzicka" />
+            <meta name="twitter:site" content="@vojtechruzicka" />
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content={title} />
+            <meta name="twitter:description" content={siteDescription} />
+          </Helmet>
+            <h1>About</h1>
+          <h2>Stay informed</h2>
+          <strong>Get notified about the newest posts</strong>
+          <ul>
+            <li>
+              <OutboundLink href="https://twitter.com/vojtechruzicka">
+                {twitterIcon}Follow @vojtechruzicka
+              </OutboundLink>
+            </li>
+            <li>
+              {emailIcon}
+              <OutboundLink href="https://eepurl.com/bZ0waf">
+                Receive new posts by email
+              </OutboundLink>
+            </li>
+            <li>
+              {rssIcon}
+              <OutboundLink href="https://www.vojtechruzicka.com/feed/">
+                Subscribe to RSS Feed
+              </OutboundLink>
+            </li>
+            <li>
+              <OutboundLink href="https://google.com/+Vojtechruzickablog">
+                {gPlusIcon}Follow +Vojtechruzickablog
+              </OutboundLink>
+            </li>
+          </ul>
+            <h2>About me</h2>
+          <strong>Contact me</strong>
+          <ul>
+            <li>
+              <OutboundLink href="mailto:vojtech.ruz@gmail.com">
+                {emailIcon}vojtech.ruz@gmail.com
+              </OutboundLink>
+            </li>
+          </ul>
 
-        <strong>Additional links</strong>
-        <ul>
-          <li>
-            <OutboundLink href="https://www.linkedin.com/in/vojtechruzicka">
-              {linkedInIcon}LinkedIn profile
-            </OutboundLink>
-          </li>
-          <li>
-            <OutboundLink href="https://github.com/vojtechruz">
-              {githubIcon}GitHub profile
-            </OutboundLink>
-          </li>
-          <li>
-            <OutboundLink href="https://stackoverflow.com/users/4560142/vojtech-ruzicka">
-              {stackOverflowIcon}Stack Overflow profile
-            </OutboundLink>
-          </li>
-          <li>
-            <OutboundLink href="https://www.facebook.com/vojtechruzickablog">
-              {facebookIcon}Facebook page
-            </OutboundLink>
-          </li>
-        </ul>
-        <h2>Found some issues?</h2>
-          This whole blog and its content is available on <OutboundLink href="https://github.com/vojtechruz/vojtechruzicka-blog">GitHub</OutboundLink>. Feel free to create a Pull Request if you find some issues in the text or you can just check the code if you are curious about GatsbyJS powered blogs.
-      </div>
+          <strong>Additional links</strong>
+          <ul>
+            <li>
+              <OutboundLink href="https://www.linkedin.com/in/vojtechruzicka">
+                {linkedInIcon}LinkedIn profile
+              </OutboundLink>
+            </li>
+            <li>
+              <OutboundLink href="https://github.com/vojtechruz">
+                {githubIcon}GitHub profile
+              </OutboundLink>
+            </li>
+            <li>
+              <OutboundLink href="https://stackoverflow.com/users/4560142/vojtech-ruzicka">
+                {stackOverflowIcon}Stack Overflow profile
+              </OutboundLink>
+            </li>
+            <li>
+              <OutboundLink href="https://www.facebook.com/vojtechruzickablog">
+                {facebookIcon}Facebook page
+              </OutboundLink>
+            </li>
+          </ul>
+          <h2>Found some issues?</h2>
+            This whole blog and its content is available on <OutboundLink href="https://github.com/vojtechruz/vojtechruzicka-blog">GitHub</OutboundLink>. Feel free to create a Pull Request if you find some issues in the text or you can just check the code if you are curious about GatsbyJS powered blogs.
+        </div>
+      </Layout>
     );
   }
 }

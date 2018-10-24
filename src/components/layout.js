@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 
 class Template extends React.Component {
   render() {
-    const { location, children } = this.props;
+    const { children } = this.props;
 
     let rootPath = `/`;
     if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {

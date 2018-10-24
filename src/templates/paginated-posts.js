@@ -7,6 +7,7 @@ import Img from "gatsby-image";
 import { rhythm } from "../utils/typography";
 import Tags from "../components/Tags";
 import profilePic from "../components/profile-big.jpg";
+import Layout from "../components/layout"
 
 class BlogIndex extends React.Component {
   render() {
@@ -60,7 +61,7 @@ class BlogIndex extends React.Component {
     }
 
     return (
-      <div>
+      <Layout>
         <Helmet title={siteTitle}>
           <meta name="description" content={siteDescription} />
 
@@ -118,7 +119,7 @@ class BlogIndex extends React.Component {
           {pagesLinks}
           {nextPage}
         </div>
-      </div>
+      </Layout>
     );
   }
 }
