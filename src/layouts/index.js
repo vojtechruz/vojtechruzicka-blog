@@ -29,7 +29,7 @@ class Template extends React.Component {
 
         </Helmet>
         <Navigation />
-        {children()}
+        {children}
         <FollowMe />
       </Container>
     );
