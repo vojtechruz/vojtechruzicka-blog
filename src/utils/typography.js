@@ -9,11 +9,11 @@ Bootstrap.overrideThemeStyles = () => ({
 
 Bootstrap.scaleRatio = 1.75;
 
-const typography = new Typography(Bootstrap);
+const typography = new Typography();
+const { rhythm, scale } = typography;
+export { rhythm, scale, typography as default };
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== "production") {
   typography.injectStyles();
 }
-
-export default typography;
