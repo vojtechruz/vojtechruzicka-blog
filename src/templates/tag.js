@@ -4,6 +4,7 @@ import profilePic from "../components/profile-big.jpg";
 import { Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import Layout from "../components/layout"
+import { graphql } from "gatsby";
 
 const Tag = ({ pathContext, data }) => {
   const { tag } = pathContext;

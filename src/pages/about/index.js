@@ -3,8 +3,8 @@ import get from "lodash/get";
 import Helmet from "react-helmet";
 import profilePic from "../../components/profile-big.jpg";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
-import { rhythm } from "../../utils/typography";
 import Layout from "../../components/layout"
+import { graphql } from "gatsby";
 
 class AboutPage extends React.Component {
   render() {

@@ -8,6 +8,7 @@ import { rhythm } from "../utils/typography";
 import Tags from "../components/Tags";
 import profilePic from "../components/profile-big.jpg";
 import Layout from "../components/layout"
+import { graphql } from "gatsby";
 
 class BlogIndex extends React.Component {
   render() {

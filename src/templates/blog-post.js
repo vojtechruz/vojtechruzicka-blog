@@ -24,6 +24,7 @@ import {
 } from "react-share";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 import Layout from "../components/layout"
+import { graphql } from "gatsby";
 
 class BlogPostTemplate extends React.Component {
   render() {
