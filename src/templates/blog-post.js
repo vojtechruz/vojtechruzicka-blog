@@ -5,7 +5,7 @@ import Disqus from "disqus-react";
 import Bio from "../components/Bio";
 import { rhythm, scale } from "../utils/typography";
 import Tags from "../components/Tags";
-import Link from "gatsby";
+import { Link } from "gatsby";
 import {
   FacebookShareButton,
   GooglePlusShareButton,

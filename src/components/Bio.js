@@ -2,7 +2,7 @@ import React from "react";
 
 import profilePic from "./profile.jpg";
 import { rhythm } from "../utils/typography";
-import Link from "gatsby";
+import { Link } from "gatsby";
 
 class Bio extends React.Component {
   render() {
