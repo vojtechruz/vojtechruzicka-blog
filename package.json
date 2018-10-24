@@ -30,16 +30,16 @@
     "gatsby-transformer-remark": "^1.7.44",
     "gatsby-transformer-sharp": "^1.6.27",
     "graphql-skip-limit": "^1.0.11",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "react-helmet": "^5.2.0",
     "react-responsive-grid": "^0.3.4",
-    "react-share": "^2.3.0",
+    "react-share": "^2.3.1",
     "typography-theme-bootstrap": "^0.16.7"
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
+    "eslint": "^5.7.0",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.3"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
