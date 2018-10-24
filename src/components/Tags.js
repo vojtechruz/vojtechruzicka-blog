@@ -1,8 +1,6 @@
 import React from "react";
-
-import { rhythm } from "../utils/typography";
 import { Link } from "gatsby";
-const _ = require("lodash");
+import _ from "lodash";
 
 class Tags extends React.Component {
   render() {

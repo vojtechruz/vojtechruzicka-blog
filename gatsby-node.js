@@ -44,7 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
           // Tag pages:
           let tags = [];
           // Iterate through each post, putting all found tags into `tags`
-          _.each(posts, edge => {
+          posts.forEach(edge => {
               if (_.get(edge, "node.frontmatter.tags")) {
                   tags = tags.concat(edge.node.frontmatter.tags);
               }
@@ -63,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
               });
           });
 
-        _.each(posts, (post, index) => {
+        posts.forEach(post => {
           let related = posts.filter((p) => {
               if(p.node.fields.slug === post.node.fields.slug) {
                   return false;
@@ -96,8 +96,7 @@ exports.createPages = ({ graphql, actions }) => {
 
          // pagination
         const chunkedPosts = _.chunk(posts, pageSize);
-        _.each(chunkedPosts, (chunk, index) => {
-
+        chunkedPosts.forEach((chunk, index) => {
             let path = "/";
             if(index > 0) {
                 path = `/pages/${index+1}/`
