@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet";
 import Layout from "../components/layout"
 import { graphql } from "gatsby";
 
-const Tag = ({ pathContext, data }) => {
-  const { tag } = pathContext;
+const Tag = ({ pageContext, data }) => {
+  const { tag } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
   const siteTitle = data.site.siteMetadata.title;
   const siteDescription = data.site.siteMetadata.description;
@@ -58,7 +58,7 @@ const Tag = ({ pathContext, data }) => {
 };
 
 Tag.propTypes = {
-  pathContext: PropTypes.shape({
+    pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired
   }),
   data: PropTypes.shape({
