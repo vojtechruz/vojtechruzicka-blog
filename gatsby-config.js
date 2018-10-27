@@ -89,7 +89,7 @@ module.exports = {
                                                 image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.fluid.originalImg
                                                }},
                                       }
-                        k          ],
+                                  ],
                               });
                           });
                       },
