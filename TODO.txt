@@ -8,3 +8,5 @@ missing fonts
 h2 and h3 have same size of 1.5rem
 
 consider converting links im markdown to reloadless links with https://www.gatsbyjs.org/packages/gatsby-plugin-catch-links/?=
+
+"core-js": "^2.5.7", dependency should eventually be removed
