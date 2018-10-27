@@ -13,48 +13,22 @@ excerpt: 'Monitor and manage your application in production with Spring Boot Act
 # Basic build information
 In one of my previous articles, I described how to obtain some basic information about the current build of your application at runtime in Spring Boot.
 
-<div class="linked-post"><h4 class="front-post-title" style="margin-bottom:0.375rem;"><a
-        style="box-shadow:none;" href="/spring-boot-version/">Detecting build version and time at
-    runtime in Spring Boot</a></h4>
-    <small class="front-post-info"><span class="front-post-info-date">25 June, 2018</span>
-        <div class="post-tags">
-            <ul>
-                <li><a href="/tags/spring" >#Spring</a></li>
-            </ul>
-        </div>
-    </small>
-    <div><a class="front-post-image" href="/spring-boot-version/">
-        <div class=" gatsby-image-outer-wrapper" style="position:relative;">
-            <div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;">
-                <div style="width:100%;padding-bottom:66.5%;"></div>
-                <img alt=""
-                     src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/2gAMAwEAAhADEAAAAauyMjSDrCP/xAAaEAADAQADAAAAAAAAAAAAAAAAAQIRAxIT/9oACAEBAAEFAuIqOxjQqcnpRur/xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8Bsa//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BlY//xAAbEAACAgMBAAAAAAAAAAAAAAAAIQERAhBBUf/aAAgBAQAGPwKULGV4OKEX3X//xAAbEAEAAgIDAAAAAAAAAAAAAAABABExQRAhUf/aAAgBAQABPyEDslS7GgmIi8eIUZ9IUFDE/9oADAMBAAIAAwAAABDP3//EABYRAQEBAAAAAAAAAAAAAAAAABEBEP/aAAgBAwEBPxCi4//EABYRAQEBAAAAAAAAAAAAAAAAAAEQEf/aAAgBAgEBPxAMCP/EABwQAQACAwADAAAAAAAAAAAAAAEAESExQVFhgf/aAAgBAQABPxAzA7Iioho0/YA8o7CZJhb0uJa101gp2J2ZgCHXqf/Z"
-                     style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"
-                     ><img alt="" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f58d6.jpg 90w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg 180w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-870e7.jpg 270w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-dbc85.jpg 360w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ac624.jpg 540w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w"
-                                            src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg"
-                                            sizes="(max-width: 180px) 100vw, 180px"
-                                            style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s ease 0s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;">
-                <noscript><img
-                        src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg" srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-3c244.jpg 45w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f58d6.jpg 90w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-f7f9a.jpg 180w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-870e7.jpg 270w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-dbc85.jpg 360w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ac624.jpg 540w,
-/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-7d936.jpg 1600w" alt=""
-                        sizes="(max-width: 180px) 100vw, 180px"
-                        style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
-                </noscript>
-            </div>
-        </div>
-    </a><span class="front-post-excerpt">How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?</span>
-    </div>
+<div class="linked-post">
+<h4 class="front-post-title" style="margin-bottom: 0.3625rem;"><a href="/spring-boot-version/" style="box-shadow: none;">Detecting build version and time at runtime in Spring Boot</a></h4>
+<small class="front-post-info"><span class="front-post-info-date">25 June, 2018</span><div class="post-tags"><ul><li><a href="/tags/spring">#Spring</a></li><li><a href="/tags/java">#Java</a></li></ul></div></small>
+<div><a class="front-post-image" href="/spring-boot-version/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.5%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/2gAMAwEAAhADEAAAAauyMjSDrCP/xAAbEAADAAIDAAAAAAAAAAAAAAAAAQIDERITIf/aAAgBAQABBQLEVHI00KnJ2Ub8/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAEDAQE/AbGv/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oACAECAQE/AZWP/8QAGxAAAgIDAQAAAAAAAAAAAAAAACEBEQIQQVH/2gAIAQEABj8ClCxleDihF91//8QAGxABAAICAwAAAAAAAAAAAAAAAQARMUEQIVH/2gAIAQEAAT8hA7JUuxoJiIvHiFGfSFgoYn//2gAMAwEAAgADAAAAEM/f/8QAFhEBAQEAAAAAAAAAAAAAAAAAEQEQ/9oACAEDAQE/EKLj/8QAFhEBAQEAAAAAAAAAAAAAAAAAARAR/9oACAECAQE/EAwI/8QAHBABAAMBAAMBAAAAAAAAAAAAAQARITFBUWGB/9oACAEBAAE/EDMHZEVEOGn9gD2yGk0kFt6XHDrxrCnonmbQEPPk/9k=" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-680c3.jpg 45w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-0b965.jpg 90w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-cc2e6.jpg 180w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-feef1.jpg 270w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-1ee31.jpg 360w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-e8e8f.jpg 540w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ea010.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-cc2e6.jpg" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcSet="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-680c3.jpg 45w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-0b965.jpg 90w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-cc2e6.jpg 180w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-feef1.jpg 270w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-1ee31.jpg 360w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-e8e8f.jpg 540w,
+/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-ea010.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/spring-boot-version-addd7022e57908233618e4c15582fa6e-cc2e6.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?</span></div>
 </div>
 
 While this can be handy, it is usually not sufficient. There is a lot more you are usually interested in. And most importantly, it does not involve just the information known at build time, but rather what is the application's current status at runtime. In these situations, you should use Spring Boot Actuator.

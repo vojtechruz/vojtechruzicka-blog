@@ -116,19 +116,23 @@ Update: Alternatives
 ------------
 These days OWASP Dependency Check is not the only project focusing on third-party security dependencies. One of the very powerful alternatives is Snyk. In many ways, it is similar to Dependency Check, but now offers more features, better integration and is very actively developed. You can read more in this article:
 
-<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/snyk-detecting-dependencies-with-known-vulnerabilities/" style="box-shadow: none;">Snyk – Detecting dependencies with known vulnerabilities</a></h4><small class="front-post-info"><span class="front-post-info-date">22 November, 2017</span><div class="post-tags"><ul><li><a href="/tags/security"><!-- react-text: 290 -->#<!-- /react-text --><!-- react-text: 291 -->Security<!-- /react-text --></a></li></ul></div></small><div><a class="front-post-image" href="/snyk-detecting-dependencies-with-known-vulnerabilities/"><div class=" gatsby-image-outer-wrapper" style="position: relative;"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 49.3421%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAD/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAWa6pokuj//EABkQAAIDAQAAAAAAAAAAAAAAAAECAAMTEP/aAAgBAQABBQKt332cBbHigb8//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAHBAAAgICAwAAAAAAAAAAAAAAAREAAgMQISIx/9oACAEBAAY/AkfA4zinaq5lyt//xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAhQRBx/9oACAEBAAE/IWNrgmID73JGqFx3hhCw3Pf/2gAMAwEAAgADAAAAEDPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABwQAQEAAgIDAAAAAAAAAAAAAAERACEQMUGh0f/aAAgBAQABPxAPtUPLXpxYOQixqEKb79OJMyDcC6SHXzCg3UC7t3iDKDN8f//Z" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s 0.25s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><img alt="" srcset="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-3c244.jpg 45w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f58d6.jpg 90w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f7f9a.jpg 180w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-870e7.jpg 270w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-dbc85.jpg 360w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-ac624.jpg 540w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-da311.jpg 1520w" src="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f7f9a.jpg" sizes="(max-width: 180px) 100vw, 180px" style="position: absolute; top: 0px; left: 0px; transition: opacity 0.5s; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1;"><noscript><img src="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f7f9a.jpg" srcset="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-3c244.jpg 45w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f58d6.jpg 90w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-f7f9a.jpg 180w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-870e7.jpg 270w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-dbc85.jpg 360w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-ac624.jpg 540w,
-/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-da311.jpg 1520w" alt="" sizes="(max-width: 180px) 100vw, 180px" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></noscript></div></div></a><span class="front-post-excerpt">How to detect and fix security vulnerabilities in your dependencies using Snyk?</span></div></div>
+<div class="linked-post">
+<h4 class="front-post-title" style="margin-bottom: 0.3625rem;"><a href="/snyk-detecting-dependencies-with-known-vulnerabilities/" style="box-shadow: none;">Snyk – Detecting dependencies with known vulnerabilities</a></h4>
+<small class="front-post-info"><span class="front-post-info-date">22 November, 2017</span><div class="post-tags"><ul><li><a href="/tags/security">#Security</a></li></ul></div></small>
+<div><a class="front-post-image" href="/snyk-detecting-dependencies-with-known-vulnerabilities/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 49.3421%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAD/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAWa6pokuj//EABoQAAICAwAAAAAAAAAAAAAAAAECAxMAEBT/2gAIAQEAAQUCjd+i5wFkfEAv1//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EAB0QAAEDBQEAAAAAAAAAAAAAAAABAhEDECEiMUH/2gAIAQEABj8CheJJK0jZvo/F/wD/xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAhQRBx/9oACAEBAAE/IWJrgkID73JGoi47wSgsNz3/2gAMAwEAAgADAAAAEEPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABwQAQEAAgIDAAAAAAAAAAAAAAERACEQMUGh0f/aAAgBAQABPxANtUPLXpxdOQixqEKb79YkzYNgLpIdfMCrekLu3EGUGbOP/9k=" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-680c3.jpg 45w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-0b965.jpg 90w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-cc2e6.jpg 180w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-feef1.jpg 270w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-1ee31.jpg 360w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-e8e8f.jpg 540w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-e1313.jpg 1520w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-cc2e6.jpg" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><source srcSet="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-680c3.jpg 45w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-0b965.jpg 90w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-cc2e6.jpg 180w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-feef1.jpg 270w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-1ee31.jpg 360w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-e8e8f.jpg 540w,
+/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-e1313.jpg 1520w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/snyk-logo-9f30fcce36e7c572d7a65887287e0a84-cc2e6.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to detect and fix security vulnerabilities in your dependencies using Snyk?</span></div>
+</div>
 
 Conclusion
 ----------
