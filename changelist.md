@@ -249,3 +249,6 @@ health:905 / 1000
 
 22.10.
 - Updated compact string article to be more accurate
+
+27.10.
+- Updated to Gatsby v2
