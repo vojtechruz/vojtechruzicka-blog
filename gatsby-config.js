@@ -86,10 +86,10 @@ module.exports = {
                                       {"webfeeds:analytics": "UA-76533683-1"},
                                       {"webfeeds:cover":
                                               {_attr: {
-                                                image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.sizes.originalImg
+                                                image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.fluid.originalImg
                                                }},
                                       }
-                                  ],
+                        k          ],
                               });
                           });
                       },

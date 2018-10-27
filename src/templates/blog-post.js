@@ -120,7 +120,7 @@ class BlogPostTemplate extends React.Component {
             property="og:image"
             content={
               siteUrl +
-              post.frontmatter.featuredImage.childImageSharp.fluid.sizes.originalImg
+              post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
             }
           />
           <meta property="og:url" content={url} />
@@ -137,7 +137,7 @@ class BlogPostTemplate extends React.Component {
             name="twitter:image"
             content={
               siteUrl +
-              post.frontmatter.featuredImage.childImageSharp.fluid.sizes.originalImg
+              post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
             }
           />
         </Helmet>
