@@ -9,7 +9,7 @@ Bootstrap.overrideThemeStyles = () => ({
 
 Bootstrap.scaleRatio = 1.75;
 
-const typography = new Typography();
+const typography = new Typography(Bootstrap);
 const { rhythm, scale } = typography;
 export { rhythm, scale, typography as default };
 
