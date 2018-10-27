@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-responsive-grid";
 
 import { rhythm } from "../utils/typography";
 import "../styles/index.scss";
@@ -17,7 +16,7 @@ class Template extends React.Component {
     }
 
     return (
-      <Container className="content-root"
+      <div className="content-root"
         style={{
           maxWidth: rhythm(32),
           padding: `${rhythm(1.5)} ${rhythm(1.5)}`
@@ -31,7 +30,7 @@ class Template extends React.Component {
         <Navigation />
         {children}
         <FollowMe />
-      </Container>
+      </div>
     );
   }
 }
