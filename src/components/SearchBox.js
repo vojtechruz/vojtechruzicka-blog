@@ -1,4 +1,5 @@
 import React from "react";
+import docsearch from "docsearch.js";
 
 class Bio extends React.Component {
 
@@ -15,14 +16,12 @@ class Bio extends React.Component {
     }
 
     componentDidMount() {
-        if(window) {
-            window.docsearch({
-                apiKey: '467e44d2366ac0de7f99703feb47c8b6',
-                indexName: 'vojtechruzicka',
-                inputSelector: '.search-box',
-                debug: false,
-            });
-        }
+        docsearch({
+            apiKey: '467e44d2366ac0de7f99703feb47c8b6',
+            indexName: 'vojtechruzicka',
+            inputSelector: '.search-box',
+            debug: false,
+        });
     }
 
     handleSearchIconClick() {

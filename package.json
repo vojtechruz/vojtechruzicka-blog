@@ -9,6 +9,7 @@
   "dependencies": {
     "core-js": "^2.5.7",
     "disqus-react": "^1.0.5",
+    "docsearch.js": "^2.5.2",
     "gatsby": "^2.0.31",
     "gatsby-cli": "^2.4.3",
     "gatsby-image": "^2.0.17",
