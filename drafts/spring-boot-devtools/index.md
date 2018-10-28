@@ -78,13 +78,15 @@ gradle bootRun
 TODO
 
 ## Limitations
-TODO f you do not want to start the LiveReload server when your application runs, you can set the spring.devtools.livereload.enabled property to false.
+### Live Reload
+Spring app using Devtools automatically launches LiveReload server. Unfortunately, only one instance of this server can be running  at the same time. To be more precise, just the first one will work. That applies not only to multiple instances of Spring apps with Devtools but any other apps, which are also using LiverReload under the hood, such as [Gatsby](https://www.vojtechruzicka.com/gatsby-migration/) in development mode.
+
+If you want to configure your Spring app to not launch LiveReload server, you can configure it in your `application.properties`:
+
+```properties
+spring.devtools.livereload.enabled=false
+```
+
      
-     [Note]
-     You can only run one LiveReload server at a time. Before starting your application, ensure that no other LiveReload servers are running. If you start multiple applications from your IDE, only the first has LiveReload support.
-     
-
-
-
 ## Conclusion
 TODO
