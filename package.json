@@ -7,7 +7,6 @@
     "url": "https://github.com/vojtechruz/vojtechruzicka-blog/issues"
   },
   "dependencies": {
-    "core-js": "^2.5.7",
     "disqus-react": "^1.0.5",
     "docsearch.js": "^2.5.2",
     "gatsby": "^2.0.31",
@@ -46,7 +45,8 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "core-js": "^2.5.7"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
