@@ -103,6 +103,45 @@ spring.reactor.stacktrace-mode.enabled=true
 
 You can check list of all the properties in the [DevToolsPropertyDefaultsPostProcessor](https://github.com/spring-projects/spring-boot/blob/v2.0.6.RELEASE/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java).
 
+## Remote connection
+In addition to local development, you can also connect to a remote application running Devtools. This is not intended for production environments as it can be a serious security risk. However, it can be very useful in pre-production environments.
+
+### Enabling remote connection
+Remote connection is not enabled by default, you need to explicitly enable it by modifying your pom file:
+
+```xml{7}
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <excludeDevtools>false</excludeDevtools>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+Or with gradle, [you need to set](https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-executable-configuring-excluding-devtools) `excludeDevtools = false`:
+
+```
+bootWar {
+	excludeDevtools = false
+}
+```
+
+Then you need to set a secret password to be used for authentication when connectiong to the remote application
+
+```properties
+spring.devtools.remote.secret=somesecret
+```
+
+### Connecting to a remote app
+TODO
+
+Once you connect to a remote app, Devtools will monitor classpath changes same as it does for a local development. But instead of a local restart it will push changes to the remote server and trigger restart there. This can be a lot faster then building the app and deploying to the remote machine. 
+
 ## Global configuration
 You can caonfigure Devtools using configuration properties as you would in any other Spring application. That usually means editing `application.properties` of your project. This configuration is separate for each application.
 
