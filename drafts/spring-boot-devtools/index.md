@@ -3,12 +3,14 @@ title: 'Faster Development with Spring Boot Devtools'
 date: "2018-09-08T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-devtools'
-featuredImage: './spring-dev-tools.jpg)'
-disqusArticleIdentifier: '99012 http://vojtechruzicka.com/?p=99012'
+featuredImage: './spring-dev-tools.jpg'
+disqusArticleIdentifier: '99013 http://vojtechruzicka.com/?p=99013'
 excerpt: 'How to speed up your Spring Boot development even more with Devtools.'
 ---
 
-![Spring Boot Devtools](./spring-dev-tools.jpg)
+![Spring Boot Devtools](spring-dev-tools.jpg)
+
+How to speed up your Spring Boot development even more with Devtools and make it more enjoyable and productive? 
 
 # Setup
 As usually worth Spring Boot, the setup is really simple. All you need to do is to add the right dependency and yo are good to go. Spring Boot will detect this and auto-configure Devtools accordingly.
@@ -72,3 +74,17 @@ Gradle:
 gradle bootRun
 ```
 
+## Live Reload
+TODO
+
+## Limitations
+TODO f you do not want to start the LiveReload server when your application runs, you can set the spring.devtools.livereload.enabled property to false.
+     
+     [Note]
+     You can only run one LiveReload server at a time. Before starting your application, ensure that no other LiveReload servers are running. If you start multiple applications from your IDE, only the first has LiveReload support.
+     
+
+
+
+## Conclusion
+TODO
