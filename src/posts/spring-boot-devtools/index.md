@@ -228,4 +228,4 @@ Even if you don't use th automatic restart you can still benefit from the other 
      
 ## Conclusion
 DevTools make your development of Spring Boot applications faster and easier by providing automatic restart and LiveReload functionality.
-I addition to this, it sets various properties to values more suitable for local development. Furthermore, it allows you to remotely connect to your application and still use most of its features. When running in production, DevTools are not used. 
+I addition to this, it sets various properties to values more suitable for local development. Furthermore, it allows you to remotely connect to your application and still use most of its features. When running in production, DevTools are not used. For detailed information, see the [official docs](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html).
