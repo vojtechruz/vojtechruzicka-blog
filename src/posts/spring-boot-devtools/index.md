@@ -53,7 +53,15 @@ You see, when developing an application you usually change a class of few and wa
 ### Triggering a restart in an IDE
 The restart is triggered whenever there is a change on classpath. However, this varies depending on your IDE. That means, it is not enough to just change your '.java' files, what matters is that IDE actually updates '.class' files on the classpath.
 
-When using IntelliJ IDEA, you need to build your project (Ctrl + F9 or *Build → Build Project*). In Eclipse it is enough to just save your files.
+When using IntelliJ IDEA, you need to build your project (Ctrl + F9 or *Build → Build Project*). You can also [configure IDEA to rebuild automatically](https://www.mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/). Alternatively, you can open your Spring Boot run configuration and define what happens when triggering application update (Ctrl + F10):
+
+![Intellij IDEA Spring Boot Run Configuration](./intellij-idea-update.png)
+
+In the first option you can select `Update trigger file` to trigger Devtools restart whenever you call `Update` action. Or you can even select an option to try Hot Swap and restart using DevTools only if Hot Swap failed.
+
+In the second combobox you can configure reloading all the static resources and templates when IDEA window loses focus (for example when switching to a browser window).
+
+In Eclipse it is enough to just save your files.
 
 ## Development only
 The usage of the Spring Boot Devtools is intended only for development, not for production. If your application detects you're running in production, devtools are automatically disabled.
