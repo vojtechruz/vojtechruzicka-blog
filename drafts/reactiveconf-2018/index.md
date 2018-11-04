@@ -1,12 +1,45 @@
 ---
-title: ''
+title: 'Reactive Conf 2018: My volunteering experience'
 date: "2018-09-08T22:12:03.284Z"
 tags: ['Javascript']
 path: '/reactiveconf-2018'
-featuredImage: './spring-dev-tools.jpg'
+featuredImage: './reactive-conf.jpg'
 disqusArticleIdentifier: '99015 http://vojtechruzicka.com/?p=99015'
 excerpt: ''
 ---
+
+## Reactive Conf 2018
+
+## Day 1
+
+## Day 2
+
+## Day 3
+The last day of the conference was different from the first two days. So called "Festival day" was not at the same venue, instead it was hosted in the Prague Microsoft building. Unlike the first two days, this one was focused mainly on various workshops with limited capacity. It was necessary to register and pay  a fee of 20 € in addition to the conference ticket. There was 14 workshops available in total ranging from 2 to 6 hours. Here is the list:
+
+- Introduction to Elm
+- GraphQL with React vs. Angular vs. Vue
+- Codelab: Build your first Flutter app
+- Introduction to ClojureScript
+- Vue.js
+- Evolving Patterns in React
+- Building type-safe applications with Flow and GraphQL
+- Reason DOJO: React and GraphQL
+- Reason DOJO: Cross-platform Games in Reprocessing
+- Simplify your data processing with BakeryJS
+- Introduction to E2E testing with Cypress.io
+- Service Workers at Your Service
+- How to build cross platform desktop apps with React and Electron
+- Vuex like nobody is looking
+
+In addition to workshops, there was one small stage. In the morning, there were just some recorded talks from the previous year. After that there were regular talks for the rest of the days.
+
+My duty for the last day of volunteering was moderating questions from attendees to speakers on [sli.do](https://www.sli.do/) for all the talks of the day. This was probably the best of my assignments as I got to see all the talks and it was interesting and kept me occupied.
+
+After the talks and the final panel discussions with some of the speakers there was an afterparty, still in the Microsoft building.
+
+## Conclusion
+
 
 
 -------------------------------------------------------
