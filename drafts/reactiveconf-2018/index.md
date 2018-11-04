@@ -11,7 +11,9 @@ excerpt: ''
 
 -------------------------------------------------------
 - Livestream mention
-- Videos folder link
+- Videos folder link - https://www.youtube.com/watch?v=h6Z76xJP2h4&list=PLa2ZZ09WYepPQAIo1h98LaPkQUYwaSbWO
+- Quick summary video 40 secs - https://www.youtube.com/watch?v=h6Z76xJP2h4
+- Photos: https://photos.google.com/share/AF1QipNMpWTx9Spm3rl5GDdR6KEkhQ6RuZd4bepPAJIQZ-u10-q0Nquqe8aAMu-iVdwqnQ?key=ODFNNUNHSzJaWjFJd0VTcV9JZW8wdmJSVEQyZElB
 - 2 stages
 - This year in prague instead of bratislava
 - Volumnteering for the second time
@@ -55,4 +57,9 @@ Day 2
       - Hack Prague     
   - Reason tea party
   - Some more
+
 Day 3
+- Saw all the presentations except for recorder videos from the last year
+- Afterparty in microsoft's building
+- Workshops and one smaller presentation room
+- Moderating sli.do
