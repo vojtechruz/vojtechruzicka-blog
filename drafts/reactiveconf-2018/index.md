@@ -13,6 +13,9 @@ excerpt: ''
 ## Day 1
 
 ## Day 2
+My duties changed during the second day, now it was mostly about the Discovery Stage - showing them the way, letting them in and so on. Then some basic cleanup ater the conference.
+
+After the talks there was a closing ceremony. Then you could choose from a bunch of "Hangouts" with various companies such as Aragon, HackPrague or Green Fox Academy. Alternatively you could continue in discovering Prague like the day before, which would end with tasting of local wines, beers and spirits.
 
 ## Day 3
 The last day of the conference was different from the first two days. So called "Festival day" was not at the same venue, instead it was hosted in the Prague Microsoft building. Unlike the first two days, this one was focused mainly on various workshops with limited capacity. It was necessary to register and pay  a fee of 20 € in addition to the conference ticket. There was 14 workshops available in total ranging from 2 to 6 hours. Here is the list:
