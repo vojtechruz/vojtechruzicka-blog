@@ -252,3 +252,6 @@ health:905 / 1000
 
 27.10.
 - Updated to Gatsby v2
+
+10.11.
+- Fixed broken link x3, fixed key promoter article with up to date info

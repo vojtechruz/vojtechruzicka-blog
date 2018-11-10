@@ -30,14 +30,10 @@ What's also useful is that Key Promoter will detect that you're frequently click
 ![Key promoter can suggest you to create a shortcut](./suggest-shortcut.png)
 
 ## Getting the plugin
+To install the plugin go to the  `Settings → Plugins → Markteplace` and search for 'Key Promoter X'. 'Key Promoter' is an original version of the plugin by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. 'Key Promoter X' is a reworked version of that original plugin started by [Aimo Thiele](https://github.com/athiele) and now developed and maintained by [Patrick Scheibe](https://github.com/halirutan). The original plugin was last updated in 2012 and does not work well in new versions of IDEA.
 
-Grab the plugin from the following Git repository. 
-
-<https://github.com/athiele/key-promoter-fork/releases>
-
-Although there is a version of the plugin available in JetBrains plugin repository, it is an older original version by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. The link provided is a fork of that original plugin by [Aimo Thiele](https://github.com/athiele). The new version additionally provides better stats management. More important is, that starting with 2016.1 version of IDEA, the original plugin settings section is no longer accessible.
-
-To install the plugin go to the  `Settings → Plugins` and select `Install Plugin from disk`. Now just choose your previously downloaded file and restart the IDE.
+You can check the source code or contribute in [this GitHub repository](https://github.com/halirutan/IntelliJ-Key-Promoter-X)
+Grab the plugin from the following Git repository.  
 
 ## You can\'t remember them all
 
