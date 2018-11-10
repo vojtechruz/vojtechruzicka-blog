@@ -81,7 +81,7 @@ Once you finish your interview and the feedback is recorded, the interview is sa
 Additional Resources
 --------------------
 
-There is a free Udacity video course by Pramp covering a [Technical interview](https://www.udacity.com/course/technical-interview--ud513), basic algorithms and data structures. This can be a good place to start before practicing actual interviews. Then, of course, there is the [Cracking the Coding Interview](http://www.crackingthecodinginterview.com/) book, which is also really helpful. There are of course many other resources. I\'ll be glad if you share your favorites in the comments below.
+There is a free Udacity video course by Pramp covering a [Technical interview](https://in.udacity.com/course/technical-interview--ud513), basic algorithms and data structures. This can be a good place to start before practicing actual interviews. Then, of course, there is the [Cracking the Coding Interview](http://www.crackingthecodinginterview.com/) book, which is also really helpful. There are of course many other resources. I\'ll be glad if you share your favorites in the comments below.
 
 Conclusion
 ----------
