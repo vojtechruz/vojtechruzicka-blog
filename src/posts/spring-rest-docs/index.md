@@ -208,7 +208,7 @@ is very similar to [MarkDown](https://www.markdownguide.org/getting-started). Th
 ...
 In the last few years, [Commonmark](http://commonmark.org/) was developed as a standardized Markdown. This is great, and should solve lots of problems! Except that nobody has adopted it...
 
-You can read more about the differences in [this comparison](https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/asciidoc-vs-markdown.adoc).
+You can read more about the differences in [this comparison](https://asciidoctor.org/docs/asciidoc-vs-markdown/).
 
 ### Converting AsciiDoc
 Since AsciiDoc cannot be directly rendered by a browser, we need a way to convert the documentation from AsciiDoc to HTML. There's a tool called AsciiDoctor, which is also [available as a Maven plugin](https://github.com/asciidoctor/asciidoctor-maven-plugin) ([there's also one for Gradle](https://asciidoctor.org/docs/asciidoctor-gradle-plugin/)). Just include the following in your `pom.xml` file.
