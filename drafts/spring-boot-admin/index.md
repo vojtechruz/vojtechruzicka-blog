@@ -33,9 +33,19 @@ Actuator is powerful and great and it is easy and convenient to consume the endp
 
 Spring Boot Admin is not a core module provided by Spring team, it was created by a company called [Codecentric](https://blog.codecentric.de/en/). Still, the code is publicly available on [Github](https://github.com/codecentric/spring-boot-admin).
 
--------
-git repo: 
-Docs: http://codecentric.github.io/spring-boot-admin/current/
+## Client And Server
+Unlike Actuator, Spring Boot Admin actually comes in two parts - Client and Server.
+
+The server part contains the Admin User Interface and runs independently from the monitored applications. The Client part is the monitored application, which registers with the Admin Server part.
+
+This way, even if our application is down or not working properly, the monitoring server is still up and running. Now imagine you have multiple applications (such as Spring Boot microservices) and each of them can be running in multiple instances. With traditional Actuator monitroing, this is hard as you need to access each of them separately and you need to keep track how many instances and where are running.
+
+With Spring Boot Admin, each instance of your monitored application (Client) registers with the Server after it starts. Then you have single point (Admin Server), where you can check them all.
+
+## Server Setup
+Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/).
+
+After creating the project, first thing we need is a Spring Boot Admin Server dependency:
 
 ```xml
 <dependency>
@@ -44,6 +54,30 @@ Docs: http://codecentric.github.io/spring-boot-admin/current/
     <version>2.1.0</version>
 </dependency>
 ```
+
+Next, we need to enable Admin Server by annotating our main application class with `@EnableAdminServer`:
+
+```java{2}
+@SpringBootApplication
+@EnableAdminServer
+public class SpringBootAdminServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootAdminServerApplication.class, args);
+    }
+}
+```
+
+And that's it. Now youcan run your application and after opening `http://localhost:8080/` you should see this:
+
+![Admin Server - No clients](spring-boot-admin-server-no-apps.png)
+
+The serer is running, but no clients are registered yet. Lets change that.
+
+-------
+git repo: 
+Docs: http://codecentric.github.io/spring-boot-admin/current/
+
 
 ```xml
 <dependency>
