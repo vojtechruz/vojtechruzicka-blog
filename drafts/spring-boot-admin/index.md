@@ -42,6 +42,8 @@ This way, even if our application is down or not working properly, the monitorin
 
 With Spring Boot Admin, each instance of your monitored application (Client) registers with the Server after it starts. Then you have single point (Admin Server), where you can check them all.
 
+![Spring Boot Admin - Multiple Applications and instances](spring-bbot-admin-multi-instances.png)
+
 ## Server Setup
 Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/).
 
@@ -74,10 +76,8 @@ And that's it. Now youcan run your application and after opening `http://localho
 
 The serer is running, but no clients are registered yet. Lets change that.
 
--------
-git repo: 
-Docs: http://codecentric.github.io/spring-boot-admin/current/
-
+## Client Setup
+Same as with server setup, the first step is to add a proper dependency to an existing application:
 
 ```xml
 <dependency>
@@ -87,6 +87,35 @@ Docs: http://codecentric.github.io/spring-boot-admin/current/
 </dependency>
 ```
 
+Then you need to define URL where is your Admin Server running:
+
+```properties
+spring.boot.admin.client.url=http://localhost:8080
+```
+
+### Adding Actuator
+Now you should be able to run both client and server. Just make sure there is not port conflict as both apps by default will use 8080. For testing purposes, you can set `server.port=0` in you `application.properties` so your client will use a random port on startup. This way you can test launching multiple instances running on different ports.
+
+When you open Admin Server UI, you should see your application. When you click the app name, a page with application details will show up.
+
+![Missing Actuator](spring-boot-admin-without-actuator.png)
+
+If you see a screen like above with just a minimum of information, it means that you don't have Actuator as a part of your project. Remember, Spring Boot Admin uses Actuator endpoints under the hood. Fortunately, you need just to add aa simple dependency and auto-configuration will take care of the rest.
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+For detailed tutorial on Spring Boot Actuator configuration heck [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
+<!--
+
+
+git repo: 
+Docs: http://codecentric.github.io/spring-boot-admin/current/
+
 https://github.com/vojtechruz/spring-boot-admin
 https://github.com/codecentric/spring-boot-admin
 
@@ -95,3 +124,5 @@ http://codecentric.github.io/spring-boot-admin/current/
 https://www.baeldung.com/spring-boot-admin
 https://dzone.com/articles/a-look-at-spring-boot-admin
 https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/
+
+-->
