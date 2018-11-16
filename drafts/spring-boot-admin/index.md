@@ -48,7 +48,7 @@ With Spring Boot Admin, each instance of your monitored application (Client) reg
 The source code with a finished application can be found in [this Github repository](https://github.com/vojtechruz/spring-boot-admin).
 
 ## Server Setup
-Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/).
+Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/). Be sure to include the `web` module.
 
 After creating the project, first thing we need is a Spring Boot Admin Server dependency:
 
@@ -73,7 +73,7 @@ public class SpringBootAdminServerApplication {
 }
 ```
 
-And that's it. Now youcan run your application and after opening `http://localhost:8080/` you should see this:
+And that's it. Now you can run your application and after opening `http://localhost:8080/` you should see this:
 
 ![Admin Server - No clients](spring-boot-admin-server-no-apps.png)
 
@@ -120,7 +120,7 @@ management.endpoints.web.exposure.include=*
 
 After exposing your Actuator endpoints, you should see much more information in your Admin:
 
-![Admin with Actuator Endpoints exposed](./spring-boot-admin-with-actuator.png)
+![Admin with Actuator Endpoints exposed](spring-boot-admin-with-actuator.png)
 
 For detailed tutorial on Spring Boot Actuator configuration heck [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
 
@@ -145,12 +145,82 @@ spring.security.user.password=my-secret-password
 ```
 
 ## Server Security
+Same as with the client, we need to add Spring Security dependency:
 
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+```
+
+Now lets configure username and password required to login to the admin server in your `application.properties`:
+
+```properties
+spring.security.user.name=admin
+spring.security.user.password=admin-password
+```
+
+Now in your *Client* you need to add these credentials as well, otherwise it will not be able to register with the server:
+
+```properties
+spring.boot.admin.client.username=admin
+spring.boot.admin.client.password=admin-password
+```
+
+Now back to the *Server* part. The last thing we need is to add Spring Security configuration to protect the Admin interface:
+
+```java
+package com.vojtechruzicka.springbootadminserver;
+
+import de.codecentric.boot.admin.server.config.AdminServerProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+        successHandler.setTargetUrlParameter("redirectTo");
+        successHandler.setDefaultTargetUrl("/");
+
+        http.authorizeRequests()
+                .antMatchers("/assets/**").permitAll()
+                .antMatchers("/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").successHandler(successHandler).and()
+                .logout().logoutUrl("/logout").and()
+                .httpBasic().and()
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .ignoringAntMatchers(
+                        "/instances",
+                        "/actuator/**"
+                );
+    }
+}
+```
+
+What it does, is that it restricts the admin UI only to authenticated users using HTTP basic authentication and form login. The login page itself and static UI resources (javascript, html, css) are public, otherwise you coul not login. Then there is a cookie-based Cross Site Request Forgery protection. You can see that some paths are ignored in CSRF protection - it's because the Admin Server currently [lacks proper support](http://codecentric.github.io/spring-boot-admin/current/#_csrf_on_actuator_endpoints).
+
+
+Now after restart you should see a nice login screen protecting your admin server:
+
+![Admin Server login](admin-server-login.png)
+
+## Cloud Discovery
+Spring Boot Admin client is not the only way to register your applications with the server. Admin Server supports also Spring Cloud Service Discovery. You can read more in the [offical documentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
+
+## Conclusion
+Spring Boot Admin offers a nice and useful UI layer on top of Actuator Endpoints. What's more, it allows you to centrally monitor multiple applications with multiple instances, which is invaluable when working in cloud and with microservices. Make sure though, that you sufficiently protect both your Client and Server. For further information, please check the [official documentation](http://codecentric.github.io/spring-boot-admin/current/).
 <!--
-Docs: http://codecentric.github.io/spring-boot-admin/current/
-
-
-https://github.com/codecentric/spring-boot-admin
+Docs: 
 
 Links:
 http://codecentric.github.io/spring-boot-admin/current/
