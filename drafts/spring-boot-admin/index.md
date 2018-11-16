@@ -44,6 +44,9 @@ With Spring Boot Admin, each instance of your monitored application (Client) reg
 
 ![Spring Boot Admin - Multiple Applications and instances](spring-bbot-admin-multi-instances.png)
 
+## Source Code
+The source code with a finished application can be found in [this Github repository](https://github.com/vojtechruz/spring-boot-admin).
+
 ## Server Setup
 Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/).
 
@@ -100,7 +103,7 @@ When you open Admin Server UI, you should see your application. When you click t
 
 ![Missing Actuator](spring-boot-admin-without-actuator.png)
 
-If you see a screen like above with just a minimum of information, it means that you don't have Actuator as a part of your project. Remember, Spring Boot Admin uses Actuator endpoints under the hood. Fortunately, you need just to add aa simple dependency and auto-configuration will take care of the rest.
+If you see a screen like above with just a minimum of information, it means that you don't have Actuator as a part of your project. Remember, Spring Boot Admin uses Actuator endpoints under the hood. Fortunately, you need just to add a simple dependency and auto-configuration will take care of the rest.
 
 ```xml
 <dependency>
@@ -109,14 +112,44 @@ If you see a screen like above with just a minimum of information, it means that
 </dependency>
 ```
 
+However, most of the endpoints are not exposed by Actuator by default. You need to change your configuration in `application.properties` to expose them:
+
+```properties
+management.endpoints.web.exposure.include=*
+```
+
+After exposing your Actuator endpoints, you should see much more information in your Admin:
+
+![Admin with Actuator Endpoints exposed](./spring-boot-admin-with-actuator.png)
+
 For detailed tutorial on Spring Boot Actuator configuration heck [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
+
+## Security
+Now when everything is running, we should make sure our actuator endpoints and the Admin UI are not publicly available to everyone.
+
+## Client Security
+If you are already using Spring Security, the above will not work for you as the Actuator endpoints are secured by default and Admin server will not be able to access them. For testing purposes you can temporarily disable Actuator endpoint security by `management.security.enabled=false`.
+
+But we do want to have security enabled. If you are using basic authentication, you can just provide username and password in your properties file. These credentials will be used by Admin Server to authenticate with the client's actuator endpoints:
+
+```properties
+spring.boot.admin.client.instance.metadata.user.name=joe
+spring.boot.admin.client.instance.metadata.user.password=my-secret-password
+```
+
+By default, if not configured otherwise, Spring Boot will use default user `user` and auto-generated password each time your app starts. You can check the password in the console during startup. If you want to provide username and password required by your app explicitly, you can define it in your properties:
+
+```properties
+spring.security.user.name=joe
+spring.security.user.password=my-secret-password
+```
+
+## Server Security
+
 <!--
-
-
-git repo: 
 Docs: http://codecentric.github.io/spring-boot-admin/current/
 
-https://github.com/vojtechruz/spring-boot-admin
+
 https://github.com/codecentric/spring-boot-admin
 
 Links:
