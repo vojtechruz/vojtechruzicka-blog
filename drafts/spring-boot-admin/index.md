@@ -215,7 +215,7 @@ Now after restart you should see a nice login screen protecting your admin serve
 ![Admin Server login](admin-server-login.png)
 
 ## Cloud Discovery
-Spring Boot Admin client is not the only way to register your applications with the server. Admin Server supports also Spring Cloud Service Discovery. You can read more in the [offical documentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
+Spring Boot Admin client is not the only way to register your applications with the server. Admin Server supports also Spring Cloud Service Discovery. You can read more in the [offical docudsmentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
 
 ## Conclusion
 Spring Boot Admin offers a nice and useful UI layer on top of Actuator Endpoints. What's more, it allows you to centrally monitor multiple applications with multiple instances, which is invaluable when working in cloud and with microservices. Make sure though, that you sufficiently protect both your Client and Server. For further information, please check the [official documentation](http://codecentric.github.io/spring-boot-admin/current/).
