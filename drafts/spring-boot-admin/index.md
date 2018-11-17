@@ -217,6 +217,53 @@ Now after restart you should see a nice login screen protecting your admin serve
 ## Cloud Discovery
 Spring Boot Admin client is not the only way to register your applications with the server. Admin Server supports also Spring Cloud Service Discovery. You can read more in the [offical docudsmentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
 
+## Notifications
+Once you have monitoring in place, you want to get notified once something goes wrong. The good news is that Spring Admin provides a wide variety of notification options.  
+
+f you visit Admin Server page for the first time, it will ask you for permission to display push notifications on your computer. Whenever there is an issue, you'll get a popup message.
+
+![Admin Push Notification](admin-push-notification.png)
+
+Other notifications need a simple configuration. It usually means just providing a few entries in your `application.properties`. Currently supported services are:
+
+* Mail
+* [Slack](https://codecentric.github.io/spring-boot-admin/current/#slack-notifications)
+* [HipChat](https://codecentric.github.io/spring-boot-admin/current/#hipchat-notifications)
+* [PagerDuty](https://codecentric.github.io/spring-boot-admin/current/#pagerduty-notifications)
+* [OpsGenie](https://codecentric.github.io/spring-boot-admin/current/#opsgenie-notifications)
+* [Let's Chat](https://codecentric.github.io/spring-boot-admin/current/#letschat-notifications)
+* [Telegram](https://codecentric.github.io/spring-boot-admin/current/#ms-teams-notifications)
+* [Microsoft Team](https://codecentric.github.io/spring-boot-admin/current/#telegram-notifications)
+
+### Configuring Email Notifications
+If you want to enable email notifications, you need to add Spring email dependency to your *Server* part:
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+```
+
+Then you need to define your SMTP server, which will be used to send email notifications and credentials. Update your `application.properties` of your Admin Server.
+
+```properties
+spring.mail.host=smtp.foo.com
+spring.mail.username=smtp-server-user
+spring.mail.password=smtp-server-password
+```
+
+Then you need to define recipients and sender.
+
+```properties
+# Sender email address
+spring.boot.admin.notify.mail.from="Spring Boot Admin <noreply@foo.com>"
+# Comma-delimited list of recipient email addresses
+spring.boot.admin.notify.mail.to=alice@foo.com,bob@bar.com
+# Comma-delimited list of carbon copy recipient email addresses
+spring.boot.admin.notify.mail.cc=joe@foo.com
+```
+
 ## Conclusion
 Spring Boot Admin offers a nice and useful UI layer on top of Actuator Endpoints. What's more, it allows you to centrally monitor multiple applications with multiple instances, which is invaluable when working in cloud and with microservices. Make sure though, that you sufficiently protect both your Client and Server. For further information, please check the [official documentation](http://codecentric.github.io/spring-boot-admin/current/).
 <!--
