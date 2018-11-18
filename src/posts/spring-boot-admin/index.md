@@ -1,6 +1,6 @@
 ---
 title: 'Spring Boot Admin Tutorial'
-date: "2018-11-17T22:12:03.284Z"
+date: "2018-11-18T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-admin'
 featuredImage: './spring-boot-admin.png'
@@ -10,8 +10,10 @@ excerpt: 'Monitor and manage you Spring Boot apps  with a nice UI on top of Spri
 
 ![Spring Boot Admin](spring-boot-admin.png)
 
+Monitor and manage you Spring Boot apps  with a nice UI on top of Spring Boot Actuator endpoints.
+
 ## Spring Boot Actuator
-Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application so you can easily monitor and manage your application in production. The endpoints offer health-check, metrics monitoring, access to logs, threaddumps, heapdumps, environmental info and more. I've covered Actuator in depth in the following article:
+Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application, so you can easily monitor and manage it in production. The endpoints offer health-check, metrics monitoring, access to logs, thread dumps, heap dumps, environmental info and more. I've covered Actuator in depth in the following article:
 
 <div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/spring-boot-actuator/" style="box-shadow: none;">Actuator: Spring Boot Production Monitoring and Management</a></h4><small class="front-post-info"><span class="front-post-info-date">03 September, 2018</span><div class="post-tags"><ul><li><a href="/tags/spring">#Spring</a></li><li><a href="/tags/java">#Java</a></li></ul></div></small><div><a class="front-post-image" href="/spring-boot-actuator/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 75%;"></div><img alt="" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAABSozacLmxh//EABkQAAMBAQEAAAAAAAAAAAAAAAECAwARBP/aAAgBAQABBQJfSy6NjXMOFYdMgqEnf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABwQAAEEAwEAAAAAAAAAAAAAAAEAEBESAiEiYf/aAAgBAQAGPwLWIRuA02hcmT63/8QAGxAAAwACAwAAAAAAAAAAAAAAAAERITFRYXH/2gAIAQEAAT8hxQ4VCaiFzWvDPkTpUYaTnAg8I//aAAwDAQACAAMAAAAQLy//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QrH//xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAECAQE/EMQ3af/EABwQAQEAAgMBAQAAAAAAAAAAAAERACExQaFRwf/aAAgBAQABPxBwBR+L+5rml6GIiHkO1u8s1qxV7leG40Wu4YkufaXh79z/2Q==" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-680c3.jpg 45w,
 /static/spring-boot-actuator-baf5805d4d2a459f3093063c6419e782-0b965.jpg 90w,
@@ -31,12 +33,12 @@ Actuator is a Spring Boot module, which adds REST/JMX endpoints to your applicat
 ## Spring Boot Admin
 Actuator is powerful and great and it is easy and convenient to consume the endpoints with some other application - you just make a simple REST call. It is not so great when used by a human. For humans, it is much more convenient to have a nice user interface you can use to browse all the monitoring data and manage your application. This is actually what Spring Boot Admin Does. It provides you a nice UI layer on top of actuator endpoints with a few extra features on top.
 
-Spring Boot Admin is not a core module provided by the Spring team, it was created by a company called [Codecentric](https://blog.codecentric.de/en/). Still, the code is publicly available on [Github](https://github.com/codecentric/spring-boot-admin).
+Spring Boot Admin is not a core module provided by the Spring team, it was created by a company called [Codecentric](https://blog.codecentric.de/en/). Still, the code is publicly available on [Github](https://github.com/codecentric/spring-boot-admin) and it is free.
 
 ## Client And Server
 Unlike Actuator, Spring Boot Admin actually comes in two parts - Client and Server.
 
-The server part contains the Admin User Interface and runs independently from the monitored applications. The Client part is the monitored application, which registers with the Admin Server part.
+The Server part contains the Admin user interface and runs independently from the monitored applications. The Client part is in the monitored application, which registers with the Admin Server part.
 
 This way, even if our application is down or not working properly, the monitoring server is still up and running. Now imagine you have multiple applications (such as Spring Boot microservices) and each of them can be running in multiple instances. With traditional Actuator monitoring, this is hard as you need to access each of them separately and you need to keep track of how many instances and where are running.
 
@@ -60,7 +62,7 @@ After creating the project, the first thing we need is to add the Spring Boot Ad
 </dependency>
 ```
 
-Next, we need to enable Admin Server by annotating our main application class with `@EnableAdminServer`:
+Note that even though the project is not created by Pivotal, you can find both the client and server modules for Spring Boot Admin in the Spring Initializr. Next, we need to enable Admin Server by annotating our main application class with `@EnableAdminServer`:
 
 ```java{2}
 @SpringBootApplication
@@ -90,14 +92,14 @@ Same as with server setup, the first step is to add a proper dependency to an ex
 </dependency>
 ```
 
-Then you need to define URL where is your Admin Server running:
+Then you need to define URL where is your Admin Server running. Add this line to your `application.properties`:
 
 ```properties
 spring.boot.admin.client.url=http://localhost:8080
 ```
 
 ### Adding Actuator
-Now you should be able to run both client and server. Just make sure there is not a port conflict as both apps by default use 8080. For testing purposes, you can set `server.port=0` in you `application.properties` so your client will use a random port on startup. This way you can test launching multiple instances running on different ports.
+Now you should be able to run both the client and the server. Just make sure there is not a port conflict as both apps by default use 8080. For testing purposes, you can set `server.port=0` in your `application.properties`, so your client will use a random port on startup. This way you can test launching multiple instances running on different ports.
 
 When you open Admin Server UI, you should see your application. When you click the app name, a page with application details should show up.
 
@@ -118,19 +120,26 @@ However, most of the endpoints are not exposed by Actuator by default. You need 
 management.endpoints.web.exposure.include=*
 ```
 
-After exposing your Actuator endpoints, you should see much more information in your Admin:
+After exposing your Actuator endpoints, you should see much more information in your Admin interface:
 
 ![Admin with Actuator Endpoints exposed](spring-boot-admin-with-actuator.png)
 
-For a detailed tutorial on Spring Boot Actuator configuration heck [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
+For a detailed tutorial on Spring Boot Actuator configuration check [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
 
 ## Security
-Now when everything is running, we should make sure our actuator endpoints and the Admin UI are not publicly available to everyone.
+Now when everything is running, we should make sure our Actuator endpoints and the Admin UI are not publicly available to everyone.
 
-## Client Security
-If you are already using Spring Security, the above will not work for you as the Actuator endpoints are secured by default and Admin server will not be able to access them. For testing purposes, you can temporarily disable Actuator endpoint security by `management.security.enabled=false`.
+### Client Security
+If you are already using Spring Security, the above will not work for you as the Actuator endpoints are secured by default and your Admin server will not be able to access them. If you don't use Spring Security yet, you need to add a dependency first:
 
-However, we do want to have security enabled. If you are using basic authentication, you can just provide username and password in your properties file. These credentials will be used by Admin Server to authenticate with the client's actuator endpoints:
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+```
+
+For testing purposes, you can temporarily disable Actuator endpoint security by `management.security.enabled=false`. However, we do want to have security enabled. If you are using basic authentication, you can just provide username and password in your properties file. These credentials will be used by Admin Server to authenticate with the client's Actuator endpoints:
 
 ```properties
 spring.boot.admin.client.instance.metadata.user.name=joe
@@ -144,7 +153,7 @@ spring.security.user.name=joe
 spring.security.user.password=my-secret-password
 ```
 
-## Server Security
+### Server Security
 Same as with the client, we need to add Spring Security dependency:
 
 ```xml
@@ -154,55 +163,47 @@ Same as with the client, we need to add Spring Security dependency:
 </dependency>
 ```
 
-Now lets configure username and password required to login to the admin server in your `application.properties`:
+Now lets configure username and password required to login to the Admin Server in your `application.properties`:
 
 ```properties
 spring.security.user.name=admin
 spring.security.user.password=admin-password
 ```
 
-Now in your *Client* you need to add these credentials as well, otherwise it will not be able to register with the server:
+Now in your **Client** you need to add these credentials as well, otherwise it will not be able to register with the server:
 
 ```properties
 spring.boot.admin.client.username=admin
 spring.boot.admin.client.password=admin-password
 ```
 
-Now back to the *Server* part. The last thing we need is to add Spring Security configuration to protect the Admin interface:
+Now back to the **Server** part. The last thing we need is to add Spring Security configuration to protect the Admin user interface:
 
 ```java
-package com.vojtechruzicka.springbootadminserver;
-
-import de.codecentric.boot.admin.server.config.AdminServerProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+        SavedRequestAwareAuthenticationSuccessHandler successHandler 
+            = new SavedRequestAwareAuthenticationSuccessHandler();
         successHandler.setTargetUrlParameter("redirectTo");
         successHandler.setDefaultTargetUrl("/");
 
         http.authorizeRequests()
-                .antMatchers("/assets/**").permitAll()
-                .antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().loginPage("/login").successHandler(successHandler).and()
-                .logout().logoutUrl("/logout").and()
-                .httpBasic().and()
-                .csrf()
-                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .ignoringAntMatchers(
-                        "/instances",
-                        "/actuator/**"
-                );
+            .antMatchers("/assets/**").permitAll()
+            .antMatchers("/login").permitAll()
+            .anyRequest().authenticated().and()
+            .formLogin().loginPage("/login")
+            .successHandler(successHandler).and()
+            .logout().logoutUrl("/logout").and()
+            .httpBasic().and()
+            .csrf()
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .ignoringAntMatchers(
+                "/instances",
+                "/actuator/**"
+             );
     }
 }
 ```
@@ -210,15 +211,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 What it does, is that it restricts the admin UI only to authenticated users using HTTP basic authentication and form login. The login page itself and static UI resources (javascript, HTML, CSS) are public. Otherwise, you could not log in. Then there is a cookie-based Cross-Site Request Forgery protection. You can see that some paths are ignored in CSRF protection - it's because the Admin Server currently [lacks proper support](http://codecentric.github.io/spring-boot-admin/current/#_csrf_on_actuator_endpoints).
 
 
-Now after a restart, you should see a nice login screen protecting your admin server:
+Now after a restart, you should see a nice login screen protecting your Admin Server:
 
 ![Admin Server login](admin-server-login.png)
 
 ## Cloud Discovery
-Spring Boot Admin client is not the only way to register your applications with the server. Admin Server also supports Spring Cloud Service Discovery. You can read more in the [offical docudsmentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
+Spring Boot Admin client is not the only way to register your applications with the server. Admin Server also supports Spring Cloud Service Discovery. You can read more in the [offical documentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
 
 ## Notifications
-Once you have monitoring in place, you want to get notified once something goes wrong. The good news is that Spring Admin provides a wide variety of notification options.  
+Once you have monitoring in place, you want to get notified when something goes wrong. The good news is that Spring Admin provides a wide variety of notification options.  
 
 If you visit the Admin Server page for the first time, it asks you for permission to display push notifications on your computer. Whenever there is an issue, you'll get a popup message.
 
@@ -236,7 +237,7 @@ Other notifications need a simple configuration. It usually means just providing
 * [Microsoft Team](https://codecentric.github.io/spring-boot-admin/current/#telegram-notifications)
 
 ### Configuring Email Notifications
-If you want to enable email notifications, you need to add Spring email dependency to your *Server* part:
+If you want to enable email notifications, you need to add Spring email dependency to your **Server** part:
 
 ```xml
 <dependency>
@@ -253,7 +254,7 @@ spring.mail.username=smtp-server-user
 spring.mail.password=smtp-server-password
 ```
 
-Then you need to define the recipients and sender.
+Then you need to define recipients and sender.
 
 ```properties
 # Sender email address
