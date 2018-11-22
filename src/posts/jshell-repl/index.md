@@ -235,7 +235,7 @@ jshell> /resolve org.apache.commons:commons-lang3:jar:3.4
 |  Path /home/kawasima/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar added to classpath
 ```
 
-Another useful alternative is using a REPL directly in the browser. You can try either [Java REPL](http://www.javarepl.com/term.html) or [repl.it](https://repl.it).
+Another useful alternative is using a REPL directly in the browser. You can try either [repl.it](https://repl.it) or ~~javarepl.com~~. **UPDATE**: Looks like javarepl is no longer available.
 
 Support In IntelliJ IDEA
 ------------------------
