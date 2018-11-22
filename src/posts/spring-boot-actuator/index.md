@@ -105,6 +105,8 @@ Not very impressive so far. Of course, Actuator offers much more than this. Othe
 | logfile  | Contents of the log file  |
 | threaddump  | Perform thread dump  |
 | heapdump  | Obtain JVM heap dump  |
+| caches  | Check available caches  |
+| integrationgraph | Graph of Spring Integration components  |
 
 ## Exposing endpoints
 For most of the endpoints, Actuator offers two ways of connecting to them:
