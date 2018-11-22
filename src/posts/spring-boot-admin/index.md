@@ -5,7 +5,7 @@ tags: ['Spring', 'Java']
 path: '/spring-boot-admin'
 featuredImage: './spring-boot-admin.png'
 disqusArticleIdentifier: '99016 http://vojtechruzicka.com/?p=99016'
-excerpt: 'Monitor and manage you Spring Boot apps  with a nice UI on top of Spring Boot Actuator endpoints.'
+excerpt: 'Monitor and manage you Spring Boot apps with a nice UI on top of Spring Boot Actuator endpoints.'
 ---
 
 ![Spring Boot Admin](spring-boot-admin.png)
