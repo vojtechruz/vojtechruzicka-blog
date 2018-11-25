@@ -87,7 +87,91 @@ But unlike javascript, backticks inside the string don't need to be escaped. Ins
 No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
 
 # Formatting
-TODO
+One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Inagie the following code.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        String myString =
+        `This is my string
+        which I want to be
+        on multiple lines.`;
+        System.out.println(myString);
+    }
+}
+```
+
+Each of the lines of the raw string contains some spaces at left as indentation so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
+
+```
+This is my string
+        which I want to be
+        on multiple lines.
+```
+
+The string contains the indentation, which was supposed only to format the code to be more readable, but it is not intended to be part of the string.
+
+Quick fix would be to remove the indentation, but it would be hard to read:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        String myString =`This is my string
+which I want to be
+on multiple lines.`;
+        System.out.println(myString);
+    }
+}
+```
+
+There are actually several new methods in the String class, which are useful for handling indentation.
+
+The method `align()` trims horizontal and vertical indentation of the string and keeps just relative indentation of the lines. 
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        String myString = `
+        This is my string
+        which I want to be
+        on multiple lines.
+            Note that after alignment,
+                only relative indentation is preserved.
+        `.align();
+        System.out.println(myString);
+    }
+}
+
+```
+
+After alignment, the output will be this:
+
+```
+This is my string
+which I want to be
+on multiple lines.
+    Note that after alignment,
+        only relative indentation is preserved.
+```
+
+If you don't want to trim whitespace but only increase or decrease alignment, you can use `String.indent(numberOfSpaces)`
+
+```java
+// Increase existing indentation of each line by 2
+myString.indent(2);
+// Decrease existing indentation of each line by 2
+myString.indent(-2);
+```
+
+As a shorthand, if you call `align()` with an integer parameter instead of with zero parameters, it will align first and then indent by given number:
+
+```java
+// Align and then increase existing indentation of each line by 2
+myString.align(2);
+``` 
 
 # String Interpolation
 Other languages, which currently support Raw String literals usually also support string interpolation. It is basically a fancy name for substituting variable placeholders in the string with values, such as:
@@ -114,13 +198,3 @@ In addition to this, it now supports actions such as spell-checking or regular e
 
 # Try it yourself
 As of 11/2018 Java 12 is not out yet, but you can already download early access build of [JDK 12]( https://jdk.java.net/12/) and try Raw Strings for yourself.
-
-<!--
-
-In a class file, a string constant does not record whether it was derived from a raw string literal or a traditional string literal.
-
-Like a traditional string literal, a raw string literal is always of type java.lang.String. Strings derived from raw string literals are treated in the same manner as strings derived from traditional string literals.
- 
- Download JDK:
- https://jdk.java.net/12/
-  -->
