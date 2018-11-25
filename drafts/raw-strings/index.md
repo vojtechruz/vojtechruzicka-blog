@@ -1,40 +1,125 @@
 ---
 title: 'Java 12 Raw String Literals'
-date: ""
+date: "2018-11-26T22:12:03.284Z"
 tags: ['Java']
 path: '/java-raw-strings'
-featuredImage: './raw-strings.jpg)'
-disqusArticleIdentifier: 'TODO'
-excerpt: ''
+featuredImage: './raw-strings.jpg'
+disqusArticleIdentifier: '99017 http://vojtechruzicka.com/?p=99017'
+excerpt: "Java 12 finally brings support for raw strings. They can span multiple lines and  you don't need to escape special characters. Especially useful for regular expressions."
 ---
 
-![Java Raw Strings](./raw-strings.jpg)
+![Java Raw Strings](raw-strings.jpg)
+
+# String Literals
+Currently (pre-Java 12), string literals in Java are in many cases unnecessarily hard to deal with and have some limitations.
+
+First of all, Java does not support multi-line strings. If you want your string to span multiple lines, you have to concatenate multiple strings:
+
+```java
+String myString = "This is my string" +
+        " which I want to be " +
+        "on multiple lines.";
+```
+
+It gets worse though. If you want your string to actually contain new lines, you need to insert `\n` after each line.
+
+```java
+String myString = "This is my string\n" +
+        " which I want to be \n" +
+        "on multiple lines.";
+```
+
+Special characters such as newline are escaped with backslash `\`. This is necessary for double quoutes `"` as they would terminate the string and also for backslash `\` character as it would rather indicate escaped character. In addition of that there is a whole bunch of escape sequences in java:
+
+|Sequence|Usage    |
+|--------|---------|
+|\t	|Tab|
+|\b	|Backspace (remove previous character)|
+|\n	|New line|
+|\r	|Carriage return|
+|\f	|Form feed|
+|\\'	|Single quote character|
+|\\"	|Double quote character|
+|\\\	|Backslash character|
+
+String literals are usually hard to read because they are plagued with escape sequences:
+
+```java
+String myPath = "Open \"C:\\Program Files\\Java\\jdk1.8.0_151\"";
+```
+
+It gets especially bad with regular expressions, which can be using a lot of backslashes and are then hard to read because of escaping.
 
 # Raw Strings
+Turns out, that other JVM  languages already solved problem with multiline strings and readability of escaped strings. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals you can use Raw String with three double quotes `"""` instead of just one.
+
+```kotlin
+val text = """
+This is my string
+which I want to be
+on multiple lines.
+It can contain backslash \
+Or even double-quotes "
+"""
+```
+
+On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usually late to the party (similar to introducing [JShell REPL](https://www.vojtechruzicka.com/jshell-repl)) and only now, in version 12, introduces what is already common both in other JVM and non-JVM languages.
+
+# Raw String Literals in Java
+In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which are currently used by Javascript or Go.
+
+```java
+String rawString = `This is my string
+which I want to be
+on multiple lines.
+It can contain backslash \
+Or even quotes "`;
+```
+
+But unlike javascript, backticks inside the string don't need to be escaped. Instead, you can use multiple backticks to start the string and then the same number of backticks to end it:
+
+```java
+`This uses single backtick`
+``This can contain backtick `, see?``
+```Can use any number of backticks```
+``` 
+
+No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
+
+# Formatting
+TODO
 
 # String Interpolation
+Other languages, which currently support Raw String literals usually also support string interpolation. It is basically a fancy name for substituting variable placeholders in the string with values, such as:
+
+```kotlin
+    val name = "John"
+    println("Hi, my name is ${name}.")
+```
+
+Unfortunately this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
 
 # IntelliJ IDEA support
 The good news is that since version 2018.3, IDEA already supports Raw String Literals.
 
 You can convert from good old string literals to the raw variant and vice versa. IDEA will handle escape sequence conversion and splitting to multiline for you.
 
-![IDEA convert to raw string literal](./convert-to-raw.gif)
+![IDEA convert to raw string literal](convert-to-raw.gif)
 
 IDEA is also able to detect if you are unnecessarily using too many backticks and will be able to remove excess backticks for you.
 
-![Remove excess backticks](./idea-reduce-backticks.png)
+![Remove excess backticks](idea-reduce-backticks.png)
 
 In addition to this, it now supports actions such as spell-checking or regular expressions detection in Raw String Literals. You can read more in [Preview Raw String Literals in IntelliJ IDEA 2018.3](https://blog.jetbrains.com/idea/2018/10/preview-raw-string-literals-in-intellij-idea-2018-3/).
+
+# Try it yourself
+As of 11/2018 Java 12 is not out yet, but you can already download early access build of [JDK 12]( https://jdk.java.net/12/) and try Raw Strings for yourself.
 
 <!--
 
 In a class file, a string constant does not record whether it was derived from a raw string literal or a traditional string literal.
 
 Like a traditional string literal, a raw string literal is always of type java.lang.String. Strings derived from raw string literals are treated in the same manner as strings derived from traditional string literals.
- 
- JEP DEFINITION:
- https://openjdk.java.net/jeps/326
  
  Download JDK:
  https://jdk.java.net/12/
