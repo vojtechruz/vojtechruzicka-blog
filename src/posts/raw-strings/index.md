@@ -5,7 +5,7 @@ tags: ['Java']
 path: '/java-raw-strings'
 featuredImage: './raw-strings.jpg'
 disqusArticleIdentifier: '99017 http://vojtechruzicka.com/?p=99017'
-excerpt: "Java 12 finally brings support for raw strings. They can span multiple lines and  you don't need to escape special characters. Especially useful for regular expressions."
+excerpt: "Java 12 finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions."
 ---
 
 ![Java Raw Strings](raw-strings.jpg)
@@ -29,18 +29,18 @@ String myString = "This is my string\n" +
         "on multiple lines.";
 ```
 
-Special characters such as newline are escaped with backslash `\`. This is necessary for double quoutes `"` as they would terminate the string and also for backslash `\` character as it would rather indicate escaped character. In addition of that there is a whole bunch of escape sequences in java:
+Special characters such as newline are escaped with backslash `\`. This is necessary for double quotes `"` as they would terminate the string and also for backslash `\` character as it would rather indicate escaped character. In addition to that there is a whole bunch of escape sequences in java:
 
 |Sequence|Usage    |
 |--------|---------|
-|\t	|Tab|
-|\b	|Backspace (remove previous character)|
-|\n	|New line|
-|\r	|Carriage return|
-|\f	|Form feed|
-|\\'	|Single quote character|
-|\\"	|Double quote character|
-|\\\	|Backslash character|
+|\t    |Tab|
+|\b    |Backspace (remove previous character)|
+|\n    |New line|
+|\r    |Carriage return|
+|\f    |Form feed|
+|\\'    |Single quote character|
+|\\"    |Double quote character|
+|\\\    |Backslash character|
 
 String literals are usually hard to read because they are plagued with escape sequences:
 
@@ -51,7 +51,7 @@ String myPath = "Open \"C:\\Program Files\\Java\\jdk1.8.0_151\"";
 It gets especially bad with regular expressions, which can be using a lot of backslashes and are then hard to read because of escaping.
 
 # Raw Strings
-Turns out, that other JVM  languages already solved problem with multiline strings and readability of escaped strings. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals you can use Raw String with three double quotes `"""` instead of just one.
+Turns out, that other JVM  languages already solved the problem with multiline strings and readability of escaped strings. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals, you can use Raw String with three double quotes `"""` instead of just one.
 
 ```kotlin
 val text = """
@@ -66,7 +66,7 @@ Or even double-quotes "
 On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usually late to the party (similar to introducing [JShell REPL](https://www.vojtechruzicka.com/jshell-repl)) and only now, in version 12, introduces what is already common both in other JVM and non-JVM languages.
 
 # Raw String Literals in Java
-In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which are currently used by Javascript or Go.
+In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which is currently used by Javascript or Go.
 
 ```java
 String rawString = `This is my string
@@ -87,7 +87,7 @@ But unlike javascript, backticks inside the string don't need to be escaped. Ins
 No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
 
 # Formatting
-One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Inagie the following code.
+One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Imagine the following code.
 
 ```java
 public class Main {
@@ -102,7 +102,7 @@ public class Main {
 }
 ```
 
-Each of the lines of the raw string contains some spaces at left as indentation so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
+Each of the lines of the raw string contains some spaces at left as indentation, so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
 
 ```
 This is my string
@@ -112,7 +112,7 @@ This is my string
 
 The string contains the indentation, which was supposed only to format the code to be more readable, but it is not intended to be part of the string.
 
-Quick fix would be to remove the indentation, but it would be hard to read:
+A quick fix would be to remove the indentation, but it would be hard to read:
 
 ```java
 public class Main {
@@ -181,7 +181,7 @@ Other languages, which currently support Raw String literals usually also suppor
     println("Hi, my name is ${name}.")
 ```
 
-Unfortunately this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
+Unfortunately, this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
 
 # IntelliJ IDEA support
 The good news is that since version 2018.3, IDEA already supports Raw String Literals.
