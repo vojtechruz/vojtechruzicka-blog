@@ -51,7 +51,7 @@ String myPath = "Open \"C:\\Program Files\\Java\\jdk1.8.0_151\"";
 It gets especially bad with regular expressions, which can be using a lot of backslashes and are then hard to read because of escaping.
 
 # Raw Strings
-Turns out, that other JVM  languages already solved the problem with multiline strings and readability of escaped strings. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals, you can use Raw String with three double quotes `"""` instead of just one.
+Turns out, that other JVM  languages already solved the problem with multiline strings and readability of escaped sequences. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals, you can use Raw Strings with three double quotes `"""` instead of just one.
 
 ```kotlin
 val text = """
@@ -126,7 +126,7 @@ on multiple lines.`;
 }
 ```
 
-There are actually several new methods in the String class, which are useful for handling indentation.
+There are actually several new methods in the `String` class, which are useful for handling indentation.
 
 The method `align()` trims horizontal and vertical indentation of the string and keeps just relative indentation of the lines. 
 
@@ -166,7 +166,7 @@ myString.indent(2);
 myString.indent(-2);
 ```
 
-As a shorthand, if you call `align()` with an integer parameter instead of with zero parameters, it will align first and then indent by given number:
+As a shorthand, if you call `align()` with an integer parameter instead of with zero parameters, it will align first and then indent by the given number:
 
 ```java
 // Align and then increase existing indentation of each line by 2
