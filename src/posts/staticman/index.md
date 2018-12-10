@@ -53,7 +53,7 @@ How great is that? Of course, you don't want users spamming your site, so Static
 # Setup
 
 ## Granting Github access
-The first thing you need to do is to grant Staticman privileges to access your Github repo. Go to `Settings → Collaborators` section of your repository and add `staticman` as a collaborator.
+The first thing you need to do is to grant Staticman privileges to access your Github repo. Go to `Settings → Collaborators` section of your repository and add `staticmanapp` as a collaborator.
 
 ![Staticman Collaborators Setup](staticman-collaborators.jpg)
 
