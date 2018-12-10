@@ -103,8 +103,8 @@ https://api.staticman.net/v2/entry/{GITHUB USERNAME}/{GITHUB REPOSITORY}/{BRANCH
 An example of such form:
 ```html
 <form method="POST" action="https://api.staticman.net/v2/entry/vojtechruz/staticman-example/master/comments">
-  <label><input name="fields[name]" type="text">Name</label>
-  <label><input name="fields[email]" type="email">E-mail</label>
+  <label><input name="fields[name]" type="text" />Name</label>
+  <label><input name="fields[email]" type="email" />E-mail</label>
   <label><textarea name="fields[message]"></textarea>Message</label>
   
   <button type="submit">Submit</button>
@@ -125,7 +125,7 @@ reviews:
 If you want to redirect the user to a specific url after submit you can do it by including this hidden field:
 
 ```html
-<input name="options[redirect]" type="hidden" value="https://www.example.com">
+<input name="options[redirect]" type="hidden" value="https://www.example.com" />
 ```
 
 # Integrating with your static site generator
@@ -193,8 +193,8 @@ Then the element where it should be rendered:
 Finally you need to include these hidden fields in your Staticman form:
 
 ```html
-<input type="hidden" name="options[reCaptcha][siteKey]" value="SITE-KEY">
-<input type="hidden" name="options[reCaptcha][secret]" value="ENCRYPTED-SECRET">
+<input type="hidden" name="options[reCaptcha][siteKey]" value="SITE-KEY" />
+<input type="hidden" name="options[reCaptcha][secret]" value="ENCRYPTED-SECRET" />
 ```
 
 You can find detailed info about re-captcha integration [here](https://github.com/eduardoboucas/staticman-recaptcha).
