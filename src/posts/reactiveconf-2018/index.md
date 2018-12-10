@@ -21,7 +21,7 @@ Each talk was roughly 30 minutes long including some time for questions. The tal
 
 Same as the last year, I didn't come as a regular attendee, but as a volunteer instead. The conference offers a number of "volunteer tickets", which you can apply for. The idea is simple - you get your ticket for free, but you help with running the conference. Of course, not for the whole time. Each day, you dedicate 1/3 of your time for working. The rest of the time, you are free to visit the talks, participate in workshops, attend the parties - anything you want.
 
-The volunteer duties are diverse - registering visitors, helping speakers, dispensing gifts, navigating people around, moderation of questions, and much more. It does not really matter much that you don't get to see every tal. They are recorded and available after the conference.
+The volunteer duties are diverse - registering visitors, helping speakers, dispensing gifts, navigating people around, moderation of questions, and much more. It does not really matter much that you don't get to see every talk. They are recorded and available after the conference.
 
 However, the best part about participating as a volunteer is not about saving money. If it was the case, you could just wait for the youtube videos and watch them from the comfort of your sofa for free. Being there is an excellent opportunity to see the conference from the organizer's point of view. But most of all it is about meeting interesting like-minded people. Sure, you're supposed to network on a conference as an attendee, but I've always found it rather difficult with complete strangers as an introvert. For a volunteer, this is much easier and much more natural. You spend a lot of time with other volunteers from all over the world working together and get to talk to many people during your duties. You get a better chance to approach the speakers and access the VIP zone.
 
@@ -64,10 +64,26 @@ My duty for the last day of volunteering was moderating questions from attendees
 
 After the talks and the final panel discussions with some of the speakers, there was an afterparty, still in the Microsoft building.
 
-## Talks and Photos
+## Impressions
+Overall my impression of the conference was very good. Everything was professional and well organized. The event felt world-class, very international, which is not always the case in the Czech Republic. Compared to my last year's experience as a volunteer, everything was even smoother.
+
+The selection of speakers was impressive with interesting and well-known presenters. Except for one questionable talk about "How I met Elon Musk", there was nothing bad.
+
+While 30 minutes (or more like 25) per talk was sufficient in many cases, I was wondering whether it would be better to have some presentations longer. For some topics, it is just not enough time and the talk is more shallow that it could be. I liked that there were lightning talks as a short alternative to the regular presentations. Maybe it would also be good to introduce a longer alternative as well. Then again, some topics were covered in much detail during the workshops on the third day.
+
+While the topics were interesting, I felt that there was too much focus on React neglecting other technologies, frameworks and subjects. At least in my opinion.
+
+I really appreciated that there was a public live-stream and videos published after the conference, so I had a chance to watch the talks I missed because of my volunteering duties.
+
+It was nice that there was a lot to do after the talks - Czech delicacies tasting, after-parties with various companies, discovering the city or Czech traditional live music.
+
+Overall my experience was very positive, I'm sure I'll visit also the next year. 
+
+## Talks
 If you are interested in talks, which were at Reactive Conf, you can [watch them all online](https://www.youtube.com/playlist?list=PLa2ZZ09WYepPQAIo1h98LaPkQUYwaSbWO&mc_cid=09db7b9adc&mc_eid=6613f6258f).
 
-You can also check all the [photos](https://photos.google.com/share/AF1QipPMSR7JQ_w4QR-QuubLp5hAxjATZibHpRHwFRQLRjcP3WGef3k0qr7e9f3doDAz8A?key=TEkzSUw2aDBXQ284bXFWd0ZVemNRTTAtaktiSS1R) from the event or just watch the following 40-second video for a brief overview.
+## Photos
+You can check all the [photos](https://photos.google.com/share/AF1QipPMSR7JQ_w4QR-QuubLp5hAxjATZibHpRHwFRQLRjcP3WGef3k0qr7e9f3doDAz8A?key=TEkzSUw2aDBXQ284bXFWd0ZVemNRTTAtaktiSS1R) from the event or just watch the following 40-second video for a brief overview.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/h6Z76xJP2h4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
