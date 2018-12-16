@@ -112,7 +112,7 @@ To have a constant overview of your current vulnerable dependencies and their c
 
 ![dependency-check-sonar](dashboard-widget.png)
 
-Update: Alternatives
+UPDATE: Alternatives
 ------------
 These days OWASP Dependency Check is not the only project focusing on third-party security dependencies. One of the very powerful alternatives is Snyk. In many ways, it is similar to Dependency Check, but now offers more features, better integration and is very actively developed. You can read more in this article:
 

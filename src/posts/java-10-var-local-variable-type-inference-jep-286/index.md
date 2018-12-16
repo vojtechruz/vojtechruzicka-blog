@@ -106,8 +106,7 @@ In this case, you are forcing the compiler to infer both left and right-hand sid
 
 How does this feature affect your existing applications? Will they be compatible? Adding a new keyword would mean that you no longer can use it as an identifier, which would break existing applications. In fact, var is not a keyword, but rather a reserver type name.  That means you can still use var as variable, package or method name. You cannot, however, use it now as a class or interface name. Applications doing so will no longer compile. Fortunately, such name conflicts with Java naming convention, so you should be safe. As long as you follow the convention, that is.
 
-Performance
------------
+## Performance
 
 If you are concerned about a performance hit this feature could bring, don\'t be. Remember, the types are not inferred at runtime but at compile time. That means the resulting bytecode is the same as with explicit type declaration - it does include the information about the type. That means no extra processing at runtime.
 
@@ -135,20 +134,42 @@ There are more reasons of course. One of them is a clash with final keyword. Val
 
 Even though Java 10 is not released yet, you can already try the feature. Download [JDK 10](http://jdk.java.net/10/). IntelliJ IDEA already has [good support](https://blog.jetbrains.com/idea/2017/11/intellij-idea-2017-3-eap-brings-support-for-local-variable-type-inference/) for this feature.
 
-## Updated: Style guide 
-Check out this useful guide for 'var' best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
+## UPDATE: Style guide 
+Check out this useful guide for `var` best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
 
-## Updated: Java 11
+## UPDATE: Java 11
 Currently (even pre-java 10), for lambdas you can omit explicit type declaration and it will be inferred.
 
 ```java
 (x, y) -> x.process(y)
 ```
 
-From Java 11, you'll be able to use `var ` here also, so the syntax is uniform. 
+From Java 11, you'll be able to use `var` here also, so the syntax is uniform. 
 
 ```java
 (var x, var y) -> x.process(y)
+```
+
+Apart from uniform syntax, it does not look very appealing as it is just more characters with the same effect. There are some advantages though.
+
+When you use implicitly typed parameters in your lambdas (such as `(x, y) -> ...`), you cannot use annotations on the parameters. You cannot also make the parameters final. With `var`, you can use both annotations and `final` as you could with the explicit type declaration. It is just more concise as you use only `var` instead of explicit type.
+
+```java
+// Invalid: Implicit types without var cannot have annotations or final 
+(final x, @NotNull y) -> ...
+// Valid: Explicit types support both, but are less concise
+(final String x, @NotNull String y) -> ...
+// Valid: var supports both and is concise
+(final var x, @NotNull var y) -> ...
+```
+
+There are some limitations though. If you use `var`, you need to use it for all the parameters, not just some of them. That means you cannot combine `var` and explicitly declared types and implicitly declared types with no keyword:
+
+```java
+// Invalid: All parameters must have `var` or nothing
+(var x, y) -> ...
+// Invalid: Cannot mix explicit type and var
+(var x, int y) -> ...
 ```
 
 See [JEP 323: Local-Variable Syntax for Lambda Parameters](http://openjdk.java.net/jeps/323) for more details.
