@@ -256,5 +256,8 @@ health:905 / 1000
 10.11.
 - Fixed broken link x3, fixed key promoter article with up to date info
 
-21.12
+21.12.
 - Linked with google search console
+
+31.12.
+- Updated serialversionUID article with sonar link

@@ -11,8 +11,7 @@ excerpt: 'Should you explicitly declare serialVersionUID or leave it to be autom
 
 Should you explicitly declare serialVersionUID or leave it to be automatically generated?
 
-What is serialVersionUID?
--------------------------
+## What is serialVersionUID?
 
 The following is the description of serialversionUID according to the JavaDoc of [Serializable](http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html):
 
@@ -22,8 +21,7 @@ The following is the description of serialversionUID according to the JavaDoc of
 >
 > If a serializable class does not explicitly declare a serialVersionUID, then the serialization runtime will calculate a default serialVersionUID value for that class based on various aspects of the class, as described in the Java(TM) Object Serialization Specification.
 
-Why omit
------------
+## Why omit
 
 If a class implements serializable and does not explicitly declare serialVersionUID, it is automatically generated depending on the class details such as fields and methods. Great. By not declaring the version number, it is automatically generated and changes every time the class changes. Therefore, two different versions of the same class are automatically rendered incompatible without any developer action.
 
@@ -31,8 +29,7 @@ That is good. This way it could never happen, that two versions of the class sti
 
 Now two things can happen depending on the severity of the change - it is going to be compatible and incompatible. Incompatible will result in runtime exception during deserialization. That is at least fail fast and it is immediately obvious that something is wrong. However compatible changes are far more dangerous as it is not apparent right away that something is not right. It may just result in subtle bugs and odd behavior. This is often hard to detect and debug. Automatic generation of version number prevents this as a new number is generated whenever the class changes.
 
-Why declare
---------------
+## Why declare
 
 ### Backwards compatibility
 
@@ -44,8 +41,7 @@ The good news is that you can keep the class backward compatible if you\'re mak
 
 The good news is that the process of calculating serialVersionUID is described in detail in the official [Java Object Serialization Specification](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/class.html#4100). Ideally, using that algorithm, all the compilers would auto-generate the same version id for the same class. Unfortunately, that is not the case. In reality, generated numbers vary per compiler. Which means in distributed environments, it is likely that the two different JVMs (e.g. Oracle vs IBM java) will produce different version numbers for the same class rendering the serialization incompatible. Unless you are 100% sure (and is there such thing?) that the same JVM will be used across all the participants, it is very risky to let the version number be auto-generated. In such cases, it is thus recommended to explicitly declare serialVersionUID to prevent version number mismatch.
 
-When to update
---------------
+## When to update
 
 Okay, so maybe it is a good idea to have version number explicitly declared after all. Now the question is - when should you update it? Many developers update whenever they make a change to the class. This way the compatibility across multiple JVMs is no longer an issue. That\'s good. However, there is no backward compatibility at all since every change to the class results in new version number and is incompatible with all the other versions.
 
@@ -76,13 +72,18 @@ Actually, there are two types of changes (as defined by the [Serialization Speci
 
 For further details, see the [Java Object Serialization Specification](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#6754).
 
-Making sure nothing breaks
---------------------------
+## Making sure nothing breaks
 
 When you use explicit version number you need to make sure you properly update it when necessary or make sure the class is backward compatible. The best approach would be to build a habit of always checking whether the class you are just changing is serializable and to manage the version number appropriately. As a safeguard, it is handy to have serialization unit tests when aiming for backward compatibility. Keep serialized objects of the previous versions of the class (with the same version id), which are supposed to be compatible with the current implementation. Then in the unit tests make sure that you can still deserialize those without problems and that the state of such objects is as expected. It is well worth the effort as it allows you to reveal serialization problems before it is too late.
 
-Conclusion
-----------
+## UPDATE: Sonar Rule
+Originally Sonar contained a rule for handling serialVersionUID: ["Serializable" classes should have a "serialVersionUID"](https://rules.sonarsource.com/java/RSPEC-2057). If you're not a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring it. 
+
+Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/serializable-classes-should-use-auto-generated-version-ids/1217), there is a new rule which enforces **omitting** serialVersionUID in Serializable classes, so it is always auto-generated: ["serialVersionUID" should not be declared blindly](https://rules.sonarsource.com/java/type/Code%20Smell/RSPEC-4926).
+
+So no matter what your preference is regarding serialVersionUID, you now have a Sonar rule to support it. Alternatively, if you prefer, you can even configure both rules to be active at the same time, each for a different part of your app, if it makes sense in your situation.
+
+## Conclusion
 
 Serialization has many pitfalls including maintaining backward compatibility. The first consideration should be whether you should be using serialization at all. You should consider whether for your specific scenario it is not better to use a different approach. Maybe something JVM independent, so it is easier to integrate with other non-JVM systems. You may consider using XML or JSON and OXM or JSON-object mapping (such as GSON) instead of serialization.
 
