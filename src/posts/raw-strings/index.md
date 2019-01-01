@@ -1,14 +1,20 @@
 ---
-title: 'Java 12 Raw String Literals'
+title: 'Java Raw String Literals'
 date: "2018-11-26T22:12:03.284Z"
 tags: ['Java']
 path: '/raw-strings'
 featuredImage: './raw-strings.jpg'
 disqusArticleIdentifier: '99017 http://vojtechruzicka.com/?p=99017'
-excerpt: "Java 12 finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions."
+excerpt: "Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions."
 ---
 
 ![Java Raw Strings](raw-strings.jpg)
+
+**UPDATE:** Raw string literals  [didn't make it to the Java 12](https://www.infoq.com/news/2018/12/jdk-12-new-features) and will be postponed and reworked.
+
+> We're of course disappointed that this means it will take slightly longer for this feature to make it into the language, but we think that's the best choice.
+>  
+>  While we can expect that for any language feature, there will be a nontrivial volume of "I would have preferred it differently" feedback, in reviewing the feedback we have received, I am no longer convinced that we've yet got to the right set of tradeoffs between complexity and expressiveness, or that we've explored enough of the design space to be confident that the current design is the best we can do. By withdrawing, we can continue to refine the design, explore more options, and aim for a preview that actually meets the requirements of the Preview Feature process (JEP 12).
 
 # String Literals
 Currently (pre-Java 12), string literals in Java are in many cases unnecessarily hard to deal with and have some limitations.

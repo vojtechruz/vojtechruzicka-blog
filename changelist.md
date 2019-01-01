@@ -264,3 +264,4 @@ health:905 / 1000
 
 1.1.2019
 - Fixed RSS namespaces for webfeeds
+- updated article about raw strings that they don't make it to java 12
