@@ -261,3 +261,6 @@ health:905 / 1000
 
 31.12.
 - Updated serialversionUID article with sonar link
+
+1.1.2019
+- Fixed RSS namespaces for webfeeds

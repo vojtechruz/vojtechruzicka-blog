@@ -56,17 +56,31 @@ module.exports = {
           resolve: `gatsby-plugin-feed`,
           options: {
               query: `
-        {
-          site {
-            siteMetadata {
-              title
-              description
-              siteUrl
-              site_url: siteUrl
-            }
-          }
-        }
-      `,
+                {
+                  site {
+                    siteMetadata {
+                      title
+                      description
+                      siteUrl
+                      site_url: siteUrl
+                    }
+                  }
+                }
+              `,
+              setup: ({
+                      query: {
+                          site: { siteMetadata },
+                          ...rest
+                      },
+                    }) => {
+                  return {
+                      ...siteMetadata,
+                      ...rest,
+                      custom_namespaces: {
+                          "webfeeds": "http://webfeeds.org/rss/1.0"
+                      },
+                  }
+              },
               feeds: [
                   {
                       serialize: ({ query: { site, allMarkdownRemark } }) => {
@@ -75,9 +89,6 @@ module.exports = {
                                   description: edge.node.frontmatter.excerpt,
                                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                                  custom_namespaces: {
-                                      "webfeeds": "http://webfeeds.org/rss/1.0"
-                                  },
                                   custom_elements: [
                                       {"content:encoded": edge.node.html},
                                       {"webfeeds:logo": site.siteMetadata.siteUrl+"/favicon.svg"},
@@ -85,39 +96,39 @@ module.exports = {
                                       {"webfeeds:accentColor": "007acc"},
                                       {"webfeeds:analytics": "UA-76533683-1"},
                                       {"webfeeds:cover":
-                                              {_attr: {
-                                                image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.fluid.originalImg
-                                               }},
+                                          {_attr: {
+                                            image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                                           }},
                                       }
                                   ],
                               });
                           });
                       },
                       query: `
-            {
-              allMarkdownRemark(
-                sort: { order: DESC, fields: [frontmatter___date] },
-              ) {
-                edges {
-                  node {
-                    html
-                    fields { slug }
-                    frontmatter {
-                      excerpt
-                      title
-                      date
-                      featuredImage {
-                        childImageSharp {
-                            fluid(maxWidth: 1000) {
-                                originalImg
+                        {
+                          allMarkdownRemark(
+                            sort: { order: DESC, fields: [frontmatter___date] },
+                          ) {
+                            edges {
+                              node {
+                                html
+                                fields { slug }
+                                frontmatter {
+                                  excerpt
+                                  title
+                                  date
+                                  featuredImage {
+                                    childImageSharp {
+                                        fluid(maxWidth: 1000) {
+                                            originalImg
+                                        }
+                                    }
+                                  }
+                                }
+                              }
                             }
+                          }
                         }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           `,
                       output: "/feed",
                   },
