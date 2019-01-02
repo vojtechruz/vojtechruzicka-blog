@@ -10,7 +10,7 @@ excerpt: "Java finally brings support for raw strings. They can span multiple li
 
 ![Java Raw Strings](raw-strings.jpg)
 
-**UPDATE:** Raw string literals  [didn't make it to the Java 12](https://www.infoq.com/news/2018/12/jdk-12-new-features) and will be postponed and reworked.
+**UPDATE:** Raw string literals  [didn't make it to the Java 12](https://www.infoq.com/news/2018/12/jdk-12-new-features) and will be postponed and reworked:
 
 > We're of course disappointed that this means it will take slightly longer for this feature to make it into the language, but we think that's the best choice.
 >  
