@@ -45,7 +45,12 @@ const Tag = ({ pageContext, data }) => {
       <div className="tag-count">{tagHeader}</div>
       <ul>
         {edges.map(({ node }) => {
-          const { path, title } = node.frontmatter;
+          let { path, title } = node.frontmatter;
+
+          if(!path.endsWith("/")) {
+              path = path + "/"
+          }
+
           return (
             <li key={path}>
               <Link to={path}>{title}</Link>

@@ -66,9 +66,14 @@ class BlogPostTemplate extends React.Component {
           </p>
           <ul>
             {relatedPosts.map((post, index) => {
+              let path = post.node.frontmatter.path;
+              if(!path.endsWith("/")) {
+                path = path + "/";
+              }
+
               return (
-                <li key={post.node.frontmatter.path}>
-                  <Link to={post.node.frontmatter.path}>
+                <li key={path}>
+                  <Link to={path}>
                     {post.node.frontmatter.title}
                   </Link>
                 </li>
@@ -189,12 +194,6 @@ class BlogPostTemplate extends React.Component {
             >
               <FacebookIcon round size={shareIconSize} />
             </FacebookShareButton>
-            <GooglePlusShareButton
-              url={siteUrl + this.props.pageContext.slug}
-              additionalProps={{ "aria-label": "Google plus share button" }}
-            >
-              <GooglePlusIcon round size={shareIconSize} />
-            </GooglePlusShareButton>
             <TwitterShareButton
               url={siteUrl + this.props.pageContext.slug}
               additionalProps={{ "aria-label": "Twitter share button" }}

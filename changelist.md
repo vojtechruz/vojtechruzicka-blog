@@ -268,3 +268,5 @@ health:905 / 1000
 
 12.1.
 - https://vojtechruzicka.netlify.com now redirects to vojtechruzicka.com
+- converted urls to include trailing slash so netlify does not redirect 
+- removed gplus icons
