@@ -28,13 +28,13 @@ class BlogIndex extends React.Component {
     if (currentPage > 1) {
       let path = "/";
       if (currentPage > 2) {
-        path = "/pages/" + (currentPage - 1);
+        path = `/pages/${currentPage - 1}/`;
       }
       prevPage = <Link to={path}>« Previous page</Link>;
     }
 
     if (currentPage < pagesTotal) {
-      nextPage = <Link to={"/pages/" + (currentPage + 1)}>Next page »</Link>;
+      nextPage = <Link to={`/pages/${currentPage + 1}/`}>Next page »</Link>;
     }
     let pagesLinks = [];
     for (var i = 1; i <= pagesTotal; i++) {
@@ -53,7 +53,7 @@ class BlogIndex extends React.Component {
           );
         } else {
           pagesLinks.push(
-            <Link to={"/pages/" + i} key={"pg" + i}>
+            <Link to={`/pages/${i}/`} key={"pg" + i}>
               {i}
             </Link>
           );

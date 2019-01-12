@@ -17,8 +17,8 @@ class Navigation extends React.Component {
           </div>
           <div className="menu-items">
             <Link to="/">Home</Link>
-            <Link to="/archives">Archives</Link>
-            <Link to="/about">About me</Link>
+            <Link to="/archives/">Archives</Link>
+            <Link to="/about/">About me</Link>
             <SearchBox/>
           </div>
 

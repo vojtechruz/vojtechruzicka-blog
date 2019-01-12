@@ -39,7 +39,7 @@ const Tag = ({ pageContext, data }) => {
       <h1>#{tag}</h1>
       <ul className="tag-links">
         <li>
-          <Link to="/archives">Browse All Tags</Link>
+          <Link to="/archives/">Browse All Tags</Link>
         </li>
       </ul>
       <div className="tag-count">{tagHeader}</div>

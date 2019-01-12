@@ -174,6 +174,7 @@ module.exports = {
       },
       `gatsby-plugin-sitemap`,
       `gatsby-plugin-offline`,
+      `gatsby-plugin-force-trailing-slashes`,
       `gatsby-plugin-netlify`
   ],
 }
