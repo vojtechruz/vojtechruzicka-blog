@@ -10,6 +10,8 @@ excerpt: ''
 
 ![Spread](./spread-2.jpg)
 
+<!--
+
 Variable number of parameters
 	Arguments
 	Rest parameters
@@ -40,3 +42,9 @@ If we access the arguments object from an arrow function, it takes them from t
 Here’s an example:
 
 Pasted from <https://javascript.info/rest-parameters-spread-operator>
+
+Recent changes for generics in typescript:
+https://blogs.msdn.microsoft.com/typescript/2018/11/29/announcing-typescript-3-2/
+
+https://scotch.io/bar-talk/javascripts-three-dots-spread-vs-rest-operators543
+-->
