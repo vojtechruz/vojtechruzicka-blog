@@ -8,7 +8,6 @@ import Tags from "../components/Tags";
 import {Link} from "gatsby";
 import {
     FacebookShareButton,
-    GooglePlusShareButton,
     LinkedinShareButton,
     TwitterShareButton,
     RedditShareButton,
