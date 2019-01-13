@@ -1,6 +1,7 @@
 ---
 title: 'Java 10 – var – Local Variable Type Inference (JEP-286)'
 date: "2018-01-04T22:12:03.284Z"
+dateModified: "2018-12-16"
 tags: ['Java']
 path: '/java-10-var-local-variable-type-inference-jep-286'
 featuredImage: './local-variable-inference-java-10.jpg'

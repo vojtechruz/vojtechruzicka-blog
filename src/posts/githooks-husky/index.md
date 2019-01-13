@@ -1,6 +1,7 @@
 ---
 title: 'Easy git hooks with Husky'
 date: "2018-06-21T22:12:03.284Z"
+dateModified: "2018-10-11"
 tags: ['Git']
 path: '/githooks-husky'
 featuredImage: './husky.jpg'

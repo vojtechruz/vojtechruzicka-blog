@@ -270,3 +270,7 @@ health:905 / 1000
 - https://vojtechruzicka.netlify.com now redirects to vojtechruzicka.com
 - converted urls to include trailing slash so netlify does not redirect 
 - removed gplus icons
+
+13.1.
+- Added support for last modified date
+- Added support for json ld structured data

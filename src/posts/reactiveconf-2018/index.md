@@ -1,6 +1,7 @@
 ---
 title: 'Reactive Conf 2018: My volunteering experience'
 date: "2018-11-09T22:12:03.284Z"
+dateModified: "2018-12-21"
 tags: ['Javascript']
 path: '/reactiveconf-2018'
 featuredImage: './reactive-conf-1.jpg'

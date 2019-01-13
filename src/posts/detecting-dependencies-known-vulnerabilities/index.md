@@ -1,6 +1,7 @@
 ---
 title: 'Detecting dependencies with known vulnerabilities   '
 date: "2017-03-23T22:12:03.284Z"
+dateModified: "2018-12-16"
 tags: ['Java', 'Security']
 path: '/detecting-dependencies-known-vulnerabilities'
 featuredImage: './dc-large.png'

@@ -164,12 +164,13 @@ class BlogPostTemplate extends React.Component {
                         "https://twitter.com/vojtechruzicka"
                     ]
                 },
-
-                // "alternativeHeadline": "and the women who love them",
-                // "genre": "search engine optimization",
-                // "keywords": "seo sales b2b",
             }
         ];
+
+        let lastUpdated;
+        if(post.frontmatter.dateModified) {
+            lastUpdated = (<div>Last Updated: {dateModified}</div>);
+        }
 
         return (
             <Layout>
@@ -218,8 +219,9 @@ class BlogPostTemplate extends React.Component {
                             marginTop: rhythm(-1)
                         }}
                     >
-                        {post.frontmatter.date}
+                        <span className="date-published">{post.frontmatter.date}</span>
                         <Tags tags={post.frontmatter.tags}/>
+                        {lastUpdated}
                     </div>
                     <div dangerouslySetInnerHTML={{__html: post.html}}/>
                 </div>
@@ -312,7 +314,8 @@ export const pageQuery = graphql`
       frontmatter {
         excerpt
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
+        dateModified(formatString: "MMM DD, YYYY")
         tags
         featuredImage {
           childImageSharp {

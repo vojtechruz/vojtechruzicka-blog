@@ -15,6 +15,7 @@ a:hover {
 .post-tags {
   list-style: none;
   display: inline;
+  font-weight: 500;
 
   ul {
     margin-left: 0;
@@ -276,4 +277,8 @@ body {
 
 .search-box-container {
   white-space: nowrap;
+}
+
+.date-published {
+  font-weight: 500;
 }

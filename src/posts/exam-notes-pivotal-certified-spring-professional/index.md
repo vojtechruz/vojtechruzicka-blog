@@ -1,6 +1,7 @@
 ---
 title: 'Exam Notes – Pivotal Certified Spring Professional'
 date: "2016-10-24T22:12:03.284Z"
+dateModified: "2018-07-12"
 tags: ['Java', 'Spring', 'Career']
 path: '/exam-notes-pivotal-certified-spring-professional'
 featuredImage: './spring-core.jpg'
