@@ -24,6 +24,7 @@ const ArchivesPage = ({
       <meta property="og:url" content={siteUrl + "/archives/"} />
       <meta property="og:site_name" content={title} />
       <meta property="og:type" content="website" />
+      <meta property="og:locale" content="en_US" />
       <meta property="fb:app_id" content="2072264049710958" />
 
       <meta name="twitter:creator" content="@vojtechruzicka" />

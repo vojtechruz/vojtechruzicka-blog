@@ -188,6 +188,7 @@ class BlogPostTemplate extends React.Component {
                     <meta property="og:url" content={url}/>
                     <meta property="og:site_name" content={siteTitle}/>
                     <meta property="og:type" content="article"/>
+                    <meta property="og:locale" content="en_US" />
                     <meta property="fb:app_id" content="2072264049710958"/>
 
                     <meta name="twitter:creator" content="@vojtechruzicka"/>
