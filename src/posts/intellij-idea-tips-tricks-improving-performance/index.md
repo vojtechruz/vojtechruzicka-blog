@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Improving performance'
 date: "2017-08-01T22:12:03.284Z"
+dateModified: "2019-01-14"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-improving-performance'
 featuredImage: './intellij-idea-slow.jpg'
@@ -78,6 +79,14 @@ There are two options related to this feature in *Settings → Appearance & Beh
 
 -   Synchronize files on frame or editor tab activation
 -   Save files on frame deactivation
+
+UPDATE: Activity Monitor
+-----------
+Since version 2018.3, IDEA allows you to run Activity Monitor, which shows you in the real time how much % of CPU are various subsystems and plugins consuming. This works for both built-in and additionally installed plugins. It can help you troubleshoot performance issues.
+
+You can access the monitor from `Help → Activity Monitor...`.
+
+![Activity Monitor](./activity-monitor.png)
 
 Still Slow?
 -----------

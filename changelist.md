@@ -274,3 +274,6 @@ health:905 / 1000
 13.1.
 - Added support for last modified date
 - Added support for json ld structured data
+
+14.1.
+- Updated IDEA performance article with the new Activity Monitor
