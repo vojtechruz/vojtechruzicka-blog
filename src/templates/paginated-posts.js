@@ -24,20 +24,25 @@ class BlogIndex extends React.Component {
 
     let nextPage;
     let prevPage;
+    let nextPageHeaderLink;
+    let prevPageHeaderLink;
 
     if (currentPage > 1) {
-      let path = "/";
+      let prevPagePath = "/";
       if (currentPage > 2) {
-        path = `/pages/${currentPage - 1}/`;
+        prevPagePath = `/pages/${currentPage - 1}/`;
       }
-      prevPage = <Link to={path}>« Previous page</Link>;
+      prevPage = <Link to={prevPagePath}>« Previous page</Link>;
+      prevPageHeaderLink = <link rel="prev" href={siteUrl + prevPagePath} />
     }
 
     if (currentPage < pagesTotal) {
-      nextPage = <Link to={`/pages/${currentPage + 1}/`}>Next page »</Link>;
+      const nextPagePath = `/pages/${currentPage + 1}/`;
+      nextPage = <Link to={nextPagePath}>Next page »</Link>;
+      nextPageHeaderLink = <link rel="next" href={siteUrl + nextPagePath} />
     }
     let pagesLinks = [];
-    for (var i = 1; i <= pagesTotal; i++) {
+    for (let i = 1; i <= pagesTotal; i++) {
       if (i === currentPage) {
         pagesLinks.push(
           <span className="current-page" key={"pg" + i}>
@@ -80,6 +85,8 @@ class BlogIndex extends React.Component {
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:title" content={siteTitle} />
           <meta name="twitter:description" content={siteDescription} />
+          {prevPageHeaderLink}
+          {nextPageHeaderLink}
         </Helmet>
         {posts.map(({ node }) => {
           const title = get(node, "frontmatter.title") || node.fields.slug;

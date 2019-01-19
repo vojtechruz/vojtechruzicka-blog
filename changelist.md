@@ -277,3 +277,6 @@ health:905 / 1000
 
 14.1.
 - Updated IDEA performance article with the new Activity Monitor
+
+19.1.
+- Added pagination head attributes prev and next for main page
