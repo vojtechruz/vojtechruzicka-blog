@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Testing REST services with integrated HTTP Client'
 date: "2018-01-17T22:12:03.284Z"
+dateModified: "2019-01-20"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
@@ -21,7 +22,7 @@ The Old Way - Test RESTFul Web Service
 
 This feature has been in IDEA for quite some time. You can access the REST client by going to:
 
-```json
+```
  Tools → HTTP Client → Test Restful Web Service
 ```
 
@@ -52,7 +53,7 @@ Even though the REST client is no doubt useful, it has some shortcomings. It is 
 
 ### Getting started
 
-The easiest way to start is just to add a file with *.http* extension to your project. The name does not matter, just the extension. Alternatively, you can right-click a directory and select *New → HTTP Request*. This file will be a source file for the new Editor-based HTTP client. Since it is an ordinary file, it will persist between IDE starts, no need to export/import XML files as before. Moreover, it can be shared with other devs or committed to version control.
+The easiest way to start is just to add a file with `.http` extension to your project. The name does not matter, just the extension. Alternatively, you can right-click a directory and select `New → HTTP Request`. This file will be a source file for the new Editor-based HTTP client. Since it is an ordinary file, it will persist between IDE starts, no need to export/import XML files as before. Moreover, it can be shared with other devs or committed to version control.
 
 Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press *Ctrl + Shift + Alt + Insert* to open the *New Scratch file* dialog. Then select *HTTP Request*.
 
@@ -116,7 +117,7 @@ Your application is usually deployed in multiple environments. You start develop
 
 IDEA allows you to reuse the same requests among multiple environments by specifying environmental variables and then using placeholders for the variables. Then it is really easy to switch between environments.
 
-The environments and their variables are defined in a file called *rest-client.env.json*. It is not supplied by default, so you need to create one. Bellow is the example of three environments with different host variable.
+The environments and their variables are defined in a file called `rest-client.env.json`. It is not supplied by default, so you need to create one. Bellow is the example of three environments with different host variable.
 
 ```json
 {
@@ -144,12 +145,12 @@ You can run specific configuration by right-clicking the run icon in the gutter:
 
 ### HTTP Proxy
 
-In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under *Appearance & Behavior → System Settings → HTTP Proxy*.
+In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
 
 History
 -------
 
-What's cool is that IDEA automatically stores the history of all the requests you performed (up to 50 items). It is available from *Tools → Show HTTP Requests history*. What it actually does is that it opens a file called http*-requests-log.http* in *.idea/httpRequests* folder. It can look something like this:
+What's cool is that IDEA automatically stores the history of all the requests you performed (up to 50 items). It is available from `Tools → HTTP Client → Show HTTP Requests history`. What it actually does is that it opens a file called `http-requests-log.http` in `.idea/httpRequests` folder. It can look something like this:
 
 ```json
 POST http://localhost:8090/persons/add
