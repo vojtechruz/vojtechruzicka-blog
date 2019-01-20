@@ -1,12 +1,12 @@
 ---
-title: 'IntelliJ IDEA Tips & Tricks: Testing REST services with integrated HTTP Client'
+title: 'IntelliJ IDEA integrated HTTP Client'
 date: "2018-01-17T22:12:03.284Z"
 dateModified: "2019-01-20"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
 disqusArticleIdentifier: '1389 http://vojtechruzicka.com/?p=1389'
-excerpt: 'It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.'
+excerpt: 'IntelliJ IDEA offers two integrated HTTP clients to test your REST services directly from your IDE.'
 ---
 ![testing restful web services idea](./IntelliJIDEA_icon.png)
 
@@ -24,7 +24,7 @@ This feature has been in IDEA for quite some time. You can access the REST clien
  Tools → HTTP Client → Test Restful Web Service
 ```
 
-This will open a new tool window called REST client.
+This opens a new tool window called REST client.
 
 ![idea-rest-client](./idea-rest-client.png)
 
@@ -109,15 +109,15 @@ Content-Type: application/json
 < person.json
 ```
 
-Note that IDEA will help you with autocomplete for both existing files for body and HTTP Headers. What's more, if you specify content type and the body of the request, IDEA automatically treats the request body as if it was written in that language. That means if you choose XML for example, it will check validity, autocomplete tags for you and all the other language-specific features available in the editor. Also, you can include comments in the file using \#. It is useful for documenting some special HTTP headers or parameters for example.
+Note that IDEA does help you with autocomplete for both existing files for body and HTTP Headers. What's more, if you specify content type and the body of the request, IDEA automatically treats the request body as if it was written in that language. That means if you choose XML for example, it does check validity, autocomplete tags for you and all the other language-specific features available in the editor. Also, you can include comments in the file using \#. It is useful for documenting some special HTTP headers or parameters for example.
 
 ### Environmental variables
 
-Your application is usually deployed in multiple environments. You start developing locally, then it gets deployed to Development Environment, UAT and eventually Production. The names and number of the environments can vary, but what is certain is there is more than one. When using HTTP client, the requests are usually almost identical among the environments, except for several environment-specific variables, such as URL.
+Your application is usually deployed to multiple environments. You start developing locally, then it gets deployed to a Development Environment, UAT and eventually Production. The names and number of the environments can vary, but what is certain is there is more than one. When using HTTP client, the requests are usually almost identical among the environments, except for several environment-specific variables, such as URL.
 
 IDEA allows you to reuse the same requests among multiple environments by specifying environmental variables and then using placeholders for the variables. Then it is really easy to switch between environments.
 
-The environments and their variables are defined in a file called `rest-client.env.json`. It is not supplied by default, so you need to create one. Bellow is the example of three environments with different host variable.
+The environments and their variables are defined in a file called `rest-client.env.json`. It is not supplied by default, so you need to create one. Bellow is an example of three environments with different host variable.
 
 ```json
 {
@@ -139,12 +139,12 @@ In your HTTP Requests file (even scratch) you can then reference variables surro
 GET http://{{host}}:8090/persons/all/
 ```
 
-You can run specific configuration by right-clicking the run icon in the gutter: 
+You can run a specific configuration by right-clicking the run icon in the gutter: 
 
 ![Run Environments](./run-environments.png)
 
 ### Live templates
-[Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press *Tab* key, IDEA expands it to a code snippet. For example you can exapand `sout` to `System.out.println()`. There is a number of existing templates and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
+[Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press *Tab* key, IDEA expands it to a code snippet. For example you can expand `sout` to `System.out.println()`. There is a number of existing templates, and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
 
 ![Live Template example](./idea-http-client-live-template.gif)
 
@@ -172,7 +172,7 @@ client.test("Request executed successfully", function() {
 
 As you can see, you write your tests in JavaScript, to be more precise ECMAScript 5.1. You can use IDEA's bunded library, which exposes you two basic entities you can work with - [client](https://www.jetbrains.com/help/idea/http-client-reference.html) and [response](https://www.jetbrains.com/help/idea/http-response-reference.html).
 
-You can write your own JavaScript, but mostly you'll be probably testing properties of the response such as `status`, `headers`, `body` or `contentType`.
+You can write your own JavaScript, but mostly you'll be probably testing the properties of the response such as `status`, `headers`, `body` or `contentType`.
 
 ```javascript
 GET https://www.vojtechruzicka.com/
@@ -190,7 +190,7 @@ client.test("Request executed successfully", function() {
 ```
 
 ### Preserving data between requests
-In some cases it can be useful to save some information to be used in the subsequent requests. For example, let's assume server provides you with auth token you need to send back with your future requests. You can use scripting and the `client` object to store data in a global variable and [retrieve it later](https://www.jetbrains.com/help/idea/http-response-handling-examples.html).
+In some cases, it can be useful to save some information to be used in the subsequent requests. For example, let's assume server provides you with auth token you need to send back with your future requests. You can use scripting and the `client` object to store data in a global variable and [retrieve it later](https://www.jetbrains.com/help/idea/http-response-handling-examples.html).
 
 In short, you save a variable by `client.global.set("variableName", variableValue)` and then later you can reference it using `{variableName}`:
 
