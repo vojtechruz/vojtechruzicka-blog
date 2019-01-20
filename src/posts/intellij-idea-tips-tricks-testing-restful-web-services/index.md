@@ -189,6 +189,28 @@ client.test("Request executed successfully", function() {
 %}
 ```
 
+### Preserving data between requests
+In some cases it can be useful to save some information to be used in the subsequent requests. For example, let's assume server provides you with auth token you need to send back with your future requests. You can use scripting and the `client` object to store data in a global variable and [retrieve it later](https://www.jetbrains.com/help/idea/http-response-handling-examples.html).
+
+In short, you save a variable by `client.global.set("variableName", variableValue)` and then later you can reference it using `{variableName}`:
+
+```javascript{9,14}
+GET https://www.example.com/auth
+Content-Type: application/json
+
+{
+    "token": "secret-token"
+}
+
+> {%
+client.global.set("token", response.body.json.token);
+
+%}
+
+GET https://www.example.com/foo
+Authorization: Bearer {{token}}
+```
+
 ## HTTP Proxy
 
 In case you need HTTP proxy for your calls, both clients share proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
