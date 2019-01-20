@@ -143,9 +143,23 @@ You can run specific configuration by right-clicking the run icon in the gutter:
 
 ![Run Environments](./run-environments.png)
 
-### HTTP Proxy
+### Live templates
+[Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press *Tab* key, IDEA expands it to a code snippet. For example you can exapand `sout` to `System.out.println()`. There is a number of existing templates and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
 
-In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
+![Live Template example](./idea-http-client-live-template.gif)
+
+|Template|Usage    |
+|--------|---------|
+|gtr     |GET Request|
+|gtrp    |GET Request with query parameters|
+|ptr     |POST Request with simple body|
+|ptrp    |Post Request with parameter-like body|
+|mptr    |Post Request to submit a form|
+|fptr    |Post Request to submit a form with a file|
+
+## HTTP Proxy
+
+In case you need HTTP proxy for your calls, both clients share proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
 
 ## History
 
