@@ -54,7 +54,7 @@ The easiest way to start is just to add a file with `.http` extension to your pr
 
 Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press *Ctrl + Shift + Alt + Insert* to open the *New Scratch file* dialog. Then select *HTTP Request*. No matter which variant you use, the usage will be the same, only the persistence of the file is different.
 
-To make your start with REST client as smooth as possible, as of version 2018.1, you can access several pre-made templates filled with example requests by accessing `Tools → HTTP Client → Open HTTP Requests Collection`. Still, this opens the same REST client, it just provides you with some examples already pre-filled.
+To make your start with REST client as smooth as possible, as of version 2018.1, you can access several pre-made templates filled with example requests by accessing `Tools → HTTP Client → Open HTTP Requests Collection`. 
 
 ![Open HTTP Requests Collection](./idea-open-http-requests-collection.png)
 
@@ -156,6 +156,38 @@ You can run specific configuration by right-clicking the run icon in the gutter:
 |ptrp    |Post Request with parameter-like body|
 |mptr    |Post Request to submit a form|
 |fptr    |Post Request to submit a form with a file|
+
+### Testing Responses 
+In addition to performing requests and checking responses, IDEA offers a simple "test framework" so you can check the response with various assertions such as expected status code.
+
+```javascript
+GET https://www.vojtechruzicka.com/
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}
+```
+
+As you can see, you write your tests in JavaScript, to be more precise ECMAScript 5.1. You can use IDEA's bunded library, which exposes you two basic entities you can work with - [client](https://www.jetbrains.com/help/idea/http-client-reference.html) and [response](https://www.jetbrains.com/help/idea/http-response-reference.html).
+
+You can write your own JavaScript, but mostly you'll be probably testing properties of the response such as `status`, `headers`, `body` or `contentType`.
+
+```javascript
+GET https://www.vojtechruzicka.com/
+
+> {%
+client.test("Request executed successfully", function() {
+  client.log("Look, I can log!");
+  client.assert(response.status === 200, "Response status is not 200");
+  client.assert(response.contentType.charset === "UTF-8", "Unexpected content type - charset");
+  client.assert(response.contentType.mimeType === "text/html", "Unexpected content type - MIME type");
+  client.assert(response.headers.valueOf("x-frame-options") === "DENY", "Frame options not set to DENY");
+  client.assert(response.body.indexOf("Vojtech") !== -1, "Expected body to contain 'Vojtech'");
+});
+%}
+```
 
 ## HTTP Proxy
 
