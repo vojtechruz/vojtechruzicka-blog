@@ -12,13 +12,11 @@ excerpt: 'It is often useful to be able to send HTTP requests directly from your
 
 It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.
 
-Integrated HTTP Client
-----------------------
+## Integrated HTTP Client
 
 You often need to call an HTTP endpoint and examine the response received. In more complicated scenarios you need to use various HTTP methods, send HTTP Headers or cookies. While there are many dedicated programs just for this, IDEA offers this feature out of the box, which is much more convenient. The IDE actually offers two main ways to do so.
 
-The Old Way - Test RESTFul Web Service
---------------------------------------
+## The Old Way - Test RESTFul Web Service
 
 This feature has been in IDEA for quite some time. You can access the REST client by going to:
 
@@ -46,8 +44,7 @@ And that\'s pretty much it. On top of this, the client offers some additional fe
 -   Integration with JAX-RS - IDEA can detect your @Path annotations and offer them in the path field, so you don\'t have to manually search for the value.
 -   Code completion for common HTTP headers.
 
-The New Way - Using Http Request File
--------------------------------------
+## The New Way - Using Http Request File
 
 Even though the REST client is no doubt useful, it has some shortcomings. It is quite cumbersome to add values such as cookies or HTTP headers. You have to do a lot of clicking and moving around before you create a request. In IntelliJ IDEA 2017.3, there is a new way to send HTTP requests, which is simpler and yet more powerful. It is HTTP Request file and it uses HTTP client directly in the Editor window.
 
@@ -55,9 +52,12 @@ Even though the REST client is no doubt useful, it has some shortcomings. It is 
 
 The easiest way to start is just to add a file with `.http` extension to your project. The name does not matter, just the extension. Alternatively, you can right-click a directory and select `New → HTTP Request`. This file will be a source file for the new Editor-based HTTP client. Since it is an ordinary file, it will persist between IDE starts, no need to export/import XML files as before. Moreover, it can be shared with other devs or committed to version control.
 
-Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press *Ctrl + Shift + Alt + Insert* to open the *New Scratch file* dialog. Then select *HTTP Request*.
+Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press *Ctrl + Shift + Alt + Insert* to open the *New Scratch file* dialog. Then select *HTTP Request*. No matter which variant you use, the usage will be the same, only the persistence of the file is different.
 
-No matter which variant you use, the usage will be the same, only the persistence of the file is different.
+To make your start with REST client as smooth as possible, as of version 2018.1, you can access several pre-made templates filled with example requests by accessing `Tools → HTTP Client → Open HTTP Requests Collection`. Still, this opens the same REST client, it just provides you with some examples already pre-filled.
+
+![Open HTTP Requests Collection](./idea-open-http-requests-collection.png)
+
 
 ### A simple request
 
@@ -147,8 +147,7 @@ You can run specific configuration by right-clicking the run icon in the gutter:
 
 In case you need HTTP proxy for your calls, the client shared proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
 
-History
--------
+## History
 
 What's cool is that IDEA automatically stores the history of all the requests you performed (up to 50 items). It is available from `Tools → HTTP Client → Show HTTP Requests history`. What it actually does is that it opens a file called `http-requests-log.http` in `.idea/httpRequests` folder. It can look something like this:
 
@@ -169,13 +168,12 @@ GET http://localhost:8090/persons/all
 ###
 ```
 
-The really nice thing is that it is just another *.http* file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by *CTRL+Click*. Actually, the same response information is also shown in scratch files, but not in physical *.http* files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
+The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by *CTRL + Click*. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
 
 ![compare](./compare.png)
 
 It is nice that the same history and log are used both for the new editor based HTTP Request files and the old REST Client, which runs in a separate tool window.
 
-Conclusion
-----------
+## Conclusion
 
-IDEA's integrated HTTP client capabilities are now stronger than ever with the new HTTP Request files. What's so cool about them is the fact that it is not an HTTP client in a separate tool window with various tabs, text-fields, and buttons, but everything happens directly in the Editor window. That means you get all the goodies such as autocomplete or language injection. And it is much simpler and quicker to use as you don't have to navigate a complicated UI. That means that it is much easier to use it with keyboard only also. This is the state as of IDEA 2017.3, according to the JetBrains, we have many more features to look forward to in the future releases.
+IDEA's integrated HTTP client capabilities are now stronger than ever with the new HTTP Request files. What's so cool about them is the fact that it is not an HTTP client in a separate tool window with various tabs, text-fields, and buttons, but everything happens directly in the Editor window. That means you get all the goodies such as autocomplete or language injection. And it is much simpler and quicker to use as you don't have to navigate a complicated UI. That means that it is much easier to use it with keyboard only also. This is the state as of IDEA 2018.1, according to the JetBrains, we have many more features to look forward to in the future releases.
