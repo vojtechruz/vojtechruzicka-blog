@@ -139,7 +139,7 @@ In your HTTP Requests file (even scratch) you can then reference variables surro
 GET http://{{host}}:8090/persons/all/
 ```
 
-You can run a specific configuration by right-clicking the run icon in the gutter: 
+You can run a specific configuration by clicking the run icon in the gutter: 
 
 ![Run Environments](./run-environments.png)
 
