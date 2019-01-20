@@ -44,10 +44,10 @@
   },
   "devDependencies": {
     "core-js": "^2.6.2",
-    "eslint": "^5.12.0",
-    "eslint-plugin-react": "^7.12.3",
+    "eslint": "^5.12.1",
+    "eslint-plugin-react": "^7.12.4",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
-    "prettier": "^1.15.3"
+    "prettier": "^1.16.0"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
