@@ -34,7 +34,10 @@ class BlogPostTemplate extends React.Component {
         const shareIconSize = 32;
 
         const disqusShortname = "vojtech-ruzickas-programming-blog";
-        const url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
+        let url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
+        if(!url.endsWith("/")) {
+            url = url + "/";
+        }
         let disqusArticleIdentifier;
         if (post.frontmatter.disqusArticleIdentifier) {
             disqusArticleIdentifier = post.frontmatter.disqusArticleIdentifier;
