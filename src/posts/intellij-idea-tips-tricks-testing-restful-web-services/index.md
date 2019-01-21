@@ -211,6 +211,17 @@ GET https://www.example.com/foo
 Authorization: Bearer {{token}}
 ```
 
+### Spring Boot Integration
+Since version 2018.2, IDEA's HTTP Client offers Spring Boot Integration. That is, as long as you have [Spring Boot Actuator](https://www.vojtechruzicka.com/spring-boot-actuator/) dependency.
+
+In such case, you can call endpoints of your application directly from your @Controller classes. Just click the green arrow icon next to your endpoint:
+
+![Spring Boot Controller Integration](./spring-run-http-request.png)
+
+Additionally, IDEA shows a list of all endpoint mappings in the Run/Debug tab under `Endpoints → Mappings` from there you can execute requests and open HTTP client as well.
+
+![Spring Boot Endpoints](./spring-endpoints.png)
+
 ## HTTP Proxy
 
 In case you need HTTP proxy for your calls, both clients share proxy settings of the whole IDE, which can be configured under `Appearance & Behavior → System Settings → HTTP Proxy`.
