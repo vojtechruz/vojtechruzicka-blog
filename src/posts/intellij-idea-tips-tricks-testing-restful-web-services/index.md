@@ -111,6 +111,36 @@ Content-Type: application/json
 
 Note that IDEA does help you with autocomplete for both existing files for body and HTTP Headers. What's more, if you specify content type and the body of the request, IDEA automatically treats the request body as if it was written in that language. That means if you choose XML for example, it does check validity, autocomplete tags for you and all the other language-specific features available in the editor. Also, you can include comments in the file using \#. It is useful for documenting some special HTTP headers or parameters for example.
 
+### File upload
+The following example shows sending a form with some text fields and a file to be uploaded.
+
+```
+### Send a form with the text and file fields
+POST https://httpbin.org/post
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+# First text field
+Content-Disposition: form-data; name="first-element-name"
+Content-Type: text/plain
+
+First Element Value
+--WebAppBoundary
+# Second text field
+Content-Disposition: form-data; name="second-element-name"
+Content-Type: text/plain
+
+Second Element Value
+--WebAppBoundary
+# File upload
+Content-Disposition: form-data; name="data"; filename="data.json"
+Content-Type: application/json
+
+# Here you specify file to upload
+< C:\data.json
+--WebAppBoundary--
+```
+
 ### Environmental variables
 
 Your application is usually deployed to multiple environments. You start developing locally, then it gets deployed to a Development Environment, UAT and eventually Production. The names and number of the environments can vary, but what is certain is there is more than one. When using HTTP client, the requests are usually almost identical among the environments, except for several environment-specific variables, such as URL.
