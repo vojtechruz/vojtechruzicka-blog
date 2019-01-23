@@ -1,5 +1,5 @@
 ---
-title: 'Web Page Audit with Chrome Developer Tools and Lighthouse'
+title: 'Lighthouse: Web Page Audit with Chrome Developer Tools'
 date: "2018-01-22T22:12:03.284Z"
 dateModified: "2019-01-23"
 tags: ['Chrome']
