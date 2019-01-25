@@ -47,4 +47,6 @@ Recent changes for generics in typescript:
 https://blogs.msdn.microsoft.com/typescript/2018/11/29/announcing-typescript-3-2/
 
 https://scotch.io/bar-talk/javascripts-three-dots-spread-vs-rest-operators543
+
+https://css-tricks.com/new-es2018-features-every-javascript-developer-should-know/
 -->
