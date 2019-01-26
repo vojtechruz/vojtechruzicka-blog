@@ -1,5 +1,5 @@
 ---
-title: 'Javascript rest parameters and spread operator (...)'
+title: 'Javascript spread operator and rest parameters (...)'
 date: "2019-01-26T22:12:03.284Z"
 tags: ['Javascript']
 path: '/spread-javascript'
@@ -8,20 +8,20 @@ disqusArticleIdentifier: '99010 http://vojtechruzicka.com/?p=99010'
 excerpt: ''
 ---
 
-![Spread](./spread-2.jpg)
+![Spread](spread-2.jpg)
 
 ## Variable number of parameters
 Usually when working with functions in JavaScript, there is a fixed number of parameters your function uses and supports. If you want to calculate square root of a number using `Math.sqrt(x)` you need always just one parameter for input. Some functions may require more parameters. Some functions have more parameters but you can safely omit last few optional parameters. In all these cases, all the parameters are declared as a part of the function signature:
 
 ```
 function doSomething(first, second, third) { 
-    
+    // Do something cool
 }
 ```
 
 But what if the number of parameters is not know beforehand and can be pretty much anything?
 
-For example, let's take `Math.min()` and `Math.max()`. It does work for any number or arguments no matter whether it is 0, 2 or 30.
+For example, let's take `Math.min()` and `Math.max()`. It does work for any number or parameters no matter whether it is 0, 2 or 30.
 
 ```
 Math.Min(); // Infinity
@@ -48,18 +48,45 @@ doSomething("A","B","C");
 ```
 
 ### Arguments limitations
-`arguments` object is array-like, not a full fledged array though. That means that useful methods, which arrays have are not available. You cannot use methods such as `arguments.map()`, `arguments.filter()`. The only property you have is `length`.
+`arguments` object is array-like, not a full fledged array though. That means that useful methods, which arrays have are not available. You cannot use methods such as `arguments.sort()`, `arguments.map()` or `arguments.filter()`. The only property you have is `length`.
 
 Another limitation is that fat-arrow functions don't have `arguments` object available. In case you would use arguments in arrow function, it would refer to the arguments of the enclosing function.
 
 ## Rest Parameters
 
+// TODO
+
+Unlike `arguments` object, rest parameters give you a real array, so you can use all the array-specific methods. And unlike `arguments`, they do work in arrow functions.
+
+```javascript
+let doSomething = (...rest) => {
+    rest[0]; // Can access the first argument
+};
+
+let doSomething = () => {
+    arguments[0]; // Arrow functions don't have arguments
+};
+```
+
+### Limitations
+
+Rest parameters take all the remaining arguments of a function and package them in an array. That naturally brings two limitations. You can use them max once in a function, multiple rest parameters are not allowed.
+
+```javascript
+// This is not valid, multiple rest parameters
+function doSomething(first, ...second, ...third) {
+}
+``` 
+
+And you can use rest parameters only as a last parameter of a function:
+
+```javascript
+// This is not valid, rest parameters not last
+function doSomething(first, ...second, third) {
+}
+``` 
 
 <!--
-
-Variable number of parameters
-	Arguments
-	Rest parameters
 
 Spread operator
 	Function calls
