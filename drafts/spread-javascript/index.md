@@ -181,25 +181,43 @@ Sometimes it is also useful to create a copy of the existing array with the same
 var original = [1,2,3];
 var copy = [...original];
 ```
-<!--
-Spread operator
-	destructuring
-	String creation (iterables)
 
+### Object literals
+Very similar to array literals is usage of spread operator in object creation with object literals. You can take properties of another object and include them in a new object created by object literal. This is available since ES2018.
 
+```javascript
+let firstObject = {a: 1, b: 2};
 
-https://codingwithspike.wordpress.com/2016/06/11/javascript-rest-spread-operators/
-https://www.smashingmagazine.com/2016/07/how-to-use-arguments-and-parameters-in-ecmascript-6/
+let secondObject = {...firstObject, c: 3, d: 4};
 
-Creating objects with values from a string can be very useful as well:
-const string = 'abcde';
-const obj = { ...string };
-// {0: "a", 1: "b", 2: "c", 3: "d", 4: "e"}
+console.log(secondObject); // { a: 1, b: 2, c: 3, d: 4 }
+```
 
-https://davidwalsh.name/spread-operator
+Be aware that spread takes only own (not inherited) and enumerable properties of an object, other properties are ignored.
 
-Recent changes for generics in typescript:
-https://blogs.msdn.microsoft.com/typescript/2018/11/29/announcing-typescript-3-2/
+#### Shallow copy
+The use cases are pretty much same as with arrays. You can also merge and clone objects. 
 
-https://css-tricks.com/new-es2018-features-every-javascript-developer-should-know/
--->
+```javascript
+let clone = {...original};
+```
+
+This can be a nice alternative to cloning objects using `Object.assign()`.  Note that it is a shallow copy. New object is created but the cloned properties are still the original.
+
+#### Prototype lost
+When cloning an object using the approach above, be aware that the prototype of the original object is not preserved. It just copies properties of the object and creates a brand new object using object literal, which has prototype of `Object.prototype`.
+
+#### Property conflicts 
+What happens though when you introduce property with spread operator which already exists in the object? This does not result in error. If there are multiple object properties with the same name and different values, the latest one wins.
+
+```javascript
+let firstObject = {a: 1};
+let secondObject = {a: 2};
+
+let mergedObject = {...firstObject, ...secondObject};
+// a: 2 is after a: 1 so it wins
+console.log(mergedObject); // { a: 2 }
+```
+
+## Destructuring
+TODO
