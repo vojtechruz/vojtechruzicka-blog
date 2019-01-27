@@ -178,7 +178,7 @@ let mergedArray = [...firstArray, ...secondArray, ...thirdArray];
 Sometimes it is also useful to create a copy of the existing array with the same items as original. It is easy with spread operator.
 
 ```javascript
-var original = [1,2,3];
+var original = [1, 2, 3];
 var copy = [...original];
 ```
 
@@ -235,5 +235,58 @@ let updated = {...original, someProperty: "newValue"};
 Because the original object contains `someProperty` and it is then used once more, the last usage wins and the new value will be used. Original object will not be changed in any way and new object will be created.
 
 
-## Destructuring
-TODO
+## Destructuring assignment
+In short, destructuring assinment is a way to assign properties of objects or values from arrays to distinct variables.
+
+### Array destructuring
+Lets assume we have an array with three items and we want to assign these items into three separate variables.
+
+```javascript
+let myArray = [1, 2, 3];
+let a,b,c; // We want to assign a=1, b=2, c=3
+```
+
+Ths can be done easily by array destructuring assignment like this:
+
+```javascript
+let myArray = [1,2,3];
+let [a, b, c] = myArray;
+
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+```
+
+But how is this connected to the three dots syntax? Remember rest parameters? In the same way all the remaining arguments are packed into and array, we can assign all the remaining items in the array into a new array variable:
+
+```javascript
+let myArray = [1, 2, 3, 4, 5];
+let [a, b, c, ...d] = myArray;
+
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+console.log(d); // [4, 5]
+```
+
+### Object destructuring
+Object destructuring is very similar to array destructuring. The name of each variable matches name of a property from the destructured object.
+
+```javascript
+let myObject = { a: 1, b: 2, c: 3, d: 4};
+let {b, d} = myObject;
+
+console.log(b); // 2
+console.log(d); // 4
+```
+
+And similar to arrays, you can also use `...` to collect all the remaining properties, which were not assigned to a variable to a brand new object:
+
+```javascript
+let myObject = { a: 1, b: 2, c: 3, d: 4};
+let {b, d, ...remaining} = myObject;
+
+console.log(b); // 2
+console.log(d); // 4
+console.log(remaining); // { a: 1, c: 3 }
+```
