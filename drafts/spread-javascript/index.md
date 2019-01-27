@@ -113,11 +113,50 @@ function doSomething(first, ...second, third) {
 Whats a little bit confusing that the same three dots `...` used in JavaScript for the rest parameters are used also for an additional purpose. It is called `spread operator`. Its usage is almost the opposite of rest parameters. Instead of collecting multiple values in one array, it lets you expand existing one array (or other iterable) into multiple values. Lets look at various use cases.
 
 ### Function calls
+Lets assume we have an array with three items and a function, which required three input parameters.
 
+```javascript
+let myArray = [1, 2, 3];
+
+function doSomething(first, second, third) {
+}
+```
+
+How do you pass three values in our array as a three separate arguments to the `doSomething()` function? A naive approach would be something like this:
+
+```javascript
+doSomething(myArray[0], myArray[1], myArray[2]);
+```
+
+It is obviously not very nice, difficult for large number of parameters and works only if we know their number before. LEt's try something else. Before spread operator, this was the way to call a function and pass array as a separate parameters:
+
+```javascript
+doSomething.apply(null, myArray);
+```
+
+The first parameter of the `apply` function is [what's supposed to be value of this](https://www.vojtechruzicka.com/javascript-this-keyword/), the second one is the array we want to pass in to the function as arguments.
+
+With spread operator, you can achieve the same using:
+
+```javascript
+doSomething(...myArray);
+// Is equivalent to 
+doSomething(myArray[0], myArray[1], myArray[2]);
+```
+
+Note that it works with any iterable, not just arrays. For example using spread operator with string will disassemble it to the individual characters.
+
+You can combine this with passing individual parameters. Unlike rest parameters, you can use multiple spread operators in the same function call and it does not need to be the last item.
+
+```javascript
+// All of this is possible
+doSomething(1, ...myArray);
+doSomething(1, ...myArray, 2);
+doSomething(...myArray, ...otherArray);
+doSomething(2, ...myArray, ...otherArray, 3, 7);
+```
 <!--
-
 Spread operator
-	Function calls
 	Array literals
 	destructuring
 	String creation (iterables)
