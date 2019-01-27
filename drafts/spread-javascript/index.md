@@ -219,5 +219,21 @@ let mergedObject = {...firstObject, ...secondObject};
 console.log(mergedObject); // { a: 2 }
 ```
 
+#### Updating immutable objects
+The behavior where later declared property with the same name wins can be utilized when updating immutable objects. When you're working with immutable objects or don't want to directly mutate objects, you can use spread operator to create a new object as an updated variant of the original object.
+
+```javascipt
+let original = {
+      someProperty: "oldValue", 
+      someOtherProperty: 42
+    };
+
+let updated = {...original, someProperty: "newValue"};
+// updated is now { someProperty: "newValue", someOtherProperty: 42 }
+```
+
+Because the original object contains `someProperty` and it is then used once more, the last usage wins and the new value will be used. Original object will not be changed in any way and new object will be created.
+
+
 ## Destructuring
 TODO
