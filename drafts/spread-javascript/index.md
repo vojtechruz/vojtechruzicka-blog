@@ -1,11 +1,11 @@
 ---
 title: 'Javascript spread operator and rest parameters (...)'
-date: "2019-01-26T22:12:03.284Z"
+date: "2019-01-29T22:12:03.284Z"
 tags: ['Javascript']
 path: '/spread-javascript'
 featuredImage: './spread-2.jpg'
 disqusArticleIdentifier: '99010 http://vojtechruzicka.com/?p=99010'
-excerpt: ''
+excerpt: 'What do three dots (...) mean in javascript? They can be used for various different purposes.'
 ---
 
 ![Spread](spread-2.jpg)
@@ -155,9 +155,34 @@ doSomething(1, ...myArray, 2);
 doSomething(...myArray, ...otherArray);
 doSomething(2, ...myArray, ...otherArray, 3, 7);
 ```
+
+### Array literals
+Spread operator can be also used when creating an array using array literal. This way you can insert elements from other arrays (or iterables such as strings) at a specific location. 
+
+```javascript
+let firstArray = ["A", "B", "C"];
+let secondArray = ["X", ...firstArray, "Y", "Z"];
+// second array is [ "X", "A", "B", "C", "Y", "Z" ]
+```
+
+By using spread operator in an array literal, we did say: Second array will have `X` as the first element, then all the elements from the first array, no matter what is their number. And then the last two elements will be `Y` and `Z`.
+
+#### Merging arrays
+Of course, you can use spread operator in array literal multiple times. This can be useful for example for merging multiple existing arrays, which would be more difficult using traditional imperative approach:
+
+```javascript
+let mergedArray = [...firstArray, ...secondArray, ...thirdArray];
+```
+
+#### Copying arrays
+Sometimes it is also useful to create a copy of the existing array with the same items as original. It is easy with spread operator.
+
+```javascript
+var original = [1,2,3];
+var copy = [...original];
+```
 <!--
 Spread operator
-	Array literals
 	destructuring
 	String creation (iterables)
 
@@ -166,20 +191,15 @@ Spread operator
 https://codingwithspike.wordpress.com/2016/06/11/javascript-rest-spread-operators/
 https://www.smashingmagazine.com/2016/07/how-to-use-arguments-and-parameters-in-ecmascript-6/
 
-https://javascript.info/rest-parameters-spread-operator
-
 Creating objects with values from a string can be very useful as well:
 const string = 'abcde';
 const obj = { ...string };
 // {0: "a", 1: "b", 2: "c", 3: "d", 4: "e"}
 
 https://davidwalsh.name/spread-operator
-https://javascript.info/rest-parameters-spread-operator
 
 Recent changes for generics in typescript:
 https://blogs.msdn.microsoft.com/typescript/2018/11/29/announcing-typescript-3-2/
-
-https://scotch.io/bar-talk/javascripts-three-dots-spread-vs-rest-operators543
 
 https://css-tricks.com/new-es2018-features-every-javascript-developer-should-know/
 -->
