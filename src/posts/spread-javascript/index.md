@@ -13,7 +13,7 @@ excerpt: 'What do three dots (...) mean in javascript? They can be used for vari
 ## Variable number of parameters
 Usually, when working with functions in JavaScript, there is a fixed number of parameters your function uses and supports. If you want to calculate the square root of a number using `Math.sqrt(x)` you always need just one parameter for input. Some functions may require more parameters. Some functions have more parameters, but you can safely omit last few optional parameters. In all these cases, all the parameters are declared as a part of the function signature:
 
-```
+```javascript
 function doSomething(first, second, third) { 
     // Do something cool
 }
@@ -23,7 +23,7 @@ However, what if the number of parameters is not known beforehand and can be pre
 
 For example, let's take `Math.min()` and `Math.max()`. It does work for any number of parameters no matter whether it is 0, 2 or 30.
 
-```
+```javascript
 Math.Min(); // Infinity
 Math.Min(1); // 1
 Math.Min(1,2,3,4,3,1,5,7,9,0,-9,18,37,81); // -9
@@ -222,7 +222,7 @@ console.log(mergedObject); // { a: 2 }
 #### Updating immutable objects
 The behavior where the later declared property with the same name wins can be utilized when updating immutable objects. When you're working with immutable objects or don't want to directly mutate objects, you can use spread operator to create a new object as an updated variant of the original object.
 
-```javascipt
+```javascript
 let original = {
       someProperty: "oldValue", 
       someOtherProperty: 42
