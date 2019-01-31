@@ -89,7 +89,19 @@ let myArray = [1, 2, 3, 4, 5, 6];
 let [a, b, ...others] = myArray; // a=1, b=2, others = [3, 4, 5, 6]
 ```
 
-// TODO link to rest parameters article link
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/spread-javascript/" style="box-shadow: none;">Javascript spread operator and rest parameters (...)</a></h4><small class="front-post-info"><span class="front-post-info-date">30 January, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/spread-javascript/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBP/EABYBAQEBAAAAAAAAAAAAAAAAAAQCA//aAAwDAQACEAMQAAABemJSqqTJ0//EABwQAAEDBQAAAAAAAAAAAAAAAAIBERIAExQiMf/aAAgBAQABBQKy4Y+xpAlJWmb9r//EABYRAAMAAAAAAAAAAAAAAAAAAAIQEf/aAAgBAwEBPwGEv//EABYRAAMAAAAAAAAAAAAAAAAAAAEQEv/aAAgBAgEBPwESv//EABoQAAICAwAAAAAAAAAAAAAAAAARARIhMUH/2gAIAQEABj8Cs98FaBCeB2ljk//EABsQAAICAwEAAAAAAAAAAAAAAAERACExQWFx/9oACAEBAAE/IWCl4Qy+jkcmQVuZq4lWkwZdgknc/9oADAMBAAIAAwAAABDbz//EABcRAQEBAQAAAAAAAAAAAAAAAAEhABH/2gAIAQMBAT8QpHA8u//EABcRAQADAAAAAAAAAAAAAAAAAAEAESH/2gAIAQIBAT8QSNI1eT//xAAbEAEBAAMBAQEAAAAAAAAAAAABEQAhQTFRYf/aAAgBAQABPxBEh3Q5fuTCxFcfH53H0BIOmPU93fWczsp4ZXdtleuf/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/f6547ab18a756509edfeb8a49cb76826/680c3/spread.jpg 45w,
+/static/f6547ab18a756509edfeb8a49cb76826/0b965/spread.jpg 90w,
+/static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg 180w,
+/static/f6547ab18a756509edfeb8a49cb76826/feef1/spread.jpg 270w,
+/static/f6547ab18a756509edfeb8a49cb76826/1ee31/spread.jpg 360w,
+/static/f6547ab18a756509edfeb8a49cb76826/e8e8f/spread.jpg 540w,
+/static/f6547ab18a756509edfeb8a49cb76826/dcd67/spread.jpg 900w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><source srcSet="/static/f6547ab18a756509edfeb8a49cb76826/680c3/spread.jpg 45w,
+/static/f6547ab18a756509edfeb8a49cb76826/0b965/spread.jpg 90w,
+/static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg 180w,
+/static/f6547ab18a756509edfeb8a49cb76826/feef1/spread.jpg 270w,
+/static/f6547ab18a756509edfeb8a49cb76826/1ee31/spread.jpg 360w,
+/static/f6547ab18a756509edfeb8a49cb76826/e8e8f/spread.jpg 540w,
+/static/f6547ab18a756509edfeb8a49cb76826/dcd67/spread.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">What do three dots (...) mean in javascript? They can be used for various different purposes.</span></div></div>
 
 
 ## Object destructuring
@@ -136,6 +148,37 @@ let {"my-property": myProperty} = {"my-property": 42};
 // Now MyProperty = 42
 ```
 
+### Dynamic property names
+When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]. But you can also use variable in place of property name instead:
+
+```javascript
+let person = {name: "John", age: 42, hobby: "Javascript"};
+
+let propertyKey;
+if(something) {
+    propertyKey = "age";
+} else {
+    propertyKey = "name";
+}
+
+let foo = person[propertyKey]; // foo = 42 or "John"
+```
+
+You can use similar approach when destructuring:
+
+```javascript
+let person = {name: "John", age: 42, hobby: "Javascript"};
+
+let propertyKey;
+if(something) {
+    propertyKey = "age";
+} else {
+    propertyKey = "name";
+}
+
+let {[propertyKey]: foo} = person; // foo = 42 or "John"
+```
+
 ### Usage in iteration
 Destructuring can be useful when iterating over multiple objects. You can easily extract just the properties you are interested in:
 
@@ -150,8 +193,6 @@ for(let {name, age, hobby = "Unknown"} of persons) {
 ```
 
 It is not only concise when accessing the current object's properties, but it allows you to easily define default values of missing properties.
-
-### Dynamic property names
 
 ### Assignment to existing variables
 When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or whether you assign to previously declared variables:
