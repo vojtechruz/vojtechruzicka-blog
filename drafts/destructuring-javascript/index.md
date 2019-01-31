@@ -118,19 +118,80 @@ let {name: newName, age: newAge} = john;
 // newName ="John Doe", newAge = 42
 ```
 
+That can be particularly useful when working with object property names, which are not valid variable names. For example, this is a valid object:
+
+```javascript
+{"my-property": 42}
+```
+
+But `my-property` is not a valid variable name. Fortunately, we can assign different variable name, which is valid using the approach above:
+
+```javascript
+// Not valid syntax: my-property is not valid variable name
+// But it is valid object property name
+let {my-property} = {"my-property": 42};
+
+// But we can change my-property to valid variable name
+let {"my-property": myProperty} = {"my-property": 42};
+// Now MyProperty = 42
+```
+
+### Usage in iteration
+Destructuring can be useful when iterating over multiple objects. You can easily extract just the properties you are interested in:
+
+```javascript
+let persons = [{name: "John", age: 42, hobby: "Javascript"}, {name: "Jane", age: 24}];
+
+for(let {name, age, hobby = "Unknown"} of persons) {
+    console.log(name);
+    console.log(age);
+    console.log(hobby);
+}
+```
+
+It is not only concise when accessing the current object's properties, but it allows you to easily define default values of missing properties.
+
+### Dynamic property names
+
+### Assignment to existing variables
+When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or whether you assign to previously declared variables:
+
+```javascript
+// Declaration and assignment
+let [foo, bar] = [1, 2];
+
+// Declaration and assignment separately
+let foo, bar;
+[foo, bar] = [1, 2];
+```
+
+With objects it is different:
+
+```javascript
+// Declaration and assignment: perfectly fine
+let {foo, bar} = {foo: 1, bar: 2};
+
+//SyntaxError: Unexpected token =
+let foo, bar;
+{foo, bar} = {foo: 1, bar: 2};
+```
+
+What happened here? Curly braces in `{a, b}` get interpreted as declaration of block rather than object destructuring assignment. Fortunately you can wrap the assignment in regular braces to make it work:
+
+```javascript
+({foo, bar} = {foo: 1, bar: 2});
+```
+
+## Destructuring function parameters
+
 
 <!--
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 
 https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f
 
-- destructuring assignment
-    - array
-    - object
-- destricturing function params
-- custom property names when object assignment
-    - Invalid JavaScript identifier as a property name (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
-- link to spread article
+
+
 -usage in loop
     https://javascript.info/destructuring-assignment  
 - Computed object property names and destructuring
