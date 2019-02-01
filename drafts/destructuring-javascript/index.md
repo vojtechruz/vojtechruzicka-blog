@@ -89,6 +89,8 @@ let myArray = [1, 2, 3, 4, 5, 6];
 let [a, b, ...others] = myArray; // a=1, b=2, others = [3, 4, 5, 6]
 ```
 
+The `...` syntax with its various uses is described in detail in the following article:
+
 <div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/spread-javascript/" style="box-shadow: none;">Javascript spread operator and rest parameters (...)</a></h4><small class="front-post-info"><span class="front-post-info-date">30 January, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/spread-javascript/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBP/EABYBAQEBAAAAAAAAAAAAAAAAAAQCA//aAAwDAQACEAMQAAABemJSqqTJ0//EABwQAAEDBQAAAAAAAAAAAAAAAAIBERIAExQiMf/aAAgBAQABBQKy4Y+xpAlJWmb9r//EABYRAAMAAAAAAAAAAAAAAAAAAAIQEf/aAAgBAwEBPwGEv//EABYRAAMAAAAAAAAAAAAAAAAAAAEQEv/aAAgBAgEBPwESv//EABoQAAICAwAAAAAAAAAAAAAAAAARARIhMUH/2gAIAQEABj8Cs98FaBCeB2ljk//EABsQAAICAwEAAAAAAAAAAAAAAAERACExQWFx/9oACAEBAAE/IWCl4Qy+jkcmQVuZq4lWkwZdgknc/9oADAMBAAIAAwAAABDbz//EABcRAQEBAQAAAAAAAAAAAAAAAAEhABH/2gAIAQMBAT8QpHA8u//EABcRAQADAAAAAAAAAAAAAAAAAAEAESH/2gAIAQIBAT8QSNI1eT//xAAbEAEBAAMBAQEAAAAAAAAAAAABEQAhQTFRYf/aAAgBAQABPxBEh3Q5fuTCxFcfH53H0BIOmPU93fWczsp4ZXdtleuf/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/f6547ab18a756509edfeb8a49cb76826/680c3/spread.jpg 45w,
 /static/f6547ab18a756509edfeb8a49cb76826/0b965/spread.jpg 90w,
 /static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg 180w,
@@ -102,6 +104,33 @@ let [a, b, ...others] = myArray; // a=1, b=2, others = [3, 4, 5, 6]
 /static/f6547ab18a756509edfeb8a49cb76826/1ee31/spread.jpg 360w,
 /static/f6547ab18a756509edfeb8a49cb76826/e8e8f/spread.jpg 540w,
 /static/f6547ab18a756509edfeb8a49cb76826/dcd67/spread.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/f6547ab18a756509edfeb8a49cb76826/cc2e6/spread.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">What do three dots (...) mean in javascript? They can be used for various different purposes.</span></div></div>
+
+## Nested arrays destructuring
+When you have an array, which contain other arrays, you can still youse destructuring to get to the items in the nested array:
+
+```javascript
+let myArray = [1, 2, [3, 4], 5];
+let [first, second, [third, fourth], fifth] = myArray;
+// first = 1, second = 2, third = 3, fourth = 4, fifth = 5
+```
+
+### Destructuring iterables
+All the examples above used arrays as a source for destructuring. Actually this is just a special case as you can use any iterable such as string:
+
+```javascript
+const person = "John Doe";
+let [first, second] = person; // first = "J", second = "o"
+```
+
+Or even regular expression matches:
+
+```javascript
+let pattern = /(\w+)/g;
+let string = "The quick brown fox jumps over a lazy dog.";
+let results = string.match(pattern);
+// results = ["The", "quick", "brown", "fox", "jumps", "over", "a", "lazy", "dog"]
+let [first, second] = results; // first = "The", second = "quick"
+```
 
 
 ## Object destructuring
@@ -223,8 +252,83 @@ What happened here? Curly braces in `{a, b}` get interpreted as declaration of b
 ({foo, bar} = {foo: 1, bar: 2});
 ```
 
-## Destructuring function parameters
+### Nested object destructuring
+Similar to nested array destructuring, you can destructure even items in the nested objects of the source object:
 
+```javascript
+let john = {
+    name: "John Doe",
+    age: 42,
+    skills: {
+        cooking:9,
+        javascript: 1,
+    }};
+let {age, name, skills: {cooking, javascript}} = john;
+// name = "John Doe", age = 42, cooking = 9, javascript =1
+```
+
+Of course, when nested object contains arrays as property values, you can destructure them as well. You can even combine both:
+
+```javascript
+let john = {
+    name: "John Doe",
+    age: 42,
+    skills: {
+        cooking:9,
+        javascript: 1,
+    },
+    hobbies: ["Soap operas", "Internet trolling"]
+};
+let {age, name, skills: {cooking, javascript}, hobbies: [hobby1, hobby2]} = john;
+// name = "John Doe", age = 42, cooking = 9, javascript -=1
+// hobby1 = Soap operas, hobby2 = Internet trolling
+````
+
+## Destructuring function parameters
+Imagine you have a function, which instead of various individual parameters accepts a configuration object with multiple properties:
+
+```javascript
+const myImage = {
+    x: 100,
+    y: 200,
+    source: "http://example.com/image.png",
+    grayscale: false
+};
+
+function drawImage(imageConfig) {
+    console.log("Drawing image:");
+    console.log("Position: " + imageConfig.x + "x" + imageConfig.y);
+    console.log("Source image location: " + imageConfig.source);
+    console.log("Grayscale: " + imageConfig.grayscale);
+}
+
+drawImage(myImage);
+```
+
+This is often useful, especially if you have many configuration peoperties and some of them are optional. However, it has some shortcomings. You need to access all the properties through the source object like this: `imageConfig.source`. Alternatively, you need to declare variables and assign properties to them. With optional properties it is even worse as you need to handle manually default values if a property is not present. Fortunately you can sue object destructuring to create variables from the input object:
+
+```javascript
+function drawImage({x, y, source, grayscale}) {
+    console.log("Drawing image:");
+    console.log("Position: " + x + "x" + y);
+    console.log("Source image location: " + source);
+    console.log("Grayscale: " + grayscale);
+}
+```
+
+But of course, it is even more useful with default values:
+
+```javascript
+function drawImage({x = 0, y = 0, source, grayscale = false}) {
+    console.log("Drawing image:");
+    console.log("Position: " + x + "x" + y);
+    console.log("Source image location: " + source);
+    console.log("Grayscale: " + grayscale);
+}
+```
+
+## Conclusion
+Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple parts. The syntax is much more concise than traditional approach, especially when handling situations such as default values.
 
 <!--
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
@@ -233,11 +337,3 @@ https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f
 
 
 
--usage in loop
-    https://javascript.info/destructuring-assignment  
-- Computed object property names and destructuring
-   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-- object literal gotcha
-    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-    Notes: The parentheses ( ... ) around the assignment statement are required when using object literal destructuring assignment without a declaration. 
->
