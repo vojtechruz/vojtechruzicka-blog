@@ -1,17 +1,17 @@
 ---
-title: 'TODO'
-date: "2019-02-05T22:12:03.284Z"
+title: 'Destructuring objects and arrays in JavaScript'
+date: "2019-02-03T22:12:03.284Z"
 tags: ['Javascript']
 path: '/destructuring-javascript'
 featuredImage: './destructuring.jpg'
 disqusArticleIdentifier: '99019 http://vojtechruzicka.com/?p=99019'
-excerpt: 'Destructuring allows you to to assign items from arrays or properties of objects into single variables easily.'
+excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
 ---
 
 ![Destructuring](destructuring.jpg)
 
 ## Destructuring assignment
-Destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's look into more detail how this works.
+The destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's look into more detail how this works.
 
 ## Array destructuring
 Let's assume we have an array and we want to assign its contents into separate variables. Without destructuring, you would need to do something like this:
@@ -30,9 +30,9 @@ let myArray = [1, 2, 3];
 let [a, b, c] = myArray; // a=1, b=2, c=3
 ````
 
-Much better, right? First item from array gets assigned to the first variable, second item in the array to the second variable and so on.
+Much better, right? The first item from array gets assigned to the first variable, the second item in the array to the second variable and so on.
 
-In the example above, we declared a new variables and assigned to them, but you can use existing ones.
+In the example above, we declared new variables and assigned to them, but you can use existing ones.
 
 Of course you don't need to use all the items from the source array:
 
@@ -42,7 +42,7 @@ let [a, b] = myArray; // a=1, b=2
 ````
 
 ### Default values
-On the other hand, if there are not enough items in the array, only some of the variables get assigned. There rest remains undefined as if you would declare a variable and not assign it.
+On the other hand, if there are not enough items in the array, only some of the variables get assigned. The rest remains undefined as if you would declare a variable and not assign it.
 
 ```javascript
 let myArray = [1];
@@ -56,7 +56,7 @@ let myArray = [1];
 let [a=2, b=4, c=6] = myArray; // a=1, b=4, c=6
 ````
 
-Because it is called destructuring, you might think that items are actually removed from the source array. This is, however, not the case, the source array remains unchanged. This applies also to destructuring objects.
+Because it is called destructuring, you might think that items are actually removed from the source array. This is, however, not the case, the source array remains unchanged. The same also applies to destructuring objects.
 
 ### Ignoring items
 If you want to skip certain items, you can do it like this:
@@ -115,7 +115,7 @@ let [first, second, [third, fourth], fifth] = myArray;
 ```
 
 ### Destructuring iterables
-All the examples above used arrays as a source for destructuring. Actually this is just a special case as you can use any iterable such as string:
+All the examples above used arrays as a source for destructuring. Actually, this is just a special case as you can use any iterable such as string:
 
 ```javascript
 const person = "John Doe";
@@ -149,7 +149,7 @@ let {name, age, ...others} = john;
 ```
 
 ### Changing variable names
-Unlike arrays, where assignment is determined by order, here it is by variable name matching object's property name.
+Unlike arrays, where the assignment is determined by order, here it is by variable name matching object's property name.
 
 However, if you want, you can make the name different if you want:
 
@@ -178,7 +178,7 @@ let {"my-property": myProperty} = {"my-property": 42};
 ```
 
 ### Dynamic property names
-When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]. But you can also use variable in place of property name instead:
+When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]. Also, you can also use a variable in place of property name instead:
 
 ```javascript
 let person = {name: "John", age: 42, hobby: "Javascript"};
@@ -221,7 +221,7 @@ for(let {name, age, hobby = "Unknown"} of persons) {
 }
 ```
 
-It is not only concise when accessing the current object's properties, but it allows you to easily define default values of missing properties.
+It is not only concise when accessing the current object's properties, but it allows you to define default values of missing properties easily.
 
 ### Assignment to existing variables
 When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or whether you assign to previously declared variables:
@@ -246,7 +246,7 @@ let foo, bar;
 {foo, bar} = {foo: 1, bar: 2};
 ```
 
-What happened here? Curly braces in `{a, b}` get interpreted as declaration of block rather than object destructuring assignment. Fortunately you can wrap the assignment in regular braces to make it work:
+What happened here? Curly braces in `{a, b}` get interpreted as a declaration of a block rather than object destructuring assignment. Fortunately, you can wrap the assignment in regular braces to make it work:
 
 ```javascript
 ({foo, bar} = {foo: 1, bar: 2});
@@ -267,7 +267,7 @@ let {age, name, skills: {cooking, javascript}} = john;
 // name = "John Doe", age = 42, cooking = 9, javascript =1
 ```
 
-Of course, when nested object contains arrays as property values, you can destructure them as well. You can even combine both:
+Of course, when a nested object contains arrays as property values, you can destructure them as well. You can even combine both:
 
 ```javascript
 let john = {
@@ -305,7 +305,7 @@ function drawImage(imageConfig) {
 drawImage(myImage);
 ```
 
-This is often useful, especially if you have many configuration peoperties and some of them are optional. However, it has some shortcomings. You need to access all the properties through the source object like this: `imageConfig.source`. Alternatively, you need to declare variables and assign properties to them. With optional properties it is even worse as you need to handle manually default values if a property is not present. Fortunately you can sue object destructuring to create variables from the input object:
+This is often useful, especially if you have many configuration properties and some of them are optional. However, it has some shortcomings. You need to access all the properties through the source object like this: `imageConfig.source`. Alternatively, you need to declare variables and assign properties to them. With optional properties, it is even worse as you need to handle manually default values if a property is not present. Fortunately, you can sue object destructuring to create variables from the input object:
 
 ```javascript
 function drawImage({x, y, source, grayscale}) {
@@ -328,12 +328,4 @@ function drawImage({x = 0, y = 0, source, grayscale = false}) {
 ```
 
 ## Conclusion
-Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple parts. The syntax is much more concise than traditional approach, especially when handling situations such as default values.
-
-<!--
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-
-https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f
-
-
-
+Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple parts. The syntax is much more concise than the traditional approach, especially when handling situations such as default values.
