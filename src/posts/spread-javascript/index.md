@@ -291,6 +291,23 @@ console.log(d); // 4
 console.log(remaining); // { a: 1, c: 3 }
 ```
 
+## Destructuring deep dive
+For detailed explanation of destructuring please check the following article:
+
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/destructuring-javascript/" style="box-shadow: none;">Destructuring objects and arrays in JavaScript</a></h4><small class="front-post-info"><span class="front-post-info-date">03 February, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/destructuring-javascript/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.7778%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAIBAwQF/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/9oADAMBAAIQAxAAAAHmXZ5LUcs//8QAGRABAQEAAwAAAAAAAAAAAAAAAQIAEyEx/9oACAEBAAEFAvGYHUyM9blcG//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAIDAQEAAAAAAAAAAAAAAAABERIhEFH/2gAIAQEABj8Cr4Q0ZpZELOf/xAAaEAEBAQEBAQEAAAAAAAAAAAABEQAhQWEx/9oACAEBAAE/IbXgpnfzEcB6zugL+rkhgfJlyJfuEN//2gAMAwEAAgADAAAAELMv/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAwEBPxAQO2X/xAAXEQEBAQEAAAAAAAAAAAAAAAABABEx/9oACAECAQE/EEXlt//EABsQAQADAQEBAQAAAAAAAAAAAAEAESExYUFR/9oACAEBAAE/EFjlCpar0H7DhCcOfZhPDchfPIJm1dioo4Yi1/MvkKiX7P/Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/a7a2bfa8eef6d6477283046ae5261d03/680c3/destructuring.jpg 45w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/0b965/destructuring.jpg 90w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/cc2e6/destructuring.jpg 180w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/feef1/destructuring.jpg 270w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/1ee31/destructuring.jpg 360w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/e8e8f/destructuring.jpg 540w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/dcd67/destructuring.jpg 900w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/a7a2bfa8eef6d6477283046ae5261d03/cc2e6/destructuring.jpg" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><source srcSet="/static/a7a2bfa8eef6d6477283046ae5261d03/680c3/destructuring.jpg 45w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/0b965/destructuring.jpg 90w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/cc2e6/destructuring.jpg 180w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/feef1/destructuring.jpg 270w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/1ee31/destructuring.jpg 360w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/e8e8f/destructuring.jpg 540w,
+/static/a7a2bfa8eef6d6477283046ae5261d03/dcd67/destructuring.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/a7a2bfa8eef6d6477283046ae5261d03/cc2e6/destructuring.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Destructuring allows you to assign items from arrays or properties of objects into single variables easily.</span></div></div>
+
 ## Conclusion
 Three dots in JS can mean multiple things based on context. 
 
