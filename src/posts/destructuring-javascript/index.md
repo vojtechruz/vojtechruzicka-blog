@@ -178,7 +178,7 @@ let {"my-property": myProperty} = {"my-property": 42};
 ```
 
 ### Dynamic property names
-When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]`. Also, you can also use a variable in place of property name instead - `person[myVariable]`:
+When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]`. What's more interesting, you can also use a variable in place of property name - `person[myVariable]`:
 
 ```javascript
 let person = {name: "John", age: 42, hobby: "Javascript"};
