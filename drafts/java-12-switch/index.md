@@ -1,7 +1,7 @@
 ---
 title: ''
 date: ""
-tags: []
+tags: ["Java"]
 path: '/java-12-switch'
 featuredImage: './switch.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'

@@ -1,7 +1,7 @@
 ---
 title: ''
 date: ""
-tags: []
+tags: ["Javascript"]
 path: '/javascript-async-await'
 featuredImage: './lighthouse.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
