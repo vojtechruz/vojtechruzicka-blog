@@ -156,5 +156,9 @@ function myFunctionUsingPromises(input) {
 }
 ```
 
+TODO
 Chaining promises
+https://javascript.info/promise-chaining
 Error handling
+
+https://javascript.info/async
