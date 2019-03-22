@@ -28,11 +28,11 @@ This opens a new tool window called REST client.
 
 ![idea-rest-client](./idea-rest-client.png)
 
-The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. You can provide additional data on the *Request* tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate *Cookies* tab.
+The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. You can provide additional data on the `Request` tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate `Cookies` tab.
 
 ![Cookies](./cookies.png)
 
-And then you just hit *Submit Request*. IDEA sends a new HTTP request to the target location and displays the response received in the *Response* tab. Response headers can be viewed in the *Response Headers* tab.
+And then you just hit `Submit Request`. IDEA sends a new HTTP request to the target location and displays the response received in the `Response` tab. Response headers can be viewed in the `Response Headers` tab.
 
 ![Response](./response.png)
 
@@ -52,7 +52,7 @@ Even though the REST client is no doubt useful, it has some shortcomings. It is 
 
 The easiest way to start is just to add a file with `.http` extension to your project. The name does not matter, just the extension. Alternatively, you can right-click a directory and select `New → HTTP Request`. This file will be a source file for the new Editor-based HTTP client. Since it is an ordinary file, it will persist between IDE starts, no need to export/import XML files as before. Moreover, it can be shared with other devs or committed to version control.
 
-Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press *Ctrl + Shift + Alt + Insert* to open the *New Scratch file* dialog. Then select *HTTP Request*. No matter which variant you use, the usage will be the same, only the persistence of the file is different.
+Sometimes it can be handy to have the requests stored permanently. In other cases not. If you need just a quick test and create one or two throwaway requests, which will not be reused, it is much better to use a [scratch file](https://blog.jetbrains.com/idea/2014/09/intellij-idea-14-eap-138-2210-brings-scratch-files-and-better-mercurial-integration/). Just press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>Insert</kbd> to open the `New Scratch file` dialog. Then select `HTTP Request`. No matter which variant you use, the usage will be the same, only the persistence of the file is different.
 
 To make your start with REST client as smooth as possible, as of version 2018.1, you can access several pre-made templates filled with example requests by accessing `Tools → HTTP Client → Open HTTP Requests Collection`. 
 
@@ -61,7 +61,7 @@ To make your start with REST client as smooth as possible, as of version 2018.1,
 
 ### A simple request
 
-The simplest thing you can do is just to type a URL and click Run icon in the gutter. Or alternatively, *Alt + Enter* and *Run*.
+The simplest thing you can do is just to type a URL and click Run icon in the gutter. Or alternatively, <kbd>Alt</kbd> + <kbd>Enter</kbd> and `Run`.
 
 ![run](./run.png)
 
@@ -174,7 +174,7 @@ You can run a specific configuration by clicking the run icon in the gutter:
 ![Run Environments](./run-environments.png)
 
 ### Live templates
-[Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press *Tab* key, IDEA expands it to a code snippet. For example you can expand `sout` to `System.out.println()`. There is a number of existing templates, and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
+[Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press <kbd>Tab</kbd> key, IDEA expands it to a code snippet. For example you can expand `sout` to `System.out.println()`. There is a number of existing templates, and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
 
 ![Live Template example](./idea-http-client-live-template.gif)
 
@@ -277,7 +277,7 @@ GET http://localhost:8090/persons/all
 ###
 ```
 
-The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by *CTRL + Click*. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
+The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by <kbd>CTRL</kbd> + Click. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
 
 ![compare](./compare.png)
 
