@@ -18,11 +18,20 @@ This feature was added in Google [Chrome 59](https://developers.google.com/web/u
 
 ## Enabling Code Coverage
 
-Code coverage is measured on a Coverage tab in Developer Tools. To open Dev Tools press *⌘+*⌥*+I* (Mac) or *Control+Shift+I* (Windows, Linux). After this, you can access the Coverage from the Command Menu:*⌘+⇧+P* (Mac) or *Ctrl+Shift+P* (Windows, Linux) and then typing *Show Coverage*.
+Code coverage is measured on a Coverage tab in Developer Tools. To open Dev Tools press:
+ - <kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd> (Mac)
+ - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> (Windows, Linux)
+  
+ After this, you can access the Coverage from the Command Menu:
+ 
+- <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> (Mac) 
+- <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Windows, Linux) 
+
+Then type `Show Coverage`.
 
 ![show-coverage](./show-coverage.gif)
 
-Alternatively, you can show the *Coverage* tab from Dev Tools menu by choosing *More tools → Coverage*.
+Alternatively, you can show the `Coverage` tab from Dev Tools menu by choosing `More tools → Coverage`.
 
 ![enable-code-coverage](./enable-code-coverage.png)
 
@@ -32,7 +41,7 @@ When you manage to open the coverage tab, it will look like this:
 
 ## Capturing Code Coverage
 
-After opening the *Coverage* tab, you just need to press the record button (*Instrument Coverage*). Then you start to execute the desired use case. That is - you start to navigate the application, click buttons, fill forms and such. When you are finished you just press the button again to stop recording and show the coverage results. This is an example of  coverage results from browsing stackoverflow.com:
+After opening the `Coverage` tab, you just need to press the record button (*Instrument Coverage*). Then you start to execute the desired use case. That is - you start to navigate the application, click buttons, fill forms and such. When you are finished you just press the button again to stop recording and show the coverage results. This is an example of  coverage results from browsing stackoverflow.com:
 
 ![stack-overflow-coverage](./stack-overflow-coverage.png)
 
