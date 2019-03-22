@@ -10,7 +10,7 @@ excerpt: 'Sometimes it is useful to edit multiple places in the file at once, wh
 ---
 ![idea multiple cursors](./intellij-idea-multiple-cursors.jpg)
 
-Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.
+Sometimes it is useful to edit multiple places in a file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.
 
 ## Column Selection
 
@@ -18,15 +18,15 @@ This feature is the oldest one, which was available even before the introduction
 
 ![column-selection](./column-selection.gif)
 
-You can then move the cursor, as usual, usual using the arrow keys and even commands like Home or End. Note that after I used <kbd>End</kbd> key (go to the end of the line), the cursor was properly placed at the end of each line even if the cursors were no longer vertically aligned.
+You can then move the cursor, as usual, using the arrow keys and even commands like <kbd>Home</kbd> or <kbd>End</kbd>. Note that after I used <kbd>End</kbd> key (go to the end of the line), the cursor was properly placed at the end of each line even if the cursors were no longer vertically aligned.
 
 This feature can be toggled using `Edit → Column` selection. The shortcut is:  
-- <kbd>Alt + <kbd>Shift</kbd> + <kbd>Ins</kbd> on Linux or Windows 
+- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Ins</kbd> on Linux or Windows 
 - <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>8</kbd> on Mac.
 
-You can exit column selection mode also by using <kbd>Esc</kbd> key.
+You can exit column selection mode by using <kbd>Esc</kbd> key.
 
-Column selection mode can be also used when using keyboard only. When in column selection mode and holding <kbd>Shift</kbd>, you can extend cursor to the line above/bellow by using <kbd>↑</kbd> or <kbd>↓</kbd> keys.
+Column selection mode can be also used with keyboard only. When in column selection mode and holding <kbd>Shift</kbd>, you can extend cursor to the line above/bellow by using <kbd>↑</kbd> or <kbd>↓</kbd> keys.
 
 ## Caret Cloning
 
@@ -38,9 +38,9 @@ The commands are issued by pressing <kbd>Ctrl</kbd> (or <kbd>⌥</kbd> on Mac), 
 
 ## Multiple Cursors
 
-While the column selection mode is useful, it is limited to cases where places you need to edit are vertically aligned, which may not usually be the case. In other situations, you need to stick to a proper multiple cursor support. This is possible since [IDEA version 13.1](https://blog.jetbrains.com/idea/2014/03/intellij-idea-13-1-rc-introduces-sublime-text-style-multiple-selections/).
+While the column selection mode is useful, it is limited to cases where places you need to edit are vertically aligned, which may not usually be the case. In other situations, you need to stick to proper multiple cursor support. This is possible since [IDEA version 13.1](https://blog.jetbrains.com/idea/2014/03/intellij-idea-13-1-rc-introduces-sublime-text-style-multiple-selections/).
 
-When holding <kbd>Alt</kbd> + <kbd>Shift</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> on Mac), clicking on a location creates a new cursor on that location in addition to the already existing cursors. Unlike column selection, these cursors can be anywhere and don't need to be vertically aligned. Pressing <kbd>Esc</kbd> will exit multiple cursors mode and will leave you with your first original single cursor.
+When holding <kbd>Alt</kbd> + <kbd>Shift</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> on Mac), clicking on a location creates a new cursor on that location in addition to all the already existing cursors. Unlike column selection, these cursors can be anywhere and don't need to be vertically aligned. Pressing <kbd>Esc</kbd> will exit multiple cursors mode and will leave you with your first original single cursor.
 
 ![multiple-cursors-mouse](./multiple-cursors-mouse.gif)
 
@@ -68,8 +68,8 @@ This command can be triggered by
 - <kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>G</kbd> on Mac.
 
 
-## Add occurence
-In some cases you may want more fine-grained control instead of selecting ALL the occurrences.
+## Add occurrence
+In some cases, you may want more fine-grained control instead of selecting ALL the occurrences.
 
 When you have a part of text selected, you can add the next occurrence of this string to your selection.
  
