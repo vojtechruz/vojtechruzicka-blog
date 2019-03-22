@@ -53,7 +53,7 @@ You see, when developing an application, you usually change a class or a few and
 ### Triggering a restart in an IDE
 The restart is triggered whenever there is a change on the classpath. However, this varies depending on your IDE. That means, it is not enough to just change your `.java` files. What matters is that your IDE actually updates `.class` files on the classpath.
 
-When using IntelliJ IDEA, you need to build your project (*Ctrl + F9* or *Build → Build Project*). You can also [configure IDEA to rebuild automatically](https://www.mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/). Alternatively, you can open your Spring Boot run configuration and define what happens when you trigger an application update (*Ctrl + F10*):
+When using IntelliJ IDEA, you need to build your project (<kbd>Ctrl</kbd> + <kbd>F9</kbd> or `Build → Build Project`). You can also [configure IDEA to rebuild automatically](https://www.mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/). Alternatively, you can open your Spring Boot run configuration and define what happens when you trigger an application update (<kbd>Ctrl</kbd> + <kbd>F10</kbd>):
 
 ![Intellij IDEA Spring Boot Run Configuration](./intellij-idea-update.png)
 
