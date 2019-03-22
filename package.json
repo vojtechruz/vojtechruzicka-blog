@@ -43,7 +43,6 @@
     "typography-theme-bootstrap": "^0.16.19"
   },
   "devDependencies": {
-    "core-js": "^2.6.2",
     "eslint": "^5.15.3",
     "eslint-plugin-react": "^7.12.4",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
