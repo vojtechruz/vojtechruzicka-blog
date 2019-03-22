@@ -14,11 +14,11 @@ How to make the most of the IntelliJ IDEA's view modes to make best presentation
 Presentation Mode
 -----------------
 
-Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking *View → Enter Presentation Mode*. The IDE switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is better readable from a distance.
+Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View → Enter Presentation Mode`. The IDE switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is better readable from a distance.
 
 ![intellij-idea-presentation-mode](./IntelliJ-IDEA-Presentation-Mode.png)
  
- The font size in Presentation Mode can be configured in Settings under *Appearance & Behavior→ Appearance → Presentation Mode*.
+ The font size in Presentation Mode can be configured in Settings under `Appearance & Behavior → Appearance → Presentation Mode`.
  
  ![intellij-idea-presentation-mode-font-size](./IntelliJ-IDEA-Presentation-Mode-Font-Size.png)
 
@@ -53,9 +53,9 @@ This is not only useful while presenting, but also when pair programming. This w
 Keyboard shortcuts
 ------------------
 
-Both the Presentation and Distraction free modes have no keyboard shortcuts associated by default. By default, they are only accessible from *View→ Enter Presentation Mode* and *View→ Enter Distraction Mode*. You can, however, assign custom shortcuts to these actions as usual.
+Both the Presentation and Distraction free modes have no keyboard shortcuts associated by default. By default, they are only accessible from `View → Enter Presentation Mode` and `View → Enter Distraction Mode`. You can, however, assign custom shortcuts to these actions as usual.
 
-Alternatively, you can use Quick Switch Theme action (Ctrl + \` or ⌃ + \` on Mac) and Then press 4 (View Mode). From the subsequent popup menu, you can pick either Presentation or Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel or color schemes.
+Alternatively, you can use Quick Switch Theme action (<kbd>Ctrl</kbd> + <kbd>\`</kbd> or <kbd>⌃</kbd> + <kbd>\`</kbd> on Mac) and Then press <kbd>4</kbd> (View Mode). From the subsequent popup menu, you can pick either Presentation or Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel or color schemes.
 
 ![intellij-idea-quick-switch-theme](./Quick-Switch-Theme.gif)
 
