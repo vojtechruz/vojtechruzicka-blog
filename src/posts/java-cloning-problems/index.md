@@ -25,15 +25,15 @@ The description of the Object's clone() method is the following (from the JavaDo
 
 > The method {@code clone} for class {@code Object} performs a specific cloning operation. First, if the class of this object does not implement the interface {@code Cloneable}, then a {@code CloneNotSupportedException} is thrown. \... Otherwise, this method creates a new instance of the class of this object and initializes all its fields with exactly the contents of the corresponding fields of this object, as if by assignment; the contents of the fields are not themselves cloned. Thus, this method performs a \"shallow copy\" of this object, not a \"deep copy\" operation.
 >
-> The class {@code Object} does not itself implement the interface\* {@code Cloneable}, so calling the {@code clone} method on an object whose class is {@code Object} will result in throwing an exception at run time.
+> The class {@code Object} does not itself implement the interface {@code Cloneable}, so calling the {@code clone} method on an object whose class is {@code Object} will result in throwing an exception at run time.
 
-The implementation of Object\'s clone() method is - first check whether the current class actually implements Cloneable. If yes, proceed with the cloning execution. If not, throw CloneNotSupportedException checked exception.
+The implementation of Object\'s clone() method is - first check whether the current class actually implements Cloneable. If yes, proceed with the cloning execution. If not, throw `CloneNotSupportedException` checked exception.
 
 The problem with the object\'s clone() method is that it is protected. That is a serious issue. By implementing Cloneable, the class does not actually provide cloning functionality. You cannot be sure that a class implementing Clonable actually overrides the clone method. What\'s worse, you cannot accept objects of type Clonable in your method and call clone(). You need to know the exact type (e.g., Person) to be able to call clone(). The use of Clonable interface is highly inconsistent with the regular use of interfaces. Instead of committing to be able to provide some functionality to the callers, implementing Cloneable instead modifies the behavior of a protected method in a whole different class.
  
 ### Implementation
 
-The first thing you need to do for your class to support cloning is to implement Cloneable interface. Even if you don\'t want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call super.clone().
+The first thing you need to do for your class to support cloning is to implement Cloneable interface. Even if you don\'t want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call `super.clone()`.
 
 The basic implementation of the clone method in a class implementing Cloneable interface would be similar to this:
 
@@ -44,7 +44,7 @@ public Object clone() throws CloneNotSupportedException {
 }
 ```
 
-Note that the clone method returns Object. The caller would then need to cast the object every time the method is called. Fortunately, since Java 5, you can [change the return type](https://www.java-tips.org/covariant-return-types.html) of an overriding method as long as the new type is a subtype of the original type. That means, If you are writing the clone method for a Person class, you can return directly Person. You still need to cast inside the clone method, but you remove this burden from the callers. Also, it is valid to [remove exception](https://www.javatpoint.com/exception-handling-with-method-overriding) declaration from an overriding method. Therefore, we can safely remove the checked exception (throws CloneNotSupportedException) to make the usage a bit more convenient - callers are not forced to catch checked exception CloneNotSupportedException anymore.
+Note that the clone method returns Object. The caller would then need to cast the object every time the method is called. Fortunately, since Java 5, you can [change the return type](https://www.java-tips.org/covariant-return-types.html) of an overriding method as long as the new type is a subtype of the original type. That means, If you are writing the clone method for a Person class, you can return directly Person. You still need to cast inside the clone method, but you remove this burden from the callers. Also, it is valid to [remove exception](https://www.javatpoint.com/exception-handling-with-method-overriding) declaration from an overriding method. Therefore, we can safely remove the checked exception (`throws CloneNotSupportedException`) to make the usage a bit more convenient - callers are not forced to catch checked exception `CloneNotSupportedException` anymore.
 
 ```java
 @Override
@@ -59,7 +59,7 @@ The implementation above utilizes Object\'s implementation of cloning thus retur
 
 Nevertheless, the shallow copy could be sufficient in some cases. One of the cases is if the object is immutable (including its references). If the object cannot change state, it safe to provide just a shallow copy functionality. The same applies if all the fields of the object\'s fields are primitives (and/or immutables). Primitives are copied by value, not by reference, which means the copied instance will be completely independent on the original.
 
-In other cases, it is necessary to provide deep copy functionality. The problem is that you can no longer use Object\'s clone mechanism for that and you need to implement your own. In such cases, it may be easier to try on of the alternative cloning approaches (see Alternatives below). If you want to implement it anyway, you have basically two options. First - do all the cloning manually - create a new instance using a constructor and fill all the fields. Second - still use super.clone(), but instead of returning the cloned object directly, just manually copy the fields which are not safe - that is primitive or immutable.
+In other cases, it is necessary to provide deep copy functionality. The problem is that you can no longer use Object\'s clone mechanism for that and you need to implement your own. In such cases, it may be easier to try on of the alternative cloning approaches (see Alternatives below). If you want to implement it anyway, you have basically two options. First - do all the cloning manually - create a new instance using a constructor and fill all the fields. Second - still use `super.clone()`, but instead of returning the cloned object directly, just manually copy the fields which are not safe - that is primitive or immutable.
 
 The problem with the second approach is that it does not work well with final fields as you cannot receive an already constructed object and then assign its final fields. That goes directly against maximizing immutability.
 
@@ -78,7 +78,7 @@ public Person(Person personToCopy) {
 }
 ```
 
-This has several advantages. You don\'t need to implement any interface. You can accept any interface your class implements as an input and use it as a source of the clone instead (however, then this is rather a conversion constructor then, but can be useful under some circumstances). It does not force you to throw CloneNotSupportedException checked exception (and the caller is not forced to catch the exception).
+This has several advantages. You don\'t need to implement any interface. You can accept any interface your class implements as an input and use it as a source of the clone instead (however, then this is rather a conversion constructor then, but can be useful under some circumstances). It does not force you to throw `CloneNotSupportedException` checked exception (and the caller is not forced to catch the exception).
 
 ### Static Factory Methods
 
@@ -100,7 +100,7 @@ I find it useful to include in the method\'s name whether it is a deep or a shal
 
 Cloning and creating new instances through copy constructors and static factory methods are not the only ways to create a new instance of a class. A new instance is also created when deserializing a previously serialized object. Therefore, instead of cloning, you can serialize an object and then immediately deserialize it. That would result in a new instance created.
 
-The good news is that there are already libraries supporting cloning using serialization/deserialization, such as [Apache Commons Serialization Utils](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/SerializationUtils.html). This makes it very easy to clone objects using SerializationUtils.clone()
+The good news is that there are already libraries supporting cloning using serialization/deserialization, such as [Apache Commons Serialization Utils](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/SerializationUtils.html). This makes it very easy to clone objects using `SerializationUtils.clone()`
 
 ```java
 public static T clone(T object)
