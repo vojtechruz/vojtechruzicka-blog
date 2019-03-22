@@ -30,17 +30,17 @@ What's also useful is that Key Promoter will detect that you're frequently click
 ![Key promoter can suggest you to create a shortcut](./suggest-shortcut.png)
 
 ## Getting the plugin
-To install the plugin go to the  `Settings → Plugins → Markteplace` and search for 'Key Promoter X'. 'Key Promoter' is an original version of the plugin by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. 'Key Promoter X' is a reworked version of that original plugin started by [Aimo Thiele](https://github.com/athiele) and now developed and maintained by [Patrick Scheibe](https://github.com/halirutan). The original plugin was last updated in 2012 and does not work well in new versions of IDEA.
+To install the plugin go to the  `Settings → Plugins → Markteplace` and search for *Key Promoter X*. *Key Promoter* is an original version of the plugin by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. *Key Promoter X* is a reworked version of that original plugin started by [Aimo Thiele](https://github.com/athiele) and now developed and maintained by [Patrick Scheibe](https://github.com/halirutan). The original plugin was last updated in 2012 and does not work well in new versions of IDEA.
 
 You can check the source code or contribute in [this GitHub repository](https://github.com/halirutan/IntelliJ-Key-Promoter-X)
 Grab the plugin from the following Git repository.  
 
 ## You can\'t remember them all
 
-Knowing all the useful shortcuts is no doubt handy and a big time-saver. It does, however, take some time to learn them. In the meantime, it is useful to remember some shortcuts, which can compensate for your lack of knowledge of others. The first one is Find action (Ctrl+Shift+A or ⇧⌘A) dialog, which lets you search for specific actions and commands and quickly execute them.
+Knowing all the useful shortcuts is no doubt handy and a big time-saver. It does, however, take some time to learn them. In the meantime, it is useful to remember some shortcuts, which can compensate for your lack of knowledge of others. The first one is Find action (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> or <kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>A</kbd> on Mac) dialog, which lets you search for specific actions and commands and quickly execute them.
 
 ![Find Action Popup](./find-action-popup.png)
 
- And of course, if everything else fails, there is always the almighty Search everywhere feature using double Shift, which also lists actions. 
+ And of course, if everything else fails, there is always the almighty Search everywhere feature using double <kbd>Shift</kbd>, which also lists actions. 
  
  ![Search Everywhere Popup](./search-everywhere-popup.png)
