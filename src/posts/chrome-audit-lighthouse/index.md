@@ -14,13 +14,13 @@ Did you know Chrome can perform a comprehensive audit of a web page and analyze 
 
 ## Running an Audit
 
-In version 60, Chrome introduced a great new addition to its Developer Tools. It is a comprehensive Audit feature for web pages powered by a tool called Lighthouse. It is an open source tool available on [GitHub](https://github.com/GoogleChrome/lighthouse). To run an audit, you need to open Chrome Dev Tools (F12) and select *Audits* tab:
+In version 60, Chrome introduced a great new addition to its Developer Tools. It is a comprehensive Audit feature for web pages powered by a tool called Lighthouse. It is an open source tool available on [GitHub](https://github.com/GoogleChrome/lighthouse). To run an audit, you need to open Chrome Dev Tools (<kbd>F12</kbd>) and select `Audits` tab:
 
 ![Chrome Audit](./chrome-audit.png)
 
 Before running an audit, you can select various configuration options. First of all, you can select categories in which you want the target site to be audited. Disabling a category makes the analysis faster, but let's keep all the categories for now. Additionally, you can select whether Lighthouse should test your site as a mobile or desktop agent. Lastly, you can tell Chrome to emulate a device with slower CPU and slower network connection so you can check how your site performs on lower tier mobile devices with worse connectivity. It is worth checking as the results can be dramatically different from what you experience on your cutting-edge PC with a super-fast connection.
 
-Now let's click the *Run audits*. Chrome analyzes your page for various potential problems in the selected categories. After the audit is done, you receive a score in each of the categories up to 100 points:
+Now let's click the `Run audits`. Chrome analyzes your page for various potential problems in the selected categories. After the audit is done, you receive a score in each of the categories up to 100 points:
 
 ![Lighthouse Audit Score](./lighthouse-audit-score.png)
 

@@ -277,7 +277,7 @@ GET http://localhost:8090/persons/all
 ###
 ```
 
-The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by <kbd>CTRL</kbd> + Click. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
+The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by <kbd>Ctrl</kbd> + Click. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
 
 ![compare](./compare.png)
 

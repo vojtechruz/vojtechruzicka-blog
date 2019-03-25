@@ -30,7 +30,7 @@ Column selection mode can be also used with keyboard only. When in column select
 
 ## Caret Cloning
 
-The same functionality of creating new cursors as with Shift + arrows can be achieved by `Clone caret above` and `Clone caret bellow` commands.
+The same functionality of creating new cursors as with <kbd>Shift</kbd> + arrows can be achieved by `Clone caret above` and `Clone caret bellow` commands.
 
 The commands are issued by pressing <kbd>Ctrl</kbd> (or <kbd>⌥</kbd> on Mac), then pressing it again and not releasing. While still holding <kbd>Ctrl</kbd>, you can press <kbd>↑</kbd> and <kbd>↓</kbd> arrows to clone cursor to the line above or bellow.
 
@@ -81,7 +81,7 @@ The shortcut is:
 
 
 ## Remove occurrence
-Removing the last occurrence from your selection is the same shortcut with shift added:
+Removing the last occurrence from your selection is the same shortcut with <kbd>Shift</kbd> added:
 - <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>J</kbd> On Linux and Windowss
 - <kbd>⇧</kbd> + <kbd>⌃</kbd> + <kbd>G</kbd> on Mac. 
 
