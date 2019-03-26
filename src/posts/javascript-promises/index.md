@@ -23,7 +23,7 @@ console.log("Third");
 ## Callbacks
 However, the model above is not suitable in all cases. Imagine you have a page loaded and need to fetch some date from the backend. If you did this synchronously, all the execution would be suspended until you receive your data. And this could take quite some time. In the meantime, the page would be unresponsive.
 
-In this case, it would be much more convenient to call the server, but continue the execution and react the result asynchronously whenever the response from your server arrives.
+In this case, it would be much more convenient to call the server, but continue the execution and react to the result asynchronously whenever the response from your server arrives.
 
 The common traditional approach would be to provide a function, which should be invoked once the server call is done. Such function is called a "callback function".
 
@@ -55,24 +55,24 @@ setTimeout(function() {
 }, intervalInMilliseconds);
 ```
 
-Another common use case would be reacting to certain events such as button click, document loaded and so on. You don't know or care when they happen. You just want to be notified by a callback function when the event occurs.
+Another common use case would be reacting to certain events such as button click, document loaded and so on. You don't know or care when they happen. You just want to be notified by your callback function when the event occurs.
 
 ## Callbacks and this
 Be careful when using `this` keyword with callbacks. If you are using a function, which is a property of an object, `this` will refer to the parent object. But when you provide it as a callback, it will no longer point to its object, which can lead to unexpected behavior. To learn in detail about issues with `this`, check the following article:
 
-<div class="linked-post"><h4 class="front-post-title" style="margin-bottom:0.375rem"><a style="box-shadow:none" href="/javascript-this-keyword/">Javascript: Uncovering mysteries of ‘this’ keyword</a></h4><small class="front-post-info"><span class="front-post-info-date">13 February, 2018</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#<!-- -->Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-this-keyword/"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden"><div style="width:100%;padding-bottom:56.22222222222222%"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHJKmIFD//EABkQAAIDAQAAAAAAAAAAAAAAAAECAAMSEP/aAAgBAQABBQKtdMwGoO//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAXEAADAQAAAAAAAAAAAAAAAAAAAREg/9oACAEBAAY/AhzP/8QAGhABAAMAAwAAAAAAAAAAAAAAAQARIRBBgf/aAAgBAQABPyExFA7WaVZeRa4XnsZ//9oADAMBAAIAAwAAABBgz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABsQAAICAwEAAAAAAAAAAAAAAAERACExQVGh/9oACAEBAAE/EBK2WRSgTraJrUYQxDOHTEZr68hXP//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/680c3/javascript-this.jpg 45w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/0b965/javascript-this.jpg 90w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/cc2e6/javascript-this.jpg 180w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/feef1/javascript-this.jpg 270w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/1ee31/javascript-this.jpg 360w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/e8e8f/javascript-this.jpg 540w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/dcd67/javascript-this.jpg 900w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/cc2e6/javascript-this.jpg" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><source srcSet="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/680c3/javascript-this.jpg 45w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/0b965/javascript-this.jpg 90w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/cc2e6/javascript-this.jpg 180w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/feef1/javascript-this.jpg 270w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/1ee31/javascript-this.jpg 360w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/e8e8f/javascript-this.jpg 540w,
-/static/d37337a1d2b6606b7c5ec2b9be46d6dc/dcd67/javascript-this.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/cc2e6/javascript-this.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">This is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.</span></div></div>
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/javascript-this-keyword/" style="box-shadow: none;">Javascript: Uncovering mysteries of ‘this’ keyword</a></h4><small class="front-post-info"><span class="front-post-info-date">13 February, 2018</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-this-keyword/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 56.2222%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAHJKmIFD//EABkQAAIDAQAAAAAAAAAAAAAAAAECAAMSEP/aAAgBAQABBQKtdMwGoO//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAXEAADAQAAAAAAAAAAAAAAAAAAAREg/9oACAEBAAY/AhzP/8QAGhABAAMAAwAAAAAAAAAAAAAAAQARIRBBgf/aAAgBAQABPyExFA7WaVZeRa4XnsZ//9oADAMBAAIAAwAAABBgz//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABsQAAICAwEAAAAAAAAAAAAAAAERACExQVGh/9oACAEBAAE/EBK2WRSgTraJrUYQxDOHTEZr68hXP//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/da188/javascript-this.jpg 45w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/c296b/javascript-this.jpg 90w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/02806/javascript-this.jpg 180w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/f5a53/javascript-this.jpg 270w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/dc9ca/javascript-this.jpg 360w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/a1e3d/javascript-this.jpg 540w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/accd0/javascript-this.jpg 900w" src="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/02806/javascript-this.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/da188/javascript-this.jpg 45w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/c296b/javascript-this.jpg 90w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/02806/javascript-this.jpg 180w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/f5a53/javascript-this.jpg 270w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/dc9ca/javascript-this.jpg 360w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/a1e3d/javascript-this.jpg 540w,
+/static/d37337a1d2b6606b7c5ec2b9be46d6dc/accd0/javascript-this.jpg 900w" src="/static/d37337a1d2b6606b7c5ec2b9be46d6dc/02806/javascript-this.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">This is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.</span></div></div>
 
 ## Promises
 Promises offer an alternative approach to callbacks when working with asynchronous calls.
@@ -109,7 +109,7 @@ const failureFunction = function() {
 httpClient.get(targetUrl).then(successFunction).catch(failureFunction);
 ```
 
-In case the promise resolved successfully as expected, the function in `then()` will be called, otherwise, when there is an error, function in `catch()` will be called.
+In case the promise is resolved successfully as expected, the function in `then()` will be called, otherwise, when there is an error, function in `catch()` will be called.
 
 ### Finally
 In addition to `then()` and `catch()` there is a useful clause called `finally()`. It is run after the promise is settled, no matter whether it was successful or not. It is handy to prevent duplicated code, which would be otherwise both in `catch()` and `then()`. If you have code which should be executed after the promise finishes no matter what, it belongs to `finally()`.
@@ -295,9 +295,9 @@ What's important to note is that even though promises resolve in order `2,1,3` (
 ### Parallel - any
 The last scenario is when you want to call multiple similar promises, but you are interested just in whatever comes first.
 
-The synta is similar to `Promise.any()`, but you use `Promsie.race()` instead.
+The syntax is similar to `Promise.any()`, but you use `Promsie.race()` instead.
 
-Only the result of the first resolved promise is passed into `then()` but all the promises still resolve. Only their result is just ignored.
+Only the result of the first resolved promise is passed into `then()` but all the promises still resolve. But their result is just ignored.
 
 ```javascript
 let promise1 = new Promise(resolve => setTimeout(() => {
