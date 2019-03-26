@@ -10,8 +10,8 @@ excerpt: 'Promises are a useful, modern technique in javascript to handle async 
 
 ![Promises](./promise.jpg)
 
-## Sycnhronous execution
-Traditionally, javascript code is executed synchronously. The code is executed from top to bottom, line by line. The execution flow continues to the next line only when the exectuion of the previous line is fully finished.
+## Synchronous execution
+Traditionally, the javascript code is executed synchronously. The code is executed from top to bottom, line by line. The execution flow continues to the next line only when the execution of the previous line is fully finished.
 
 ```javascript
 console.log("First");
@@ -21,15 +21,15 @@ console.log("Third");
 ```
 
 ## Callbacks
-However, the model above is not suitable in all cases. Imagine you have a page loaded and need to fetch some date from the backend. If you do did this synchronously, all the execution would be suspended until you receive your data. And this could take quite some time. In the meantime the page would be unresponsive.
+However, the model above is not suitable in all cases. Imagine you have a page loaded and need to fetch some date from the backend. If you did this synchronously, all the execution would be suspended until you receive your data. And this could take quite some time. In the meantime, the page would be unresponsive.
 
-In this case it would be much more convenient to call the server, but continue the execution and react the the result asynchronously whenever the response from your server arrives.
+In this case, it would be much more convenient to call the server, but continue the execution and react the result asynchronously whenever the response from your server arrives.
 
 The common traditional approach would be to provide a function, which should be invoked once the server call is done. Such function is called a "callback function".
 
 In other words, you can say: Ok, call the server, I don't care how long it takes, but when you're done, please let me know by calling back this function I provide you with.
 
-You can do this because in Javascript function are first-class objects. You can sttore functions in variables or pass them as parameters to other functions.
+You can do this because in Javascript function are first-class objects. You can store functions in variables or pass them as parameters to other functions.
 
 ```javascript
 // server url to be requested
@@ -55,7 +55,7 @@ setTimeout(function() {
 }, intervalInMilliseconds);
 ```
 
-Other common use cas would be reacting to certain events such as button click, document loaded and so on. You don't know or care when they happen, you just want to be notified by a callback function when the event occurs.
+Another common use case would be reacting to certain events such as button click, document loaded and so on. You don't know or care when they happen. You just want to be notified by a callback function when the event occurs.
 
 ## Callbacks and this
 Be careful when using `this` keyword with callbacks. If you are using a function, which is a property of an object, `this` will refer to the parent object. But when you provide it as a callback, it will no longer point to its object, which can lead to unexpected behavior. To learn in detail about issues with `this`, check the following article:
@@ -77,12 +77,12 @@ Be careful when using `this` keyword with callbacks. If you are using a function
 ## Promises
 Promises offer an alternative approach to callbacks when working with asynchronous calls.
 
-A function can retrun promise object, which wraps the async call an can be used to define what should be done when the promise is finally successfully resolved. The promise object contains `then` method, whcih can be used to define a function, which should be called once the promise succesfully finishes. Lets look at the previous example using promises:
+A function can return promise object, which wraps the async call an can be used to define what should be done when the promise is finally successfully resolved. The promise object contains the `then` method, which can be used to define a function, which should be called once the promise successfully finishes. Let's look at the previous example using promises:
 
 ```javascript
-// server url to be requested
+// server URL to be requested
 const targetUrl = "http://www.example.com/persons";
-// Callback function to be called when successfuly finished
+// Callback function to be called when successfully finished
 const callbackFunction = function() {
   console.log("All Done!")  
 };
@@ -91,12 +91,12 @@ const callbackFunction = function() {
 httpClient.get(targetUrl).then(callbackFunction);
 ```
 
-So far it is quite similar to callbacks. Of course, something can go terribly wrong when calling the server. If your url is not valid, you can get 404 not found, or there can be 500 internal server error. Fortunately, in addition to what happens when everything goes well, you can define another function which should be called in case the promise is not succesfull. You can use `catch()` and chain it after then:
+So far it is quite similar to callbacks. Of course, something can go terribly wrong when calling the server. If your URL is not valid, you can get 404 not found, or there can be 500 internal server error. Fortunately, in addition to what happens when everything goes well, you can define another function which should be called in case the promise is not successful. You can use `catch()` and chain it after then:
 
 ```javascript
-// server url to be requested
+// server URL to be requested
 const targetUrl = "http://www.example.com/persons";
-// Callback function to be called successfuly finished
+// Callback function to be called when successfully finished
 const successFunction = function() {
   console.log("All Done!")  
 };
@@ -109,10 +109,10 @@ const failureFunction = function() {
 httpClient.get(targetUrl).then(successFunction).catch(failureFunction);
 ```
 
-In case the promise resolved succesfully as expected, the function in `then()` will be called, otherwise, when there is an error, function in `catch()` will be called.
+In case the promise resolved successfully as expected, the function in `then()` will be called, otherwise, when there is an error, function in `catch()` will be called.
 
 ### Finally
-In addition to `then()` and `catch()` there is a useful clause called `finally()`. It is run after the promise is settled, no matter whether it was succesfull or not. It is handy to provent duplicated code, which would be otherwise both in `catch()` and `then()`. If you have code which should be executed after the promise finishes no matter what, it belongs to `finally()`.
+In addition to `then()` and `catch()` there is a useful clause called `finally()`. It is run after the promise is settled, no matter whether it was successful or not. It is handy to prevent duplicated code, which would be otherwise both in `catch()` and `then()`. If you have code which should be executed after the promise finishes no matter what, it belongs to `finally()`.
 
 ```javascript{4}
 httpClient.get(targetUrl)
@@ -126,8 +126,8 @@ httpClient.get(targetUrl)
 Each promise can be in one of the following states:
 
 - **settled**: Promise is finished, either fulfilled or rejected
-- **rejected**: The action was not succesfull, promise failed `catch` function is was called if present. The promise is finished.
-- **fulfilled**: Promise action was succesfull, `then` function was called. The promise is finished.
+- **rejected**: The action was not successful, promise failed `catch` function is was called if present. The promise is finished.
+- **fulfilled**: Promise action was successful, `then` function was called. The promise is finished.
 - **pending**: The promise is not finished, still in progress.
 
 ## Creating promises
@@ -139,7 +139,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-You should call `resolve()` and supply a return value when the promise is fulfilled. In case something goes wrong, you call `reject()` instead and you can supply an error describing what happened.
+You should call `resolve()` and supply a return value when the promise is fulfilled. In case something goes wrong, you call `reject()` instead, and you can supply an error describing what happened.
 
 ```javascript
 new Promise(function(resolve, reject) {
@@ -181,14 +181,14 @@ new Promise(function(resolve, reject) {
 As you can see, the error is properly caught and can be handled inside the `catch()` clause. So if you don't need special error handling logic directly inside the promise, you don't necessarily need to include `try-catch` in it.
 
 ## Multiple promises
-So far we worked only with single promises. In some cases it is just enough, however, often you need to work with more promises which are somehow related to each other. Let's look at specific examples.
+So far we worked only with single promises. In some cases, it is just enough. However, often you need to work with more promises which are somehow related to each other. Let's look at specific examples.
 
 ### Serial
 The most common use case is probably a scenario where you need to run multiple promises one after each other. And each of them is dependent on the last one. That is, you cannot run the second promise until the first one is resolved.
 
 Let's say you need to fetch some data from the server and only after you receive the data, you can execute a second server call, which uses the data previously obtained.
 
-Fortunatelly, this is easy with promises. All you need to do is to chain them one after another using `then`.
+Fortunately, this is easy with promises. All you need to do is to chain them one after another using `then`.
 
 ```javascript
 new Promise(function(resolve, reject) {
@@ -203,7 +203,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Easy, right? Not only easy to write, but also. Easy to read. Especially when you use arrow functions like this:
+Easy, right? Not only easy to write, but also easy to read. Especially when you use arrow functions like this:
 
 ```javascript
 new Promise((resolve, reject) => {
@@ -221,7 +221,7 @@ new Promise((resolve, reject) => {
 
 As you can see in the example above, you can still use catch to handle errors. What's even better, the catch will handle errors which happen inside of ANY of the `then` blocks.
 
-Be aware that to achieve the desired "ano after another" behavior, you need to chain promises. If you just create multiple independend `then` clauses it does work differently:
+Be aware that to achieve the desired "one after another" behavior, you need to chain promises. If you just create multiple independent `then` clauses it does work differently:
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
@@ -244,7 +244,7 @@ promise.then((result) => {
 Any guess what will happen? Instead of running promises one after another, you just provide multiple handlers to the same promise. Each of them will be executed independently after the promise resolves. The total result will still be 42.
 
 ### Parallel - all
-Another scenario is when you have multiple promises and you need to run them all. Only after ALL are done, you want to do something. However, the promises are not dependent and can run in parallel to each other.
+Another scenario is when you have multiple promises and you need to run them all. Only after ALL are done, you want to do something. However, the promises are not dependent and can run in parallel with each other.
 
 ```javascript
 const promise = Promise.all([promise1, promise2, promise3])
@@ -288,12 +288,12 @@ Promise 3 resolved!
 All DONE!
 [ 1, 2, 3 ]
 ```
-You can see that the result is an array of the results returned be each individual promise.
+You can see that the result is an array of the results returned by each individual promise.
 
-What's important to note is that even though promises resolve in order `2,1,3` (because of the different timeouts set), the result array is in the same order as what you put in `Promise.all()`, that is `1,2,3`. Otherwise it would be hard to tell which result belongs to which promise.
+What's important to note is that even though promises resolve in order `2,1,3` (because of the different timeouts set), the result array is in the same order as what you put in `Promise.all()`, that is `1,2,3`. Otherwise, it would be hard to tell which result belongs to which promise.
 
 ### Parallel - any
-The last scenario is when you want to call multiple similar promises but you are interested just in whatever comes first.
+The last scenario is when you want to call multiple similar promises, but you are interested just in whatever comes first.
 
 The synta is similar to `Promise.any()`, but you use `Promsie.race()` instead.
 
@@ -333,7 +333,7 @@ Promise 1 resolved!
 Promise 3 resolved!
 ```
 
-Beware that if the first promise results in error and is rejected, `then()` is not executed.
+Beware that if the first promise results in an error and is rejected, `then()` is not executed.
 
 
 ## Compatibility
