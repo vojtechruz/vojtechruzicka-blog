@@ -84,6 +84,10 @@ Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/seria
 
 So no matter what your preference is regarding serialVersionUID, you now have a Sonar rule to support it. Alternatively, if you prefer, you can even configure both rules to be active at the same time, each for a different part of your app, if it makes sense in your situation.
 
+## Further reading
+In the post[WHY NOT: serialVersionUID](https://github.com/rzwitserloot/lombok/wiki/WHY-NOT:-serialVersionUID)  
+Reinier Zwitserloot explains why the Java code generator Lombok does not, cannot and should not support serialVersionUID, despite nearly every other IDE and linting tool out there seems to suggest specifying it.
+
 ## Conclusion
 
 Serialization has many pitfalls including maintaining backward compatibility. The first consideration should be whether you should be using serialization at all. You should consider whether for your specific scenario it is not better to use a different approach. Maybe something JVM independent, so it is easier to integrate with other non-JVM systems. You may consider using XML or JSON and OXM or JSON-object mapping (such as GSON) instead of serialization.
