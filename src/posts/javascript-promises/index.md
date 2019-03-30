@@ -247,8 +247,7 @@ Any guess what will happen? Instead of running promises one after another, you j
 Another scenario is when you have multiple promises and you need to run them all. Only after ALL are done, you want to do something. However, the promises are not dependent and can run in parallel with each other.
 
 ```javascript
-const promise = Promise.all([promise1, promise2, promise3])
-.then(doSomething);
+Promise.all([promise1, promise2, promise3]).then(doSomething);
 ```
 
 You just provide an array of promises to `Promise.all()`.
