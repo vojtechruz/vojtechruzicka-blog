@@ -116,6 +116,17 @@ As I already mentioned, you can use `await` only in a fucntion which is marked a
 SyntaxError: await is only valid in async function
 ```
 
+## Multiple calls
+Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each depends on value returned by the previous one.
+
+```javascript
+const first = await firstCall();
+const second = await secondCall(first);
+const third = await  thidrCall(second);
+```
+
+It is a concise, easy to read way to represent multiple async calls. With promises, it would be not so nice chain of `then()` clauses, which is not so nice. Of course, still much better than chained callbacks.
+
 ## Error handling
 When working with promises, you can provide `then()` clause, which handles the case where the promise is fulfilled successfully and `catch()` clause to handle any errors when the promise is rejected. There is even `finally()` clause which executes no matter whether promise was fulfilled or rejected.
 
@@ -146,7 +157,19 @@ async function foo() {
 That means - `try` block will execute. When there is an error, the execution of `try` block terminates and it jumps to the `catch` block. No matter whether there was error or not, at the end, the `finally` block executes.
 
 ## Waiting for multiple parallel promises
-TODO
+Sometimes instead of resolving async functions one after another, it is useful to execute them in parallel and await until all of them are finished.
+
+With promises, you can can use `Promise.all()`. As input, you provide an array of promises. It returns a single promise, which resolves once all the passed in promises are fulfilled.
+
+```javascript
+Promise.all([promise1, promise2, promise3]).then(doSomething);
+```
+
+Since `Promise.all()` returns a promise, you can still use `await` instead of then:
+
+```javascript
+const results = await Promise.all([promise1, promise2, promise3]);
+```
 
 ## Compatibility
 The async await functionality is well supported in all the modern major browsers. Of course, you'll be in trouble with Internet Explorer. It does not support async await at all, but you [can work around this](https://medium.com/@zwacky/add-es7-async-await-support-into-your-non-bleeding-edge-build-process-ad0dded0d002).
