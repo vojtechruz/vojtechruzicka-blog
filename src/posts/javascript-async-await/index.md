@@ -116,6 +116,8 @@ As I already mentioned, you can use `await` only in a fucntion which is marked a
 SyntaxError: await is only valid in async function
 ```
 
+One implication of this is that you cannot use `await` in top-level code.
+
 ## Multiple calls
 Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each depends on value returned by the previous one.
 
