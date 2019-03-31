@@ -4,7 +4,7 @@ date: "2019-03-28T22:12:03.284Z"
 tags: ["Javascript"]
 path: '/javascript-promises'
 featuredImage: './promise.jpg'
-disqusArticleIdentifier: '99019 http://vojtechruzicka.com/?p=99019'
+disqusArticleIdentifier: '99020 http://vojtechruzicka.com/?p=99020'
 excerpt: 'Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.'
 ---
 

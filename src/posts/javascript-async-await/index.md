@@ -1,10 +1,10 @@
 ---
 title: 'Javascript async await tutorial'
-date: "2019-03-30T22:12:03.284Z"
+date: "2019-03-31T22:12:03.284Z"
 tags: ["Javascript"]
 path: '/javascript-async-await'
 featuredImage: './async-await.jpg'
-disqusArticleIdentifier: '99020 http://vojtechruzicka.com/?p=99020'
+disqusArticleIdentifier: '99021 http://vojtechruzicka.com/?p=99021'
 excerpt: 'Async await allows you to work with asynchronous code in cleaner and more convenient way.'
 ---
 
@@ -46,7 +46,7 @@ async function foo() {
 
 Pretty easy right? What did actually change though?
 
-The async function now returns a promise. In the previous example, instead of returning just 42, it returns `Promise { 42 }`, which is fulfilled.
+The async function now returns a promise. Instead of returning just 42 as in the previous example, it returns `Promise { 42 }`, which is fulfilled.
 
 ```javascript
 async function foo() {
@@ -58,7 +58,7 @@ foo().then(result => {
 })
 ```
 
-In case that there is an unhandled error in the `async` function, it returns rejected promise with that error. You can handle it as usual with `catch()`;
+In case that there is an unhandled error in the `async` function, it returns rejected promise with that error. You can handle it as usual with `catch()` clause.
 
 ```javascript
 async function foo() {
@@ -119,7 +119,7 @@ SyntaxError: await is only valid in async function
 One implication of this is that you cannot use `await` in the top-level code.
 
 ## Multiple calls
-Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each depends on the value returned by the previous one.
+Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each call depends on the value returned by the previous one.
 
 ```javascript
 const first = await firstCall();
@@ -158,6 +158,10 @@ async function foo() {
 
 That means - `try` block executes first. When there is an error, the execution of `try` block terminates and it jumps to the `catch` block. No matter whether there was an error or not, in the end, the `finally` block executes.
 
+Traditional `try-catch-finally` has some advantages over chained promises with `then()-catch()-finally()`.
+
+It is arguably easier to read. More importantly, it is a plain old traditional JavaScript construct, which everybody knows. You no longer need to use one error handling concept for promises and a different one for non-promise code. Your error handling is unified and cleaner.  In one `try` block you can have mixed async and non-async code.
+
 ## Waiting for multiple parallel promises
 Sometimes instead of resolving async functions one after another, it is useful to execute them in parallel and await until all of them are finished.
 
@@ -177,3 +181,12 @@ const results = await Promise.all([promise1, promise2, promise3]);
 The async-await functionality is well supported in all the major modern browsers. Of course, you'll be in trouble with Internet Explorer. It does not support async await at all, but you [can work around this](https://medium.com/@zwacky/add-es7-async-await-support-into-your-non-bleeding-edge-build-process-ad0dded0d002).
 
 ![Async compatibility](async-compatibility.png)
+
+## Conclusion
+Async-await offers an easy way to write asynchronous code as if it was synchronous. It is easier to read and write.
+
+Await can be used before an asynchronous call returning a promise. The execution of the function will wait until the call is resolved and only then continue to the next line. 
+
+Since `await` replaces `then().catch()` chains, you cannot use the same error handling like with promises. Instead, you should use the good old `try-catch-finally`.
+
+`Await` can be only used in functions marked as `async`. Marking function as `async` makes it also return a promise. This is done automatically for you, so you don't need to return a promise explicitly.
