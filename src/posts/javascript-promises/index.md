@@ -343,3 +343,20 @@ Promises are well supported in all the modern browsers as you can see in the tab
 Well, except for Internet Explorer, of course. For the up to date compatibility list see [this table on Can I Use](https://caniuse.com/#feat=promises).
 
 For support in IE, you need to use a [polyfill](https://ourcodeworld.com/articles/read/316/top-5-best-javascript-promises-polyfills).
+
+## Async await
+While promises are easier to write, read and maintain than callbacks, they still have their issues, especially in more complex cases of promise chains. `Async-await` is an interesting alternative to plain promises, which allows you to have asynchronous code, which reads as synchronous code, is simple and concise. Check the following post for detailed explanation.
+
+<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/javascript-async-await/" style="box-shadow: none;">Javascript async await tutorial</a></h4><small class="front-post-info"><span class="front-post-info-date">31 March, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-async-await/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 58.7778%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwX/xAAWAQEBAQAAAAAAAAAAAAAAAAABAAL/2gAMAwEAAhADEAAAAdRe+blQVG//xAAaEAACAgMAAAAAAAAAAAAAAAABAgARAxIh/9oACAEBAAEFAr2GQMYr2Eh4EM//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAcEAACAAcAAAAAAAAAAAAAAAAAAQIQESExMnL/2gAIAQEABj8CsbUMDUouj//EABsQAAMBAAMBAAAAAAAAAAAAAAABESExQYGR/9oACAEBAAE/IawQTReCGadoatwmKopKD/sf/9oADAMBAAIAAwAAABC/D//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EFf/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPxBH/8QAHBABAQACAgMAAAAAAAAAAAAAAREAIVFhQXHw/9oACAEBAAE/ECsGu6VPeVPhK7H7nFSgi06yGaygrxh8aggY1VnhOmZ//9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/3c82134bf7203c3088c1ecf01c11caef/da188/async-await.jpg 45w,
+/static/3c82134bf7203c3088c1ecf01c11caef/c296b/async-await.jpg 90w,
+/static/3c82134bf7203c3088c1ecf01c11caef/02806/async-await.jpg 180w,
+/static/3c82134bf7203c3088c1ecf01c11caef/f5a53/async-await.jpg 270w,
+/static/3c82134bf7203c3088c1ecf01c11caef/dc9ca/async-await.jpg 360w,
+/static/3c82134bf7203c3088c1ecf01c11caef/a1e3d/async-await.jpg 540w,
+/static/3c82134bf7203c3088c1ecf01c11caef/accd0/async-await.jpg 900w" src="/static/3c82134bf7203c3088c1ecf01c11caef/02806/async-await.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/3c82134bf7203c3088c1ecf01c11caef/da188/async-await.jpg 45w,
+/static/3c82134bf7203c3088c1ecf01c11caef/c296b/async-await.jpg 90w,
+/static/3c82134bf7203c3088c1ecf01c11caef/02806/async-await.jpg 180w,
+/static/3c82134bf7203c3088c1ecf01c11caef/f5a53/async-await.jpg 270w,
+/static/3c82134bf7203c3088c1ecf01c11caef/dc9ca/async-await.jpg 360w,
+/static/3c82134bf7203c3088c1ecf01c11caef/a1e3d/async-await.jpg 540w,
+/static/3c82134bf7203c3088c1ecf01c11caef/accd0/async-await.jpg 900w" src="/static/3c82134bf7203c3088c1ecf01c11caef/02806/async-await.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Async await allows you to work with asynchronous code in cleaner and more convenient way.</span></div></div>
