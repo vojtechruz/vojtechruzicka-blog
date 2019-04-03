@@ -10,6 +10,7 @@ excerpt: 'Java 12 introduced whole lot of useful improvements to the good old sw
 
 ![Switch](switch.jpg)
 
+Java 12 introduced whole lot of useful improvements to the good old switch, which makes it way more useful.
 
 ## Traditional switch
 Good old switch is available in Java from the very beggining and little has changed since then until now. Java's switch follows closely the design of C and C++ including the weird parts.
@@ -67,7 +68,7 @@ Not what we intended right? While fall-through behavior can be useful sometimes,
 ## Single value cases
 On of the unfortunate limitations of switch is that in each case, there can be just a single value. This forces you to rely on fallthrough if you want to have the same behavior for multiple values.
 
-```
+```java
 switch (errorCode) {
     case 400:
     case 404:
@@ -83,9 +84,9 @@ switch (errorCode) {
 ```
 
 What would be much simpler is specifying multiple values per case:
-```
+```java
 case 400, 404, 405:
-        System.out.println("Something is wrong with the request!");
+    System.out.println("Something is wrong with the request!");
 ```
 
 Unfortunately, traditional old switch does not support this.
@@ -268,15 +269,15 @@ The good news is that IDEA already has nice support for extended switch.
 
 In the example below, you can see a quick-fix for replacing traditional switch with a switch expression. Note that IDEA also automatically adds default branch so all the possible inputs are covered.
 
-![IDEA replace with switch expression](./idea-replace-with-switch-expression.gif)
+![IDEA replace with switch expression](idea-replace-with-switch-expression.gif)
 
 IDEA also warns you when your switch is not compliant, such in a case where you don't cover all the possible input values. And it offers you a quick fix:
 
-![IDEA add default branch](./idea-add-default-branch.gif)
+![IDEA add default branch](idea-add-default-branch.gif)
 
 If idea detects you have multiple `case` branches with the same behavior, it will warn you and offer you to merge these branches together:
 
-![IDEA Merge case branches](./idea-merge-branches.gif) 
+![IDEA Merge case branches](idea-merge-branches.gif) 
 
 ## Future enhancements
 As part of the [JEP-325](https://openjdk.java.net/jeps/325) specificationt, there is also emntioned another improvement, which is not currently implemented (as of Java 12), but may be introduced in the future.
