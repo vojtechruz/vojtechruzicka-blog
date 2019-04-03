@@ -175,11 +175,69 @@ As you can see we can now use result of a switch expression and assign it to a v
 Notice a few differences to the regular switch statement. First of all, it needs to end with semicolon. Then, `break` is used differently. Instead of plain `break;`we use break with a value. It indicates what value should be returned from the expression. It is similar to `return;` and `return 5;` in methods. Void method which do not return value have just simple `return;` methods which do return some value have `return value;`. Switch statement, which does not return value, does have plain `break;`. Switch expression, which does return value have `break value;`.
 
 ### Null Pointer Exception Safety
+There is one another major difference. Unlike with regular switch, the switch expression needs to cover all the possible input values.
+
+Let's look at the previous example. The `errorCode` input is integer. It has, of couse many possible values. Two first cases cover 404 and 500, the rest of the values is covered with `default` branch.
+
+That means that all possible integer values are covered. No matter what the input is, the switch always returns something. Let's try to remove the default branch just as a test.
+
+```java
+String message = switch (errorCode) {
+    case 404:
+        break "Not found!";
+    case 500:
+        break "Internal server error!";
+    // default:
+    //    throw new IllegalArgumentException("Unexpected value: " + errorCode);
+};
+```
+
+This will result in the following error:
+
+```
+Error:(11, 26) java: the switch expression does not cover all possible input values
+```
+
+So with switch expression you have to provide return value for all the possible inputs. Either by providing `case` for all the possible inputs (which can be easy for enums) or by providing `default` case.
+
+This has some nice implications. Regular switch is error-prone when you forget to include one of the values, for example when using enums. Or when you later add another enum item, but forget to update you switch statements. This cannot happen with switch expression as you would get compile error. Also you cannot get null pointer exception as a result of switch expression.
+
+### Switch with arrows
+So far we've seen some nice improvements to the good old switch. One of the major nuisances was not covered though. Even with multi-value `case` blocks, we still had to make sure we included `break` properly otherwise we could face some nasty fall-through bugs.
+
+Fortunately, new switch can prevent this. There is a new type of syntax available using `->`.
+
+```java
+switch (errorCode) {
+      case 404 -> System.out.println("Not found!");
+      case 500 -> System.out.println("Internal server error!");
+  };
+```
+
+This syntax can be used for both switch statement and switch expression. In the example above we are using simple switch statement. In case of `->` switch you don't need to include `break` and it does not have fall-through behavior. An you can still use multiple values per one `case`.
+
+It's more concise, easier to read and fool-proof. No more nasty errors. 
+
+Now you have two options, if you want to use fall-through behaviour, you use switch with `case:`, otherwise you can use switch with `case ->`. Whatever approach you use, you need to stick with if for all the `case` branches in one switch. This results in an error:
+
+```java
+// Invalid: both 'case:' and 'case ->' in the same switch
+switch (errorCode) {
+    case 404 -> System.out.println("Not found!");
+    case 500: System.out.println("Internal server error!");
+};
+
+```
+
+## IntelliJ IDEA support
 
 TODO
+- scoping
+https://www.chrisnewland.com/java-variable-scope-in-switch-statement-150
 - preparation for pattern matching http://cr.openjdk.java.net/~briangoetz/amber/pattern-match.html
 - intellij idea support
    - https://blog.jetbrains.com/idea/2019/01/intellij-idea-2019-1-early-access-program-is-open/
    - https://blog.jetbrains.com/idea/2019/02/java-12-and-intellij-idea/
 - arrow and colon syntax ins not allowed
 - must cover all posible enum values   
+As a target of opportunity, we may expand switch to support switching on primitive types (and their box types) that have previously been disallowed, such as float, double, and long.
