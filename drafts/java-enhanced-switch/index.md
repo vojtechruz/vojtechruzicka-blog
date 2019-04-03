@@ -5,7 +5,7 @@ tags: ["Java"]
 path: '/java-enhanced-switch'
 featuredImage: './switch.jpg'
 disqusArticleIdentifier: '99022 http://vojtechruzicka.com/?p=99022'
-excerpt: ''
+excerpt: 'Java 12 introduced whole lot of useful improvements to the good old switch, which makes it way more useful.'
 ---
 
 ![Switch](switch.jpg)
@@ -211,7 +211,7 @@ Fortunately, new switch can prevent this. There is a new type of syntax availabl
 switch (errorCode) {
       case 404 -> System.out.println("Not found!");
       case 500 -> System.out.println("Internal server error!");
-  };
+}
 ```
 
 This syntax can be used for both switch statement and switch expression. In the example above we are using simple switch statement. In case of `->` switch you don't need to include `break` and it does not have fall-through behavior. An you can still use multiple values per one `case`.
@@ -225,19 +225,59 @@ Now you have two options, if you want to use fall-through behaviour, you use swi
 switch (errorCode) {
     case 404 -> System.out.println("Not found!");
     case 500: System.out.println("Internal server error!");
-};
-
+}
 ```
+
+### Scope
+One of the issues with traditional switch is its scope. The whole switch statement is a single scope. That means if you declare a variable in one of the `case` branches, it exists in all the subsequent branches until the end of the switch.
+
+```java
+switch (errorCode) {
+    case 404:
+        System.out.println();
+        String message = "Not found!";
+        break;
+    case 500:
+        // Cannot declare 'message', it already exists
+        String message = "Internal server error!";
+        break;
+}
+```
+
+This is, of course needed for proper working of fall-through behavior. If you want to threat individual `case` branches as separate scope, you need to introduce a `{}` block, which is treated as a separate scope:
+
+```java
+switch (errorCode) {
+    case 404: {
+        System.out.println();
+        // This variable exists just in this {} block
+        String message = "Not found!";
+        break;
+    }
+    case 500: {
+        // This is ok, {} block has a separate scope
+        String message = "Internal server error!";
+        break;
+    }
+}
+```
+
+With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either single expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use need to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
 
 ## IntelliJ IDEA support
 
-TODO
-- scoping
-https://www.chrisnewland.com/java-variable-scope-in-switch-statement-150
-- preparation for pattern matching http://cr.openjdk.java.net/~briangoetz/amber/pattern-match.html
-- intellij idea support
-   - https://blog.jetbrains.com/idea/2019/01/intellij-idea-2019-1-early-access-program-is-open/
-   - https://blog.jetbrains.com/idea/2019/02/java-12-and-intellij-idea/
-- arrow and colon syntax ins not allowed
-- must cover all posible enum values   
-As a target of opportunity, we may expand switch to support switching on primitive types (and their box types) that have previously been disallowed, such as float, double, and long.
+## Future enhancements
+As part of the [JEP-325](https://openjdk.java.net/jeps/325) specificationt, there is also emntioned another improvement, which is not currently implemented (as of Java 12), but may be introduced in the future.
+
+> As a target of opportunity, we may expand switch to support switching on primitive types (and their box types) that have previously been disallowed, such as float, double, and long.
+
+Currently, switch allows input values only of types char, int, byte, short, their object wrappers (Character, Byte, Short, Integer) and String (since Java 7).
+
+## Summary
+- In Java 12 enhanced switch is a preview feature, which needs to be explicitly enabled
+- You can now use `case` for multiple values
+- In addition to traditional switch statement, you can use switch expression, which returns a value
+- Switch expression must cover all possible input values of given input type
+- You can use new `->` syntax which does not have fall-through and does not require break
+- You cannot combine `case:` and `case ->` in one switch
+- Both switch expressions and switch statements can use both case syntax (`->` or `:`)
