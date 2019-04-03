@@ -249,7 +249,6 @@ This is, of course needed for proper working of fall-through behavior. If you wa
 ```java
 switch (errorCode) {
     case 404: {
-        System.out.println();
         // This variable exists just in this {} block
         String message = "Not found!";
         break;
@@ -265,6 +264,19 @@ switch (errorCode) {
 With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either single expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use need to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
 
 ## IntelliJ IDEA support
+The good news is that IDEA already has nice support for extended switch.
+
+In the example below, you can see a quick-fix for replacing traditional switch with a switch expression. Note that IDEA also automatically adds default branch so all the possible inputs are covered.
+
+![IDEA replace with switch expression](./idea-replace-with-switch-expression.gif)
+
+IDEA also warns you when your switch is not compliant, such in a case where you don't cover all the possible input values. And it offers you a quick fix:
+
+![IDEA add default branch](./idea-add-default-branch.gif)
+
+If idea detects you have multiple `case` branches with the same behavior, it will warn you and offer you to merge these branches together:
+
+![IDEA Merge case branches](./idea-merge-branches.gif) 
 
 ## Future enhancements
 As part of the [JEP-325](https://openjdk.java.net/jeps/325) specificationt, there is also emntioned another improvement, which is not currently implemented (as of Java 12), but may be introduced in the future.
