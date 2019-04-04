@@ -103,7 +103,7 @@ What does it mean?
 > 
 >Before the next JDK feature release, the feature's "real world" strengths and weaknesses will be evaluated to decide if the feature has a long-term role in the Java SE Platform and, if so, whether it needs refinement. Consequently, the feature may be granted final and permanent status (with or without refinements), or undergo a further preview period (with or without refinements), or else be removed.
 
-Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable it to use it. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in another release.
+Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable it to use it. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
 First, make sure you actually have JDK 12 installed. Then, in IntelliJ IDEA you can enable preview features under `File -> Project Structure`.
 
@@ -152,7 +152,7 @@ if(condition) {
 }
 ```
 
-The same `if-else` logic can be achieved with the ternary operator s an expression, which returns some value if the condition is met and a different value otherwise:
+The same `if-else` logic can be achieved with the ternary operator as an expression, which returns some value if the condition is met and a different value otherwise:
 
 ```java
 x = condition ? 1 : 2;
@@ -173,14 +173,14 @@ String message = switch (errorCode) {
 
 As you can see we can now use the result of a switch expression and assign it to a variable.
 
-Notice a few differences to the regular switch statement. First of all, it needs to end with a semicolon. Then, `break` is used differently. Instead of plain `break;` we use break with a value. It indicates what value should be returned from the expression. It is similar to `return;` and `return 5;` in methods. A void method which do not return value have just simple `return;` methods which do return some value have `return value;`. Switch statement, which does not return value, does have plain `break;`. Switch expression, which does return value have `break value;`.
+Notice a few differences to the regular switch statement. First of all, it needs to end with a semicolon. Then, `break` is used differently. Instead of plain `break;` we use break with a value. It indicates what value should be returned from the expression. It is similar to `return;` and `return value;` in methods. A void method which does not return a value has just a simple `return;`. Methods which do return some value have `return value;`. Switch statement, which does not return value, does have plain `break;`. Switch expression, which does return value has `break value;`.
 
 ### Null Pointer Exception Safety
 There is another significant difference. Unlike with regular switch, the switch expression needs to cover all the possible input values.
 
 Let's look at the previous example. The `errorCode` input is an integer. It has, of course, many possible values. Two first cases cover 404 and 500, the rest of the values is covered with the `default` branch.
 
-That means that all possible integer values are covered. No matter what the input is, the switch always returns something. Let's try to remove the default branch just as a test.
+That means that all possible integer values are covered. No matter what the input is, the switch always returns something. Or throws an exception explicitly. Let's try to remove the default branch just as a test.
 
 ```java
 String message = switch (errorCode) {
@@ -199,7 +199,7 @@ This will result in the following error:
 Error:(11, 26) java: the switch expression does not cover all possible input values
 ```
 
-So with switch expression, you have to provide a return value for all the possible inputs. Either by providing `case` for all the possible inputs (which can be easy for enums) or by providing `default` case.
+So with switch expression, you have to cover all the possible inputs. Either by providing `case` for all the possible inputs (which can be easy for enums) or by providing `default` case.
 
 This has some nice implications. The regular switch is error-prone when you forget to include one of the values, for example when using enums. Or when you later add another enum item but forget to update your switch statements. This cannot happen with switch expression as you would get compile error. Also, you cannot get null pointer exception as a result of switch expression.
 
@@ -219,7 +219,7 @@ This syntax can be used for both switch statement and switch expression. In the 
 
 It's more concise, easier to read and fool-proof — no more nasty errors. 
 
-Now you have two options: if you want to use fall-through behavior, you use the switch with `case:`, otherwise, you can use the switch with `case ->`. Whatever approach you use, you need to stick with it for all the `case` branches in one switch. This results in error:
+Now you have two options: if you want to use fall-through behavior, you use the switch with `case:`, otherwise, you can use the switch with `case ->`. Whatever approach you use, you need to stick with it for all the `case` branches in one switch. This results in an error:
 
 ```java
 // Invalid: both 'case:' and 'case ->' in the same switch
@@ -262,7 +262,7 @@ switch (errorCode) {
 }
 ```
 
-With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either single expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use need to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
+With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either single statement/expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use need to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
 
 ## IntelliJ IDEA support
 The good news is that IDEA already has nice support for the extended switch.
