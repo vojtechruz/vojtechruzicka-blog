@@ -90,5 +90,3 @@ You can check all the [photos](https://photos.google.com/share/AF1QipPMSR7JQ_w4Q
 
 ## Conclusion
 I had a great time volunteering at Reactive Conf 2018. It was really interesting to see a conference from the organizer's perspective and a great opportunity to meet many interesting people from all over the world - the organizers, the volunteers and the speakers. I definitely recommend this as an interesting alternative to just attending a conference. 
-
-**UPDATE:** To see volunteering at ReactiveConf from another point of view, check [Prabash Seneviratne's blog post](https://bash.lk/17-volunteering-at-reactiveconf-2018/).
