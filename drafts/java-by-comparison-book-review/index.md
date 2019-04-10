@@ -1,6 +1,6 @@
 ---
 title: 'Java By Comparison Book Review'
-date: "2019-04-013T22:12:03.284Z"
+date: "2019-04-13T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-by-comparison-book-review'
 featuredImage: './java-by-comparison.jpg'
