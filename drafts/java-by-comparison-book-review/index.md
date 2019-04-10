@@ -13,13 +13,46 @@ excerpt: 'This book aims to teach you how to write cleaner, more elegant code in
 This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics with before and after comparison in a concise, easy to read and understand way.
 
 ## Authors
+The book was written by three authors: [Simon Harrer](https://twitter.com/simonharrer), [Jörg Lenhard](https://joerglenhard.wordpress.com/) and [Linus Dietz](https://lynyus.org/).
+
+The authors are teachers of Java programming courses. When they were evaluating stedents's assignments, they had to provide same feedback for the same common issues over and over. A checklist with common issues and proper solutions would help a lot as they could only reference an item from this list when evaluating the assesments. That's how the idea for this book was born. It is a list of common issues and code smells in Java and what can you do to fix them.
+
 ## Concept
+The idea is simple, the book contains 70 independent items. Similar items are grouped into categories, such as comments, testing or exception handling.  Each item covers a specific issue, such as "Always Catch Most Specific Exception".
+
+Each item is not just a recommendation or a best practice. Instead, it starts with a problematic snipped of code, which works but has some smells. Then there is a description what is exactly wrong and why.
+
+On the next page there is a the original snipped, fixed according to a proposed best practice and an explanation of what changed and why is it better.
+
+What is really useful is that the layout of the book consistently keeps each item just on two pages - on the left you can see the problem and on the right the solution. This makes it really easy to compare both ath the same time.
 
 ![Comparison: Before and after](comparison.png)
 
+I find this format very suitable. First of all, you have specific examples with code, both before and after applying the reccommended best practices, which is way easier to understand than just an abstract reccommendation. Having the problem presented first also gives you a nice opportunity to thing about what's wrong before you are given the answer. This leads to better understanding and deeper learning than just reading recommended best practice outright.
+
+Each item is independent of each other, which makes it easy to skip what you already know. You don't necessarily need to read this book front to back. This makes the book an ideal refference for mentoring and code reviews as you can easily point others just to a specific item.
+
+Event though the items are technically independent, some code examples are further polished over the course of multiple items, which gives better sense of continuity and understanding how multiple issues relate to each other.
+
+Since each item needs to fit to exactly two pages, the writing style is concise and to the point, while still being easy to understand.
+
 ## Audience
+This book can be very useful to developers with various skill levels for a different reasons.
+
+If you are just starting with programming and Java and still struggling with basic concepts and syntax, this book may not be for you yet. In fact, at the beggining of the book there is a FizzBuzz test, which is supposed to determine whether you are ready for this book or not. If you are still in very early stages of learning Java and programming, you may want to wait a bit with this book until you grasp basic concepts. Only after learning some basics, you can underestand how to write code which not only works, but is also clean and elegant.
+
+You'll get most of this book as a junior Java developer or a person who is switching to Java from another language.
+
+For intermediate devs, this will still be useful. You can use the book as a refresher for what you already know and there should still be much to learn from it. And since the items are independent, you can just skip some items.
+
+As a senior developer, you may not lear much yourself, but the book is a great resource when mentoring other or when doing code review. You can just point them to a specific item when reviewing their code. 
+
 ## Contents
+
 ## Conclusion
+I really enjoyed this book and I with I had a book like this when I was starting with Java. It can be a great resource early in your career. It is easy to read, short, easy to understand and can be a good book to read before more heavy-weight titles such as Effective Java or Clean Code, which can be intimidating and harder to grasp when you are just starting.
+
+In your early days it can also be useful as an introduction (although very brief) to some related real world topics such as testing, continuous integration or static code analysis. Overall I do reccommend this book especially for junior developers, who will benefit from it the most.
 
 ## Free Samples
 To help you decide whether this book is worth getting and reading, there are several free content examples available for free for you to check:
