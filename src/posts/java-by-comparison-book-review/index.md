@@ -47,7 +47,26 @@ For intermediate devs, this will still be useful. You can use the book as a refr
 
 As a senior developer, you may not lear much yourself, but the book is a great resource when mentoring other or when doing code review. You can just point them to a specific item when reviewing their code. 
 
+The book works with Java 8, so it does not really matter if you're not familar with all the newer versions of Java.
+
 ## Contents
+The book consists of 70 items divided into 9 chapters.
+
+The first two chapters cover basic Java constructs such as iteration, conditions, enums, constants and more. Generally how to write cleaner code, which is less error prone and easier to understand.
+
+The third chapter covers comments. It will guide you through which comments are useless and do more harm thank good. Then what should be commented and how. On the top of that, some JavaDoc specific advice.
+
+The fourth chapter is dedicated to naming. It is very important to make sure your code is readable and easy to understand. And of course, as we know, "There are only two hard things in Computer Science: cache invalidation and naming things.".
+
+The fifth chapter is focused on excepting handling.
+
+The sixth chapter covers unit testing with JUnit 5. I was pleasantly surprised to see a topic like this in the book as it is not part of the core Java, but of course, it is very important nonetheless. And it is nice to show to beginners early on that testing is important.
+
+The next chapter describes object oriented design. The topic is so broad that this book cannot meaningfully cover it on just a few pages.
+
+Lambda expressions and streams are the topic of the eight chapter. It is a nice introuction to the topic with several useful good practices.
+
+The last chapter breaks the usual format and offers taste of other development areas, which you will encounter in thereal world. There is static code analysis, continous integration, team collaboration, logging, concurrency and more. If you already have some work experience, it may not be anything new. But it offers a nice intro to the real world development if you are still preparing for your first job.
 
 ## Conclusion
 I really enjoyed this book and I with I had a book like this when I was starting with Java. It can be a great resource early in your career. It is easy to read, short, easy to understand and can be a good book to read before more heavy-weight titles such as Effective Java or Clean Code, which can be intimidating and harder to grasp when you are just starting.
@@ -61,7 +80,6 @@ To help you decide whether this book is worth getting and reading, there are sev
 - [Return Boolean Expressions Directly](http://media.pragprog.com/titles/javacomp/boolean.pdf)
 - [Document Using Examples](http://media.pragprog.com/titles/javacomp/examples.pdf)
 - [Split Method with Boolean Parameters](http://media.pragprog.com/titles/javacomp/split.pdf)
-
 
 ## Useful Links
 - [The Offical page](https://java.by-comparison.com/)
