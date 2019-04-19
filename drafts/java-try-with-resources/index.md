@@ -12,7 +12,36 @@ excerpt: 'Try with resources offers an easy and foolproof way to make sure all y
 
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
+## Multiple resources
+Inside the head of `try-with-resources`, you can declare more than one resource. 
 
+```java
+try (FileReader fileReader = new FileReader("C:\\foo.txt");
+     BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            // Read some data!
+}
+```
+
+All the resources in the `()` parentheses are automatically closed for you. What's good to know is what is the order of closing. The resources are closed in the reverse order of their declaration to avoid any dependency issues.
+
+That is, if we have three resources like this:
+
+```java
+try (resource1; resource2; resource3) {
+}
+```
+
+They are created in order of:
+
+1. resource1
+2. resource2
+3. resource3
+
+But they are closed in the reverse order:
+
+1. resource3
+2. resource2
+3. resource1
 
 ## Java 9 improvements
 Try with resources was introduced in Java 7. Until Java 9 you were forced to declare the resources and assign them a value in the parentheses right after `try`. This is a lot of text and noise, which makes `try-with-resources` hard to read, especially when using multiple resources.
@@ -50,11 +79,6 @@ Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-cat
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
-
-- Resources must implement AutoCloseable interface
-- Can implement also closeable???
-- Multiple values
-- Still can use catch and finally as normally
 
 Any object that implements java.lang.AutoCloseable, which includes all objects which implement java.io.Closeable, can be used as a resource.
 
