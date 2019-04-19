@@ -12,6 +12,33 @@ excerpt: 'Try with resources offers an easy and foolproof way to make sure all y
 
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`
 
+
+
+## Java 9 improvements
+Try with resources was introduced in Java 7. Until Java 9 you were forced to declare the resources and assign them a value in the parentheses right after `try`. This is a lot of text and noise, which makes `try-with-resources` hard to read, especially when using multiple resources.
+
+```java
+try (FileReader fileReader = new FileReader("C:\\foo.txt"); 
+     BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+    // Read some data!
+}
+```  
+
+Fortunately, since Java 9, you can just reference the name of the existing resource instead of its declaration and assignment. This is much more readable.
+
+```java
+FileReader fileReader = new FileReader("C:\\foo.txt");
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+        
+try (fileReader; bufferedReader) {
+    // Read some data!
+}
+```
+
+It is not shorter, but when you check `try-with-resources`, you can immediately see which resources it uses without all the noise.
+
+The limitation is, though that all the resources used need to be final of effectively final.
+
 ## IntelliJ IDEA integration
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
 
@@ -23,7 +50,7 @@ Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-cat
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
-- Introduced in Java 7
+
 - Resources must implement AutoCloseable interface
 - Can implement also closeable???
 - Multiple values
@@ -35,11 +62,6 @@ Note: A try-with-resources statement can have catch and finally blocks just like
 
 Classes That Implement the AutoCloseable or Closeable Interface
 See the Javadoc of the AutoCloseable and Closeable interfaces for a list of classes that implement either of these interfaces. The Closeable interface extends the AutoCloseable interface. The close method of the Closeable interface throws exceptions of type IOException while the close method of the AutoCloseable interface throws exceptions of type Exception. Consequently, subclasses of the AutoCloseable interface can override this behavior of the close method to throw specialized exceptions, such as IOException, or no exception at all.
-
-
-Java 9 improvement:
-https://www.tutorialspoint.com/java9/java9_try_with_resources_improvement.htm
-
 
  * <p>Note that unlike the {@link java.io.Closeable#close close}
      * method of {@link java.io.Closeable}, this {@code close} method
