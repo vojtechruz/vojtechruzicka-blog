@@ -12,6 +12,13 @@ excerpt: 'Try with resources offers an easy and foolproof way to make sure all y
 
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
+## Traditional try-catch-finally
+TODO
+
+## Try with resources
+TODO
+TODO list of all the classes implementing both interfaces
+
 ## Multiple resources
 Inside the head of `try-with-resources`, you can declare more than one resource. 
 
@@ -68,6 +75,29 @@ It is not shorter, but when you check `try-with-resources`, you can immediately 
 
 The limitation is, though that all the resources used need to be final of effectively final.
 
+## Implementing your own resources
+The good news is that you can create your own resources, which can be used in `try-with-resources`. All you need to do is to implement either `java.io.Closeable` or `java.lang.AutoCloseAble`.
+
+How are they different? `Closeable` is older, available since Java 5, `AutoCloseable` was introduced in Java 7 along with `try-with-resources`. Since Java 7, `Closeable` actually extends `AutoCloseable`.
+
+```java
+public interface AutoCloseable {
+    void close() throws Exception;
+}
+
+public interface Closeable extends AutoCloseable {
+    void close() throws IOException;
+}
+```
+
+As you can see, they are very similar. The signature of the `close()` method is different only in the exception thrown. `AutoCloseable` can throw any `Exception` while `Closeable` throws `IOException`.
+
+Note that when implementing interface you can change the method signature in a way that it throws more specific exception (that is subclass of the exception specified by the interface). Or no exception at all. According to the JavaDoc, it is highly recommended to do so. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail. [TODO verify it actually works]
+
+There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be idempotent [TODO link], `AutoCloseable` not (although it is highly reccommended).
+
+That means you should make sure calling close multiple times would not cause any trouble. 
+
 ## IntelliJ IDEA integration
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
 
@@ -84,17 +114,5 @@ Any object that implements java.lang.AutoCloseable, which includes all objects w
 
 Note: A try-with-resources statement can have catch and finally blocks just like an ordinary try statement. In a try-with-resources statement, any catch or finally block is run after the resources declared have been closed.
 
-Classes That Implement the AutoCloseable or Closeable Interface
-See the Javadoc of the AutoCloseable and Closeable interfaces for a list of classes that implement either of these interfaces. The Closeable interface extends the AutoCloseable interface. The close method of the Closeable interface throws exceptions of type IOException while the close method of the AutoCloseable interface throws exceptions of type Exception. Consequently, subclasses of the AutoCloseable interface can override this behavior of the close method to throw specialized exceptions, such as IOException, or no exception at all.
-
- * <p>Note that unlike the {@link java.io.Closeable#close close}
-     * method of {@link java.io.Closeable}, this {@code close} method
-     * is <em>not</em> required to be idempotent.  In other words,
-     * calling this {@code close} method more than once may have some
-     * visible side effect, unlike {@code Closeable.close} which is
-     * required to have no effect if called more than once.
-     *
-     * However, implementers of this interface are strongly encouraged
-     * to make their {@code close} methods idempotent.
-     *
-     * @throws Exception if this resource cannot be closed
+     
+TODO this is just syntactic sugar? Show decompiled output     
