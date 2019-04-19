@@ -1,16 +1,16 @@
 ---
 title: 'Try with resources in Java'
 date: "2019-04-19T22:12:03.284Z"
-tags: ["Java]
+tags: ["Java"]
 path: 'java-try-with-resources'
 featuredImage: './try-with-resources.jpg'
 disqusArticleIdentifier: '99024 http://vojtechruzicka.com/?p=99024'
-excerpt: 'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using "try-finally"'
+excerpt: 'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using "try-finally".'
 ---
 
 ![Java try with resources](./try-with-resources.jpg)
 
-Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`
+Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
 
 
