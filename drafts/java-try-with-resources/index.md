@@ -13,9 +13,69 @@ excerpt: 'Try with resources offers an easy and foolproof way to make sure all y
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
 ## Traditional try-catch-finally
-TODO
+With traditional `try-catch`, you can execute a block of code and handle any exceptions hich may occur:
+
+```java
+
+try {
+    // Do something
+} catch (Exception e) {
+    // React to exceptions if they occurr
+    // in the try block
+}
+```
+
+Often it is useful to have also a `finally` block. It executed after `try/catch`, no matter whether there was an exception or not. It is very useful especially when working with resources, which need proper cleanup after being used. When you use some resources, which are locked by your program (such as files or sockets and more), you need to make sure you release them after you're done.
+
+You need to do the cleanup no matter whether all ends well or whether there is an exception.
+
+
+try {
+    // Try to use a resource
+} catch (Exception e) {
+    // React to exceptions if they occur
+    // in the try block
+} finally {
+    // Open a resource
+    // Close the resource when we're done
+}
+``
+
+Finally is a nice way to clean everything after we are done, but has its own limitations. There can be multiple places where an exception may occur. That is when opening the resouce, using it and even closing. That can result in a lot of boilerplate code, which is hard to read and error prone. We are talking about nested `try-catch` statements combined with null checks and more.
+
+Most importantly, you need to remember to actually close all the resources and in the right order. That is, resources can have dependencies on each other, which you need to respect.
+
+Fortunately, since Java 7, there is an easier way to manage resources automatically with `try-with-resources`, which will close all the resources properly for you in the right order.
 
 ## Try with resources
+Using `try-with-resources` is easy. Instead of just plain:
+
+```java
+
+
+try {
+    // Do something
+} finally {
+    // Close my resource
+}
+```
+
+You create the resource directly after `try` keyword in parentheses, like this:
+
+```java
+try (MyResource resource = new MyResource()){
+    // Do something
+} // Resource is automatically closed after this block ends
+```
+
+You basically create a resource, which exists only inside the `try` block and cannot be accessed afterwards. When the `try` block ends, the resource is automatically closed for you.
+
+Now you ask what kind of resources you can use in `try-with-resources` and how does JVM know how to close them?
+
+It is actually pretty simple. You can use all the resources, which implement `Closeable` or `AutoCloseAble` interface. It has only one method called `close()` which is automatically called for you once the `try` block finishes. That means it is easy to provide your own custom resources.
+
+Note that in the example above, we used a simple case of `try-with-resources` using just `try` block. Of course, you can include both `catch` and `finally` blocks as well. In such case, the `catch` and `finally` blocks are executed **after** all the resource have been closed.
+
 TODO
 TODO list of all the classes implementing both interfaces
 
@@ -109,10 +169,5 @@ Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-cat
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
-
-Any object that implements java.lang.AutoCloseable, which includes all objects which implement java.io.Closeable, can be used as a resource.
-
-Note: A try-with-resources statement can have catch and finally blocks just like an ordinary try statement. In a try-with-resources statement, any catch or finally block is run after the resources declared have been closed.
-
-     
-TODO this is just syntactic sugar? Show decompiled output     
+## Conclusion
+TODO 
