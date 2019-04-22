@@ -1,6 +1,6 @@
 ---
 title: 'Try with resources in Java'
-date: "2019-04-19T22:12:03.284Z"
+date: "2019-04-23T22:12:03.284Z"
 tags: ["Java"]
 path: 'java-try-with-resources'
 featuredImage: './try-with-resources.jpg'
@@ -72,12 +72,48 @@ You basically create a resource, which exists only inside the `try` block and ca
 
 Now you ask what kind of resources you can use in `try-with-resources` and how does JVM know how to close them?
 
-It is actually pretty simple. You can use all the resources, which implement `Closeable` or `AutoCloseAble` interface. It has only one method called `close()` which is automatically called for you once the `try` block finishes. That means it is easy to provide your own custom resources.
+It is actually pretty simple. You can use all the resources, which implement [Closeable](https://cr.openjdk.java.net/~iris/se/12/latestSpec/api/java.base/java/io/Closeable.html) or [AutoCloseable](https://cr.openjdk.java.net/~iris/se/12/latestSpec/api/java.base/java/lang/AutoCloseable.html) interface. It has only one method called `close()` which is automatically called for you once the `try` block finishes. That means it is easy to provide your own custom resources. You can check all the classes implementing [Closeable](https://cr.openjdk.java.net/~iris/se/12/latestSpec/api/java.base/java/io/Closeable.html) or [AutoCloseable](https://cr.openjdk.java.net/~iris/se/12/latestSpec/api/java.base/java/lang/AutoCloseable.html) in their JavaDoc.
 
 Note that in the example above, we used a simple case of `try-with-resources` using just `try` block. Of course, you can include both `catch` and `finally` blocks as well. In such case, the `catch` and `finally` blocks are executed **after** all the resource have been closed.
 
-TODO
-TODO list of all the classes implementing both interfaces
+## Decompiled example
+Let's look at a simple example using `try-with-resources`, which uses two resources and has just one operation:
+
+```java
+try (FileReader fileReader = new FileReader("C:\\foo.txt");
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            bufferedReader.readLine();
+        }
+```
+
+If we decompile this using Fernflower, we get something similar to this:
+
+```java
+FileReader fileReader = new FileReader("C:\\foo.txt");
+        Throwable var2 = null;
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            Throwable var4 = null;
+
+            try {
+                bufferedReader.readLine();
+            } catch (Throwable var16) {
+                var4 = var16;
+                throw var16;
+            } finally {
+                $closeResource(var4, bufferedReader);
+            }
+        } catch (Throwable var18) {
+            var2 = var18;
+            throw var18;
+        } finally {
+            $closeResource(var2, fileReader);
+        }
+```
+
+It is an interesting example how `try-with-resources` works under the hood. You can check the [official specs](https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20.3) for more detail.
 
 ## Multiple resources
 Inside the head of `try-with-resources`, you can declare more than one resource. 
@@ -152,11 +188,11 @@ public interface Closeable extends AutoCloseable {
 
 As you can see, they are very similar. The signature of the `close()` method is different only in the exception thrown. `AutoCloseable` can throw any `Exception` while `Closeable` throws `IOException`.
 
-Note that when implementing interface you can change the method signature in a way that it throws more specific exception (that is subclass of the exception specified by the interface). Or no exception at all. According to the JavaDoc, it is highly recommended to do so. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail. [TODO verify it actually works]
+Note that when implementing interface you can change the method signature in a way that it throws a different exception. Or no exception at all. According to the JavaDoc, it is highly recommended to do so in this case. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail.
 
-There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be idempotent [TODO link], `AutoCloseable` not (although it is highly reccommended).
+There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be [idempotent](https://en.wikipedia.org/wiki/Idempotence), `AutoCloseable` not (although it is highly reccommended).
 
-That means you should make sure calling close multiple times would not cause any trouble. 
+That means you should make sure calling `close()` multiple times would not cause any trouble. 
 
 ## IntelliJ IDEA integration
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
@@ -170,4 +206,8 @@ Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-cat
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
 ## Conclusion
-TODO 
+Try with resources is a useful alternative to traditional `try-catch-finally` when working with resources, which need to be properly closed. The resource management is automatically handled for you. You can still use `catch` and `finally` blocks as usual, they get executed after the resources are closed.
+
+If you are on Java 9 and later, you don't need to declare your resources directl in the try header, but you can use previously declared resources, which are final or effectvely final.
+
+If you want to use your own resources, you can just implement `Closeable` or `Autocloseable` interface and implement the `close()` method. 
