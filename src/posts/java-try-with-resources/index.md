@@ -8,7 +8,7 @@ disqusArticleIdentifier: '99024 http://vojtechruzicka.com/?p=99024'
 excerpt: 'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using "try-finally".'
 ---
 
-![Java try with resources](./try-with-resources.jpg)
+![Java try with resources](try-with-resources.jpg)
 
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
@@ -197,11 +197,11 @@ That means you should make sure calling `close()` multiple times would not cause
 ## IntelliJ IDEA integration
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
 
-![IntelliJ IDEA surround with 'try-with-resources'](./idea-surround-with-try-with-resources.gif)
+![IntelliJ IDEA surround with 'try-with-resources'](idea-surround-with-try-with-resources.gif)
 
 Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-catch-finally` to `try-with-resources`.
 
-![IntelliJ IDEA convert to 'try-with-resources'](./idea-replace-with-try-with-resources.gif)
+![IntelliJ IDEA convert to 'try-with-resources'](idea-replace-with-try-with-resources.gif)
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
