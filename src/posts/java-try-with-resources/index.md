@@ -13,7 +13,7 @@ excerpt: 'Try with resources offers an easy and foolproof way to make sure all y
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
 ## Traditional try-catch-finally
-With traditional `try-catch`, you can execute a block of code and handle any exceptions hich may occur:
+With traditional `try-catch`, you can execute a block of code and handle any exceptions which may occur:
 
 ```java
 
@@ -25,7 +25,7 @@ try {
 }
 ```
 
-Often it is useful to have also a `finally` block. It executed after `try/catch`, no matter whether there was an exception or not. It is very useful especially when working with resources, which need proper cleanup after being used. When you use some resources, which are locked by your program (such as files or sockets and more), you need to make sure you release them after you're done.
+Often it is useful to have also a `finally` block. It executed after `try/catch`, no matter whether there was an exception or not. It is very useful, especially when working with resources, which need proper cleanup after being used. When you use some resources, which are locked by your program (such as files or sockets and more), you need to make sure you release them after you're done.
 
 You need to do the cleanup no matter whether all ends well or whether there is an exception.
 
@@ -68,7 +68,7 @@ try (MyResource resource = new MyResource()){
 } // Resource is automatically closed after this block ends
 ```
 
-You basically create a resource, which exists only inside the `try` block and cannot be accessed afterwards. When the `try` block ends, the resource is automatically closed for you.
+You basically create a resource, which exists only inside the `try` block and cannot be accessed afterward. When the `try` block ends, the resource is automatically closed for you.
 
 Now you ask what kind of resources you can use in `try-with-resources` and how does JVM know how to close them?
 
@@ -113,7 +113,7 @@ FileReader fileReader = new FileReader("C:\\foo.txt");
         }
 ```
 
-It is an interesting example how `try-with-resources` works under the hood. You can check the [official specs](https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20.3) for more detail.
+It is an interesting example of how `try-with-resources` works under the hood. You can check the [official specs](https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20.3) for more detail.
 
 ## Multiple resources
 Inside the head of `try-with-resources`, you can declare more than one resource. 
@@ -140,7 +140,7 @@ They are created in order of:
 2. resource2
 3. resource3
 
-But they are closed in the reverse order:
+However, they are closed in the reverse order:
 
 1. resource3
 2. resource2
@@ -188,9 +188,9 @@ public interface Closeable extends AutoCloseable {
 
 As you can see, they are very similar. The signature of the `close()` method is different only in the exception thrown. `AutoCloseable` can throw any `Exception` while `Closeable` throws `IOException`.
 
-Note that when implementing interface you can change the method signature in a way that it throws a different exception. Or no exception at all. According to the JavaDoc, it is highly recommended to do so in this case. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail.
+Note that when implementing an interface you can change the method signature in a way that it throws a different exception. Or no exception at all. According to the JavaDoc, it is highly recommended to do so in this case. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail.
 
-There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be [idempotent](https://en.wikipedia.org/wiki/Idempotence), `AutoCloseable` not (although it is highly reccommended).
+There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be [idempotent](https://en.wikipedia.org/wiki/Idempotence), `AutoCloseable` not (although it is highly recommended).
 
 That means you should make sure calling `close()` multiple times would not cause any trouble. 
 
@@ -199,15 +199,15 @@ As usual, IDEA offers a nice support for try with resources feature. When you ar
 
 ![IntelliJ IDEA surround with 'try-with-resources'](idea-surround-with-try-with-resources.gif)
 
-Usingthe same keyboard shortcut, IDEA allows you to convert traditional `try-catch-finally` to `try-with-resources`.
+Using the same keyboard shortcut, IDEA allows you to convert traditional `try-catch-finally` to `try-with-resources`.
 
 ![IntelliJ IDEA convert to 'try-with-resources'](idea-replace-with-try-with-resources.gif)
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
 ## Conclusion
-Try with resources is a useful alternative to traditional `try-catch-finally` when working with resources, which need to be properly closed. The resource management is automatically handled for you. You can still use `catch` and `finally` blocks as usual, they get executed after the resources are closed.
+Try with resources is a useful alternative to traditional `try-catch-finally` when working with resources, which need to be properly closed. The resource management is automatically handled for you. You can still use `catch` and `finally` blocks, as usual, they get executed after the resources are closed.
 
-If you are on Java 9 and later, you don't need to declare your resources directl in the try header, but you can use previously declared resources, which are final or effectvely final.
+If you are on Java 9 and later, you don't need to declare your resources directly in the try header, but you can use previously declared resources, which are final or effectively final.
 
 If you want to use your own resources, you can just implement `Closeable` or `Autocloseable` interface and implement the `close()` method. 
