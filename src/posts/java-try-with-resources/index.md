@@ -8,7 +8,7 @@ disqusArticleIdentifier: '99024 http://vojtechruzicka.com/?p=99024'
 excerpt: 'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using "try-finally".'
 ---
 
-![Java try with resources](try-with-resources.jpg)
+![Java try with resources](./try-with-resources.jpg)
 
 Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
 
@@ -25,23 +25,23 @@ try {
 }
 ```
 
-Often it is useful to have also a `finally` block. It executed after `try/catch`, no matter whether there was an exception or not. It is very useful, especially when working with resources, which need proper cleanup after being used. When you use some resources, which are locked by your program (such as files or sockets and more), you need to make sure you release them after you're done.
+Often it is useful to have also a `finally` block. It executes after `try/catch`, no matter whether there was an exception or not. It is very useful, especially when working with resources, which need proper cleanup after being used. When you use some resources, which are locked by your program (such as files or sockets and more), you need to make sure you release them after you're done.
 
 You need to do the cleanup no matter whether all ends well or whether there is an exception.
 
-
+```java
 try {
+    // Open a resource
     // Try to use a resource
 } catch (Exception e) {
     // React to exceptions if they occur
     // in the try block
 } finally {
-    // Open a resource
     // Close the resource when we're done
 }
-``
+```
 
-Finally is a nice way to clean everything after we are done, but has its own limitations. There can be multiple places where an exception may occur. That is when opening the resouce, using it and even closing. That can result in a lot of boilerplate code, which is hard to read and error prone. We are talking about nested `try-catch` statements combined with null checks and more.
+Finally is a nice way to clean everything after we are done, but has its own limitations. There can be multiple places where an exception may occur. That is when opening the resource, using it and even closing. That can result in a lot of boilerplate code, which is hard to read and error prone. We are talking about nested `try-catch` statements combined with null checks and more.
 
 Most importantly, you need to remember to actually close all the resources and in the right order. That is, resources can have dependencies on each other, which you need to respect.
 
@@ -51,8 +51,6 @@ Fortunately, since Java 7, there is an easier way to manage resources automatica
 Using `try-with-resources` is easy. Instead of just plain:
 
 ```java
-
-
 try {
     // Do something
 } finally {
@@ -63,7 +61,7 @@ try {
 You create the resource directly after `try` keyword in parentheses, like this:
 
 ```java
-try (MyResource resource = new MyResource()){
+try (MyResource resource = new MyResource()) {
     // Do something
 } // Resource is automatically closed after this block ends
 ```
@@ -83,34 +81,34 @@ Let's look at a simple example using `try-with-resources`, which uses two resour
 try (FileReader fileReader = new FileReader("C:\\foo.txt");
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
-            bufferedReader.readLine();
-        }
+    bufferedReader.readLine();
+}
 ```
 
-If we decompile this using Fernflower, we get something similar to this:
+If we decompile this using [Fernflower](https://github.com/fesh0r/fernflower) decompiler, we get something similar to this:
 
 ```java
 FileReader fileReader = new FileReader("C:\\foo.txt");
-        Throwable var2 = null;
+Throwable var2 = null;
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            Throwable var4 = null;
+try {
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+    Throwable var4 = null;
 
-            try {
-                bufferedReader.readLine();
-            } catch (Throwable var16) {
-                var4 = var16;
-                throw var16;
-            } finally {
-                $closeResource(var4, bufferedReader);
-            }
-        } catch (Throwable var18) {
-            var2 = var18;
-            throw var18;
-        } finally {
-            $closeResource(var2, fileReader);
-        }
+    try {
+        bufferedReader.readLine();
+    } catch (Throwable var16) {
+        var4 = var16;
+        throw var16;
+    } finally {
+        $closeResource(var4, bufferedReader);
+    }
+} catch (Throwable var18) {
+    var2 = var18;
+    throw var18;
+} finally {
+    $closeResource(var2, fileReader);
+}
 ```
 
 It is an interesting example of how `try-with-resources` works under the hood. You can check the [official specs](https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20.3) for more detail.
@@ -172,7 +170,7 @@ It is not shorter, but when you check `try-with-resources`, you can immediately 
 The limitation is, though that all the resources used need to be final of effectively final.
 
 ## Implementing your own resources
-The good news is that you can create your own resources, which can be used in `try-with-resources`. All you need to do is to implement either `java.io.Closeable` or `java.lang.AutoCloseAble`.
+The good news is that you can create your own resources, which can be used in `try-with-resources`. All you need to do is to implement either `java.io.Closeable` or `java.lang.AutoCloseable`.
 
 How are they different? `Closeable` is older, available since Java 5, `AutoCloseable` was introduced in Java 7 along with `try-with-resources`. Since Java 7, `Closeable` actually extends `AutoCloseable`.
 
@@ -188,7 +186,7 @@ public interface Closeable extends AutoCloseable {
 
 As you can see, they are very similar. The signature of the `close()` method is different only in the exception thrown. `AutoCloseable` can throw any `Exception` while `Closeable` throws `IOException`.
 
-Note that when implementing an interface you can change the method signature in a way that it throws a different exception. Or no exception at all. According to the JavaDoc, it is highly recommended to do so in this case. Declare more specific exception to your implementation of `close()` method or no exception at all if it cannot fail.
+Note that when implementing an interface you can change the method signature in a way that it throws a different exception. Or no exception at all. According to the JavaDoc, it is highly recommended to do so in this case. Declare more specific exception in your implementation of `close()` method or no exception at all if it cannot fail.
 
 There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be [idempotent](https://en.wikipedia.org/wiki/Idempotence), `AutoCloseable` not (although it is highly recommended).
 
@@ -208,6 +206,6 @@ Alternatively, you can do the reverse operation using the same shortcut - conver
 ## Conclusion
 Try with resources is a useful alternative to traditional `try-catch-finally` when working with resources, which need to be properly closed. The resource management is automatically handled for you. You can still use `catch` and `finally` blocks, as usual, they get executed after the resources are closed.
 
-If you are on Java 9 and later, you don't need to declare your resources directly in the try header, but you can use previously declared resources, which are final or effectively final.
+If you are on Java 9 and later, you don't need to declare your resources directly in the `try` header, but you can use previously declared resources, which are final or effectively final.
 
-If you want to use your own resources, you can just implement `Closeable` or `Autocloseable` interface and implement the `close()` method. 
+If you want to use your own resources, you can just implement `Closeable` or `AutoCloseable` interface and implement the `close()` method.
