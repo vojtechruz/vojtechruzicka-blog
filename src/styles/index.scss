@@ -235,6 +235,8 @@ li {
 
 body {
   background-color: hsla(0, 0% ,0%, 0.04);
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-anchor
+  overflow-anchor: auto;
 }
 
 .content-root {
