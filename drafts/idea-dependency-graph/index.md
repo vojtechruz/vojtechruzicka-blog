@@ -8,7 +8,7 @@ disqusArticleIdentifier: '99025 http://vojtechruzicka.com/?p=99025'
 excerpt: 'TODO'
 ---
 
-![Dependency graph](./dependencies.jpg)
+![Dependency graph](dependencies.jpg)
 
 
 ## Analyzing Maven dependencies
@@ -44,3 +44,19 @@ You can specify some other parameters to help you with investigation, but for la
 This tool is in IntelliJ for quite some time, but as of version 2019.1, it received some needed enhancements, which make it much more useful in projects with large dependency graphs.
 
 To show the graph, go inside a `pom.xml` file and press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Alternatively `Right click → Diagrams → Show Dependencies`.
+
+You'll see zoomed out dependency graph, where it is not possible to see individual item names unless you zoom in. Looking for individual items manually can be a lot of pain. Fortunately, you can use `Find` as usual using <kbd>Ctrl</kbd> + <kbd>F</kbd>.
+
+![Find dependency](maven-diagram-find.gif)
+
+We are able to locate a specific dependency easily now, but still a lot of unrelated dependencies making the graph hard to read. Let's look into how to filter the dependencies to get rid of unwanted noise.
+
+First option is to show only direct neighbors. That is, only direct dependencies of the current item and only items that directly depend on the selected item.
+
+![Maven Dependency Diagram - Direct Neighbors](maven-diagram-neighbors.gif)
+
+Note that this works not only for single items, but you can select multiple items while holding <kbd>Shift</kbd>. 
+
+Another way to filter is no display the dependency chain leading from the root to the selected item(s).
+
+![Maven Dependency Diagram - Path from root](maven-diagram-path.gif)
