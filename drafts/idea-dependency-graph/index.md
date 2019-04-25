@@ -60,3 +60,9 @@ Note that this works not only for single items, but you can select multiple item
 Another way to filter is no display the dependency chain leading from the root to the selected item(s).
 
 ![Maven Dependency Diagram - Path from root](maven-diagram-path.gif)
+
+IDEA does highlight conflicts for you in red. Still, it may be difficult to find if there is something wrong in a huge dependency tree. Fortunately, you can filter problematic parts only:
+
+![Maven Dependency Diagram - Conflicts](maven-diagram-conflicts.gif)
+
+In the example above, you can see there is a conflict between junit versions. There is an explicit dependency to junit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
