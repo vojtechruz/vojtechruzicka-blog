@@ -66,3 +66,40 @@ IDEA does highlight conflicts for you in red. Still, it may be difficult to find
 ![Maven Dependency Diagram - Conflicts](maven-diagram-conflicts.gif)
 
 In the example above, you can see there is a conflict between junit versions. There is an explicit dependency to junit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
+
+## Dependency Matrix
+So far we've discussed only Maven dependencies on the module level. But often you require more fine-grained analysis. That is not only on module level, but also on class level.
+
+This can be very important as tighly coupled classes and modules or even cyclic dependencies mean that your code is very hard to refactor and reuse.
+
+Dependency Structure Matrix (or DSM for short) can help you visualize your dependencies and look for potential problems. First make sure to build your project. Then, to launch the analysis go to `Analyze → Analyze Dependency Matrix...`. You need IDEA Ultimate edition and `DSM Analysis` bundled plugin enabled.
+
+After the analysis is done, you'll see something similar to this:
+
+![Dependency matrix](dependency-matrix.png)
+
+To beter understand the matrix, look at the following image.
+
+![Dependency matrix explained](dependency-matrix-explained.png)
+
+IDEA skips the column labels to save the precious space, but it behaves as if they were there.
+
+Each row and column represent the package. Each cell represents a intersection of a row and column - that is two packages. The number in the cell represents number of dependencies one package has on another. That means one class from the source package using another class from the destination package. The darker the cell is, the more dependencies. If there is more than 99 dependencies, it shows `...` instead the number.
+
+As long as the dependencies are blue, it is good as they are one way only. Cyclical dependencies would be shown in red, which is not good. But we'll see that later.
+
+### Visual aids
+The matrix is a powerful tool, which can show a lot of information at once. However, it may be difficult to read at first, if you're not used to working with it. Especially with the columns hidden. Fortunately, there are visual aids, which can help you to better understand the dependencies.
+
+If you hover your mouse cursor over a cell, it will show you with tooltip what is the dependency direction there.
+
+![DSM dependency tooltip](dsm-dependency-tooltip.png)
+
+This can be useful, but there is more. You can click any package on the left (not an individual cell with dependency numbers) and IDEA will show you some more useful info.
+
+![DSM selected module](dsm-selected-module.png)
+
+The row is highlighted, as well as the corresponding column representing the same module. On top of that, you can see that some other modules are highlighted by either yellow on green.
+
+- Yellow highlights modules on which the selected module depends
+- Green marks modules which depend on the selected module
