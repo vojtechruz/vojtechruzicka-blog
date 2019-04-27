@@ -103,3 +103,31 @@ The row is highlighted, as well as the corresponding column representing the sam
 
 - Yellow highlights modules on which the selected module depends
 - Green marks modules which depend on the selected module
+
+In addition to selecting a whole package, you cal also click individual cells. The color coding is the same, there is just one new concept. The purple cell represents dependencies between the same two modules but in other direction.
+
+### We need to go deeper
+So far we were working only on package level. This is no doubt useful, but often you need to go into more detail. Which means investigating also dependencies between single classes.
+
+In the DSM view, it is simple, you can expand your packages to see their contents. This way you can see dependencies for all the potential sub-packages or even individual classes.
+
+![DSM expanded](dependency-matrix-explained.png)
+
+### Cyclic dependencies
+So far, we covered only uni-directional dependencies. Something, you should look for are cyclic dependencies. In the DSM view, they are marked in red:
+
+![DSM Cyclic dependencies](dsm-cycles.png)
+
+You can see that class `Owner` has 15 dependencies on class `Pet`, while `Pet` has 5 dependencies on `Owner`.
+
+## Taking Action
+DSM view in IDEA is not only a useful tool to visualize dependencies, but you can also take many useful actions directly from the context menu when right-clicking a cell or module.
+
+You can even refactor your classes directly from the DSM view. If you click a cell with dependencies, you can call `Find usages for dependencies`. It will look for all the places in one of your classes/packages where the other class/package is used.
+
+Let's look at an example to be more specific. We can find all the places in the `vet` package, where anything from the `service` package is used. The results are classified by type:
+Let's look at an example to be more specific. We can find all the places in the `service` package, where anything from the `vet` package is used. The results are classified by type:
+
+![Find usages for dependencies](dsm-find-usages.png)
+
+Now you can inspect the occurences one by one and check whether you could improve flow of your dependencies.
