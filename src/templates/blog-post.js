@@ -226,7 +226,15 @@ class BlogPostTemplate extends React.Component {
                         <Tags tags={post.frontmatter.tags}/>
                         {lastUpdated}
                     </div>
+
+
+                    {/*<div className="toc">*/}
+                    {/*    <h4>Contents</h4>*/}
+                    {/*    <div className="toc-list" dangerouslySetInnerHTML={{__html: post.tableOfContents}}/>*/}
+                    {/*</div>*/}
+
                     <div dangerouslySetInnerHTML={{__html: post.html}}/>
+
                 </div>
                 <hr
                     style={{
@@ -314,6 +322,10 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
+      tableOfContents(
+        pathToSlugField: "frontmatter.path"
+        maxDepth: 3
+      )
       frontmatter {
         excerpt
         title

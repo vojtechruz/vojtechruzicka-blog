@@ -1,14 +1,16 @@
 @import "syntax-highlighting";
 @import "~docsearch.js/dist/npm/styles/main";
 
+$link_color: #007acc;
+$border-color: hsla(0, 0%, 0%, 0.1);
 a {
-  color: #007acc;
+  color: $link_color;
 }
 
 a:hover {
-  color: lighten(#007acc,7%);
+  color: lighten($link_color,7%);
   svg {
-    fill: lighten(#007acc,7%);
+    fill: lighten($link_color,7%);
   }
 }
 
@@ -61,7 +63,7 @@ a:hover {
   display: inline;
   margin-right: 0.25rem;
   margin-bottom: 0;
-  fill: #007acc;
+  fill: $link_color;
 }
 
 .front-post-title {
@@ -92,7 +94,7 @@ a:hover {
 .front-post-separator {
   margin-bottom: 1rem;
   margin-top: 1rem;
-  background: hsla(0, 0% ,0%, 0.1);
+  background: $border-color;
 }
 
 .SocialMediaShareButton, .SocialMediaShareButton div {
@@ -153,7 +155,7 @@ a:hover {
   }
 
   a:hover {
-    color: lighten(#007acc,7%)!important;
+    color: lighten($link_color,7%)!important;
   }
 }
 
@@ -241,8 +243,8 @@ body {
 
 .content-root {
   background-color: #fff;
-  border-right: 1px solid hsla(0, 0% ,0%, 0.1);
-  border-left: 1px solid hsla(0, 0% ,0%, 0.1);
+  border-right: 1px solid $border-color;
+  border-left: 1px solid $border-color;
   margin-left: auto;
   margin-right: auto;
 }
@@ -252,7 +254,7 @@ body {
   padding-top: 0;
   margin-bottom: 1rem;
   background-color: hsla(0, 0% ,0%, 0.01);
-  border:1px solid hsla(0, 0% ,0%, 0.1);
+  border:1px solid $border-color;
 }
 
 .search-box {
@@ -265,7 +267,7 @@ body {
 
 .search-box:focus {
   color:hsla(0, 0% ,0%, 0.95);
-  background-color: hsla(0, 0% ,0%, 0.1);
+  background-color: $border-color;
   outline: none;
 }
 
@@ -311,4 +313,28 @@ kbd {
   padding: 0.5em 1em;
   margin-bottom: 1em;
   margin-top: 1em;
+}
+
+.toc {
+
+  background-color: #fff;
+  border: 1px solid $border-color;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.85rem 0.85rem;
+  margin-bottom: 1rem;
+
+  h4 {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $border-color;
+  }
+
+  ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .toc-list>ul {
+    margin-left: 0;
+  }
 }
