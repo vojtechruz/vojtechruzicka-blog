@@ -12,6 +12,10 @@ excerpt: 'IntelliJ IDEA offers two integrated HTTP clients to test your REST ser
 
 It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.
 
+<div class="msg-info">
+This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
+</div>
+
 ## Integrated HTTP Client
 
 You often need to call an HTTP endpoint and examine the response received. In more complicated scenarios you need to use various HTTP methods, send HTTP Headers or cookies. While there are many dedicated programs just for this, IDEA offers this feature out of the box, which is much more convenient. The IDE actually offers two main ways to do so.

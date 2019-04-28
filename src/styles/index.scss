@@ -303,3 +303,12 @@ kbd {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
   background-color: #f7f7f7;
 }
+
+.msg-info {
+  color: #00529B;
+  background-color: #BDE5F8;
+  border: 1px darken(#BDE5F8, 1%) solid;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
