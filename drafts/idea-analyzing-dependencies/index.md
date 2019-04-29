@@ -13,7 +13,12 @@ excerpt: 'How to analyze dependencies in IDEA using Dependency Structure Matrix 
 How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.
 
 ## Dependency Matrix
-IDEA ofers a useful tool to analyze internal dependencies in your project called Dependency Structure Matrix. It can be used to analyze not only dependencies between packages, but also individual classes.
+
+<div class="msg-info">
+This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
+</div>
+
+IDEA offers a useful tool to analyze internal dependencies in your project called Dependency Structure Matrix. It can be used to analyze not only dependencies between packages, but also individual classes.
 
 This can be very important as tighly coupled classes and modules or even cyclic dependencies mean that your code is very hard to refactor and reuse.
 
@@ -79,6 +84,11 @@ Now you can inspect the occurences one by one and check whether you could improv
 
 
 ## Analyzing Maven dependencies
+
+<div class="msg-info">
+This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
+</div>
+
 So far we covered only internal dependencies in your own code. However, you can run into all sorts of trouble also with external dependencies. That is your third-party libraries. It can get messy as you don't have only direct dependencies, but your libraries have dependencies of their own (transitive dependencies). You can encounter many problems such as dependency version conflicts of the same artifact or even cyclic dependencies.  Maven offers you to generate dependency tree representation, which can help you in analyzing potential issues. You can simply call:
 
 ```
