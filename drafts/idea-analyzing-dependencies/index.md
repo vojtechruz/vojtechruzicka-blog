@@ -1,15 +1,16 @@
 ---
-title: 'IntelliJ IDEA dependency graph'
-date: "2019-04-27T22:12:03.284Z"
+title: 'Analyzing dependencies in IntelliJ IDEA'
+date: "2019-04-30T22:12:03.284Z"
 tags: ["IDEA"]
-path: 'idea-dependency-graph'
+path: 'idea-analyzing-dependencies'
 featuredImage: './dependencies.jpg'
 disqusArticleIdentifier: '99025 http://vojtechruzicka.com/?p=99025'
-excerpt: 'TODO'
+excerpt: 'How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.'
 ---
 
 ![Dependency graph](dependencies.jpg)
 
+How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.
 
 ## Analyzing Maven dependencies
 In Maven project, you can get into all sorts of trouble with your dependencies, such as dependency conflicts or cyclic dependencies. Maven offers you to generate dependency tree representation by calling:
