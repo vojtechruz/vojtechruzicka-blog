@@ -30,7 +30,7 @@ module.exports = {
             options: {
               maxWidth: 700,
               backgroundColor: "transparent",
-              showCaptions: true,
+              showCaptions: false,
               withWebp: true
             },
           },
