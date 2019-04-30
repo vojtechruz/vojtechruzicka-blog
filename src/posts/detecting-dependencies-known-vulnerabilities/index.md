@@ -117,21 +117,19 @@ UPDATE: Alternatives
 ------------
 These days OWASP Dependency Check is not the only project focusing on third-party security dependencies. One of the very powerful alternatives is Snyk. In many ways, it is similar to Dependency Check, but now offers more features, better integration and is very actively developed. You can read more in this article:
 
-<div class="linked-post">
-<div><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/detecting-dependencies-known-vulnerabilities/" style="box-shadow: none;">Detecting dependencies with known vulnerabilities   </a></h4><small class="front-post-info"><span class="front-post-info-date">23 March, 2017</span><div class="post-tags"><ul><li><a href="/tags/java/">#Java</a></li><li><a href="/tags/security/">#Security</a></li></ul></div></small><div><a class="front-post-image" href="/detecting-dependencies-known-vulnerabilities/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 31.4556%;"></div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsSAAALEgHS3X78AAABBUlEQVQY05WQS0vDUBSE81/VPyCuxL07Ny4EXbiqGtzYnRUUlC5EaB7GxheVSnKLTRO1Ikma23s/Y5pVEdSBgTOcc2ZgDErYloV5YJLlBa/Hy+QXq6AKdLnTWv+LhtXpsNdoMBBhaZLzMhrTP92Aj+faUP34SB1GpVWtFcahaVYmiBbyah2emnyvZy+/Y/7OKCZZNUhvB51GFCeLkHT5zCSObXHjeVy7bkXHtrn1/XJ2eHjsEQX30DtC2ptM7/aZulsYUXOJ4bsEf5eitYBsr5WxkjyfEAYBcRxXFEJUehRFiDAkSd5IxzHEHmpwiRp2UKKNkZ6t0D/fRquyq7g764i/Y/72C1xHwyh1+P9JAAAAAElFTkSuQmCC" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><source srcset="/static/fac24205db4b02ec97efd060b396a913/68179/dc-large.png 45w,
-/static/fac24205db4b02ec97efd060b396a913/af06e/dc-large.png 90w,
-/static/fac24205db4b02ec97efd060b396a913/c5537/dc-large.png 180w,
-/static/fac24205db4b02ec97efd060b396a913/fa946/dc-large.png 270w,
-/static/fac24205db4b02ec97efd060b396a913/b0661/dc-large.png 360w,
-/static/fac24205db4b02ec97efd060b396a913/3ae35/dc-large.png 540w,
-/static/fac24205db4b02ec97efd060b396a913/1941b/dc-large.png 3071w" sizes="(max-width: 180px) 100vw, 180px"><img alt="" src="/static/fac24205db4b02ec97efd060b396a913/c5537/dc-large.png" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><source srcSet="/static/fac24205db4b02ec97efd060b396a913/68179/dc-large.png 45w,
-/static/fac24205db4b02ec97efd060b396a913/af06e/dc-large.png 90w,
-/static/fac24205db4b02ec97efd060b396a913/c5537/dc-large.png 180w,
-/static/fac24205db4b02ec97efd060b396a913/fa946/dc-large.png 270w,
-/static/fac24205db4b02ec97efd060b396a913/b0661/dc-large.png 360w,
-/static/fac24205db4b02ec97efd060b396a913/3ae35/dc-large.png 540w,
-/static/fac24205db4b02ec97efd060b396a913/1941b/dc-large.png 3071w" sizes="(max-width: 180px) 100vw, 180px" /><img src="/static/fac24205db4b02ec97efd060b396a913/c5537/dc-large.png" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI and track vulnerable dependencies over time?</span></div></div>
-</div>
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/snyk-detecting-dependencies-with-known-vulnerabilities/" style="box-shadow: none;">Snyk – Detecting dependencies with known vulnerabilities</a></h4><small class="front-post-info"><span class="front-post-info-date">22 November, 2017</span><div class="post-tags"><ul><li><a href="/tags/security/">#Security</a></li></ul></div></small><div><a class="front-post-image" href="/snyk-detecting-dependencies-with-known-vulnerabilities/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 49.3421%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAD/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAWa6pokuj//EABoQAAICAwAAAAAAAAAAAAAAAAECAxMAEBT/2gAIAQEAAQUCjd+i5wFkfEAv1//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EAB0QAAEDBQEAAAAAAAAAAAAAAAABAhEDECEiMUH/2gAIAQEABj8CheJJK0jZvo/F/wD/xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAhQRBx/9oACAEBAAE/IWJrgkID73JGoi47wSgsNz3/2gAMAwEAAgADAAAAEEPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABwQAQEAAgIDAAAAAAAAAAAAAAERACEQMUGh0f/aAAgBAQABPxANtUPLXpxdOQixqEKb79YkzYNgLpIdfMCrekLu3EGUGbOP/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/snyk/5e4a3/snyk-logo.jpg 45w,
+/linked/snyk/e451c/snyk-logo.jpg 90w,
+/linked/snyk/29fd0/snyk-logo.jpg 180w,
+/linked/snyk/b3ebb/snyk-logo.jpg 270w,
+/linked/snyk/8841e/snyk-logo.jpg 360w,
+/linked/snyk/95b54/snyk-logo.jpg 540w,
+/linked/snyk/51a58/snyk-logo.jpg 1520w" src="/linked/snyk/29fd0/snyk-logo.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/snyk/5e4a3/snyk-logo.jpg 45w,
+/linked/snyk/e451c/snyk-logo.jpg 90w,
+/linked/snyk/29fd0/snyk-logo.jpg 180w,
+/linked/snyk/b3ebb/snyk-logo.jpg 270w,
+/linked/snyk/8841e/snyk-logo.jpg 360w,
+/linked/snyk/95b54/snyk-logo.jpg 540w,
+/linked/snyk/51a58/snyk-logo.jpg 1520w" src="/linked/snyk/29fd0/snyk-logo.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to detect and fix security vulnerabilities in your dependencies using Snyk?</span></div></div>
 
 Conclusion
 ----------
