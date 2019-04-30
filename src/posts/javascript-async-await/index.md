@@ -13,19 +13,19 @@ excerpt: 'Async await allows you to work with asynchronous code in cleaner and m
 ## Promises
 This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or need a quick recap, check the following article.
 
-<div class="linked-post"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/javascript-promises/" style="box-shadow: none;">Javascript promises tutorial</a></h4><small class="front-post-info"><span class="front-post-info-date">28 March, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-promises/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 51.7778%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIDBAX/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//aAAwDAQACEAMQAAAB0XiYUugKf//EABsQAAEEAwAAAAAAAAAAAAAAAAECAxExEBIy/9oACAEBAAEFAnFSNpwq2+BX/8QAFxEBAAMAAAAAAAAAAAAAAAAAAgEQEf/aAAgBAwEBPwFHIr//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAQAv/aAAgBAQAGPwJp/8QAGRABAAMBAQAAAAAAAAAAAAAAAQAhMRFh/9oACAEBAAE/IWQNgrDTvkMlOcFJhP/aAAwDAQACAAMAAAAQ1z//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPxAI/wD/xAAXEQEBAQEAAAAAAAAAAAAAAAABACEx/9oACAECAQE/EOMaX//EABsQAAIDAQEBAAAAAAAAAAAAAAERACFRcaHx/9oACAEBAAE/EAptKWsQzQACGvsKvJllnYByDQnkn//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition: opacity 0.5s ease 0.5s;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/41b7d2f444ff1186ea1466774eb16dc8/da188/promise.jpg 45w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/c296b/promise.jpg 90w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/02806/promise.jpg 180w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/f5a53/promise.jpg 270w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/dc9ca/promise.jpg 360w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/a1e3d/promise.jpg 540w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/accd0/promise.jpg 900w" src="/static/41b7d2f444ff1186ea1466774eb16dc8/02806/promise.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 0.5s ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/static/41b7d2f444ff1186ea1466774eb16dc8/da188/promise.jpg 45w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/c296b/promise.jpg 90w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/02806/promise.jpg 180w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/f5a53/promise.jpg 270w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/dc9ca/promise.jpg 360w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/a1e3d/promise.jpg 540w,
-/static/41b7d2f444ff1186ea1466774eb16dc8/accd0/promise.jpg 900w" src="/static/41b7d2f444ff1186ea1466774eb16dc8/02806/promise.jpg" alt="" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.</span></div></div>
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/javascript-promises/" style="box-shadow: none;">Javascript promises tutorial</a></h4><small class="front-post-info"><span class="front-post-info-date">28 March, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-promises/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 51.7778%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIDBAX/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//aAAwDAQACEAMQAAAB0XiYUugKf//EABsQAAEEAwAAAAAAAAAAAAAAAAECAxExEBIy/9oACAEBAAEFAnFSNpwq2+BX/8QAFxEBAAMAAAAAAAAAAAAAAAAAAgEQEf/aAAgBAwEBPwFHIr//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAQAv/aAAgBAQAGPwJp/8QAGRABAAMBAQAAAAAAAAAAAAAAAQAhMRFh/9oACAEBAAE/IWQNgrDTvkMlOcFJhP/aAAwDAQACAAMAAAAQ1z//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPxAI/wD/xAAXEQEBAQEAAAAAAAAAAAAAAAABACEx/9oACAECAQE/EOMaX//EABsQAAIDAQEBAAAAAAAAAAAAAAERACFRcaHx/9oACAEBAAE/EAptKWsQzQACGvsKvJllnYByDQnkn//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/promises/5e4a3/promise.jpg 45w,
+/linked/promises/e451c/promise.jpg 90w,
+/linked/promises/29fd0/promise.jpg 180w,
+/linked/promises/b3ebb/promise.jpg 270w,
+/linked/promises/8841e/promise.jpg 360w,
+/linked/promises/95b54/promise.jpg 540w,
+/linked/promises/2b1a3/promise.jpg 900w" src="/linked/promises/29fd0/promise.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/promises/5e4a3/promise.jpg 45w,
+/linked/promises/e451c/promise.jpg 90w,
+/linked/promises/29fd0/promise.jpg 180w,
+/linked/promises/b3ebb/promise.jpg 270w,
+/linked/promises/8841e/promise.jpg 360w,
+/linked/promises/95b54/promise.jpg 540w,
+/linked/promises/2b1a3/promise.jpg 900w" src="/linked/promises/29fd0/promise.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.</span></div></div>
 
 ## Async
 Let's assume we have a simple function returning some value
