@@ -74,7 +74,7 @@ File → Learn and Teach → Start Stepik Course
 ### Hyperskill
 [Hyperskill](https://hyperskill.org) is another service integrated by EduTools. It is actually developed by Stepik. It is a very interesting tool with a slightly different focus. Instead of various independent courses, you build number of projects. There is a big Knowledge map of varios linked topics for each domain, where you can track your progress.
 
-![Hyperskill knowledge map](./hyperskill-map.png)
+![Hyperskill knowledge map](hyperskill-map.png)
 
 To open a Hyperskill project, go to:
 
@@ -82,10 +82,61 @@ To open a Hyperskill project, go to:
  File → Learn and Teach → Start Hyperskill Project
  ```
  
-
-
 ### Coursera
 [Coursera](https://www.coursera.org/) integration is a bit sporadic right now. There's just "Kotlin for Java Developers" by JetBrains, where you can solve your weekly assignments in IDEA. You can access coursera assignments in: `File → Learn and Teach → Start Coursera Assignment`.
 
 ### Checkio
+[CheckiO](https://checkio.org/) offers tasks to improve your programming skills in Javascript and Python. It motivates you through gamification. You solve coding tasks to gain XP and level up to unloack new locations and challenges. There is also a nice social aspect where you can share your solutions and compare with others, have discussions and upvote your favorites.
 
+You can access CheckiO courses through the course browser:
+
+```
+File → Learn and Teach → Browse Courses Js CheckiO
+File → Learn and Teach → Browse Courses Py CheckiO
+```
+
+Your progress in synchronized with the web as usual.
+
+## Creating courses
+So far, we've discussed only consuming courses created by someone else. What's great about EduTools is that it allows you to easily create your own tasks and courses. It can be a powerful tool when teaching programming.
+
+This can be useful for hands-on tasks during the lessons, as home work assignments or even self-study material. It's good that it allows students to work with a real IDE with all the support it offers and it will teach them how to use it. They can check their solution automatically without the need to submit their code. And as a part of the task description you can provide any theoretical background information necessary.
+
+### New course
+
+The plugin has all you need to create the course directly in IDEA. Simply go to:
+
+```
+File → Learn and Teach → Create New Course
+```
+
+Then fill some basic information about the course:
+
+![Create course](create-course.png)
+
+Currently you can select one of the supported languages:
+- Java
+- Kotlin
+- JavaScript
+- Python
+
+### Creating tasks
+Now when the Course is created it's time to make individual tasks. It's pretty simple. Each task consists of three parts. 
+
+![New Task](new-task.png)
+
+First is the description of the task. It is in a form of HTML file, so you can even provide some rich formatting.
+
+The second part is the actual code. There are not two versions of files - starting state and final state. You just provide the final solution, which is expected. Then you can select certain parts of code and `Right Click → Add Answer Placeholder`.
+
+That means you mark certains sections of the code as hidden to the students and instead show some text like "TODO implement here".
+
+![Content Placeholder](content-placeholder.png)
+
+Finally, you need to provide a way for the students to verify their solutions. This is done via one or more unit tests, which you can provide. As long as they pass, the students can move on to the next task. 
+
+
+## Conclusion
+EduTools offer you to study various programming courses and solve coding puzzles directly in your favorite IDE. No more clumsy web editors. It integrates well with various third-party educational services and it can synchronize your progress.
+
+You are not limited to third-party courses, though. You can easily create your own courses and use them as a teaching material on your courses.
