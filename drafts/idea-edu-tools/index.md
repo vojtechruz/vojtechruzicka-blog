@@ -53,12 +53,39 @@ It runs predefined unit tests under the hood  and based on the result it lets yo
 
 ![Incorrect solution](incorrect.png)
 
-You can either view the solution or just compare the expected output with what you have. Both these features show you a nice version control system-like diff so you caneasily identify the differences.
+You can either view the solution or just compare the expected output with what you have. Both these features show you a nice version control system-like diff so you can easily identify the differences.
 
 ## Integrations
+The amount of courses available in the repository is still somewhat limited, so it is great that EduTools offers integration with several third party services, which offer their own courses.
+
 ### Stepik
+[Stepik](https://stepik.org/catalog?language=en) is an online educational platform, where you can either study or publish your own courses.
+
+You can log in in IDEA to your Stepik account. This has several advantages. You'll get access to a broader range of courses and now your progress is automatically synchronized with your Stepik account.
+
+That means that you can study either in IDEA or Stepik web editor and your progress is tracked either way. It also acts as a online backup of your progress, because normally IDEA stores your progress just in a local folder.
+
+You can access Stepik courses in IDEA by:
+
+```
+File → Learn and Teach → Start Stepik Course
+```
+
 ### Hyperskill
+[Hyperskill](https://hyperskill.org) is another service integrated by EduTools. It is actually developed by Stepik. It is a very interesting tool with a slightly different focus. Instead of various independent courses, you build number of projects. There is a big Knowledge map of varios linked topics for each domain, where you can track your progress.
+
+![Hyperskill knowledge map](./hyperskill-map.png)
+
+To open a Hyperskill project, go to:
+
+ ```
+ File → Learn and Teach → Start Hyperskill Project
+ ```
+ 
+
+
 ### Coursera
+[Coursera](https://www.coursera.org/) integration is a bit sporadic right now. There's just "Kotlin for Java Developers" by JetBrains, where you can solve your weekly assignments in IDEA. You can access coursera assignments in: `File → Learn and Teach → Start Coursera Assignment`.
 
+### Checkio
 
-TODO peek solution
