@@ -5,7 +5,7 @@ tags: ["Javascript"]
 path: '/javascript-async-await'
 featuredImage: './async-await.jpg'
 disqusArticleIdentifier: '99021 http://vojtechruzicka.com/?p=99021'
-excerpt: 'Async await allows you to work with asynchronous code in cleaner and more convenient way.'
+excerpt: 'Async await allows you to work with asynchronous code in a cleaner and more convenient way.'
 ---
 
 ![Async Await](async-await.jpg)

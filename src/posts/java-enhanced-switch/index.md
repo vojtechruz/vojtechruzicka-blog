@@ -5,7 +5,7 @@ tags: ["Java"]
 path: '/java-enhanced-switch'
 featuredImage: './switch.jpg'
 disqusArticleIdentifier: '99022 http://vojtechruzicka.com/?p=99022'
-excerpt: 'Java 12 introduced whole lot of useful improvements to the good old switch, which makes it way more useful.'
+excerpt: 'Java 12 introduced a whole lot of useful improvements to the good old switch, which makes it way more useful.'
 ---
 
 ![Switch](switch.jpg)
