@@ -110,11 +110,13 @@ Then fill some basic information about the course:
 
 ![Create course](create-course.png)
 
-Currently, you can select one of the supported languages:
+Currently, you can select one of the supported languages (more are to come):
 - Java
 - Kotlin
 - JavaScript
 - Python
+- Scala
+- Rust
 
 ### Creating tasks
 Now when the course is created it's time to make individual tasks. It's pretty simple. Each task consists of three parts. 
@@ -132,6 +134,22 @@ That means you mark specific sections of the code as hidden to the students and 
 Finally, you need to provide a way for the students to verify their solutions. This is done via one or more unit tests, which you can provide. As long as they pass, the students can move on to the next task. 
 
 ### Gradle
+For Java, Kotlin and Scala each course uses Gradle under the hood and you can access and edit `build.gradle` file, which is bundled with the course. That means you can utilize the power Gradle gives you. And you are not limited to vanilla Java/Kotlin/Scala, but can also bring various third-party dependencies.
+
+### Sharing your course
+Once you are finished creating the course, it is time to share it with your students. You have basically two options. 
+
+You can export your course as an archive, which can be later imported to IDEA by your students.
+
+```
+File → Course Creator → Generate Course Archive
+```
+
+The import is performed from the Course Browser dialog. The other option is to go public and publish your course to Stepik available for everyone:
+
+```
+File → Course Creator → Upload Course to Stepik
+```
 
 ## Conclusion
 EduTools offer you to study various programming courses and solve coding puzzles directly in your favorite IDE. No more clumsy web editors. It integrates well with various third-party educational services and it can synchronize your progress.
