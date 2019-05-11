@@ -1,6 +1,7 @@
 ---
 title: 'Analyzing dependencies in IntelliJ IDEA'
 date: "2019-04-30T22:12:03.284Z"
+dateModified: "2019-05-11"
 tags: ["IDEA"]
 path: 'idea-analyzing-dependencies'
 featuredImage: './dependencies.jpg'
@@ -144,6 +145,17 @@ IDEA does highlight conflicts for you in red. Still, it may be difficult to find
 ![Maven Dependency Diagram - Conflicts](maven-diagram-conflicts.gif)
 
 In the example above, you can see there is a conflict between JUnit versions. There is an explicit dependency to JUnit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
+
+## Maven Helper plugin
+If the graphical dependency tree is not your thing, there is an alternative for you. It's [Maven Helper Plugin](https://plugins.jetbrains.com/plugin/7179-maven-helper) by [Vojtech Krasa](https://github.com/krasa). It uses hierarchical text representation of dependencies, similar to `mvn dependency:tree` but with a nice dependency browser.
+
+It is also a good alternative if you are using IDEA Community Edition or have an older version of IDEA, where the Maven dependency graph is way less useful.
+
+To use the Dependency Analyzer offered by the plugin, simply open any `pom.xml` file. At the bottom of your editor, there is a new tab added by the editor called `Dependency Analyzer`.
+
+![Maven Helper Plugin](./dependency-helper.png)
+
+In the left panel, you can browse your dependencies (viewed either as list or tree). The right panel shows how selected dependency got into your application through the dependency chain. You can easily switch the view to show just conflicts.
 
 ## Conclusion
 When you create an application, properly structuring your dependencies is very important as architecture with tight and tangled dependencies can be very hard to maintain, extend and modify. Fortunately, IDEA can help with a Dependency Structure Matrix, which provides a useful graphical view of your internal dependencies.
