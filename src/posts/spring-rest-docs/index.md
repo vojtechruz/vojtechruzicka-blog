@@ -119,7 +119,7 @@ testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.1.RELEASE'
 ### Configuring your tests - Junit 4
 Let's add a specific `@Rule` for REST documentation and then use it when building the mockMvc object. Only the highlighted lines below are new. The rest is the original code sample we already saw.
 
-```java{10-11,17}
+```java{10-12,18}
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PersonControllerJunit4Test {
@@ -130,7 +130,8 @@ public class PersonControllerJunit4Test {
     private MockMvc mockMvc;
 
     @Rule
-    public JUnitRestDocumentation jUnitRestDocumentation = new JUnitRestDocumentation();
+    public JUnitRestDocumentation jUnitRestDocumentation 
+    = new JUnitRestDocumentation();
 
     @Before
     public void setup() {
@@ -347,7 +348,7 @@ Our controller's method `getPersonById()` returns a person represented as JSON.
 }
 ```
 
-Let's document all the fields using `responseFields()` metod:
+Let's document all the fields using `responseFields()` method:
 
 ```java{9-15}
 @Test
