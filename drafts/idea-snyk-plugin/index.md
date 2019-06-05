@@ -14,3 +14,4 @@ excerpt: ''
 # - does not support gradle yet but cli and web does
 # - all levels required - ci, prod, continuous, ide
 # - requires snyk account
+# - https://plugins.jetbrains.com/plugin/10972-snyk-vulnerability-scanning
