@@ -315,6 +315,15 @@ kbd {
   margin-top: 1em;
 }
 
+.msg-warn {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border: 1px darken(#FEEFB3, 1%) solid;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
 .toc {
 
   background-color: #fff;

@@ -118,9 +118,15 @@ com.vojtechruzicka:spring-boot-actuator-example:jar:1.0.0-SNAPSHOT
 
 In addition to plain text, it offers various other formats as output, which are better suited for representing dependency graph such as [graphml](https://gist.github.com/vojtechruz/0f8394f71bb9c4ae324a8dc4518c5761#file-graphml) or [tgf](https://gist.github.com/vojtechruz/0f8394f71bb9c4ae324a8dc4518c5761#file-tgf).
 
-You can specify some other parameters to help you with your investigation, but for larger projects, it can be cumbersome to work with dependency tree output directly. Fortunately, IDEA offers a nice GUI tool to work with Maven dependency graphs.
+You can specify some other parameters to help you with your investigation, but for larger projects, it can be cumbersome to work with dependency tree output directly. 
 
-This tool is in IntelliJ for quite some time, but as of version 2019.1, it received some needed enhancements, which make it much more useful in projects with large dependency graphs.
+
+<div class="msg-warn">
+<b>UPDATE:</b> Be careful with <a href="https://maven.apache.org/plugins/maven-dependency-plugin/tree-mojo.html#verbose">verbose parameter</a> when using maven 3.x as under the hood it <a href="http://maven.apache.org/shared/maven-dependency-tree/">still uses Maven 2 algorithm</a> and may give you inconsistent results.
+</div>
+
+
+Fortunately, IDEA offers a nice GUI tool to work with Maven dependency graphs. This tool is in IntelliJ for quite some time, but as of version 2019.1, it received some needed enhancements, which make it much more useful in projects with large dependency graphs.
 
 To show the graph, go inside a `pom.xml` file and press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Alternatively `Right click → Diagrams → Show Dependencies`.
 
