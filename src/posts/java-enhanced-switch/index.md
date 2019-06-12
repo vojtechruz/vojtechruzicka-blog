@@ -1,6 +1,7 @@
 ---
-title: 'Java 12 Enhanced Switch'
+title: 'Java 13 Enhanced Switch'
 date: "2019-04-07T22:12:03.284Z"
+dateModified: "2019-06-11"
 tags: ["Java"]
 path: '/java-enhanced-switch'
 featuredImage: './switch.jpg'
@@ -12,8 +13,12 @@ excerpt: 'Java 12 introduced a whole lot of useful improvements to the good old 
 
 Java 12 introduced a whole lot of useful improvements to the good old switch, which makes it way more useful.
 
+<div class="msg-info">
+There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to reflect it. 
+</div>
+
 ## Traditional switch
-Good old switch is available in Java from the very, and little has changed since then until now. Java's switch follows closely the design of C and C++ including the weird parts.
+Good old switch is available in Java from the very beginning, and little has changed since then until now. Java's switch follows closely the design of C and C++ including the weird parts.
 
 ### Fall-through
 Most notably, the infamous **fall-through** behavior. What does it mean? Let's look at a simple switch first:
@@ -36,11 +41,11 @@ switch (errorCode) {
 
 Nothing fancy, you supply an HTTP result code, and it prints what does it mean. For each code provided, only the corresponding block is executed. As long as you remember to include `break`.
 
-When a case is matched and executed, the switch automatically continues to the next case unless there was a `break` statement.
+When a case is matched and executed, the switch automatically continues to the next case unless there is a `break` statement.
 
 Let's look at an example. Let's pretend we forgot to include a break in the case 404:
 
-```java
+```java{4}
 switch (errorCode) {
     case 404:
         System.out.println("Not found!");
@@ -56,14 +61,14 @@ switch (errorCode) {
 }
 ```
 
-When we pass `404` to the switch, the first case is a match and the block inside is executed. Because there is no break, the execution continues to the `case 418:` block even though the input is clearly not 418. In this block, there is `break` so the switch finally ends. The output is, however, the following:
+When we pass `404` to the switch, the first case is a match and the block inside is executed. Because there is no break, the execution continues to the `case 418:` block even though the input is clearly not 418. In this block, there is `break`, so the switch finally ends. The output is, however, the following:
 
 ```
 Not found!
 I am a teapot!
 ```
 
-Not what we intended right? While fall-through behavior can be useful sometimes, more often than not it is just a result of accidentally missed break. Switch statements are therefore error-prone. In more complicated scenarios when there is a missing break, you may be in doubt whether it is an error or it was intentional. It can be useful in low-level code, which is performance-sensitive, but in the high-level code, it can be dangerous.
+Not what we intended, right? While fall-through behavior can be useful sometimes, more often than not, it is just a result of accidentally missed break. Switch statements are therefore error-prone. In more complicated scenarios, when there is a missing break, you may be in doubt whether it is an error or it was intentional. It can be useful in low-level code, which is performance-sensitive, but in the high-level code, it can be dangerous.
 
 ## Single value cases
 One of the unfortunate limitations of the switch is that in each case, there can be just a single value. This forces you to rely on fall-through if you want to have the same behavior for multiple values.
@@ -95,7 +100,7 @@ Unfortunately, the old traditional switch does not support this.
 Java 12 brought a whole lot of improvements to the traditional switch as [Java Enhancement Proposal 325: Switch Expressions (Preview)](http://openjdk.java.net/jeps/325). It solves most of the issues of the traditional switch and is prerequisite of [pattern matching](https://openjdk.java.net/jeps/305), which is to be provided in the future.
 
 ### Preview Feature
-Enhanced switch functionality is, however, only available as a [preview feature](http://openjdk.java.net/jeps/12).
+Enhanced switch functionality is, however, currently only available as a [preview feature](http://openjdk.java.net/jeps/12) in Java 12. As of Java 13, it will be available as a regular feature.
 
 What does it mean?
 
@@ -103,9 +108,9 @@ What does it mean?
 > 
 >Before the next JDK feature release, the feature's "real world" strengths and weaknesses will be evaluated to decide if the feature has a long-term role in the Java SE Platform and, if so, whether it needs refinement. Consequently, the feature may be granted final and permanent status (with or without refinements), or undergo a further preview period (with or without refinements), or else be removed.
 
-Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable it to use it. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
+Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-First, make sure you actually have JDK 12 installed. Then, in IntelliJ IDEA you can enable preview features under `File -> Project Structure`.
+First, make sure you actually have [JDK 12 installed](https://jdk.java.net/12/). Then, in IntelliJ IDEA you can enable preview features under `File -> Project Structure`.
 
 ![Idea Preview features](idea-enable-preview-features.png)
 
@@ -135,14 +140,14 @@ switch (errorCode) {
 }
 ```
 
-Nice, concise and much easier to read than multiple cases with fall-through, right? So far so good. Note that we still use `break` statements.
+Nice, concise and much easier to read than multiple cases with fall-through, right? So far, so good. Note that we still use `break` statements.
 
 ### Switch expression
 The traditional switch is a **statement**. In addition to that, the new switch also adds the possibility of switch **expression**.
 
 What is the difference? In a nutshell, the statement is imperative to do some logic. The expression returns some value.
 
-Take for example the `if-else` statement. If some condition is met, it executes `if` block. If the condition is not met, it executes else block:
+Take for example the `if-else` statement. If some condition is met, it executes `if` block. If the condition is not met, it executes `else` block:
 
 ```java
 if(condition) {
@@ -158,22 +163,26 @@ The same `if-else` logic can be achieved with the ternary operator as an express
 x = condition ? 1 : 2;
 ```
 
-With the switch it is similar. The traditional switch is a statement. It directs the control flow based on your input. However, you can use the new switch also as an expression. That is, based on your input it can directly return some value.
+With the switch it is similar. The traditional switch is a statement. It directs the control flow based on your input. However, you can use the new switch also as an expression. That is, based on your input, it can directly return some value.
 
 ```java
 String message = switch (errorCode) {
     case 404:
-        break "Not found!";
+        yield "Not found!";
     case 500:
-        break "Internal server error!";
+        yield "Internal server error!";
     default:
         throw new IllegalArgumentException("Unexpected value: " + errorCode);
 };
 ```
 
-As you can see we can now use the result of a switch expression and assign it to a variable.
+As you can see, we can now use the result of a switch expression and assign it to a variable.
 
-Notice a few differences to the regular switch statement. First of all, it needs to end with a semicolon. Then, `break` is used differently. Instead of plain `break;` we use break with a value. It indicates what value should be returned from the expression. It is similar to `return;` and `return value;` in methods. A void method which does not return a value has just a simple `return;`. Methods which do return some value have `return value;`. Switch statement, which does not return value, does have plain `break;`. Switch expression, which does return value has `break value;`.
+Notice a few differences to the regular switch statement. First of all, it needs to end with a semicolon. Then, there is a new keyword `yield`. It is similar to the `return` statement. But for switch expression instead. It marks value to be returned from a switch branch. Because `yield` terminates the switch expression, you don't need to have `break` after it.
+
+<div class="msg-info">
+The yield statement is targeted to be introduced in Java 13. For Java 12, you should use break instead. See <a href="#history">History</a> Section below.
+</div>
 
 ### Null Pointer Exception Safety
 There is another significant difference. Unlike with regular switch, the switch expression needs to cover all the possible input values.
@@ -185,9 +194,9 @@ That means that all possible integer values are covered. No matter what the inpu
 ```java
 String message = switch (errorCode) {
     case 404:
-        break "Not found!";
+        yield "Not found!";
     case 500:
-        break "Internal server error!";
+        yield "Internal server error!";
     // default:
     //    throw new IllegalArgumentException("Unexpected value: " + errorCode);
 };
@@ -199,9 +208,9 @@ This will result in the following error:
 Error:(11, 26) java: the switch expression does not cover all possible input values
 ```
 
-So with switch expression, you have to cover all the possible inputs. Either by providing `case` for all the possible inputs (which can be easy for enums) or by providing `default` case.
+So with switch expression, you have to cover all the possible inputs. Either by providing `case` for all the possible values (which can be easy for enums) or by providing `default` case.
 
-This has some nice implications. The regular switch is error-prone when you forget to include one of the values, for example when using enums. Or when you later add another enum item but forget to update your switch statements. This cannot happen with switch expression as you would get compile error. Also, you cannot get null pointer exception as a result of switch expression.
+This has some nice implications. The regular switch is error-prone when you forget to include one of the values, for example when using enums. Or when you later add another enum item but forget to update your switch statements. This cannot happen with switch expression as you would get compile error. Also, you cannot get null pointer exception as a result of the switch expression.
 
 ### Switch with arrows
 So far we've seen some nice improvements to the good old switch. One of the major nuisances was not covered though. Even with multi-value `case` blocks, we still had to make sure we included `break` properly otherwise we could face some nasty fall-through bugs.
@@ -245,7 +254,7 @@ switch (errorCode) {
 }
 ```
 
-This is, of course, needed for proper working of fall-through behavior. If you want to threat individual `case` branches as separate scope, you need to introduce a `{}` block, which is treated as a separate scope:
+This is, of course, needed for the proper working of fall-through behavior. If you want to threat individual `case` branches as separate scope, you need to introduce a `{}` block, which is treated as a separate scope:
 
 ```java
 switch (errorCode) {
@@ -262,7 +271,7 @@ switch (errorCode) {
 }
 ```
 
-With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either single statement/expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use need to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
+With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either a single statement/expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use needs to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
 
 ## IntelliJ IDEA support
 The good news is that IDEA already has nice support for the extended switch.
@@ -271,13 +280,50 @@ In the example below, you can see a quick-fix for replacing the traditional swit
 
 ![IDEA replace with switch expression](idea-replace-with-switch-expression.gif)
 
-IDEA also warns you when your switch is not compliant, such in a case where you don't cover all the possible input values. Moreover, it offers you a quick fix:
+IDEA also warns you when your switch is not compliant, such as in a case where you don't cover all the possible input values. Moreover, it offers you a quick fix:
 
 ![IDEA add default branch](idea-add-default-branch.gif)
 
 If idea detects you have multiple `case` branches with the same behavior, it will warn you and offer you to merge these branches together:
 
 ![IDEA Merge case branches](idea-merge-branches.gif) 
+
+## History
+The enhanced switch was originally introduced with Java 12 as [JEP-325](https://openjdk.java.net/jeps/325) - a preview feature, which needs to be explicitly enabled. This was to gather feedback and gain more time for potential further refinement. 
+
+For Java 13, there was another proposal introduced - [JEP-354](https://openjdk.java.net/jeps/354), which changed the syntax of returning value from a switch expression.
+
+The original syntax in Java 12 used `break` keyword followed by the value to be returned.
+
+```java
+String message = switch (errorCode) {
+    case 404:
+        break "Not found!";
+    case 500:
+        break "Internal server error!";
+    default:
+        throw new IllegalArgumentException("Unexpected value: " + errorCode);
+};
+```
+
+In Java 13, this syntax changes to `yield`:
+
+```java
+String message = switch (errorCode) {
+    case 404:
+        yield "Not found!";
+    case 500:
+        yield "Internal server error!";
+    default:
+        throw new IllegalArgumentException("Unexpected value: " + errorCode);
+};
+```
+
+Having a break with return value was a bit confusing and hard to tell apart from regular labeled break. It was harder to visually distinguish a switch statement from switch expression. Now it is much easier to tell them apart:
+ - Switch statement only uses `break` and never `yield`
+ - Switch expression only uses `yield` and never `break`
+
+The original proposal in Java 13 was `break-with`, which would be the first hyphenated keyword in Java so far. But it was later replaced with `yield`.
 
 ## Future enhancements
 As part of the [JEP-325](https://openjdk.java.net/jeps/325) specification, there is also mentioned another improvement, which is not currently implemented (as of Java 12), but may be introduced in the future.
@@ -288,8 +334,12 @@ Currently, the switch allows input values only of types char, int, byte, short, 
 
 ## Summary
 - In Java 12 enhanced switch is a preview feature, which needs to be explicitly enabled
+- In Java 13 enhanced switch is available as a regular feature
 - You can now use `case` for multiple values
 - In addition to the traditional switch statement, you can use switch expression, which returns a value
+- To return a value from a switch expression you can use:
+  - `break` in Java 12
+  - `yield` in Java 13
 - Switch expression must cover all possible input values of given input type
 - You can use new `->` syntax which does not have fall-through and does not require a break
 - You cannot combine `case:` and `case ->` in one switch
