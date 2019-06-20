@@ -1,7 +1,7 @@
 ---
 title: 'IntelliJ IDEA integrated HTTP Client'
 date: "2018-01-17T22:12:03.284Z"
-dateModified: "2019-01-20"
+dateModified: "2019-06-20"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
@@ -255,6 +255,30 @@ In such case, you can call endpoints of your application directly from your @Con
 Additionally, IDEA shows a list of all endpoint mappings in the Run/Debug tab under `Endpoints → Mappings` from there you can execute requests and open HTTP client as well.
 
 ![Spring Boot Endpoints](./spring-endpoints.png)
+
+## Converting cURL requests
+Since version 2019.2, you can easily convert your existing [cURL](https://curl.haxx.se/) requests to the format supported by IntelliJ IDEA. All you need to do is to paste a cURL reuest like this to the editor of Intellij's HTTP client:
+
+```
+curl -X POST http://www.example.com/login/ -d 'username=joe&password=1234'
+```
+
+It will be automatically converted to the format supported by IDEA:
+
+```
+POST http://www.example.com/login/
+Content-Type: application/x-www-form-urlencoded
+
+username=joe&password=1234
+```
+
+Pretty cool, right? Alternatively you can go through the menu:
+
+```
+Tools → HTTP Client → Convert cURL to HTTP Request
+```
+
+This will open a dialog window, where you can paste your cURL request to be converted.
 
 ## HTTP Proxy
 
