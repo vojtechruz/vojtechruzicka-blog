@@ -238,7 +238,6 @@ Content-Type: application/json
 
 > {%
 client.global.set("token", response.body.json.token);
-
 %}
 
 GET https://www.example.com/foo
