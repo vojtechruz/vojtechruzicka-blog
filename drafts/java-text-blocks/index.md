@@ -1,16 +1,14 @@
 ---
-title: ''
-date: ""
+title: 'Java 13 Text Blocks'
+date: ""2019-06-21T22:12:03.284Z""
 tags: ["Java"]
 path: '/java-text-blocks'
 featuredImage: './java-text-blocks.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+excerpt: 'Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.'
 ---
 
 ![Java Text Blocks](./java-text-blocks.jpg)
-
-Java 13 Text Blocks
 
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.
 
@@ -160,7 +158,7 @@ Since the quoting is allowed, you technically can include `\n` and `\"`, but it 
 
 ### Indentation handling
 
-
+<!--
 
 - https://openjdk.java.net/jeps/355
 - preview feature
@@ -182,5 +180,4 @@ abc \ def
 """;      // unescaped backslash (see below for escape processing)
 
 At run time, a text block is evaluated to an instance of String, just like a string literal. Instances of String that are derived from text blocks are indistinguishable from instances derived from string literals. Two text blocks with the same processed content will refer to the same instance of String due to interning, just like for string literals.
-
-https://mail.openjdk.java.net/pipermail/amber-spec-experts/2019-January/000931.html
+-->
