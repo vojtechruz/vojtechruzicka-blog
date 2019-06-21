@@ -1,6 +1,6 @@
 ---
 title: 'Java 13 Text Blocks'
-date: ""2019-06-21T22:12:03.284Z""
+date: "2019-06-21T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-text-blocks'
 featuredImage: './java-text-blocks.jpg'
@@ -8,7 +8,7 @@ disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.'
 ---
 
-![Java Text Blocks](./java-text-blocks.jpg)
+![Java Text Blocks](java-text-blocks.jpg)
 
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.
 
@@ -116,7 +116,11 @@ Text blocks will be only available as a preview feature in Java 13. What does it
 
 Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-When building your app you need to specify that preview features should be turned on by providing  the following params to `javac`:
+You'll need to download [JDK 13](https://jdk.java.net/13/). In intelliJ, go to `File -> Project Structure` and make sure you have JDK 13 selected under Project SDK. To enable Text Blocks as a preview feature, be sure to select `13 (Preview) - Text Blocks` under `Project Language Level`.
+
+![JDK 13 IDEA settings](jdk-13-idea-preview.png)
+
+When building your app manually you need to specify that preview features should be turned on by providing  the following params to `javac`:
 
 ```
 javac --release 12 --enable-preview ...
@@ -139,8 +143,25 @@ String myBlock =  """
                   """
 ```
 
-### Escaping 
+There is no runtime difference between Text Block and String literal. Both result in an instance of String. If they have the same value, they'll get interned as usual and end up as the same instance. Everywhere you can use String literal, you can also use Text Block.
 
+## Processing
+Unlike regular String literals, Texts block are processed by the compiler in three steps:
+1. Line ends are normalized
+2. Excess whitespace is removed
+3. Escaped characters are interpreted
+
+### Line end normalization
+Windows and UNIX-based operating systems have different characters to represent line endings.
+
+Windows uses Carriage Return (`\r`) and Line Feed (`\n`), while Unix-based systems use just Line Feed. The problem is that Text Blocks use new line characters directly from the source code, instead of using `\n` such as regular string literals. That means that source code created on Unix would have Strings with different line endings when compiled on windows. The Strings would look identical to the naked eye but would have different line endings.
+
+To prevent this, Java compiler takes all the line endings in Text Blocks and normalizes them to Line Feed (`\n`). What is important is that this is done before evaulating escaped characters. That means that if you explicitly need to include Carriage Return using `\r` you can, as it is evaluated after line ending normalization and would not be affected.
+
+### Indentation removal
+
+
+### Escaping 
 Note that Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
 - New line `\n` is no longer needed as Text  Blocks are multi-line by nature. 
 - You don't need to escape `"` double quotes as they no longer mark String literal end
@@ -154,30 +175,6 @@ String myBlock =  """
 
 Since the quoting is allowed, you technically can include `\n` and `\"`, but it is not necessary and discouraged. You still do need to escape slash `\\`. But in general Text Blocks involve lot less escaping than good old String literals. All the escape sequences which can be used in String literals can be also used for Text Blocks. Check the [Java spec](https://docs.oracle.com/javase/specs/jls/se12/html/jls-3.html#jls-3.10.6) for the full list.
 
-### Line end normalization
+Interpreting escaped characters as the last of the three steps is important as your escapes are not affected by line ending normalization and whitespace removal.
 
-### Indentation handling
-
-<!--
-
-- https://openjdk.java.net/jeps/355
-- preview feature
-- previously raw string literals were withdrawn: https://openjdk.java.net/jeps/326
-- dont support string interpolation
-- two dimensional block of text rather than one dimensional sequence of characters
--  anywhere that a string literal could appear
-- The content may include line terminators directly, unlike the characters in a string literal. The use of \n in a text block is permitted, but not necessary or recommended. For example, the text block:
-- The content may include double quote characters directly, unlike the characters in a string literal. The use of \" in a text block is permitted, but not necessary or recommended. Fat delimiters (""") were chosen so that " characters could appear unescaped, and also to visually distinguish a text block from a string literal.
-
-Here are some examples of ill-formed text blocks:
-
-String a = """""";   // no line terminator after opening delimiter
-String b = """ """;  // no line terminator after opening delimiter
-String c = """
-";        // no closing delimiter (text block continues to EOF)
-String d = """
-abc \ def
-""";      // unescaped backslash (see below for escape processing)
-
-At run time, a text block is evaluated to an instance of String, just like a string literal. Instances of String that are derived from text blocks are indistinguishable from instances derived from string literals. Two text blocks with the same processed content will refer to the same instance of String due to interning, just like for string literals.
--->
+# Conclusion
