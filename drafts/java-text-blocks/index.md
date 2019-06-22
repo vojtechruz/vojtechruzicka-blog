@@ -87,7 +87,27 @@ You would need to fix this manually, possibly with newly introduced String metho
 
 You can read more about original Raw String Literals proposal in the following article:
 
-TODO
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/raw-strings/" style="box-shadow: none;">Java Raw String Literals</a></h4><small class="front-post-info"><span class="front-post-info-date">26 November, 2018</span><div class="post-tags"><ul><li><a href="/tags/java/">#Java</a></li></ul></div></small><div><a class="front-post-image" href="/raw-strings/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAD/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAID/9oADAMBAAIQAxAAAAFOBETpnIj/xAAaEAADAAMBAAAAAAAAAAAAAAAAAQIDESES/9oACAEBAAEFAoyoeVO/VHWTPd6P/8QAFREBAQAAAAAAAAAAAAAAAAAAECH/2gAIAQMBAT8Bh//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AVf/xAAZEAACAwEAAAAAAAAAAAAAAAAAARARITH/2gAIAQEABj8CxWjDjFbjEf/EABwQAQACAwADAAAAAAAAAAAAAAEAESExYUGBkf/aAAgBAQABPyHZADLdQ+p4Go3uD7NDiV4g7L6lMIf/2gAMAwEAAgADAAAAEL8//8QAFxEBAAMAAAAAAAAAAAAAAAAAAAERUf/aAAgBAwEBPxAuMf/EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/EIP/xAAdEAEAAgIDAQEAAAAAAAAAAAABABEhMVFhgUFx/9oACAEBAAE/ELrnsKPwvbC+zeEnjvEuyxVoaeZ1LNyjKKRwv2WB61TXgHd3P//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><source srcset="/linked/raw-strings/5e4a3/raw-strings.jpg 45w,
+/linked/raw-strings/e451c/raw-strings.jpg 90w,
+/linked/raw-strings/29fd0/raw-strings.jpg 180w,
+/linked/raw-strings/b3ebb/raw-strings.jpg 270w,
+/linked/raw-strings/8841e/raw-strings.jpg 360w,
+/linked/raw-strings/2b1a3/raw-strings.jpg 900w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/raw-strings/5e4a3/raw-strings.jpg 45w,
+/linked/raw-strings/e451c/raw-strings.jpg 90w,
+/linked/raw-strings/29fd0/raw-strings.jpg 180w,
+/linked/raw-strings/b3ebb/raw-strings.jpg 270w,
+/linked/raw-strings/8841e/raw-strings.jpg 360w,
+/linked/raw-strings/2b1a3/raw-strings.jpg 900w" src="/linked/raw-strings/29fd0/raw-strings.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><source srcset="/linked/raw-strings/5e4a3/raw-strings.jpg 45w,
+/linked/raw-strings/e451c/raw-strings.jpg 90w,
+/linked/raw-strings/29fd0/raw-strings.jpg 180w,
+/linked/raw-strings/b3ebb/raw-strings.jpg 270w,
+/linked/raw-strings/8841e/raw-strings.jpg 360w,
+/linked/raw-strings/2b1a3/raw-strings.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/raw-strings/5e4a3/raw-strings.jpg 45w,
+/linked/raw-strings/e451c/raw-strings.jpg 90w,
+/linked/raw-strings/29fd0/raw-strings.jpg 180w,
+/linked/raw-strings/b3ebb/raw-strings.jpg 270w,
+/linked/raw-strings/8841e/raw-strings.jpg 360w,
+/linked/raw-strings/2b1a3/raw-strings.jpg 900w" src="/linked/raw-strings/29fd0/raw-strings.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions.</span></div></div>
 
 This proposal was, however [dropped before the final release](http://mail.openjdk.java.net/pipermail/jdk-dev/2018-December/002402.html) of Java 12 and is now considered obsolete.
 
@@ -123,7 +143,7 @@ You'll need to download [JDK 13](https://jdk.java.net/13/). In intelliJ, go to `
 When building your app manually you need to specify that preview features should be turned on by providing  the following params to `javac`:
 
 ```
-javac --release 12 --enable-preview ...
+javac --release 13 --enable-preview ...
 ```
 
 That is for compile-time. At run-time, you just provide `--enable-preview`
