@@ -110,7 +110,7 @@ What does it mean?
 
 Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-First, make sure you actually have [JDK 12 installed](https://jdk.java.net/12/). Then, in IntelliJ IDEA you can enable preview features under `File -> Project Structure`.
+First, make sure you actually have [JDK 12 installed](https://jdk.java.net/12/). Then, in IntelliJ IDEA you can enable preview features under `File → Project Structure`.
 
 ![Idea Preview features](idea-enable-preview-features.png)
 

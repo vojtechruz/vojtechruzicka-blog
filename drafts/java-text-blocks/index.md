@@ -25,7 +25,7 @@ First of all, the whole literal needs to be on just one line. This is ok for sim
 
 ```java
 String myString = "This is my string\n" +
-        " which I want to be \n" +
+        "which I want to be \n" +
         "on multiple lines.";
 ```
 
@@ -83,7 +83,7 @@ This is my string
         on multiple lines.
 ```
 
-You would neet to fix this menually, possibly with newly itroduced String methods `align()` and `indent()`. Not very practical, but it's something you have to endure if using raw strings.
+You would need to fix this manually, possibly with newly introduced String methods `align()` and `indent()`. Not very practical, but it's something you have to endure if using raw strings.
 
 You can read more about original Raw String Literals proposal in the following article:
 
@@ -116,7 +116,7 @@ Text blocks will be only available as a preview feature in Java 13. What does it
 
 Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-You'll need to download [JDK 13](https://jdk.java.net/13/). In intelliJ, go to `File -> Project Structure` and make sure you have JDK 13 selected under Project SDK. To enable Text Blocks as a preview feature, be sure to select `13 (Preview) - Text Blocks` under `Project Language Level`.
+You'll need to download [JDK 13](https://jdk.java.net/13/). In intelliJ, go to `File → Project Structure` and make sure you have JDK 13 selected under Project SDK. To enable Text Blocks as a preview feature, be sure to select `13 (Preview) - Text Blocks` under `Project Language Level`.
 
 ![JDK 13 IDEA settings](jdk-13-idea-preview.png)
 
