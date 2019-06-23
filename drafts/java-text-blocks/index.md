@@ -179,7 +179,55 @@ Windows uses Carriage Return (`\r`) and Line Feed (`\n`), while Unix-based syste
 To prevent this, Java compiler takes all the line endings in Text Blocks and normalizes them to Line Feed (`\n`). What is important is that this is done before evaulating escaped characters. That means that if you explicitly need to include Carriage Return using `\r` you can, as it is evaluated after line ending normalization and would not be affected.
 
 ### Indentation removal
+Remember the example with Raw String Literals and indentation? Raw string literals interpret all the characters including indentation. So whitespace which was supposed just to make your source code easier to read actually becomes part of your strings. In vast majority of the cases this is not desired behavior.
 
+Fortunately, Java compiler removes unwanted whitespace when compiling Text Blocks.
+
+- All the trailing whitespace is removed from the end of the lines.
+- Leading common whitespace is removed from start of the each line. 
+
+What does this mean exactly? Let's look at the following code:
+
+```
+String html = """
+    public static void main(String[] args) {
+        String html = """
+                      <html>
+                        <body>
+                          <p>Hello, world</p>
+                        </body>
+                      </html>
+                      """;
+    }
+```
+
+The html code snipped contains whole lot of whitespace, but it does not really belong to it. It just makes it well aligned within the source file. What is significant is the relative indentation inside the block.
+
+In other words. If every line in the snipped starts with 22 whitespaces we can ignore them. These 22 spaces are 'common whitespace prefix` which can be ignored and only what is on top of that will be kept.
+
+Let's replace common prefix with `.`. All these spaces will be discarded. Only spaces marked with `-` will be kept as they exceed the common whitespace prefix.
+
+```
+        String html = """
+......................<html>
+......................--<body>
+......................----<p>Text Blocks are awesome!</p>
+......................--</body>
+......................</html>
+......................""";
+```
+
+The result will be:
+
+```
+<html>
+  <body>
+    <p>Text Blocks are awesome!</p>
+  </body>
+</html>
+```
+
+Note that in this step only direct whitespace is removed. If you have whitespace in a for of escaped characters such as `\n` or `\t`, it will not be removed.
 
 ### Escaping 
 Note that Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
@@ -197,4 +245,18 @@ Since the quoting is allowed, you technically can include `\n` and `\"`, but it 
 
 Interpreting escaped characters as the last of the three steps is important as your escapes are not affected by line ending normalization and whitespace removal.
 
-# Conclusion
+## New String Methods
+As part of Text Blocks proposal, there are three new Methods of `String` class.
+
+1. `translateEscapes()` - translates escape sequences in the string escept for unicode ones.
+2. `stripIndent()` - strips away common whitespace from the beginning of each line.
+3. `formatted(Object... args)` - Convenience method, equivalent of String.format(string, args)
+
+## Conclusion
+- Text Blocks offer a convenient way of working with multi line string literals.
+- To create a Text Block simply surround your string with `""""`. 
+- You can use Text Blocks anywhere you can use String Literals
+- Line endings are normalized to LF
+- Extra whitespace is stripped from the beginning and the end of each line. Only relative indentation is preserved.
+- It is a preview feature in Java 13, which needs to be explicitly enabled
+- Raw String literals proposal was withdrawn from Java 12, Text Blocks got introduced later instead
