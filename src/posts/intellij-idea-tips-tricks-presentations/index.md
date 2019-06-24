@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Presentations'
 date: "2017-07-12T22:12:03.284Z"
+dateModified: "2019-06-24"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-presentations'
 featuredImage: './intellij-idea-presentation.jpg'
