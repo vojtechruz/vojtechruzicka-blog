@@ -182,6 +182,32 @@ If your project is free of vulnerabilities, you can even include this nice badge
 
 ![snyk-badge](./snyk-badge.jpg)
 
+IDE Integration
+---------------
+Having automatic checks for vulnerable dependencies as a part of your Continuous Integration is great. It is, however, even better to discover such vulnerabilities as early as possible. That's in your IDE still during development. When introducing a new dependency, you can check easily directly in your IDEA whether it contains security vulnerabilities with Snyk IDEA plugin.
+
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/idea-snyk-plugin/" style="box-shadow: none;">Detecting vulnerable dependencies in IntelliJ IDEA</a></h4><small class="front-post-info"><span class="front-post-info-date">07 June, 2019</span><div class="post-tags"><ul><li><a href="/tags/security/">#Security</a></li><li><a href="/tags/idea/">#IDEA</a></li></ul></div></small><div><a class="front-post-image" href="/idea-snyk-plugin/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 56.25%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAEDBf/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAHi3MhBF//EABgQAAIDAAAAAAAAAAAAAAAAAAABAhEg/9oACAEBAAEFAojrP//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAEDAQE/AYf/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAYEAEBAQEBAAAAAAAAAAAAAAABACEQEf/aAAgBAQABPyEC7FOHhMS8/9oADAMBAAIAAwAAABDbD//EABYRAQEBAAAAAAAAAAAAAAAAAAEREP/aAAgBAwEBPxBVuf/EABcRAQADAAAAAAAAAAAAAAAAAAEQESH/2gAIAQIBAT8QHKj/xAAZEAEBAQEBAQAAAAAAAAAAAAABABFRMUH/2gAIAQEAAT8QObwzZin8iAMnsnZ9v//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><picture><source srcset="/linked/idea-snyk-plugin/5e4a3/idea-snyk-plugin.jpg 45w,
+/linked/idea-snyk-plugin/e451c/idea-snyk-plugin.jpg 90w,
+/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg 180w,
+/linked/idea-snyk-plugin/b3ebb/idea-snyk-plugin.jpg 270w,
+/linked/idea-snyk-plugin/8841e/idea-snyk-plugin.jpg 360w,
+/linked/idea-snyk-plugin/989b1/idea-snyk-plugin.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-snyk-plugin/5e4a3/idea-snyk-plugin.jpg 45w,
+/linked/idea-snyk-plugin/e451c/idea-snyk-plugin.jpg 90w,
+/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg 180w,
+/linked/idea-snyk-plugin/b3ebb/idea-snyk-plugin.jpg 270w,
+/linked/idea-snyk-plugin/8841e/idea-snyk-plugin.jpg 360w,
+/linked/idea-snyk-plugin/989b1/idea-snyk-plugin.jpg 1600w" src="/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcset="/linked/idea-snyk-plugin/5e4a3/idea-snyk-plugin.jpg 45w,
+/linked/idea-snyk-plugin/e451c/idea-snyk-plugin.jpg 90w,
+/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg 180w,
+/linked/idea-snyk-plugin/b3ebb/idea-snyk-plugin.jpg 270w,
+/linked/idea-snyk-plugin/8841e/idea-snyk-plugin.jpg 360w,
+/linked/idea-snyk-plugin/989b1/idea-snyk-plugin.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-snyk-plugin/5e4a3/idea-snyk-plugin.jpg 45w,
+/linked/idea-snyk-plugin/e451c/idea-snyk-plugin.jpg 90w,
+/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg 180w,
+/linked/idea-snyk-plugin/b3ebb/idea-snyk-plugin.jpg 270w,
+/linked/idea-snyk-plugin/8841e/idea-snyk-plugin.jpg 360w,
+/linked/idea-snyk-plugin/989b1/idea-snyk-plugin.jpg 1600w" src="/linked/idea-snyk-plugin/29fd0/idea-snyk-plugin.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.</span></div></div>
+
 Conclusion
 ----------
 
