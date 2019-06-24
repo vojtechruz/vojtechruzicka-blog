@@ -1,7 +1,7 @@
 ---
 title: 'Java Raw String Literals'
 date: "2018-11-26T22:12:03.284Z"
-dateModified: "2019-01-02"
+dateModified: "2019-06-24"
 tags: ['Java']
 path: '/raw-strings'
 featuredImage: './raw-strings.jpg'
@@ -11,7 +11,31 @@ excerpt: "Java finally brings support for raw strings. They can span multiple li
 
 ![Java Raw Strings](raw-strings.jpg)
 
-**UPDATE:** Raw string literals  [didn't make it to the Java 12](https://www.infoq.com/news/2018/12/jdk-12-new-features) and will be postponed and reworked:
+<div class="msg-warn">Raw string literals <a href="https://www.infoq.com/news/2018/12/jdk-12-new-features">didn't make it to the Java 12</a>. The similar functionality is available in Java 13 instead as a preview feature - Text Blocks. For more details see the post below.</div>
+
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/java-text-blocks/" style="box-shadow: none;">Java 13 Text Blocks</a></h4><small class="front-post-info"><span class="front-post-info-date">23 June, 2019</span><div class="post-tags"><ul><li><a href="/tags/java/">#Java</a></li></ul></div></small><div><a class="front-post-image" href="/java-text-blocks/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.5625%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIEAf/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAG3RpUJwf/EABkQAAIDAQAAAAAAAAAAAAAAAAERAAIxEP/aAAgBAQABBQLIdcXLAv8A/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGBAAAgMAAAAAAAAAAAAAAAAAABEgMVH/2gAIAQEABj8C0cLP/8QAGxAAAgMAAwAAAAAAAAAAAAAAAAERITFBgZH/2gAIAQEAAT8hSdJfQ8HAp6W10ZYxuf/aAAwDAQACAAMAAAAQ1+//xAAVEQEBAAAAAAAAAAAAAAAAAAAQEf/aAAgBAwEBPxCH/8QAFREBAQAAAAAAAAAAAAAAAAAAEBH/2gAIAQIBAT8Qp//EABwQAQACAwADAAAAAAAAAAAAAAEAESExUWFxkf/aAAgBAQABPxBspd+Hp+xIgGBdHDEs2c8jWjKdciXLKxwhHKn/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><picture><source srcset="/linked/java-text-blocks/5e4a3/java-text-blocks.jpg 45w,
+/linked/java-text-blocks/e451c/java-text-blocks.jpg 90w,
+/linked/java-text-blocks/29fd0/java-text-blocks.jpg 180w,
+/linked/java-text-blocks/b3ebb/java-text-blocks.jpg 270w,
+/linked/java-text-blocks/8841e/java-text-blocks.jpg 360w,
+/linked/java-text-blocks/989b1/java-text-blocks.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/java-text-blocks/5e4a3/java-text-blocks.jpg 45w,
+/linked/java-text-blocks/e451c/java-text-blocks.jpg 90w,
+/linked/java-text-blocks/29fd0/java-text-blocks.jpg 180w,
+/linked/java-text-blocks/b3ebb/java-text-blocks.jpg 270w,
+/linked/java-text-blocks/8841e/java-text-blocks.jpg 360w,
+/linked/java-text-blocks/989b1/java-text-blocks.jpg 1600w" src="/linked/java-text-blocks/29fd0/java-text-blocks.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcset="/linked/java-text-blocks/5e4a3/java-text-blocks.jpg 45w,
+/linked/java-text-blocks/e451c/java-text-blocks.jpg 90w,
+/linked/java-text-blocks/29fd0/java-text-blocks.jpg 180w,
+/linked/java-text-blocks/b3ebb/java-text-blocks.jpg 270w,
+/linked/java-text-blocks/8841e/java-text-blocks.jpg 360w,
+/linked/java-text-blocks/989b1/java-text-blocks.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/java-text-blocks/5e4a3/java-text-blocks.jpg 45w,
+/linked/java-text-blocks/e451c/java-text-blocks.jpg 90w,
+/linked/java-text-blocks/29fd0/java-text-blocks.jpg 180w,
+/linked/java-text-blocks/b3ebb/java-text-blocks.jpg 270w,
+/linked/java-text-blocks/8841e/java-text-blocks.jpg 360w,
+/linked/java-text-blocks/989b1/java-text-blocks.jpg 1600w" src="/linked/java-text-blocks/29fd0/java-text-blocks.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.</span></div></div>
+
+Raw Strings were [dropped before the final release](http://mail.openjdk.java.net/pipermail/jdk-dev/2018-December/002402.html) of Java 12 and is now considered obsolete.
 
 > We're of course disappointed that this means it will take slightly longer for this feature to make it into the language, but we think that's the best choice.
 >  
