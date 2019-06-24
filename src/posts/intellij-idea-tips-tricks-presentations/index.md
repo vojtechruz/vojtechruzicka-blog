@@ -59,6 +59,19 @@ Alternatively, you can use Quick Switch Theme action (<kbd>Ctrl</kbd> + <kbd>\`<
 
 ![intellij-idea-quick-switch-theme](./Quick-Switch-Theme.gif)
 
+Mouse wheel zoom
+----------------
+Sometimes your editor font size is just right, but you want to temporarily zoom in for specific detail or zoom out to see the big picture. IDEA offers similar functionality to browser zoom change. You can adjust font size in the Editor by <kbd>Ctrl</kbd> + Mouse Wheel.
+
+This feature is not, however, enabled by default. You need to turn it on in Settings:
+```
+Settings → Editor → General
+```
+The check the following checkbox to enable the zoom functionality:
+```
+Change font size (Zoom) with Ctrl + Mouse Wheel
+```
+
 Conclusion
 ----------
 
