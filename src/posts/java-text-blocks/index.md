@@ -187,16 +187,15 @@ Fortunately, Java compiler removes unwanted whitespace when compiling Text Block
 What does this mean exactly? Let's look at the following code:
 
 ```
-String html = """
-    public static void main(String[] args) {
-        String html = """
-                      <html>
-                        <body>
-                          <p>Hello, world</p>
-                        </body>
-                      </html>
-                      """;
-    }
+public static void main(String[] args) {
+    String html = """
+                  <html>
+                    <body>
+                      <p>Hello, world</p>
+                    </body>
+                  </html>
+                  """;
+}
 ```
 
 The HTML code snippet contains a whole lot of whitespace, but it does not really belong to it. It just makes it well aligned within the source file. What is significant is the relative indentation inside the block.
