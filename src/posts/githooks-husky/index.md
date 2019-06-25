@@ -1,7 +1,7 @@
 ---
 title: 'Easy git hooks with Husky'
 date: "2018-06-21T22:12:03.284Z"
-dateModified: "2018-10-11"
+dateModified: "2019-06-25"
 tags: ['Git']
 path: '/githooks-husky'
 featuredImage: './husky.jpg'
@@ -77,10 +77,10 @@ Alternatively, with yarn:
 yarn add husky --dev
 ```
 
+<div class="msg-warn">There is currently a known issue with node 12.0, please use 12.1+.</div>
+
 ### Adding hooks
 Adding hooks with Husky is easy. You just need to edit your `package.json`. There you define which scripts should be run on which git event.
-
-For Husky 1.0.0+ use:
 
 ```json
 {
@@ -94,19 +94,20 @@ For Husky 1.0.0+ use:
 }
 ```
 
-If you are using a Husky version older than 1.0.0 (which is in Release Candidate as of 6/2018), the syntax is slightly different. You add your Husky hooks directly in your scripts section.
+The example above runs all your tests before you commit and before you push and if your tests fail the git action is not executed. Of course, you can run any other npm script rather than `npm test`.
+
+If you don't want to include Husky configuration in your `package.json` file, you can create a dedicated config file just for Husky. It needs to be named `.huskyrc`, `huskyrc.json` or `huskyrc.js`. Then you can provide similar configuration as in `package.json`:
 
 ```json
 {
-  "scripts": {
-    "precommit": "npm test",
-    "prepush": "npm test",
-    "...": "..."
+  "hooks": {
+    "pre-commit": "npm test",
+    "pre-push": "npm test"
   }
 }
-```
+``` 
 
-The example above runs all your tests before you commit and before you push and if your tests fail the git action is not executed. Of course, you can run any other npm script rather than `npm test`.
+This can be useful, for example, when you want to have Husky just for yourself and not everyone using your project. You can add `.huskyrc` to `.gitignore`. Otherwise, you would need to keep local changes in your `package.json` and keep them uncommitted. When somebody else would update the file, you would need to resolve the conflict every time.
 
 ### Autofix issues before commit
 It is useful to break the build if something is not right, but it is even more useful to auto-correct issues before committing. For example, you can prettify your code using [Prettier](https://prettier.io/) before commit or you can auto-fix lint issues, which can be resolved automatically. It is much easier this way.
