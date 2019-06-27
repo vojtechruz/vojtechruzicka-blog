@@ -1,6 +1,7 @@
 ---
 title: Telescoping Constructor Pattern alternatives
 date: "2016-05-11T22:12:03.284Z"
+dateModified: "2019-06-25"
 tags: ['OOP', 'Java']
 path: '/avoid-telescoping-constructor-pattern'
 featuredImage: './telescoping-constructor.jpg'
@@ -113,6 +114,8 @@ Person bob = builder.firstName("Bob")
                     .description("Man I love building stuff!")
                     .build();
 ```
+
+One more advantage of the Builder if when working with variable number of input parameters. Each method can have only one varargs parameter in Java, which needs to be the last one. The same applies to constructors. With builder, you have many methods and can use varargs for each of them separately, giving you more freedom and convenience.
 
 ### Inner vs Standalone Builder
 
