@@ -1,7 +1,7 @@
 ---
 title: 'Analyzing dependencies in IntelliJ IDEA'
 date: "2019-04-30T22:12:03.284Z"
-dateModified: "2019-05-11"
+dateModified: "2019-07-02"
 tags: ["IDEA"]
 path: 'idea-analyzing-dependencies'
 featuredImage: './dependencies.jpg'
