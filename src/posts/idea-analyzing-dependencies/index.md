@@ -152,7 +152,7 @@ IDEA does highlight conflicts for you in red. Still, it may be difficult to find
 
 In the example above, you can see there is a conflict between JUnit versions. There is an explicit dependency to JUnit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
 
-## Maven Helper plugin
+### Maven Helper plugin
 If the graphical dependency tree is not your thing, there is an alternative for you. It's [Maven Helper Plugin](https://plugins.jetbrains.com/plugin/7179-maven-helper) by [Vojtech Krasa](https://github.com/krasa). It uses hierarchical text representation of dependencies, similar to `mvn dependency:tree` but with a nice dependency browser.
 
 It is also a good alternative if you are using IDEA Community Edition or have an older version of IDEA, where the Maven dependency graph is way less useful.
@@ -162,6 +162,11 @@ To use the Dependency Analyzer offered by the plugin, simply open any `pom.xml` 
 ![Maven Helper Plugin](./dependency-helper.png)
 
 In the left panel, you can browse your dependencies (viewed either as list or tree). The right panel shows how selected dependency got into your application through the dependency chain. You can easily switch the view to show just conflicts.
+
+## Analyzing Gradle dependencies
+Since version `2019.2`, IDEA can finally show you dependency diagram not only for Maven, but also for Gradle. Yay! It works pretty much the same as Maven dependency diagram.
+
+Just go to your `build.gradle` file and then press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Or `Right click → Diagrams → Show Dependencies`.
 
 ## Conclusion
 When you create an application, properly structuring your dependencies is very important as architecture with tight and tangled dependencies can be very hard to maintain, extend and modify. Fortunately, IDEA can help with a Dependency Structure Matrix, which provides a useful graphical view of your internal dependencies.
