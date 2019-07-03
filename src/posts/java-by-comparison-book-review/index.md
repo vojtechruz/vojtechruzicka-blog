@@ -1,6 +1,7 @@
 ---
 title: 'Java By Comparison Book Review'
 date: "2019-04-13T22:12:03.284Z"
+dateModified: "2019-07-03"
 tags: ["Java", "Books"]
 path: '/java-by-comparison-book-review'
 featuredImage: './java-by-comparison.jpg'
@@ -69,7 +70,7 @@ Lambda expressions and streams are the topics of the eight chapter. It is a nice
 The last chapter breaks the usual format and offers a taste of other development areas, which you will encounter in the real world. There is static code analysis, continuous integration, team collaboration, logging, concurrency and more. If you already have some work experience, it may not be anything new. However, it offers a nice intro to the real world development if you are still preparing for your first job.
 
 ## Conclusion
-I really enjoyed this book and I wish I had a book like this when I was starting with Java. It can be a great resource early in your career. It is easy to read, short, easy to understand and can be a good book to read before more heavy-weight titles such as Effective Java or Clean Code, which can be intimidating and harder to grasp when you are just starting.
+I really enjoyed this book and I wish I had a book like this when I was starting with Java. It can be a great resource early in your career. It is easy to read, short, easy to understand and can be a good book to read before more heavy-weight titles such as [Effective Java](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997/) or [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), which can be intimidating and harder to grasp when you are just starting.
 
 In your early days, it can also be useful as an introduction (although very brief) to some related real-world topics such as testing, continuous integration or static code analysis. Overall I do recommend this book especially for junior developers, who will benefit from it the most.
 

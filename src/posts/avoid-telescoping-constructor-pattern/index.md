@@ -1,7 +1,7 @@
 ---
 title: Telescoping Constructor Pattern alternatives
 date: "2016-05-11T22:12:03.284Z"
-dateModified: "2019-06-25"
+dateModified: "2019-07-03"
 tags: ['OOP', 'Java']
 path: '/avoid-telescoping-constructor-pattern'
 featuredImage: './telescoping-constructor.jpg'
@@ -94,7 +94,7 @@ Unlike JavaBeans, static factory methods can return immutable instances, when de
 Alternative 3 - Builder
 -----------------------
 
-If the immutability is an issue, popular approach how to construct objects with many parameters is a Builder as described by [Joshua Bloch](https://twitter.com/joshbloch) in his [Effective Java](http://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)(See *Chapter 2 - Creating and Destroying Objects - Item 2: Consider a builder when faced with many constructor parameters*). Do not confuse with [Gang of Four](http://c2.com/cgi/wiki?GangOfFour) Builder pattern, which focuses more on separating process of construction and an actual builder, which performs that construction. That means, keeping the build process, consisting of the same steps every time, while being able to switch builders involved. [See more about Builder Pattern here](http://www.oodesign.com/builder-pattern.html).
+If the immutability is an issue, popular approach how to construct objects with many parameters is a Builder as described by [Joshua Bloch](https://twitter.com/joshbloch) in his [Effective Java](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997/) (*Item 2: Consider a builder when faced with many constructor parameters*). Do not confuse with [Gang of Four](http://c2.com/cgi/wiki?GangOfFour) Builder pattern, which focuses more on separating process of construction and an actual builder, which performs that construction. That means, keeping the build process, consisting of the same steps every time, while being able to switch builders involved. [See more about Builder Pattern here](http://www.oodesign.com/builder-pattern.html).
 
 ### How does it work?
 

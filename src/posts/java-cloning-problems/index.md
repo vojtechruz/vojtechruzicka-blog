@@ -1,6 +1,7 @@
 ---
 title: 'Java Cloning Problems'
 date: "2017-06-07T22:12:03.284Z"
+dateModified: "2019-07-03"
 tags: ['Java']
 path: '/java-cloning-problems'
 featuredImage: './clone.jpg'
@@ -147,4 +148,4 @@ Further Reading
 
 - [Josh Bloch on Design - Copy Constructor versus Cloning](http://www.artima.com/intv/bloch13.html)
 - [Java Design Issues - A Conversation with Ken Arnold, Part VI - The clone Dilemma](http://www.artima.com/intv/issues3.html)
-- [Effective Java, 2nd Edition, Item 11: Override clone judiciously](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683)
+- [Effective Java, 3rd Edition, Item 13: Override clone judiciously](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997/)
