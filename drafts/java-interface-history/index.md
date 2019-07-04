@@ -1,11 +1,11 @@
 ---
-title: ''
-date: ""
+title: 'History of Java interface feature changes'
+date: "2019-07-06T22:12:03.284Z"
 tags: ["Java"]
-path: '/spring-caching'
+path: '/java-interface-history'
 featuredImage: './java-interface-history.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99029 http://vojtechruzicka.com/?p=99029'
+excerpt: 'Java interface changed a lot through the years. What were the changes during its evolution?'
 ---
 
 ![Java Interface History](./java-interface-history.jpg)
