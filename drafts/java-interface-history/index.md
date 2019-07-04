@@ -129,11 +129,42 @@ Default methods are similar to static methods in a way that that you need to pro
 
 Unlike static methods, default methods are inherited by classes implementing the interface. What's important, the implementing class can choose to override the default behavior provided by the interface.
 
+There is one exception though. You cannot have default methods in your interface with the same signature as Oject's `toString`, `equals` and `hashCode`. Check Brian Goetz's andswer on the following page to understand the rationale behind the decision - [Allow default methods to override Object's methods](http://mail.openjdk.java.net/pipermail/lambda-dev/2013-March/008435.html).
+
 ### Why is it useful
 
 ## Private methods
+With java 8 and introduction of default and static methods, interfaces could suddenly contain not only method signatures but also implementation. When writing such implementations it is a good practice to compose more complicated methods out of several simpler methods. Such code is easier to reuse, maintain and understand.
+
+Normally you would use mostly private methods for such purpose, because they are implementation detail and should not be visible and usable from the outside.
+
+However, in Java 8, you cannot have private methods in interfaces. That means you could either
+1. Use long, complex and hard to understand method bodies.
+2. Use helper methods which are part of the interface. This breaks encapsulation and pollutes public API of the interface and implementing classes.
+
+Fortunately, [since Java 9 you can use private methods in interfaces](http://openjdk.java.net/jeps/213). They have the following characteristics:
+- have method body, are not abstract
+- can be static or non static
+- are not inherited by implementing classes and interfaces
+- can call other methods from the interface
+   - *private* can call private, abstract, default or static methods
+   - *private static* can call only static and static private methods
+
+```java
+public interface MyInterface {
+
+    private static int staticMethod() {
+        return 42;
+    }
+
+    private int nonStaticMethod() {
+        return 0;
+    }
+}
+```
 
 ## Chronological order
+Here is a chronological  list of the changes by Java version:
 
 **Java 1.1**
 - Nested classes 
@@ -152,14 +183,6 @@ Unlike static methods, default methods are inherited by classes implementing the
 - Private methods
 
 <!--
-https://howtodoinjava.com/java9/java9-private-interface-methods/
-https://dzone.com/articles/evolution-of-interface-in-history-of-java 
-
-Private methods in interfaces:
-http://openjdk.java.net/jeps/213
-
-Thanks,
-
 regarding the diamond problem, yes from Java 8 onwards, In the scenario where a class implements two interfaces having same default method signatures. It becomes compulsory for the class to override such a method. Within the class, it can use both the methods prefixing the method invocation with interfacename.super, eg. Interface1.super.method()
 
 or Interface2.super.method().
@@ -178,6 +201,4 @@ On a similar note, an example of how these new features can be of benefit is to 
 It's not correct to say that [t]here's virtually no difference between an interface and an abstract class, because abstract classes can have state (that is, declare fields) while interfaces cannot. It is therefore not equivalent to multiple inheritance or even mixin-style inheritance. Proper mixins (such as Groovy 2.3's traits) have access to state. (Groovy also supports static extension methods.)
 
 It's also not a good idea to follow Doval's example, in my opinion. An interface is supposed to define a contract, but it is not supposed to enforce the contract. (Not in Java anyway.) Proper verification of an implementation is the responsibility of a test suite or other tool. Defining contracts could be done with annotations, and OVal is a good example, but I don't know whether it supports constraints defined on interfaces. Such a system is feasible, even if one does not currently exist. (Strategies include compile-time customization of javac via the annotation processor API and run-time bytecode generation.) Ideally, contracts would be enforced at compile-time, and worst-case using a test suite, but my understanding is that runtime enforcement is frowned upon. Another interesting tool that might assist contract programming in Java is the Checker Framework.
-
-or further follow-up on my last paragraph (i.e. don't enforce contracts in interfaces), it's worth pointing out that default methods cannot override equals, hashCode and toString. A very informative cost/benefit analysis of why this is disallowed can be found here: http://mail.openjdk.java.net/pipermail/lambda-dev/2013-March/008435.html
 -->
