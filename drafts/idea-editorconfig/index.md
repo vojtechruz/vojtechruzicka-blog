@@ -1,10 +1,10 @@
 ---
-title: ''
-date: ""
+title: 'TODO'
+date: "2019-07-09T22:12:03.284Z"
 tags: ["IDEA"]
 path: '/java-editorconfig'
 featuredImage: './idea-editorconfig.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
+disqusArticleIdentifier: '99030 http://vojtechruzicka.com/?p=99030'
 excerpt: ''
 ---
 
