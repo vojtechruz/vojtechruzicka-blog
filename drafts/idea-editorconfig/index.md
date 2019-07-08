@@ -5,10 +5,59 @@ tags: ["IDEA"]
 path: '/java-editorconfig'
 featuredImage: './idea-editorconfig.jpg'
 disqusArticleIdentifier: '99030 http://vojtechruzicka.com/?p=99030'
-excerpt: 'How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.
+excerpt: How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.
 ---
 
 ![IntelliJ IDEA Editorconfig](./idea-editorconfig.jpg)
+
+## EditorConfig
+When working in a team it is a good practice to make sure your code style is consistent across your team. Often it is not as important what your specific rules are as much as that everybody sticks with the same conventions. This makes your codebase much cleaner, easier to read and maintain.
+
+There are various approaches to this. One popular tool is [Prettier](https://prettier.io/). It is an opinionated code formatter, which can reformat your code to match certain rules. You can then run in directly in your IDE, as a part of CI or before each commit using [Git Hooks](https://www.vojtechruzicka.com/githooks-husky/).
+
+Another popular and widespread tool is EditorConfig. The approach is slightly different from Prettier. You create `.editorconfig` file directly in your project with your desired settings. Your IDE then detects this file and loads its configuration. Many Editors are supported [out of the box](https://editorconfig.org/#download) and there are plugins for many more.
+
+An example file can look something like this:
+
+```
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+```
+
+What is useful is that you can have `.editorconfig` file in each directory with different setting. This can be helpful with multi-module or multi-language projects. Unfortunately the [amount of supported properties](https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties) is quite limited. Mostly indentation, line endings, or character encoding.
+
+## Sharing settings in IDEA
+Editor config is powerful because, unlike in your IDE, you can configure settings per each directory. Also, it is a great tool for sharing the same settings among your team members with zero configuration. Since `.editorconfig` can be kept under version control, you can just clone a project and you are good to go as the configuration will be already included.
+
+There is one big limitation though. Since the list of supported options is fairly limited, there is still a whole lot of settings not covered by EditorConfig. Each IDE has a huge list of its own config properties, which cannot be shared with EditorConfig.
+
+Traditionally, if you wanted to share these, it would involve tedious exporting and imporing for each team member. Fortunately, IDEA offers several different options how to synchronize IDE Settings.
 
 <div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/intellij-idea-tips-tricks-synchronization-sharing-settings/" style="box-shadow: none;">IntelliJ IDEA Tips &amp; Tricks: Synchronization and Sharing of Settings</a></h4><small class="front-post-info"><span class="front-post-info-date">24 January, 2018</span><div class="post-tags"><ul><li><a href="/tags/idea/">#IDEA</a></li></ul></div></small><div><a class="front-post-image" href="/intellij-idea-tips-tricks-synchronization-sharing-settings/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAP/2gAMAwEAAhADEAAAAV2pjckiP//EABgQAAMBAQAAAAAAAAAAAAAAAAABEQJB/9oACAEBAAEFAkoPSRUZwjlh/8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BZ//EABURAQEAAAAAAAAAAAAAAAAAABAR/9oACAECAQE/AYf/xAAbEAABBAMAAAAAAAAAAAAAAAAAAhAREiEygf/aAAgBAQAGPwIwm3DQl//EABwQAQACAgMBAAAAAAAAAAAAAAEAETFxECGBkf/aAAgBAQABPyEDaAahlrpFlZ+RJ0frwcBP/9oADAMBAAIAAwAAABDw7//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/EGP/xAAXEQEBAQEAAAAAAAAAAAAAAAABABFR/9oACAECAQE/EAcsL//EABsQAQEBAAMBAQAAAAAAAAAAAAERACFBgTGR/9oACAEBAAE/EJ1b6oJjhzp4P14yRQk5gZ7MWdDqx6XDIS9ZFCG//9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><source srcset="/linked/idea-settings/5e4a3/idea-settings-featured.jpg 45w,
 /linked/idea-settings/e451c/idea-settings-featured.jpg 90w,
@@ -31,3 +80,85 @@ excerpt: 'How to define IDE settings per folder in IntelliJ IDEA including IDEA'
 /linked/idea-settings/b3ebb/idea-settings-featured.jpg 270w,
 /linked/idea-settings/8841e/idea-settings-featured.jpg 360w,
 /linked/idea-settings/2b1a3/idea-settings-featured.jpg 900w" src="/linked/idea-settings/29fd0/idea-settings-featured.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.</span></div></div>
+
+IT is powerful and handy, but it is not zero-configuration approach as with Editor Config. You need to make sure each person sets up their synchronization.
+
+## Extended EditorConfig Support in IDEA
+IDEA supports EditorConfig out of the box for quite some time. But since version `2019.2` it offers extended support which covers also IDEA-specific settings, which are not part of the code EditorConfig spec.
+
+This way you can have both zero-setup configuration per folder and sharing of IDEA specific settings.
+
+How does it work?
+
+### Creating .editorconfig file
+First you need to create a `.editorconfig` file inside your project. You can do it in the same way as any other file. Just right click your desired directory and select:
+
+```
+New → EditorConfig File
+```
+
+Before the file is created, IDEA shows the following dialog where you can customize its contents.
+
+![IDEA new EditorConfigFile](./new-editorconfig-file.png)
+
+### Root file
+The first checkbox `root=true` allow you to mark your config file as root file. What does it mean?
+
+You can have multiple config files in your project, each in a different directory. Whenever you open a file in your IDE, it check whether there is also `.editorconfig` file located in the same directory. If not, it goes uo through the directory structure to search for one. It does not stop until it finds a `.editorconfig` file, which contains `root=true`. Your topmost config file should always contain `root=true`.
+
+This means it can locate and load multiple config files during its search. Config from all the files found is applied. Files deeper in th hierarchy take priority over these higher in the hierarchy. This means deeper file can extend and override whatever is in the files above.
+
+## Property sets
+Now it is time to select what configuration properties should be included in your new file.
+
+![Editor config property sets](./editor-config-property-sets.png)
+
+You can select standard core properties, which are supported with every EditorConfig compliant IDE by checking `EditorConfig standard`. However, you can also check IDEA-specific config properties for various languages supported by IDEA, such as JAva, Kotlin or HTML.
+
+Let's try Java. Contents of the file should now contain whole bunch of IDEA/Java-specific settings. Almost 250 new settings!
+
+```
+[*.java]
+ij_java_align_consecutive_assignments = false
+ij_java_align_consecutive_variable_declarations = false
+ij_java_align_group_field_declarations = false
+ij_java_align_multiline_annotation_parameters = false
+ij_java_align_multiline_array_initializer_expression = false
+ij_java_align_multiline_assignment = false
+ij_java_align_multiline_binary_operation = false
+ij_java_align_multiline_chained_methods = false
+ij_java_align_multiline_extends_list = false
+ij_java_align_multiline_for = true
+ij_java_align_multiline_method_parentheses = false
+ij_java_align_multiline_parameters = true
+ij_java_align_multiline_parameters_in_calls = false
+ij_java_align_multiline_parenthesized_expression = false
+ij_java_align_multiline_resources = true
+ij_java_align_multiline_ternary_operation = false
+ij_java_align_multiline_throws_list = false
+ij_java_align_subsequent_simple_methods = false
+ij_java_align_throws_keyword = false
+ij_java_annotation_parameter_wrap = off
+ij_java_array_initializer_new_line_after_left_brace = false
+```
+
+And many more. Notice that each of these lines has prefix of `ij_`. This way you can easily distinguish regular settings from IDEA-specific.
+
+### Insert as comments
+IDEA supports a lot of different configuration options, nearly 250 just for Java. Instead of inserting all of them you may prefer hand-picking just some of them. 
+Instead of inserting all the properties directly, you can select `Add properties as comments`. This way all the supported properties will be inserted commented-out. You still can see all the supported options, but you can uncomment the ones you want to be applied.
+
+### Preview Mode
+
+### Settings priority
+As described above, you can have multiple `.editorconfig` files. This can be useful for having different settings for different packages or modules. Or to have different setting for production and test code. Or for different languages. To sum it up:
+ - The settings from one config file is applied to all its subdirectories. 
+ - If there is a different setting in a sub directory, it takes priority over settings from parent directories
+ - Topmost config file must have `root=true`
+ - Editor config settings have priority over your IDE settings
+ - If a setting is not found in `editorconfig`, it is taken from your IDE settings
+
+### Syncing plugins
+While extended EditorConfig support is very powerful it is not a full fledged replacement for good old IDE Settings synchronization, which can also sync your IDE plugins.
+
+## Conclusion
