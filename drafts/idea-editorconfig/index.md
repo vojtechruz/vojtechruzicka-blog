@@ -149,6 +149,28 @@ IDEA supports a lot of different configuration options, nearly 250 just for Java
 Instead of inserting all the properties directly, you can select `Add properties as comments`. This way all the supported properties will be inserted commented-out. You still can see all the supported options, but you can uncomment the ones you want to be applied.
 
 ### Preview Mode
+When tinkering with various configuration options it is useful to check how are these reflected in a real code file. Fortunately this is easy.
+
+Next to each configuration section such as `[Java]` or `[*]`, you can see a small eye icon.
+
+![Preview](./preview.png)
+
+when you click it, you can select a file, which will be used to preview your changes. Whenever you make changes to the config file, it will be reflected in your preview file.
+
+![Preview Panel](./editor-preview.png)
+
+Note that all these changes are preview-only and will not change the contents of your file.
+
+### Overrides visualization
+In each `.editorconfig`, declared properties are evaluated from top to bottom. Which means that if you declare some property below the same property, which is already declared above, it will take priority.
+
+For example, you can have setting for all files `[*]` on the top of your config file and then section for JAva files only `[*.java]`, which overrides some of the general config properties. In such case, IDEA offers you a nice visualization with icons in the gutter are. Similar to the case when you override methods from the parent class.
+
+`![Overrides](./overrides.png)
+
+A tooltip offers an explanation what section is overriding or overriden. By clicking the icon you can navigate to that section.
+
+Unfortunately, in the beta version of `2019.2` this works only inside a single config file and not across the full hierarchy.
 
 ### Settings priority
 As described above, you can have multiple `.editorconfig` files. This can be useful for having different settings for different packages or modules. Or to have different setting for production and test code. Or for different languages. To sum it up:
@@ -162,3 +184,4 @@ As described above, you can have multiple `.editorconfig` files. This can be use
 While extended EditorConfig support is very powerful it is not a full fledged replacement for good old IDE Settings synchronization, which can also sync your IDE plugins.
 
 ## Conclusion
+EditorConfig in IDEA just got way more powerful. It does not support only original EditorConfig options, but a whole lot of IDEA-specific options as well. This way you can easily share unified IDE configuration among your team members with zero-setup. No more import/export of settings or tedious setup of IDE Settings Sync. Moreover, you can now have different configuration options for each directory separately.
