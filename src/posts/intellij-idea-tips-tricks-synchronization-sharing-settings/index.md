@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Synchronization and Sharing of Settings'
 date: "2018-01-24T22:12:03.284Z"
+dateModified: "2019-07-09"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-synchronization-sharing-settings'
 featuredImage: './idea-settings-featured.jpg'
@@ -11,15 +12,13 @@ excerpt: 'Did you know IDEA offers two ways of synchronization of you settings a
 
 Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.
 
-The importance of synchronization
----------------------------------
+## The importance of synchronization
 
 As a developer, you usually use multiple computers each with its own instance of your favorite IDE. It can be quite a hassle to keep settings the same on all of them. Rather than doing manually, it is much better to use automated synchronization. Setting up a new IDE is much easier this way and everything is also backed up online in the process.
 
 And of course, you usually do not work alone but in a team. It is important to stick to some guidelines and standards for your project. And having same key settings of your IDE will help a lot. Not to mention that it makes onboarding a new developer and making them stick to conventions much easier.
 
-Settings Repositories
----------------------
+## Settings Repositories
 
 The first way to synchronize settings is using Settings Repositories. The way it works is that it uses an external Git repository to share the settings. Each IDEA instance then connects to this repository to fetch the settings. In case one instance makes changes in the settings it can be propagated back to the repository. What's nice is that it is a plain old Git repo. That means your settings are backed up and under version control. So you can track and rollback the changes if necessary or even allow other people to create Pull Requests with some tweaks to your settings.
 
@@ -49,8 +48,7 @@ Here you can see your primary repository, which you set up earlier. Underneath y
 
 Note that you can also disable automatic synchronization and use just sync on demand by *VCS → Sync Settings.*
 
-Sync settings using JetBrains Account
--------------------------------------
+## Sync settings using JetBrains Account
 
 The second way of settings synchronization was available for some time as a standalone optional IDE plugin (which required an invitation to use), but now is integrated and enabled by default since 2017.3. It utilizes your JetBrains account to synchronize the data.
 
@@ -88,8 +86,35 @@ And of course, if you no longer want to keep certain IDE instance synchronized, 
 
 ![idea-settings-disable](./idea-settings-disable.jpg)
 
-Conclusion
-----------
+## EditorConfig
+Since version `2019.2` IDEA offers a powerful alternative for editor settings sharing using EditorConfig. While the core set of configuration properties is fairly limited in EditorConfig, IDEA supports hundreds of its own configuration properties.
+
+Unlike regular IDE settings, these can be set per folder, committed to version control and are automatically picked up by IDEA right after cloning your project. For more info, check the following article.
+
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/idea-editorconfig/" style="box-shadow: none;">Configuring IntelliJ IDEA code style per folder</a></h4><small class="front-post-info"><span class="front-post-info-date">09 July, 2019</span><div class="post-tags"><ul><li><a href="/tags/idea/">#IDEA</a></li></ul></div></small><div><a class="front-post-image" href="/idea-editorconfig/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6875%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABQBAQAAAAAAAAAAAAAAAAAAAAL/2gAMAwEAAhADEAAAAUrXSHuFAx//xAAaEAADAQADAAAAAAAAAAAAAAABAgMABBIh/9oACAEBAAEFAioVhctor1m/g4zFKb//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAbEAACAgMBAAAAAAAAAAAAAAAAAQIRECEyQf/aAAgBAQAGPwKSUrOdsSKQvbx//8QAHBAAAgICAwAAAAAAAAAAAAAAAAERMSFBEFGR/9oACAEBAAE/IYAhKzHJKJGPrSG107KwXss+8f/aAAwDAQACAAMAAAAQo8//xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQMBAT8QZdv/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQIBAT8QIMv/xAAeEAACAgEFAQAAAAAAAAAAAAABEQAhMRBBUWFxgf/aAAgBAQABPxBDZq8kFj5Cqi5l1QgTyMA7Q5GMRa47yZRWnmWn/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><picture><source srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
+/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
+/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
+/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
+/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
+/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
+/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
+/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
+/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
+/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
+/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" src="/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
+/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
+/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
+/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
+/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
+/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
+/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
+/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
+/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
+/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
+/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" src="/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.</span></div></div>
+
+
+## Conclusion
 
 Being able to synchronize your Settings among multiple IDE instances is very important and handy feature. IntelliJ IDEA now supports two different ways of synchronization out of the box.
 
