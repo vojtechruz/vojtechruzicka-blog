@@ -1,14 +1,18 @@
 ---
-title: ''
-date: ""
+title: 'Deploying Spring Boot app as WAR'
+date: "2019-07-20T22:12:03.284Z"
 tags: ["Java", "Spring"]
 path: '/spring-caching'
 featuredImage: './spring-boot-war.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99031 http://vojtechruzicka.com/?p=99031'
+excerpt: 'How to change your jar Spring Boot app to be packaged and deployed as WAR without sacirficing direct execution capabilities.'
 ---
 
 ![Spring Boot WAR](./spring-boot-war.jpg)
+
+By default, Spring Boot applications are packaged as executable JAR files with embedded Tomcat. You can run them directly by `java -jar` command. Traditional Java web applications need a servlet container (application server) to run. You need to have such server installed, configured and thed deploy your applications to it. With Spring Boot, this approach is inverted as the app server is directly in your jar. This has many advantages, but sometimes you may need to have your Spring Boot app as a traditional WAR isntead. For example, if you are tied by you company policies and need to yous provided app server. 
+
+In this post, we'll examine how to package Spring Boot app as WAR, without sacrificing direct executaibility.
 
 ## New applications
 When you are creating a new application, the process is fortunately very easy. Instead of creating the application yourself, you can generate it with all the required settings and dependencies. There is an official tool called [Spring Initializr](https://start.spring.io/).
