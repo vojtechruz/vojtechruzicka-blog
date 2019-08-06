@@ -74,5 +74,8 @@ Finally, you can click the `details` link of each vulnerability, which navigates
 ## Maven only
 Unfortunately, currently (as of 6/2019), the plugin supports only Maven and not Gradle. If you are using Gradle, you can stick With CLI or CI check, which does support it. However, according to Snyk, Gradle support is planned. Hopefully, it will be available soon. 
 
+## UPDATE: Eclipse support
+Since 7/2019 there is an IDE plugin not only for IntelliJ IDEA, but [also for Eclipse](https://snyk.io/blog/fix-open-source-vulnerabilities-directly-from-your-eclipse-ide/).
+
 ## Conclusion
 Snyk IDEA plugin offers a simple, yet powerful way to detect security vulnerabilities in your dependencies directly in your IDE. This way, you can discover vulnerable libraries early in the development process without the need to wait for Continuous Integration check. This, however, does not mean you should depend only on the plugin. You should still have CI check in place as a safeguard and continuous monitoring, which Snyk offers, to make sure you discover new vulnerabilities and their fixes once they are available.
