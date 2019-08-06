@@ -57,7 +57,7 @@ One of the main disadvantages of singletons is that they make unit testing very 
 -   You cannot run multiple tests in parallel
 -   Multiple invocations of the same test case can result in different results
 
-I recommend watching the [The Clean Code Talks - \"Global State and Singletons"]](https://www.youtube.com/watch?v=-FRm3VPhseI) for further information about the topic.
+I recommend watching the [The Clean Code Talks - "Global State and Singletons"](https://www.youtube.com/watch?v=-FRm3VPhseI) for further information about the topic.
 
 ## Dependency hiding
 
