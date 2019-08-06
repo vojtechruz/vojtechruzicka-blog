@@ -1,6 +1,7 @@
 ---
 title: 'Detecting vulnerable dependencies in IntelliJ IDEA'
 date: "2019-06-07T22:12:03.284Z"
+dateModified: "2019-08-06"
 tags: ["Security", "IDEA"]
 path: '/idea-snyk-plugin'
 featuredImage: './idea-snyk-plugin.jpg'
