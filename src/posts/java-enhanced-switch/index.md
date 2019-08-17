@@ -100,7 +100,7 @@ Unfortunately, the old traditional switch does not support this.
 Java 12 brought a whole lot of improvements to the traditional switch as [Java Enhancement Proposal 325: Switch Expressions (Preview)](http://openjdk.java.net/jeps/325). It solves most of the issues of the traditional switch and is prerequisite of [pattern matching](https://openjdk.java.net/jeps/305), which is to be provided in the future.
 
 ### Preview Feature
-Enhanced switch functionality is, however, currently only available as a [preview feature](http://openjdk.java.net/jeps/12) in Java 12. As of Java 13, it will be available as a regular feature.
+Enhanced switch functionality is, however, currently only available as a [preview feature](https://openjdk.java.net/projects/jdk/13/).
 
 What does it mean?
 
@@ -110,14 +110,14 @@ What does it mean?
 
 Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-First, make sure you actually have [JDK 12 installed](https://jdk.java.net/12/). Then, in IntelliJ IDEA you can enable preview features under `File → Project Structure`.
+First, make sure you actually have [JDK 13 installed](https://jdk.java.net/13/). Then, in IntelliJ IDEA you can enable preview features under `File → Project Structure`.
 
 ![Idea Preview features](idea-enable-preview-features.png)
 
 Alternatively, if building manually, you need to provide the following params to `javac`:
 
 ```
-javac --release 12 --enable-preview ...
+javac --release 13 --enable-preview ...
 ```
 
 That is for compile-time. At run-time, you just provide `--enable-preview`
@@ -326,15 +326,14 @@ Having a break with return value was a bit confusing and hard to tell apart from
 The original proposal in Java 13 was `break-with`, which would be the first hyphenated keyword in Java so far. But it was later replaced with `yield`.
 
 ## Future enhancements
-As part of the [JEP-325](https://openjdk.java.net/jeps/325) specification, there is also mentioned another improvement, which is not currently implemented (as of Java 12), but may be introduced in the future.
+As part of the [JEP-325](https://openjdk.java.net/jeps/325) specification, there is also mentioned another improvement, which is not currently implemented (as of Java 13), but may be introduced in the future.
 
 > As a target of opportunity, we may expand switch to support switching on primitive types (and their box types) that have previously been disallowed, such as float, double, and long.
 
 Currently, the switch allows input values only of types char, int, byte, short, their object wrappers (Character, Byte, Short, Integer) and String (since Java 7).
 
 ## Summary
-- In Java 12 enhanced switch is a preview feature, which needs to be explicitly enabled
-- In Java 13 enhanced switch is available as a regular feature
+- In Java 13 enhanced switch is a preview feature, which needs to be explicitly enabled
 - You can now use `case` for multiple values
 - In addition to the traditional switch statement, you can use switch expression, which returns a value
 - To return a value from a switch expression you can use:
