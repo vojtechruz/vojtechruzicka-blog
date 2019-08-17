@@ -21,7 +21,7 @@ OWASP, Open Web Application Security Project, periodically releases [Top Ten lis
 
 > Components, such as libraries, frameworks, and other software modules, almost always run with full privileges. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications using components with known vulnerabilities may undermine application defenses and enable a range of possible attacks and impacts.
 
-According to [The State of Open Source Security in Commercial Applications](https://info.blackducksoftware.com/rs/872-OLS-526/images/OSSAReportFINAL.pdf) study, these vulnerabilities are really widespread - on average:
+According to [The State of Open Source Security in Commercial Applications](./OSSAReport.pdf) study, these vulnerabilities are really widespread - on average:
 
 -   An application has 105 open source dependencies
 -   Which is 2x more than the authors were expecting
