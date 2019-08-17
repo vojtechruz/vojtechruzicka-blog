@@ -1,7 +1,7 @@
 ---
 title: 'Java 13 Enhanced Switch'
 date: "2019-04-07T22:12:03.284Z"
-dateModified: "2019-06-11"
+dateModified: "2019-08-17"
 tags: ["Java"]
 path: '/java-enhanced-switch'
 featuredImage: './switch.jpg'
