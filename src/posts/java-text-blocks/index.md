@@ -53,7 +53,7 @@ and even double-quotes "
 As you can notice, not only is it multiline, but also you don't need to escape your characters anymore. This is called Raw String literal, which means all the characters are interpreted as is and no escaping is necessary.
 
 ## Raw String literals in Java
-In Java 12, there was originally proposal to include [Raw String Literals (JEP-326)](http://openjdk.java.net/jeps/326). The behavior was very similar to the example in Kotlin above. But instead of using `""""` as in other JVM languages, it used backtick `` ` `` notation. The concept was slightly unusual in a way that you could use any number of backticks and the same amount of backticks at the end. This way it was not necessary to escape backticks inside a spring literal no matter how many consecutive backticks were present.
+In Java 12, there was originally proposal to include [Raw String Literals (JEP-326)](http://openjdk.java.net/jeps/326). The behavior was very similar to the example in Kotlin above. But instead of using `"""` as in other JVM languages, it used backtick `` ` `` notation. The concept was slightly unusual in a way that you could use any number of backticks and the same amount of backticks at the end. This way it was not necessary to escape backticks inside a spring literal no matter how many consecutive backticks were present.
 
 ```
 `This uses a single backtick`
@@ -151,7 +151,7 @@ java --enable-preview ...
 ```
 
 ## Text Blocks
-Unlike the declined Raw String Literals, Text Blocks are surrounded by three double quotes `""""`, same as in Groovy or Kotlin. It is more in sync with plain String literals and other JVM languages.
+Unlike the declined Raw String Literals, Text Blocks are surrounded by three double quotes `"""`, same as in Groovy or Kotlin. It is more in sync with plain String literals and other JVM languages.
 
 ```
 String myBlock =  """
@@ -251,7 +251,7 @@ As part of Text Blocks proposal, there are three new Methods of `String` class.
 
 ## Conclusion
 - Text Blocks offer a convenient way of working with multi-line string literals.
-- To create a Text Block simply surround your string with `""""`. 
+- To create a Text Block simply surround your string with `"""`. 
 - You can use Text Blocks anywhere you can use String Literals
 - Line endings are normalized to LF
 - Extra whitespace is stripped from the beginning and the end of each line. Only relative indentation is preserved.
