@@ -5,12 +5,17 @@ tags: ["Maven"]
 path: '/maven-archetypes'
 featuredImage: './archetype.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+excerpt: 'How to generate new projects from Maven archetypes, crate your own and number of alternative tools.'
 ---
 
 ![Maven Archetypes](archetype.jpg)
 
 ## Archetypes
+When starting a new project, it can be tedious and time consuming to set up everything from scratch. Fortunately, MAven has built-in functonality which allows you to generate a project from a template. This template is called archetype.
+
+There is a number of archetypes available which allow you to create various types of projects.
+
+You can even create your own archetypes and share them with others.
 
 ## Generating from command line
 
@@ -65,7 +70,7 @@ That means you can have generator for an application with Java backend, React fr
 ### JHipster
 [JHipster](https://www.jhipster.tech/) is actually a Yeoman generator under a hood. It allow you to generate Spring Boot projects with Frontend in Either React, Angular or Vue.
 
-There is much more though. It optionally supports microservices and cloud deployment. It integrates sass, webpack, bootstrap, various databases, ELK, caching, docker and much more.
+There is much more though. It optionally supports microservices and cloud deployment. It integrates sass, webpack, bootstrap, various databases, ELK, caching, docker, WebSockets and much more.
 
 It is definitely worth checking if you want to easily generate your whole application front to back with a standardized opinionated stack.
 
