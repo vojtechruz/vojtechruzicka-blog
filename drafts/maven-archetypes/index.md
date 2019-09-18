@@ -18,10 +18,52 @@ There is a number of archetypes available which allow you to create various type
 You can even create your own archetypes and share them with others.
 
 ## Generating from command line
+You can generate your project from an archetype in your command line using the following commad via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
+
+```
+mvn archetype:generate 
+-DarchetypeGroupId=org.springframework.boot 
+-DarchetypeArtifactId=spring-boot-sample-simple-archetype 
+-DarchetypeVersion=1.0.2.RELEASE
+```
+
+In the example above, you specify just identifiers you your archetype and the command starts in interactive mode and asks you for all the required information such as grouId, artifactId and version of your new project. You fill these in in your terminal and the project is generated for you. 
+
+```{4-7}
+mvn archetype:generate 
+-DarchetypeGroupId=org.springframework.boot 
+-DarchetypeArtifactId=spring-boot-sample-simple-archetype 
+-DarchetypeVersion=1.0.2.RELEASE 
+-DartifactId=my-app 
+-DgroupId=com.example 
+-Dversion=1.0-SNAPSHOT 
+-DinteractiveMode=false
+```
+
+However, you can specify all these upfront so no interaction is needed from your side. This can be useful , for example, when running project as a part of some automated script which should not have any user interaction.
 
 ## Generating from IDEA
+Generating projects in IDEA from archetypes is easy. Just go to:
+
+```
+File → New → Project... → Maven
+```
+
+[IDEA new Maven Project from archetype](idea-maven-archetype.png)
+
+Here all you need to do is check `Create from archetype` and select your desired one.
+
+However, the amount of archetypes listed is fairly limited. Fortunately you can add any available archetype by clicking `Add archetype`.
+
+[IDEA add archetype](idea-add-archetype.png)
+
+Now you can continue with creating your Maven project as usual.
 
 ## Creating your own archetype
+
+### From existing project
+
+### From scratch
 
 ## Alternatives
 Maven archetypes are a great built-in way of generating project scaffolding, however there are more alternatives worth exploring, which may be better sited in some cases.
