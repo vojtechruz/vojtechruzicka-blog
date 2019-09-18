@@ -60,10 +60,85 @@ However, the amount of archetypes listed is fairly limited. Fortunately you can 
 Now you can continue with creating your Maven project as usual.
 
 ## Creating your own archetype
+Not only you can used existing archetypes, but you can also quite easily create your own.
 
 ### From existing project
+The easiest way is to have an existing project and use Maven Archetype Plugin togenerate an archetye from it. It is actually quite easy.
+
+```
+mvn archetype:create-from-project
+```
+
+The resulting archetype will be generated in `target/generated-sources/archetype`.
+
+Before you can use it, though, you need to install the archetype in your local repository. Jus go to the directory `target/generated-sources/archetype` and run `mvn install`.
 
 ### From scratch
+You can actually generate your own custom archetype using a m Maven archetype.
+
+```
+mvn archetype:generate
+-DgroupId=my.project.group.id
+-DartifactId=my-project-artifact-id
+-DarchetypeGroupId=org.apache.maven.archetypes
+-DarchetypeArtifactId=maven-archetype-archetype
+```
+
+### Archetype configuration
+
+#### POM file
+In the artifact's root directory, there is a `pom.xml` file of the archetype. You can see the packaging `maven-archetype`. You can customize build of your archetype here as with any other pom.
+
+However, ther is another `pom.xml` filelocated under `src\main\resources\archetype-resources` which is the pom file of the generated project. Here you can make any changes, which should be presented in the resulting project's pom.
+
+#### Source code
+You can put any source files, which need to be part of the output project under
+
+```
+src/main/resources/archetype-resources/
+```
+
+That is:
+
+```
+Java code:
+src/main/resources/archetype-resources/src/main/java
+
+Test code:
+src/main/resources/archetype-resources/src/test/java
+
+Resources:
+src/main/resources/archetype-resources/src/main/resources
+```
+
+#### Archetype metadata
+Each archetype contains a special xml file with the archetype configuration, which can be found under:
+
+```
+src/main/resources/archetype-resources/META_INF/maven/maven-metadata.xml
+```
+
+Here you can configure the archetype itself - for example, files which should be included, properties needed and so on. A simple version can look something like this:
+
+```xml
+<archetype-descriptor
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0
+        http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+        xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        name="quickstart">
+    <fileSets>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet>
+            <directory>src/test/java</directory>
+        </fileSet>
+    </fileSets>
+</archetype-descriptor>
+```
+
+You can check configuration details in the [official documentation](https://maven.apache.org/guides/mini/guide-creating-archetypes.html).
 
 ## Alternatives
 Maven archetypes are a great built-in way of generating project scaffolding, however there are more alternatives worth exploring, which may be better sited in some cases.
