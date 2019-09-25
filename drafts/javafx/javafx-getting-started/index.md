@@ -56,14 +56,18 @@ To get started, you need two components. The first one is [Maven Plugin for Java
 Simply add the following to your `pom.xml`:
 
 ```xml
-<plugin>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-maven-plugin</artifactId>
-    <version>0.0.3</version>
-    <configuration>
-        <mainClass>com.example.App</mainClass>
-    </configuration>
-</plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.3</version>
+                <configuration>
+                    <mainClass>com.example.App</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 ```
 
 Note that `<mainclass>` needs to point to your main class, which has the main method and extends `javafx.application.Application`. We'll cover it in the next article in the series.
