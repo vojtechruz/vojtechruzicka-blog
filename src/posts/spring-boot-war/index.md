@@ -10,7 +10,7 @@ excerpt: 'How to change your JAR Spring Boot app to be packaged and deployed as 
 
 ![Spring Boot WAR](spring-boot-war.jpg)
 
-How to change your JAR Spring Boot app to be packaged and deployed as WAR without sacrificing direct execution capabilities of embedded app server
+How to change your JAR Spring Boot app to be packaged and deployed as WAR without sacrificing direct execution capabilities of embedded app server.
 
 ## WAR vs JAR
 By default, Spring Boot applications are packaged as executable JAR files with embedded Tomcat. You can run them directly by `java -jar` command. Traditional Java web applications need a servlet container (application server) to run. You need to have such server installed, configured, and then deploy your applications to it. And you need to have such server prepared for each environment. With Spring Boot, this approach is inverted as the app server is directly in your JAR. This has many advantages, but sometimes you may need to have your Spring Boot app as a traditional WAR instead. For example, if you are tied by your company policies and need to deploy to a provided app server. 
