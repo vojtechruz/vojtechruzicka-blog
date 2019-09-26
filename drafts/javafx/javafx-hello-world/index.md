@@ -15,6 +15,7 @@ This is a second post in the JavaFX series. You can check the first post on how 
 TODO link
 
 ## Application composition
+Each application consists of hierarchy of some basic components. Stages, scenes and nodes. Let's look at each of them.
 
 ### Stage
 Stage basically represents a window. Your application can have multiple stages, but needs at least one.
@@ -93,7 +94,7 @@ Now when you run the application, you should see a window like this:
 Not very impressive, right? First, lets add some nice caption to our window.
 
 ```java
-primaryStage.setTitle("Hello world!");
+primaryStage.setTitle("Hello world Application");
 ```
 
 Now you can configure the Stage object's properties and behaviour such as:
@@ -103,3 +104,41 @@ Now you can configure the Stage object's properties and behaviour such as:
 - Set window always on top using `setAlwaysOnTop()`
 - Set full screen using `setFullScreen()`
 - [And many more](https://openjfx.io/javadoc/11/javafx.graphics/javafx/stage/Stage.html)
+
+## Adding Scene
+Now we have a window with some fancy title, but it is still empty. You already know, you cannot add components directly to a Stage (window). You need a scene first.
+
+However, Scene constructor requires already its child node. Let's create a simple label first. The we create a scene with this label as child.
+
+```java
+Label helloWorldLabel = new Label("Hello world!");
+Scene primaryScene = new Scene(helloWorldLabel);
+```
+
+To make it slightly more visually appealing, lets center the label vertically on the screen.
+
+```java
+helloWorldLabel.setAlignment(Pos.CENTER);
+```
+
+Finally, we need to set scene to the stage we already have:
+
+```java{7-10}
+ @Override
+public void start(Stage primaryStage) throws Exception {
+    primaryStage.setTitle("Hello world Application");
+    primaryStage.setWidth(300);
+    primaryStage.setHeight(200);
+
+    Label helloWorldLabel = new Label("Hello world!");
+    helloWorldLabel.setAlignment(Pos.CENTER);
+    Scene primaryScene = new Scene(helloWorldLabel);
+    primaryStage.setScene(primaryScene);
+
+    primaryStage.show();
+}
+```
+
+Now our window contains a scene with a label component.
+
+![Hello World Window](hello-rowld-window.png)
