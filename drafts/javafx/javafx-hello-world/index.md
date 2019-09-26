@@ -141,4 +141,4 @@ public void start(Stage primaryStage) throws Exception {
 
 Now our window contains a scene with a label component.
 
-![Hello World Window](hello-rowld-window.png)
+![Hello World Window](hello-world-window.png)
