@@ -97,6 +97,16 @@ Not very impressive, right? First, lets add some nice caption to our window.
 primaryStage.setTitle("Hello world Application");
 ```
 
+To make it look even better, let's add a nice icon to the window top bar:
+
+```java
+InputStream iconStream = getClass().getResourceAsStream("/icon.png");
+Image image = new Image(iconStream);
+primaryStage.getIcons().add(image);
+```
+
+You can add multiple icons. That is, multiple sizes of the same icon representing the application. Depending on the context, the best size for your application will be used.
+
 Now you can configure the Stage object's properties and behaviour such as:
 - Setting position using `setX()` and `setY()`
 - Setting initial size using `setWidth()` and `setHeight()`
@@ -133,6 +143,10 @@ public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Hello world Application");
     primaryStage.setWidth(300);
     primaryStage.setHeight(200);
+
+    InputStream iconStream = getClass().getResourceAsStream("/icon.png");
+    Image image = new Image(iconStream);
+    primaryStage.getIcons().add(image);
 
     Label helloWorldLabel = new Label("Hello world!");
     helloWorldLabel.setAlignment(Pos.CENTER);
