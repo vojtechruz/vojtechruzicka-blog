@@ -339,3 +339,9 @@ If you open any FXML file in IDEA, there are two tabs at the bottom of the scree
 For each such file, you can easily switch between editing your FXML file directly or through SceneBuilder.
 
 ![Scene Builder IntelliJ IDEA](scene-builder-idea.png)
+
+You can configure the location of SceneBuilder executable in:
+
+```
+Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
+```
