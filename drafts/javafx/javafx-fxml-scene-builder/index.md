@@ -53,12 +53,22 @@ Turns out XML's hierarchical structure is a great way to describe hierarchy of c
 
 This XML format specific to JavaFX is called FXML. Here you can define all your components and their properties and link it with a Controller, which is responsible for managing interactions.
 
-## Loading the FXML file
+## Loading FXML files
 So how can we change our startup method to work with XML instead?
 
 ```java
+FXMLLoader loader = new FXMLLoader();
+URL xmlUrl = getClass().getResource("/mainScene.fxml");
+loader.setLocation(xmlUrl);
+Parent root = loader.load();
 
+primaryStage.setScene(new Scene(root));
+primaryStage.show();
 ```
+
+Here `root` represents root component of your user interface, the other components are nested inside.
+ 
+The `load` method has generic return value, so you can load more specific type than `Parent`. Then you can access component-specific methods. However, it makes your code more fragile. When you change your root component type in your FXML, the application will fail at runtime, not compoile time. Thta's because now is mismatch in type declared in your FXML and in your Java FXML Loader.
 
 ## Creating the FXML file
 
