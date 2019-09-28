@@ -201,16 +201,69 @@ Let's see the full example:
 ### Should I use this?
 The example above showed us how to reference components using `fx:id` and how to add some basic behavior using scripting. Oddly enough, in JavaScript. But is this something you should be actually doing?
 
-
+The answer is - in most cases now. There are several problems with this approach. The reason why we introduced FXML was a separation of concerns - to decouple UI structure and behavior. With this scripting, the behavior is back again together with our UI structure. What's more - since we are no longer working with Java code but rather XML we lost all the compile-time checks and type safety. Now all the problems will occur at runtime rather than at compile time. That's very fragile and error prone.
 
 ## Adding Controller
+So what can we do to have a clean separation of concerns? We can link a Controller to our FXML file. It is a Java class, which will be responsible for handling all the behavior and user interaction. Now we gained back our type safety and compile time checks. 
 
+Your controller is a POJO, it does not need to extend or implement anything nor have any special annotations.
+
+How do we link the controller class with our FXML though? There are basically two options.
+
+
+### In Java
+You can instantiate your controller yourself (or use any toher means of obtaining the instance such as Dependency Injection to obtain). Then simplu assign it to your `FXMLLoader`.
+
+```java
+FXMLLoader loader = new FXMLLoader();
+loader.setController(new MainSceneController());
 ```
 
+### In FXML
+You can specify the class of your controller as `fx:controller` attribute, which needs to be on the root component.
+
+```xml{3}
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.vojtechruzicka.MainSceneController">
+    ...
+</VBox>
+```
+
+If you declare your Controller class in FXML, it is automatically instiantiated for you. This brings one limitation to this approach - you need to have no-args constructor in your Controller, so it can be easily instantiated.
+
+To obtain the auto-instantiated Controller instance, you can get it from your FXML Loader:
+
+```
+ FXMLLoader loader = new FXMLLoader();
+ loader.setLocation(getClass().getResource("/mainScene.fxml"));
+MainSceneController controller = loader.getController();
 ```
 
 ## Scene Builder
+Writing your GUI structure in XML may be more natural than in Java (especially if you are familiar with HTML). However, it is not very convenient still. The good news is that there  is an official tool called Scene Builder to help you with building your UI. In a nutshell, it is a graphical editor for your GUI.
+
+![Scene Builder Example](scene-builder-standalone.png)
+
+There are three main section of the editor. 
+1. The left part shows available components, which you can drag and drop to the middle part. It also contains hierarchy of all the components in your UI, so you can easily navigate it.
+2. The middle part is your application rendered based on your FXML file.
+3. Current component inspector. You can edit various properties of the currenly selected component here. Any component you select from the middle part or the hierarchy is shown in the inspector.
 
 ### Standalone
+Scene Builder can be [downloaded](https://gluonhq.com/products/scene-builder/) as a standalone application, which you can use to edit your FXML files.
 
 ### IntelliJ IDEA integration
+Alternatively, Scene builder offers IDE integrations.
+
+In IntelliJ IDEA, you can right click any FXML file and click `Open in SceneBuilder`.
+
+Alternatively, IDEA integrates SceneBuilder directly in your IDE.
+
+If you open any FXML file in IDEA, there are two tabs at the bottom of the screen
+- Text
+- SceneBuilder
+
+For each such file, you can easily switch between editing your FXML file directly or through SceneBuilder.
+
+![Scene Builder IntelliJ IDEA](scene-builder-idea.png)
