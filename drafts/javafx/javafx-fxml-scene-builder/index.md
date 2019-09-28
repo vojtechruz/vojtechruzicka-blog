@@ -71,14 +71,139 @@ Here `root` represents root component of your user interface, the other componen
 The `load` method has generic return value, so you can load more specific type than `Parent`. Then you can access component-specific methods. However, it makes your code more fragile. When you change your root component type in your FXML, the application will fail at runtime, not compoile time. Thta's because now is mismatch in type declared in your FXML and in your Java FXML Loader.
 
 ## Creating the FXML file
+Now we know how to load a FXML file, yet we still need to create it. It needs to have extension `.fxml`. If you have Maven project, you can put it in the `resources` folder or the FXMLLoader can load external URL.
 
-### Namespace
+After we create the file, we need XML declaration on the first line:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+```
 
 ### Imports
+Before we can add individual components to our file, we need to make sure that they are properly recognized. We need to add import statements. This is very similar to `import` in Java classes. You can import individual classes or use wildcards as usual. Let's see an example of import section:
 
-### Controller
+```xml
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+```
+
+The good news is that instead of manually adding all of them, your IDE should e able to help you add imports in a similar way to adding imports to Java classes.
+
+### Adding Components
+Now it's time to add some components. In the previous article, we learned that each Scene can have only one child component. Let's add a simple label for now.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+
+<!--Just one component on root level is allowed-->
+<Label>Hello World!</Label>
+```
+
+Of course, having a label as the root component is not very realistic. You would usually rather use some sort of layout, which is a container for multiple components and which handles their positioning. We'll cover layouts alter in the series, for now, let's just use simple VBox, which arranges its children vertically one under another.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox>
+    <Label text="Hello world!"/>
+    <Label text="This is a simple demo application."/>
+    <Button text="Click me!"/>
+</VBox>
+```
+
+### FX Namespace
+There is a clouple of FXML elements and attributes, which are not accessible by default. You need to add a FX XML namespace to make them available. You add them to the root component:
+
+```xml{4-5}
+<?xml version="1.0" encoding="UTF-8"?>
+    ...
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml">
+    ...
+</VBox>
+```
+
+Now we can use some new elements from the fx namespace.
+
+Let's try adding unique ids to our components:
+
+```xml
+<Label fx:id="mainTitle" text="Hello world!"/>
+```
+
+The `fx:id` attribute is a unique identifier of a component, which can be used to reference the component from other parts of our FXML and even our Controller.
 
 
+## Scripting
+Our application is now static. We have some labels and a button, but it does nothing dynamic at all.
+
+Let's react on click on our button and change its caption from `Click me!` to `Click me again!`.
+
+First thing we need to do is to provide `onAction` handler to our button.
+
+```
+<Button fx:id="mainButton" text="Click me!" onAction="buttonClicked()"/>
+```
+
+Notice `fx:id`, this is an identifier, we'll use later to reference our Button.
+
+Now we need to provide a function, which should be called. You can define it inside of `<fx:script>` tag. What's interesting is that you can use multiple scripting languages to write your script, surprisingly even JavaScript. But also Groovy or Clojure. Let's see an example in JavaScript:
+
+```xml
+<fx:script>
+function buttonClicked() {
+    mainButton.setText("Click me again!")
+}
+</fx:script>
+```
+
+You can see that we are referencing our Button component as `mainButton`, which is the id we declared using `fx:id="mainButton"`.
+
+You should also declare what scripting language you are using in your FXML file:
+
+```xml
+<?language javascript?>
+```
+
+Let's see the full example:
+
+```xml{2,12-17}
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml">
+    <Label fx:id="mainTitle" text="Hello world!"/>
+    <Label fx:id="subTitle" text="This is a simple demo application."/>
+    <Button fx:id="mainButton" text="Click me!" onAction="buttonClicked()"/>
+    <fx:script>
+        function buttonClicked() {
+            mainButton.setText("Click me again!")
+        }
+    </fx:script>
+</VBox>
+```
+
+### Should I use this?
+The example above showed us how to reference components using `fx:id` and how to add some basic behavior using scripting. Oddly enough, in JavaScript. But is this something you should be actually doing?
+
+
+
+## Adding Controller
 
 ```
 
