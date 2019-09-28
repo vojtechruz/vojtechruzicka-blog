@@ -240,6 +240,78 @@ To obtain the auto-instantiated Controller instance, you can get it from your FX
 MainSceneController controller = loader.getController();
 ```
 
+## Calling Controller methods
+Now, when we have our controller, we can remove our script and have our button-click logic directly in our controller.
+
+```
+public class MainSceneController {
+    
+    public void buttonClicked() {
+        System.out.println("Button clicked!");
+    }
+}
+```
+
+Now we need to link this method call as a handler for `onAction` event of our button. To reference methods from our controller, we need to use use `#` before the method name:
+
+```java{5}
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="com.vojtechruzicka.MainSceneController">
+    <Label fx:id="mainTitle" text="Hello world!"/>
+    <Label fx:id="subTitle" text="This is a simple demo application."/>
+    <Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>
+</VBox>
+```
+
+Now when we click our button, it will call `MainSceneController.buttonClicked()`. Keep in mind that this reference works only if the method is `public`. If the access modifier is stricter, you need to annotate the method with `@FXML` annotation. 
+
+```java
+@FXML
+private void buttonClicked() {
+    System.out.println("Button clicked!");
+}
+```
+
+## Injecting components to Controller
+So far we're just printing to the console. What if we want again to change the text of our button to `Click me again!`. How can we get references to components in our Controller?
+
+Fortunately, it is easy. Remember these `fx:id` attributes? 
+
+```
+<Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>
+```
+
+JavaFX tries to automatically map components with `fx:id` defined to fields on your controller with the same name.
+
+Assume we have the button above with `fx:id="mainButton"`. JavaFX tries to inject this button object to your controller to field with name `mainButton`:
+
+```
+public class MainSceneController {
+
+    // Here is injected component with fx:id="mainButton"
+    @FXML
+    private Button mainButton;
+    
+}
+```
+
+Same as with methods earlier, your fields need to be either `public` or annotated with `@FXML`.
+
+Now when we have a refference to our button, we can easily change its text:
+
+```java
+public class MainSceneController {
+
+    @FXML
+    private Button mainButton;
+
+    @FXML
+    private void buttonClicked() {
+        mainButton.setText("Click me again!");
+    }
+}
+```
+
 ## Scene Builder
 Writing your GUI structure in XML may be more natural than in Java (especially if you are familiar with HTML). However, it is not very convenient still. The good news is that there  is an official tool called Scene Builder to help you with building your UI. In a nutshell, it is a graphical editor for your GUI.
 
