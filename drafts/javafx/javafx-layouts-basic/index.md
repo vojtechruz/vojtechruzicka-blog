@@ -120,9 +120,68 @@ This layout is useful for stacking its component one on top of each other. The o
 
 This can be useful, for example, for having an image and then having some text or button on top of it.
 
+![Stack Pane](stack-pane.png)
+
+The following example shows StackPane in FXML:
+```xml
+<StackPane>
+    <ImageView>
+        <Image url="/image.jpg"/>
+    </ImageView>
+    <Button>Click Me!</Button>
+</StackPane>
+```
+
+The same example in Java:
+```java
+StackPane stackPane = new StackPane();
+Image image = new Image(getClass().getResourceAsStream("/image.jpg"));
+ImageView imageView = new ImageView(image);
+Button btn = new Button("Click Me!");
+stackPane.getChildren().addAll(imageView, btn);
+```
+
 ### Item alignment
+You can set alignment of the items in the stack to better adjust their positioning:
+
+```xml
+<StackPane alignment="BOTTOM_CENTER">
+ ...
+</StackPane>
+```
+
+Of course, you can do the same in Java:
+
+```java
+StackPane stackPane = new StackPane();
+stackPane.setAlignment(Pos.BOTTOM_CENTER);
+```
 
 ### Margin
+If you want even more fine-grained control of the positioning, you can set margin for individual items in the stack:
+
+```xml{6-8}
+<StackPane alignment="BOTTOM_CENTER">
+    <ImageView>
+        <Image url="/image.jpg"/>
+    </ImageView>
+    <Button>
+        <StackPane.margin>
+            <Insets bottom="10"/>
+        </StackPane.margin>
+        Click Me!
+    </Button>
+</StackPane>
+```
+
+Or in Java:
+
+```java
+StackPane stackPane = new StackPane();
+Button btn = new Button("Click Me!");
+stackPane.getChildren().add(btn);
+StackPane.setMargin(btn, new Insets(0,0,10,0));
+```
 
 ## FlowPane
 
