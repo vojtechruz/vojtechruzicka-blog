@@ -6,6 +6,8 @@ path: '/javafx-layouts-basic'
 featuredImage: './ui-layout.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: ''
+order: 4
+series: JavaFx
 ---
 
 ![JavaFX Layouts](ui-layout.jpg)
