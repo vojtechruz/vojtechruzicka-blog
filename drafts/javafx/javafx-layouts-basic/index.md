@@ -13,9 +13,9 @@ excerpt: ''
 ## Layouts
 
 ## HBox
-This is one of the simplest layouts available. It just puts all the items inside horizontally in a row, one after another.
+This is one of the simplest layouts available. It just puts all the items inside horizontally in a row, one after another, from left to right.
 
-TODO image
+![Horizontal Box](hbox.png)
 
 In FXML, you can use HBox like this:
 
@@ -184,5 +184,66 @@ StackPane.setMargin(btn, new Insets(0,0,10,0));
 ```
 
 ## FlowPane
+Flow Pane can work in two modes - either horizontal (the default) or vertical.
+
+In horizontal mode, the items are disploayed horizontally, one after another, similar to HBox. The difference is, once there is no more horizontal space available, it wraps to the next row under the first one and continues again. This way there can be many rows, not just one as with HBox.
+
+The vertical mode is very similar, but (like VBox) it displays items vertically, from top to bottom. Once there is no more space, it adds another column and colninues.
+
+The following image illustrates these two modes:
+
+![Flow pane horizontal vs vertical](flow-pane-comparison.png)
+
+Note that items don't necessarily have to have the same size like in the image above.
+
+Note how position of the components is recalculated if you change size of the container:
+
+![FlowPane Resizing](flowpane-resizing.gif)
+
+You can set the internal padding of this layout in thesame way as for HBox and VBox. Spacing is a little bit different though. Instead of just one property for spacing, you need to have separate horizontal and vertical spacing as the items can be rednered in multiple rows. For horizontal spacing use `hgap`, for vertical spacing use `vgap` instead.
+
+```java
+FlowPane flowPane = new FlowPane();
+flowPane.setOrientation(Orientation.VERTICAL);
+flowPane.setVgap(10);
+flowPane.setHgap(10);
+flowPane.getChildren().addAll(...);
+```
+
+Example of FlowPane in FXML:
+```xml
+<FlowPane hgap="10" vgap="10" orientation="VERTICAL">
+  ...
+</FlowPane>
+```
 
 ## TilePane
+This layout is very similar to FlowPane. The way it displays is components is almost identical. You can still have either horizontal or vertical mode and define `vgap` and `hgap`.
+
+One crucial difference is in the sizing of the cells. FlowPane creates assigns only space necessary to each component. TilePane on the other hand makes the size of all cells the same depending on the biggest item. This way all the controls are nicely aligned in rows/columns.
+
+![FlowPane and TilePane comparison](flowpane-tilepane-comparison.png)
+
+In the image above there are the same components in the same order. You can clearly see the difference. 
+- FlowPane puts controls directly one after another, no extra spacing
+- TilePane puts controls into cells with the same size based on the bigest element
+
+Constructing TilePane is no different from FlowPane except for the name.
+
+```xml
+<TilePane vgap="10" hgap="10" orientation="VERTICAL" >
+```
+
+The same in Java:
+
+```java
+TilePane tilePane = new TilePane();
+tilePane.setVgap(10);
+tilePane.setHgap(10);
+tilePane.setOrientation(Orientation.VERTICAL);
+```
+
+## Conclusion
+In this article we learned how to use several of the basic layout components in JavaFX. But there are more layouts to choose from. We'll cover these in the next article.
+
+TODO Link
