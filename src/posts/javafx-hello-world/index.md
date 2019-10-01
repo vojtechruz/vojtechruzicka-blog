@@ -127,9 +127,7 @@ Label helloWorldLabel = new Label("Hello world!");
 Scene primaryScene = new Scene(helloWorldLabel);
 ```
 
-You can see that `Scene` only accepts one child component. What if we want more? You need to use a layout then, which is a component, that can have multiple children and arranges them on the screen depending on the layout used. We'll cover layouts later in the series.
-
-TODO layouts link
+You can see that `Scene` only accepts one child component. What if we want more? You need to use a layout then, which is a component, that can have multiple children and arranges them on the screen depending on the layout used. We'll cover layouts [later in the series](/javafx-layouts-basic).
 
 To make it slightly more visually appealing, let's center the label vertically on the screen.
 
