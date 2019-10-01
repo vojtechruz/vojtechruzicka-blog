@@ -1,14 +1,18 @@
 ---
-title: 'JavaFX Tutorial: Getting started'
-date: "2019-09-20T22:12:03.284Z"
+title: 'JavaFX Tutorial: FXML and SceneBuilder'
+date: "2019-10-01T22:20:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-fxml-scene-builder'
 featuredImage: './scene-builder.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99036 http://vojtechruzicka.com/?p=99036'
+excerpt: 'How to build GUI with JavaFX using FXML markup and SceneBuilder.'
+series: JavaFX
+order: 3
 ---
 
 ![FXML and Scene Builder](scene-builder.jpg)
+
+How to build GUI with JavaFX using FXML markup and SceneBuilder.
 
 ## The traditional way
 In the previous article, we created a simple Hello World application. TODO LINK. Just a quick refresher - the code looked like this.
@@ -151,7 +155,7 @@ Let's react on click on our button and change its caption from `Click me!` to `C
 
 First thing we need to do is to provide `onAction` handler to our button.
 
-```
+```xml
 <Button fx:id="mainButton" text="Click me!" onAction="buttonClicked()"/>
 ```
 
@@ -234,7 +238,7 @@ If you declare your Controller class in FXML, it is automatically instiantiated 
 
 To obtain the auto-instantiated Controller instance, you can get it from your FXML Loader:
 
-```
+```java
  FXMLLoader loader = new FXMLLoader();
  loader.setLocation(getClass().getResource("/mainScene.fxml"));
 MainSceneController controller = loader.getController();
@@ -243,7 +247,7 @@ MainSceneController controller = loader.getController();
 ## Calling Controller methods
 Now, when we have our controller, we can remove our script and have our button-click logic directly in our controller.
 
-```
+```java
 public class MainSceneController {
     
     public void buttonClicked() {
@@ -277,7 +281,7 @@ So far we're just printing to the console. What if we want again to change the t
 
 Fortunately, it is easy. Remember these `fx:id` attributes? 
 
-```
+```xml
 <Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>
 ```
 
@@ -285,7 +289,7 @@ JavaFX tries to automatically map components with `fx:id` defined to fields on y
 
 Assume we have the button above with `fx:id="mainButton"`. JavaFX tries to inject this button object to your controller to field with name `mainButton`:
 
-```
+```java
 public class MainSceneController {
 
     // Here is injected component with fx:id="mainButton"
