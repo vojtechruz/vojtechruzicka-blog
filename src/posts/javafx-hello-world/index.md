@@ -1,18 +1,20 @@
 ---
 title: 'JavaFX Tutorial: Hello world'
-date: "2019-09-20T22:12:03.284Z"
+date: "2019-10-01T22:15:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-hello-world'
 featuredImage: './javafx-hello-world.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99035 http://vojtechruzicka.com/?p=99035'
+excerpt: 'Tutorial on how to build your first JavaFX application.'
+series: JavaFX
+order: 2
 ---
 
 ![JavaFX Hello world](javafx-hello-world.jpg)
 
-This is a second post in the JavaFX series. You can check the first post on how to set up you environment for JavaFx development. 
+Tutorial on how to build your first JavaFX application.
 
-TODO link
+This is a second post in the JavaFX series. You can check the first post on [how to set up you environment for JavaFx development](/javafx-getting-started). 
 
 ## Application composition
 Each application consists of hierarchy of some basic components. Stages, scenes and nodes. Let's look at each of them.
@@ -38,7 +40,7 @@ Now let's see this on a specific example - real application.
 ![Application Heirarchy Example](hierarchy-window.png)
 
 ## Application Class
-Now let's start coding. If you followed the previous article (TODO Link), you allready have all the required dependencies in place.
+Now let's start coding. If you followed the [previous article](/javafx-getting-started) , you allready have all the required dependencies in place.
 
 Each JavaFX application needs to have a main application class. That is - a class that extends `javafx.application.Application`.
 

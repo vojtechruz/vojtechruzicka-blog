@@ -49,6 +49,11 @@ module.exports = {
                     render: {
                         placeholder: "both",
                     },
+                    resolvers: {
+                        slug: (node) => {
+                            return node.frontmatter.path;
+                        }
+                    }
                 }
             },
         ],

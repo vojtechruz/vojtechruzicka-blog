@@ -1,12 +1,13 @@
 ---
 title: 'JavaFX Tutorial: Getting started'
-date: "2019-10-01T22:12:03.284Z"
+date: "2019-10-01T22:13:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-getting-started'
 featuredImage: './install.jpg'
 disqusArticleIdentifier: '99034 http://vojtechruzicka.com/?p=99034'
 excerpt: 'How to setup and start working with JavaFX using Maven, Gradle or JavaFX SDK.'
-series: JavaFx
+series: JavaFX
+order: 1
 ---
 
 ![Getting started](install.jpg)
@@ -156,4 +157,4 @@ File → New → Project → JavaFX
 - [JavaFX 13 and Eclipse](https://openjfx.io/openjfx-docs/#IDE-Eclipse)
 
 ## Next steps
-This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](TODO).
+This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world).
