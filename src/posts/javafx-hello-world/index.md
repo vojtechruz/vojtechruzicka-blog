@@ -14,16 +14,16 @@ order: 2
 
 Tutorial on how to build your first JavaFX application.
 
-This is a second post in the JavaFX series. You can check the first post on [how to set up you environment for JavaFx development](/javafx-getting-started). 
+This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started). 
 
 ## Application composition
-Each application consists of hierarchy of some basic components. Stages, scenes and nodes. Let's look at each of them.
+Each application consists of a hierarchy of some basic components. Stages, scenes, and nodes. Let's look at each of them.
 
 ### Stage
 Stage basically represents a window. Your application can have multiple stages, but needs at least one.
 
 ### Scene
-Scene represents contents of a stage. Each stage can have multiple scenes, which you can switch. Image a theater stage switching multiple scenes during a play.
+A scene represents the contents of a stage. Each stage can have multiple scenes, which you can switch. Imagine a theater stage switching multiple scenes during a play.
 
 ### Node
 Each scene can contain various components, which are called nodes. These can be controls like buttons or labels or even layouts, which can contain multiple nested components. Each scene can have one nested node, but it can be a layout, which can host multiple components. The nesting can be multiple levels deep - layouts can contain other layouts and regular components.
@@ -31,20 +31,20 @@ Each scene can contain various components, which are called nodes. These can be 
 ### Summary
 Each application can have multiple stages - windows. Each stage can switch multiple scenes. Scenes contain nodes - layouts and regular components.
 
-You can visualize the heirarchy like this:
+You can visualize the hierarchy like this:
 
 ![Hierarchy Diagram](hierarchy-diagram.png)
 
-Now let's see this on a specific example - real application.
+Now let's see a specific example - a real application.
 
-![Application Heirarchy Example](hierarchy-window.png)
+![Application Hierarchy Example](hierarchy-window.png)
 
 ## Application Class
-Now let's start coding. If you followed the [previous article](/javafx-getting-started) , you allready have all the required dependencies in place.
+Time to start coding. If you followed the [previous article](/javafx-getting-started), you already have all the required dependencies in place.
 
 Each JavaFX application needs to have a main application class. That is - a class that extends `javafx.application.Application`.
 
-Not only that, but you also need to override abstract method from the `Application` class - `public void start(Stage primaryStage) throws Exception`.
+Not only that, but you also need to override the abstract method from the `Application` class - `public void start(Stage primaryStage) throws Exception`.
 
 Your main class can look something like this:
 
@@ -64,7 +64,7 @@ public class Main extends Application {
 Of course, we still need to implement the start method.
 
 ## Main method
-JavaFx does not necessarily need `main()` method to start. You can package an executable jar using [JavaFX Packager Tool](https://docs.oracle.com/javafx/2/deployment/packager.htm). However, it is much more convenient to actually have the main method.
+JavaFx does not necessarily need the `main()` method to start. You can package an executable jar using [JavaFX Packager Tool](https://docs.oracle.com/javafx/2/deployment/packager.htm). However, it is much more convenient to actually have the main method.
 
 Not only is the application easier to start, but you can also pass command-line parameters to your application as usual.
 
@@ -77,10 +77,10 @@ public static void main(String[] args) {
 }
 ```
 
-You can see it is a static method on the `Application` class. We did not specify what our main class actually is, JavaFX is able to determine this automatically depending on the class which calls this method.
+You can see it is a static method in the `Application` class. We did not specify what our main class actually is. JavaFX is able to determine this automatically depending on the class, which calls this method.
 
-## Setting up Stage
-We are able to launch our app using `main()` method now. Still, nothing happens if we do so. We need a window to show. Windows are called stages, remember? As a matter of fact, we are already given primary stage in the start method as an input parameter - `public void start(Stage primaryStage)`. We can us this. The only problem is it is hidden by default. Fortunately, we can easily show it using `primaryStage.show()`.
+## Setting up a Stage
+We are able to launch our app using `main()` method now. Still, nothing happens if we do so. We need a window to show. Windows are called stages, remember? As a matter of fact, we are already given the primary stage in the start method as an input parameter - `public void start(Stage primaryStage)`. We can use this. The only problem is that it is hidden by default. Fortunately, we can easily show it using `primaryStage.show()`.
 
 ```java
 @Override
@@ -93,7 +93,7 @@ Now when you run the application, you should see a window like this:
 
 ![Blank window](blank-window.png)
 
-Not very impressive, right? First, lets add some nice caption to our window.
+Not very impressive, right? First, let's add some nice caption to our window.
 
 ```java
 primaryStage.setTitle("Hello world Application");
@@ -117,10 +117,10 @@ Now you can configure the Stage object's properties and behaviour such as:
 - Set full screen using `setFullScreen()`
 - [And many more](https://openjfx.io/javadoc/11/javafx.graphics/javafx/stage/Stage.html)
 
-## Adding Scene
+## Adding a Scene
 Now we have a window with some fancy title, but it is still empty. You already know, you cannot add components directly to a Stage (window). You need a scene first.
 
-However, Scene constructor requires already its child node. Let's create a simple label first. The we create a scene with this label as child.
+However, the scene constructor requires already its child node. Let's create a simple label first. Then we create a scene with this label as a child.
 
 ```java
 Label helloWorldLabel = new Label("Hello world!");
@@ -131,15 +131,15 @@ You can see that `Scene` only accepts one child component. What if we want more?
 
 TODO layouts link
 
-To make it slightly more visually appealing, lets center the label vertically on the screen.
+To make it slightly more visually appealing, let's center the label vertically on the screen.
 
 ```java
 helloWorldLabel.setAlignment(Pos.CENTER);
 ```
 
-Finally, we need to set scene to the stage we already have:
+Finally, we need to set  the scene to the stage we already have:
 
-```java{7-10}
+```java{14}
  @Override
 public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Hello world Application");
@@ -162,3 +162,6 @@ public void start(Stage primaryStage) throws Exception {
 Now our window contains a scene with a label component.
 
 ![Hello World Window](hello-world-window.png)
+
+## What's Next
+In the next step in the series, we'll cover how to write our GUI in XML rather in Java.

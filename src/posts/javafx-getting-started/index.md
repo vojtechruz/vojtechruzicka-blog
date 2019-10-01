@@ -156,5 +156,5 @@ File → New → Project → JavaFX
 - [JavaFX 13 and NetBeans](https://openjfx.io/openjfx-docs/#IDE-NetBeans)
 - [JavaFX 13 and Eclipse](https://openjfx.io/openjfx-docs/#IDE-Eclipse)
 
-## Next steps
+## What's next
 This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world).
