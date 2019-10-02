@@ -12,11 +12,15 @@ series: JavaFx
 
 ![JavaFX Advanced Layouts](ui-layout-advanced.jpg)
 
+In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic). Now it's time to go through the rest of the available layouts.
+
 ## AnchorPane
 
 ## GridPane
 
 ## BorderPane
+
+[BorderPane](borderpane.png)
 
 ## SplitPane
 
