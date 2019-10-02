@@ -4,15 +4,28 @@ date: "2019-09-20T22:12:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-layouts-basic'
 featuredImage: './ui-layout.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99037 http://vojtechruzicka.com/?p=99037'
+excerpt: 'How to organize and layout your GUI components in JavaFX application.'
 order: 4
 series: JavaFx
 ---
 
 ![JavaFX Layouts](ui-layout.jpg)
 
+How to organize and layout your GUI components in JavaFX application.
+
+This is the fourth article in the JavaFX series. In the previous article I described [how to use FXML and SceneBuilder](javafx-fxml-scene-builder) to create your user interface. Now we'll cover layouts.
+
 ## Layouts
+Layouts, in a nuthshell are containers for components. This is useful as you can then position this container as a whole no matter what components are inside. Moreover, each Scene can only hold one component, so you need a layout as a root component for your scene, so you can fit all the components you need. Of course, one layout is usually not enough, but you can nest layouts. That means, you can put one layout inside another.
+
+In addition to that, layouts also organize and lay out your components inside. Based on the layout used, child components can be positioned:
+- One after another horizontally
+- One after another vertically
+- One on top of each other as a stack
+- In grid
+
+And many more. What's important is that a layout automatically updates the position when it is resized. This way, you can have consistent layouting even if your user resizes the application window.
 
 ## HBox
 This is one of the simplest layouts available. It just puts all the items inside horizontally in a row, one after another, from left to right.
@@ -245,7 +258,5 @@ tilePane.setHgap(10);
 tilePane.setOrientation(Orientation.VERTICAL);
 ```
 
-## Conclusion
+## What's next
 In this article we learned how to use several of the basic layout components in JavaFX. But there are more layouts to choose from. We'll cover these in the next article.
-
-TODO Link
