@@ -69,6 +69,78 @@ anchorPane.getChildren().add(button);
 ```
 
 ## GridPane
+GridPane is a layout which allows you to organize your components into a grid. Unlike TilePane, which is adding components one after another, here you need to specify the coordinates of your target location in your grid when adding a new component.
+
+![GridPane](grid-pane.png)
+
+```xml
+<GridPane hgap="10" vgap="10">
+    <Label GridPane.rowIndex="0" GridPane.columnIndex="0">First</Label>
+    ...
+</GridPane>
+```
+
+In Java, when adding a new component, we specify first the columnIndex (x) and RowIndex(y).
+
+```java
+    GridPane grid = new GridPane();
+    grid.add(new Label("Hello!"), columnIndex, rowIndex);
+```
+
+
+## Spacing
+By default, grid cells have no spacing. The components are directly next to each other with no margins. Spacing can be defined separately for rows and columns - that is horizontally and vertically.
+
+- `hgap` sets horizontal spacing (between columns)
+- `vgap` sets vertical spacing (between rows)
+
+```xml
+<GridPane hgap="10" vgap="10">
+    ...
+</GridPane>
+```
+
+Spacing defined in Java:
+
+```java
+GridPane grid = new GridPane();
+grid.setHgap(10);
+grid.setVgap(10);
+```
+
+### Spanning multiple cells
+Components in GridPane can span multiple rows and/or columns.
+
+Component with rowspan is expanding to the bottom from its original cell, component with colspan is expanding to the right.
+
+```xml {2-3}
+<GridPane>
+    <Label GridPane.columnSpan="2"
+           GridPane.rowSpan="2"
+           GridPane.rowIndex="0" 
+           GridPane.columnIndex="0">Foo!</Label>
+</GridPane>
+
+```
+
+In Java there are two ways of setting row and column span. You can either set it directly when adding component to the grid:
+
+```java
+grid.add(component, columnIndex, rowIndex, columnSpan, rowSpan);
+```
+
+Or through GridPane:
+
+```java
+GridPane.setColumnSpan(component, columnSpan);
+GridPane.setRowSpan(component, rowSpan);
+```
+
+### Sizing
+Even though in the initial example all the cell were the sme size, it does not necessarily have to be the case. The sizing of grid cells are the following:
+
+- Heigth of each row is equal to the highest element in the row
+- With of each column is equal to the widest element in the column
 
 ## BorderPane
 BorderPane is a layout with five sections:
@@ -130,7 +202,3 @@ Left and right fill all the available vertical space (except what's occupied by 
 Center has dynamic size and fills rest of the space not occupied by other sections. Let's look at an example:
 
 ![BorderPane Resizing](borderpane-resizing.gif) 
-
-## SplitPane
-
-## TabPane
