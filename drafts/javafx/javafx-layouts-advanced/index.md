@@ -142,6 +142,94 @@ Even though in the initial example all the cell were the sme size, it does not n
 - Heigth of each row is equal to the highest element in the row
 - With of each column is equal to the widest element in the column
 
+### Column and row constraints
+As mentioned, by default the columns and rows are sized based on the components inside. Fortunately, you can have better control on how individual columns and rows are sized.
+
+There are `ColumnContstraints` and `RowConstraints` classes, which are used for this.
+
+There are basically two options. Either you set percentage of available space for individual rows and columns or you set prefered widht/heigth. In the latter case you can also define prefered behavior when the columns and rows are resized.
+
+#### Percentage
+This is quite straightforward. You can set percentage of the available space to be occupied by giver row or column. When the layout is resized, therows and column are resized as well to match the new size.
+
+```xml
+<GridPane>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="50" />
+        <ColumnConstraints percentWidth="50" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="50" />
+        <RowConstraints percentHeight="50" />
+    </rowConstraints>
+    ...
+</GridPane>
+```
+
+```java
+GridPane gridPane = new GridPane();
+
+ColumnConstraints col1 = new ColumnConstraints();
+col1.setPercentWidth(50);
+ColumnConstraints col2 = new ColumnConstraints();
+col2.setPercentWidth(50);
+gridPane.getColumnConstraints().addAll(col1, col2);
+
+RowConstraints row1 = new RowConstraints();
+row1.setPercentHeight(50);
+RowConstraints row2 = new RowConstraints();
+row2.setPercentHeight(50);
+gridPane.getRowConstraints().addAll(row1, row2);
+```
+
+#### Absolute size
+Instead of defining percentage size, you cen difine prefered and minimal size. In addition to that, you can specify how the row/column should behave on resize. Columns are using `hgrow` property and rows have `vgrow`.
+
+These properties can have three distinct values.
+- `NEVER`: Never grow or shring on resize. The default value.
+- `ALWAYS`: When resized, all the elements with this value are either stretched to fill the available space or shrinked.
+- `SOMETIMES`: These elements are resized only if there are no other elements with `ALWAYS`
+
+```xml
+<GridPane>
+    <columnConstraints>
+        <ColumnConstraints minWidth="50" prefWidth="100" />
+        <ColumnConstraints minWidth="50" prefWidth="100" hgrow="SOMETIMES" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="50" prefHeight="100" />
+        <RowConstraints minHeight="50" prefHeight="100" vgrow="SOMETIMES" />
+    </rowConstraints>
+    ...
+</GridPane>
+```
+
+The same example in Java:
+
+```java
+ GridPane gridPane = new GridPane();
+
+ColumnConstraints col1 = new ColumnConstraints();
+col1.setMinWidth(50);
+col1.setPrefWidth(100);
+ColumnConstraints col2 = new ColumnConstraints();
+col2.setMinWidth(50);
+col2.setPrefWidth(100);
+col2.setHgrow(Priority.SOMETIMES);
+gridPane.getColumnConstraints().addAll(col1, col2);
+
+RowConstraints row1 = new RowConstraints();
+row1.setMinHeight(50);
+row1.setPrefHeight(100);
+RowConstraints row2 = new RowConstraints();
+row2.setMinHeight(50);
+row2.setPrefHeight(100);
+row2.setVgrow(Priority.SOMETIMES);
+gridPane.getRowConstraints().addAll(row1, row2);
+```
+
+You can also specify `maxHeight` and `maxWidth` for individual rows and columns.
+
 ## BorderPane
 BorderPane is a layout with five sections:
 - Top
@@ -202,3 +290,6 @@ Left and right fill all the available vertical space (except what's occupied by 
 Center has dynamic size and fills rest of the space not occupied by other sections. Let's look at an example:
 
 ![BorderPane Resizing](borderpane-resizing.gif) 
+
+## What's next
+Now when we know how to use various layouts, we'll cover how to style JavaFX components using CSS.
