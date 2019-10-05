@@ -14,6 +14,19 @@ order: 3
 
 How to build GUI with JavaFX using FXML markup and SceneBuilder.
 
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>
+
 ## The traditional way
 In the previous article, [we created a simple Hello World application](/javafx-hello-world). Just a quick refresher - the code looked like this.
 
@@ -347,4 +360,16 @@ Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
 ```
 
 ## What's next
-In the next post in our series, we'll cover some basic layout we can use to organize our GUI components.
+In the next post in our series, we'll cover some [basic layout we can use to organize our GUI components](/javafx-layouts-basic).
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>

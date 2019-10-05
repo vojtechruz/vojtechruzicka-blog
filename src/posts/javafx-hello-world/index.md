@@ -14,6 +14,18 @@ order: 2
 
 Tutorial on how to build your first JavaFX application.
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li class="series-current">JavaFX Tutorial: Hello world</li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>
+
 This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started). 
 
 ## Application composition
@@ -162,4 +174,16 @@ Now our window contains a scene with a label component.
 ![Hello World Window](hello-world-window.png)
 
 ## What's Next
-In the next step in the series, we'll cover how to write our GUI in XML rather in Java.
+In the next step in the series, we'll cover how to [write our GUI in XML rather in Java](/javafx-fxml-scene-builder).
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li class="series-current">JavaFX Tutorial: Hello world</li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>

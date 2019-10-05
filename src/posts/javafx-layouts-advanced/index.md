@@ -16,6 +16,18 @@ How to organize and position your GUI components in JavaFX application using adv
 
 In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic). Now it's time to go through the rest of the available layouts.
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li class="series-current">JavaFX Tutorial: Advanced layouts</li>
+    </ol>
+</div>
+
 ## AnchorPane
 AnchorPane is an interesting and powerful layout. It allows you to define anchor points to the components inside. There are 4 types of anchors:
 
@@ -294,4 +306,16 @@ The center has a dynamic size and fills the rest of the space not occupied by ot
 ![BorderPane Resizing](borderpane-resizing.gif) 
 
 ## What's next
-Now when we know how to use various layouts, we'll cover how to style JavaFX components using CSS.
+Now when we know how to use various layouts, we'll cover how to style JavaFX  components using CSS.
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li class="series-current">JavaFX Tutorial: Advanced layouts</li>
+    </ol>
+</div>

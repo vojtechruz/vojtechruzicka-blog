@@ -43,19 +43,6 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-autolink-headers',
-            {
-                resolve: "gatsby-remark-series",
-                options: {
-                    render: {
-                        placeholder: "both",
-                    },
-                    resolvers: {
-                        slug: (node) => {
-                            return node.frontmatter.path;
-                        }
-                    }
-                }
-            },
         ],
       },
     },

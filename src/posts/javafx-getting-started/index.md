@@ -14,6 +14,18 @@ order: 1
 
 How to set up and start working with JavaFX using Maven, Gradle, or JavaFX SDK.
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li class="series-current">JavaFX Tutorial: Getting started</li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>
+
 ## Getting Java
 JavaFX, of course, requires you to have JDK installed. Obtaining the required dependencies, however, varies based on which version of Java you have.
 
@@ -158,3 +170,15 @@ File → New → Project → JavaFX
 
 ## What's next
 This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world).
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li class="series-current">JavaFX Tutorial: Getting started</li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>

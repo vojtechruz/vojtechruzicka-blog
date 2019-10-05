@@ -16,6 +16,18 @@ How to organize and layout your GUI components in JavaFX application.
 
 This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder) to create your user interface. Now we'll cover layouts.
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li class="series-current">JavaFX Tutorial: Basic layouts</li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>
+
 ## Layouts
 Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole no matter what components are inside. Moreover, each scene can only hold one component, so you need a layout as a root component for your scene, so you can fit all the components you need. Of course, one layout is usually not enough, but you can nest layouts. That means you can put one layout inside another.
 
@@ -261,4 +273,16 @@ tilePane.setOrientation(Orientation.VERTICAL);
 ```
 
 ## What's next
-In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the next article.
+In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced).
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li class="series-current">JavaFX Tutorial: Basic layouts</li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    </ol>
+</div>
