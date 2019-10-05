@@ -14,6 +14,8 @@ order: 2
 
 Tutorial on how to build your first JavaFX application.
 
+This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started). 
+
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
@@ -25,8 +27,6 @@ Tutorial on how to build your first JavaFX application.
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
     </ol>
 </div>
-
-This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started). 
 
 ## Application composition
 Each application consists of a hierarchy of some basic components. Stages, scenes, and nodes. Let's look at each of them.
