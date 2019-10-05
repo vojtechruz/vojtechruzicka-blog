@@ -347,3 +347,18 @@ kbd {
     margin-left: 0;
   }
 }
+
+.series-table-of-content {
+  border: 1px solid #dddddd;
+  padding: 10px 20px 0;
+  margin-bottom: 15px;
+
+  div {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  ol {
+    margin-bottom: 15px;
+  }
+}
