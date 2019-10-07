@@ -24,7 +24,8 @@ How to build GUI with JavaFX using FXML markup and SceneBuilder.
     <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+  </ol>
 </div>
 
 ## The traditional way
@@ -371,5 +372,6 @@ In the next post in our series, we'll cover some [basic layout we can use to org
     <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+  </ol>
 </div>

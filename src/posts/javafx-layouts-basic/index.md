@@ -25,7 +25,8 @@ This is the fourth article in the JavaFX series. In the previous article, I desc
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li class="series-current">JavaFX Tutorial: Basic layouts</li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+  </ol>
 </div>
 
 ## Layouts
@@ -284,5 +285,6 @@ In this article, we learned how to use several of the basic layout components in
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li class="series-current">JavaFX Tutorial: Basic layouts</li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+  </ol>
 </div>

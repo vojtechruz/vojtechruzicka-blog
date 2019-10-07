@@ -25,7 +25,8 @@ This is a second post in the JavaFX series. You can check the first post on [how
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+   </ol>
 </div>
 
 ## Application composition
@@ -185,5 +186,6 @@ In the next step in the series, we'll cover how to [write our GUI in XML rather 
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    </ol>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+  </ol>
 </div>

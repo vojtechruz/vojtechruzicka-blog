@@ -23,6 +23,7 @@ How to set up and start working with JavaFX using Maven, Gradle, or JavaFX SDK.
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
     </ol>
 </div>
 
@@ -180,5 +181,6 @@ This article is the first one in the JavaFX Series. In the next one, we'll cover
     <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
     </ol>
 </div>
