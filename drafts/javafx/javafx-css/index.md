@@ -25,15 +25,84 @@ How to style JavaFX components using good old CSS.
   </ol>
 </div>
 
-## CSS in JavaFx
+## Separating visuals
+In the previous [article about FXML](/javafx-fxml-scene-builder), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in a FXML file, while the interaction logic is neatly separated in a controller.
 
-### Selectors
+Now there is a third part on top of this. FXML manages only what components are in your app, their properties and how they are nested. It does not define visuals of the component though. That is - fonts, colors, backgrounds, paddings. To be honest, you can achieve it in FXML but you shouldn't. Instead, visuals should be clearly separated in CSS stylesheets.
 
-### Properties
+This way your styling is independent and can be easily replaced or changed without affecting the rest of the application. You can easily even have multiple themes, which you can switch on demand.
 
-### Pseudo classes
+## CSS
+You probably know CSS (Cascading Style Sheets) from the web, where it is used to style HTML pages.
 
-### Custom pseudo classes 
+In JavaFX, this is very similar, although JavaFX uses a set of its own custom properties.
+
+Let's see an example:
+
+```css
+.button {
+    -fx-font-size: 15px;
+}
+```
+
+There are two essential concepts here. The first one is selector. That's `.button`. This determines to each componets the styling should be applied. There it is for ALL the buttons.
+
+The second part are actual styling properties, which will be applied to all the components, which match our selector. Properties are everything inside the curly braces.
+
+Each property has a specific value. In our example we have property `-fx-font-size`, which means how big the text will be. The value is 15px here but could be anything else we would desire.
+
+To sum it up - we created a rule which says - all the buttons everywhere should have text of size 15px.
+
+## Selectors
+Now let's take a closer look on how selectors work in JavaFX. It pretty much the same as in regular CSS.
+
+### Class
+Class in CSS represents multiple similar elements. For example buttons or checkboxes. A selector, which should apply to all of the elements of the same class starts with dot `.` followed directly by the class name. The convention is to separate individual words with comma `-`. The following selector applies to all the elements with class `label`.
+
+```css
+.label {
+    // Some properties
+}
+```
+
+#### Built-in classes
+The good news is that all the built-in JavaFX components (such as Label or Button) have already a class assigned out of the box. Fo if you want to target all the labels in your app, you don't have to add any custom classes to each of your labels. Each label has by default `label` class.
+
+It is easy to determine the class name from the component.
+- Take name of the Java class of the component - eg. Label
+- Make the name lower-case
+- If it consists of multiple words, separate them by `-`
+
+Some examples:
+- Label → label
+- CheckBox → check-box
+
+When using such classes as selectors, don' forget to add `.`. That means selector for `label` class is `.label`.
+
+#### Custom classes
+If build-in classes are not enough, you can add your own custom classes to your components. You can have multiple classes separated by comma:
+
+```xml
+<Label styleClass="my-label,other-class">I am a simple label</Label>
+```
+
+Or in Java:
+
+```java
+Label label = new Label("I am a simple label");
+label.getStyleClass().addAll("my-label", "other-class");
+```
+
+Adding classes this way does not remove the default class of the component (label in this case).
+
+### ID
+
+
+## Properties
+
+## Pseudo classes
+
+## Custom pseudo classes 
 
 ## Default stylesheet
 Even if you don't provide any styles yourself, JavaFX application already has some visual styling. There is a default stylesheet, which is applied to every application. Is is called modena (since JavaFX 8, previously it used to be caspian).
