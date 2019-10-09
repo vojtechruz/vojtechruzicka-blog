@@ -33,9 +33,7 @@ Now there is a third part on top of this. FXML manages only what components are 
 This way, your styling is independent and can be easily replaced or changed without affecting the rest of the application. You can easily even have multiple themes, which you can switch on demand.
 
 ## CSS
-You probably know CSS (Cascading Style Sheets) from the web, where it is used to style HTML pages.
-
-In JavaFX, this is very similar, although JavaFX uses a set of its own custom properties.
+You probably know CSS (Cascading Style Sheets) from the web, where it is used to style HTML pages. In JavaFX, this is very similar, although JavaFX uses a set of its own custom properties.
 
 Let's see an example:
 
@@ -93,7 +91,7 @@ Label label = new Label("I am a simple label");
 label.getStyleClass().addAll("my-label", "other-class");
 ```
 
-Adding classes this way does not remove the default class of the component (Label in this case).
+Adding classes this way does not remove the default class of the component (`label` in this case).
 
 There is one special class called `root`. It means the root component of your scene. You can use it to style everything inside your scene (such as setting a global font). It is similar to using body tag selector in HTML.
 
@@ -114,7 +112,7 @@ In FXML, you can use `fx:id` to set the component's CSS id.
 <Label fx:id="foo">I am a simple label</Label>
 ```
 
-There is one caveat, though. [This same ID is used to link to a component object declared in your controller with the same name](/javafx-fxml-scene-builder/#injecting-components-to-controller). Since the id and the name of the field in controller need to match, `fx:id` needs to respect Java's naming restriction for field names. Even though the CSS naming convention dictates individual words separated by `-`, it is an invalid character for JAva field names. For `fx:id` with multiple words, you need, therefore, to use a different naming convention such as CamelCase or use underscores.
+There is one caveat, though. [This same ID is used to link to a component object declared in your controller with the same name](/javafx-fxml-scene-builder/#injecting-components-to-controller). Since the id and the name of the field in controller need to match, `fx:id` needs to respect Java's naming restriction for field names. Even though the CSS naming convention dictates individual words separated by `-`, it is an invalid character for Java field names. For `fx:id` with multiple words, you need, therefore, to use a different naming convention such as CamelCase or use underscores.
 
 ```xml
 <!--  This is not valid  -->
@@ -290,7 +288,7 @@ Styling on component level may be convenient, but it is a quick and dirty soluti
 Moreover, you no longer have a single central place where your styling is defined. When you need to change something across a set of similar components, you need to modify each of the components individually instead of editing just one place in your external stylesheet. Inline styling components should be therefore avoided.
 
 ## Stylesheet priorities
-You can provide styling on multiple levels - scene, parent, inline styles, and there is a default modena stylesheet. If you change that same property of the same component on multiple levels, JavaFX has a priority setting, which resolves what styles should be uses. The list of priorities is - from highest to lowest:
+You can provide styling on multiple levels - scene, parent, inline styles, and there is a default modena stylesheet. If you change that same property of the same component on multiple levels, JavaFX has a priority setting, which resolves what styles should be used. The list of priorities is - from highest to lowest:
 
 1. Inline styles
 2. Parent styles
