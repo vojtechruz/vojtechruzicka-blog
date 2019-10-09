@@ -95,6 +95,8 @@ label.getStyleClass().addAll("my-label", "other-class");
 
 Adding classes this way does not remove the default class of the component (label in this case).
 
+There is one special class called `root`. It means the root component of your scene. You can use it to style everything inside your scene (sucha as setting global font). It is similar to using body tag selector in HTML.
+
 ### ID
 Another way of selecting components in CSS is to use component's ID. It is a unique identifier of a component. Unlike classes, which can be assigned to multiple components, ID should be unique in a scene.
 
@@ -133,7 +135,7 @@ label.setId("foo");
 
 ## Pseudo classes
 
-## Custom pseudo classes 
+### Custom pseudo classes 
 
 ## Default stylesheet
 Even if you don't provide any styles yourself, JavaFX application already has some visual styling. There is a default stylesheet, which is applied to every application. Is is called modena (since JavaFX 8, previously it used to be caspian).
@@ -152,24 +154,39 @@ This stylesheet provides the default styling but takes the lowest priority compa
 In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder):
 
 ```xml
-
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="styles.css"
+            ...
+            >
+  ...
+</BorderPane>
 ```
 
 Or in your Java code:
 
 ```java
-
+String stylesheet = getClass().getResource("/styles.css").toExternalForm();
+scene.getStylesheets().add(stylesheet);
 ```
+
+Note the `toExternalForm()` call. Scene expects stylesheet contents as a string, not the file, so we need to provide contents of our stylesheet instead.
 
 ## Parent stylesheet
 In addition to having a stylesheet for a whole scene, sometimes it may be useful to have styling on layout level. That is - for an individual container such as VBox, HBox or GridPane. Common parent of all layouts is `Parent` class, which defines methods for handling stylesheets on layout level. These styles apply only for the components in the given layout, not for the whole scene. Layout level styling takes precedence over scene level styling.
 
 ```xml
-
+<HBox stylesheets="styles.css">
+    ...
+</HBox>
 ```
 
-```java
+In Java, you need to load the stylesheet contents yourself, same as previously with scene:
 
+```java
+HBox box = new HBox();
+String stylesheet = getClass().getResource("/styles.css").toExternalForm();
+box.getStylesheets().add(stylesheet);
 ```
 
 ## Inline styles
@@ -177,12 +194,19 @@ So far we've covered only cases of assigning an external stylesheet to a whole s
 
 Here you don't have to bother with selector as all the properties are set to a specific component.
 
-```xml
+You can provide multiple properties separated by semicolon:
 
+```xml
+<Label style="-fx-background-color: blue; -fx-text-fill: white">
+  I'm feeling blue.
+</Label>
 ```
 
-```java
+In Java, you can use `setStyle()` method:
 
+```java
+Label label = new Label("I'm feeling blue.");
+label.setStyle("-fx-background-color: blue; -fx-text-fill: white");
 ```
 
 Styling on component level takes precedence over both scene and parent (layout) styling.
@@ -191,8 +215,17 @@ Styling on component level takes precedence over both scene and parent (layout) 
 Styling on component level may be convenient but it is a quick and dirty solution. You give up the main advantage of CSS, which is separating styling from the styled components. You hardcode your visuals directly to the components now. You can no longer easily switch your stylesheets when needed, you cannot change themes. Moreover, you no longer have central single place where your styling is defined. When you need to change something across set of similar components, you need to modify each of the components individually instead of editing just one place in your external stylesheet. Inline styling components should be therefore avoided.
 
 ## Stylesheet priorities
+You can provide styling on multiple levels - scene, parent, inline styles and there is a default modena stylesheet. If you change that same property of the same component on multiple levels, JavaFX has a priority setting which resolves what styles should be uses. The list of priorities is - from highest to lowest:
 
+1. Inline styles
+2. Parent styles
+3. Scene styles
+4. Default styles
 
+That means if you set background color of a certain label both inline and on scene level, JavaFX will use the value set in inline styles as it has higher priority.
+
+## Further reading
+There are numerous CSS properties in JavaFX and describing them is beyond the scope of this post, for detailed list, please see the official [JavaFX CSS Reference Guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).
 
 
 <!--TODO remove this after they fix gatsby-remark-series -->
