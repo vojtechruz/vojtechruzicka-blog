@@ -132,10 +132,83 @@ label.setId("foo");
 ```
 
 ## Properties
+Although CSS used in JavaFX is very similar to the original web CSS, there is one big difference. The property names are different and there is a lot of new properties specific to JavaFx. They are prefixed with `-fx-`.
+
+Here are some examples:
+- `-fx-background-color`: Background color
+- `-fx-text-fill`: Text color
+- `-fx-font-size`: Text size
+
+You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html). 
 
 ## Pseudo classes
+In addition to regular classes, which mark specific components, there are so called pseudo classes, which mark a state of a component. This can be, for example, class for marking that a component has focus or there is the mouse fursor over the component.
+
+There's whole bunch of built-in pseudo classes. Let's take a look at Button. There is multiple pseudo classes, you can use such as:
+
+- `hover`: mouse is over the button
+- `focused`: the button has focus
+- `disabled`: the button is disabled
+- `pressed`: the button is pressed
+
+The pseudo classes start with `:` (eg. `:hover`) in the css selectors. You need of course specify to which component your pseudo class belongs - eg. `button:hover`. The following example shows a selector, which is applied for all buttons, which have focus:
+
+```css
+.button:focused {
+    -fx-background-color: red;
+}
+```
+
+Unlike in CSS, which has just basic pseudoclasses for states like focus and hover, JavaFX has component-specific pseudo classes, which relate to different states or properties of components.
+
+For example:
+- Scrollbars have `horizontal` and `vertical` pseudo classes
+- Cells have `odd` and `even`
+- TitledPane has `expanded` and `collapsed`  
 
 ### Custom pseudo classes 
+In addition to build-in pseudo classes you can define and use your own.
+
+Let's create our custom Label (inheriting from Label class). It will have a new boolean property called `shiny`. If it is true, we want our label to have `shiny` pseudo class.
+
+When the label has the `shiny` pseudo class, we'll set its background to gold:
+
+```css
+.shiny-label:shiny {
+    -fx-background-color: gold;
+}
+```
+
+Now the class itself.
+
+```java
+public class ShinyLabel extends Label {
+    private BooleanProperty shiny;
+
+    public ShinyLabel() {
+        getStyleClass().add("shiny-label");
+
+        shiny = new SimpleBooleanProperty(false);
+        shiny.addListener(e -> {
+            pseudoClassStateChanged(PseudoClass.getPseudoClass("shiny"), shiny.get());
+        });
+    }
+
+    public boolean isShiny() {
+        return shiny.get();
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny.set(shiny);
+    }
+}
+```
+
+There are several important parts here:
+1. We have our boolean property `BooleanProperty` instead of regular `boolean`. This means it is observable and we can listen to changes in its value.
+2. We register listener to be called every time the shiny value is changed using `shiny.addListener()`
+3. When the value changes, we add/remove the shiny pseudo class depending on the current value `pseudoClassStateChanged(PseudoClass.getPseudoClass("shiny"), shiny.get())`.
+4. We add custom class for all the labels `shiny-label`, instead we would have just the `label` class from our parent. This way we can select only shiny labels.
 
 ## Default stylesheet
 Even if you don't provide any styles yourself, JavaFX application already has some visual styling. There is a default stylesheet, which is applied to every application. Is is called modena (since JavaFX 8, previously it used to be caspian).
