@@ -96,7 +96,38 @@ label.getStyleClass().addAll("my-label", "other-class");
 Adding classes this way does not remove the default class of the component (label in this case).
 
 ### ID
+Another way of selecting components in CSS is to use component's ID. It is a unique identifier of a component. Unlike classes, which can be assigned to multiple components, ID should be unique in a scene.
 
+While classes are using `.` before the name in their selctors, IDs are marked with `#`.
+
+```css
+#my-component {
+  ...
+}
+```
+
+In FXML, you can use `fx:id` to set the component's CSS id.
+
+```xml
+<Label fx:id="foo">I am a simple label</Label>
+```
+
+There is one caveat though. [This same ID is used to link to a component object declared in your controller with the same name](/javafx-fxml-scene-builder/#injecting-components-to-controller). Since the id and the name of the field in controller need to match, `fx:id` needs to respect Java's naming restriction for field names. Even though CSS naming convention dictates individual words sparated by `-`, it is an invalid character for JAva field names. For `fx:id` with multiple words, you need therefore to use a different naming convention such as CamelCase or use underscores.
+
+```xml
+<!--  This is not valid  -->
+<Label fx:id="my-label">I am a simple label</Label>
+<!--  This is valid  -->
+<Label fx:id="my_label">I am a simple label</Label>
+<Label fx:id="MyLabel">I am a simple label</Label>
+```
+
+In Java, you can just call `setId()` method on your component.
+
+```java
+Label label = new Label("I am a simple label");
+label.setId("foo");
+```
 
 ## Properties
 
