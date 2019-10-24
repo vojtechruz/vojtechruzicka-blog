@@ -1,7 +1,7 @@
 ---
 title: 'Migration to JAM stack and Netlify from WordPress'
 date: "2018-05-21T22:12:03.284Z"
-dateModified: "2018-08-21"
+dateModified: "2019-10-24"
 tags: ['Blogging', 'JAMStack']
 path: '/jamstack-migration-netlify'
 featuredImage: './jamstack-migration-netlify.jpg'
@@ -83,6 +83,31 @@ WordPress does not only serve your content, but it is also a Content Management 
 Fortunately, [there is plenty of them](https://headlesscms.org/), which you can use for your JAM Stack static site. Moreover, having decoupled creation and serving of content is very powerful. Also, because you are using git for your site, you can easily utilize its power to achieve scenarios such as editorial workflow, where articles are created as drafts and then need to be approved before publishing. So all is version controlled with all its advantages.
 
 You can use any CMS you want, but if you want to stick with Netlify, you can utilize its [Netlify CMS](https://www.netlifycms.org/), which is also available as a [GatsbyJs Plugin](https://www.gatsbyjs.org/docs/netlify-cms/).
+
+### UPDATE: Netlify Analytics
+One of the new features recently introduced is Netlify Analytics. All the data is captured on the server, so there is no performance hit from downloading and executing client-side analytics, no extra requests. It works even with adblockers and disabled Javascript. You can read a full review in the following post:
+
+ <div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/netlify-analytics/" style="box-shadow: none;">Netlify Analytics Review: Google Analytics alternative?</a></h4><small class="front-post-info"><span class="front-post-info-date">11 October, 2019</span><div class="post-tags"><ul><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/netlify-analytics/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 56.25%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQAE/8QAFQEBAQAAAAAAAAAAAAAAAAAABAD/2gAMAwEAAhADEAAAAR0jV0G1W2j/AP/EABoQAAICAwAAAAAAAAAAAAAAAAACAQMSISL/2gAIAQEAAQUCWBF3gKUCxz//xAAYEQACAwAAAAAAAAAAAAAAAAAAAQMREv/aAAgBAwEBPwGZ0YZ//8QAFxEBAAMAAAAAAAAAAAAAAAAAAAISMf/aAAgBAgEBPwGGLv/EABYQAQEBAAAAAAAAAAAAAAAAAAABIP/aAAgBAQAGPwJMR//EABoQAAIDAQEAAAAAAAAAAAAAAAABESExQVH/2gAIAQEAAT8hn2kyHgtpCSMOmW3wRgf/2gAMAwEAAgADAAAAEHgP/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAwEBPxBByGN2/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAECAQE/EDmpY3//xAAbEAEBAAIDAQAAAAAAAAAAAAABEQAhMUFhkf/aAAgBAQABPxAmUI17ghOpak+5CUV3m7soc3L5Fg79ykipXP/Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><source srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
+ /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
+ /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
+ /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
+ /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
+ /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
+ /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
+ /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
+ /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
+ /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
+ /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" src="/linked/netlify-analytics/29fd0/netlify-analytics.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><source srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
+ /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
+ /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
+ /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
+ /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
+ /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
+ /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
+ /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
+ /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
+ /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
+ /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" src="/linked/netlify-analytics/29fd0/netlify-analytics.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.</span></div></div>
 
 ### And much more
 Features above make Netlify such a great and powerful tool, yet easy to use. Netlify, however, offers much more. These more advanced, features are not needed for my simple use case of a personal blog, but they can be valuable in other cases.
