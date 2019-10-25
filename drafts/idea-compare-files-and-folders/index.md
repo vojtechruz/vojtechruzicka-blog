@@ -1,14 +1,14 @@
 ---
-title: ''
-date: ""
+title: 'Comparing files and dolders in IntelliJ IDEA'
+date: "2019-10-25T22:12:03.284Z"
 tags: ["IDEA"]
 path: '/idea-compare-files-and-folders'
 featuredImage: './idea-compare.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99041 http://vojtechruzicka.com/?p=99041'
+excerpt: 'Numerous ways of comparing files, folders and code snippets in IntelliJ IDEA.'
 ---
 
-![AI](./idea-compare.jpg)
+![IntelliJ IDEA compare files and folders](./idea-compare.jpg)
 
 ## Comparing project files
 Let's say there are two similar files in your project and you need to compare them line by line. With IDEA, that's very easy. Just select both files in your project window (holding <kbd>Ctrl</kbd> for multi selection).
@@ -19,7 +19,7 @@ Now you have two options:
 
 Now the new window opens, which contains two panels, each with one file. This is very similar to diff in Version Control Systems such as Git
 
-TODO image
+![IDEA Compare files](idea-compare-files.png)
 
 Each difference is color coded:
 - No coloring means content is the same
@@ -56,7 +56,7 @@ This opens a brand new diff window with both panels blank, so you can copy and p
 ## Comparing with the local previous version of the file
 Even if you're not using any Version Control system, IDEA stores historical versions of your local files. You can right click in your editor and select `Local hostory → Show history`.
 
-TODO image
+![Local History](idea-local-history.png)
 
 Here you can browse older versions of your current file and see the difference between the old and the current version and apply any changes if required.
 
@@ -75,5 +75,11 @@ Compares the local file with its previous versions
 ## Comparing Folders
 Comparison works not only for individual files but also for the whole directories. The process is the same as for files - just select two folders in your Project window and press <kbd>Ctrl</kbd> + <kbd>D</kbd> or right click and `Compare Directories`.
 
-TODO image
+![Compare directories](idea-compare-directories.png)
 
+Here you can see list of all the file present in both or in either one of the directories. You can easily spot which files are present in just one folder and which in both. These in both, you can compare as usual.
+
+### Synchronizing folders
+The directory diff tool is useful not only for spotting differences in both directories, but also for sycnhronizing changes. You can apply changes for individual sections of each file as usual. But you can also mark files present only in one of the directories to be either kept or synchronized to the other direcotry. You cam change desired action for each file in the `*` column. Once you are satisfied, you can hit either `Synchronize elected` or `Synchronize all`.
+
+![Synchronize Folders](idea-synchronize-directories.png)
