@@ -9,3 +9,13 @@ excerpt: ''
 ---
 
 ![AI](./ai.jpg)
+
+
+## Codota
+
+
+## TabNine
+
+### Pricing
+
+--https://livablesoftware.com/smart-intelligent-ide-programming
