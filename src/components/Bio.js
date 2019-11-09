@@ -1,39 +1,50 @@
 import React from "react";
 
-import profilePic from "./profile.jpg";
-import { rhythm } from "../utils/typography";
-import { Link } from "gatsby";
+import {rhythm} from "../utils/typography";
+import {Link} from "gatsby";
 
 class Bio extends React.Component {
-  render() {
-    return (
-      <div
-        style={{
-          display: "flex",
-          marginBottom: rhythm(1.0),
-          marginTop: rhythm(0.5)
-        }}
-      >
-        <img
-          src={profilePic}
-          alt={`Vojtech Ruzicka`}
-          style={{
-            borderRadius: 50,
-            marginRight: rhythm(1 / 2),
-            marginBottom: 0,
-            width: rhythm(2),
-            height: rhythm(2)
-          }}
-        />
-        <div style={{ paddingTop: 0.5 + "rem" }}>
-          Written by&nbsp;
-          <strong>
-            <Link to="/about/">Vojtech Ruzicka</Link>
-          </strong>
-        </div>
-      </div>
-    );
-  }
+
+    render() {
+        const {name, bio, avatar, homepage} = this.props.author;
+        let link;
+        if(homepage.startsWith("http")) {
+            link = <a href={homepage} target="_blank">{name}</a>
+        } else {
+            link = <Link to={homepage}>{name}</Link>
+        }
+        let biography;
+        if(bio) {
+            biography = <div>{bio}</div>
+        }
+
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    marginBottom: rhythm(1.0),
+                    marginTop: rhythm(1),
+                    alignItems: "center"
+                }}
+            >
+                <img
+                    src={`/authors/${avatar}`}
+                    alt={name}
+                    style={{
+                        borderRadius: 50,
+                        marginRight: rhythm(1 / 2),
+                        marginBottom: 0,
+                        width: rhythm(2),
+                        height: rhythm(2)
+                    }}
+                />
+                <div>
+                    <div><strong>{link}</strong></div>
+                    {biography}
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Bio;

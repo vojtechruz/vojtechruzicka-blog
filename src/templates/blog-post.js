@@ -14,7 +14,6 @@ import {
     TumblrShareButton,
     EmailShareButton,
     FacebookIcon,
-    GooglePlusIcon,
     TwitterIcon,
     RedditIcon,
     LinkedinIcon,
@@ -32,10 +31,20 @@ class BlogPostTemplate extends React.Component {
         const siteTitle = get(this.props, "data.site.siteMetadata.title");
         const siteUrl = get(this.props, "data.site.siteMetadata.siteUrl");
         const shareIconSize = 32;
+        const authors = get(this.props, "data.allAuthorsJson.edges").map(edge => edge.node);
+        let author;
+
+        if(post.frontmatter.author) {
+            author = authors.find(author => {
+                return author.name === post.frontmatter.author;
+            });
+        } else {
+            author = authors[0];
+        }
 
         const disqusShortname = "vojtech-ruzickas-programming-blog";
         let url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
-        if(!url.endsWith("/")) {
+        if (!url.endsWith("/")) {
             url = url + "/";
         }
         let disqusArticleIdentifier;
@@ -121,7 +130,7 @@ class BlogPostTemplate extends React.Component {
         );
 
         let dateModified = post.frontmatter.dateModified;
-        if(!dateModified){
+        if (!dateModified) {
             dateModified = post.frontmatter.date;
         }
 
@@ -170,7 +179,7 @@ class BlogPostTemplate extends React.Component {
         ];
 
         let lastUpdated;
-        if(post.frontmatter.dateModified) {
+        if (post.frontmatter.dateModified) {
             lastUpdated = (<div>Last Updated: {dateModified}</div>);
         }
 
@@ -191,7 +200,7 @@ class BlogPostTemplate extends React.Component {
                     <meta property="og:url" content={url}/>
                     <meta property="og:site_name" content={siteTitle}/>
                     <meta property="og:type" content="article"/>
-                    <meta property="og:locale" content="en_US" />
+                    <meta property="og:locale" content="en_US"/>
                     <meta property="fb:app_id" content="2072264049710958"/>
 
                     <meta name="twitter:creator" content="@vojtechruzicka"/>
@@ -244,7 +253,7 @@ class BlogPostTemplate extends React.Component {
                 />
                 <span>Tagged with: </span>
                 <Tags tags={post.frontmatter.tags}/>
-                <Bio/>
+                <Bio author={author}/>
                 <hr/>
                 <div>
                     <p>
@@ -320,6 +329,16 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
+    allAuthorsJson {
+      edges {
+        node {
+          name
+          avatar
+          homepage
+          bio
+        }
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
@@ -343,6 +362,7 @@ export const pageQuery = graphql`
         }
         disqusArticleIdentifier
         path
+        author
       }
     }
   }

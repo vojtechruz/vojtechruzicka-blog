@@ -34,6 +34,13 @@ module.exports = {
               withWebp: true
             },
           },
+            `gatsby-transformer-json`,
+            {
+                resolve: `gatsby-source-filesystem`,
+                options: {
+                    path: `./src/data/`,
+                },
+            },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {

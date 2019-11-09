@@ -1,6 +1,6 @@
 import React from "react";
 
-import profilePic from "./profile.jpg";
+import profilePic from "../../static/authors/vojtech-ruzicka.jpg";
 import { Link } from "gatsby";
 import SearchBox from "./SearchBox";
 
