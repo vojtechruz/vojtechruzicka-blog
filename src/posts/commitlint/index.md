@@ -3,7 +3,7 @@ title: 'Commitlint: validate your commit conventions automatically'
 date: "2019-11-11T22:12:03.284Z"
 tags: ["Git"]
 path: '/commitlint'
-featuredImage: './commitlint.png'
+featuredImage: './commitlint.jpg'
 disqusArticleIdentifier: '99043 http://vojtechruzicka.com/?p=99043'
 excerpt: 'Automatically check and enforce your commit conventions either with various available configurations.'
 ---
@@ -163,7 +163,7 @@ The full structure of conventional commits is the following:
 ## Continous Integration
 Local setup as described above is necessary and good as a first line of defense. However, it is not bulletproof. Developers can Tinker with the local setup or supress git hooks. You cannot rely purely on local Husky setup. As another line of defense, it is viable to integrate Commitlint with your CI. You can reject invalid commits on the server even if developers manage to sneak them in.
 
-## Travis
+### Travis
 Commitlint supports integration with [Travis CI](https://travis-ci.org/). First, elt's create a `.travis.yml` file in your root directory. We need to configure that it should run the Commitlint script.
 
 ```yaml
@@ -178,4 +178,20 @@ Now we need to install Travis support in our project:
 npm install --save-dev @commitlint/travis-cli
 ```
 
+###
+
+## Commit message wizard
+
+### Prompt CLI
+[@commitlint/prompt-cli](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/prompt-cli)
+
+```
+npm install --g @commitlint/prompt-cli
+```
+
+### Commitizen
+
 ## Conclusion
+Having convention for commit messages has many benefits and you can use many automated tools to utilize that. Automatic generation of changelogs and version bumps are no longer a problem. Not to mention much better readability. Commitlint helps you with that both locally and on your Continous Integration server.
+
+Husky, used by Commit lint is a powerful tool for managing git hooks and can be use not only for commit messages but also for a wide variety of other quality checks.
