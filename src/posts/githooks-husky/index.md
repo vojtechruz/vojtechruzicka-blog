@@ -7,6 +7,7 @@ path: '/githooks-husky'
 featuredImage: './husky.jpg'
 disqusArticleIdentifier: '99006 http://vojtechruzicka.com/?p=99006'
 excerpt: 'Effortless creation and management of git hooks for your Node/NPM projects with Husky.'
+author: 'Vojtech Ruzicka'
 ---
 
 ![Husky](husky.jpg)
