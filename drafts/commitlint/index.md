@@ -38,7 +38,27 @@ The bad news is that this is configured locally in your `.git` directory, so by 
 
 Fortunately, there is a tool called Husky for Node/NPM projects, which solves this issue. You can define your hooks in your project and they are automatically installed for you when running the project. This way all the developers will have proper hooks installed with no effort. If you need to change your hooks, you can do it n just one place, and it gets propagated to all your developers. You can read more about Husky in one of my previous posts:
 
-TODO link to husky
+<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/githooks-husky/" style="box-shadow: none;">Easy git hooks with Husky</a></h4><small class="front-post-info"><span class="front-post-info-date">21 June, 2018</span><div class="post-tags"><ul><li><a href="/tags/git/">#Git</a></li></ul></div></small><div><a class="front-post-image" href="/githooks-husky/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6875%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBAgQF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAQD/2gAMAwEAAhADEAAAAU7781JGhf/EABsQAAICAwEAAAAAAAAAAAAAAAECABEDBBMy/9oACAEBAAEFAhGvKgcNG8pY2Oaz/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8BV//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/AUf/xAAbEAACAgMBAAAAAAAAAAAAAAAAAQIREBIhUf/aAAgBAQAGPwIWjpr07wZKpY//xAAbEAEBAQACAwAAAAAAAAAAAAABEQAhMVFhgf/aAAgBAQABPyFgr9cYpooIoYlzkAGeNywsr7xyM7bv/9oADAMBAAIAAwAAABDz/wD/xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQMBAT8QHY//xAAWEQEBAQAAAAAAAAAAAAAAAAABEBH/2gAIAQIBAT8QTI//xAAbEAEBAAIDAQAAAAAAAAAAAAABEQAhMVFxQf/aAAgBAQABPxCGeJTzISADGrpTx79wAFQigmUXFDDHJwaudiezHOlaAPuf/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><source srcset="/linked/husky/5e4a3/husky.jpg 45w,
+/linked/husky/e451c/husky.jpg 90w,
+/linked/husky/29fd0/husky.jpg 180w,
+/linked/husky/b3ebb/husky.jpg 270w,
+/linked/husky/8841e/husky.jpg 360w,
+/linked/husky/989b1/husky.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/husky/5e4a3/husky.jpg 45w,
+/linked/husky/e451c/husky.jpg 90w,
+/linked/husky/29fd0/husky.jpg 180w,
+/linked/husky/b3ebb/husky.jpg 270w,
+/linked/husky/8841e/husky.jpg 360w,
+/linked/husky/989b1/husky.jpg 1600w" src="/linked/husky/29fd0/husky.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><source srcset="/linked/husky/5e4a3/husky.jpg 45w,
+/linked/husky/e451c/husky.jpg 90w,
+/linked/husky/29fd0/husky.jpg 180w,
+/linked/husky/b3ebb/husky.jpg 270w,
+/linked/husky/8841e/husky.jpg 360w,
+/linked/husky/989b1/husky.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/husky/5e4a3/husky.jpg 45w,
+/linked/husky/e451c/husky.jpg 90w,
+/linked/husky/29fd0/husky.jpg 180w,
+/linked/husky/b3ebb/husky.jpg 270w,
+/linked/husky/8841e/husky.jpg 360w,
+/linked/husky/989b1/husky.jpg 1600w" src="/linked/husky/29fd0/husky.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Effortless creation and management of git hooks for your Node/NPM projects with Husky.</span></div></div>
 
 While Husky can be used to enforce your commit conventions, it can do much more. You can run your static code analysis, tests, automatic code formatting and much more when commiting.
 
@@ -98,15 +118,64 @@ Let's use `@commitlint/config-conventional` for now, but the process would be th
 npm install --save-dev @commitlint/config-conventional
 ```
 
+The last step is to create a Commitlint configuration file, where you define, which configuration should be used. We'll set up the one we just installed. Create a new file called `commitlint.config.js` in the root directory.
+
+```
+module.exports = {
+    extends: ['@commitlint/config-conventional']
+};
+```
+
 ### Verifying the setup
 Now we're good to go. Let's just make sure everything works. Let's make sure our commit messages are tested against the [Conventional Commits](https://www.conventionalcommits.org/) specification. Let's try an ordidary, not structured commit message first.
 
 ```
+C:\projects\commitlint-example>git commit -m "created base project structure"
+husky > commit-msg (node v10.16.3)
+⧗   input: created base project structure
+✖   subject may not be empty [subject-empty]
+✖   type may not be empty [type-empty]
 
+✖   found 2 problems, 0 warnings
+ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+husky > commit-msg hook failed (add --no-verify to bypass)
 ```
 
+The commit was rejected due to missing subject and type. Let's fix that.
+
+```
+git commit -m "feat: created base project structure
 ```
 
+Now the commit was accepted. We added type of the commit `feat` and the part after the colon `:` is considered subject.
+
+The full structure of conventional commits is the following:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+## Continous Integration
+Local setup as described above is necessary and good as a first line of defense. However, it is not bulletproof. Developers can Tinker with the local setup or supress git hooks. You cannot rely purely on local Husky setup. As another line of defense, it is viable to integrate Commitlint with your CI. You can reject invalid commits on the server even if developers manage to sneak them in.
+
+## Travis
+Commitlint supports integration with [Travis CI](https://travis-ci.org/). First, elt's create a `.travis.yml` file in your root directory. We need to configure that it should run the Commitlint script.
+
+```yaml
+language: node_js
+script:
+  - commitlint-travis
+```
+
+Now we need to install Travis support in our project:
+
+```
+npm install --save-dev @commitlint/travis-cli
 ```
 
 ## Conclusion
