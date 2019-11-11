@@ -178,6 +178,10 @@ Now we need to install Travis support in our project:
 npm install --save-dev @commitlint/travis-cli
 ```
 
+Now travis can watch your Pull Requests and check whether new commits are compliant.
+
+![Travis integration](travis.png)
+
 ### Commitlint GitHub action
 Even simpler alternative to Travis is adding a [GitHub Action](https://github.com/features/actions). [There is an action for Commitlint available](https://probot.github.io/apps/commitlint/).
 
@@ -192,9 +196,10 @@ And you will get a comment explaining all the failures:
 ![Github checks comment](commitlint-github-action-comment.png)
 
 ## Commit message wizard
+Conventions are useful, but what's even more useful is to have some tool, which can help you compose valid commit messages. Especially when your convention is new, there are newjoiners or external contributors. Fortunately, there are tool available which help you with crafting compliant commit messages.
 
 ### Prompt CLI
-[@commitlint/prompt-cli](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/prompt-cli)
+Commitlint offers a tool, basically a command-line wizard, which lets you create your commit messages based on series of questions. It is called [@commitlint/prompt-cli](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/prompt-cli). You can easily install it:
 
 ```
 npm install --save-dev @commitlint/prompt-cli
