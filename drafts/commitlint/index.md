@@ -178,7 +178,18 @@ Now we need to install Travis support in our project:
 npm install --save-dev @commitlint/travis-cli
 ```
 
-###
+### Commitlint GitHub action
+Even simpler alternative to Travis is adding a [GitHub Action](https://github.com/features/actions). [There is an action for Commitlint available](https://probot.github.io/apps/commitlint/).
+
+The setup is super-easy. Yous got to [this page] and click `Install`. You can select whether this action should apply for all your repost or just selected ones. And that's it, now whenever you create a Pull Request, it will be automatically checked by Commitlint.
+
+Now if your PR contains invalid commit messages, the checks will fail:
+
+![Github checks fail](commitlint-github-action.png)
+
+And you will get a comment explaining all the failures:
+
+![Github checks comment](commitlint-github-action-comment.png)
 
 ## Commit message wizard
 
@@ -186,10 +197,42 @@ npm install --save-dev @commitlint/travis-cli
 [@commitlint/prompt-cli](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/prompt-cli)
 
 ```
-npm install --g @commitlint/prompt-cli
+npm install --save-dev @commitlint/prompt-cli
 ```
 
+Now you can register `commit` command in your `package.json`.
+
+```
+{
+  "scripts": {
+    "commit": "commit"
+  }
+}
+```
+
+Now instead of `git commit` you can run `npm run commit`. It launches an interactive wizard in your console, which will ask you for all the parts of a commit message such as type, subject and so on.
+
+```
+Please enter a type: [required] [tab-completion] [header]
+<type> holds information about the goal of a change.
+
+<type>(<scope>): <subject>
+<body>
+<footer>
+
+72 characters left
+❯ type:
+```
+
+What's cool is that this wizard automatically loads your configuration from your `commitlint.config.js` and behaves based on that config.
+
 ### Commitizen
+Another option instead of `prompt-cli` is a third-party solution called [Commitizen](http://commitizen.github.io/cz-cli/).
+
+It is also a wizard, which lets you easily create specification-compliant commit messages.
+
+## Example repo
+Youcan find an example repository I created with fully set up Commitlint [here](https://github.com/vojtechruz/commitlint-example/). It includes also Travis integration and prompt-cli with examples of rejected PRs.
 
 ## Conclusion
 Having convention for commit messages has many benefits and you can use many automated tools to utilize that. Automatic generation of changelogs and version bumps are no longer a problem. Not to mention much better readability. Commitlint helps you with that both locally and on your Continous Integration server.
