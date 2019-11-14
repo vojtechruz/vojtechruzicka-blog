@@ -146,3 +146,125 @@ stage.show();
 So why are we using FX Weaver instead? What's problematic is that `FXMLLoader` creates the controller instance for us. That means it is not created and managed by Spring. Therefore we cannot use dependency injection and other spring goodies in our controllers. And that's why we introduced Spring in our JavaFX in the first place!
 
 But when FX Weaver creates the controller for us, it creates it as a spring managed bean, so we can fully utilize the features of Spring.
+
+## Enabling Spring for the controller
+First thing we need to do is to annotate our existing JavaFX controller with `@Component` gets recognized and managed by Spring. Next we need to add `@FxmlView` annotation, so it gets recognized by FX Weaver.
+
+```java{4-5}
+import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.stereotype.Component;
+
+@Component
+@FxmlView("main-stage.fxml")
+public class MyController {
+}
+```
+
+Note the parameter  of `@FxmlView("main-stage.fxml")`. It specifies the name of your `.fxml` file, which should be matched with the controller. It is optional, if you dont specify it will use the name of the controller class as the file name with `.fxml` extension. **The FXML file needs to be in the same package as the controller, but in the resources folder**.
+
+## Making sure everything works
+Now let's make sure everyhting works and integrates nicely. Let's run our `@SpringBootApplication` with its `main` method. You should see a simple window with a label, nothing fancy.
+
+Ok, that means that the application runs, but we didn't really do anything Spring-specific in our controller. No dependency injection or anything. Let's try that now.
+
+### Adding a Service
+To make sure Spring integration works properly, let's create a new Spring-managed service. Later, we'll inject it in our controller and use it there.
+
+```
+import org.springframework.stereotype.Service;
+
+@Service
+public class WeatherService {
+
+    public String getWeatherForecast() {
+        return "It's gonna snow a lot. Brace yourselves, the winter is coming.";
+    }
+}
+```
+
+Nothing special, it's a service for weather forecasting, which is not very dynamic right now, but it will be enought for our example.
+
+### Injecting the service
+Now let's inject our new service into our existing controller. It's the usual Spring stuff, nothing special here.
+
+```java{5,7-10}
+@Component
+@FxmlView("main-stage.fxml")
+public class MyController {
+
+    private WeatherService weatherService;
+
+    @Autowired
+    public MyController(WeatherService weatherService) {
+        this.weatherService = weatherService;
+    }
+}
+```
+
+### Loading the forecast
+Now we need to load the data from our service somehow. Let's change our FMXL view, so:
+
+1. There is a button which loads the data from `WeatherService` on click
+2. The loaded data is shown in a label
+
+```xml{11-12}
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.vojtechruzicka.javafxweaverexample.MyController"
+            prefHeight="100.0" prefWidth="350.0" spacing="10" alignment="CENTER">
+
+    <Label fx:id="weatherLabel"/>
+    <Button onAction="#loadWeatherForecast">Get weather</Button>
+</VBox>
+```
+
+Not the `fx:id="weatherLabel"` identifier, we'll use it to get access to this label in our controller, so we can change its text.
+
+`onAction="#loadWeatherForecast"` is a method on our controller, which should be caled when the button is clicked. We still need to add it to the controller. Let's do it now.
+
+### Controller logic
+The last step is to change our controller so it reacts to the button click in the view, loads weather forecast data and sets it to our label.
+
+So we need a reference to the label from our view, so we can change its text. We need to select its name to match the `fx:id="weatherLabel"`.
+
+```
+@FXML
+private Label weatherLabel;
+```
+
+Now we need to add the method, which is called when the button is clicked - `onAction="#loadWeatherForecast"`.
+
+```
+public void loadWeatherForecast(ActionEvent actionEvent) {
+    this.weatherLabel.setText(weatherService.getWeatherForecast());
+}
+```
+
+In this method we take the weather forecast from the service and set it to our label, which we defiend before. 
+
+If you run the app now, after you click the button, it should load the current weather forecast.
+
+![Weather app is running!](weather-app.png)
+
+## Accessing components from view
+As in plain JAvaFX, you can declare components from view to be injected to you controller, so you can interact wit them.
+
+```
+@FXML
+private Label weatherLabel;
+```
+
+We already saw this works well, you just need to be careful about timing. Our controller is annotated by `@Component`, so it is a regular Spring-managed bean. It means it is instantiated by Spring when the application context starts and all the dependencies are injected. However, the weaving by FX Weaver happens later. And during this weaving the component references are injected. 
+
+This has one implication. In your constructor and `@PostConstruct` you can already work with Spring injected dependencies as usual. However, be aware that during this time, references to components from the view are not yet available and are therefore null.
+
+## Example repository
+There is [an example repository](https://github.com/vojtechruz/javafx-weaver-example) for this blog post, where you can check the final project.
+
+## Conclusion
+FX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages 
