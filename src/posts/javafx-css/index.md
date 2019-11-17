@@ -22,6 +22,7 @@ How to style JavaFX components using good old CSS.
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
     <li class="series-current">JavaFX Tutorial: CSS Styling</li>
+    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
@@ -311,5 +312,6 @@ There are numerous CSS properties in JavaFX, and describing them is beyond the s
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
     <li class="series-current">JavaFX Tutorial: CSS Styling</li>
+    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>

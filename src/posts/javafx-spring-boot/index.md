@@ -10,6 +10,20 @@ excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 
 ![Spring Boot and JavaFX integration](javafx-spring-boot.jpg)
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+        <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+    <li class="series-current">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</li>
+   </ol>
+</div>
+
 <div class="msg-info">There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.</div>
 
 ## JavaFX & Spring
@@ -269,4 +283,18 @@ We already saw this works well, you just need to be careful about timing. Our co
 This has one implication. In your constructor and `@PostConstruct` you can already work with Spring injected dependencies as usual. However, be aware that during this time, references to components from the view are not yet available and are therefore null.
 
 ## Conclusion
-FX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages 
+JavaFX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages its own lifecycle and lifecycle of its controllers. JavaFX Weaver makes the integration possible and quite straightforward, so you can finally use all the cool features of Spring even with JavaFX.
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the JavaFX series</div>
+  <ol>
+    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
+        <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+    <li class="series-current">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</li>
+   </ol>
+</div>

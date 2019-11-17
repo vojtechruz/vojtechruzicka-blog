@@ -26,6 +26,7 @@ In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-b
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li class="series-current">JavaFX Tutorial: Advanced layouts</li>
     <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
@@ -319,5 +320,6 @@ Now when we know how to use various layouts, we'll cover how to style JavaFX  co
     <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
     <li class="series-current">JavaFX Tutorial: Advanced layouts</li>
     <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
