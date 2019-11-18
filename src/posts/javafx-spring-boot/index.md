@@ -1,6 +1,6 @@
 ---
 title: 'JavaFX Weaver: Integration of JavaFX and Spring Boot applications'
-date: "2019-11-17T22:12:03.284Z"
+date: "2019-11-18T22:12:03.284Z"
 tags: ["Spring", "JavaFX"]
 path: '/javafx-spring-boot'
 featuredImage: './javafx-spring-boot.jpg'
@@ -27,15 +27,15 @@ excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 <div class="msg-info">There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.</div>
 
 ## JavaFX & Spring
-When working with Java these days, you rarely work just with plain Java. In most of the projects, people usually use Spring Framework or Spring Boot respectively. It has a lot of advantages and many useful features.
+When working with Java these days, you rarely work just with plain Java. In most of the projects, people usually use the Spring Framework or Spring Boot, respectively. It has a lot of advantages and many useful features.
 
 However, when you're developing JavaFX applications, there is no easy way to integrate it with Spring. The integration does not work out of the box as JavaFX applications have their own lifecycle and take care of instantiating controllers.
 
 ## JavaFX-Weaver
- [JavaFX-Weaver](https://github.com/rgielen/javafx-weaver/) is a project by [Rene Gielen](https://twitter.com/rgielen), which aims to integrate Spring and JavaFX. The setup is fortunately not that hard.
+ [JavaFX-Weaver](https://github.com/rgielen/javafx-weaver/) is a project by [Rene Gielen](https://twitter.com/rgielen), which aims to integrate Spring and JavaFX. The setup is, fortunately, not that hard.
 
 ## Getting started
-Let's try with a plain simple Spring Boot project and let's try to integrate JavaFX. You can generate a new project using [Spring Initializr](https://start.spring.io/). You don't need to add any dependencies here. If you want to avoid getting into setting up JavaFX as a dependency, select a Java version pre-11 [as it still contains JavaFXas a part of the JDK](https://www.vojtechruzicka.com/javafx-getting-started/).
+Let's try with a plain simple Spring Boot project, and let's try to integrate JavaFX. You can generate a new project using [Spring Initializr](https://start.spring.io/). You don't need to add any dependencies here. If you want to avoid getting into setting up JavaFX as a dependency, select a Java version pre-11 [as it still contains JavaFXas a part of the JDK](https://www.vojtechruzicka.com/javafx-getting-started/).
 
 ### Adding a controller
 We'll need a controller and a companion `.fxml` view to be able to test that our application works properly both with Spring and JavaFX. Let' create a controller first. Let's keep it empty for now.
@@ -46,9 +46,9 @@ public class MyController {
 ```
 
 ### Adding a view
-Now we need a `.fxml` file which will be used with our controller as a view. We'll place it in the `resources` folder. **For the integration to work properly it is necessary to create it in the resources folder, but in a directory structure matching the package where is our controller**.
+Now we need a `.fxml` file, which will be used with our controller as a view. We'll place it in the `resources` folder. **For the integration to work properly, it is necessary to create it in the resources folder, but in a directory structure matching the package where is our controller**.
 
-For example, let's assume our controller is in package `com.vojtechruzicka.javafxweaverexample`. The `.fxml` file needs to be placed exaclty here:
+For example, let's assume our controller is in package `com.vojtechruzicka.javafxweaverexample`. The `.fxml` file needs to be placed precisely here:
 
 ```
 src\main\resources\com\vojtechruzicka\javafxweaverexample
@@ -74,15 +74,15 @@ implementation 'javafx-weaver-spring-boot-starter:1.3.0'
 ```
 
 ## Spring Boot Application class
-When we generated our base Spring Boot application, the main application class was also generated for us. It is the class annotated with `@SpringBootApplication`, which is used as an entry-point to run the whole app.
+When we generated our base Spring Boot application, the main application class was also generated for us. It is the class annotated with `@SpringBootApplication`, which is used as an entry point to run the whole app.
 
-But wait! JavaFX has also its [main application class](https://www.vojtechruzicka.com/javafx-hello-world/#application-class), which is used as an entry point for starting JavaFX applications.
+But wait! JavaFX also has its [main application class](https://www.vojtechruzicka.com/javafx-hello-world/#application-class), which is used as an entry point for starting JavaFX applications.
 
-That's confusing. So which one should be actually used to run our app which is both Spring Boot and JavaFX?
+That's confusing. So which one should be actually used to run our app, which is both Spring Boot and JavaFX?
 
-We'll still use our `@SpringBootApplication` with a slight modification. Instead of running the Spring app directly, we'll use it to run our JavaFX app. Ann the JavaFX Application will be responsible for properly starting Spring application context and integrate everything together using JavaFX Weaver.
+We'll still use our `@SpringBootApplication` with a slight modification. Instead of running the Spring app directly, we'll use it to run our JavaFX app. And the JavaFX Application will be responsible for properly starting the Spring application context and integrating everything together using JavaFX Weaver.
 
-We need first to make sure that the Spring Boot app launches our JAvaFX app.
+We need first to make sure that the Spring Boot app launches our JavaFX app.
 
 ```java{13}
 import javafx.application.Application;
@@ -103,7 +103,7 @@ public class SpringBootExampleApplication {
 ```
 
 ## JavaFX Application class
-Now our `@SpringBootApplication` is calling out `JavaFxApplication`, which does not exist yet. Let's create it now.
+Now our `@SpringBootApplication` is calling `JavaFxApplication`, which does not exist yet. Let's create it now.
 
 ```java
 public class JavaFxApplication extends Application {
@@ -122,7 +122,7 @@ public class JavaFxApplication extends Application {
 }
 ```
 
-When the JavaFX initializes, it creates a new application context based on configuration in our `SpringBootExampleApplication` - the main class of the Spring Boot application, which we modified in the previous step.
+When the JavaFX initializes, it creates a new application context based on the configuration in our `SpringBootExampleApplication` - the main class of the Spring Boot application, which we modified in the previous step.
 
 Now we have a Spring Boot application running with our new application context. But we need to make sure the context is properly closed when the JavaFX application terminates. For example, when you close the window. Let's handle this now.
 
@@ -149,7 +149,7 @@ public void start(Stage stage) {
 
 This is where Fx Weaver comes into play. We need to obtain its bean from the application context and then use it to load our FXML. 
 
-## Spring managed controllers
+## Spring-managed controllers
 Traditionally we would create our Stage using `FXMLLoader`, which would load the FXML file and create a Controller instance declared in it for us.
 
 ```java
@@ -162,12 +162,12 @@ stage.setScene(scene);
 stage.show();
 ```
     
-So why are we using FX Weaver instead? What's problematic is that `FXMLLoader` creates the controller instance for us. That means it is not created and managed by Spring. Therefore we cannot use dependency injection and other spring goodies in our controllers. And that's why we introduced Spring in our JavaFX in the first place!
+So why are we using FX Weaver instead? What's problematic is that `FXMLLoader` creates the controller instance for us. That means it is not created and managed by Spring. Therefore we cannot use dependency injection and other Spring goodies in our controllers. And that's why we introduced Spring in our JavaFX in the first place!
 
-But when FX Weaver creates the controller for us, it creates it as a spring managed bean, so we can fully utilize the features of Spring.
+But when FX Weaver creates the controller for us, it creates it as a Spring-managed bean, so we can fully utilize the features of Spring.
 
 ## Enabling Spring for the controller
-First thing we need to do is to annotate our existing JavaFX controller with `@Component` gets recognized and managed by Spring. Next we need to add `@FxmlView` annotation, so it gets recognized by FX Weaver.
+The first thing we need to do is to annotate our existing JavaFX controller with `@Component` so it gets recognized and managed by Spring. Next, we need to add `@FxmlView` annotation, so it gets recognized by FX Weaver.
 
 ```java{4-5}
 import net.rgielen.fxweaver.core.FxmlView;
@@ -179,10 +179,10 @@ public class MyController {
 }
 ```
 
-Note the parameter  of `@FxmlView("main-stage.fxml")`. It specifies the name of your `.fxml` file, which should be matched with the controller. It is optional, if you dont specify it will use the name of the controller class as the file name with `.fxml` extension. **The FXML file needs to be in the same package as the controller, but in the resources folder**.
+Note the parameter  of `@FxmlView("main-stage.fxml")`. It specifies the name of your `.fxml` file, which should be matched with the controller. It is optional. If you don't specify it, Fx Weaver will use the name of the controller class as the file name with `.fxml` extension. **The FXML file needs to be in the same package as the controller, but in the resources folder**.
 
 ## Making sure everything works
-Now let's make sure everyhting works and integrates nicely. Let's run our `@SpringBootApplication` with its `main` method. You should see a simple window with a label, nothing fancy.
+Now let's make sure everything works and integrates nicely. Let's run our `@SpringBootApplication` with its `main` method. You should see a simple window with a label, nothing fancy.
 
 Ok, that means that the application runs, but we didn't really do anything Spring-specific in our controller. No dependency injection or anything. Let's try that now.
 
@@ -201,7 +201,7 @@ public class WeatherService {
 }
 ```
 
-Nothing special, it's a service for weather forecasting, which is not very dynamic right now, but it will be enought for our example.
+Nothing special, it's a service for weather forecasting, which is not very dynamic right now, but it will be enough for our example.
 
 ### Injecting the service
 Now let's inject our new service into our existing controller. It's the usual Spring stuff, nothing special here.
@@ -242,14 +242,14 @@ Now we need to load the data from our service somehow. Let's change our FMXL vie
 </VBox>
 ```
 
-Not the `fx:id="weatherLabel"` identifier, we'll use it to get access to this label in our controller, so we can change its text.
+Note the `fx:id="weatherLabel"` identifier, we'll use it to get access to this label in our controller so that we can change its text.
 
-`onAction="#loadWeatherForecast"` is a method on our controller, which should be caled when the button is clicked. We still need to add it to the controller. Let's do it now.
+`onAction="#loadWeatherForecast"` is a method on our controller, which should be called when the button is clicked. We still need to add it to the controller. Let's do it now.
 
 ### Controller logic
-The last step is to change our controller so it reacts to the button click in the view, loads weather forecast data and sets it to our label.
+The last step is to change our controller, so it reacts to the button click in the view, loads weather forecast data, and sets it to our label.
 
-So we need a reference to the label from our view, so we can change its text. We need to select its name to match the `fx:id="weatherLabel"`.
+So we need a reference to the label from our view so that we can change its text. We need to select its name to match the `fx:id="weatherLabel"`.
 
 ```java
 @FXML
@@ -264,21 +264,21 @@ public void loadWeatherForecast(ActionEvent actionEvent) {
 }
 ```
 
-In this method we take the weather forecast from the service and set it to our label, which we defiend before. 
+In this method, we take the weather forecast from the service and set it to our label, which we defined before. 
 
 If you run the app now, after you click the button, it should load the current weather forecast.
 
 ![Weather app is running!](weather-app.png)
 
 ## Accessing components from view
-As in plain JAvaFX, you can declare components from view to be injected to you controller, so you can interact wit them.
+Same as in plain JavaFX, you can declare components from view to be injected to your controller, so you can interact with them.
 
 ```java
 @FXML
 private Label weatherLabel;
 ```
 
-We already saw this works well, you just need to be careful about timing. Our controller is annotated by `@Component`, so it is a regular Spring-managed bean. It means it is instantiated by Spring when the application context starts and all the dependencies are injected. However, the weaving by FX Weaver happens later. And during this weaving the component references are injected. 
+We already saw this works well. You just need to be careful about timing. Our controller is annotated by `@Component`, so it is a regular Spring-managed bean. It means it is instantiated by Spring when the application context starts and all the dependencies are injected. However, the weaving by FX Weaver happens later. And during this weaving, the component references are injected. 
 
 This has one implication. In your constructor and `@PostConstruct` you can already work with Spring injected dependencies as usual. However, be aware that during this time, references to components from the view are not yet available and are therefore null.
 
