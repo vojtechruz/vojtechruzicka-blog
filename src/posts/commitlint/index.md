@@ -1,6 +1,7 @@
 ---
 title: 'Commitlint: validate your commit conventions automatically'
 date: "2019-11-11T22:12:03.284Z"
+dateModified: "2019-11-18"
 tags: ["Git"]
 path: '/commitlint'
 featuredImage: './commitlint.jpg'
@@ -168,6 +169,8 @@ Commitlint supports integration with [Travis CI](https://travis-ci.org/). First,
 
 ```yaml
 language: node_js
+node_js:
+  - node
 script:
   - commitlint-travis
 ```
