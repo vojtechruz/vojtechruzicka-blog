@@ -11,6 +11,7 @@ excerpt: ''
 ![AI](./ai.jpg)
 
 
+
 ## Codota
 
 
@@ -19,3 +20,5 @@ excerpt: ''
 ### Pricing
 
 --https://livablesoftware.com/smart-intelligent-ide-programming
+
+https://mail.google.com/mail/u/0/#inbox/FMfcgxwGBwQNVVgxZFMLFJGfxxDXzBKh
