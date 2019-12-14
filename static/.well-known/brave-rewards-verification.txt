@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: vojtechruzicka.com
+Token: f56670d52a12118a1754197da829e02588a7ae94e53127e56b3101bbf88792ae
