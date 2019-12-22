@@ -25,3 +25,7 @@ excerpt: ''
 - rainbow brackets
 - inner builder
 - snyk
+- Git toolbox - https://plugins.jetbrains.com/plugin/7499-gittoolbox/
+- bitbucket linky:https://plugins.jetbrains.com/plugin/8015-bitbucket-linky/
+- Spring assistant: https://plugins.jetbrains.com/plugin/10229-spring-assistant
+- armory: https://plugins.jetbrains.com/plugin/7897-armory
