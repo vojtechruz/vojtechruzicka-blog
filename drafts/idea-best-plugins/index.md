@@ -40,10 +40,17 @@ TODO link rich
 
 This is available either as a searate plugin or as IntelliJ IDEA Edu Edition, which is basically IDEA Community edition with this plugin already bundled.
 
+## Extra icons
+This is basically an icon pack, which provides a new icon for special files such as travis configuration, package.json, lint config and many more.
+
+This can be very useful as you can immediately recognize these special files and your project is therefore much easier to navigate. For example, `package.json` is a json file, but is is much more useful to have a special icon for it as it is an important file for npm projects.
+
+TODO image
+
+
 - Grazie
   - https://blog.jetbrains.com/idea/2019/11/meet-grazie-the-ultimate-spelling-grammar-and-style-checker-for-intellij-idea/
 - Codota a dalsi autocomplete
-- New icon types for other fie types
 - MAven helper
 - bash support / cmd support
 - string manipulation
