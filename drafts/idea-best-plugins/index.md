@@ -80,7 +80,7 @@ This is basically an icon pack, which provides a new icon for special files such
 
 This can be very useful as you can immediately recognize these special files and your project is therefore much easier to navigate. For example, `package.json` is a json file, but it is much more useful to have a special icon for it as it is an important file for npm projects.
 
-TODO image
+![Extra Icons](./icons.png)
 
 
 # [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
@@ -92,19 +92,26 @@ Fortunately, there is a plugin called Grazie, which enhances the basic spell che
 
 It allows you to enable checking of commit messages as well. You can lear more in the lbog post [Meet Grazie: the ultimate spelling, grammar, and style checker for IntelliJ IDEA](https://blog.jetbrains.com/idea/2019/11/meet-grazie-the-ultimate-spelling-grammar-and-style-checker-for-intellij-idea/).
 
+## [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
+IDEA already has a powerful tools for [analyzing your dependencies](https://www.vojtechruzicka.com/idea-analyzing-dependencies) and potential problems with them such as conflicts or cyclic dependencies.
 
+Maven helper offers an alternative UI, which shows your dependencies hierarchicaly. This can be easier to read and navigate. Also, if you're using the community edition, this is your only option.
 
+![MAven Helper IntelliJ IDEA plugin](./maven-helper.png)
 
+## [InnerBuilder](https://plugins.jetbrains.com/plugin/7354-innerbuilder/)
+Creating complex objects can be hard. Of course, you can stick with a simple POJO with a whole bunch of setters, but you cannot enforce that created object has all the required fields and is not used in incomplete state. To solve this you need constructors. With more comple objects, this can teald to a whole bunch of [telescopic constructors](https://www.vojtechruzicka.com/avoid-telescoping-constructor-pattern/) with many parameters. In these cases, using a builder is much more appropriate.
+
+This plugin can automatically generate a builder for you from a POJO.
+
+![InnerBuilder plugin for IntelliJ IDEA](./inner-builder-generator.png)
 
 
 - Codota a dalsi autocomplete
-- MAven helper
-- bash support / cmd support
 - string manipulation
 - Atlassion connector for intellij 
 - sonarlint
 - rainbow brackets
-- inner builder
 - Git toolbox - https://plugins.jetbrains.com/plugin/7499-gittoolbox/
 - bitbucket linky:https://plugins.jetbrains.com/plugin/8015-bitbucket-linky/
 - Spring assistant: https://plugins.jetbrains.com/plugin/10229-spring-assistant
