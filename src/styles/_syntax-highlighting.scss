@@ -128,3 +128,23 @@ pre[class*="language-"] {
   padding-left: 0.75em;
   border-left: 0.25em solid darken(#b3d4fc, 15%);
 }
+
+.gatsby-code-button {
+   opacity: 0.2;
+   top: 42px;
+   position: relative;
+   right: 2px;
+   zoom: 0.7;
+ }
+
+.gatsby-code-button:hover {
+  opacity: 0.5;
+  top: 42px;
+  position: relative;
+  right: 2px;
+  zoom: 0.7;
+}
+
+.gatsby-code-button-container {
+  margin-top: -40px;
+}

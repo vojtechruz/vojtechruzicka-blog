@@ -26,6 +26,14 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: 'gatsby-remark-code-buttons',
+            options:
+            {
+                toasterText: 'Copied to clipboard.',
+                tooltipText: `Copy to clipboard`,
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,

@@ -50,6 +50,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.17.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
+    "gatsby-remark-code-buttons": "^2.0.4",
     "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
