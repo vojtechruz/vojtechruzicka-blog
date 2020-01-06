@@ -129,12 +129,15 @@ This is a handy plugin, which allows you to perform variuos actions with your st
 - Grep
 - Trimming
 
+## [Git Toolbox](https://plugins.jetbrains.com/plugin/7499-gittoolbox/)
+Although git support in IntelliJ is already pretty good, this plugin still offers some usefult features on top of that.
+
+You can easily see how many commits is your branch ahead/behind. You can configure automatic fetch with configurable frequency. You can automatically see inline blame information on your current line. 
+
+![Git Toolbox](./git-toolbox.png)
 
 
 
 
 - Codota a dalsi autocomplete
 - sonarlint
-- Git toolbox - https://plugins.jetbrains.com/plugin/7499-gittoolbox/
-- Spring assistant: https://plugins.jetbrains.com/plugin/10229-spring-assistant
-- armory: https://plugins.jetbrains.com/plugin/7897-armory
