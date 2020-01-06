@@ -121,15 +121,20 @@ This plugin is similar to Rainbow brackets, but it does not color your brackets,
 
 Again, this is much less visible in the light theme, so Darcula may be a better choice. 
 
+## [String Manipulation](https://plugins.jetbrains.com/plugin/2162-string-manipulation/)
+This is a handy plugin, which allows you to perform variuos actions with your strings such as:
+- Escaping/un-escaping for various contexts (Java, HTML, XML, SQL, ...)
+- Case switching (lower, upper, kebab, pascal, camel, ...)
+- Sorting
+- Grep
+- Trimming
 
 
 
 
 
 - Codota a dalsi autocomplete
-- string manipulation
 - sonarlint
 - Git toolbox - https://plugins.jetbrains.com/plugin/7499-gittoolbox/
-- bitbucket linky:https://plugins.jetbrains.com/plugin/8015-bitbucket-linky/
 - Spring assistant: https://plugins.jetbrains.com/plugin/10229-spring-assistant
 - armory: https://plugins.jetbrains.com/plugin/7897-armory
