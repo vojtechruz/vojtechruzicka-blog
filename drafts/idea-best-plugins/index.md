@@ -106,12 +106,29 @@ This plugin can automatically generate a builder for you from a POJO.
 
 ![InnerBuilder plugin for IntelliJ IDEA](./inner-builder-generator.png)
 
+## [Rainbow Brackets](https://plugins.jetbrains.com/plugin/10080-rainbow-brackets/)
+If you are struggling with a lot of nested blocks and a lot of brackets, this plugin is for you. It makes it very easy to locate matching brackets as each pair of brackets is color coded.
+
+![Rainbow Brackets IntelliJ IDEA Plugin](./rainbow-brackets.png)
+
+It is quite hard to read with the default color theme, so Darcula is much more suitable for use with this plugin.
+
+## [Indent Rainbow](https://plugins.jetbrains.com/plugin/13308-indent-rainbow/)
+
+This plugin is similar to Rainbow brackets, but it does not color your brackets, but rather your indentation. It can be beneficial if you have a lot of indentation levels, which are harder to navigate. It can even mark lines, which don't mark proper indentation levels with red, so it is immediately obvious when there is a mismatch.
+
+![Indent Rainbow IntelliJ IDEA Plugin](./rainbow-indent.png)
+
+Again, this is much less visible in the light theme, so Darcula may be a better choice. 
+
+
+
+
+
 
 - Codota a dalsi autocomplete
 - string manipulation
-- Atlassion connector for intellij 
 - sonarlint
-- rainbow brackets
 - Git toolbox - https://plugins.jetbrains.com/plugin/7499-gittoolbox/
 - bitbucket linky:https://plugins.jetbrains.com/plugin/8015-bitbucket-linky/
 - Spring assistant: https://plugins.jetbrains.com/plugin/10229-spring-assistant
