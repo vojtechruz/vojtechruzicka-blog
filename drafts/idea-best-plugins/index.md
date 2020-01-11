@@ -136,8 +136,17 @@ You can easily see how many commits is your branch ahead/behind. You can configu
 
 ![Git Toolbox](./git-toolbox.png)
 
+## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
+TODO
 
 
+## [Request Mapper](https://plugins.jetbrains.com/plugin/9567-request-mapper)
+TODO
 
+
+## [IDEA Mind Map](https://plugins.jetbrains.com/plugin/8045-idea-mind-map/)
+TODO
+
+
+TODO
 - Codota a dalsi autocomplete
-- sonarlint
