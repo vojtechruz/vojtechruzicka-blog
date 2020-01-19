@@ -51,7 +51,7 @@ Unlike bitwise complement operator, other bitwise operators need two operands.
 
 A & B means that all the bits of both numbers are compared one by one and the resulting number is calculated based on values of the bits from numbers A and B. Bitwise AND is similar to logical AND in a sense that it results in 1 only when the two compared bits are both equal to 1. Otherwise, it results in 0.
 
-For example: 0110 & 1100 would result in 0100 as the second bit from the left is the only one where both operands contain 1.
+For example: 1010 & 1100 would result in 1000 as the first bit from the left is the only one where both operands contain 1.
 
 ### Bitwise OR \[\|\]
 
