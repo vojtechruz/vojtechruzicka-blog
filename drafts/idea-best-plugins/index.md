@@ -136,11 +136,14 @@ You can easily see how many commits is your branch ahead/behind. You can configu
 
 ![Git Toolbox](./git-toolbox.png)
 
-## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
-TODO
-
-
 ## [Request Mapper](https://plugins.jetbrains.com/plugin/9567-request-mapper)
+IDEA already offers pretty powerful navigation among files. When working with REST endpoints, you may sometimes prefer to navigate to a specific mapping (such as `/persons`) instead of class (such as `PersonController`). This is in cases whee you know the URL, but don't remember which class or method does it correspond to. After pressing the associated keyboard shortcut, you can search your URL mappings and navigate to them directly.
+
+![Request Mapper](./request-mapper.png)
+
+The plugin currently supports Spring, JAX-RS and Micronaut.
+
+## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
 TODO
 
 
