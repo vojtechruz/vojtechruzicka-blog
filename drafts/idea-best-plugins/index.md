@@ -148,7 +148,9 @@ TODO
 
 
 ## [IDEA Mind Map](https://plugins.jetbrains.com/plugin/8045-idea-mind-map/)
-TODO
+It can be very useful to have a mind map editor and viewer directly integrated in your IDE. Not only for quick brainstorming, but also for documentation. The plugin works with `MMD` files, which are text based, so it is very easy to have your mind maps under version control and manage their changes.
+
+![IDEA Mind Map](./mind-map.png)
 
 
 TODO
