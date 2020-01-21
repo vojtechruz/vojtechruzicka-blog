@@ -144,7 +144,11 @@ IDEA already offers pretty powerful navigation among files. When working with RE
 The plugin currently supports Spring, JAX-RS and Micronaut.
 
 ## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
-TODO
+IDEA [does support running multiple tasks (configurations) at once](https://www.jetbrains.com/help/idea/creating-compound-run-debug-configuration.html), however, this feature is currently very limited.
+
+Multirun plugin does support running multiple configurations at once with much more sophisticated options. This can be very useful when running both Backend and Frontend at once, testing multiple modules and so on.
+
+![Multirun](./multirun.png)
 
 
 ## [IDEA Mind Map](https://plugins.jetbrains.com/plugin/8045-idea-mind-map/)
@@ -153,5 +157,10 @@ It can be very useful to have a mind map editor and viewer directly integrated i
 ![IDEA Mind Map](./mind-map.png)
 
 
-TODO
-- Codota a dalsi autocomplete
+## [Codota](https://plugins.jetbrains.com/plugin/7638-codota) and [TabNine](https://plugins.jetbrains.com/plugin/12798-tabnine/)
+
+These two plugins are similar. They enhance your autocomplete based on scanning open-source projects and intelligenlty predicting what you probably want to type base on the context.
+
+With Codota, you can also look up relevant examples of come class or method in public projects, which can be handy.
+
+![Codota relevant examples](./codota.png)
