@@ -10,12 +10,12 @@ excerpt: 'A collection of useful plugins to enhance your IntelliJ IDEA experienc
 
 ![IDEA best plugins](idea-best-plugins.jpg)
 
-## [Key promoter](https://plugins.jetbrains.com/plugin/9792-key-promoter-x/)
-Using keyboard shortcuts instead of your mouse can greatly increase your productivity. With so many features IDEA offers, it can be intimidating and difficult to learn all the shortcuts. Fortunately, there is a plugin called [Key Promoter](/learning-intellij-idea-keyboard-shortcuts/), which can help you. 
+## [Key promoter X](https://plugins.jetbrains.com/plugin/9792-key-promoter-x/)
+Using keyboard shortcuts instead of your mouse can greatly increase your productivity. With so many features IDEA offers, it can be intimidating and difficult to learn all the shortcuts. Fortunately, there is a plugin called [Key Promoter X](/learning-intellij-idea-keyboard-shortcuts/), which can help you. 
 
 The idea is simple: whenever you use your mouse to invoke a command in your IDE, a popup is shown, which tells you what the keyboard shortcut for this action is.
 
-![Key Promoter IntelliJ IDEA Plugin](key-promoter.png)
+![Key Promoter X IntelliJ IDEA Plugin](key-promoter.png)
 
 It even offers you to assign a keyboard shortcut to an action just performed if there is none yet. After a while, it gets so annoying, that you rather make sure you remember your keyboard shortcuts.
 
