@@ -1,6 +1,6 @@
 ---
 title: ''
-date: ""
+date: "2017-09-02T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-records'
 featuredImage: './java-records.jpg'
@@ -15,13 +15,16 @@ excerpt: ''
 TODO
 TODO JDK download
 
+
 ## IntelliJ IDEA Support
 TODO fairly limited now, will be added in future EAP
 TODO just adding constructors and creating new record
+TODO https://www.jetbrains.com/idea/nextversion/
 
-https://openjdk.java.net/jeps/359
 
-JEP 359: Records (Preview)
 
-Release in java 14
+TODO https://openjdk.java.net/jeps/359
+TODO JEP 359: Records (Preview)
 
+TODO Release in java 14
+TODO show decompiled output
