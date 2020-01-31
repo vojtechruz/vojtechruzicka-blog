@@ -1,11 +1,11 @@
 ---
-title: ''
+title: 'TODO'
 date: "2017-09-02T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-records'
 featuredImage: './java-records.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+disqusArticleIdentifier: '99046 http://vojtechruzicka.com/?p=99046'
+excerpt: 'TODO'
 ---
 
 ![Java Records](./java-records.jpg)
@@ -137,13 +137,17 @@ public final class Cat extends java.lang.Record {
 }
 ```
 
-You can see that the code is pretty much the same as our old `Cat`. One notable exception is that the class extends [java.lang.Record](https://download.java.net/java/early_access/jdk14/docs/api/java.base/java/lang/Record.html).
+You can see that the code is pretty much the same as our old `Cat`. One notable exception is that getters for the fields generated are not named as usual - instead of `getColor()`, there is just `color()`.
+
+Also, the class extends [java.lang.Record](https://download.java.net/java/early_access/jdk14/docs/api/java.base/java/lang/Record.html).
 
 The `equals()` implementation considers two records to be equal if they are the same Type and have the same values. The `toString()` implementation prints our record like this:
 
 ```
 Cat[name=Fluffy, numberOfLives=9, color=White]
 ```
+
+Even though these methods are automatically provided for you, it is possible to override them if necessary.
 
 
 ## Limitations
@@ -312,5 +316,6 @@ For Maven builds, you can use the following configuration:
 ```
 
 
-
+<!-- TODO also new in java 14 !>
+<!-- TODO Consider https://cr.openjdk.java.net/~briangoetz/amber/datum.html + curther reading section !>
 
