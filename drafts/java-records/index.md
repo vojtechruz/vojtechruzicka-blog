@@ -147,13 +147,99 @@ Cat[name=Fluffy, numberOfLives=9, color=White]
 
 
 ## Limitations
-TODO 
+There are some restrictions and limitations of records, which you should be aware of.
+
+- Records cannot extend any class, although they can implement interfaces
+- Records cannot be abstract
+- Records are implicitly final, they cannot be inherited from
+- You can declare additional fields in the body of a record, but only if they are static
 
 ## Adding methods
-TODO
+Even though records are mostly used just as plain dara carriers, you can declare your own methods. Of course, since records are immutable you cannot change any state, but it can still be useful. For example:
+
+```java
+public record Cat(String name, int numberOfLives, String color) {
+ 
+    public boolean isAlive() {
+        return numberOfLives >= 0;
+    }
+
+}
+```
+
+You can also add static methods.
 
 ## Custom constructors
-TODO
+By default, new records contain only a constructor, which requires all the fields of the record as parameters. For example, our cat, which has three fields, needs to be constructed like this:
+
+```java
+Cat c = new Cat("Fluffy", 9, "White");
+```
+
+What if some parameters can be optional - if we don't provide them, we can use some default value.
+
+In our case, the number of lives for new cats is likely to be always 9. We can create additional constructor, which accepts only name and color and the number of lives cen be set to 9 as a default value. Of course, the constructor with all three fields still exists and is available.
+
+```java
+public record Cat(String name, int numberOfLives, String color) {
+
+    public Cat(String name, String color) {
+        this(name, 9, color);
+    }
+}
+```
+
+The all-fields constructor is automatically generated for us. but sometimes you need to perform some custom logic there. Such as input validation. You can declare the all-fields constructor by yourself, if you need to:
+
+```java
+public record Cat(String name, int numberOfLives, String color) {
+
+    public Cat(String name,int numberOfLives, String color) {
+        if(numberOfLives < 0) {
+            throw new IllegalArgumentException("Number of lives cannot be less than 0.");
+        }
+
+        if(numberOfLives > 9) {
+            throw new IllegalArgumentException("Cats cannot have that many lives.");
+        }
+
+        this.name = name;
+        this.numberOfLives = numberOfLives;
+        this.color = color;
+    }
+}
+```
+
+If you are overriding the constructor with all the fields which record specifies (canonical constructor), you can use decalration without writing the parameters. They are still provided, but the code is shorter.
+
+```java
+public record Cat(String name, int numberOfLives, String color) {
+
+    // This is the same as public Cat(String name,int numberOfLives, String color)
+    public Cat {
+        // name, numberOfLives and color available here
+    }
+}
+```
+
+## Runtime introspection
+There are two new methods added to `java.lang.Class`, which have records-related functionality.
+
+The first one is called `isRecord()`. It is pretty straightforward, you can just check if something is a record or not:
+
+```java
+Cat cat = new Cat("Fluffy", 9, "White");
+if(cat.getClass().isRecord()) {
+    //...
+}
+```
+
+The other one is `getRecordComponents()`. You would call is in the same way as in the example above. It returns a list of `java.lang.reflect.RecordComponent`. It is basically a list of all the fields, which are in the recors with information such as:
+
+- Name
+- Type
+- Accessor 
+- Annotations
 
 
 ## Try it yourself!
