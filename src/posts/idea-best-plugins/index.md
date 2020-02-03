@@ -159,9 +159,9 @@ It can be very useful to have a mind map editor and viewer directly integrated i
 
 ## [Codota](https://plugins.jetbrains.com/plugin/7638-codota) and [TabNine](https://plugins.jetbrains.com/plugin/12798-tabnine/)
 
-These two plugins are similar. They enhance your autocomplete based on scanning open-source projects and intelligently predicting what you probably want to type base on the context.
+These two plugins are similar. They enhance your autocomplete based on scanning open-source projects and intelligently predicting what you probably want to type based on the context.
 
-With Codota, you can also look up relevant examples of come class or method in public projects, which can be handy.
+With Codota, you can also look up relevant examples of some class or method in public projects, which can be handy.
 
 ![Codota relevant examples](codota.png)
 
