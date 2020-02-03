@@ -1,21 +1,21 @@
 ---
-title: 'TODO'
-date: "2017-09-02T22:12:03.284Z"
+title: 'Java Records (JEP 359)'
+date: "2020-02-03T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-records'
 featuredImage: './java-records.jpg'
 disqusArticleIdentifier: '99046 http://vojtechruzicka.com/?p=99046'
-excerpt: 'TODO'
+excerpt: 'Records are new type in Java 14, which allow you to declare simple data classes without all the boilerplate.'
 ---
 
-![Java Records](./java-records.jpg)
+![Java Records](java-records.jpg)
 
 ## The problem
-One of the problems with Java is its verbosity and the amount of boilerplate code needed. That's nothing new. 
+One of the issues with Java is its verbosity and the amount of boilerplate code needed. That's nothing new. 
 
 Let's consider a simple `Cat` class in Java. We want each cat to have:
 
-- A name
+- Name
 - Number of lives
 - Color
 
@@ -49,7 +49,7 @@ public final class Cat {
 }
 ```
 
-It's already quite long, isn't it. It gets worse. We'll also want to have some basic implementation of `equals()` and `hashCode()`.
+It's already quite long, isn't it? It gets worse. We'll also want to have some basic implementation of `equals()` and `hashCode()`.
 
 ```java
 @Override
@@ -83,7 +83,7 @@ public String toString() {
 
 And we're finally done. It's about fifty lines of code! It's quite painful to write (although your IDE can help here) and difficult to read. What's worse, it's hard to find some extra functionality (such as new methods) in all the boilerplate.
 
-In these fifty lines, there are three lines that are actually interesting and bear some information:
+In these fifty lines, there are only three lines that are actually interesting and bear some information:
 
 ```java
 private final String name;
@@ -91,12 +91,12 @@ private final int numberOfLives;
 private final String color;
 ```
 
-There rest is just boilerplate, which is predictable and can be automatically generated based on these three lines. Your IDE can do that and there are tools such as [Lombok](https://projectlombok.org/features/Data), which can do this for you as well.
+The rest is just boilerplate, which is predictable and can be automatically generated based on these three lines. Your IDE can do that, and there are tools such as [Lombok](https://projectlombok.org/features/Data), which can do this for you as well.
 
-In Java, you often use classes, which just hold data, like our Cat. The implementation is always pretty much the same - a bunch of fields, getters, `equals()`, `hashCode()` and `toString()`. Often it is useful to have them immutable, if possible, which has many benefits. But to write and read such classes is a lot of work as there is a lot of code involved. And it is error prone. Who know wherther your `hashCode()` and `equals()` code is actually correct?
+In Java, you often use classes, which just hold data, like our Cat. The implementation is always pretty much the same - a bunch of fields, getters, `equals()`, `hashCode()` and `toString()`. Often it is useful to have them immutable, if possible, which has many benefits. But to write and read such classes is a lot of work as there is a lot of code involved. And it is error-prone. Who knows whether your `hashCode()` and `equals()` code is actually correct?
 
 ## Records
-[Java 14](https://openjdk.java.net/projects/jdk/14/) tries to solve this issue by introducing a new type called `record`, it is described by [JEP 359: Records (Preview)](https://openjdk.java.net/jeps/359)
+[Java 14](https://openjdk.java.net/projects/jdk/14/) tries to solve this issue by introducing a new type called `Record`, it is described by [JEP 359: Records (Preview)](https://openjdk.java.net/jeps/359)
 
 The same 50 lines long class from the example above could be written as a record like this:
 
@@ -113,7 +113,7 @@ The functionality is the same as in our previous example - we have:
  - Getters
  - equals(), hashCode() and toString()
 
-To illustrate this better, let's look at decompiled version of our record.
+To illustrate this better, let's look at the decompiled version of our record.
 
 ```java
 public final class Cat extends java.lang.Record {
@@ -143,7 +143,7 @@ Also, the class extends [java.lang.Record](https://download.java.net/java/early_
 
 The `equals()` implementation considers two records to be equal if they are the same Type and have the same values. The `toString()` implementation prints our record like this:
 
-```
+```java
 Cat[name=Fluffy, numberOfLives=9, color=White]
 ```
 
@@ -155,11 +155,11 @@ There are some restrictions and limitations of records, which you should be awar
 
 - Records cannot extend any class, although they can implement interfaces
 - Records cannot be abstract
-- Records are implicitly final, they cannot be inherited from
+- Records are implicitly final; they cannot be inherited from
 - You can declare additional fields in the body of a record, but only if they are static
 
 ## Adding methods
-Even though records are mostly used just as plain dara carriers, you can declare your own methods. Of course, since records are immutable you cannot change any state, but it can still be useful. For example:
+Even though records are mostly used just as plain data carriers, you can declare your own methods. Of course, since records are immutable, you cannot change any state, but it can still be useful. For example:
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -177,12 +177,12 @@ You can also add static methods.
 By default, new records contain only a constructor, which requires all the fields of the record as parameters. For example, our cat, which has three fields, needs to be constructed like this:
 
 ```java
-Cat c = new Cat("Fluffy", 9, "White");
+Cat cat = new Cat("Fluffy", 9, "White");
 ```
 
 What if some parameters can be optional - if we don't provide them, we can use some default value.
 
-In our case, the number of lives for new cats is likely to be always 9. We can create additional constructor, which accepts only name and color and the number of lives cen be set to 9 as a default value. Of course, the constructor with all three fields still exists and is available.
+In our case, the number of lives for new cats is likely to be always 9. We can create an additional constructor, which accepts only name and color, and the number of lives can be set to 9 as a default value. Of course, the constructor with all three fields still exists and is available.
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -193,7 +193,7 @@ public record Cat(String name, int numberOfLives, String color) {
 }
 ```
 
-The all-fields constructor is automatically generated for us. but sometimes you need to perform some custom logic there. Such as input validation. You can declare the all-fields constructor by yourself, if you need to:
+The all-fields constructor is automatically generated for us. But sometimes you need to perform some custom logic there. Such as input validation. You can declare the all-fields constructor by yourself if you need to:
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -214,12 +214,12 @@ public record Cat(String name, int numberOfLives, String color) {
 }
 ```
 
-If you are overriding the constructor with all the fields which record specifies (canonical constructor), you can use decalration without writing the parameters. They are still provided, but the code is shorter.
+If you are overriding the constructor with all the fields which record specifies (canonical constructor), you can use a declaration without writing the parameters. They are still available for use, but the code is shorter.
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
 
-    // This is the same as public Cat(String name,int numberOfLives, String color)
+    // This is the same as public Cat(String name, int numberOfLives, String color)
     public Cat {
         // name, numberOfLives and color available here
     }
@@ -238,7 +238,7 @@ if(cat.getClass().isRecord()) {
 }
 ```
 
-The other one is `getRecordComponents()`. You would call is in the same way as in the example above. It returns a list of `java.lang.reflect.RecordComponent`. It is basically a list of all the fields, which are in the recors with information such as:
+The other one is `getRecordComponents()`. You would call it in the same way as in the example above. It returns a list of `java.lang.reflect.RecordComponent`. It is basically a list of all the fields, which are in the record with information such as:
 
 - Name
 - Type
@@ -247,10 +247,10 @@ The other one is `getRecordComponents()`. You would call is in the same way as i
 
 
 ## Try it yourself!
-If you want to try this feature yourself, you can already do so even though Java 14 is not out there yet (as of 1/2020).
+If you want to try this feature yourself, you can already do so even though Java 14 is not out there yet (as of 2/2020).
 
 ### Preview feature
-Records functionality is available in Java 14, however, currently only as a preview feature. What does it mean?
+Records functionality is available in Java 14. However, currently only as a preview feature. What does it mean?
 
 >A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented, and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use; this may lead to it becoming permanent in a future Java SE Platform.
 > 
@@ -258,14 +258,14 @@ Records functionality is available in Java 14, however, currently only as a prev
 
 Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
 
-To try this featue yourself, you'll need to have [JDK 14 installed](https://jdk.java.net/14/). 
+To try this feature yourself, you'll need to have [JDK 14 installed](https://jdk.java.net/14/). 
 
 ### IntelliJ IDEA setup
-In IntelliJ IDEA you can enable preview features under `File → Project Structure`.
+In IntelliJ IDEA, you can enable preview features under `File → Project Structure`.
 
 ![Idea Preview features](idea-records-settings.png)
 
-To use records in intelliJ IDEA, you'll need version `2020.1`and later. As of 1/2020, it is available as [Early Access Program build](https://www.jetbrains.com/idea/nextversion/). Currently IDEA has basic support for records, but full-fledged support should be available with  the release version.
+To use records in IntelliJ IDEA, you'll need version `2020.1`and later. As of 2/2020, it is available as [Early Access Program build](https://www.jetbrains.com/idea/nextversion/). Currently, IDEA has basic support for records, but full-fledged support should be available with the release version.
 
 
 ### Manual compilation
@@ -287,35 +287,33 @@ For Maven builds, you can use the following configuration:
 
 ```xml
 <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>14</release>
-                    <compilerArgs>
-                        --enable-preview
-                    </compilerArgs>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>--enable-preview</argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <configuration>
-                    <argLine>--enable-preview</argLine>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <release>14</release>
+                <compilerArgs>
+                    --enable-preview
+                </compilerArgs>
+                <source>14</source>
+                <target>14</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+                <argLine>--enable-preview</argLine>
+            </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+                <argLine>--enable-preview</argLine>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 
 <!-- TODO also new in java 14 !>
-<!-- TODO Consider https://cr.openjdk.java.net/~briangoetz/amber/datum.html + curther reading section !>
-
