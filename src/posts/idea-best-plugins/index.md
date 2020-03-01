@@ -167,5 +167,14 @@ With Codota, you can also look up relevant examples of some class or method in p
 
 ![Codota relevant examples](codota.png)
 
+## [Nyan cat progress bar](https://plugins.jetbrains.com/plugin/8575-nyan-progress-bar)
+Want to make waiting when idea is loading or building indices more fun? You can replace IDEA progress bars with a [Nyan cat](https://www.youtube.com/watch?v=QH2-TGUlwu4) version.
+
+![Nyan cat progress bar](./nyan-cat.png)
+
+If you're a fan of Street Fighter, you can have [Hadouken version](https://plugins.jetbrains.com/plugin/12453-hadouken-progress-bar) instead.
+
+![Hadouken progress bar](./hadouken.png)
+
 ## Is something missing?
 What are your favorite IDEA plugins? Share in the comments below.
