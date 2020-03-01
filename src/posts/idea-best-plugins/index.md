@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ IDEA best plugins'
 date: "2020-01-21T22:12:03.284Z"
+dateModified: "2020-03-01"
 tags: ["IDEA"]
 path: '/idea-best-plugins'
 featuredImage: './idea-best-plugins.jpg'
