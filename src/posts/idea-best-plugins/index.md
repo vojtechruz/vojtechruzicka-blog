@@ -176,5 +176,10 @@ If you're a fan of Street Fighter, you can have [Hadouken version](https://plugi
 
 ![Hadouken progress bar](./hadouken.png)
 
+## [Grep console](https://plugins.jetbrains.com/plugin/7125-grep-console)
+This is a powerful plugin with a lot of useful features. It allows you to filter your console output, add custom highlighting or folding of similar line groups. You can even play sound or execute a script when a specific line type occurs in your console output. You can also tail files in your project and much more.
+
+![Grep console plugin](./grep-console.png)
+
 ## Is something missing?
 What are your favorite IDEA plugins? Share in the comments below.
