@@ -1,6 +1,7 @@
 ---
 title: 'Adding search to your static JAMStack site'
 date: "2018-06-17T22:12:03.284Z"
+dateModified: "2020-03-13"
 tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
@@ -66,7 +67,7 @@ However, after the initial rejection, I did ask nicely whether they can provide 
 > DocSearch focuses on documentation content that helps the community. It looks like your content is helpful this why we will provide you DocSearch.
 
 ### DocSearch on your own infrastructure
-However, even if your request is rejected, nothing is lost. The whole DocSearch is open-source and you can install and run it [on your own infrastructure](https://community.algolia.com/docsearch/documentation/docsearch-scraper/overview/). It's a viable alternative as the search metadata is still managed and stored externally and collected by DocSearch crawler.
+However, even if your request is rejected, nothing is lost. The whole DocSearch is open-source and you can install and run it [on your own infrastructure](https://docsearch.algolia.com/docs/run-your-own/). It's a viable alternative as the search metadata is still managed and stored externally and collected by DocSearch crawler.
 
 ### Setup and configuration
 One of the advantages of DocSearch how easy it is to set up and configure. You just need to add the following to your page (Algolia team provides you with exact values and details after the registration):
