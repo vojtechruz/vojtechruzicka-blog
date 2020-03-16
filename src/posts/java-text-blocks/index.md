@@ -1,6 +1,7 @@
 ---
 title: 'Java 13 Text Blocks'
 date: "2019-06-23T22:12:03.284Z"
+dateModified: "2020-03-16"
 tags: ["Java"]
 path: '/java-text-blocks'
 featuredImage: './java-text-blocks.jpg'
@@ -241,6 +242,33 @@ String myBlock =  """
 Since the quoting is allowed, you technically can include `\n` and `\"`, but it is not necessary and it is discouraged. You still do need to escape slash `\\`. But in general Text Blocks involve a lot less escaping than good old String literals. All the escape sequences, which can be used in String literals, can be also used for Text Blocks. Check the [Java spec](https://docs.oracle.com/javase/specs/jls/se12/html/jls-3.html#jls-3.10.6) for the full list.
 
 Interpreting escaped characters as the last of the three steps is important as your escapes are not affected by line ending normalization and whitespace removal.
+
+## UPDATE: New Escape sequences
+In Java 14, Text Blocks is still available as a preview feature, with slight enhancements introduced by [JEP 368: Text Blocks (Second Preview)](https://openjdk.java.net/jeps/368#New-escape-sequences).
+
+There are two new escape sequences. The first one is `\` at the end of a line, which supresses automatic insertion of a new line character.
+
+```java
+String oneLineTextBlock =  """
+                           This whole string \
+                           is just on \
+                           one line!\
+                           """
+```
+
+This can be useful, when you want to use a text block just for readability purposes (in your code), but you need to still keep it on one line.
+
+The second one is `\s`, which explicitly inserts a space.
+
+```java
+String oneLineTextBlock =  """
+                           Spaces are preserved   \s
+                           in this \s
+                           string!\s
+                           """
+```
+
+This can be useful as by default the indentation is stripped. However, escape characters are interpreted after this, so they will still be preserved.
 
 ## New String Methods
 As part of Text Blocks proposal, there are three new Methods of `String` class.
