@@ -236,7 +236,7 @@ Text Blocks are not raw strings and you can still use escapes. However, you don'
 String myBlock =  """
                   First line
                   Second Line with " quotes
-                  """
+                  """;
 ```
 
 Since the quoting is allowed, you technically can include `\n` and `\"`, but it is not necessary and it is discouraged. You still do need to escape slash `\\`. But in general Text Blocks involve a lot less escaping than good old String literals. All the escape sequences, which can be used in String literals, can be also used for Text Blocks. Check the [Java spec](https://docs.oracle.com/javase/specs/jls/se12/html/jls-3.html#jls-3.10.6) for the full list.
@@ -253,7 +253,7 @@ String oneLineTextBlock =  """
                            This whole string \
                            is just on \
                            one line!\
-                           """
+                           """;
 ```
 
 This can be useful, when you want to use a text block just for readability purposes (in your code), but you need to still keep it on one line.
@@ -265,7 +265,7 @@ String oneLineTextBlock =  """
                            Spaces are preserved   \s
                            in this \s
                            string!\s
-                           """
+                           """;
 ```
 
 This can be useful as by default the indentation is stripped. However, escape characters are interpreted after this, so they will still be preserved.
