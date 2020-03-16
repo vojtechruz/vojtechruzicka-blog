@@ -1,6 +1,7 @@
 ---
 title: 'IDEA EduTools: Learning directly in your IDE'
 date: "2019-05-05T22:12:03.284Z"
+dateModified: "2020-03-16"
 tags: ["IDEA"]
 path: '/idea-edu-tools'
 featuredImage: './idea-edu-tools.jpg'
@@ -92,6 +93,9 @@ File → Learn and Teach → Browse Courses → Py CheckiO
 ```
 
 Your progress in synchronized with the web as usual.
+
+### UPDATE: Codeforces
+[Starting with EduTools 3.4](https://blog.jetbrains.com/blog/2020/03/04/edutools-plugin-v3-4-released/), there is also supported integration with [Codeforces](https://codeforces.com/). Codeforces is a platform with coding challenges. Now you can solve these challenges directly in your IDE using your favorite language. You can even run included unit tests to check your solution. Whenever you're done, you can submit your work directly from IDEA.
 
 ## Creating courses
 So far, we've discussed only consuming courses created by someone else. What's great about EduTools is that it allows you to easily create your own tasks and courses. It can be a powerful tool when teaching programming.
