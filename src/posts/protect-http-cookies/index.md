@@ -1,6 +1,7 @@
 ---
 title: 'How to protect your HTTP Cookies'
 date: "2018-01-18T22:12:03.284Z"
+dateModified: "2020-03-20"
 tags: ['HTTP']
 path: '/protect-http-cookies'
 featuredImage: './protect-cookies.jpg'
@@ -86,6 +87,23 @@ The second option, *lax*, is more forgiving. It will allow sending the cookie cr
 While this is really good protection against some sorts of CSRF (still does not help if the session ID is, for example, transferred a URL parameter), it is not yet widely supported by the browsers (as of 1/2018). You can check current support on [Can I Use](https://caniuse.com/#search=samesite).
 
 ![protect-cookies-2](./protect-cookies-2.jpg)
+
+**UPDATE**: New SameSite behavior
+Recently, based on the [IETF proposal Incrementally Better Cookies](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01), the behavior of SameSite Cookies has changed.
+
+Originally, if you didn't specify the `SameSite` attribute, it would allow cross-site cookie sharing without limitations. The new behavior is as follows:
+
+- The default behavior is **Lax** if not specified otherwise.
+- There is new option **None**.
+- Cookies with `Samesite=None` must be `Secure`.
+
+This should result in increased security.
+
+There are additional changes in how browsers should treat cookies:
+- Going from `http` to `https` on the same site [is considered cross-site](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01#section-3.3)
+- Cookies on `http` and `https` on the same site [are considered distinct](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01#section-3.4)
+
+This new bahavior is still [not widely supported by all the browsers](https://caniuse.com/#search=samesite) as of 3/2020. Chrome supports this, starting with version 80, the same goes with Edge. In Firefox, you can explicitly enable the support since version 69, however, it is not enabled by default. You can still use `Samesite=None` as it is backward compatible and is be ignored by older browsers.
 
 Minimize Cookie Availability
 ----------------------------
