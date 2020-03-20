@@ -88,18 +88,18 @@ While this is really good protection against some sorts of CSRF (still does not 
 
 ![protect-cookies-2](./protect-cookies-2.jpg)
 
-**UPDATE**: New SameSite behavior
+### UPDATE: New SameSite behavior
+
 Recently, based on the [IETF proposal Incrementally Better Cookies](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01), the behavior of SameSite Cookies has changed.
 
 Originally, if you didn't specify the `SameSite` attribute, it would allow cross-site cookie sharing without limitations. The new behavior is as follows:
 
-- The default behavior is **Lax** if not specified otherwise.
-- There is new option **None**.
+- The default behavior is `Lax` if not specified otherwise.
+- There is new option `None`.
 - Cookies with `Samesite=None` must be `Secure`.
 
-This should result in increased security.
+This should result in increased security. There are additional changes in how browsers should treat cookies:
 
-There are additional changes in how browsers should treat cookies:
 - Going from `http` to `https` on the same site [is considered cross-site](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01#section-3.3)
 - Cookies on `http` and `https` on the same site [are considered distinct](https://tools.ietf.org/html/draft-west-cookie-incrementalism-01#section-3.4)
 
