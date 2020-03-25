@@ -6,3 +6,6 @@ This is the source code for my blog powered by GatsbyJS, running at `https://www
 2. Run `npm install` in the root directory to download the dependencies.
 3. Run `gatsby develop` to run local development server.
 4. Access the running blog on `http://localhost:8000/`.
+
+## Forking
+Feel free to fork this blog and use it for your purposes. You can delete all the posts and change the personal info, themes or anything else.
