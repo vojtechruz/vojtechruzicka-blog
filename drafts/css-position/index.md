@@ -9,3 +9,24 @@ excerpt: ''
 ---
 
 ![CSS Position](./css-position.jpg)
+
+
+## static
+
+## absolute
+
+## absolute
+
+## relative
+
+## sticky
+
+### Browser Support
+TODO  https://caniuse.com/#feat=css-sticky
+TODO polyfills
+TODO prefixed?
+TODO position: -webkit-sticky;
+     position: sticky;
+
+
+![Sticky browser support](sticky-support.png)

@@ -9,3 +9,5 @@ excerpt: ''
 ---
 
 ![CSS Printing](./css-printing.jpg)
+
+## Chrome Dev Tools Print Preview

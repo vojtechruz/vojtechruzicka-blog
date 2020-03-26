@@ -22,3 +22,9 @@ You can check his [Oracle blog](https://blogs.oracle.com/author/geertjan-wieleng
 - [Goodreads book reviews](https://www.goodreads.com/book/show/48574066-developer-advocate)
 - [Interview with the author on InfoQ](https://www.infoq.com/articles/developer-advocate/)
 - [Bootiful podcast about the book](https://spring.io/blog/2019/10/04/a-bootiful-podcast-oracle-s-geertjan-wielenga-on-his-new-book-developer-advocate)
+
+
+
+- TODO useful hints on how different people started
+- TODO you get to know different interesting ppl from the community
+- TODO you can focus only on ppl you are interested in
