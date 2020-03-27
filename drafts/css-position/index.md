@@ -8,7 +8,7 @@ disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'TODO'
 ---
 
-![CSS Position](drafts/css-position/css-position.jpg)
+![CSS Position](drafts/css-positions-position.jpg)
 
 
 ## Position property
@@ -38,8 +38,6 @@ But we also need to define WHERE exactly the element should be placed, not only 
 
 These define how much the element's position should be adjusted and in which direction.
 
-TODO more + examples
-
 ## Position values
 Now let's dig deeper into how different `position` values work.
 
@@ -55,6 +53,9 @@ Unlike with other `position` values, when using `static`, properties such as `to
 ### fixed
 
 ### relative
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/mdJamVb/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### sticky
 
