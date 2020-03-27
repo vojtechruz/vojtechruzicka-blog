@@ -34,6 +34,14 @@ module.exports = {
             }
           },
           {
+            resolve:"@weknow/gatsby-remark-codepen",
+            options: {
+                theme: "dark",
+                height: 400,
+                defaultTab: "result"
+            }
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,
