@@ -85,6 +85,9 @@ Sticky position is the latest addition to the list of `position` properties. It 
 
 The element is normally positioned in the page, but when you reach its position when scrolling, its position becomes fixed. It sticks to its location and stays there when you scroll further.
 
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObLja/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
 #### Browser Support 
 The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky). 
 
