@@ -48,16 +48,42 @@ Even though it is a default value, it can be sometimes useful to explicitly set 
 
 Unlike with other `position` values, when using `static`, properties such as `top`, `left`, `bottom`, `right` or `z-index` have no effect.
 
-### absolute
-
-### fixed
 
 ### relative
+Relative position means that the element will be placed **relative to its original position in the page**. When you set just `position: relative;`, nothing will change. you also need to define how should the placement of the element change relative to its origina position. This can be achieved using `top`, `bottom`, `left` and `right` properties.
+
+For example, `top: 20px;` means that the element will be moved **down** 20 pixels from its original position.
+
+In the example below, gray squares mark the original position of each element before it was moved using `position: relative;`.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/mdJamVb/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
+As you can see, the **space required for the original location of the element is still allocated**.
+
+As a result of element being moved from its original position, there can be a situation, where multiple elements overlap each other. Fortunately, with `z-index` property, you can control which elements should be in the front and which in the back. We'll discuss this in more detail later.
+
+### absolute
+Absolute positioning is trickier. Unlike with `relative` position, lements are removed from the normal document flow and **their original space is not reserved**.
+
+Using `top`, `bottom`, `left` and `right` properties, you determine where should the lement be placed relative to the first parent in the element hierarchy, which has `position` either `relative` or `absolute`.
+
+**If there is no such parent, it will be set relative to the whole page.**
+
+### fixed
+Fixed positioning is similar to `absolute` in a way that the element is also removed from the normal document flow and its original space is not reserved.
+
+The position is determined relative to the viewport. This means that even if you scroll, the element will preserve its original location on the page. This can be useful, for example, if you want to have a navigation bar, which is always visible on the top, no matter where you are on the page. Or a cookie info bar on the bottom.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/xxGMweV/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Although this can be tempting, be careful with its usage. On a mobile device with a small screen, it can be a big deal if a large portion of your screen is always covered with a navigation bar or something similar as it greatly reduces space for the actual content of your page and can greatly limit usability.
+
 ### sticky
+Sticky position is the latest addition to the list of `position` properties. It is a hybrid between `relative` and `fixed` positions.
+
+The element is normally positioned in the page, but when you reach its position when scrolling, its position becomes fixed. It sticks to its location and stays there when you scroll further.
 
 #### Browser Support 
 The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky). 
