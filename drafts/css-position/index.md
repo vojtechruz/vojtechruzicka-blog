@@ -24,7 +24,7 @@ The position property can have any of these values:
 - fixed
 - sticky
 
-We'll cover details of these values a bit later.
+We'll cover details of these values a bit later. As with other properties, you can specify `inherit`, which means the value will be determined from the parent element. This can be useful as by default `position` does not cascade to its child elements.
 
 ## Placement properties
 Position property on its own is not that useful. It only says how the position should be calculated. For example relative to the normal position of an element.
@@ -139,9 +139,36 @@ In the example you can see that you can also specify negative numbers, which wil
 
 
 ## Summary
-TODO
+Let's sum it up. The `position` property allows you to determine how elements should be placed on the page. 
+
+You can define the exact location using `top`, `bottom`, `right` and `left` properties.
+
+In case your elements overlap each other, you can change their order using `z-index`. The higher the index, the closer is the element to the user.
+
+**static**
+- Default value
+- Positioning as usual, same as if you didn't specify position
+
+**relative**
+- The element is placed relative to its normal position in the page
+- The place occupied by the element is preserved at its original location
+
+**absolute**
+- The element is removed from the normal flow and does not occupy space
+- The location is determined relative to the first parent with position either `relative` or `absolute`
+- If there is no such parent, it is determined relative to the whole page
+
+**fixed**
+- The element is removed from the normal flow and does not occupy space
+- The location is determined relative to the viewport
+- elements keep their locations as you scroll
+
+**sticky**
+- elements are positioned relatively until you reach thm by scrolling
+- Then the elements stick to one location, similar to fixed positioning
+- Not supported by all the browsers, you can use polyfills
 
 
 
 
-<!-- TODO TODO inherit: the position value doesn’t cascade, so this can be used to specifically force it to, and inherit the positioning value from its parent. -->
+
