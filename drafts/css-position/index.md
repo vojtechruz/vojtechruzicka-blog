@@ -66,9 +66,24 @@ As a result of element being moved from its original position, there can be a si
 ### absolute
 Absolute positioning is trickier. Unlike with `relative` position, lements are removed from the normal document flow and **their original space is not reserved**.
 
-Using `top`, `bottom`, `left` and `right` properties, you determine where should the lement be placed relative to the first parent in the element hierarchy, which has `position` either `relative` or `absolute`.
+Using `top`, `bottom`, `left` and `right` properties, you determine where should the element be placed relative to the first parent in the element hierarchy, which has `position` either `relative` or `absolute`.
 
 **If there is no such parent, it will be set relative to the whole page.**
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObeJw/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Each orange box is positioned relative to the gray container box. This is possible because the container has `position` either `relative` or `absolute` (in this case it is `relative`). If the container's position was different, let's say static, the orange boxes **would be positioned relative to the whole window**.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzXBrLo/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Another important behavior to notice is that we explicitly set the height of the gray container to `200 px`. That's because, unlike with `relative` position, **absolutely positioned elements are removed from the normal document flow and don't occupy any space when calculating the size of the parent container**.
+
+When we don't specify the height of the gray container box, it would collapse to zero as it does not contain any elements, which are used to determine its size.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/JjdxrBw/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### fixed
 Fixed positioning is similar to `absolute` in a way that the element is also removed from the normal document flow and its original space is not reserved.
