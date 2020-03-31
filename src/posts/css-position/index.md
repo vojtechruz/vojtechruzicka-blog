@@ -1,6 +1,6 @@
 ---
 title: 'CSS Position guide'
-date: "2020-04-01T22:12:03.284Z"
+date: "2020-03-31T22:12:03.284Z"
 tags: ["CSS"]
 path: '/css-position'
 featuredImage: './css-position.jpg'
@@ -44,15 +44,15 @@ Now let's dig deeper into how different `position` values work.
 ### static
 This is the default value, which is used if you don't specify anything else.
 
-Even though it is a default value, it can sometimes be useful to set it explicitly. For example, to override different position value, which is set elsewhere.
+Even though it is a default value, it can sometimes be useful to set it explicitly. For example, to override different `position` value, which is set elsewhere.
 
 Unlike with other `position` values, when using `static`, properties such as `top`, `left`, `bottom`, `right`, or `z-index` have no effect.
 
 
 ### relative
-Relative position means that the element is be placed **relative to its original position in the page**. When you set just `position: relative;`, nothing will change. You also need to define how should the placement of the element change relative to its original position. This can be achieved using `top`, `bottom`, `left` and `right` properties.
+Relative position means that the element is placed **relative to its original position in the page**. When you set just `position: relative;`, nothing will change. You also need to define how should the placement of the element change relative to its original position. This can be achieved using `top`, `bottom`, `left` and `right` properties.
 
-For example, `top: 20px;` means that the element will be moved **down** 20 pixels from its original position.
+For example, `top: 20px;` means that the element will be moved **down** 20 pixels from its original position. In other words, it will be placed 20 pixels from the top edge of its original position.
 
 In the example below, gray squares mark the original position of each element before it was moved using `position: relative;`.
 
@@ -66,14 +66,14 @@ As a result of an element being moved from its original position, there can be a
 ### absolute
 Absolute positioning is trickier. Unlike with the `relative` position, elements are removed from the normal document flow, and **their original space is not reserved**.
 
-Using `top`, `bottom`, `left`, and `right` properties, you determine where the element should be placed relative to the first parent in the element hierarchy, which has `position` either `relative` or `absolute`.
+Using `top`, `bottom`, `left`, and `right` properties, you determine where the element should be placed **relative to the first parent** in the element hierarchy, which has `position`  set to anything else than `static`.
 
 **If there is no such parent, it is set relative to the whole page.**
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObeJw/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-Each orange box is positioned relative to the gray container box. This is possible because the container has `position` either `relative` or `absolute` (in this case, it is `relative`). If the container's position was different, let's say static, the orange boxes **would be positioned relative to the whole window**.
+Each orange box is positioned relative to the gray container box. This is possible because the container has `position` set to `relative`. If the container's position was `static`, the orange boxes **would be positioned relative to the whole page**.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzXBrLo/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
@@ -118,7 +118,7 @@ position: -webkit-sticky;
 If you need to support IE as well, you can use a polyfill such as [StickyBits](https://github.com/yowainwright/stickybits) or [stickyfill](https://github.com/wilddeer/stickyfill).
 
 ## z-index
-When working with `position` other than `static`, can easily be moved to position, where they overlap each other.
+When working with `position` other than `static`, elements can easily appear in position, where they overlap each other.
 
 In such cases, it is handy to have control over the order of these elements. That is - which elements should be displayed in front and which in back.
 
@@ -155,7 +155,7 @@ In case your elements overlap each other, you can change their order using `z-in
 
 **absolute**
 - The element is removed from the normal flow and does not occupy space
-- The location is determined relative to the first parent with position either `relative` or `absolute`
+- The location is determined relative to the first parent set position (other than `static`)
 - If there is no such parent, it is determined relative to the whole page
 
 **fixed**
