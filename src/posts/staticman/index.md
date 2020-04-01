@@ -198,7 +198,7 @@ You can find detailed info about re-captcha integration [here](https://github.co
 # Example
 The source code of a simple GatsbyJS site using Staticman can be found [here](https://github.com/vojtechruz/staticman-example).
 
-Running example is available [here](https://staticman-example.netlify.com/).
+Running example is available [here](https://staticman-example.netlify.app/).
 
 # Conclusion
 Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.

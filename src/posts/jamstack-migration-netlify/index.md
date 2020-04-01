@@ -48,7 +48,7 @@ ___
 
 That's all the setup needed to get up and running. Now Netlify builds your code and publishes it. In some cases, it is all you need. From now on, every time you push new changes to the branch configured above, Netlify builds a new version of your pages using the command provided. Then it deploys this new version and invalidates all the caches. It still keeps the older versions so you can quickly switch to them if anything goes wrong.
 
-If you have a custom domain, you can easily use your own domain name instead of `yoursite.netlify.com`. After this, you can also add HTTPS with just one click (see below).
+If you have a custom domain, you can easily use your own domain name instead of `yoursite.netlify.app`. After this, you can also add HTTPS with just one click (see below).
 
 ### Content Delivery Network
 One of the weaknesses of my previous WordPress setup was performance. The problem was two-fold. First - having a PHP backend generating and serving my content is way slower than just serving a static HTML page. Static site generators such as GatsbyJs or Jekyll solve this issue. The second problem still remains. If you have just one central server distributing your static pages, the latency increases with the distance of your clients from the central server. Having someone connecting from the other end of the world causes a serious performance hit. What's more, you have a single point of failure. If your central server goes down, your content is not served.
