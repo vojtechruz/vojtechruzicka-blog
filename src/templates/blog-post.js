@@ -312,7 +312,8 @@ class BlogPostTemplate extends React.Component {
                 </div>
                 {similarPosts}
                 <hr/>
-                {disqus}
+                {/*TODO temporalily removing ocmments until better alternative to disqus is found*/}
+                {/*{disqus}*/}
             </Layout>
         );
     }
