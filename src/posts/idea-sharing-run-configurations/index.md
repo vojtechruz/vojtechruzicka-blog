@@ -1,16 +1,16 @@
 ---
 title: 'How to share run configurations in IntelliJ IDEA'
-date: ""
+date: "2020-04-03T22:12:03.284Z"
 tags: ['IDEA']
 path: '/idea-sharing-run-configurations'
-featuredImage: './idea-sharing-run-configurations.jpeg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: 'Finally with IDEA 2020.1, you can easily share your runconfiguration among your team members utilizing version control.'
+featuredImage: 'idea-sharing-run-configurations.jpg'
+disqusArticleIdentifier: '99048 http://vojtechruzicka.com/?p=99048'
+excerpt: 'Finally with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version control.'
 ---
 
-![IDEA Sharing Run Configurations](./idea-sharing-run-configurations.jpeg)
+![IDEA Sharing Run Configurations](./idea-sharing-run-configurations.jpg)
 
-Finally with IDEA 2020.1, you can easily share your runconfiguration among your team members utilizing version control.
+Finally with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version control.
 
 ## IDEA settings sharing
 When developing in a team, it is vital to stick to a common set of practices to keep consistency in the development process. Having your IDE configured in the similar way can greatly help you with this. Fortunately, IDEA offers several ways of settings sharing, which can be very useful in such situations. It can be also beneficial for individuals when working with multiple machines. You can read more about it in the following article:
@@ -43,7 +43,7 @@ When developing in a team, it is vital to stick to a common set of practices to 
 ## Run configuration sharing
 You can see your Run Configurations of top of the IDE window next to `Run` and `Debug` buttons.
 
-![IDEA Run Configurations location](run-consfigurations.png)
+![IDEA Run Configurations location](./run-consfigurations.png)
 
 A configuration can be as simple as running your project. You can have one for running tests, deploying to application server and more. Configurations can get more complicated as you introduce more settings such as environmental variables, command line arguments VM options and much more.
 
@@ -62,11 +62,11 @@ As a result, IDEA later introduced concept of sharing your run configuration thr
 
 This is configured per each configuration, so you can have both your personal and shared configurations at the same time.
 
-![IDEA share run config through VCS](idea-share-through-vcs.png)
+![IDEA share run config through VCS](./idea-share-through-vcs.png)
 
 It works in a way that is stores your shared run configurations in `.idea/runConfigurations`. This is better, but still not ideal. Ignoring the whole `.idea` dir does not work anymore and you need to have more coplicated ignore config to ignore everything except the configs directory. Otherwise it won't work.
 
-![IDEA share run config through VCS ignored folder](idea-share-through-vcs-ignored.png)
+![IDEA share run config through VCS ignored folder](./idea-share-through-vcs-ignored.png)
 
 ### Store project file
 
@@ -74,6 +74,6 @@ In version 2020.1, you can now [easily store run configurations](https://blog.je
 
 This replaces the old `Share through VCS` option. For backwards compatibility with older IDE versions, you can still store your files under `.idea/runConfigurations`.
 
-![IDEA Save Run configuration as project file](idea-save-run-config-as-project-file.png)
+![IDEA Save Run configuration as project file](./idea-save-run-config-as-project-file.png)
 
-You can check [an example of stored run configuration file](Config.run.xml).
+You can check [an example of stored run configuration file](./Config.run.xml).

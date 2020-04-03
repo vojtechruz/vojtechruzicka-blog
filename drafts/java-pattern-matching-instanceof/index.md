@@ -16,3 +16,4 @@ tODO JEP 305: Pattern Matching for instanceof (Preview)
 TODO https://openjdk.java.net/jeps/305
 TODO idea support https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/
 TODO https://www.albinhasani.net/making-space-for-pattern-matching.html
+TODO https://jaxenter.com/pattern-matching-for-instanceof-in-java-14-169830.html
