@@ -1,6 +1,6 @@
 ---
 title: 'Java Pattern Matching: InstanceOf (JEP 305)'
-date: "2020-02-06T22:12:03.284Z"
+date: "2020-04-05T22:12:03.284Z"
 tags: ['Java']
 path: '/java-pattern-matching-instanceof'
 featuredImage: './pattern-matching.jpg'
@@ -8,12 +8,12 @@ disqusArticleIdentifier: '99049 http://vojtechruzicka.com/?p=99049'
 excerpt: 'This new feature in Java 14 allows you to simplify your code and get rid of a lot of boilerplate when using instanceof.'
 ---
 
-![Java Pattern Matching InstanceOf](./pattern-matching.jpg)
+![Java Pattern Matching InstanceOf](pattern-matching.jpg)
 
 ## instanceof
 To better understand this new feature, let's look into how `instanceof` operator works. If you are already familiar with it, feel free to skip to the next section.
 
-In short, it tests whether given object is of the given type. Based on this it returns either `true` or `false`.
+In short, it tests whether the given object is of the given type. Based on this, it returns either `true` or `false`.
 
 ```java
     if(animal instanceof Cat) {
@@ -23,7 +23,7 @@ In short, it tests whether given object is of the given type. Based on this it r
     }
 ```
 
-This returns `true` if your object is of the given type or its subtype, otherwise it returns false.
+This returns `true` if your object is of the given type or its subtype. Otherwise, it returns false.
 
 ## Pattern matching for instanceof
 
@@ -45,17 +45,17 @@ public String getAnimalSound(Animal animal) {
 }
 ```
 
-We get an animal as an input. If that animal is an instance of `Cat`, we want get that cat to meow. If it is dog, we need it to bark. Since these methods are not on `Animal` class, but rather on its subclasses, we need to:
+We get an animal as an input. If that animal is an instance of `Cat`, we want to get that cat to meow. If it is a dog, we need it to bark. Since these methods are not on `Animal` class, but rather on its subclasses, we need to:
 
-1. First check what type of animal we have using `instanceof`
-2. Create a new variable of type `Cat` or `Dog`
-3. Cast our animal to the proper type
+1. First, check what type of animal we have using `instanceof`.
+2. Create a new variable of type `Cat` or `Dog`.
+3. Cast our animal to the proper type.
 
 Now we can use our cat or dog. Variation of this can be pretty common.
 
-The code does its job, but it is unnecessary verbose. We usually want to do all the steps above. The casting is unnecessary as we already checked with `instanceof` that we have either `Cat` or `Dog`.
+The code does its job, but it is unnecessarily verbose. We usually want to do all the steps above. The casting is unnecessary as we already checked with `instanceof` that we have either `Cat` or `Dog`.
 
-Fortunately Java 14 introduced a new feature called *Pattern matching for instanceof* described in [JEP 305](https://openjdk.java.net/jeps/305). It is currently a preview feature, which may change.
+Fortunately, Java 14 introduced a new feature called *Pattern matching for instanceof* described in [JEP 305](https://openjdk.java.net/jeps/305). It is currently a preview feature, so it  may change in a future release.
 
 ### The better way
 In Java 14, the example above can be simplified.
@@ -75,10 +75,10 @@ if(animal instanceof Cat cat) {
 
 Here's what changed:
 1. No need to declare cat variable, it is available for us.
-2. There is no casting, we can use cat as if it was of type `Cat`.
-3. The scope of `cat` variable is only inside the `if` block.
+2. There is no casting. We can use the cat as if it was of type `Cat`.
+3. The scope of the`cat` variable is only inside the `if` block.
 
-This is simpler, more concise, easier to read and less error prone.
+This is simpler, more concise, easier to read, and less error-prone.
 
 #### Variable scope
 As already mentioned, the scope of the variable is only limited to the `if` block:
@@ -92,7 +92,7 @@ if(animal instanceof Cat cat) {
 // Can't use cat here either
 ```
 
-However, you can use the variable inside the if condition, you you have more complicated conditions, such as with AND/OR.
+However, you can use the variable inside the `if` condition, if you have more complicated conditions, such as with AND/OR.
 
 ```java
 if(animal instanceof Cat cat && cat.isAlive()) {
@@ -100,10 +100,10 @@ if(animal instanceof Cat cat && cat.isAlive()) {
 }
 ```
 
-After checking `instanceof`, after `&&` we can use `cat` variable already typed as `Cat`, not `Animal`.
+After checking `instanceof`, after `&&`, we can use the `cat` variable already typed as `Cat`, not `Animal`.
 
 ## IDEA Support
-The good news is that there is a good support for this feature in IntelliJ IDEA, introduced in version [2020.1](https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/) (along with support for other Java 14 new features, such as [Records](https://www.vojtechruzicka.com/java-records/) or [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/))
+The good news is that there is good support for this feature in IntelliJ IDEA, introduced in version [2020.1](https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/) (along with support for other Java 14 new features, such as [Records](https://www.vojtechruzicka.com/java-records/) or [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/))
 
 ![IDEA pattern matching instanceof](idea-patter-matching-instanceof.png)
 
@@ -111,7 +111,7 @@ The good news is that there is a good support for this feature in IntelliJ IDEA,
 To try this feature yourself, you'll need to have [JDK 14 installed](https://jdk.java.net/14/). 
 
 ### Preview feature
-Patterm matchine for instanceof functionality is available in Java 14. However, currently only as a preview feature. What does it mean?
+Pattern matching for instanceof functionality is available in Java 14. However, currently only as a preview feature. What does it mean?
 
 >A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented, and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use; this may lead to it becoming permanent in a future Java SE Platform.
 > 
@@ -123,10 +123,7 @@ Such features are shipped in the JDK but are not enabled by default. You need to
 ### IntelliJ IDEA setup
 In IntelliJ IDEA, you can enable preview features under `File → Project Structure`.
 
-![Idea Preview features](idea-records-settings.png)
-
-To use records in IntelliJ IDEA, you'll need version `2020.1`and later. As of 2/2020, it is available as [Early Access Program build](https://www.jetbrains.com/idea/nextversion/). Currently, IDEA has basic support for records, but full-fledged support should be available with the release version.
-
+![Idea Preview features](idea-preview-settings.png)
 
 ### Manual compilation
 Alternatively, if building manually, you need to provide the following params to `javac`:
