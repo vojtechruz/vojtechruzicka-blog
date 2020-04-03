@@ -1,5 +1,5 @@
 ---
-title: 'Java 13 Text Blocks'
+title: 'Java Text Blocks'
 date: "2019-06-23T22:12:03.284Z"
 dateModified: "2020-03-16"
 tags: ["Java"]
