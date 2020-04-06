@@ -73,10 +73,57 @@ It is easy to hide elements by setting `display:none;`:
 ```
 
 ## Margins
-TODO
+When printing, it may be useful to override the default settings for margins of your pages (for example to provide space for writing notes).
+
+```css
+@page {
+  margin: 20mm;
+}
+```
+
+Of course, you can set individual margins separately. This can be useful when printing souble-sided documents. That's because when you want to bind your documents tgether, you need extra space for better readability. However, with double sided pages, this space is either on the left or right of the page depending whether it is odd or even.
+
+Fortunately, you can select odd and even pages by `@page:left` and `@page:right`. Left here means left-facing page and right is right-facing.
+
+```css
+@page:left {
+  margin-right: 30mm;
+}
+
+@page:right {
+  margin-left: 30mm;
+}
+```
+
+if you want to treat the first page separately, you can use `@page:first`.
+
 
 ## Page breaks
-TODO
+For better readability, it can be useful to control where are page breaks inserted. 
+
+### Avoiding breaks
+It can be inconvenient if images or code examples get split across two pages. Fortunately, you can ensure that certain elements will never be split across two pages. Let's say we want to do that for images and code blocks:
+
+```css
+img, pre {
+  page-break-inside: avoid;
+}
+```
+
+Not that this cannot be used on [absolutely positioned elements](https://www.vojtechruzicka.com/css-position/).
+ 
+### Explicit breaks
+Sometimes, it can be useful to explicitly insert page breaks before or after certain elements.
+
+For example, you may need each chapter to start on its own page. You can ahieve it using `page-break-before` on your chapter heading.
+
+```css
+h2 {
+  page-break-before: always;
+}
+```
+
+You can also insert page breaks after an element using `page-break-after`.
 
 ## Hyperlinks
 You should take extra care when handling printed hyperlinks. Many pages these days don't use undelrline for hyperlinks and rather differentiate links by color. This is not very convenient when printing, especially with black and white output. Marking hyperlinks with underline is a good traditional way of recognizing them even when printing.
