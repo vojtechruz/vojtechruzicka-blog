@@ -1,0 +1,23 @@
+@media print {
+
+  #article-content p a:after {
+    content: " (" attr(href) ") ";
+    font-size: 80%;
+  }
+
+  .gatsby-highlight ,.gatsby-resp-image-wrapper {
+    page-break-inside: avoid;
+  }
+
+  .menu-items, .social, .follow-me, .similar-posts, .gatsby-code-button, .bio, .bottom-post-tags {
+    display: none!important;
+  }
+
+  .content-root {
+    border: none!important;
+  }
+
+  #article-content p .gatsby-resp-image-wrapper:first-of-type {
+    display: none!important;
+  }
+}

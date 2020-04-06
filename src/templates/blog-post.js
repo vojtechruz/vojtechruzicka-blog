@@ -251,11 +251,13 @@ class BlogPostTemplate extends React.Component {
                         marginBottom: rhythm(1)
                     }}
                 />
-                <span>Tagged with: </span>
-                <Tags tags={post.frontmatter.tags}/>
+                <div className="bottom-post-tags">
+                    <span>Tagged with: </span>
+                    <Tags tags={post.frontmatter.tags}/>
+                </div>
                 <Bio author={author}/>
                 <hr/>
-                <div>
+                <div class="social">
                     <p>
                         <strong>
                             Get notifications about new posts on{" "}
