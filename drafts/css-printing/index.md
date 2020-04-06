@@ -113,6 +113,13 @@ The second improvement can be restricting this to only external links. We can do
 }
 ```
 
+This solution works, but if you have a lot of links, especially with long URLs, it can become hard to read. There is an alternative solution described by [Aaron Gustafson](https://alistapart.com/article/improvingprint/).
+
+The idea is not to put URL after each link, but rather a reference number (1,2,3,...) and then at the end of document provide a reference table with all the number and their URLs.
+
+This also involves a bit of JAvaScript, but it can be handy when working with a lot of links.
+
+![Printing links with a legend](print-links-legend.png)
 
 ## Adding labels
 TODO page counters, url, site name, copyright
