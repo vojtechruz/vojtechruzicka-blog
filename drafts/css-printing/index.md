@@ -17,6 +17,12 @@ When you want to apply certain CSS rules just when printing, you can easily add 
 <link rel="stylesheet" media="print" href="printing-stylesheet.css">
 ```
 
+If you add your stylesheet this way, it will be applied **id addition** to your regular stylesheet. This is often what you need. However, if you would like to have two distinct stylesheet - one only for screen, one just for printing, you can achieve it like this:
+
+```html
+<link rel="stylesheet" media="screen" href="screen-stylesheet.css"><link rel="stylesheet" media="print" href="printing-stylesheet.css">
+```
+
 Having separate stylesheet just for printing can be useful, if you want to [load it dynamically](http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml), only when needed or you prefer your print styles to be completely separated.
 
 ## Media queries    
@@ -40,8 +46,79 @@ Or only when using screen.
 
 This approach may be preferred to separate print stylesheet as you can easily have regular and print CSS for a page/component on the same place. This makes the maintenance easier and it is less likely that you will forget to update printing styles when making changes to regular styles.
 
+## Check your CSS framework
+If you are using external CSS styles, for example a frameworks such as Bootstrap, you should first check its print support.
+
+Bootstrap, for example, provides some support out of the box - it will hide navigation bar and so on.
+
+## Removing unnecessary content
+Web pages contain a lot of content, which is not really useful when printing, this can be:
+
+- Navigation bar
+- Social share buttons
+- Media content such as video or audio
+- Cookie and subscription toolbars
+- Ads
+
+And much more. It is useful to remove this content. This way your users save paper, ink and the output is easy to read and not cluttered.
+
+It is easy to hide elements by setting `display:none;`:
+
+```css
+@media print {
+  .navigation {
+    display: none;
+  }
+}
+```
+
+## Margins
+TODO
+
+## Page breaks
+TODO
+
+## Hyperlinks
+You should take extra care when handling printed hyperlinks. Many pages these days don't use undelrline for hyperlinks and rather differentiate links by color. This is not very convenient when printing, especially with black and white output. Marking hyperlinks with underline is a good traditional way of recognizing them even when printing.
+
+```css
+@media print {
+  a {
+    text-decoration: underline;
+  }
+}
+```
+
+Another problem with hyperlinks is that in printed document, there is no way to determine where the link is pointing to. Fortunately, this can be fixed with just a little bit of CSS.
+
+```css
+a:after { 
+	content: " (" attr(href) ") "; 
+	font-size: 80%; 
+}
+```
+
+This will include url after each `a` element, so you can clearly see where is it pointing to. The url is a bit smaller than the regular text for better readability.
+
+![Printing link URLs](print-links.png)
+
+This is good but we can do even better. The first issue to solve is to make sure only lniks in text are processed, not all the links on the page. We can prefix the `a` selector in our code with either `p` or better yet, with the container for our page text, such as `#page-content` (or whatever name you might have).
+
+The second improvement can be restricting this to only external links. We can do this by selecting only `a` tags where `href` starts with `http`:
+
+```css
+#page-content a[href^="http"]:after {
+  content: " (" attr(href) ")";
+  font-size: 80%; 
+}
+```
+
+
+## Adding labels
+TODO page counters, url, site name, copyright
+
 ## Handling printing in JS
-With JAvaScript, you don't have to rely on your users to initiate printing of your page, you can trigger it yourself using
+With JavaScript, you don't have to rely on your users to initiate printing of your page, you can trigger it yourself using
 
 ```javascript
 window.print();

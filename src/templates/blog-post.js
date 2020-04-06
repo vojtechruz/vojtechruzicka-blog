@@ -243,7 +243,7 @@ class BlogPostTemplate extends React.Component {
                     {/*</div>*/}
 
                     {/*Feature image needs to be part of the article otherwise sites such as pocket and feedly wont load proper image*/}
-                    <div dangerouslySetInnerHTML={{__html: post.html}}/>
+                    <div id="article-content" dangerouslySetInnerHTML={{__html: post.html}}/>
 
                 </div>
                 <hr
