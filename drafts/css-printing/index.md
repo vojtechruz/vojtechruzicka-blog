@@ -134,6 +134,33 @@ You can also insert page breaks after an element using `break-after`.
 <div class="msg-info">
 There are older properties [page-break-before](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before), [page-break-after](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after) and [page-break-inside](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside), which are now deprecated in favor of break-before, break-after and break-inside.</div>
 
+
+### Paragraph splitting
+Fortunately, you do have fine grained control over how paragraphs get splitted to the next page. We have two properties for this - `widows` and `orphans`.
+
+#### Orphans
+When a paragraph gets splitted over two pages, `orphans` property defines how many lines at minimum should be kept on the first page.
+
+```css
+p {
+  orphans: 4;
+}
+```
+
+#### Widows
+This is vry similar to orphans. It is the minimal number of lines, which should be on the **second** page when a paragraph is splitted on two pages.
+
+```css
+p {
+  widows: 5;
+}
+```
+
+Note that the browser is not 100% guaranteed to follow these rules when printing. It can decide to break this rule in favor of some other printing optimizations.
+
+There is a [good browser support](https://caniuse.com/#feat=css-widows-orphans) (as of 4/2020) for widows and orphans, 93.76%, except for Firefox.
+
+
 ## Hyperlinks
 You should take extra care when handling printed hyperlinks. Many pages these days don't use undelrline for hyperlinks and rather differentiate links by color. This is not very convenient when printing, especially with black and white output. Marking hyperlinks with underline is a good traditional way of recognizing them even when printing.
 
@@ -177,8 +204,60 @@ This also involves a bit of JAvaScript, but it can be handy when working with a 
 
 ![Printing links with a legend](print-links-legend.png)
 
-## Adding labels
-TODO page counters, url, site name, copyright
+## Page Margin Boxes
+When printing a web pages, browsers can include various information in the headers and footers of each page, such as:
+
+- Page numbers
+- Page title
+- Origin URL
+
+Currently, yo do not have control over this content. Fortunately, this is about to change. There is a specification [CSS Paged Media Module Level 3](https://drafts.csswg.org/css-page-3/#margin-boxes), which addresses this issue. 
+
+This can be useful for adding information such as copyright, page logo, custom page counters etc.
+
+There are 16 regions, which you can target:
+- 4 corners of the page
+- 3 regions at each edge (top, bottom, right, left)
+
+For example, if you want to target bottom of the page, you can choose from
+- `bottom-left-corner`
+- `bottom-right-corner`
+- `bottom-left`
+- `bottom-center`
+- `bottom-right`
+
+Let's look at a specific example.
+
+```css
+@page {
+  @top-center { 
+    content: "Vojtech Ruzicka's Programming Blog"; 
+  }
+  @top-right-corner { 
+    content: url(logo.png);
+  }
+  @bottom-right { 
+    content: "Page " counter(page) 
+  }
+}
+```
+
+You can specify not only content, but also additional properties such as fonts or borders:
+
+```css
+@page {
+  @top-center { 
+    content: "Vojtech Ruzicka's Programming Blog"; 
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+  }
+}
+```
+
+The specification is currently in the Editor's Draft stage (as of 3/2020) and currently [no browsers support adding custom headers and footers](https://caniuse.com/#search=page-mar
+). Hopefully, this will change in the near future. You can track the corresponding [Chrome issue](https://bugs.chromium.org/p/chromium/issues/detail?id=320370
+). The older parts of this specification are already implemented (such as setting page margins), but custom content for margin boxes is yet to come.
 
 ## Handling printing in JS
 With JavaScript, you don't have to rely on your users to initiate printing of your page, you can trigger it yourself using
@@ -209,11 +288,11 @@ window.onafterprint = (event) => {
 
 It is usually preferred to do as much as possible in CSS, but sometimes using JS may be necessary.
 
-## Chrome Dev Tools Print Preview
-It can be time consuming to open print preview dialog in your browser every time when you want to check how your page looks when printing.
+## Dev Tools Print Preview
+It can be time consuming to open print preview dialog in your browser every time when you want to check how your page looks when printing. Fortunately in Developer Tools, you can easily emulate how page would look like when printing without triggering he print dialog.
 
-Fortunately in Chrome Devtools you can easily [switch to view](https://developers.google.com/web/tools/chrome-devtools/css/print-preview), which shows how your page would look like when printing.
-
+## Chrome
+In Chrome Devtools the you can [switch to print view](https://developers.google.com/web/tools/chrome-devtools/css/print-preview): 
 1. Open your Devtools
 2. Press  or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>  (or <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> on Mac)
 3. Search for `rendering`
@@ -228,3 +307,8 @@ A new `Rendering` window should appear.
 Here you can select `Emulate CSS media type → print`.
 
 Although, not related to printing, you can emulate some more interesting rendering options in this tab, such as whether user prefers light or dark theme or reduced motion, show FPS and more.
+
+## Firefox
+In Firefox, you need just to click the `Toggle print media simulation for the page` button mared in red in the following image.
+
+![Emulater Print Rendering in Firefox](firefox-print-preview.png)
