@@ -106,24 +106,33 @@ It can be inconvenient if images or code examples get split across two pages. Fo
 
 ```css
 img, pre {
-  page-break-inside: avoid;
+  break-inside: avoid-page;
 }
 ```
 
-Not that this cannot be used on [absolutely positioned elements](https://www.vojtechruzicka.com/css-position/).
- 
+You can also specify that page break should not be inserted before or after an element. This can be useful, for example, so that heading is not placed as a last element on a page and is not separated from the following paragraph.
+
+```css
+h1, h2, h3 {
+  break-after: avoid-page;
+}
+```
+
 ### Explicit breaks
 Sometimes, it can be useful to explicitly insert page breaks before or after certain elements.
 
-For example, you may need each chapter to start on its own page. You can ahieve it using `page-break-before` on your chapter heading.
+For example, you may need each chapter to start on its own page. You can achieve it using `break-before` on your chapter heading.
 
 ```css
 h2 {
-  page-break-before: always;
+  break-before: page;
 }
 ```
 
-You can also insert page breaks after an element using `page-break-after`.
+You can also insert page breaks after an element using `break-after`.
+
+<div class="msg-info">
+There are older properties [page-break-before](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before), [page-break-after](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after) and [page-break-inside](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside), which are now deprecated in favor of break-before, break-after and break-inside.</div>
 
 ## Hyperlinks
 You should take extra care when handling printed hyperlinks. Many pages these days don't use undelrline for hyperlinks and rather differentiate links by color. This is not very convenient when printing, especially with black and white output. Marking hyperlinks with underline is a good traditional way of recognizing them even when printing.

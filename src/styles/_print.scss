@@ -6,7 +6,7 @@
   }
 
   .gatsby-highlight ,.gatsby-resp-image-wrapper {
-    page-break-inside: avoid;
+    break-inside: avoid-page;
   }
 
   .menu-items, .social, .follow-me, .similar-posts, .gatsby-code-button, .bio, .bottom-post-tags {
