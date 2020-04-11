@@ -9,3 +9,12 @@ excerpt: ''
 ---
 
 ![CSS Flexbox](css-flexbox.png)
+
+
+
+## Browser Support
+
+
+TODO flexbox zombies link
+TODO cheatsheet
+TODO table showing which are on parent level vs on item level
