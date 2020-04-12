@@ -17,6 +17,8 @@ excerpt: ''
 - When we describe flexbox as being one dimensional we are describing the fact that flexbox deals with layout in one dimension at a time — either as a row or as a column. This can be contrasted with the two-dimensional model of CSS Grid Layout, which controls columns and rows together.
 - If I were to work in Arabic, then the start edge of my main axis would be on the right and the end edge on the left.
 - flext container vs flex items
+- specification: https://www.w3.org/TR/css-flexbox-1/
+
 
 ## CSS display property
 TODO flex (=flex block)
@@ -44,7 +46,16 @@ You have to be careful when changing order in a flexbox container this way. This
 This has several implications. Most notably, any assistive technologies as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
 
 ## Browser Support
+Fortunately, flexbox currently has [great support](https://caniuse.com/#feat=flexbox) across all the major browsers. That is 98.72% of all the users. It is even supported by IE 11, even though [it has many issues](https://github.com/philipwalton/flexbugs) and some non-standard behavior.
 
+![Flexbox browser support](flexbox-support.png)
+
+If you are targeting some old browsers, you can check [Advanced Cross-Browser Flexbox](https://dev.opera.com/articles/advanced-cross-browser-flexbox/).
+
+## Additional resources
+- [Flexbox specification](https://www.w3.org/TR/css-flexbox-1/)
+- [Solved by Flexbox](https://philipwalton.github.io/solved-by-flexbox/) - showcase of common layout problems solved by Flexbox
+- [Interactive Flexbox playground for testing various flex properties](https://flexbox.help/)
 
 TODO flexbox zombies link
 TODO cheatsheet
