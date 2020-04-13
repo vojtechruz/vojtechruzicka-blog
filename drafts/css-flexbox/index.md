@@ -20,12 +20,26 @@ excerpt: ''
 - specification: https://www.w3.org/TR/css-flexbox-1/
 
 
-## CSS display property
+## Flex container
+
 TODO flex (=flex block)
 TODO flex-inline
 
+### Flex direction
+- default is row
 
-## Ordering items
+### Wrapping
+
+### Aligning content
+- justify-content
+- default flex-start
+- flex-end, center, space-between, space-around
+
+## Item level properties
+
+### Aligning individual items
+
+### Ordering items
 Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
@@ -51,6 +65,14 @@ Fortunately, flexbox currently has [great support](https://caniuse.com/#feat=fle
 ![Flexbox browser support](flexbox-support.png)
 
 If you are targeting some old browsers, you can check [Advanced Cross-Browser Flexbox](https://dev.opera.com/articles/advanced-cross-browser-flexbox/).
+
+## Learning flexbox with zombies
+
+Learning flexbox is way more fun if there are zombies involved. Instead of reading boring tutorials, you can shoot zombies with your crossbox, while learning flexbox. Try [Flexbox Zombies](https://mastery.games/flexboxzombies/) browser game. It is for free.
+
+![Flexbox Zombies](flexbox-zombies.png)
+
+Want some more practice? You can check other games helping you to master Flexbox, such as [Flexbox Defense](http://www.flexboxdefense.com/) - a tower defense game where you position your towers using CSS and flexbox. Another one is [Flexbox Froggy](https://flexboxfroggy.com/) - help Froggy and his friends to reach lilypads and cross a pond by writing CSS code.
 
 ## Additional resources
 - [Flexbox specification](https://www.w3.org/TR/css-flexbox-1/)
