@@ -18,7 +18,7 @@ Although you can put pretty much anything in your commit messages, it is benefic
 
 - Your commit history is more readable and easier to navigate
 - You can automatically generate changelogs
-- Based on the type of changes, you can properly bump your version when using [samentic versioning](https://semver.org/): 
+- Based on the type of changes, you can properly bump your version when using [semantic versioning](https://semver.org/): 
   - major: when introducing breaking changes 
   - minor: when adding a feature
   - fix: when adding a fix
