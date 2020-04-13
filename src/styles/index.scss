@@ -101,6 +101,7 @@ a:hover {
 .share-icons {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
 
   button {
     margin: 0.25rem;
@@ -121,7 +122,8 @@ a:hover {
 
 .blog-name {
   font-size: 1.5rem;
-  margin-bottom: 0;
+  margin-top: -5px;
+  margin-bottom: 5px;
   font-weight: 500;
 
   a {
@@ -135,7 +137,7 @@ a:hover {
   align-items: center;
   margin-bottom: 2.1rem;
   border-bottom: 1px solid hsla(0, 0% ,0%, 0.3);;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 
   hr {
     margin-bottom: 0;
@@ -160,8 +162,13 @@ a:hover {
   margin-bottom: 1.25rem;
 }
 
-.follow-me {
+.lets-connect {
   margin-top: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.follow-me {
   display: flex;
   justify-content: center;
 
@@ -358,4 +365,14 @@ kbd {
   ol {
     margin-bottom: 15px;
   }
+}
+
+.share-label, .notification-link {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.share-label {
+  margin-top: 2rem;
+  font-weight: bold;
 }

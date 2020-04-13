@@ -74,7 +74,7 @@ class BlogPostTemplate extends React.Component {
                 <div className="similar-posts">
                     <hr/>
                     <p>
-                        <strong>Similar posts:</strong>
+                        <h4>Similar posts:</h4>
                     </p>
                     <ul>
                         {relatedPosts.map((post, index) => {
@@ -258,8 +258,7 @@ class BlogPostTemplate extends React.Component {
                 <Bio author={author}/>
                 <hr/>
                 <div class="social">
-                    <p>
-                        <strong>
+                    <p className="notification-link">
                             Get notifications about new posts on{" "}
                             <OutboundLink href="https://twitter.com/vojtechruzicka">
                                 {twitterIcon}Twitter
@@ -271,14 +270,25 @@ class BlogPostTemplate extends React.Component {
                             <OutboundLink href="https://eepurl.com/bZ0waf">
                                 {emailIcon}Email
                             </OutboundLink>.
-                        </strong>
                     </p>
+                    <div className="share-label"><h4>Share this post:</h4></div>
                     <div className="share-icons">
                         <FacebookShareButton
                             url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "Facebook share button"}}
+                            additionalProps={
+                                {
+                                    "aria-label": "Facebook share button",
+                                    "title": "Share this post on Facebook"
+                                }
+                            }
+
                         >
-                            <FacebookIcon round size={shareIconSize}/>
+                            <FacebookIcon  round size={shareIconSize}                             additionalProps={
+                                {
+                                    "aria-label": "Facebook share button",
+                                    "title": "Share this post on Facebook"
+                                }
+                            } />
                         </FacebookShareButton>
                         <TwitterShareButton
                             url={siteUrl + this.props.pageContext.slug}
@@ -314,7 +324,7 @@ class BlogPostTemplate extends React.Component {
                 </div>
                 {similarPosts}
                 <hr/>
-                {/*TODO temporalily removing ocmments until better alternative to disqus is found*/}
+                {/*TODO temporalily removing comments until better alternative to disqus is found*/}
                 {/*{disqus}*/}
             </Layout>
         );
