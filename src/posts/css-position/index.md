@@ -57,7 +57,7 @@ For example, `top: 20px;` means that the element will be moved **down** 20 pixel
 In the example below, gray squares mark the original position of each element before it was moved using `position: relative;`.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/mdJamVb/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/mdJamVb/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 As you can see, the **space required for the original location of the element is still allocated**.
 
@@ -71,19 +71,19 @@ Using `top`, `bottom`, `left`, and `right` properties, you determine where the e
 **If there is no such parent, it is set relative to the whole page.**
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObeJw/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObeJw/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Each orange box is positioned relative to the gray container box. This is possible because the container has `position` set to `relative`. If the container's position was `static`, the orange boxes **would be positioned relative to the whole page**.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzXBrLo/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzXBrLo/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Another important behavior to notice is that we explicitly set the height of the gray container to `200 px`. That's because, unlike with `relative` position, **absolutely positioned elements are removed from the normal document flow and don't occupy any space when calculating the size of the parent container**.
 
 When we don't specify the height of the gray container box, it will collapse to zero as it does not contain any elements, which are used to determine its size.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/JjdxrBw/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/JjdxrBw/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### fixed
 Fixed positioning is similar to `absolute` in a way that the element is also removed from the normal document flow, and its original space is not reserved.
@@ -91,7 +91,7 @@ Fixed positioning is similar to `absolute` in a way that the element is also rem
 The position is determined relative to the viewport. This means that even if you scroll, the element preserves its original location on the page. This can be useful, for example, if you want to have a navigation bar, which is always visible on the top, no matter where you are on the page. Or a cookie info bar on the bottom.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/xxGMweV/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/xxGMweV/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Although this can be tempting, be careful with its usage. On a mobile device with a small screen, it can be a big deal if a large portion of your screen is always covered with a navigation bar or something similar. It dramatically reduces space for the actual content of your page and can significantly limit usability.
 
@@ -101,7 +101,7 @@ The sticky position is the latest addition to the list of `position` properties.
 The element is normally positioned on the page, but when you reach its position when scrolling, its position becomes fixed. It sticks to its location and stays there when you scroll further.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObLja/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYObLja/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 #### Browser Support 
 The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky). 
@@ -133,7 +133,7 @@ z-index: 1;
 The elements with higher `z-index` are displayed in front of elements with lower `z-index`.
 
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/abOPmwy/?height=400&amp;theme-id=light&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/abOPmwy/?height=400&amp;```&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 In the example, you can see that you can also specify negative numbers, which places these elements behind those with no `z-index` or index with value 0.
 
