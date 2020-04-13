@@ -1,5 +1,6 @@
 @import "syntax-highlighting";
 @import "print";
+@import "dark-theme";
 @import "~docsearch.js/dist/npm/styles/main";
 
 $link_color: #007acc;
@@ -42,12 +43,6 @@ a:hover {
   margin-bottom: 1.1rem;
   margin-left: 0;
   padding-left: 0;
-}
-
-.tag-count {
-  display: block;
-  margin-bottom: 1rem;
-  font-weight: 500;
 }
 
 .about-page {

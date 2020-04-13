@@ -1,0 +1,226 @@
+@media (prefers-color-scheme: dark) {
+  html body {
+    background-color: darken(#202020, 1%);
+
+    a {
+      color: #6ab0f3!important;
+
+      &:hover {
+        color: lighten(#6ab0f3,5%)!important;
+      }
+    }
+
+    .menu-items a, .blog-name a, .search-icon {
+      color: #b3b9c5!important;
+      &:hover {
+        color: lighten(#b3b9c5,25%)!important;
+      }
+    }
+
+    .search-box {
+      background-color: rgba(255,255,255,0.02);
+      color: white!important;
+
+      &:focus {
+        background-color: rgba(255,255,255,0.2);
+        color: white!important;
+      }
+    }
+
+    .content-root {
+      background-color: #202020;
+      color: #b3b9c5;
+    }
+
+    .follow-me .follow-me-icon svg {
+      fill: #b3b9c5;
+
+      .inner {
+        fill: transparent;
+      }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: lighten(#b3b9c5, 20%);
+    }
+
+    .linked-article {
+      background-color: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .series-table-of-content {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .gatsby-code-button {
+      fill: #b3b9c5;
+    }
+
+    kbd {
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 0 0.5em;
+      margin: 0 0.2em;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #2d2d2d inset;
+      background-color: #2d2d2d;
+    }
+
+    .gatsby-resp-image-wrapper, img, .front-post-image {
+      opacity: .75;
+      transition: opacity .5s ease-in-out;
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .msg-info {
+      background-color: darken(#00529B, 10%);
+      color: lighten(#b3b9c5, 10%);
+      border: 1px lighten(#b3b9c5, 10%) solid;
+    }
+
+    .msg-warn {
+      color: lighten(#b3b9c5, 10%);
+      background-color: darken(firebrick,15%);
+      border: 1px lighten(#b3b9c5, 10%) solid;
+      padding: 0.5em 1em;
+      margin-bottom: 1em;
+      margin-top: 1em;
+    }
+
+    .gatsby-highlight-code-line {
+      background-color: lighten(#2d2d2d, 15%);
+      display: block;
+      margin-right: -1em;
+      margin-left: -1em;
+      padding-right: 1em;
+      padding-left: 0.75em;
+      border-left: none;
+    }
+  }
+
+  /**
+   * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
+   * Based on https://github.com/chriskempson/tomorrow-theme
+   * @author Rose Pritchard
+   */
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #ccc;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+
+  }
+
+  /* Code blocks */
+  pre[class*="language-"] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: #2d2d2d;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*="language-"] {
+    padding: .1em 0.2em;
+    //white-space: normal;
+  }
+
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #999;
+  }
+
+  .token.punctuation {
+    color: #ccc;
+  }
+
+  .token.tag,
+  .token.attr-name,
+  .token.namespace,
+  .token.deleted {
+    color: #e2777a;
+  }
+
+  .token.function-name {
+    color: #6196cc;
+  }
+
+  .token.boolean,
+  .token.number,
+  .token.function {
+    color: #f08d49;
+  }
+
+  .token.property,
+  .token.class-name,
+  .token.constant,
+  .token.symbol {
+    color: #f8c555;
+  }
+
+  .token.selector,
+  .token.important,
+  .token.atrule,
+  .token.keyword,
+  .token.builtin {
+    color: #cc99cd;
+  }
+
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.regex,
+  .token.variable {
+    color: #7ec699;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #67cdcc;
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .token.inserted {
+    color: green;
+  }
+
+}

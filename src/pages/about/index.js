@@ -108,7 +108,7 @@ class AboutPage extends React.Component {
           </Helmet>
             <h1>About</h1>
           <h2>Stay informed</h2>
-          <strong>Get notified about the newest posts</strong>
+          <h4>Get notified about the newest posts</h4>
           <ul>
             <li>
               <OutboundLink href="https://twitter.com/vojtechruzicka">
@@ -128,8 +128,8 @@ class AboutPage extends React.Component {
               </OutboundLink>
             </li>
           </ul>
-            <h2>About me</h2>
-          <strong>Contact me</strong>
+          <h2>About me</h2>
+          <h4>Contact me</h4>
           <ul>
             <li>
               <OutboundLink href="mailto:vojtech.ruz@gmail.com">
@@ -138,7 +138,7 @@ class AboutPage extends React.Component {
             </li>
           </ul>
 
-          <strong>Additional links</strong>
+          <h4>Additional links</h4>
           <ul>
             <li>
               <OutboundLink href="https://www.linkedin.com/in/vojtechruzicka">

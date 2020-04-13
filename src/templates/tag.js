@@ -43,7 +43,7 @@ const Tag = ({ pageContext, data }) => {
           <Link to="/archives/">Browse All Tags</Link>
         </li>
       </ul>
-      <div className="tag-count">{tagHeader}</div>
+      <h4 className="tag-count">{tagHeader}</h4>
       <ul>
         {edges.map(({ node }) => {
           let { path, title } = node.frontmatter;

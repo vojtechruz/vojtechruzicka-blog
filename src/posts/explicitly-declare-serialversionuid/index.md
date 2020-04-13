@@ -85,8 +85,7 @@ Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/seria
 So no matter what your preference is regarding serialVersionUID, you now have a Sonar rule to support it. Alternatively, if you prefer, you can even configure both rules to be active at the same time, each for a different part of your app, if it makes sense in your situation.
 
 ## Further reading
-In the post[WHY NOT: serialVersionUID](https://github.com/rzwitserloot/lombok/wiki/WHY-NOT:-serialVersionUID)  
-Reinier Zwitserloot explains why the Java code generator Lombok does not, cannot and should not support serialVersionUID, despite nearly every other IDE and linting tool out there seems to suggest specifying it.
+In the post [WHY NOT: serialVersionUID](https://github.com/rzwitserloot/lombok/wiki/WHY-NOT:-serialVersionUID) Reinier Zwitserloot explains why the Java code generator Lombok does not, cannot and should not support serialVersionUID, despite nearly every other IDE and linting tool out there seems to suggest specifying it.
 
 ## Conclusion
 
