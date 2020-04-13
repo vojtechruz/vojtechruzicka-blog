@@ -98,17 +98,13 @@ a:hover {
   background: $border-color;
 }
 
-.SocialMediaShareButton, .SocialMediaShareButton div {
-  display: inline-block;
-}
-
-.SocialMediaShareButton {
-  margin: 0.25rem;
-  cursor: pointer;
-}
 .share-icons {
   display: flex;
   justify-content: center;
+
+  button {
+    margin: 0.25rem;
+  }
 }
 
 .menu-items {
