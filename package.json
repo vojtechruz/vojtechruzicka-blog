@@ -18,7 +18,7 @@
     "gatsby-plugin-google-analytics": "^2.2.2",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-netlify": "^2.2.1",
-    "gatsby-plugin-offline": "^2.2.4",
+    "gatsby-plugin-offline": "^3.1.2",
     "gatsby-plugin-react-helmet": "^3.2.2",
     "gatsby-plugin-sass": "^2.2.1",
     "gatsby-plugin-sharp": "^2.5.4",
@@ -52,7 +52,7 @@
     "eslint-plugin-react": "^7.19.0",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
     "gatsby-remark-code-buttons": "^2.0.4",
-    "prettier": "^1.19.1"
+    "prettier": "^2.0.4"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
