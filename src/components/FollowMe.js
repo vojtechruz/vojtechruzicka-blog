@@ -4,7 +4,7 @@ import { OutboundLink } from "gatsby-plugin-google-analytics";
 class FollowMe extends React.Component {
   render() {
     const twitterIcon = (
-      <div className="follow-me-icon twitter">
+      <div className="follow-me-icon twitter" title="Follow me on Twitter">
         <OutboundLink
           aria-label="Twitter link"
           target="blank"
@@ -18,7 +18,7 @@ class FollowMe extends React.Component {
     );
 
     const rssIcon = (
-      <div className="follow-me-icon rss">
+      <div className="follow-me-icon rss" title="Subscribe to my RSS feed">
         <OutboundLink
           aria-label="RSS Feed link"
           target="blank"
@@ -32,7 +32,7 @@ class FollowMe extends React.Component {
     );
 
     const feedlyIcon = (
-      <div className="follow-me-icon feedly">
+      <div className="follow-me-icon feedly" title="Feedly: Subscribe to my RSS feed">
         <OutboundLink
           aria-label="Feedly link"
           target="blank"
@@ -57,7 +57,7 @@ class FollowMe extends React.Component {
     );
 
     const facebookIcon = (
-      <div className="follow-me-icon facebook">
+      <div className="follow-me-icon facebook" title="Follow me on Facebook">
         <OutboundLink
           target="blank"
           aria-label="Facebook link"
@@ -71,7 +71,7 @@ class FollowMe extends React.Component {
     );
 
     const linkedInIcon = (
-      <div className="follow-me-icon linkedin">
+      <div className="follow-me-icon linkedin" title="My LinkedIn profile">
         <OutboundLink
           target="blank"
           aria-label="Linkedin link"
@@ -85,7 +85,7 @@ class FollowMe extends React.Component {
     );
 
     const githubIcon = (
-      <div className="follow-me-icon github">
+      <div className="follow-me-icon github" title="My GitHub profile">
         <OutboundLink
           target="blank"
           aria-label="Github link"
@@ -103,14 +103,17 @@ class FollowMe extends React.Component {
     );
 
     return (
-      <div className="follow-me">
-        {twitterIcon}
-        {rssIcon}
-        {feedlyIcon}
-        {facebookIcon}
-        {linkedInIcon}
-        {githubIcon}
-      </div>
+        <div>
+            <div className="lets-connect"><h4>Let's connect</h4></div>
+            <div className="follow-me">
+                {twitterIcon}
+                {rssIcon}
+                {feedlyIcon}
+                {facebookIcon}
+                {linkedInIcon}
+                {githubIcon}
+            </div>
+        </div>
     );
   }
 }
