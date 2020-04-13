@@ -28,13 +28,13 @@ Running JShell
 
 JShell is bundled with JDK 9+ installation. It resides in your JDK\\bin folder. For example on Windows it can be here:
 
-```cmd
+```
 C:\Program Files\Java\jdk-9.0.4\bin\jshell.exe
 ```
 
 To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - Support In IntelliJ IDEA).
 
-```cmd
+```
 C:\Users\vojtech> jshell -v
 | Welcome to JShell -- Version 10.0.1
 | For an introduction type: /help intro
@@ -48,7 +48,7 @@ Expressions
 -----------
 The simplest way to start with JShell is to write a simple expression. It can be a simple mathematical expression:
 
-```jshelllanguage
+```
 jshell> 7*(3+12)
 $1 ==> 105
 |  created scratch variable $1 : int
@@ -58,7 +58,7 @@ As you can see the expression is immediately evaluated and the result is printed
 
 However, expressions are not limited to simple mathematical ones like above. That would not be very useful. You can do pretty much anything you can do in Java.
 
-```jshelllanguage
+```
 jshell> Math.sqrt($1)+7
 $2 ==> 17.246950765959596
 ```
@@ -69,7 +69,7 @@ Variables
 ---------
 Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables. 
 
-```jshelllanguage
+```
 jshell> int myVariable = 42
 myVariable ==> 42
 |  created variable myVariable : int
@@ -77,7 +77,7 @@ myVariable ==> 42
 
 Access modifiers and static/final are ignored for top-level variable and function declarations:
 
-```jshelllanguage
+```
 jshell> final int myFinalVariable = 18
 |  Warning:
 |  Modifier 'final'  not permitted in top-level declarations, ignored
@@ -89,7 +89,7 @@ myFinalVariable ==> 18
 
 After some time you may get confused what variables you already declared and what are their values. There is a specific command precisely for this - just type `/vars`.
 
-```jshelllanguage
+```
 jshell> /vars
 |    int $1 = 105
 |    double $2 = 17.246950765959596
@@ -103,7 +103,7 @@ Methods
 -------
 As we saw above, you can declare variables on the root level, not inside any class. You can do the same for methods. Again, you don't need to worry about any modifiers such as public, static or final. You simply start with the return type and the name of the method with possible parameters:
 
-```jshelllanguage
+```
 jshell> String sayHello(String name) {
    ...> return "Hello, my name is "+name;
    ...> }
@@ -118,7 +118,7 @@ In the example above, you can see we declared a method and then called it. Pleas
 
 A common scenario is when a method uses another method or variable, which is not declared yet. It is called the forward reference and JShell allows you to do that. However, you cannot use such methods until all of its dependencies are also declared.
 
-```jshelllanguage
+```
 jshell> String myMethod(String name) {
    ...> return otherMethodNotDeclared();
    ...> }
@@ -131,7 +131,7 @@ Types
 -----
 Top-level variables and methods are useful, but often you need to declare and use regular classes, enums or interfaces. You can do it as usual, nothing JShell specific here. Just keep in mind that in this case semicolons are required. You can list all declared types by `/types`.
 
-```jshelllanguage
+```
 jshell> class Person {
    ...>     private String name;
             [more code here]
@@ -147,7 +147,7 @@ For the JDK classes, you can use `import` as usual. For your convenience, many o
 
 Of course, import is useless if JShell does not have access to the classes needed.
 
-```jshelllanguage
+```
 jshell> import com.vojtechruzicka.*;
 |  Error:
 |  package com.vojtechruzicka does not exist
@@ -157,19 +157,19 @@ jshell> import com.vojtechruzicka.*;
 
 Your classes need to be on the classpath. The first option is using `CLASSPATH` environmental variable. Or you can specify classpath when launching JShell:
 
-```jshelllanguage
+```
 jshell --class-path foo-1.0.0.jar
 ```
 
 You can provide multiple jars separated by either `;` or `:` depending on your OS. Alternatively, you can define classpath directly from jshell:
 
-```jshelllanguage
+```
 jshell> /env -class-path foo-1.0.0.jar
 ```
 
 If you are using Java 9 module system, you can specify modules to be imported when starting JShell:
 
-```jshelllanguage
+```
 jshell --add-modules some.module
 ```
 
@@ -181,7 +181,7 @@ Saving and loading your work
 ----------------------------
 When you work with JShell in more complicated use cases, it is often handy to be able to save your work and to continue later. Or to simply save your session for future reference. Fortunately JShell supports saving and loading sessions using `/save` and `/open commands`:
 
-```jshelllanguage
+```
 jshell> /save myfile.jsh
 
 jshell> /open myfile.jsh
@@ -195,7 +195,7 @@ While you can write and edit everything directly in the JShell console, it is no
 
 Not very cutting edge, is it? Fortunately, you can configure your own editor to open when executing the `/edit` command. One way is to sen the environmental variable `JSHELLEDITOR`. Alternatively, you can set the editor directly from JShell. Use `-retain` option to persist this setting between sessions.
 
-```jshelllanguage
+```
 jshell> /set editor myEditor -retain
 |  Editor set to: myEditor
 ```
@@ -230,7 +230,7 @@ Alternatives
 
 The first interesting alternative to plain JShell is called [Try Artifact](https://github.com/bhagatsingh/try-artifact). Instead of obtaining jar dependencies manually and adding them to the classpath, it allows you to download and use Maven artifacts directly from the console.
 
-```jshelllanguage
+```
 jshell> /resolve org.apache.commons:commons-lang3:jar:3.4
 |  Path /home/kawasima/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar added to classpath
 ```

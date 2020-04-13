@@ -157,6 +157,7 @@ module.exports = {
                         }
           `,
                       output: "/feed",
+                      title: "Vojtech Ruzicka\'s Programming Blog",
                   },
               ],
           },

@@ -58,7 +58,7 @@ The most basic solution is to have some shared location, where you store your ho
 
 You can improve this basic solution a bit by having hooks in your project's repo and just let your developers run a custom script [like this one](https://gist.github.com/tilap/0590e78c9cfd8f6548f5), which copies them over to their hooks directory. Alternatively, git offers an option to change the destination of the hooks directory to a custom location:
 
-```cmd
+```bash
 git config core.hooksPath YOUR_DIRECTORY
 ```
 
@@ -68,13 +68,13 @@ These solutions make the distribution easier, but don't solve the core issues.
 ### Installation
 You can install [Husky](https://github.com/typicode/husky) simply by running:
 
-```cmd
+```bash
 npm install husky --save-dev
 ```
 
 Alternatively, with yarn:
 
-```cmd
+```bash
 yarn add husky --dev
 ```
 
@@ -115,7 +115,7 @@ It is useful to break the build if something is not right, but it is even more u
 
 Fortunately, there is a tool exactly for this. It is called [lint-staged](https://github.com/okonet/lint-staged). You can install it by:
 
-```cmd
+```bash
 npm install --save-dev lint-staged
 ```
 
@@ -157,7 +157,7 @@ One thing to note is that Husky installs the hooks only when not running on a Co
 ## Ignoring
 Client-side hooks can be useful, but you cannot rely on them too much. They are just the first level of defense. You cannot be 100% sure that they get executed. They can be ignored on demand by adding a command-line option:
 
-```cmd
+```bash
 git commit --no-verify
 ```
 

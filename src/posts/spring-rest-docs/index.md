@@ -277,7 +277,7 @@ include::{snippets}/persons/get-by-id/curl-request.adoc[]
 
 As you can see, you can divide the document to any number of sections and provide any text you want. When you want to use previously generated snippets you use include statement like `include::{snippets}/persons/get-by-id/curl-request.adoc[]`. Now just run the maven build to make sure this AsciiDoc file is converted to HTML.
 
-```commandline
+```
 mvn clean package
 ```
 
