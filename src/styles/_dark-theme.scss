@@ -10,6 +10,13 @@
       }
     }
 
+    .anchor.before {
+      fill: #6ab0f3!important;
+      &:hover {
+        fill: lighten(#6ab0f3,5%)!important;
+      }
+    }
+
     .menu-items a, .blog-name a, .search-icon {
       color: #b3b9c5!important;
       &:hover {
