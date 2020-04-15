@@ -1,7 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Presentations'
 date: "2017-07-12T22:12:03.284Z"
-dateModified: "2019-06-24"
+dateModified: "2020-04-15"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-presentations'
 featuredImage: './intellij-idea-presentation.jpg'
@@ -19,7 +19,7 @@ Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View �
 
 ![intellij-idea-presentation-mode](./IntelliJ-IDEA-Presentation-Mode.png)
  
- The font size in Presentation Mode can be configured in Settings under `Appearance & Behavior → Appearance → Presentation Mode`.
+ The font size in Presentation Mode can be configured in Settings under `Appearance & Behavior → Appearance → Enter Presentation Mode`.
  
  ![intellij-idea-presentation-mode-font-size](./IntelliJ-IDEA-Presentation-Mode-Font-Size.png)
 
@@ -37,6 +37,14 @@ As the name suggests, it is intended as a convenient way to hide all the visual 
 While the Distraction Free Mode was not originally intended for presentation purposes, there are situations, where it can be more appropriate that original Presentation Mode. Because the size of the font is not changed, you can see a much bigger portion of the code at the same time. This gives you the much better context that seeing just a small snippet of code at once without the surrounding code. This may not be suitable for regular presentations with one big screen and listeners, who may be too far away to read the code. However, it is much better for scenarios where each listener has their own screen and can read even the smaller font. Such situations would be for example video conferences with screen sharing or webinars. For this purpose, you should consider Distraction Free mode as a viable alternative to the regular Presentation Mode.
 
 Note that Presentation and Distraction Free Mode are not mutually exclusive and can be active at the same time.
+
+
+To enter this mode go to `Appearance & Behavior → Appearance → Enter Distraction Free Mode`.
+
+## UPDATE: Zen Mode (2020.1) 
+Idea 2020.1 introduced [Zen Mode](https://blog.jetbrains.com/idea/2020/01/intellij-idea-2020-1-eap-2/#zen_mode). It is just a convenience feature, which combines Distraction Free Mode and Fullscreen as these are often used together. Previously it was quite inconvenient to toggle them both.
+
+To enter Zen Mode go to `Appearance & Behavior → Appearance → Enter Zen Mode`.
 
 Presentation Assistant Plugin
 -----------------------------
