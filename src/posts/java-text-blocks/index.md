@@ -1,7 +1,7 @@
 ---
 title: 'Java Text Blocks'
 date: "2019-06-23T22:12:03.284Z"
-dateModified: "2020-03-16"
+dateModified: "2020-04-16"
 tags: ["Java"]
 path: '/java-text-blocks'
 featuredImage: './java-text-blocks.jpg'
@@ -10,6 +10,10 @@ excerpt: 'Java 13 finally brings support for multi-line string literals after dr
 ---
 
 ![Java Text Blocks](java-text-blocks.jpg)
+
+<div class="msg-info">
+<strong>UPDATE:</strong> After several preview versions, this functionality is finally scheduled to be released in Java 15 - see <a href="https://openjdk.java.net/jeps/378">JEP 378: Text Blocks</a>.
+</div>
 
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.
 
