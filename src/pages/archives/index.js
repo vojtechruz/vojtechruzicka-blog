@@ -1,6 +1,6 @@
 import React from "react";
 import kebabCase from "lodash/kebabCase";
-import Helmet from "react-helmet";
+import {Helmet} from "react-helmet";
 import { Link } from "gatsby";
 import profilePic from "../../components/profile-big.jpg";
 import Layout from "../../components/layout"

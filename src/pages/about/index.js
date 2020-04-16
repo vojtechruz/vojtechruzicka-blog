@@ -1,6 +1,6 @@
 import React from "react";
 import get from "lodash/get";
-import Helmet from "react-helmet";
+import {Helmet} from "react-helmet";
 import profilePic from "../../components/profile-big.jpg";
 import { OutboundLink } from "gatsby-plugin-google-analytics";
 import Layout from "../../components/layout"
