@@ -108,11 +108,37 @@ If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has s
 We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow the same direction. This means that in languages, such as Arabic, `flex-direction:row;` would actually order items from right to left instead of left to right.
 
 ### Wrapping
+So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which does not fit the size of its parent container?
 
-### Aligning content
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbQdev/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+By default, the container tries to shring the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. 
+
+This may be ok in some cases, but usually you want more control over how this case is handled.
+
+You can use `flex-wrap` property on the container level to specify how wrapping of items should be handled. There are three possible values:
+
+- `nowrap` -  (default) one line, may overflow the container
+- `wrap` - wrap to multiple lines from to to bottom
+- `wrap-reverse` - wrap to multiple in the opposite order from bottom to top
+
+The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaojgPQ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+### Aligning wrapped content
+- align content
+
+### Justify content
 - justify-content
 - default flex-start
-- flex-end, center, space-between, space-around
+- flex-end
+
+### Distributing extra space
+- center, space-between, space-around
+
 
 ## Item level properties
 
