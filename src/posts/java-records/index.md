@@ -139,7 +139,7 @@ public final class Cat extends java.lang.Record {
 
 You can see that the code is pretty much the same as our old `Cat`. One notable exception is that getters for the fields generated are not named as usual - instead of `getColor()`, there is just `color()`.
 
-Also, the class extends [java.lang.Record](https://download.java.net/java/early_access/jdk14/docs/api/java.base/java/lang/Record.html).
+Also, the class extends [java.lang.Record](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/Record.html).
 
 The `equals()` implementation considers two records to be equal if they are the same Type and have the same values. The `toString()` implementation prints our record like this:
 
