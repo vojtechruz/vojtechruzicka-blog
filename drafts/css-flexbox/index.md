@@ -177,19 +177,31 @@ Do not confuse this with `justify-content`.
 - `align-content`: aligns across the **cross** axis
   - cross axis is perpendicular to the main axis
 
-The good news is that the possible values of `align-content` are the same as with `justify-content`:
+<div class="msg-info">This property has no effect unless you have either *flex-wrap: wrap;* or *flex-wrap: wrap-reverse;*</div> 
 
-- TODO
+The good news is that the possible values of `align-content` arevery similar as with `justify-content`:
 
+- `stretch` (default)
+- `flex-start`
+- `flex-end`
+- `center`
+- `space-between`
+- `space-around`
+- `space-evenly`
+  
 The alignment just work on the other axis, but the behavior is the same.
 
-TODO codepen
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+## Align items
+- TODO
 
 ## Item level properties
 So far we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
 
 ### Aligning individual items
-- TODO
+- TODO align-self
 
 ### Ordering items
 Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
@@ -212,6 +224,14 @@ You have to be careful when changing order in a flexbox container this way. This
 This has several implications. Most notably, any assistive technologies as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
 
 ### Flexibility
+TODO
+
+## Shorthand properties
+TODO
+### Flex-flow
+TODO
+
+### Flex
 TODO
 
 ## Firefox DevTools
