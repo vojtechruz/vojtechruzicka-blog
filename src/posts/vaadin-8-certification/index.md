@@ -14,7 +14,7 @@ After releasing Vaadin 8 and 8.1, the certification [was updated](https://vaadin
 Purchasing the voucher
 ----------------------
 
-The certification voucher can be purchased directly on the Vaadin site under [My Account → Certification](https://vaadin.com/pro/certification). Each voucher costs \$130 or €99. You can buy as many as you want and each grants one exam attempt.
+The certification voucher can be purchased directly on the Vaadin site under `My Account → Certification`. Each voucher costs \$130 or €99. You can buy as many as you want and each grants one exam attempt.
 
 Taking the exam
 ---------------
