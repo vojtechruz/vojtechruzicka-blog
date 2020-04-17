@@ -41,7 +41,8 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've added also some background colors and borders, so you can better see the layout.
 
-TODO codepen
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ExVPBzM/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
 
