@@ -30,7 +30,7 @@ class Bio extends React.Component {
             >
                 <img
                     src={`/authors/${avatar}`}
-                    alt={name}
+                    alt={'Author: ' + name}
                     style={{
                         borderRadius: 50,
                         marginRight: rhythm(1 / 2),
@@ -38,6 +38,7 @@ class Bio extends React.Component {
                         width: rhythm(2),
                         height: rhythm(2)
                     }}
+                    title={'Author: ' + name}
                 />
                 <div>
                     <div><strong>{link}</strong></div>

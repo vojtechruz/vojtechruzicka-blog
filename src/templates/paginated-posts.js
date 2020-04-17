@@ -110,7 +110,7 @@ class BlogIndex extends React.Component {
               </small>
               <div>
                 <Link to={node.fields.slug} className="front-post-image">
-                  <Img fluid={node.frontmatter.featuredImage.childImageSharp.fluid} />
+                  <Img fluid={node.frontmatter.featuredImage.childImageSharp.fluid} title={node.frontmatter.title} alt={node.frontmatter.title}/>
                 </Link>
                 <span
                   className="front-post-excerpt"

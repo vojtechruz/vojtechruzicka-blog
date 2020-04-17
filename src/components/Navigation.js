@@ -9,7 +9,7 @@ class Navigation extends React.Component {
     return (
       <div className="main-navigation">
         <Link className="logo" to="/">
-          <img src={profilePic} alt={`Vojtech Ruzicka`} />
+          <img src={profilePic} alt={`Vojtech Ruzicka's Programming Blog`} title={`Vojtech Ruzicka's Programming Blog`} />
         </Link>
         <div className="navigation">
           <div className="blog-name">
