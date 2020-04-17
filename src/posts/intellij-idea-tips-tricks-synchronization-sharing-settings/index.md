@@ -1,5 +1,5 @@
 ---
-title: 'IntelliJ IDEA Tips & Tricks: Synchronization and Sharing of Settings'
+title: 'IntelliJ IDEA Tips: Synchronization and Sharing of Settings'
 date: "2018-01-24T22:12:03.284Z"
 dateModified: "2019-07-09"
 tags: ['IDEA']
