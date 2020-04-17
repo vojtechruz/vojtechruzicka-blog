@@ -1,5 +1,5 @@
 ---
-title: Documenting Angular apps with TypeDoc, CompoDoc and AngularDoc
+title: Documenting Angular apps: TypeDoc, CompoDoc and AngularDoc
 date: "2017-12-18T22:12:03.284Z"
 tags: ['Javascript', 'Angular']
 path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc'
