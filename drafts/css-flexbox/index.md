@@ -170,7 +170,7 @@ The difference between `wrap` and `wrap-reverse` may be confusing, let's better 
 ### Aligning wrapped content
 When items are wrapped in a Flexbox and you have therefore multiple lines, you can control how these lines are aligned on the **cross axis**. You can use property `align-content`.
 
-Do not confuse this with `justify content`.
+Do not confuse this with `justify-content`.
 - `justify-content`: aligns across the **main** axis
   - main axis is horizontal when in row mode
   - main axis is vertical when in column mode

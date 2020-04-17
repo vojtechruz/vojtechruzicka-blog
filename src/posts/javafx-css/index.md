@@ -16,18 +16,18 @@ How to style JavaFX components using good old CSS.
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
-    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
     <li class="series-current">JavaFX Tutorial: CSS Styling</li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
 ## Separating visuals
-In the previous [article about FXML](/javafx-fxml-scene-builder), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in an FXML file, while the interaction logic is neatly separated in a controller.
+In the previous [article about FXML](/javafx-fxml-scene-builder/), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in an FXML file, while the interaction logic is neatly separated in a controller.
 
 Now there is a third part on top of this. FXML manages only what components are in your app, their properties, and how they are nested. It does not define the visuals of the component, though. That is - fonts, colors, backgrounds, paddings. To be honest, you can achieve it in FXML, but you shouldn't. Instead, visuals should be clearly separated in CSS stylesheets.
 
@@ -223,7 +223,7 @@ Or you can check the file [directly here](modena.css). In the same directory, th
 This stylesheet provides the default styling but takes the lowest priority compared to other types of stylesheets, so you can easily override it.
 
 ## Scene stylesheet
-In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder):
+In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder/):
 
 ```xml
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -306,12 +306,12 @@ There are numerous CSS properties in JavaFX, and describing them is beyond the s
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
-    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
     <li class="series-current">JavaFX Tutorial: CSS Styling</li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>

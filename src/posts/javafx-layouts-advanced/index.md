@@ -14,7 +14,7 @@ series: JavaFX
 
 How to organize and position your GUI components in JavaFX application using advanced layouts.
 
-In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic). Now it's time to go through the rest of the available layouts.
+In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the rest of the available layouts.
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
@@ -83,7 +83,7 @@ anchorPane.getChildren().add(button);
 ```
 
 ## GridPane
-GridPane is a layout that allows you to organize your components into a grid. Unlike [TilePane](/javafx-layouts-basic), which is adding components one after another, here you need to specify the coordinates of the target location in your grid when adding a new component.
+GridPane is a layout that allows you to organize your components into a grid. Unlike [TilePane](/javafx-layouts-basic/#tilepane), which is adding components one after another, here you need to specify the coordinates of the target location in your grid when adding a new component.
 
 ![GridPane](grid-pane.png)
 
