@@ -13,7 +13,7 @@ excerpt: 'How to speed up your Spring Boot development even more with DevTools a
 
 How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive? 
 
-# Setup
+## Setup
 As usually with Spring Boot, the setup is really simple. All you need to do is to add the right dependency, and you are good to go. Spring Boot detects this and auto-configures DevTools accordingly.
 
 If you are using Maven:

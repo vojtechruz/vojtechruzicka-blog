@@ -11,7 +11,7 @@ excerpt: 'How to detect third party libraries with security vulnerabilities dire
 
 ![IDEA Snyk Plugin](idea-snyk-plugin.jpg)
 
-# Dependencies with security vulnerabilities
+## Dependencies with security vulnerabilities
 Making sure your application is as secure as possible is very important. Having security vulnerabilities can lead to serious consequences if they are exploited. You should always make sure your own code is as safe as possible.
 
 However, the core code of your application, which you write yourself, is only the tip of an iceberg. These days, the vast majority of the deployed code is not what you write yourself, but rather various third-party libraries and frameworks. Even the simplest web applications usually have hundreds of thousands of lines of code, which are brought with third-party dependencies.
