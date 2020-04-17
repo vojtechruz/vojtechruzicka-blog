@@ -108,7 +108,7 @@ npm install --save-dev @commitlint/cli
 Commitlint is just a tool for checking if your messages follow your conventions. It does not for you to use a specific convention, you can use whatever you want, it is fully configurable. It offers some configurations out of Currently supported configurations are:
 
 - [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
-- [@commitlint/config-lerna-scopes](@commitlint/config-lerna-scopes)
+- [@commitlint/config-lerna-scopes](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-lerna-scopes)
 - [@commitlint/config-patternplate](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-patternplate)
 - [@commitlint/config-angular](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-angular)
 - [@commitlint/config-angular-type-enum](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-angular-type-enum)
