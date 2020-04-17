@@ -202,7 +202,12 @@ module.exports = {
                 siteUrl: `https://www.vojtechruzicka.com`,
             },
         },
-        `gatsby-plugin-sitemap`,
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                exclude: [`/pages/*`]
+            }
+        },
         `gatsby-plugin-offline`,
         `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-netlify`
