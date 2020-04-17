@@ -19,13 +19,13 @@ How to build GUI with JavaFX using FXML markup and SceneBuilder.
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
-    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
     <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
@@ -368,12 +368,12 @@ In the next post in our series, we'll cover some [basic layout we can use to org
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
-    <li><a href="/javafx-getting-started">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
     <li class="series-current">JavaFX Tutorial: FXML and SceneBuilder</li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>

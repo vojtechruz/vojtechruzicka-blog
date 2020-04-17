@@ -10,7 +10,7 @@ excerpt: 'How to make your JAMStack site truly static even with user-generated c
 
 ![Staticman](staticman.jpg)
 
-# Dynamic content in static sites 
+## Dynamic content in static sites 
 Static JAMStack sites are great. If you are not familiar with them, you can check my older post on how I migrated my blog from WordPress to a static site using Gatsby.
 
 <div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/gatsby-migration/" style="box-shadow: none;">Migration to GatsbyJS and JAM stack from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">25 March, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging/">#Blogging</a></li><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/gatsby-migration/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAVAQEBAAAAAAAAAAAAAAAAAAACBP/aAAwDAQACEAMQAAABK1R50KdE/wD/xAAbEAEAAgIDAAAAAAAAAAAAAAACAAEEERITFP/aAAgBAQABBQIE8n1y7O/OIsU2qxhP/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEv/aAAgBAwEBPwFQYZ//xAAVEQEBAAAAAAAAAAAAAAAAAAAQcf/aAAgBAgEBPwGn/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERIRIx/9oACAEBAAY/Ao0J5R+GKMvTN1n/xAAbEAEAAgIDAAAAAAAAAAAAAAABABExUSGRwf/aAAgBAQABPyElC3tgsPZ5LUmUbeTZcAEUbgTPcz//2gAMAwEAAgADAAAAEIc//8QAFhEBAQEAAAAAAAAAAAAAAAAAAFFh/9oACAEDAQE/EKNn/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERITFB/9oACAECAQE/EE50Uun/xAAeEAEBAAICAgMAAAAAAAAAAAABEQAhMYFBUbHB8P/aAAgBAQABPxBGrRCxfKp8ZHuqI/j7xyIqdmJSgsKZ06yMQDh374yaNVWRejP/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
@@ -35,7 +35,7 @@ This may be necessary for dynamic and ever-changing data such as stock prices, w
 
 What if you could build your static site after a user comments including their new submission? Instead of loading the comment thread dynamically after the page loads, the whole thread could be core part of your static page. This way your site would be truly static with all the advantages.
 
-#Staticman
+## Staticman
 It turns out you can achieve this easily with a tool called [Staticman](https://staticman.net/). The idea is simple.
 
 1. Provide a submission form to your static site. For example a form for submitting a new comment.
@@ -46,9 +46,9 @@ It turns out you can achieve this easily with a tool called [Staticman](https://
 
 How great is that? Of course, you don't want users spamming your site, so Staticman offers you an option to moderate submissions by creating a Pull Request instead of directly pushing to your branch. If you want more sophisticated protection, it does offer integration with Akismet anti-spam filter or re-captcha.
 
-# Setup
+## Setup
 
-## Granting Github access
+### Granting Github access
 The first thing you need to do is to grant Staticman privileges to access your Github repo. Go to `Settings → Collaborators` section of your repository and add `staticmanapp` as a collaborator.
 
 ![Staticman Collaborators Setup](staticman-collaborators.jpg)
@@ -73,7 +73,7 @@ If all goes well, you should receive response `OK!`. Now, in the collaborators s
 
 ![Staticman Collaboraters Invite Accepted](staticman-collaborators-3.jpg)
 
-## Adding a configuration file
+### Adding a configuration file
 Staticman loads its configuration from a yaml file called `staticman.yml`. A sample file can be found [here](https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml). A detailed explanation of all the available configuration options can be found in the [official documentation](https://staticman.net/docs/configuration).
 
 Here is a list of some of the most important configuration properties:
@@ -89,7 +89,7 @@ Here is a list of some of the most important configuration properties:
 |pah| Path to a directory where your Staticman files will be created.|
 |requiredFields| Array of required fields. If some of them are missing, the entry will be rejected.|
 
-## Creating a form
+### Creating a form
 Now all you need is to create a form, which accepts user input and submits it to Staticman. You need to define all the fields which you want to collect and submit the form to:
 
 ```
@@ -124,7 +124,7 @@ If you want to redirect the user to a specific url after submit you can do it by
 <input name="options[redirect]" type="hidden" value="https://www.example.com" />
 ```
 
-# Integrating with your static site generator
+## Integrating with your static site generator
 Each user submission is stored as a separate file. You can define the location and format of these files in your configuration file.
 
 ![Staticman Files](staticman-files.jpg)
@@ -143,22 +143,22 @@ What you need to do is to make sure your static site generator reads this data (
 
 For example, if using Gatsby, you can use [gatsby-transformer-yaml](https://www.gatsbyjs.org/packages/gatsby-transformer-yaml/) to read the yaml data and then just populate your comments section based on this data as you would with any other data source.
 
-# Moderation
+## Moderation
 You can turn on moderation of user submissions by setting `moderation: true` in your config file. Staticman then creates a Pull Request for each user submission, which you can either accept or decline.
 
 ![StaticMan Moderation Pull Request](staticman-pr.jpg)
 
-# Advanced features
-## Running your own instance
+## Advanced features
+### Running your own instance
 If using Staticman as a service does not suit your needs for any reason, you can [run your own instance](https://staticman.net/docs/api).
 
-## Akismet 
+### Akismet 
 Staticman offers integration with [Akismet](https://akismet.com/) spam filter. This can be great when running your own instance, but unfortunately does not work [currently](https://github.com/eduardoboucas/staticman/issues/83) on public Staticman instance as it is using shared Akismet account under the hood, which reached the maximum usage limit.
 
-## Email notifications
+### Email notifications
 Staticman supports email notifications on new user submissions using [Mailgun](https://staticman.net/docs/configuration). You just need to enable the notifications in your [config file](https://staticman.net/docs/configuration) and provide your Mailgun domain and API key.
 
-## Re-captcha
+### Re-captcha
 Staticman supports re-captcha integration. You'll need to [create a re-captcha account](https://www.google.com/recaptcha/admin) first. You will receive a `site-key` and `secret`. Your secret is not used directly by Staticman and you need to encrypt it first.
 
 ```
@@ -195,10 +195,10 @@ Finally you need to include these hidden fields in your Staticman form:
 
 You can find detailed info about re-captcha integration [here](https://github.com/eduardoboucas/staticman-recaptcha).
 
-# Example
+## Example
 The source code of a simple GatsbyJS site using Staticman can be found [here](https://github.com/vojtechruz/staticman-example).
 
 Running example is available [here](https://staticman-example.netlify.app/).
 
-# Conclusion
+## Conclusion
 Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.

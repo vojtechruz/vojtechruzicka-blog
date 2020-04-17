@@ -84,7 +84,7 @@ This can be very useful as you can immediately recognize these special files, an
 ![Extra Icons](icons.png)
 
 
-# [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
+## [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
 **UPDATE:** As of 2020.1, Grazie is bundled by default in IntelliJ IDEA.
 
 IntelliJ IDEA has a basic spelling checker, which allows you to detect some typos, but it is not much useful on top of that. It is definitely not a replacement for dedicated grammar checking services such as [Grammarly](https://app.grammarly.com/).
@@ -96,7 +96,7 @@ Fortunately, there is a plugin called Grazie, which enhances the basic spell che
 It allows you to enable checking of commit messages as well. You can learn more in the blog post [Meet Grazie: the ultimate spelling, grammar, and style checker for IntelliJ IDEA](https://blog.jetbrains.com/idea/2019/11/meet-grazie-the-ultimate-spelling-grammar-and-style-checker-for-intellij-idea/).
 
 ## [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
-IDEA already has powerful tools for [analyzing your dependencies](https://www.vojtechruzicka.com/idea-analyzing-dependencies) and potential problems with them, such as conflicts or cyclic dependencies.
+IDEA already has powerful tools for [analyzing your dependencies](https://www.vojtechruzicka.com/idea-analyzing-dependencies/) and potential problems with them, such as conflicts or cyclic dependencies.
 
 Maven helper offers an alternative UI, which shows your dependencies hierarchically. This can be easier to read and navigate. Also, if you're using the community edition, this is your only option.
 

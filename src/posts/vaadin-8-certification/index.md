@@ -5,7 +5,7 @@ tags: ['Career', 'Java']
 path: '/vaadin-8-certification'
 featuredImage: './vaadin-certification.jpg'
 disqusArticleIdentifier: '1095 http://vojtechruzicka.com/?p=1095'
-excerpt: 'After releasing Vaadin 8 and 8.1, the certification to the version 8 as well. If you are considering taking the certification, this review will come in handy.'
+excerpt: 'If you are considering taking Vaadin 8 certification, this review can come in handy.'
 ---
 ![vaadin 8 certification](./vaadin-certification.jpg)
 
@@ -14,7 +14,7 @@ After releasing Vaadin 8 and 8.1, the certification [was updated](https://vaadin
 Purchasing the voucher
 ----------------------
 
-The certification voucher can be purchased directly on the Vaadin site under [My Account → Certification](https://vaadin.com/pro/certification). Each voucher costs \$130 or €99. You can buy as many as you want and each grants one exam attempt.
+The certification voucher can be purchased directly on the Vaadin site under `My Account → Certification`. Each voucher costs \$130 or €99. You can buy as many as you want and each grants one exam attempt.
 
 Taking the exam
 ---------------

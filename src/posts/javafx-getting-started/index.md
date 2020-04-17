@@ -19,12 +19,12 @@ How to set up and start working with JavaFX using Maven, Gradle, or JavaFX SDK.
   <div>All posts in the JavaFX series</div>
   <ol>
     <li class="series-current">JavaFX Tutorial: Getting started</li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
@@ -178,11 +178,11 @@ This article is the first one in the JavaFX Series. In the next one, we'll cover
   <div>All posts in the JavaFX series</div>
   <ol>
     <li class="series-current">JavaFX Tutorial: Getting started</li>
-    <li><a href="/javafx-hello-world">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
+    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
+    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
+    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
+    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>

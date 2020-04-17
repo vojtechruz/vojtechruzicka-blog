@@ -41,7 +41,7 @@ Raw Strings were [dropped before the final release](http://mail.openjdk.java.net
 >  
 >  While we can expect that for any language feature, there will be a nontrivial volume of "I would have preferred it differently" feedback, in reviewing the feedback we have received, I am no longer convinced that we've yet got to the right set of tradeoffs between complexity and expressiveness, or that we've explored enough of the design space to be confident that the current design is the best we can do. By withdrawing, we can continue to refine the design, explore more options, and aim for a preview that actually meets the requirements of the Preview Feature process (JEP 12).
 
-# String Literals
+## String Literals
 Currently (pre-Java 12), string literals in Java are in many cases unnecessarily hard to deal with and have some limitations.
 
 First of all, Java does not support multi-line strings. If you want your string to span multiple lines, you have to concatenate multiple strings:
@@ -81,7 +81,7 @@ String myPath = "Open \"C:\\Program Files\\Java\\jdk1.8.0_151\"";
 
 It gets especially bad with regular expressions, which can be using a lot of backslashes and are then hard to read because of escaping.
 
-# Raw Strings
+## Raw Strings
 Turns out, that other JVM  languages already solved the problem with multiline strings and readability of escaped sequences. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals, you can use Raw Strings with three double quotes `"""` instead of just one.
 
 ```kotlin
@@ -96,7 +96,7 @@ Or even double-quotes "
 
 On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usually late to the party (similar to introducing [JShell REPL](https://www.vojtechruzicka.com/jshell-repl/)) and only now, in version 12, introduces what is already common both in other JVM and non-JVM languages.
 
-# Raw String Literals in Java
+## Raw String Literals in Java
 In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which is currently used by Javascript or Go.
 
 ```java
@@ -117,7 +117,7 @@ But unlike javascript, backticks inside the string don't need to be escaped. Ins
 
 No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
 
-# Formatting
+## Formatting
 One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Imagine the following code.
 
 ```java
@@ -204,7 +204,7 @@ As a shorthand, if you call `align()` with an integer parameter instead of with 
 myString.align(2);
 ``` 
 
-# String Interpolation
+## String Interpolation
 Other languages, which currently support Raw String literals usually also support string interpolation. It is basically a fancy name for substituting variable placeholders in the string with values, such as:
 
 ```kotlin
@@ -214,7 +214,7 @@ Other languages, which currently support Raw String literals usually also suppor
 
 Unfortunately, this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
 
-# IntelliJ IDEA support
+## IntelliJ IDEA support
 The good news is that since version 2018.3, IDEA already supports Raw String Literals.
 
 You can convert from good old string literals to the raw variant and vice versa. IDEA will handle escape sequence conversion and splitting to multiline for you.
@@ -227,5 +227,5 @@ IDEA is also able to detect if you are unnecessarily using too many backticks an
 
 In addition to this, it now supports actions such as spell-checking or regular expressions detection in Raw String Literals. You can read more in [Preview Raw String Literals in IntelliJ IDEA 2018.3](https://blog.jetbrains.com/idea/2018/10/preview-raw-string-literals-in-intellij-idea-2018-3/).
 
-# Try it yourself
+## Try it yourself
 As of 11/2018 Java 12 is not out yet, but you can already download early access build of [JDK 12]( https://jdk.java.net/12/) and try Raw Strings for yourself.
