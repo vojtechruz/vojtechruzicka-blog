@@ -1,5 +1,5 @@
 ---
-title: 'Commitlint: validate your commit conventions automatically'
+title: 'Commitlint: validate commit conventions automatically'
 date: "2019-11-11T22:12:03.284Z"
 dateModified: "2019-11-18"
 tags: ["Git"]
