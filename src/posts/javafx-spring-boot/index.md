@@ -1,5 +1,5 @@
 ---
-title: 'JavaFX Weaver: Integration of JavaFX and Spring Boot applications'
+title: 'JavaFX Weaver: Integration of JavaFX and Spring Boot'
 date: "2019-11-18T22:12:03.284Z"
 tags: ["Spring", "JavaFX"]
 path: '/javafx-spring-boot'

@@ -14,7 +14,7 @@ series: JavaFX
 
 How to organize and layout your GUI components in JavaFX application.
 
-This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder) to create your user interface. Now we'll cover layouts.
+This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
@@ -26,7 +26,7 @@ This is the fourth article in the JavaFX series. In the previous article, I desc
     <li class="series-current">JavaFX Tutorial: Basic layouts</li>
     <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
     <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
+    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
   </ol>
 </div>
 
@@ -275,7 +275,7 @@ tilePane.setOrientation(Orientation.VERTICAL);
 ```
 
 ## What's next
-In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced).
+In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced/).
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

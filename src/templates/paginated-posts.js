@@ -26,8 +26,10 @@ class BlogIndex extends React.Component {
     let prevPage;
     let nextPageHeaderLink;
     let prevPageHeaderLink;
+    let topPagination;
 
     if (currentPage > 1) {
+      topPagination = bottomPagination;
       let prevPagePath = "/";
       if (currentPage > 2) {
         prevPagePath = `/pages/${currentPage - 1}/`;
@@ -66,6 +68,15 @@ class BlogIndex extends React.Component {
       }
     }
 
+    let bottomPagination = <div className="pagination">
+      {prevPage}
+      {pagesLinks}
+      {nextPage}
+    </div>;
+    if(currentPage > 1) {
+      topPagination = bottomPagination;
+    }
+
     return (
       <Layout>
         <Helmet title={siteTitle}>
@@ -88,6 +99,7 @@ class BlogIndex extends React.Component {
           {prevPageHeaderLink}
           {nextPageHeaderLink}
         </Helmet>
+        {topPagination}
         {posts.map(({ node }) => {
           const title = get(node, "frontmatter.title") || node.fields.slug;
           return (
@@ -121,11 +133,7 @@ class BlogIndex extends React.Component {
             </div>
           );
         })}
-        <div className="pagination">
-          {prevPage}
-          {pagesLinks}
-          {nextPage}
-        </div>
+        {bottomPagination}
       </Layout>
     );
   }

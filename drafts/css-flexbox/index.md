@@ -41,9 +41,13 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've added also some background colors and borders, so you can better see the layout.
 
-TODO codepen
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ExVPBzM/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
+
+### Main vs cross axis
+- TODO 
 
 ### Block vs inline flexbox
 Flexbox is slightly different from positioning normal elements using `display` property. If we use `display: block;` or `display: inline;` we define how the element should be displayed in the document flow.
@@ -98,14 +102,89 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 }
 ```
 
-TODO codepen
-
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoKONW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 <div class="msg-warn">
 If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications. This only changes the visual order of the elements not hteir logical order. Screen readers will still process the items in the order they are declared in HTML. The same applies for navigation using <i>Tab</i> key.
 </div>
 
 We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow the same direction. This means that in languages, such as Arabic, `flex-direction:row;` would actually order items from right to left instead of left to right.
+
+
+### Justify content
+- justify-content
+- default flex-start
+- flex-end
+
+In our previous examples, all the items were aligned to the `flex-start` - that is to the left when displaying as a row and to the top when displaying as a column. This is the default behavior, but you can change it with `justify-content` property. For alignment, you can use he following values:
+
+- `flex-start` (default)
+- `flex-end`
+- `center`
+
+It allows you to align items on the main flex axis, that is:
+- horizontally when the `flex-direction` is `row`
+- vertically when the `flex-direction` is `column`
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzyqOdZ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
+
+### Distributing extra space
+The `justify-content` property can be used not only for aligning items, but also for spreading items evenly across all the available space on the main axis.
+
+You can use these valus:
+- `justify-content: space-between;` 
+- `justify-content: space-around;`
+- `justify-content: space-evenly;` 
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/wvKGYvx/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+In all cases the items are distributed so the space between neighboring items is always the same. **The three values differ only in a way how spacing between first and last item and the edge of the conteiner is calculated**.
+
+- `space-between;`: first and last items have no space relative to the edge of container  
+- `space-around;`: half of the space compared to the gaps between items
+- `space-evenly;`: same space as between items 
+
+## Align items
+We learned how to align items on the main axis using `justify-content`. What about the other axis, the `cross axis`?
+
+The cross axis is the axis perpendicular to the main axis, that means:
+
+- in `row` mode, the cross axis is vertical
+- in `column` mode, the cross axis is horizontal
+
+You can use `align-items` property on the container level to define cross axis alignment. There are several properties you can choose from:
+
+- `flex-start`: align to the start of the cross axis
+  - top in row mode
+  - left in column mode
+- `flex-end`: align to the end of the cross axis
+  - bottom in row mode
+  - right in column mode
+- `center`: align to the middle
+- `stretch`: stretch the component to fill the available space on the cross axis (respects `max-width` and `max-height` of items)
+- `baseline`: items are aligned by their baselines
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/PoPzgEb/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+This works as expected and is self explanatory, considering what we've already learned. The `baseline` setting is a bit trickier though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography))
+
+![Baseline in typography - from Wikipedia](https://en.wikipedia.org/wiki/Baseline_(typography)#/media/File:Typography_Line_Terms.svg)
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/GRpqLeW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+As you can see, baseline in this case is usually the bottom of the first line of text in each item. Bottom in this case means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
+
+Note how multiline item and item with no content are handled.
+
+You can check more details about the [baseline calculation in flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
+
 
 ### Wrapping
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which does not fit the size of its parent container?
@@ -129,20 +208,61 @@ The difference between `wrap` and `wrap-reverse` may be confusing, let's better 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaojgPQ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### Aligning wrapped content
-- align content
+When items are wrapped in a Flexbox and you have therefore multiple lines, you can control how these lines are aligned on the **cross axis**. You can use property `align-content`.
 
-### Justify content
-- justify-content
-- default flex-start
-- flex-end
+Do not confuse this with `justify-content`.
+- `justify-content`: aligns across the **main** axis
+  - main axis is horizontal when in row mode
+  - main axis is vertical when in column mode
+- `align-content`: aligns across the **cross** axis
+  - cross axis is perpendicular to the main axis
 
-### Distributing extra space
-- center, space-between, space-around
+<div class="msg-info">This property has no effect unless you have either *flex-wrap: wrap;* or *flex-wrap: wrap-reverse;*</div> 
+
+The good news is that the possible values of `align-content` arevery similar as with `justify-content`:
+
+- `stretch` (default)
+- `flex-start`
+- `flex-end`
+- `center`
+- `space-between`
+- `space-around`
+- `space-evenly`
+  
+The alignment just work on the other axis, but the behavior is the same.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
 
 
 ## Item level properties
+So far we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
 
 ### Aligning individual items
+So far we covered several option of handling alignment:
+- `justfy-content`: align items on main axis
+- `align-items`: align items on fross axis
+- `align-content`: align multiple rows when wrapping on cross axis
+
+All these settings apply for the whole container. It is possible to also handle alignment of individual items on **cross** axis. This is defined not on the item level, not container level. It uses property `align-self`. Tou can use the following values:
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `stretch`
+- `baseline`
+
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYNKqMw/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Of course, this can be combined with defining alignment on the container level using `align-items`. You can define general alignment for the items on the container level, and then override it for individual items. For example, you can define items to be aligned for the whole container using `align-items: flex-end` and then change the alignment for individual items using `align-self`.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+TODO how this is combined with align items
 
 ### Ordering items
 Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
@@ -159,10 +279,21 @@ For example, if you have three items with order 1, they will be placed after all
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoNWGg/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-### Visual, not logical order
+#### Visual, not logical order
 You have to be careful when changing order in a flexbox container this way. This only changes visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML. 
 
 This has several implications. Most notably, any assistive technologies as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
+
+### Flexibility
+TODO
+
+## Shorthand properties
+TODO
+### Flex-flow
+TODO
+
+### Flex
+TODO
 
 ## Firefox DevTools
 TODO

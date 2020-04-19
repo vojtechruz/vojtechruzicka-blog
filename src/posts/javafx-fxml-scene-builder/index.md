@@ -30,7 +30,7 @@ How to build GUI with JavaFX using FXML markup and SceneBuilder.
 </div>
 
 ## The traditional way
-In the previous article, [we created a simple Hello World application](/javafx-hello-world). Just a quick refresher - the code looked like this.
+In the previous article, [we created a simple Hello World application](/javafx-hello-world/). Just a quick refresher - the code looked like this.
 
 ```java
 @Override
@@ -112,7 +112,7 @@ Before we can add individual components to our file, we need to make sure that t
 The good news is that instead of manually adding all of them, your IDE should be able to help you add imports in a similar way to adding them to Java classes.
 
 ### Adding Components
-Now it's time to add some components. [In the previous article](/javafx-hello-world), we learned that each Scene could have only one child component. Let's add a simple label for now.
+Now it's time to add some components. [In the previous article](/javafx-hello-world/), we learned that each Scene could have only one child component. Let's add a simple label for now.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -362,7 +362,7 @@ Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
 ```
 
 ## What's next
-In the next post in our series, we'll cover some [basic layout we can use to organize our GUI components](/javafx-layouts-basic).
+In the next post in our series, we'll cover some [basic layout we can use to organize our GUI components](/javafx-layouts-basic/).
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

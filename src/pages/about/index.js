@@ -161,7 +161,7 @@ class AboutPage extends React.Component {
               </OutboundLink>
             </li>
           </ul>
-          <h2>Found some issues?</h2>
+          <h2>Found any issues?</h2>
             This whole blog and its content is available on <OutboundLink href="https://github.com/vojtechruz/vojtechruzicka-blog">GitHub</OutboundLink>. Feel free to create a Pull Request if you find some issues in the text or you can just check the code if you are curious about GatsbyJS powered blogs.
         </div>
       </Layout>

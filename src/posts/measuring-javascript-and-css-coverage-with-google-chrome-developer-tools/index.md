@@ -1,5 +1,5 @@
 ---
-title: 'Measuring Javascript and CSS coverage with Google Chrome Developer Tools'
+title: 'Measuring Javascript + CSS coverage with Chrome Dev Tools'
 date: "2017-07-27T22:12:03.284Z"
 dateModified: "2019-01-23"
 tags: ['Javascript','CSS','Chrome']

@@ -1,5 +1,5 @@
 ---
-title: 'Exam Notes – Pivotal Certified Spring Web Application Developer'
+title: 'Exam Notes: Pivotal Certified Spring Web Application Developer'
 date: "2016-08-22T22:12:03.284Z"
 dateModified: "2018-12-07"
 tags: ['Java', 'Spring', 'Career']

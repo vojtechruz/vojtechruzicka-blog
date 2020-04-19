@@ -171,7 +171,7 @@ File → New → Project → JavaFX
 - [JavaFX 13 and Eclipse](https://openjfx.io/openjfx-docs/#IDE-Eclipse)
 
 ## What's next
-This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world).
+This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world/).
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
