@@ -176,9 +176,12 @@ This works as expected and is self explanatory, considering what we've already l
 
 ![Baseline in typography - from Wikipedia](https://en.wikipedia.org/wiki/Baseline_(typography)#/media/File:Typography_Line_Terms.svg)
 
-TODO codepen for baseline
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/GRpqLeW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 As you can see, baseline in this case is usually the bottom of the first line of text in each item. Bottom in this case means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
+
+Note how multiline item and item with no content are handled.
 
 You can check more details about the [baseline calculation in flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
 
@@ -250,7 +253,14 @@ All these settings apply for the whole container. It is possible to also handle 
 - `stretch`
 - `baseline`
 
-TODO codepen
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYNKqMw/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+Of course, this can be combined with defining alignment on the container level using `align-items`. You can define general alignment for the items on the container level, and then override it for individual items. For example, you can define items to be aligned for the whole container using `align-items: flex-end` and then change the alignment for individual items using `align-self`.
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 TODO how this is combined with align items
 
