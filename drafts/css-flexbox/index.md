@@ -46,6 +46,9 @@ Now the layout will be different. All the items are now displayed horizontally, 
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
 
+### Main vs cross axis
+- TODO 
+
 ### Block vs inline flexbox
 Flexbox is slightly different from positioning normal elements using `display` property. If we use `display: block;` or `display: inline;` we define how the element should be displayed in the document flow.
 
@@ -146,6 +149,40 @@ In all cases the items are distributed so the space between neighboring items is
 - `space-around;`: half of the space compared to the gaps between items
 - `space-evenly;`: same space as between items 
 
+## Align items
+We learned how to align items on the main axis using `justify-content`. What about the other axis, the `cross axis`?
+
+The cross axis is the axis perpendicular to the main axis, that means:
+
+- in `row` mode, the cross axis is vertical
+- in `column` mode, the cross axis is horizontal
+
+You can use `align-items` property on the container level to define cross axis alignment. There are several properties you can choose from:
+
+- `flex-start`: align to the start of the cross axis
+  - top in row mode
+  - left in column mode
+- `flex-end`: align to the end of the cross axis
+  - bottom in row mode
+  - right in column mode
+- `center`: align to the middle
+- `stretch`: stretch the component to fill the available space on the cross axis (respects `max-width` and `max-height` of items)
+- `baseline`: items are aligned by their baselines
+
+<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/PoPzgEb/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+This works as expected and is self explanatory, considering what we've already learned. The `baseline` setting is a bit trickier though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography))
+
+![Baseline in typography - from Wikipedia](https://en.wikipedia.org/wiki/Baseline_(typography)#/media/File:Typography_Line_Terms.svg)
+
+TODO codepen for baseline
+
+As you can see, baseline in this case is usually the bottom of the first line of text in each item. Bottom in this case means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
+
+You can check more details about the [baseline calculation in flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
+
+
 ### Wrapping
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which does not fit the size of its parent container?
 
@@ -194,14 +231,28 @@ The alignment just work on the other axis, but the behavior is the same.
 <!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-## Align items
-- TODO
+
 
 ## Item level properties
 So far we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
 
 ### Aligning individual items
-- TODO align-self
+So far we covered several option of handling alignment:
+- `justfy-content`: align items on main axis
+- `align-items`: align items on fross axis
+- `align-content`: align multiple rows when wrapping on cross axis
+
+All these settings apply for the whole container. It is possible to also handle alignment of individual items on **cross** axis. This is defined not on the item level, not container level. It uses property `align-self`. Tou can use the following values:
+
+- `flex-start`
+- `flex-end`
+- `center`
+- `stretch`
+- `baseline`
+
+TODO codepen
+
+TODO how this is combined with align items
 
 ### Ordering items
 Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
