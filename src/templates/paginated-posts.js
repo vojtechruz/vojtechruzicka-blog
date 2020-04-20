@@ -29,7 +29,6 @@ class BlogIndex extends React.Component {
     let topPagination;
 
     if (currentPage > 1) {
-      topPagination = bottomPagination;
       let prevPagePath = "/";
       if (currentPage > 2) {
         prevPagePath = `/pages/${currentPage - 1}/`;
@@ -68,11 +67,11 @@ class BlogIndex extends React.Component {
       }
     }
 
-    let bottomPagination = <div className="pagination">
+    let bottomPagination = (<div className="pagination">
       {prevPage}
       {pagesLinks}
       {nextPage}
-    </div>;
+    </div>);
     if(currentPage > 1) {
       topPagination = bottomPagination;
     }
