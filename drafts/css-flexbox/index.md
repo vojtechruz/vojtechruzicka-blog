@@ -41,7 +41,6 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've added also some background colors and borders, so you can better see the layout.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ExVPBzM/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
@@ -102,7 +101,7 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 }
 ```
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoKONW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 <div class="msg-warn">
@@ -127,7 +126,7 @@ It allows you to align items on the main flex axis, that is:
 - horizontally when the `flex-direction` is `row`
 - vertically when the `flex-direction` is `column`
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzyqOdZ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
@@ -140,7 +139,7 @@ You can use these valus:
 - `justify-content: space-around;`
 - `justify-content: space-evenly;` 
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/wvKGYvx/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 In all cases the items are distributed so the space between neighboring items is always the same. **The three values differ only in a way how spacing between first and last item and the edge of the conteiner is calculated**.
@@ -169,14 +168,14 @@ You can use `align-items` property on the container level to define cross axis a
 - `stretch`: stretch the component to fill the available space on the cross axis (respects `max-width` and `max-height` of items)
 - `baseline`: items are aligned by their baselines
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/PoPzgEb/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 This works as expected and is self explanatory, considering what we've already learned. The `baseline` setting is a bit trickier though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography))
 
 ![Baseline in typography - from Wikipedia](https://en.wikipedia.org/wiki/Baseline_(typography)#/media/File:Typography_Line_Terms.svg)
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/GRpqLeW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 As you can see, baseline in this case is usually the bottom of the first line of text in each item. Bottom in this case means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
@@ -189,7 +188,7 @@ You can check more details about the [baseline calculation in flexbox](https://d
 ### Wrapping
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which does not fit the size of its parent container?
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbQdev/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 By default, the container tries to shring the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. 
@@ -204,7 +203,7 @@ You can use `flex-wrap` property on the container level to specify how wrapping 
 
 The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaojgPQ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### Aligning wrapped content
@@ -231,7 +230,7 @@ The good news is that the possible values of `align-content` arevery similar as 
   
 The alignment just work on the other axis, but the behavior is the same.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 
@@ -254,29 +253,26 @@ All these settings apply for the whole container. It is possible to also handle 
 - `baseline`
 
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYNKqMw/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Of course, this can be combined with defining alignment on the container level using `align-items`. You can define general alignment for the items on the container level, and then override it for individual items. For example, you can define items to be aligned for the whole container using `align-items: flex-end` and then change the alignment for individual items using `align-self`.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-TODO how this is combined with align items
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### Ordering items
 Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbGeRO/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 Multiple items can have the same `order` value. Such items belong to the same *ordinal group*. Items within the same group are then ordered in the same order in which they are declared in HTML.
 
 For example, if you have three items with order 1, they will be placed after all the items with lower order. All these three items with the same order value will then be placed in the same order as in HTML.
 
-<!-- TODO this can be replaced by simple url once there is support in the gatsby codepen plugin -->
+
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoNWGg/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 #### Visual, not logical order
@@ -285,15 +281,117 @@ You have to be careful when changing order in a flexbox container this way. This
 This has several implications. Most notably, any assistive technologies as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
 
 ### Flexibility
-TODO
+One of the most powerful features of flexbox is the ability to adjust the size of the items inside based on the size of the container. This means:
+- You can enlarge the items to fill all the available space
+- You can shrink the items to fit when there is not enough space
+
+This is very powerful as all the items are automatically resized when the size of the flex container changes. Moreover, you can define resizing behavior per each items inside the container. For example - some items can grow more, some items less and some not at all.
+
+
+#### Flex-grow
+Using this property you can control how items should grow when ther is extra space available. The default value, if not specified otherwise, is `flex-grow: 0`. That means that **items will not grow to fill the extra space on the main axis by default**.
+
+However, this can be changed by assigning any numeric value greater than 0. **Negative values are not allowed**.
+
+Let's say we assign `flex-grow: 1;` to all items. This means that the extra space will be assigned proportionally to each item in a way that each item gets the same amount of extra space. This is because their `flex-grow` values are the same.
+
+TODO codepen
+
+So what does the value actually do?
+
+**Extra space available is distributed among the component proportionally to their flex-grow values.**
+
+This means if there are two items and both have `flex-grow: 1` they both get 50% of the available space. Thats because ration of their values is `1:1`.
+
+If one item has `flex-grow: 3` and the other one `flex-grow: 1`, the ratio of their values is 3:1, which means he first one will get 3x as much as space (75%) as the second one (25%). If there are 100px of extra space, the first component will get grow by 75px and the second one will grow by 25px.
+
+The common misconception is that ratio, let's say 2:1, means that the firs component will end up being twice as big as the second one. But remember, it is about how the extra space is distributed, not the final size. **The ratio of `flex-grow` values determines percentage of the extra space each item will get, not their final sizes**.
+
+##### Values between 0 and 1
+values greater than 0 but less than 1 have special behavior. **If the sum of all the `flex-growht` values in a container is less than 1, items will still grow, but will not fill the entire container.**
+
+For example, if we have three items, each with `flex-growht: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
+
+TODO codepen
+
+#### Flex-shrink
+This property determines how items should reduced in size if there is not enough space available in the container.
+
+Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. Ratio of these values determines how much each item will shrink compared to others. The difference is that the defaul value is `1`. This means that the items will shrink by default (but they don't grow by default).
+
+TODO codepen
+
+There is one more notable difference. In addition to ratios (same as with growing), the base size of each item is considered when determining how much each item will shrink. This means even if the `flex-shrink` value is the same, bigger items will shrink more than smaller items.
+
+In other words, larger items  (which are able to shrink more) will shrink faster than smaller items (which have limited space left for shrinking).
+
+TODO codepen
+
+#### Flex-basis
+When calculating shringking and growing in a flexbox, it is important to know size of each item on the main axis. For example, to calculate the space availeble for growht, you need to take the size of the flex container minus sizes af all the items. How are sizes of individual items calculated though?
+
+- You can specify `width` or `height` of items
+- If not specified, the items are sized based on their content
+
+You can also specify `flex-basis` property, which is used for sizing. It can use the same values as `width` or `height` You can see, that `widht` and `height` are two properties for horizontal and vertical sizing. But there is only one `flex-basis`. That's because it controls sizing on the **main axis**. This means if you are in a row mode, it controls width, in column mode it controls height. So even if you switch between rows and columns dnamically, you can still use the same `flex-basis` property.
+
+Behavior of `flex-basis` is the following:
+- it defaults to `auto`
+- `auto` uses either specified `width` or `height`. If these are not specified, it uses sizing based on contents of the item
+- it overrides any `width` or `height`
+- it respects min/max width and height
+- you can also use `content` value, which uses automatic size based on content. It was not present in the initial spec and older browsers do not support it
+
+TODO codepen
 
 ## Shorthand properties
-TODO
+Although you can specify flex properties such as `flex-grow` or `flex-shrink` individually, these is are some shorthand properties, which allow you to combine multiple individual properties together. Using shorthand properties is usually preferred way instead of defining the properties individually.
+
 ### Flex-flow
-TODO
+This property allows you to combine `flex-direction` and `flex-wrap`.
+
+```css
+flex-flow: flex-direction flex-wrap;
+```
+
+Of course, you need to provide specific values instead of `flex-direction` and `flex-wrap`:
+
+```css
+flex-flow: column wrap-reverse;
+
+/* Equivaluent css without using shorthand flex property: */
+
+flex-direction: column;
+flex-wrap: wrap-reverse;
+```
 
 ### Flex
-TODO
+This property allows you to combine the following individual properties together:
+- `flex-grow`
+- `flex-shrink`
+- `flex-basis`
+
+It is defines as follows:
+
+```css
+flex: flex-grow flex-shrink flex-basis;
+```
+
+You need to substitute `flex-grow`, `flex-shrink` and `flex-basis` with specific values here:
+
+```css
+flex: 1 2 100px;
+
+/* Equivaluent css without using shorthand flex property: */
+
+flex-grow: 1;
+flex-shrink: 2;
+flex-basis: 100px;
+```
+
+This shorthand is preferred over defining the properties automatically, as [stated in the spec](https://drafts.csswg.org/css-flexbox/#flex-grow-property).
+
+> Authors are encouraged to control flexibility using the flex shorthand rather than with flex-grow directly, as the shorthand correctly resets any unspecified components to accommodate common uses.
 
 ## Firefox DevTools
 TODO
@@ -320,4 +418,3 @@ Want some more practice? You can check other games helping you to master Flexbox
 
 TODO cheatsheet
 TODO table showing which are on parent level vs on item level
-TODO https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Relationship_of_Flexbox_to_Other_Layout_Methods
