@@ -176,4 +176,4 @@ For Maven builds, you can use the following configuration:
 
 - [Records](https://www.vojtechruzicka.com/java-records/)
 - [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/)
-- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks)
+- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks/)

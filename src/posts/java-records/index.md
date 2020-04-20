@@ -319,4 +319,4 @@ For Maven builds, you can use the following configuration:
 
 - [Java Pattern Matching: InstanceOf](https://www.vojtechruzicka.com/java-pattern-matching-instanceof/)
 - [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/)
-- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks)
+- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks/)

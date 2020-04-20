@@ -14,7 +14,7 @@ order: 2
 
 Tutorial on how to build your first JavaFX application.
 
-This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started). 
+This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started/). 
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
@@ -54,7 +54,7 @@ Now let's see a specific example - a real application.
 ![Application Hierarchy Example](hierarchy-window.png)
 
 ## Application Class
-Time to start coding. If you followed the [previous article](/javafx-getting-started), you already have all the required dependencies in place.
+Time to start coding. If you followed the [previous article](/javafx-getting-started/), you already have all the required dependencies in place.
 
 Each JavaFX application needs to have a main application class. That is - a class that extends `javafx.application.Application`.
 
@@ -141,7 +141,7 @@ Label helloWorldLabel = new Label("Hello world!");
 Scene primaryScene = new Scene(helloWorldLabel);
 ```
 
-You can see that `Scene` only accepts one child component. What if we want more? You need to use a layout then, which is a component, that can have multiple children and arranges them on the screen depending on the layout used. We'll cover layouts [later in the series](/javafx-layouts-basic).
+You can see that `Scene` only accepts one child component. What if we want more? You need to use a layout then, which is a component, that can have multiple children and arranges them on the screen depending on the layout used. We'll cover layouts [later in the series](/javafx-layouts-basic/).
 
 To make it slightly more visually appealing, let's center the label vertically on the screen.
 
@@ -176,7 +176,7 @@ Now our window contains a scene with a label component.
 ![Hello World Window](hello-world-window.png)
 
 ## What's Next
-In the next step in the series, we'll cover how to [write our GUI in XML rather in Java](/javafx-fxml-scene-builder).
+In the next step in the series, we'll cover how to [write our GUI in XML rather in Java](/javafx-fxml-scene-builder/).
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
