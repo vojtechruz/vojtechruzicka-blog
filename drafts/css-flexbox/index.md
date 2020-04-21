@@ -295,7 +295,7 @@ However, this can be changed by assigning any numeric value greater than 0. **Ne
 
 Let's say we assign `flex-grow: 1;` to all items. This means that the extra space will be assigned proportionally to each item in a way that each item gets the same amount of extra space. This is because their `flex-grow` values are the same.
 
-TODO codepen
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/bGVwJLg/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 So what does the value actually do?
 
@@ -312,20 +312,25 @@ values greater than 0 but less than 1 have special behavior. **If the sum of all
 
 For example, if we have three items, each with `flex-growht: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
 
-TODO codepen
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYarGj/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
+In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be ocupied while the items with `0.1` will get 1/6 of space each and the item with `0.4` will get `4/6` of distributed space.
+
+In other words, 10% of extra space will get two items with `0.1` each, 40% will be added to item with `0.4` and the rest of 40% will stay unoccupied. 
 
 #### Flex-shrink
 This property determines how items should reduced in size if there is not enough space available in the container.
 
 Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. Ratio of these values determines how much each item will shrink compared to others. The difference is that the defaul value is `1`. This means that the items will shrink by default (but they don't grow by default).
 
-TODO codepen
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/dyYpLxo/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-There is one more notable difference. In addition to ratios (same as with growing), the base size of each item is considered when determining how much each item will shrink. This means even if the `flex-shrink` value is the same, bigger items will shrink more than smaller items.
+There is one more notable difference. In addition to ratios (same as with growing), **the base size of each item is considered when determining how much each item will shrink**. This means even if the `flex-shrink` value is the same, bigger items will shrink more than smaller items.
 
 In other words, larger items  (which are able to shrink more) will shrink faster than smaller items (which have limited space left for shrinking).
 
-TODO codepen
+<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/WNQGBrz/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
+
 
 #### Flex-basis
 When calculating shringking and growing in a flexbox, it is important to know size of each item on the main axis. For example, to calculate the space availeble for growht, you need to take the size of the flex container minus sizes af all the items. How are sizes of individual items calculated though?
