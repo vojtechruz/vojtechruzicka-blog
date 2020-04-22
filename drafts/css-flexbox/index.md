@@ -45,9 +45,6 @@ Now the layout will be different. All the items are now displayed horizontally, 
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
 
-### Main vs cross axis
-- TODO 
-
 ### Block vs inline flexbox
 Flexbox is slightly different from positioning normal elements using `display` property. If we use `display: block;` or `display: inline;` we define how the element should be displayed in the document flow.
 
@@ -110,19 +107,27 @@ If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has s
 
 We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow the same direction. This means that in languages, such as Arabic, `flex-direction:row;` would actually order items from right to left instead of left to right.
 
+### Main vs cross axis
+To better understand some of the following concepts, we need to introduce some more terminology. Flexbox uses two axes. The `main` axis and `cross` axis. They are perpendicular to each other.
+ 
+![Flexbox Axis](flexbox-axis.png)
+
+- The main axis is horizonatal in row mode and vertical in column mode
+- The cros axis is vertical in row mode and horizontal in column mode
+
+The direction of each axis depens on the writing mode (left to right in english) and `flow-direction`.
+
+- Main axis is left-to-right in `row` and `right-to-left in `row-reverse`
+- Cross axis is top-to-bottom in `column` and `bottom-to-top in `column-reverse`
 
 ### Justify content
-- justify-content
-- default flex-start
-- flex-end
-
 In our previous examples, all the items were aligned to the `flex-start` - that is to the left when displaying as a row and to the top when displaying as a column. This is the default behavior, but you can change it with `justify-content` property. For alignment, you can use he following values:
 
 - `flex-start` (default)
 - `flex-end`
 - `center`
 
-It allows you to align items on the main flex axis, that is:
+It allows you to **align items on the main flex axis**, that is:
 - horizontally when the `flex-direction` is `row`
 - vertically when the `flex-direction` is `column`
 
