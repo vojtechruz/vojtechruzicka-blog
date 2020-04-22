@@ -12,12 +12,12 @@ excerpt: ''
 ## Flexbox
 Flexbox, short for Flexible Box, is defined in the [CSS Flexible Box Layout Module specifiation](https://www.w3.org/TR/css-flexbox-1/).
 
-It allows to control layout in a parent container. It offers some useful settings, which allow you to control alignment of the items and distributing the extra space. Flexbox is one-dimensional. That means it lays out its items in one dimension - either horizontally or vertically. An example of two-dimensional layout can be CSS Grid.
+It allows you to control the layout in a parent container. It offers some useful settings, which allow you to control the alignment of the items and to distribute the extra space. Flexbox is one-dimensional. That means it lays out its items in one dimension - either horizontally or vertically. An example of a two-dimensional layout can be CSS Grid.
 
-Flexbox is a poweful tool, which allow you to control layout in a way that was previously very diffiult or possible only using hacky solutions.
+Flexbox is a powerful tool, which allows you to control layout in a way that was previously very difficult or possible only using hacky solutions.
 
 ## Flex container
-With flexbox, we have to consider both the element itself and also its children. Because Flexbox is mainly focused on how its children (flex items) are positioned within the main element (flexbox container).
+With Flexbox, we have to consider both the element itself and also its children. That's because Flexbox is mainly focused on how its children (flex items) are positioned within the main element (flexbox container).
 
 ```html
 <div class="flexbox-container">
@@ -27,9 +27,9 @@ With flexbox, we have to consider both the element itself and also its children.
 </div>
 ```
 
-It is important to grasp the concept of `flexbox-container` and `flexbox-items`. That's because some properties for flexbox are applied to the container level and some for the individual items.
+It is important to grasp the concept of `flexbox-container` and `flexbox-items`. That's because some properties for Flexbox are applied to the container level and some for the individual items.
 
-Without any CSS styles, the code above will display all the `flexbox-items` under each other. Each item will span the whole width available. That's because `div` is a block element and it is how block elements behave.
+Without any CSS styles, the code above will display all the `flexbox-items` under each other. Each item will span the whole width available. That's because `div` is a block element, and it is how block elements behave.
 
 Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to add the following style:
 
@@ -39,16 +39,16 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 }
 ```
 
-Now the layout will be different. All the items are now displayed horizontally, from left to right. I've added also some background colors and borders, so you can better see the layout.
+Now the layout will be different. All the items are now displayed horizontally, from left to right. I've also added some background colors and borders, so you can better see the layout.
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ExVPBzM/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-The `display: flex;` property is always applied on the container level, not the item level. It defines theat the container should layout its children using Flexbox.
+The `display: flex;` property is always applied on the container level, not the item level. It defines that the container should layout its children using Flexbox.
 
-### Block vs inline flexbox
+### Block vs. inline Flexbox
 Flexbox is slightly different from positioning normal elements using `display` property. If we use `display: block;` or `display: inline;` we define how the element should be displayed in the document flow.
 
-When we defined `display: flex;` we saw that it had effect on how the children are displayed in the `flex-container`. But what about the container itself how is it displayed? Is it `inline` element or is it `block`?
+When we defined `display: flex;` we saw that it affected how the children are displayed in the `flex-container`. But what about the container itself how is it displayed? Is it `inline` element, or is it `block`?
 
 <div class="msg-info">
 <strong>Block elements:</strong>
@@ -77,7 +77,7 @@ If we want to our container to be displayed inline, we use `display: inline-flex
 
 Note that `display: inline-flex;` behaves actually as `inline-block` rather than `inline`. That means it is still displayed on a line, but you can define properties such as `width` and `height`.
 
-Bw aware that this defines only how the container should be displayed in the document flow, not its child items.
+Be aware that this defines only how the container should be displayed in the document flow, not its child items.
 
 ### Flex direction
 In our example, the child items were displayed horizontally, from left to right. That's the default behavior, if you don't specify otherwise.
@@ -102,26 +102,26 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoKONW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 <div class="msg-warn">
-If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications. This only changes the visual order of the elements not hteir logical order. Screen readers will still process the items in the order they are declared in HTML. The same applies for navigation using <i>Tab</i> key.
+If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications. This only changes the visual order of the elements, not their logical order. Screen readers will still process the items in the order they are declared in HTML. The same applies for navigation using <i>Tab</i> key.
 </div>
 
-We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow the same direction. This means that in languages, such as Arabic, `flex-direction:row;` would actually order items from right to left instead of left to right.
+We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow the same direction. This means that in languages, such as Arabic, `flex-direction: row;` would actually order items from right to left instead of left to right.
 
-### Main vs cross axis
-To better understand some of the following concepts, we need to introduce some more terminology. Flexbox uses two axes. The `main` axis and `cross` axis. They are perpendicular to each other.
+### Main vs. cross axis
+To better understand some of the following concepts, we need to introduce some more terminology. Flexbox uses two axes. The `main` axis and the `cross` axis. They are perpendicular to each other.
  
-![Flexbox Axis](flexbox-axis.png)
+![Flexbox Axis](src/posts/css-flexbox/flexbox-axis.png)
 
-- The main axis is horizonatal in row mode and vertical in column mode
-- The cros axis is vertical in row mode and horizontal in column mode
+- The main axis is horizontal in row mode and vertical in column mode
+- The cross axis is vertical in row mode and horizontal in column mode
 
-The direction of each axis depens on the writing mode (left to right in english) and `flow-direction`.
+The direction of each axis depends on the writing mode (left to right in English) and `flow-direction`.
 
 - Main axis is left-to-right in `row` and `right-to-left in `row-reverse`
 - Cross axis is top-to-bottom in `column` and `bottom-to-top in `column-reverse`
 
 ### Justify content
-In our previous examples, all the items were aligned to the `flex-start` - that is to the left when displaying as a row and to the top when displaying as a column. This is the default behavior, but you can change it with `justify-content` property. For alignment, you can use he following values:
+In our previous examples, all the items were aligned to the `flex-start` - that is to the left when displaying as a row and to the top when displaying as a column. This is the default behavior, but you can change it with `justify-content` property. For alignment, you can use the following values:
 
 - `flex-start` (default)
 - `flex-end`
@@ -134,7 +134,7 @@ It allows you to **align items on the main flex axis**, that is:
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzyqOdZ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
+Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top, or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
 
 ### Distributing extra space
 The `justify-content` property can be used not only for aligning items, but also for spreading items evenly across all the available space on the main axis.
@@ -147,21 +147,21 @@ You can use these valus:
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/wvKGYvx/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-In all cases the items are distributed so the space between neighboring items is always the same. **The three values differ only in a way how spacing between first and last item and the edge of the conteiner is calculated**.
+In all cases, the items are distributed, so the space between neighboring items is always the same. **The three values differ only in a way how the spacing between first and last item and the edge of the container is calculated**.
 
-- `space-between;`: first and last items have no space relative to the edge of container  
+- `space-between;`: first and last items have no space relative to the edge of the container  
 - `space-around;`: half of the space compared to the gaps between items
 - `space-evenly;`: same space as between items 
 
 ## Align items
-We learned how to align items on the main axis using `justify-content`. What about the other axis, the `cross axis`?
+We learned how to align items on the main axis using `justify-content`. What about the other axis, the `cross` axis?
 
 The cross axis is the axis perpendicular to the main axis, that means:
 
 - in `row` mode, the cross axis is vertical
 - in `column` mode, the cross axis is horizontal
 
-You can use `align-items` property on the container level to define cross axis alignment. There are several properties you can choose from:
+You can use `align-items` property on the container level to define cross-axis alignment. There are several properties you can choose from:
 
 - `flex-start`: align to the start of the cross axis
   - top in row mode
@@ -176,34 +176,34 @@ You can use `align-items` property on the container level to define cross axis a
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/PoPzgEb/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-This works as expected and is self explanatory, considering what we've already learned. The `baseline` setting is a bit trickier though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography))
+This works as expected and is self-explanatory, considering what we've already learned. The `baseline` setting is a bit trickier, though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography))
 
 ![Baseline in typography - from Wikipedia](https://en.wikipedia.org/wiki/Baseline_(typography)#/media/File:Typography_Line_Terms.svg)
 
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/GRpqLeW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-As you can see, baseline in this case is usually the bottom of the first line of text in each item. Bottom in this case means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
+As you can see, the baseline, in this case, is usually the bottom of the first line of text in each item. The bottom here means where most of the regular letters end, there are some letters such as `p` or `j` that go under the baseline. 
 
-Note how multiline item and item with no content are handled.
+Note how multiline items and items with no content are handled.
 
-You can check more details about the [baseline calculation in flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
+You can check more details about the [baseline calculation in Flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
 
 
 ### Wrapping
-So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which does not fit the size of its parent container?
+So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which do not fit the size of its parent container?
 
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbQdev/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-By default, the container tries to shring the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. 
+By default, the container tries to shrink the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. 
 
-This may be ok in some cases, but usually you want more control over how this case is handled.
+This may be ok in some cases, but usually, you want more control over how this case is handled.
 
-You can use `flex-wrap` property on the container level to specify how wrapping of items should be handled. There are three possible values:
+You can use `flex-wrap` property on the container level to specify how the wrapping of items should be handled. There are three possible values:
 
 - `nowrap` -  (default) one line, may overflow the container
-- `wrap` - wrap to multiple lines from to to bottom
+- `wrap` - wrap to multiple lines from top to bottom
 - `wrap-reverse` - wrap to multiple in the opposite order from bottom to top
 
 The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
@@ -212,14 +212,14 @@ The difference between `wrap` and `wrap-reverse` may be confusing, let's better 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaojgPQ/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### Aligning wrapped content
-When items are wrapped in a Flexbox and you have therefore multiple lines, you can control how these lines are aligned on the **cross axis**. You can use property `align-content`.
+When items are wrapped in a Flexbox, and you have, therefore, multiple lines, you can control how these lines are aligned on the **cross axis**. You can use property `align-content`.
 
 Do not confuse this with `justify-content`.
 - `justify-content`: aligns across the **main** axis
-  - main axis is horizontal when in row mode
-  - main axis is vertical when in column mode
+  - the main axis is horizontal when in row mode
+  - the main axis is vertical when in column mode
 - `align-content`: aligns across the **cross** axis
-  - cross axis is perpendicular to the main axis
+  - the cross axis is perpendicular to the main axis
 
 <div class="msg-info">This property has no effect unless you have either *flex-wrap: wrap;* or *flex-wrap: wrap-reverse;*</div> 
 
@@ -233,7 +233,7 @@ The good news is that the possible values of `align-content` arevery similar as 
 - `space-around`
 - `space-evenly`
   
-The alignment just work on the other axis, but the behavior is the same.
+The alignment just works on the other axis, but the behavior is the same.
 
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
@@ -241,15 +241,15 @@ The alignment just work on the other axis, but the behavior is the same.
 
 
 ## Item level properties
-So far we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
+So far, we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
 
 ### Aligning individual items
-So far we covered several option of handling alignment:
-- `justfy-content`: align items on main axis
-- `align-items`: align items on fross axis
-- `align-content`: align multiple rows when wrapping on cross axis
+So far, we covered several options for handling alignment:
+- `justify-content`: align items on the main axis
+- `align-items`: align items on the cross axis
+- `align-content`: align multiple rows when wrapping on the cross axis
 
-All these settings apply for the whole container. It is possible to also handle alignment of individual items on **cross** axis. This is defined not on the item level, not container level. It uses property `align-self`. Tou can use the following values:
+All these settings apply for the whole container. It is possible to also handle the alignment of individual items on the **cross** axis. This is defined not on the item level, not the container level. It uses property `align-self`. Tou can use the following values:
 
 - `flex-start`
 - `flex-end`
@@ -267,7 +267,7 @@ Of course, this can be combined with defining alignment on the container level u
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 ### Ordering items
-Items in the flexbox container are not necessary displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
+Items in the flexbox container are not necessarily displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
 
@@ -275,26 +275,26 @@ If you want to put items before those, which don't have order specified, you can
 
 Multiple items can have the same `order` value. Such items belong to the same *ordinal group*. Items within the same group are then ordered in the same order in which they are declared in HTML.
 
-For example, if you have three items with order 1, they will be placed after all the items with lower order. All these three items with the same order value will then be placed in the same order as in HTML.
+For example, if you have three items with order 1, they will be placed after all the items with the lower order. All these three items with the same order value will then be placed in the same order as in HTML.
 
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoNWGg/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
 #### Visual, not logical order
-You have to be careful when changing order in a flexbox container this way. This only changes visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML. 
+You have to be careful when changing the order in a flexbox container this way. This only changes the visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML. 
 
-This has several implications. Most notably, any assistive technologies as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
+This has several implications. Most notably, any assistive technologies such as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
 
 ### Flexibility
-One of the most powerful features of flexbox is the ability to adjust the size of the items inside based on the size of the container. This means:
+One of the most powerful features of Flexbox is the ability to adjust the size of the items inside based on the size of the container. This means:
 - You can enlarge the items to fill all the available space
 - You can shrink the items to fit when there is not enough space
 
-This is very powerful as all the items are automatically resized when the size of the flex container changes. Moreover, you can define resizing behavior per each items inside the container. For example - some items can grow more, some items less and some not at all.
+This is very powerful as all the items are automatically resized when the size of the flex container changes. Moreover, you can define resizing behavior per each item inside the container. For example - some items can grow more, some items less, and some not at all.
 
 
 #### Flex-grow
-Using this property you can control how items should grow when ther is extra space available. The default value, if not specified otherwise, is `flex-grow: 0`. That means that **items will not grow to fill the extra space on the main axis by default**.
+Using this property, you can control how items should grow when there is extra space available. The default value, if not specified otherwise, is `flex-grow: 0`. That means that **items will not grow to fill the extra space on the main axis by default**.
 
 However, this can be changed by assigning any numeric value greater than 0. **Negative values are not allowed**.
 
@@ -306,27 +306,27 @@ So what does the value actually do?
 
 **Extra space available is distributed among the component proportionally to their flex-grow values.**
 
-This means if there are two items and both have `flex-grow: 1` they both get 50% of the available space. Thats because ration of their values is `1:1`.
+This means if there are two items, and both have `flex-grow: 1;` they both get 50% of the available space. That's because the ratio of their values is `1:1`.
 
-If one item has `flex-grow: 3` and the other one `flex-grow: 1`, the ratio of their values is 3:1, which means he first one will get 3x as much as space (75%) as the second one (25%). If there are 100px of extra space, the first component will get grow by 75px and the second one will grow by 25px.
+If one item has `flex-grow: 3` and the other one `flex-grow: 1`, the ratio of their values is 3:1, which means he first one will get 3x as much as space (75%) as the second one (25%). If there are 100px of extra space, the first component will get grow by 75px, and the second one will grow by 25px.
 
-The common misconception is that ratio, let's say 2:1, means that the firs component will end up being twice as big as the second one. But remember, it is about how the extra space is distributed, not the final size. **The ratio of `flex-grow` values determines percentage of the extra space each item will get, not their final sizes**.
+The common misconception is that ratio, let's say 2:1, means that the first component will end up being twice as big as the second one. But remember, it is about how the extra space is distributed, not the final size. **The ratio of `flex-grow` values determines the percentage of the extra space each item will get, not their final sizes**.
 
 ##### Values between 0 and 1
-values greater than 0 but less than 1 have special behavior. **If the sum of all the `flex-growht` values in a container is less than 1, items will still grow, but will not fill the entire container.**
+Values greater than 0, but less than 1 have special behavior. **If the sum of all the `flex-grow` values in a container is less than 1, items will still grow, but will not fill the entire container.**
 
-For example, if we have three items, each with `flex-growht: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
+For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYarGj/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
-In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be ocupied while the items with `0.1` will get 1/6 of space each and the item with `0.4` will get `4/6` of distributed space.
+In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be occupied while the items with `0.1` will get 1/6 of space each, and the item with `0.4` will get `4/6` of distributed space.
 
-In other words, 10% of extra space will get two items with `0.1` each, 40% will be added to item with `0.4` and the rest of 40% will stay unoccupied. 
+In other words, 10% of extra space will get two items with `0.1` each, 40% will be added to item with `0.4,` and the rest of 40% will stay unoccupied. 
 
 #### Flex-shrink
-This property determines how items should reduced in size if there is not enough space available in the container.
+This property determines how items should be reduced in size if there is not enough space available in the container.
 
-Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. Ratio of these values determines how much each item will shrink compared to others. The difference is that the defaul value is `1`. This means that the items will shrink by default (but they don't grow by default).
+Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. The ratio of these values determines how much each item will shrink compared to others. The difference is that the default value is `1`. This means that the items will shrink by default (but they don't grow by default).
 
 <iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/dyYpLxo/?height=400&amp;&amp;default-tab="result" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;"></iframe>
 
@@ -338,24 +338,22 @@ In other words, larger items  (which are able to shrink more) will shrink faster
 
 
 #### Flex-basis
-When calculating shringking and growing in a flexbox, it is important to know size of each item on the main axis. For example, to calculate the space availeble for growht, you need to take the size of the flex container minus sizes af all the items. How are sizes of individual items calculated though?
+When calculating shrinking and growing in a flexbox, it is important to know the size of each item on the main axis. For example, to calculate the space available for growth, you need to take the size of the flex container minus sizes of all the items. How are the sizes of individual items calculated, though?
 
 - You can specify `width` or `height` of items
 - If not specified, the items are sized based on their content
 
-You can also specify `flex-basis` property, which is used for sizing. It can use the same values as `width` or `height` You can see, that `widht` and `height` are two properties for horizontal and vertical sizing. But there is only one `flex-basis`. That's because it controls sizing on the **main axis**. This means if you are in a row mode, it controls width, in column mode it controls height. So even if you switch between rows and columns dnamically, you can still use the same `flex-basis` property.
+You can also specify `flex-basis` property, which is used for sizing. It can use the same values as `width` or `height` You can see, that `width` and `height` are two properties for horizontal and vertical sizing. But there is only one `flex-basis`. That's because it controls sizing on the **main axis**. This means if you are in a row mode, it controls width. In column mode, it controls the height. So even if you switch between rows and columns dynamically, you can still use the same `flex-basis` property.
 
-Behavior of `flex-basis` is the following:
+The behavior of `flex-basis` is the following:
 - it defaults to `auto`
 - `auto` uses either specified `width` or `height`. If these are not specified, it uses sizing based on contents of the item
 - it overrides any `width` or `height`
 - it respects min/max width and height
-- you can also use `content` value, which uses automatic size based on content. It was not present in the initial spec and older browsers do not support it
-
-TODO codepen
+- you can also use `content` value, which uses automatic size based on content. It was not present in the initial spec, and older browsers do not support it
 
 ## Shorthand properties
-Although you can specify flex properties such as `flex-grow` or `flex-shrink` individually, these is are some shorthand properties, which allow you to combine multiple individual properties together. Using shorthand properties is usually preferred way instead of defining the properties individually.
+Although you can specify flex properties such as `flex-grow` or `flex-shrink` individually, there are some shorthand properties, which allow you to combine multiple individual properties together. Using shorthand properties is usually a preferred way instead of defining the properties individually.
 
 ### Flex-flow
 This property allows you to combine `flex-direction` and `flex-wrap`.
@@ -381,7 +379,7 @@ This property allows you to combine the following individual properties together
 - `flex-shrink`
 - `flex-basis`
 
-It is defines as follows:
+It is defined as follows:
 
 ```css
 flex: flex-grow flex-shrink flex-basis;
@@ -404,12 +402,12 @@ This shorthand is preferred over defining the properties automatically, as [stat
 > Authors are encouraged to control flexibility using the flex shorthand rather than with flex-grow directly, as the shorthand correctly resets any unspecified components to accommodate common uses.
 
 ## Firefox DevTools
-If you want to tinker with flexbox settings, Firefox developer tools offer [powerful support](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Examine_Flexbox_layouts) for flexbox debugging and visualisation. Check it out.
+If you want to tinker with flexbox settings, Firefox developer tools offer [powerful support](https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Examine_Flexbox_layouts) for Flexbox debugging and visualization. Check it out.
 
-![Firefox Flexbox inspector](firefox-flex-inspector.png)
+![Firefox Flexbox inspector](src/posts/css-flexbox/firefox-flex-inspector.png)
 
 ## Browser Support
-Fortunately, flexbox currently has [great support](https://caniuse.com/#feat=flexbox) across all the major browsers. That is 98.72% of all the users. It is even supported by IE 11, even though [it has many issues](https://github.com/philipwalton/flexbugs) and some non-standard behavior.
+Fortunately, Flexbox currently has [great support](https://caniuse.com/#feat=flexbox) across all the major browsers. That is 98.72% of all the users. It is even supported by IE 11, even though [it has many issues](https://github.com/philipwalton/flexbugs) and some non-standard behavior.
 
 ![Flexbox browser support](drafts/css-flexboxexbox-support.png)
 
@@ -417,16 +415,16 @@ If you are targeting some old browsers, you can check [Advanced Cross-Browser Fl
 
 ## Learning flexbox with zombies
 
-Learning flexbox is way more fun if there are zombies involved. Instead of reading boring tutorials, you can shoot zombies with your crossbox, while learning flexbox. Try [Flexbox Zombies](https://mastery.games/flexboxzombies/) browser game. It is for free.
+Learning Flexbox is way more fun if there are zombies involved. Instead of reading boring tutorials, you can shoot zombies with your crossbow, while learning Flexbox. Try [Flexbox Zombies](https://mastery.games/flexboxzombies/) browser game. It is for free.
 
 ![Flexbox Zombies](drafts/css-flexboxexbox-zombies.png)
 
-Want some more practice? You can check other games helping you to master Flexbox, such as [Flexbox Defense](http://www.flexboxdefense.com/) - a tower defense game where you position your towers using CSS and flexbox. Another one is [Flexbox Froggy](https://flexboxfroggy.com/) - help Froggy and his friends to reach lilypads and cross a pond by writing CSS code.
+Want some more practice? You can check other games helping you to master Flexbox, such as [Flexbox Defense](http://www.flexboxdefense.com/) - a tower defense game where you position your towers using CSS and Flexbox. Another one is [Flexbox Froggy](https://flexboxfroggy.com/) - help Froggy and his friends to reach lilypads and cross a pond by writing CSS code.
 
 ## Additional resources
 - [Flexbox specification](https://www.w3.org/TR/css-flexbox-1/)
 - [Solved by Flexbox](https://philipwalton.github.io/solved-by-flexbox/) - showcase of common layout problems solved by Flexbox
 - [Interactive Flexbox playground for testing various flex properties](https://flexbox.help/)
 
-TODO cheatsheet
-TODO table showing which are on parent level vs on item level
+<!-- TODO cheatsheet -->
+<!-- TODO table showing which are on parent level vs. on item level ..>
