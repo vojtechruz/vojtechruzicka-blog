@@ -254,7 +254,7 @@ switch (errorCode) {
 }
 ```
 
-This is, of course, needed for the proper working of fall-through behavior. If you want to threat individual `case` branches as separate scope, you need to introduce a `{}` block, which is treated as a separate scope:
+This is, of course, needed for the proper working of fall-through behavior. If you want to treat individual `case` branches as separate scope, you need to introduce a `{}` block, which is treated as a separate scope:
 
 ```java
 switch (errorCode) {
