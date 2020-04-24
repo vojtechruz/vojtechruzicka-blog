@@ -316,7 +316,7 @@ If one item has `flex-grow: 3` and the other one `flex-grow: 1`, the ratio of th
 
 The common misconception is that ratio, let's say 2:1, means that the first component will end up being twice as big as the second one. But remember, it is about how the extra space is distributed, not the final size. **The ratio of `flex-grow` values determines the percentage of the extra space each item will get, not their final sizes**.
 
-##### Values between 0 and 1
+#### Values between 0 and 1
 Values greater than 0, but less than 1 have special behavior. **If the sum of all the `flex-grow` values in a container is less than 1, items will still grow, but will not fill the entire container.**
 
 For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
