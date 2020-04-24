@@ -1,6 +1,6 @@
 ---
 title: 'CSS Flexbox tutorial'
-date: "2020-03-22T22:12:03.284Z"
+date: "2020-04-24T22:12:03.284Z"
 tags: ["CSS"]
 path: '/css-flexbox'
 featuredImage: 'css-flexbox.png'
