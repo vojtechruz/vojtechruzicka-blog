@@ -147,7 +147,7 @@ IDEA already offers pretty powerful navigation among files. When working with RE
 The plugin currently supports Spring, JAX-RS, and Micronaut.
 
 ## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
-IDEA [does support running multiple tasks (configurations) at once](https://www.jetbrains.com/help/idea/creating-compound-run-debug-configuration.html), however, this feature is currently very limited.
+IDEA [does support running multiple tasks (configurations) at once](https://www.jetbrains.com/help/rider/Creating_Compound_Run_Debug_Configuration.html), however, this feature is currently very limited.
 
 Multirun plugin does support running multiple configurations at once with much more sophisticated options. This can be very useful when running both Backend and Frontend at once, testing multiple modules, and so on.
 
