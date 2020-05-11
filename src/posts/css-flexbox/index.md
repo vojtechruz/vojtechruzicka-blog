@@ -1,6 +1,7 @@
 ---
 title: 'CSS Flexbox tutorial'
 date: "2020-04-24T22:12:03.284Z"
+dateModified: "2020-05-08"
 tags: ["CSS"]
 path: '/css-flexbox'
 featuredImage: 'css-flexbox.png'
@@ -403,7 +404,24 @@ flex-shrink: 2;
 flex-basis: 100px;
 ```
 
-This shorthand is preferred over defining the properties automatically, as [stated in the spec](https://drafts.csswg.org/css-flexbox/#flex-grow-property).
+There are also several options to specify less than three values.
+
+#### One value
+With one value, you can use:
+- `flex: auto;` - equivalent to `flex: 1 1 auto;`
+- `flex: none;` - equivalent to `flex: 0 0 auto`
+- `flex: [positive number]` - defines just `flex-grow`, the rest uses default values; equivalent to `flex: [positive number] 1 0px;`
+
+#### Two values
+You can also specify just two values instead of 3. In this case, the first one is always `flex-grow`. The second one depends on the type of value that you provide.
+
+  - **number** (eg. `flex: 1 1;`) is interpreted as `flex-shrink`, flex basis defaults to 0px in this case
+  - **valid size value** (eg. `flex: 1 100px`) is interpreted as `flex-basis`, flex shrink defaults to 1
+
+Note when using `flex` shorthand,`flex-basis` defaults to 0, if not specified. This is different from the default value of `flex-basis`, which is `auto`.
+
+#### Shorthand or individual properties?
+This shorthand is preferred over defining the properties individually, as [stated in the spec](https://drafts.csswg.org/css-flexbox/#flex-grow-property).
 
 > Authors are encouraged to control flexibility using the flex shorthand rather than with flex-grow directly, as the shorthand correctly resets any unspecified components to accommodate common uses.
 
