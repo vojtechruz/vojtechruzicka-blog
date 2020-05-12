@@ -218,7 +218,7 @@ This stylesheet can be found in:
 jfxrt.jar\com\sun\javafx\scene\control\skin\modena\modena.css
 ```
 
-Or you can check the file [directly here](modena.css). In the same directory, there is a whole bunch of images used by the stylesheet.
+Or you can check the file [directly here](./modena.css). In the same directory, there is a whole bunch of images used by the stylesheet.
 
 This stylesheet provides the default styling but takes the lowest priority compared to other types of stylesheets, so you can easily override it.
 
