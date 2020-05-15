@@ -1,8 +1,6 @@
 1. getting started
-  - node installation : + min version (https://unpkg.com/@angular/cli@9.1.3/package.json)
-  - cli installation
-  - ng serve
-  - hot reload 
+
+  
 2. 
 
 
@@ -22,3 +20,5 @@ x. routing
 x. rgrx
 x. services
 x. typescript crash course
+x. cdk
+x. material
