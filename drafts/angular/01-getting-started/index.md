@@ -11,13 +11,19 @@ excerpt: ''
 ![Angular Tutorial: Getting Started](angular-getting-started.jpg)
 
 ## About this series
-TODO
+In this series, we'll learn how to use Angular framework. This is intended for absolute beginners, we'll cover everything you need to know. This is the first post in the series.
 
 ## Prerequisites
-TODO
+You don't need to have any prior knowledge of Angular. On the other hand it is required to have some understanding of HTML, Javascript and CSS (or SASS). Typescipt knowledge is not required, but at least basic understanding is useful.
 
 ## What is Angular
-TODO
+Angular is a modern Single Page Application Frmework by Google. What does it mean? In the traditional web apps, the HTML is dynamically constructed on the server and the sent to the broswer. You have full page refresh when navigating between pages.
+
+In Single Page Apps, there is no full page refresh. You just download a simple HTML page and a whole bunch of Javascript. Then all the changes and navigations are done by dynamically replacing parts of the page based on user interaction and navigation. From the server, you just fetch any raw data you need in the background using AJAX calls. The shole experience is much smoother and more responsive.
+
+Instead of plain Javascript, Angular uses Typescript for development. Variables have types declared such as number or string - this means that you have type safety. You can discover bugs such as using string instead of number very early on, which can save you a lot of headache. Of course, browsers don't know how to work with Typescript, so everything is compiled to plain Javascript during the build process.
+
+Angular should not be confused with AngularJS. AngularJS (commonly referred to as Angular 1) was a previous version of the framework, but it is completely different from Angular (also known as Angular 2+). When googling, be careful so you don't accidentally use resources intended for AngularJS rather than Angular.
 
 ## Preparing environment
 Before we create our first application, we need to set up our environment properly first. We'll need Node.js and Angular CLI (Command Line Interface).
@@ -241,5 +247,3 @@ Pretty cool, right? When you run your app using `ng serve`, Angular CLI will aut
 We learned how to prepare your system by installing Node.js and Angular CLI. Then we created a new project using Angular CLI with `ng new` command. We ran hat project using `ng serve`, which not only runs the project locally, but also automatically applies any changes you make in your application. We also learned the basic structure of Angular project.
 
 In the next section, we'll cover the basic building blocks of Angular Applications.
-
-TODO ng init
