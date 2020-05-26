@@ -12,6 +12,7 @@ x. modules
    - not to confuse with ES modules
 x. pipes
 x. directives
+    nfor, ngif
 x. localization
 x. forms reactive
 x. forms template driven

@@ -332,3 +332,4 @@ Then each component also needs HTML template. It can be directly in your TS file
 It is very similar with styling. Although you can have styles directly in your TS with `styles`, it is preferrable to extract them in their own file(s) using `styleUrls`.
 
 TODO TOC + link to the next section
+TODO link to git repo
