@@ -8,6 +8,8 @@ disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'TODO'
 ---
 
+![Angular Tutorial: Data Binding](data-binding.jpg)
+
 TODO series intro + TOC?
 
 

@@ -12,7 +12,7 @@ x. modules
    - not to confuse with ES modules
 x. pipes
 x. directives
-    nfor, ngif
+    nfor, ngif + for with index
 x. localization
 x. forms reactive
 x. forms template driven
@@ -23,3 +23,15 @@ x. services
 x. typescript crash course
 x. cdk
 x. material
+x. styling
+  - https://codecraft.tv/courses/angular/built-in-directives/ngstyle-and-ngclass/
+
+TODO publish TOC as the main article for RSS and rest is in hidden directory
+
+Angular testing routing:
+https://indepth.dev/testing-angular-routing-components-with-the-routertestingmodule/
+
+Angular animations
+https://angular.io/guide/animations
+
+Angular dev tools augury - https://augury.rangle.io/

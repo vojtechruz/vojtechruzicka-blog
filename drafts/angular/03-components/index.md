@@ -8,7 +8,11 @@ disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'TODO'
 ---
 
+![Angular Tutorial: Creating Components](components.jpg)
+
 TODO series intro + TOC?
+
+
 
 ## Getting started
 Let's start with a fresh application to recap using Angular CLI. We need to generate a new project using `ng new`. Then navigate inside its directory and run `ng serve` to launch the local development server on `http://localhost:4200/`.
