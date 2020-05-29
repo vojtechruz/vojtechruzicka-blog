@@ -1,6 +1,7 @@
 ---
 title: 'Java Pattern Matching: InstanceOf (JEP 305)'
 date: "2020-04-05T22:12:03.284Z"
+dateModified: "2020-05-29"
 tags: ['Java']
 path: '/java-pattern-matching-instanceof'
 featuredImage: './pattern-matching.jpg'
@@ -171,6 +172,9 @@ For Maven builds, you can use the following configuration:
     </plugins>
 </build>
 ```
+
+## UPDATE: Java 15
+In Java 15, this feature is still present as a preview feture - [JEP 375: Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375). Although there is a new JEP for it, [there are no changes](https://bugs.openjdk.java.net/browse/JDK-8235186) relative to the Java 14 version.
 
 ## Also new in Java 14
 
