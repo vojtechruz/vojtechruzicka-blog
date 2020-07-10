@@ -7,6 +7,8 @@ path: '/avoid-telescoping-constructor-pattern'
 featuredImage: './telescoping-constructor.jpg'
 disqusArticleIdentifier: '236 http://vojtechruzicka.com/?p=236'
 excerpt: 'Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the alternative approaches and when should you use them?'
+author: 'Vojtech Ruzicka'
+hidden: false
 ---
 ![telescoping constructor pattern](telescoping-constructor.jpg)
 

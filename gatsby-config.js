@@ -110,7 +110,7 @@ module.exports = {
                 feeds: [
                     {
                         serialize: ({query: {site, allMarkdownRemark}}) => {
-                            return allMarkdownRemark.edges.map(edge => {
+                            return allMarkdownRemark.edges.filter(edge => edge.node.frontmatter.hidden !== 'true').map(edge => {
                                 return Object.assign({}, edge.node.frontmatter, {
                                     description: edge.node.frontmatter.excerpt,
                                     url: site.siteMetadata.siteUrl + edge.node.fields.slug,
@@ -146,6 +146,7 @@ module.exports = {
                                   excerpt
                                   title
                                   date
+                                  hidden
                                   featuredImage {
                                     childImageSharp {
                                         fluid(maxWidth: 1000) {

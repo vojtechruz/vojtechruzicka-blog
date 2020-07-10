@@ -18,7 +18,7 @@ class BlogIndex extends React.Component {
       "props.data.site.siteMetadata.description"
     );
     const siteUrl = get(this, "props.data.site.siteMetadata.siteUrl");
-    const posts = get(this, "props.data.allMarkdownRemark.edges");
+    const posts = get(this, "props.data.allMarkdownRemark.edges").filter(post => post.node.frontmatter.hidden !== 'true');
     const pagesTotal = get(this, "props.pageContext.pagesTotal");
     const currentPage = get(this, "props.pageContext.currentPage");
 
@@ -164,6 +164,7 @@ export const pageQuery = graphql`
             date(formatString: "DD MMMM, YYYY")
             title
             tags
+            hidden
             featuredImage {
               childImageSharp {
                 fluid(maxWidth: 180) {
