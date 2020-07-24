@@ -1,11 +1,12 @@
 ---
 title: 'Angular Tutorial 3: Creating Components'
-date: "2018-12-21T22:12:03.284Z"
+date: "2020-07-22T22:12:03.284Z"
 tags: ['Angular']
-path: '/angular-tutorial-creating-components'
+path: '/angular/03-creating-components'
 featuredImage: './components.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'TODO'
+hidden: 'true'
 ---
 
 ![Angular Tutorial: Creating Components](components.jpg)
@@ -19,7 +20,7 @@ Let's start with a fresh application to recap using Angular CLI. We need to gene
 
 If all goes well, you should be able to see something similar to this:
 
-![Angular hello world app](./angular-hello-world-app.png)
+![Angular hello world app](angular-hello-world-app.png)
 
 What you can see is the `app.component`. In the next section, we'll replace it with our own new component. So let's get started by deleting the existing `app.component`. You can remove all these four files.
 
@@ -156,7 +157,7 @@ export class MainComponent {
 
 Now if you save your files and go to `http://localhost:4200/`, you should see the following page:
 
-![Hello Angular](./hello-angular.png)
+![Hello Angular](hello-angular.png)
 
 That is the same HTML we specified in the `template: '<h1>Hello Angular!</h1>'`.
 
@@ -247,7 +248,7 @@ We currently have just one component in our app. In real applications, this is r
 
 You ofteh have one root component in your `index.html` and the rest of the components are nested inside. The nesting can be multiple levels deep - that means you can have component inside a component inside another component. Also, components are reusable can can be used multiple times.
 
-![Component Breakdown](./component-breakdown.png)
+![Component Breakdown](component-breakdown.png)
 
 ### Adding nested component
 Let's try nesting in practice. First, we'll need a new component called `footer`,which we'll and into our `main` component. You already know that Angular CLI can help us here a lot:
@@ -318,7 +319,7 @@ Now we want to nest the footer component in our MainComponent. We need to add it
 
 Our lates changes should be reflexed in the browser. The footer component is nested at the bottom of our original MainComponent.
 
-![Nested Footer](./nested-footer.png)
+![Nested Footer](nested-footer.png)
 
 ## What we've learned
 Components are basic building blocks of Angular applications, they are encapsulated, can be reused and nested in each other.

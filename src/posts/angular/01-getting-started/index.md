@@ -1,11 +1,12 @@
 ---
 title: 'Angular Tutorial 1: Getting Started'
-date: "2018-12-21T22:12:03.284Z"
+date: "2020-07-20T22:12:03.284Z"
 tags: ['Angular']
-path: '/angular-tutorial-getting-started'
+path: '/angular/01-getting-started'
 featuredImage: './angular-getting-started.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+excerpt: 'How to get started with Angular from scratch, part 1.'
+hidden: 'true'
 ---
 
 ![Angular Tutorial: Getting Started](angular-getting-started.jpg)

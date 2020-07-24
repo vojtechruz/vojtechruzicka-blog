@@ -1,11 +1,12 @@
 ---
 title: 'Angular Tutorial 2: Building Blocks'
-date: "2018-12-21T22:12:03.284Z"
+date: "2020-07-21T22:12:03.284Z"
 tags: ['Angular']
-path: '/angular-tutorial-building-blocks'
+path: '/angular/02-building-blocks'
 featuredImage: './building-blocks.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: ''
+hidden: 'true'
 ---
 
 ![Angular Tutorial: Building Blocks](building-blocks.jpg)

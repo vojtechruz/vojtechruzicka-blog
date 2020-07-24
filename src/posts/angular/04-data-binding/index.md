@@ -1,11 +1,12 @@
 ---
 title: 'Angular Tutorial 4: Data binding'
-date: "2018-12-21T22:12:03.284Z"
+date: "2020-07-23T22:12:03.284Z"
 tags: ['Angular']
-path: '/angular-tutorial-data-binding'
+path: '/angular/04-data-binding'
 featuredImage: './data-binding.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: 'TODO'
+hidden: 'true'
 ---
 
 ![Angular Tutorial: Data Binding](data-binding.jpg)
