@@ -4,8 +4,8 @@ date: "2018-12-21T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular-tutorial-component-input-output'
 featuredImage: './input-output.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: 'TODO'
+disqusArticleIdentifier: '6665 http://vojtechruzicka.com/?p=6665'
+excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
 ---
 
 ![Angular Tutorial: Component inputs and outputs](input-output.jpg)
