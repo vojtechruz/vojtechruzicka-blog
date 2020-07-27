@@ -73,7 +73,11 @@ class BlogIndex extends React.Component {
       {nextPage}
     </div>);
     if(currentPage > 1) {
-      topPagination = bottomPagination;
+      topPagination = <div className="top-pagination pagination">
+        {prevPage}
+        {pagesLinks}
+        {nextPage}
+      </div>;
     }
 
     return (
@@ -102,7 +106,7 @@ class BlogIndex extends React.Component {
         {posts.map(({ node }) => {
           const title = get(node, "frontmatter.title") || node.fields.slug;
           return (
-            <div key={node.fields.slug}>
+            <div className="linked-article" key={node.fields.slug}>
               <h4
                 className="front-post-title"
                 style={{
@@ -128,7 +132,6 @@ class BlogIndex extends React.Component {
                   dangerouslySetInnerHTML={{ __html: node.frontmatter.excerpt }}
                 />
               </div>
-              <hr className="front-post-separator" />
             </div>
           );
         })}

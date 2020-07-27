@@ -5,7 +5,7 @@ tags: ['Angular']
 path: '/angular/02-building-blocks'
 featuredImage: './building-blocks.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: ''
+excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
 hidden: 'true'
 ---
 
@@ -13,6 +13,17 @@ hidden: 'true'
 
 This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting Started
 ](https://www.vojtechruzicka.com/angular-tutorial-getting-started)
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li class="series-current">Building Blocks</li>
+  <li><a href="/angular/03-components">Components</a></li>
+  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  </ol>
+</div>
 
 ## Building blocks
 Before we dig deeper into individual features of Angular, let's take a step back and look at a bigger picture. Let's learn which are the basic building blocks of Angular application.
@@ -190,3 +201,17 @@ We also leared how Angular applications are started:
 - `index.html` is the main HTML file downloaded by the browser. Here you use your root component. All the scripts are included here.
 - `main.ts` is the main entrypoint for Angular, which defines the starting module
 - The starting module (here `app.module.ts`) defines or root component in the `bootstrap` section, so it is recognized by Angular in the `index.html`
+
+## What's Next
+In the next article in the series, we'll lear more about [Angular Components](/angular/03-components).
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li class="series-current">Building Blocks</li>
+  <li><a href="/angular/03-components">Components</a></li>
+  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  </ol>
+</div>

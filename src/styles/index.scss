@@ -5,6 +5,7 @@
 
 $link_color: #007acc;
 $border-color: hsla(0, 0%, 0%, 0.1);
+$border-color-dark: hsla(0, 0%, 0%, 0.2);
 a {
   color: $link_color;
 }
@@ -63,7 +64,7 @@ a:hover {
 }
 
 .front-post-title {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
 }
 
 .front-post-image {
@@ -85,12 +86,6 @@ a:hover {
   .front-post-info-date {
     margin-right: 1rem;
   }
-}
-
-.front-post-separator {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-  background: $border-color;
 }
 
 .share-icons {
@@ -255,6 +250,11 @@ body {
   margin-bottom: 1rem;
   background-color: hsla(0, 0% ,0%, 0.01);
   border:1px solid $border-color;
+
+  &:hover {
+    background-color: hsla(0, 0% ,0%, 0.03);
+    border:1px solid $border-color-dark;;
+  }
 }
 
 .search-box {
@@ -371,4 +371,8 @@ kbd {
 .share-label {
   margin-top: 2rem;
   font-weight: bold;
+}
+
+.top-pagination {
+  margin-bottom: 20px;
 }

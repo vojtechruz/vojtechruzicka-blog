@@ -5,7 +5,7 @@ tags: ['Angular']
 path: '/angular/04-data-binding'
 featuredImage: './data-binding.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: 'TODO'
+excerpt: 'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
 hidden: 'true'
 ---
 
@@ -13,6 +13,16 @@ hidden: 'true'
 
 TODO series intro + TOC?
 
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+    <li><a href="/angular/03-components">Components</a></li>
+  <li class="series-current">Data Binding</li>
+  </ol>
+</div>
 
 ## Data binding
 Each component has its own HTML template and the corresponding typescript file. The component is the view of the component, which defines what are the HTML contents of the component to be rendered. The typescript adds some state and behavior. In most cases, your HTML component is not static, you want to reflect what state and data you have in your typescript class. Data binding allows you to dynamically display your data in the template, react to the user events and even set up two-way data synchronization between the template and the typescript component class.
@@ -191,4 +201,13 @@ Two-way binding | `[()]` | Class ↔ Template | Synchronizes value between the c
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise operator or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation and property binding, there should be no side effects.
 
-TODO TOC + link to the next section
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+    <li><a href="/angular/03-components">Components</a></li>
+  <li class="series-current">Data Binding</li>
+  </ol>
+</div>

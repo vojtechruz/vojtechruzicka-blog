@@ -5,15 +5,24 @@ tags: ['Angular']
 path: '/angular/03-creating-components'
 featuredImage: './components.jpg'
 disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
-excerpt: 'TODO'
+excerpt: 'Angular apps are composed of components, which encapsulate view logic and styling.'
 hidden: 'true'
 ---
 
 ![Angular Tutorial: Creating Components](components.jpg)
 
-TODO series intro + TOC?
+Angular apps are composed of components, which encapsulate view logic and styling. We'll focus on these in this part of the series.
 
-
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+  <li class="series-current">Components</li>
+  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  </ol>
+</div>
 
 ## Getting started
 Let's start with a fresh application to recap using Angular CLI. We need to generate a new project using `ng new`. Then navigate inside its directory and run `ng serve` to launch the local development server on `http://localhost:4200/`.
@@ -336,5 +345,19 @@ Then each component also needs HTML template. It can be directly in your TS file
 
 It is very similar with styling. Although you can have styles directly in your TS with `styles`, it is preferrable to extract them in their own file(s) using `styleUrls`.
 
-TODO TOC + link to the next section
+## What's Next
+In the next part we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and out of components and creating and handling events.
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+  <li class="series-current">Components</li>
+  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  </ol>
+</div>
+
+
 TODO link to git repo

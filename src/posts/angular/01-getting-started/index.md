@@ -248,3 +248,17 @@ Pretty cool, right? When you run your app using `ng serve`, Angular CLI will aut
 We learned how to prepare your system by installing Node.js and Angular CLI. Then we created a new project using Angular CLI with `ng new` command. We ran hat project using `ng serve`, which not only runs the project locally, but also automatically applies any changes you make in your application. We also learned the basic structure of Angular project.
 
 In the next section, we'll cover the basic building blocks of Angular Applications.
+
+## What's next
+In the nex article [Building Blocks](/angular/02-building-blocks), we'll learn what are the basic building blocks of Angular applications.
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li class="series-current">Getting Started</li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+  <li><a href="/angular/03-components">Components</a></li>
+  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  </ol>
+</div>
