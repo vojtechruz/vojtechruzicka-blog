@@ -36,62 +36,62 @@ Does this ring a bell? We already covered [data binding in the previous section]
 
 This way the `disabled` property of the button would be updated whenever `isSubmitButtonDisabled` changes. With a little work, we can do the same with our components!
 
-Let's assume we have a Shopping Cart component, which displays the number of items in our cart for an e-shop.
+Let's assume we have a Step Count component, which displays the number your daily steps from your fitness tracker.
 
 ```
 @Component({
-  selector: 'app-shopping-cart',
+  selector: 'app-step-count',
   template: `
-    You have {{itemsInCart}} in your shopping cart
+    Your daily step count is: {{steps}}
     `
 })
-export class ShoppingCart {
-  itemsInCart = 0
+export class StepCountComponent {
+  steps = 0;
 }
 ```
 
-In our template we use `{{itemsInCart}}` to display the contents of `itemsInCart`. It is 0 by default, which is fine when you start shopping, but eventually you'll add some products to your cart. How does this value get updated then? We need a way to expose this property to the outise and then be able to bind to it like this:
+In our template we use `{{steps}}` to display the contents of `steps`. It is 0 by default, which is fine when you start your day, but eventually you'll walk a bit. How does this value get updated then? We need a way to expose this property to the outise and then be able to bind to it like this:
 
 ```
-<app-shopping-cart [itemsInCart]="order.length"></app-shopping-cart>
+<app-step-count [steps]="dailySteps"></app-step-count>
 ```
 
-This way we can pass the current number of items in the cart from the outside and make sure the component gets the fresh value whenever new item is added or removed. The parent component can contain the whole list of items in the `order`array and just pass `order.length` because the cart only cares about displaying the count.
+This way we can pass the current number of steps from the outside and make sure the component gets the fresh value whenever you walk more. The parent component is responsible for obtaining the step count and only passes the value to be displayed in our component.
 
-If you try this, it will not work, because by default `itemsInCart` property of our component is not exposed and not available for data-binding. We need to specifically mark it as such.
+If you try this, it will not work, because by default `steps` property of our component is not exposed and not available for data-binding. We need to specifically mark it as such.
+
+```typescript{2}
+export class StepCountComponent {
+  @Input()
+  steps = 0;
+}
+```
+
+It is enough just to add `Input()` decorator to our property and it will be available for data binding. More specifically one way data binding from the parent component to our component.
+
+The name of our property `steps` matches the name of the property which will be used for binding with `[]`.
 
 ```
-export class ShoppingCart {
+export class StepCountComponent {
   @Input()  
-  itemsInCart = 0
-}
-```
-
-It is enough just to add `Input()` decorator to our property and it will be available for data binding. More specifically one way databinding from the parent component to our component.
-
-The name of our property `itemsInCart` matches the name of the property which will be used for binding with `[]`.
-
-```
-export class ShoppingCart {
-  @Input()  
-  itemsInCart = 0
+  steps = 0
 }
 
-<app-shopping-cart [itemsInCart]="order.length"></app-shopping-cart>
+<app-step-count [steps]="dailySteps"></app-step-count>
 ```
 
 This is the default behavior, but it can be changed by passing a string value to the `Input()` decorator:
 
-```
-export class ShoppingCart {
-  @Input('numberOfItems')  
-  itemsInCart = 0
+```typescript{2}
+export class StepCountComponent {
+  @Input('numberOfSteps')  
+  steps = 0
 }
 
-<app-shopping-cart [numberOfItems]="order.length"></app-shopping-cart>
+<app-step-count [numberOfSteps]="dailySteps"></app-step-count>
 ```
 
-Tosum it up - you can use `Input()` to mark a component property for data binding. This is just one way -from the outisde to the component. Then you can bind to thisproperty as usual with `[]` in an HTML template where you use your component. Whenever the binded value gets changed, your component property gets updated.
+To sum it up - you can use `Input()` to mark a component property for data binding. This is just one way - from the outisde to the component. Then you can bind to this property as usual with `[]` in an HTML template where you use your component. Whenever the binded value gets changed, your component property gets updated.
 
 ## Output
 So far we've covered only flow of the data from the outside into the component. But often we need the other direction as well. Something can happen in our component and other components need to know about it.
@@ -259,7 +259,105 @@ NOW:
 Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAnswer`, which accepts a boleean. The actual boolean value passed into it is represented by `$event` variable and depends on what we produced using our `emit()`. 
 
 ## Two-way data binding
+So far we covered only one-way data binding. Either input to a component or output events. Now it's time to cover two-way data binding as well. 
 
+Let's revisit our step count example and add a button, which resets the counter.
+
+```typescript{7,14,15,16}
+import {Component, Input} from "@angular/core";
+
+@Component({
+  selector: 'app-step-count',
+  template: `
+    Your daily step count is: {{steps}}
+    <button (click)="resetSteps()">Reset Steps</button>
+    `
+})
+export class StepCountComponent {
+  @Input()
+  steps = 0;
+
+  resetSteps() {
+    this.steps = 0;
+  }
+}
+```
+
+When you click the button, the number is set to 0. You'll see *Your daily step count is: 0*.
+
+There is one problem though. Since we are using one-way data binding with `@Input()`, only our local field `steps` gets changed. The change is not propagated to our parent component, which binds to our input. It still thinks we have some steps. We need two-way binding for this.
+
+One solution could be to provide an `Output()` event, which notifies the parent component that the count was reset.
+
+```typescript{13,14,17,18}
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+
+@Component({
+  selector: 'app-step-count',
+  template: `
+    Your daily step count is: {{steps}}
+    <button (click)="resetSteps()">Reset Steps</button>
+    `
+})
+export class StepCountComponent {
+  @Input()
+  steps = 0;
+  @Output()
+  stepsUpdated = new EventEmitter<number>();
+
+  resetSteps() {
+    this.steps = 0;
+    this.stepsUpdated.emit(this.steps);
+  }
+}
+
+```
+
+Now after changing the value to 0, we notify the parent component, that the steps were reset and let it handle updating its step data.
+
+```html{3}
+<app-step-count 
+    [steps]="steps" 
+    (stepsUpdated)="updateSteps($event)">
+</app-step-count>
+
+```
+
+This will work, but there is fortunately an easier way. Remember the 'banana in a box' - `[()]`? We can use it here for two-way binding.
+
+
+```html{2}
+<app-step-count 
+[(steps)]="steps">
+</app-step-count>
+```
+
+The changes will now be propagated bot from our child `StepCount` component to its parent and vice versa. We just need one slight change in our `StepCount`. The name of the `@Output` field needs to be in a special format for this to work. It needs to be name of the `@Input()` field (here it is `steps`) with a `Change` suffix.
+
+So if we have `steps` input, our output needs to be `stepsChange`:
+
+```typescript{12,14}
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+
+@Component({
+  selector: 'app-step-count',
+  template: `
+    Your daily step count is: {{steps}}
+    <button (click)="resetSteps()">Reset Steps</button>
+    `
+})
+export class StepCountComponent {
+  @Input()
+  steps = 0;
+  @Output()
+  stepsChange = new EventEmitter<number>();
+
+  resetSteps() {
+    this.steps = 0;
+    this.stepsChange.emit(this.steps);
+  }
+}
+```
 
 ## What we've learned
 Components can have multiple inputs, which are marked by `@Input()` decorator. When nesting components, the parent components can bind to these inputs with one way data binding - from the parent to the child component. The name of the exposed property for binding is the same as the name of the class field unless explicitly specified inside the `@Input()`.
