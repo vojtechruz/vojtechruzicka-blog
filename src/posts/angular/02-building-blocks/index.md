@@ -22,6 +22,7 @@ This is the second article in the Angular Tutorial series. You can check the fir
     <li class="series-current">Building Blocks</li>
   <li><a href="/angular/03-components">Components</a></li>
   <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>
 
@@ -215,5 +216,6 @@ In the next article in the series, we'll learn more about [Angular Components](/
     <li class="series-current">Building Blocks</li>
   <li><a href="/angular/03-components">Components</a></li>
   <li><a href="/angular/04-data-binding">Data Binding</a></li>
+  <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>

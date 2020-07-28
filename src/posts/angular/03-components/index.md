@@ -19,8 +19,9 @@ Angular apps are composed of components, which encapsulate view, logic and styli
   <ol>
     <li><a href="/angular/01-getting-started">Getting Started</a></li>
     <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-  <li class="series-current">Components</li>
-  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li class="series-current">Components</li>
+    <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>
 
@@ -358,7 +359,8 @@ In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is
   <ol>
     <li><a href="/angular/01-getting-started">Getting Started</a></li>
     <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-  <li class="series-current">Components</li>
-  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li class="series-current">Components</li>
+    <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>

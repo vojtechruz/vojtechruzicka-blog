@@ -256,7 +256,8 @@ In the next article [Building Blocks](/angular/02-building-blocks), we'll learn 
   <ol>
     <li class="series-current">Getting Started</li>
     <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-  <li><a href="/angular/03-components">Components</a></li>
-  <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li><a href="/angular/03-components">Components</a></li>
+    <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>

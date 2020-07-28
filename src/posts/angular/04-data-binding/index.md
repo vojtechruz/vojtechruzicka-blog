@@ -20,7 +20,8 @@ Data binding allows you to sync data automatically in and out of components and 
     <li><a href="/angular/01-getting-started">Getting Started</a></li>
     <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
     <li><a href="/angular/03-components">Components</a></li>
-  <li class="series-current">Data Binding</li>
+    <li class="series-current">Data Binding</li>
+    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>
 
@@ -208,6 +209,7 @@ Be aware of certain limitations when using expressions in data binding. You cann
     <li><a href="/angular/01-getting-started">Getting Started</a></li>
     <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
     <li><a href="/angular/03-components">Components</a></li>
-  <li class="series-current">Data Binding</li>
+    <li class="series-current">Data Binding</li>
+    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
   </ol>
 </div>
