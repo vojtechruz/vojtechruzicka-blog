@@ -2,22 +2,33 @@
 title: 'Angular Tutorial 5: Component input and output'
 date: "2018-12-21T22:12:03.284Z"
 tags: ['Angular']
-path: '/angular-tutorial-component-input-output'
+path: '/angular/05-component-input-output'
 featuredImage: './input-output.jpg'
 disqusArticleIdentifier: '6665 http://vojtechruzicka.com/?p=6665'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
 ---
 
-![Angular Tutorial: Component inputs and outputs](input-output.jpg)
+![Angular Tutorial: Component inputs and outputs](./input-output.jpg)
 
-TODO series intro + TOC?
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+    <li><a href="/angular/03-components">Components</a></li>
+    <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li  class="series-current">Component input and output</li>
+  </ol>
+</div>
 
 ## Inter-component communication
+We already covered that in your application, you usually use a lot of components and you nest them one in another. Possibly multiple levels deep. These components usually need a way to communicate with each other. Let's cover how can this be achieved.
 
 ## Input
 Let's first cover the situation when a component needs some data from the outside to function properly. In most cases, such data is not static - it would be very useful if we can pass new data to our component whenever it is required.
 
-Does this ring a bell? We already covered (TODO link) data binding in the previous section, which would be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable changes, the component gets new data. So far we covered only data binding to simple elements such as `button`, just a quick reminder:
+Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding), which would be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable changes, the component gets new data. So far we covered only data binding to simple elements such as `button`, just a quick reminder:
 
 ```
 <button [disabled]='isSubmitButtonDisabled'>Submit!</button>
@@ -111,14 +122,14 @@ Let's have a simple component for accepting or rejecting cookies on our site. We
 
 We have two buttons, but they don't do anything on click. Let's change that.
 
-```
+```typescript{5,6,11,15}
 @Component({
   selector: 'app-cookies-info',
   template: `
     <p>This site uses cookies to shamelessly track you. </p>
     <button (click)="onAcceptBtnClick()">Accept</button>
     <button (click)="onDeclineBtnClick()">Decline</button>
-  `
+`
 })
 export class CookiesInfoComponent {
 
@@ -140,8 +151,7 @@ Nothing new here, we already know how to listen to button clicks, we just call d
  
 Let's define a field for each of them and assign them a new instance of `EventEmmiter`. Later, when a button is clicked, we can use one of our emmitters to `.emit()` an event that cookies were either accepted or rejected.
  
-TODO line highlighting 
-```
+```typescript{11,12,15,19}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -167,8 +177,7 @@ export class CookiesInfoComponent {
 
 The last step is to mark our events as available for data binding. Remember that we needed to mark our field with `@Input()` to make if available for property data binding? This is very similar, but since we are firing events to the outside of the component, we need to use `@Output()`.
  
- TODO line highlighting.
- ```
+ ```typescript{11,13}
  @Component({
    selector: 'app-cookies-info',
    template: `
@@ -211,7 +220,7 @@ Let's change our cookie component a bit to demonstrate this. Instead of having t
 
 When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - eg. `emit(false)`.
 
-```
+```typescript{15,19}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -235,7 +244,7 @@ export class CookiesInfoComponent {
 }
 ```
 
-Notice how the way we constructed our event emmiter changed - `new EventEmitter<boolean>();`. Between angle brackets you can define what type of data should be used for this event to ensure type safety. If you define `EventEmitter<boolean>`, you would not be able to later call `emit('Foo!')` as it is string and nit boolean. If you are not familar with this concepts, you can read more about [generics in typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any value could be rewritten as `EventEmitter<void>` for better type safety.
+Notice how the way we constructed our event emmiter changed - `new EventEmitter<boolean>();`. Between angle brackets you can define what type of data should be used for this event to ensure type safety. If you define `EventEmitter<boolean>`, you would not be able to later call `emit('Foo!')` as it is string and not boolean. If you are not familar with this concept, you can read more about [generics in typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any value could be rewritten as `EventEmitter<void>` for better type safety.
 
 With passing a value with our events, the way how we handle binding also changes a bit. We need to be able to access the payload (event data). This data can be accessed using `$event` variable. Thiw way we can pass the event payload to other functions or use it in expressions.
 
@@ -253,5 +262,20 @@ Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAn
 
 
 ## What we've learned
+Components can have multiple inputs, which are marked by `@Input()` decorator. When nesting components, the parent components can bind to these inputs with one way data binding - from the parent to the child component. The name of the exposed property for binding is the same as the name of the class field unless explicitly specified inside the `@Input()`.
 
-TODO TOC + link to the next section
+Not all the fields should be available as inputs, some represent the internal state of the component and should be not exposed. This reduced complexity of the interface, makes the component easier to understand and use. The more inputs are exposed the more the component is harder to change and maintain.
+
+Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output() decorator.
+
+<!--TODO remove this after they fix gatsby-remark-series -->
+<div class="series-table-of-content">
+  <div>All posts in the Angular Tutorial series</div>
+  <ol>
+    <li><a href="/angular/01-getting-started">Getting Started</a></li>
+    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
+    <li><a href="/angular/03-components">Components</a></li>
+    <li><a href="/angular/04-data-binding">Data Binding</a></li>
+    <li  class="series-current">Component input and output</li>
+  </ol>
+</div>
