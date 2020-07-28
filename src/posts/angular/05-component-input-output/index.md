@@ -23,18 +23,18 @@ excerpt: 'How to define possible inputs for your components and also output even
 </div>
 
 ## Inter-component communication
-We already covered that in your application, you usually use a lot of components and you nest them one in another. Possibly multiple levels deep. These components usually need a way to communicate with each other. Let's cover how can this be achieved.
+We already covered that in your application, you usually use many components, and you nest them one in another. Possibly multiple levels deep. These components usually need a way to communicate with each other. Let's cover how this can be achieved.
 
 ## Input
 Let's first cover the situation when a component needs some data from the outside to function properly. In most cases, such data is not static - it would be very useful if we can pass new data to our component whenever it is required.
 
-Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding), which would be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable changes, the component gets new data. So far we covered only data binding to simple elements such as `button`, just a quick reminder:
+Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding), which would be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable changes, the component gets new data. So far, we covered only data binding to simple elements such as `button`, just a quick reminder:
 
 ```
 <button [disabled]='isSubmitButtonDisabled'>Submit!</button>
 ```
 
-This way the `disabled` property of the button would be updated whenever `isSubmitButtonDisabled` changes. With a little work, we can do the same with our components!
+This way, the `disabled` property of the button would be updated whenever `isSubmitButtonDisabled` changes. With a little work, we can do the same with our components!
 
 Let's assume we have a Step Count component, which displays the number your daily steps from your fitness tracker.
 
@@ -50,51 +50,57 @@ export class StepCountComponent {
 }
 ```
 
-In our template we use `{{steps}}` to display the contents of `steps`. It is 0 by default, which is fine when you start your day, but eventually you'll walk a bit. How does this value get updated then? We need a way to expose this property to the outise and then be able to bind to it like this:
+In our template, we use `{{steps}}` to display the contents of `steps` field. It is 0 by default, which is fine when you start your day, but eventually, you'll walk a bit. How does this value get updated then? We need a way to expose this property to the outside and then be able to bind to it like this:
 
 ```
 <app-step-count [steps]="dailySteps"></app-step-count>
 ```
 
-This way we can pass the current number of steps from the outside and make sure the component gets the fresh value whenever you walk more. The parent component is responsible for obtaining the step count and only passes the value to be displayed in our component.
+This way, we can pass the current number of steps from the outside and make sure the component gets the fresh value whenever you walk more. The parent component is responsible for obtaining the step count and only passes the value to be displayed in our component.
 
-If you try this, it will not work, because by default `steps` property of our component is not exposed and not available for data-binding. We need to specifically mark it as such.
+If you try this, it will not work because by default `steps` property of our component is not exposed and not available for data-binding. We need to specifically mark it as such.
 
-```typescript{2}
+```typescript{4}
+import {Component, Input} from "@angular/core";
+
 export class StepCountComponent {
   @Input()
   steps = 0;
 }
 ```
 
-It is enough just to add `Input()` decorator to our property and it will be available for data binding. More specifically one way data binding from the parent component to our component.
+It is enough just to add `Input()` decorator to our property, and it will be available for data binding. More specifically, one-way data binding from the parent component to our component.
 
-The name of our property `steps` matches the name of the property which will be used for binding with `[]`.
+The name of our property `steps` matches the name of the property, which will be used for binding with `[]`.
 
-```
+```typescript{3,7}
 export class StepCountComponent {
   @Input()  
   steps = 0
 }
 
-<app-step-count [steps]="dailySteps"></app-step-count>
+<app-step-count 
+[steps]="dailySteps"
+></app-step-count>
 ```
 
 This is the default behavior, but it can be changed by passing a string value to the `Input()` decorator:
 
-```typescript{2}
+```typescript{2,7}
 export class StepCountComponent {
   @Input('numberOfSteps')  
   steps = 0
 }
 
-<app-step-count [numberOfSteps]="dailySteps"></app-step-count>
+<app-step-count 
+[numberOfSteps]="dailySteps"
+></app-step-count>
 ```
 
-To sum it up - you can use `Input()` to mark a component property for data binding. This is just one way - from the outisde to the component. Then you can bind to this property as usual with `[]` in an HTML template where you use your component. Whenever the binded value gets changed, your component property gets updated.
+To sum it up - you can use `Input()` to mark a component property for data binding. This is just one way - from the outside to the component. You can bind to this property as usual with `[]` in an HTML template where you use your component. Whenever the bound value gets changed, your component property gets updated.
 
 ## Output
-So far we've covered only flow of the data from the outside into the component. But often we need the other direction as well. Something can happen in our component and other components need to know about it.
+So far, we've covered only the flow of the data from the outside into the component. But often we need the other direction as well. Something can happen in our component, and other components need to know about it.
 
 Remember how we were able to listen to some events of DOM elements such as clicking a button and then executing some logic?
 
@@ -102,10 +108,9 @@ Remember how we were able to listen to some events of DOM elements such as click
 <button (click)='buttonClicked()'>Click me!</button>
 ```
 
-Here we use regular brackets around the event name `(click)` and after the equals, we defined a method call `buttonClicked()` to be executed whenever the button is clicked. Turns out we can do the same with our own custom components. 
+Here we use regular brackets around the event name `(click)`. After the equals, we defined a method call `buttonClicked()` to be executed whenever the button is clicked. Turns out, we can do the same with our own custom components. 
 
-Let's have a simple component for accepting or rejecting cookies on our site. We want to use this nice component on our home page to warn our visitors about cookies. And we need to react on their action - whether they accept or reject cookies. The `cookies-info` component should not, however take any action itself, it should just notify it parent component what happened. The parent component can then decide what is the appropriate action. The cookie info 
- can be just a "dumb" component. It can show the disclaimer and collect the answer, but let the parent component take the responsibility on deciding what to do based on the answer.
+Let's have a simple component for accepting or rejecting cookies on our site. We want to use this nice component on our home page to warn our visitors about cookies. And we need to react to their action - whether they accept or reject cookies. The `cookies-info` component should not, however, take any action itself. It should just notify its parent component of what happened. The parent component can then decide what the appropriate action is. The cookie info can be just a "dumb" component. It can show the disclaimer and collect the answer, but let the parent component take the responsibility for deciding what to do based on the answer.
  
  ```
  @Component({
@@ -143,13 +148,13 @@ export class CookiesInfoComponent {
 }
 ```
 
-Nothing new here, we already know how to listen to button clicks, we just call different method based on which of the buttons was clicked. Now we need to somehow expose events to the users of our components.
+Nothing new here. We already know how to listen to button clicks. We just call a different method based on which of the buttons was clicked. Now we need to somehow expose events to the users of our components.
  
- In our case we can consider two events:
- 1. Users accepts cookies - `acceptCookies`
+ In our case, we can consider two events:
+ 1. User accepts cookies - `acceptCookies`
  2. User declines cookies - `declineCookies`
  
-Let's define a field for each of them and assign them a new instance of `EventEmmiter`. Later, when a button is clicked, we can use one of our emmitters to `.emit()` an event that cookies were either accepted or rejected.
+Let's define a field for each of them and assign them a new instance of `EventEmmiter`. Later, when a button is clicked, we can use one of our emitters to `.emit()` an event that cookies were either accepted or rejected.
  
 ```typescript{11,12,15,19}
 @Component({
@@ -203,24 +208,24 @@ The last step is to mark our events as available for data binding. Remember that
  }
 ```
  
-Now we're good to go, we can use our `app-cookies-info` inside another component and react to its `acceptCookies` and `declineCookies` envents. 
+Now we're good to go, we can use our `app-cookies-info` inside another component and react to its `acceptCookies` and `declineCookies` events. 
 
 ```
 <app-cookies-info (acceptCookies)="onCookiesAccepted()" (declineCookies)="onCookiesDeclined()"></app-cookies-info>
 ```
  
-Since this is event binding and not property binding, we use `()` instead of `[]`. Same as with `@Input` - the name of the event used for binding is the same as the name of the field marked with `@Output()`. If you want to exspose a different event name, you can define its name like this - `Output('someDifferentEventName)`.
+Since this is event binding and not property binding, we use `()` instead of `[]`. Same as with `@Input` - the name of the event used for binding is the same as the name of the field marked with `@Output()`. If you want to expose a different event name, you can define its name like this - `Output('someDifferentEventName)`.
 
 ### Events with values 
-Our previous example was rather simple in a sense that we just fired an event that something happened. Often, we need something more than that. We need to inlude some additional data with our event. For example, when listening to mouse click events, you are interested not only that mouse was clicked, but also which button and what screen coordiantes was the cursor at.
+Our previous example was rather simple in the sense that we just fired an event that something happened. Often, we need more than that. We need to include some additional data with our event. For example, when listening to mouse click events, you are interested not only that mouse was clicked, but also which button and what screen coordinates was the cursor at.
 
-Let's change our cookie component a bit to demonstrate this. Instead of having two events - one for accepting and for declining, we'll have just one. The event can be named `cookiesConsent`. The event will send additional data - in our case `boolean` is sufficient:
+Let's change our cookie component a bit to demonstrate this. Instead of having two events - one for accepting and for declining, we'll have just one. The event can be named `cookiesAnswer`. The event will send additional data - in our case, `boolean` is sufficient:
  - `true` if cookies were accepted
  - `false` if cookies were declined
 
-When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - eg. `emit(false)`.
+When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - e.g., `emit(false)`.
 
-```typescript{15,19}
+```typescript{12,15,19}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -244,9 +249,9 @@ export class CookiesInfoComponent {
 }
 ```
 
-Notice how the way we constructed our event emmiter changed - `new EventEmitter<boolean>();`. Between angle brackets you can define what type of data should be used for this event to ensure type safety. If you define `EventEmitter<boolean>`, you would not be able to later call `emit('Foo!')` as it is string and not boolean. If you are not familar with this concept, you can read more about [generics in typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any value could be rewritten as `EventEmitter<void>` for better type safety.
+Notice how the way we constructed our event emitter changed - `new EventEmitter<boolean>();`. Between angle brackets, you can define what type of data should be used for this event to ensure type safety. If you define `EventEmitter<boolean>`, you would not be able to later call `emit('Foo!')` as it is a string and not boolean. If you are not familiar with this concept, you can read more about [generics in Typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any value could be rewritten as `EventEmitter<void>` for better type safety.
 
-With passing a value with our events, the way how we handle binding also changes a bit. We need to be able to access the payload (event data). This data can be accessed using `$event` variable. Thiw way we can pass the event payload to other functions or use it in expressions.
+With passing a value with our events, the way how we handle binding also changes a bit. We need to be able to access the payload (event data). This data can be accessed using `$event` variable. This way, we can pass the event payload to other functions or use it in expressions.
 
 ```
 BEFORE:
@@ -256,10 +261,10 @@ NOW:
 <app-cookies-info (cookiesAnswer)="onCookiesAnswer($event)"></app-cookies-info>
 ```
 
-Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAnswer`, which accepts a boleean. The actual boolean value passed into it is represented by `$event` variable and depends on what we produced using our `emit()`. 
+Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAnswer`, which accepts a boolean. The actual boolean value passed into it is represented by `$event` variable and depends on what we produced using our `emit()`. 
 
 ## Two-way data binding
-So far we covered only one-way data binding. Either input to a component or output events. Now it's time to cover two-way data binding as well. 
+So far, we covered only one-way data binding. Either input to a component or output events. Now it's time to cover two-way data binding as well. 
 
 Let's revisit our step count example and add a button, which resets the counter.
 
@@ -285,7 +290,7 @@ export class StepCountComponent {
 
 When you click the button, the number is set to 0. You'll see *Your daily step count is: 0*.
 
-There is one problem though. Since we are using one-way data binding with `@Input()`, only our local field `steps` gets changed. The change is not propagated to our parent component, which binds to our input. It still thinks we have some steps. We need two-way binding for this.
+There is one problem, though. Since we are using one-way data binding with `@Input()`, only our local field `steps` gets changed. The change is not propagated to our parent component, which binds to our input. It still thinks we have some steps. We need two-way binding for this.
 
 One solution could be to provide an `Output()` event, which notifies the parent component that the count was reset.
 
@@ -313,7 +318,7 @@ export class StepCountComponent {
 
 ```
 
-Now after changing the value to 0, we notify the parent component, that the steps were reset and let it handle updating its step data.
+Now, after changing the value to 0, we notify the parent component, that the steps were reset and let it handle updating its step data.
 
 ```html{3}
 <app-step-count 
@@ -323,7 +328,7 @@ Now after changing the value to 0, we notify the parent component, that the step
 
 ```
 
-This will work, but there is fortunately an easier way. Remember the 'banana in a box' - `[()]`? We can use it here for two-way binding.
+This will work, but there is, fortunately, an easier way. Remember the 'banana in a box' - `[()]`? We can use it here for two-way binding.
 
 
 ```html{2}
@@ -332,7 +337,7 @@ This will work, but there is fortunately an easier way. Remember the 'banana in 
 </app-step-count>
 ```
 
-The changes will now be propagated bot from our child `StepCount` component to its parent and vice versa. We just need one slight change in our `StepCount`. The name of the `@Output` field needs to be in a special format for this to work. It needs to be name of the `@Input()` field (here it is `steps`) with a `Change` suffix.
+The changes will now be propagated both from our child `StepCount` component to its parent and vice versa. We just need one slight change in our `StepCount`. The name of the `@Output` field needs to be in a special format for this to work. It needs to be the name of the `@Input()` field (here it is `steps`) with a `Change` suffix.
 
 So if we have `steps` input, our output needs to be `stepsChange`:
 
@@ -362,9 +367,9 @@ export class StepCountComponent {
 ## What we've learned
 Components can have multiple inputs, which are marked by `@Input()` decorator. When nesting components, the parent components can bind to these inputs with one way data binding - from the parent to the child component. The name of the exposed property for binding is the same as the name of the class field unless explicitly specified inside the `@Input()`.
 
-Not all the fields should be available as inputs, some represent the internal state of the component and should be not exposed. This reduced complexity of the interface, makes the component easier to understand and use. The more inputs are exposed the more the component is harder to change and maintain.
+Not all the fields should be available as inputs, some represent the internal state of the component and should be not exposed. This reduces complexity of the interface and makes the component easier to understand and use. The more inputs are exposed, the harder the component is to change and maintain.
 
-Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output() decorator.
+Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output()` decorator.
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
