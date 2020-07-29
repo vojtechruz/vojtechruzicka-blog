@@ -84,6 +84,7 @@ class BlogIndex extends React.Component {
       <Layout>
         <Helmet title={siteTitle}>
           <meta name="description" content={siteDescription} />
+          <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
 
           <meta property="og:title" content={siteTitle} />
           <meta property="og:description" content={siteDescription} />

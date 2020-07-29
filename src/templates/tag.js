@@ -21,6 +21,7 @@ const Tag = ({ pageContext, data }) => {
     <Layout>
       <Helmet title={title}>
         <meta name="description" content={siteDescription} />
+        <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
 
         <meta property="og:title" content={title} />
         <meta property="og:description" content={siteDescription} />

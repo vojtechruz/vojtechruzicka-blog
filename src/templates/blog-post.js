@@ -187,6 +187,7 @@ class BlogPostTemplate extends React.Component {
             <Layout>
                 <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
                     <meta name="description" content={post.frontmatter.excerpt}/>
+                    <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
 
                     <meta property="og:title" content={post.frontmatter.title}/>
                     <meta property="og:description" content={post.frontmatter.excerpt}/>
