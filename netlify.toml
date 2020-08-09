@@ -1,5 +1,9 @@
 [build]
   publish = "public"
 
+[build.environment]
+  RUBY_VERSION = "default"
+
+
 [[plugins]]
 package = "netlify-plugin-gatsby-cache"
