@@ -43,3 +43,5 @@ java --enable-preview ...
 TODO https://openjdk.java.net/jeps/360
 
 TODO https://blog.jetbrains.com/idea/2020/09/java-15-and-intellij-idea/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+jetbrains_intellijidea+%28JetBrains+IntelliJ+IDEA+Blog%29
+
+TODO how to enable preview features in intellij idea
