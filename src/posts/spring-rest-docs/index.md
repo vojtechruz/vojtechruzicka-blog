@@ -105,7 +105,7 @@ The first thing you'll need to do is provide the Spring Rest Docs dependency. Yo
 <dependency> 
     <groupId>org.springframework.restdocs</groupId>
     <artifactId>spring-restdocs-mockmvc</artifactId>
-    <version>2.0.1.RELEASE</version>
+    <version>2.0.5.RELEASE</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -113,7 +113,7 @@ The first thing you'll need to do is provide the Spring Rest Docs dependency. Yo
 Or for Gradle:
 
 ```
-testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.1.RELEASE'
+testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 ```
 
 ### Configuring your tests - Junit 4
@@ -234,7 +234,7 @@ Since AsciiDoc cannot be directly rendered by a browser, we need a way to conver
                 <dependency> 
                     <groupId>org.springframework.restdocs</groupId>
                     <artifactId>spring-restdocs-asciidoctor</artifactId>
-                    <version>2.0.1.RELEASE</version>
+                    <version>2.0.5.RELEASE</version>
                 </dependency>
             </dependencies>
         </plugin>
