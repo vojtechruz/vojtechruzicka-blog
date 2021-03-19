@@ -35,3 +35,6 @@ Angular animations
 https://angular.io/guide/animations
 
 Angular dev tools augury - https://augury.rangle.io/
+
+Course:
+https://www.educative.io/courses/angular-designing-architecting-web-apps?utm_source=activecampaign&utm_medium=email&utm_campaign=angular-designing-architecting-web-apps&vgo_ee=vOb3uz%2FVykuv3NQbu6gDnL35hO7C%2FF3J%2FgQB9Uu3XAY%3D
