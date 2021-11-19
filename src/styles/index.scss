@@ -57,10 +57,10 @@ a:hover {
 
 .about-icon {
   height: 1rem;
-  display: inline;
-  margin-right: 0.25rem;
-  margin-bottom: 0;
+  display: inline-block;
+  margin-right: 0.3rem;
   fill: $link_color;
+  width: 14px;
 }
 
 .front-post-title {
