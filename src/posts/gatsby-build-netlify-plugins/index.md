@@ -10,6 +10,10 @@ excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x
 
 ![3x faster GatsbyJS build with netlify plugins](gatsby-build-netlify-plugins.jpg)
 
+<div class="msg-info">
+  <b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>.
+</div>
+
 ## Netlify build plugins
 Netlify build plugins allow you to run custom plugins as a part of your Nelify build process. This allows you to alter your build and run some additional actions.
 
