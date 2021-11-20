@@ -1,7 +1,7 @@
 ---
 title: 'IntelliJ IDEA best plugins'
 date: "2020-01-21T22:12:03.284Z"
-dateModified: "2020-03-01"
+dateModified: "2021-11-20"
 tags: ["IDEA"]
 path: '/idea-best-plugins'
 featuredImage: './idea-best-plugins.jpg'
@@ -181,6 +181,11 @@ If you're a fan of Street Fighter, you can have [Hadouken version](https://plugi
 This is a powerful plugin with a lot of useful features. It allows you to filter your console output, add custom highlighting or folding of similar line groups. You can even play sound or execute a script when a specific line type occurs in your console output. You can also tail files in your project and much more.
 
 ![Grep console plugin](./grep-console.png)
+
+## UPDATE: Plugin Ideas
+There is a lot of plugins already available, plenty to choose from. Still, there may be no plugin to cover functionality you are looking for. Fortunately, you may be able to get what you need without resorting to developing it yourself.
+
+In March 2021, Jetbrains [launched](https://blog.jetbrains.com/idea/2021/03/plugin-ideas-now-available-on-jetbrains-marketplace/) a new site called [Plugin Ideas](https://plugins.jetbrains.com/plugin-ideas). Essentially you can submit your own idea for a plugin, other people can add their own comments and suggestions. Ideas can be up-voted, so they can get more attention from potential developers who might pick up the idea and implement it. Ideas are neatly integrated with Youtrack issues, so you can track the progress.
 
 ## Is something missing?
 What are your favorite IDEA plugins? Share in the comments below.
