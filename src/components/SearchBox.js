@@ -18,7 +18,8 @@ class Bio extends React.Component {
         if(window) {
             const docsearch = require("docsearch.js");
             docsearch({
-                apiKey: '467e44d2366ac0de7f99703feb47c8b6',
+                apiKey: '47434b43ba56485815226da96e4de27a',
+                appId: 'IHPA5BP385',
                 indexName: 'vojtechruzicka',
                 inputSelector: '.search-box',
                 debug: false,
