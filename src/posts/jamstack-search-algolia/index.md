@@ -1,7 +1,7 @@
 ---
 title: 'Adding search to your static JAMStack site'
 date: "2018-06-17T22:12:03.284Z"
-dateModified: "2020-03-13"
+dateModified: "2022-02-15"
 tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
@@ -47,6 +47,10 @@ Alternatively, if you don't mind doing some extra work, custom search offers an 
 If you don't care about the downsides much, this can be very easy and quick way to add search for your static site. If you don't like it, there are still alternatives.
 
 ## Algolia DocSearch
+<div class="msg-info">
+<b>UPDATE:</b> The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is version 3<a href="https://docsearch.algolia.com/docs/DocSearch-v3"> available </a>. One major change is that you can now apply not only with technical documentation site, but also a technical blog. It now also offers react components out of the box. The configuration and code examples are no longer up to date, please refer to the official documentation instead.
+</div>
+
 [Algolia DocSearch](https://community.algolia.com/docsearch/) is similar to Google Custom Search in a way that you don't need to download the whole search index to the client and that the search is provided by third-party service.
 
 There are some advantages over Google Search though. First of all, no ads. Also, everything integrates with the look and feel of your site nicely as you just mark a text input on your page as a search box to be handled by DocSearch. It then attaches autocomplete functionality to this search box. Whenever you start typing you get results from DocSearch. Directly in your page with possibility to easily override default styles. So the setup is really easy and your pages are indexed for you automatically.
