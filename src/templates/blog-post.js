@@ -1,7 +1,6 @@
 import React from "react";
 import {Helmet} from "react-helmet";
 import get from "lodash/get";
-import Disqus from "disqus-react";
 import Bio from "../components/Bio";
 import {rhythm, scale} from "../utils/typography";
 import Tags from "../components/Tags";
@@ -42,30 +41,9 @@ class BlogPostTemplate extends React.Component {
             author = authors[0];
         }
 
-        const disqusShortname = "vojtech-ruzickas-programming-blog";
         let url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
         if (!url.endsWith("/")) {
             url = url + "/";
-        }
-        let disqusArticleIdentifier;
-        if (post.frontmatter.disqusArticleIdentifier) {
-            disqusArticleIdentifier = post.frontmatter.disqusArticleIdentifier;
-        } else {
-            disqusArticleIdentifier = post.frontmatter.path;
-        }
-        const disqusConfig = {
-            url: url,
-            identifier: disqusArticleIdentifier,
-            title: post.frontmatter.title
-        };
-        let disqus = null;
-        if (typeof window !== "undefined") {
-            disqus = (
-                <Disqus.DiscussionEmbed
-                    shortname={disqusShortname}
-                    config={disqusConfig}
-                />
-            );
         }
         const relatedPosts = this.props.pageContext.related;
         let similarPosts = null;
@@ -258,7 +236,7 @@ class BlogPostTemplate extends React.Component {
                 </div>
                 <Bio author={author}/>
                 <hr/>
-                <div class="social">
+                <div className="social">
                     <p className="notification-link">
                             Get notifications about new posts on{" "}
                             <OutboundLink href="https://twitter.com/vojtechruzicka">
@@ -325,8 +303,6 @@ class BlogPostTemplate extends React.Component {
                 </div>
                 {similarPosts}
                 <hr/>
-                {/*TODO temporalily removing comments until better alternative to disqus is found*/}
-                {/*{disqus}*/}
             </Layout>
         );
     }
@@ -374,7 +350,6 @@ export const pageQuery = graphql`
             }
           }
         }
-        disqusArticleIdentifier
         path
         author
       }
