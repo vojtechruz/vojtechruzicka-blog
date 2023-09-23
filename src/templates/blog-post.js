@@ -55,7 +55,7 @@ class BlogPostTemplate extends React.Component {
                         <h4>Similar posts:</h4>
                     </p>
                     <ul>
-                        {relatedPosts.map((post, index) => {
+                        {relatedPosts.map((post) => {
                             let path = post.node.frontmatter.path;
                             if (!path.endsWith("/")) {
                                 path = path + "/";
@@ -252,53 +252,51 @@ class BlogPostTemplate extends React.Component {
                     </p>
                     <div className="share-label"><h4>Share this post:</h4></div>
                     <div className="share-icons">
-                        <FacebookShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={
-                                {
-                                    "aria-label": "Facebook share button",
-                                    "title": "Share this post on Facebook"
-                                }
-                            }
+                        <span title="Share this post on Facebook" >
+                            <FacebookShareButton
+                                url={siteUrl + this.props.pageContext.slug}
+                                aria-label="Facebook share button">
+                                <FacebookIcon round size={shareIconSize} />
+                            </FacebookShareButton>
+                        </span>
+                        <span title="Share this post on Twitter">
+                            <TwitterShareButton
+                                url={siteUrl + this.props.pageContext.slug}
+                                aria-label="Twitter share button">
+                                <TwitterIcon round size={shareIconSize} />
+                            </TwitterShareButton>
+                        </span>
+                        <span title="Share this post on LinkedIn">
+                            <LinkedinShareButton
+                                url={siteUrl + this.props.pageContext.slug}
 
-                        >
-                            <FacebookIcon  round size={shareIconSize}                             additionalProps={
-                                {
-                                    "aria-label": "Facebook share button",
-                                    "title": "Share this post on Facebook"
-                                }
-                            } />
-                        </FacebookShareButton>
-                        <TwitterShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "Twitter share button"}}
-                        >
-                            <TwitterIcon round size={shareIconSize}/>
-                        </TwitterShareButton>
-                        <LinkedinShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "LinkedIn share button"}}
-                        >
-                            <LinkedinIcon round size={shareIconSize}/>
-                        </LinkedinShareButton>
-                        <RedditShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "Reddit share button"}}
-                        >
-                            <RedditIcon round size={shareIconSize}/>
-                        </RedditShareButton>
-                        <TumblrShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "Tumblr share button"}}
-                        >
-                            <TumblrIcon round size={shareIconSize}/>
-                        </TumblrShareButton>
-                        <EmailShareButton
-                            url={siteUrl + this.props.pageContext.slug}
-                            additionalProps={{"aria-label": "Share by email button"}}
-                        >
-                            <EmailIcon round size={shareIconSize}/>
-                        </EmailShareButton>
+                                aria-label="LinkedIn share button">
+                                <LinkedinIcon round size={shareIconSize}/>
+                            </LinkedinShareButton>
+                        </span>
+                        <span title="Share this post on Reddit">
+                            <RedditShareButton
+                                url={siteUrl + this.props.pageContext.slug}
+
+                                aria-label="Reddit share button">
+                                <RedditIcon round size={shareIconSize}/>
+                            </RedditShareButton>
+                        </span>
+                        <span title="Share this post on Tumblr">
+                            <TumblrShareButton
+                                url={siteUrl + this.props.pageContext.slug}
+                                aria-label="Tumblr share button">
+                                <TumblrIcon round size={shareIconSize}/>
+                            </TumblrShareButton>
+                        </span>
+                        <span title="Share this post via Email">
+                            <EmailShareButton
+                                url={siteUrl + this.props.pageContext.slug}
+
+                                aria-label="Email share button">
+                                <EmailIcon round size={shareIconSize}/>
+                            </EmailShareButton>
+                        </span>
                     </div>
                 </div>
                 {similarPosts}
