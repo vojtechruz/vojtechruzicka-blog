@@ -51,9 +51,7 @@ class BlogPostTemplate extends React.Component {
             similarPosts = (
                 <div className="similar-posts">
                     <hr/>
-                    <p>
-                        <h4>Similar posts:</h4>
-                    </p>
+                    <h4>Similar posts:</h4>
                     <ul>
                         {relatedPosts.map((post) => {
                             let path = post.node.frontmatter.path;
