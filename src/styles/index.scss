@@ -263,14 +263,14 @@ body {
   white-space: nowrap;
 
   input {
-    border: 1px solid hsla(0, 0% ,0%, 0.01);
+    border: 1px solid transparent;
     color: hsla(0, 0% ,0%, 0.85);
     padding: 0 0 0 3px;
     // Mobile Safari shows inner shadow in the field
     -webkit-appearance: none;
     &:focus {
       color:hsla(0, 0% ,0%, 0.95);
-      background-color: $border-color;
+      background-color: lighten($border-color, 45%);
       outline: none;
       border: 1px solid hsla(0, 0% ,0%, 0.1);
     }
@@ -279,13 +279,13 @@ body {
   .search-icon {
     display: inline-block;
     height: 1.3rem;
-    color: hsla(0, 0% ,0%, 0.2);
+    color: hsla(0, 0% ,0%, 0.25);
     vertical-align: middle;
     cursor: pointer;
-  }
 
-  .search-icon + input:focus {
-
+    &.active {
+      color:#007fb1;
+    }
   }
 }
 
@@ -295,10 +295,9 @@ body {
 
   .search-icon {
     margin-right: 5px;
-    color:#007fb1;
   }
   input {
-    border: 1px solid hsla(0, 0% ,0%, 0.1);
+    border: 1px solid darken($border-color,10%);
   }
 }
 
