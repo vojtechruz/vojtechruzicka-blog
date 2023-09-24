@@ -171,7 +171,7 @@ export const pageQuery = graphql`
             hidden
             featuredImage {
               childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width:217)
+                gatsbyImageData(layout: CONSTRAINED, width:217, formats: [AUTO, WEBP, AVIF])
               }
             }
           }
