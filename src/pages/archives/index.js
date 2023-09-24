@@ -8,10 +8,7 @@ import get from "lodash/get";
 
 const ArchivesPage = ({
   data: {
-    allMarkdownRemark: { group },
-    site: {
-      siteMetadata: { title, description, siteUrl }
-    }
+    allMarkdownRemark: { group }
   }
 }) => (
   <Layout>
