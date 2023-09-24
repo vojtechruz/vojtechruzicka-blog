@@ -1,6 +1,6 @@
 import classNames from "classnames";
-
-const React = require("react");
+import React from "react";
+import docsearch from "docsearch.js";
 
 class SearchBox extends React.Component {
 
@@ -28,7 +28,6 @@ class SearchBox extends React.Component {
 
     componentDidMount() {
         if (window) {
-            const docsearch = require("docsearch.js");
             docsearch({
                 apiKey: '47434b43ba56485815226da96e4de27a',
                 appId: 'IHPA5BP385',

@@ -37,7 +37,6 @@ class FollowMe extends React.Component {
           aria-label="Feedly link"
           target="blank"
           href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fwww.vojtechruzicka.com%2Ffeed%2F"
-          target="blank"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
