@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import get from "lodash/get";
 import {Helmet} from "react-helmet";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import { rhythm } from "../utils/typography";
 import Tags from "../components/Tags";
@@ -126,7 +126,7 @@ class BlogIndex extends React.Component {
               </small>
               <div>
                 <Link to={node.fields.slug} className="front-post-image">
-                  <Img fluid={node.frontmatter.featuredImage.childImageSharp.fluid} title={node.frontmatter.title} alt={node.frontmatter.title}/>
+                  <GatsbyImage image={node.frontmatter.featuredImage.childImageSharp.gatsbyImageData} title={node.frontmatter.title} alt={node.frontmatter.title}/>
                 </Link>
                 <span
                   className="front-post-excerpt"
@@ -171,9 +171,7 @@ export const pageQuery = graphql`
             hidden
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 180) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(layout: CONSTRAINED, width:217)
               }
             }
           }

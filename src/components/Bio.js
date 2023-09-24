@@ -9,7 +9,7 @@ class Bio extends React.Component {
         const {name, bio, avatar, homepage} = this.props.author;
         let link;
         if(homepage.startsWith("http")) {
-            link = <a href={homepage} target="_blank">{name}</a>
+            link = <a href={homepage} target="_blank" rel="noreferrer">{name}</a>
         } else {
             link = <Link to={homepage}>{name}</Link>
         }
@@ -20,14 +20,13 @@ class Bio extends React.Component {
 
         return (
             <div
-                class="bio"
+                className="bio"
                 style={{
                     display: "flex",
                     marginBottom: rhythm(1.0),
                     marginTop: rhythm(1),
                     alignItems: "center"
-                }}
-            >
+                }}>
                 <img
                     src={`/authors/${avatar}`}
                     alt={'Author: ' + name}
