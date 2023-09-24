@@ -47,7 +47,6 @@
   "devDependencies": {
     "eslint": "^8.49.0",
     "eslint-plugin-react": "^7.33.2",
-    "gatsby-plugin-force-trailing-slashes": "^1.0.6",
     "gatsby-remark-code-buttons": "^2.0.7",
     "prettier": "^2.0.5"
   },

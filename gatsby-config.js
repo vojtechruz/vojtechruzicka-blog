@@ -234,7 +234,6 @@ module.exports = {
             }
         },
         `gatsby-plugin-offline`,
-        `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-netlify`
     ],
 }
