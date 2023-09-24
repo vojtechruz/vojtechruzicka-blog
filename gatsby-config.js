@@ -21,7 +21,6 @@ module.exports = {
                 name: 'posts',
             },
         },
-        "gatsby-plugin-image",
         {
             resolve: `gatsby-transformer-remark`,
             options: {
@@ -48,7 +47,8 @@ module.exports = {
                             maxWidth: 700,
                             backgroundColor: "transparent",
                             showCaptions: false,
-                            withWebp: true
+                            withWebp: true,
+                            withAvif: true
                         },
                     },
                     `gatsby-transformer-json`,
@@ -70,8 +70,17 @@ module.exports = {
                 ],
             },
         },
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+                defaults: {
+                    formats: [`auto`, `webp`, `avif`],
+                    placeholder: `blurred`,
+                }
+            }
+        },
         `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+        "gatsby-plugin-image",
         {
             resolve: `gatsby-plugin-google-gtag`,
             options: {
