@@ -230,7 +230,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-sitemap`,
             options: {
-                exclude: [`/pages/*`]
+                excludes: [`/pages/*`]
             }
         },
         `gatsby-plugin-offline`,
