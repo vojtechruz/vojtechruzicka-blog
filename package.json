@@ -9,7 +9,7 @@
   "dependencies": {
     "@weknow/gatsby-remark-codepen": "^0.1.0",
     "docsearch.js": "^2.6.3",
-    "gatsby": "^4.25.7",
+    "gatsby": "^5.12.4",
     "gatsby-cli": "^4.25.0",
     "gatsby-plugin-image": "^2.25.0",
     "gatsby-plugin-canonical-urls": "^4.25.0",
