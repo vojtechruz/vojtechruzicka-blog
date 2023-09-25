@@ -148,7 +148,7 @@ export function Head({data}) {
       data,
       "site.siteMetadata.description"
   );
-  const siteUrl = get(this, "props.data.site.siteMetadata.siteUrl");
+  const siteUrl = get(data, "site.siteMetadata.siteUrl");
   const title = `About Me | ${siteTitle}`;
 
   return (
