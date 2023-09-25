@@ -1,6 +1,5 @@
 import React from "react";
 import get from "lodash/get";
-import {Helmet} from "react-helmet";
 import profilePic from "../../components/profile-big.jpg";
 import { OutboundLink } from "gatsby-plugin-google-gtag"
 import Layout from "../../components/layout"
@@ -8,14 +7,6 @@ import { graphql } from "gatsby";
 
 class AboutPage extends React.Component {
   render() {
-    const siteTitle = get(this, "props.data.site.siteMetadata.title");
-    const siteDescription = get(
-      this,
-      "props.data.site.siteMetadata.description"
-    );
-    const siteUrl = get(this, "props.data.site.siteMetadata.siteUrl");
-    const title = `About Me | ${siteTitle}`;
-
     const twitterIcon = (
       <svg
         className="about-icon"
@@ -88,24 +79,6 @@ class AboutPage extends React.Component {
     return (
       <Layout>
         <div className="about-page">
-          <Helmet title={title}>
-            <meta name="description" content={siteDescription} />
-
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={siteDescription} />
-            <meta property="og:image" content={siteUrl + profilePic} />
-            <meta property="og:url" content={siteUrl + "/about/"} />
-            <meta property="og:site_name" content={siteTitle} />
-            <meta property="og:type" content="website" />
-            <meta property="og:locale" content="en_US" />
-            <meta property="fb:app_id" content="2072264049710958" />
-
-            <meta name="twitter:creator" content="@vojtechruzicka" />
-            <meta name="twitter:site" content="@vojtechruzicka" />
-            <meta name="twitter:card" content="summary" />
-            <meta name="twitter:title" content={title} />
-            <meta name="twitter:description" content={siteDescription} />
-          </Helmet>
             <h1>About</h1>
           <h2>Stay informed</h2>
           <h4>Get notified about the newest posts</h4>
@@ -168,6 +141,41 @@ class AboutPage extends React.Component {
     );
   }
 }
+export function Head({data}) {
+
+  const siteTitle = get(data, "site.siteMetadata.title");
+  const siteDescription = get(
+      data,
+      "site.siteMetadata.description"
+  );
+  const siteUrl = get(data, "site.siteMetadata.siteUrl");
+  const title = `About Me | ${siteTitle}`;
+
+  return (
+      <>
+        <title>{title}</title>
+        <meta name="description" content={siteDescription} />
+        <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb"/>
+        <html lang="en" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={siteDescription} />
+        <meta property="og:image" content={siteUrl + profilePic} />
+        <meta property="og:url" content={siteUrl + "/about/"} />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="fb:app_id" content="2072264049710958" />
+
+        <meta name="twitter:creator" content="@vojtechruzicka" />
+        <meta name="twitter:site" content="@vojtechruzicka" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={siteDescription} />
+      </>
+  )
+}
 
 export default AboutPage;
 
@@ -182,3 +190,7 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+
+
+

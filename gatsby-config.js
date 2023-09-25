@@ -190,7 +190,6 @@ module.exports = {
                 ],
             },
         },
-        `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sass`,
         {
             resolve: 'gatsby-plugin-typography',
@@ -230,11 +229,10 @@ module.exports = {
         {
             resolve: `gatsby-plugin-sitemap`,
             options: {
-                exclude: [`/pages/*`]
+                excludes: [`/pages/*`]
             }
         },
         `gatsby-plugin-offline`,
-        `gatsby-plugin-force-trailing-slashes`,
         `gatsby-plugin-netlify`
     ],
 }
