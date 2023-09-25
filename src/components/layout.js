@@ -4,7 +4,6 @@ import { rhythm } from "../utils/typography";
 import "../styles/index.scss";
 import Navigation from "../components/Navigation";
 import FollowMe from "../components/FollowMe";
-import { Helmet } from "react-helmet";
 
 class Template extends React.Component {
   render() {
@@ -17,11 +16,6 @@ class Template extends React.Component {
           padding: `${rhythm(1.5)} ${rhythm(1.5)}`
         }}
       >
-        <Helmet>
-          <html lang="en" />
-          <link rel="icon" type="image/png" href="/favicon.png" />
-
-        </Helmet>
         <Navigation />
         {children}
         <FollowMe />

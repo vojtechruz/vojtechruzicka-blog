@@ -1,5 +1,4 @@
 import React from "react";
-import {Helmet} from "react-helmet";
 import get from "lodash/get";
 import Bio from "../components/Bio";
 import {rhythm, scale} from "../utils/typography";
@@ -27,7 +26,6 @@ import profilePic from "../components/profile-big.jpg";
 class BlogPostTemplate extends React.Component {
     render() {
         const post = this.props.data.markdownRemark;
-        const siteTitle = get(this.props, "data.site.siteMetadata.title");
         const siteUrl = get(this.props, "data.site.siteMetadata.siteUrl");
         const shareIconSize = 32;
         const authors = get(this.props, "data.allAuthorsJson.edges").map(edge => edge.node);
@@ -41,10 +39,6 @@ class BlogPostTemplate extends React.Component {
             author = authors[0];
         }
 
-        let url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
-        if (!url.endsWith("/")) {
-            url = url + "/";
-        }
         const relatedPosts = this.props.pageContext.related;
         let similarPosts = null;
         if (relatedPosts && relatedPosts.length > 0) {
@@ -110,50 +104,6 @@ class BlogPostTemplate extends React.Component {
             dateModified = post.frontmatter.date;
         }
 
-        const schemaOrgJSONLD = [
-            {
-                "@context": "http://schema.org",
-                "@type": "BlogPosting",
-                "url": siteUrl + this.props.pageContext.slug,
-                "image": siteUrl + post.frontmatter.featuredImage.childImageSharp.fluid.originalImg,
-                "datePublished": post.frontmatter.date,
-                "dateCreated": post.frontmatter.date,
-                "dateModified": dateModified,
-                "headline": post.frontmatter.title,
-                "description": post.frontmatter.excerpt,
-                "mainEntityOfPage": siteUrl + this.props.pageContext.slug,
-                "author": {
-                    "@type": "Person",
-                    "name": "Vojtech Ruzicka",
-                    "email": "vojtech.ruz@gmail.com",
-                    "image": profilePic,
-                    "jobTitle": "Full-Stack Software Developer",
-                    "birthDate": "1986.07.27",
-                    "url": "https://www.vojtechruzicka.com/",
-                    "birthPlace": "Czech Republic, Prague",
-                    "sameAs": [
-                        "https://www.facebook.com/vojtechruzickablog",
-                        "https://www.linkedin.com/in/vojtechruzicka",
-                        "https://twitter.com/vojtechruzicka"
-                    ]
-                },
-                "publisher": {
-                    "@type": "Person",
-                    "name": "Vojtech Ruzicka",
-                    "email": "vojtech.ruz@gmail.com",
-                    "image": profilePic,
-                    "birthDate": "1986.07.27",
-                    "url": "https://www.vojtechruzicka.com/",
-                    "birthPlace": "Czech Republic, Prague",
-                    "sameAs": [
-                        "https://www.facebook.com/vojtechruzickablog",
-                        "https://www.linkedin.com/in/vojtechruzicka",
-                        "https://twitter.com/vojtechruzicka"
-                    ]
-                },
-            }
-        ];
-
         let lastUpdated;
         if (post.frontmatter.dateModified) {
             lastUpdated = (<div>Last Updated: {dateModified}</div>);
@@ -161,42 +111,6 @@ class BlogPostTemplate extends React.Component {
 
         return (
             <Layout>
-                <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}>
-                    <meta name="description" content={post.frontmatter.excerpt}/>
-                    <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
-
-                    <meta property="og:title" content={post.frontmatter.title}/>
-                    <meta property="og:description" content={post.frontmatter.excerpt}/>
-                    <meta
-                        property="og:image"
-                        content={
-                            siteUrl +
-                            post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
-                        }
-                    />
-                    <meta property="og:url" content={url}/>
-                    <meta property="og:site_name" content={siteTitle}/>
-                    <meta property="og:type" content="article"/>
-                    <meta property="og:locale" content="en_US"/>
-                    <meta property="fb:app_id" content="2072264049710958"/>
-
-                    <meta name="twitter:creator" content="@vojtechruzicka"/>
-                    <meta name="twitter:site" content="@vojtechruzicka"/>
-                    <meta name="twitter:card" content="summary_large_image"/>
-                    <meta name="twitter:title" content={post.frontmatter.title}/>
-                    <meta name="twitter:description" content={post.frontmatter.excerpt}/>
-                    <meta
-                        name="twitter:image"
-                        content={
-                            siteUrl +
-                            post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
-                        }
-                    />
-
-                    <script type="application/ld+json">
-                        {JSON.stringify(schemaOrgJSONLD)}
-                    </script>
-                </Helmet>
                 {/*This class marks contents searchable by algolia docs search*/}
                 <div className="docSearch-content">
                     <h1>{post.frontmatter.title}</h1>
@@ -302,6 +216,107 @@ class BlogPostTemplate extends React.Component {
             </Layout>
         );
     }
+}
+
+
+export function Head({data, pageContext}) {
+    const siteTitle = get(data, "site.siteMetadata.title");
+    const siteUrl = get(data, "site.siteMetadata.siteUrl");
+    const post = data.markdownRemark;
+    const title = `${post.frontmatter.title} | ${siteTitle}`;
+    let url = "https://www.vojtechruzicka.com" + post.frontmatter.path;
+    if (!url.endsWith("/")) {
+        url = url + "/";
+    }
+
+    let dateModified = post.frontmatter.dateModified;
+    if (!dateModified) {
+        dateModified = post.frontmatter.date;
+    }
+
+    const schemaOrgJSONLD = [
+        {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "url": siteUrl + pageContext.slug,
+            "image": siteUrl + post.frontmatter.featuredImage.childImageSharp.fluid.originalImg,
+            "datePublished": post.frontmatter.date,
+            "dateCreated": post.frontmatter.date,
+            "dateModified": dateModified,
+            "headline": post.frontmatter.title,
+            "description": post.frontmatter.excerpt,
+            "mainEntityOfPage": siteUrl + pageContext.slug,
+            "author": {
+                "@type": "Person",
+                "name": "Vojtech Ruzicka",
+                "email": "vojtech.ruz@gmail.com",
+                "image": profilePic,
+                "jobTitle": "Full-Stack Software Developer",
+                "birthDate": "1986.07.27",
+                "url": "https://www.vojtechruzicka.com/",
+                "birthPlace": "Czech Republic, Prague",
+                "sameAs": [
+                    "https://www.facebook.com/vojtechruzickablog",
+                    "https://www.linkedin.com/in/vojtechruzicka",
+                    "https://twitter.com/vojtechruzicka"
+                ]
+            },
+            "publisher": {
+                "@type": "Person",
+                "name": "Vojtech Ruzicka",
+                "email": "vojtech.ruz@gmail.com",
+                "image": profilePic,
+                "birthDate": "1986.07.27",
+                "url": "https://www.vojtechruzicka.com/",
+                "birthPlace": "Czech Republic, Prague",
+                "sameAs": [
+                    "https://www.facebook.com/vojtechruzickablog",
+                    "https://www.linkedin.com/in/vojtechruzicka",
+                    "https://twitter.com/vojtechruzicka"
+                ]
+            },
+        }
+    ];
+
+    return (
+        <>
+            <title>{title}</title>
+            <meta name="description" content={post.frontmatter.excerpt}/>
+            <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
+
+            <meta property="og:title" content={post.frontmatter.title}/>
+            <meta property="og:description" content={post.frontmatter.excerpt}/>
+            <meta
+                property="og:image"
+                content={
+                    siteUrl +
+                    post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                }
+            />
+            <meta property="og:url" content={url}/>
+            <meta property="og:site_name" content={siteTitle}/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:locale" content="en_US"/>
+            <meta property="fb:app_id" content="2072264049710958"/>
+
+            <meta name="twitter:creator" content="@vojtechruzicka"/>
+            <meta name="twitter:site" content="@vojtechruzicka"/>
+            <meta name="twitter:card" content="summary_large_image"/>
+            <meta name="twitter:title" content={post.frontmatter.title}/>
+            <meta name="twitter:description" content={post.frontmatter.excerpt}/>
+            <meta
+                name="twitter:image"
+                content={
+                    siteUrl +
+                    post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                }
+            />
+
+            <script type="application/ld+json">
+                {JSON.stringify(schemaOrgJSONLD)}
+            </script>
+        </>
+    )
 }
 
 export default BlogPostTemplate;
