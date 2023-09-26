@@ -48,7 +48,7 @@ module.exports = {
                             backgroundColor: "transparent",
                             showCaptions: false,
                             withWebp: true,
-                            withAvif: false
+                            withAvif: true
                         },
                     },
                     `gatsby-transformer-json`,
@@ -159,9 +159,7 @@ module.exports = {
                         },
                         query: `
                         {
-                          allMarkdownRemark(
-                            sort: { order: DESC, fields: [frontmatter___date] },
-                          ) {
+                          allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
                             edges {
                               node {
                                 html
