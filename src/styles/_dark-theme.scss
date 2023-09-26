@@ -17,20 +17,10 @@
       }
     }
 
-    .menu-items a, .blog-name a, .search-icon {
+    .menu-items a, .blog-name a {
       color: #b3b9c5!important;
       &:hover {
         color: lighten(#b3b9c5,25%)!important;
-      }
-    }
-
-    .search-box {
-      background-color: rgba(255,255,255,0.02);
-      color: white!important;
-
-      &:focus {
-        background-color: rgba(255,255,255,0.2);
-        color: white!important;
       }
     }
 
@@ -107,6 +97,27 @@
       border-left: none;
     }
   }
+
+  body .search-box-container {
+    .DocSearch-Button {
+      background-color: hsla(0,0%,100%,.02)!important;
+    }
+
+    &:hover .DocSearch-Button {
+      color: lighten(#b3b9c5,25%)!important;
+      background-color: hsla(0,0%,100%,.05)!important;
+      .DocSearch-Search-Icon {
+        color: lighten(#b3b9c5,25%)!important;
+      }
+      border: 1px solid lighten(#b3b9c5, 20%);
+    }
+  }
+
+  .gatsby-code-button {
+    top: 48px!important;
+    right: 4px!important;
+  }
+
 
   /**
    * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML

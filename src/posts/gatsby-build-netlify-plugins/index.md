@@ -42,7 +42,7 @@ Plugins are not enabled and configured directly from the Netlify UI. Instead, yo
 
 The configuration for [netlify-plugin-gatsby-cache](https://github.com/jlengstorf/netlify-plugin-gatsby-cache) can be as simple as this:
 
-```
+```toml
 [build]
   publish = "public"
 
