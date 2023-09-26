@@ -173,7 +173,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       limit: $pageSize
       skip: $pageSkip
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: {frontmatter: {date: DESC}}
     ) {
       edges {
         node {
