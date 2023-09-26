@@ -149,7 +149,7 @@ module.exports = {
                                             "webfeeds:cover":
                                                 {
                                                     _attr: {
-                                                        image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                                                        image: site.siteMetadata.siteUrl + edge.node.frontmatter.featuredImage.childImageSharp.original.src
                                                     }
                                                 },
                                         }
@@ -171,8 +171,8 @@ module.exports = {
                                   hidden
                                   featuredImage {
                                     childImageSharp {
-                                        fluid(maxWidth: 1000) {
-                                            originalImg
+                                        original {
+                                          src
                                         }
                                     }
                                   }

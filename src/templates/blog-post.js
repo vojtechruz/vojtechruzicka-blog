@@ -239,7 +239,7 @@ export function Head({data, pageContext}) {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
             "url": siteUrl + pageContext.slug,
-            "image": siteUrl + post.frontmatter.featuredImage.childImageSharp.fluid.originalImg,
+            "image": siteUrl + post.frontmatter.featuredImage.childImageSharp.original.src,
             "datePublished": post.frontmatter.date,
             "dateCreated": post.frontmatter.date,
             "dateModified": dateModified,
@@ -290,7 +290,7 @@ export function Head({data, pageContext}) {
                 property="og:image"
                 content={
                     siteUrl +
-                    post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                    post.frontmatter.featuredImage.childImageSharp.original.src
                 }
             />
             <meta property="og:url" content={url}/>
@@ -308,7 +308,7 @@ export function Head({data, pageContext}) {
                 name="twitter:image"
                 content={
                     siteUrl +
-                    post.frontmatter.featuredImage.childImageSharp.fluid.originalImg
+                    post.frontmatter.featuredImage.childImageSharp.original.src
                 }
             />
 
@@ -355,8 +355,9 @@ export const pageQuery = graphql`
         tags
         featuredImage {
           childImageSharp {
-            fluid(maxWidth: 1000) {
-              originalImg
+            gatsbyImageData(layout: CONSTRAINED)
+            original {
+              src
             }
           }
         }
