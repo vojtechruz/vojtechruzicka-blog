@@ -58,10 +58,8 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write src/**/*.js",
     "develop": "gatsby develop",
+    "format": "prettier --write src/**/*.js",
     "build": "gatsby build"
   }
 }
