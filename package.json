@@ -43,8 +43,6 @@
     "typography-theme-bootstrap": "^0.16.19"
   },
   "devDependencies": {
-    "eslint": "^8.50.0",
-    "eslint-plugin-react": "^7.33.2",
     "gatsby-remark-code-buttons": "^2.0.7",
     "prettier": "^2.0.5"
   },
