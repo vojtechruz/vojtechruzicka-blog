@@ -47,7 +47,7 @@ module.exports = {
                             maxWidth: 700,
                             backgroundColor: "transparent",
                             showCaptions: false,
-                            withWebp: false,
+                            withWebp: true,
                             withAvif: false
                         },
                     },
