@@ -47,8 +47,8 @@ module.exports = {
                             maxWidth: 700,
                             backgroundColor: "transparent",
                             showCaptions: false,
-                            withWebp: true,
-                            withAvif: true
+                            withWebp: false,
+                            withAvif: false
                         },
                     },
                     `gatsby-transformer-json`,
