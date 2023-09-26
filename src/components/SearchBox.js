@@ -3,11 +3,6 @@ import { DocSearch } from '@docsearch/react';
 
 class SearchBox extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {active: false};
-    }
-
     inputClass = "search-box";
 
     render() {
@@ -25,18 +20,6 @@ class SearchBox extends React.Component {
                 />
             </span>
         );
-    }
-
-    focus() {
-        this.searchInput.focus();
-    }
-
-    activate() {
-        this.setState({active: true})
-    }
-
-    deactivate() {
-        this.setState({active: false})
     }
 }
 

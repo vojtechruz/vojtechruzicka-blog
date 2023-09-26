@@ -398,3 +398,12 @@ kbd {
 
   }
 }
+
+.search-inline {
+  margin-bottom: 25px;
+  margin-top: 25px;
+
+  .DocSearch.DocSearch-Button {
+    height: 36px;
+  }
+}

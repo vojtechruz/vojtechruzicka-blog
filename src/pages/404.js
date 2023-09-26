@@ -21,7 +21,7 @@ const NotFoundPage = ({
 
             <div className="search-inline">
                 <h4>Search for posts</h4>
-                <SearchBox inputClass="search-secondary" autoFocus={true}/>
+                <SearchBox inputClass="search-secondary"/>
             </div>
 
 
