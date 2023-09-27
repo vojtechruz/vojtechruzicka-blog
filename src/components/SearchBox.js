@@ -12,9 +12,9 @@ class SearchBox extends React.Component {
     return (
       <span className="search-box-container">
         <DocSearch
-          appId="IHPA5BP385"
-          indexName="vojtechruzicka"
-          apiKey="47434b43ba56485815226da96e4de27a"
+          appId={process.env.DOCSEARCH_APP_ID}
+          indexName={process.env.DOCSEARCH_INDEX_NAME}
+          apiKey={process.env.DOCSEARCH_API_KEY}
         />
       </span>
     );

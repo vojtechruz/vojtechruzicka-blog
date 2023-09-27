@@ -14,4 +14,4 @@ Feel free to translate any articles and publish them with my name as the origina
 If you want to publish a guest blog post on this blog or you want me to publish to yours, feel free to contact me via email.
 
 ## Article suggestions
-Do you have any suggestions for interesting topics to be covered in this blog? Shoot me an email!
+Do you have any suggestions for interesting topics to be covered in this blog? Shoot me an email or create issue in this repository!
