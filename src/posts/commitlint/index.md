@@ -5,7 +5,6 @@ dateModified: "2019-11-18"
 tags: ["Git"]
 path: '/commitlint'
 featuredImage: './commitlint.jpg'
-disqusArticleIdentifier: '99043 http://vojtechruzicka.com/?p=99043'
 excerpt: 'Automatically check and enforce your commit conventions either with various available configurations.'
 ---
 

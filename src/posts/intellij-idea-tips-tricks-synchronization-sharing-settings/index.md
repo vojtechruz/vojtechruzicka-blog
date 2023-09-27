@@ -5,7 +5,6 @@ dateModified: "2019-07-09"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-synchronization-sharing-settings'
 featuredImage: './idea-settings-featured.jpg'
-disqusArticleIdentifier: '1487 http://vojtechruzicka.com/?p=1487'
 excerpt: 'Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.'
 ---
 ![idea settings synchronization](./idea-settings-featured.jpg)

@@ -4,7 +4,6 @@ date: "2018-09-03T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-actuator'
 featuredImage: './spring-boot-actuator.jpg'
-disqusArticleIdentifier: '99008 http://vojtechruzicka.com/?p=99008'
 excerpt: 'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.'
 ---
 

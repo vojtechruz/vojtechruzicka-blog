@@ -4,7 +4,6 @@ date: "2018-06-25T22:12:03.284Z"
 tags: ['Spring', 'Java']
 path: '/spring-boot-version'
 featuredImage: './spring-boot-version.jpg'
-disqusArticleIdentifier: '99007 http://vojtechruzicka.com/?p=99007'
 excerpt: 'How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?'
 ---
 

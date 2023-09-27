@@ -4,7 +4,6 @@ date: "2019-10-10T22:12:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-css'
 featuredImage: './css.jpg'
-disqusArticleIdentifier: '99039 http://vojtechruzicka.com/?p=99039'
 excerpt: 'How to style JavaFX components using good old CSS.'
 ---
 

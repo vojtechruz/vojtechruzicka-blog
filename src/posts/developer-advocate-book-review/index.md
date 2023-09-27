@@ -4,7 +4,6 @@ date: "2020-04-20T22:12:03.284Z"
 tags: ['Books']
 path: '/developer-advocate-book-review'
 featuredImage: './developer-advocate-book-review.png'
-disqusArticleIdentifier: '99051 http://vojtechruzicka.com/?p=99051'
 excerpt: 'Book review of Developer, Advocate! by Geertjan Wielenga. A collection of conversations with developer advocates about their work, tech communities and the road to becoming a developer advocate.'
 ---
 

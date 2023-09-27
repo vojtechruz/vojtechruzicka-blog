@@ -5,7 +5,6 @@ dateModified: "2019-07-03"
 tags: ['Java', 'Design-Patterns']
 path: '/singleton-pattern-pitfalls'
 featuredImage: './singleton.jpg'
-disqusArticleIdentifier: '516 http://vojtechruzicka.com/?p=516'
 excerpt: 'Singleton, one of the most popular design patterns has a lot of serious drawbacks and some even consider it an anti-pattern. What are the pitfalls of the famous pattern?'
 ---
 ![singleton pattern pitfalls](./singleton.jpg)

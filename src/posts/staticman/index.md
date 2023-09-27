@@ -4,7 +4,6 @@ date: "2018-08-25T12:12:03.284Z"
 tags: ['JAMStack']
 path: '/staticman'
 featuredImage: './staticman.jpg'
-disqusArticleIdentifier: '99012 http://vojtechruzicka.com/?p=99012'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
 ---
 

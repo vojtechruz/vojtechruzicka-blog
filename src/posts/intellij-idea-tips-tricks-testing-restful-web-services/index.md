@@ -5,7 +5,6 @@ dateModified: "2019-06-20"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
-disqusArticleIdentifier: '1389 http://vojtechruzicka.com/?p=1389'
 excerpt: 'IntelliJ IDEA offers two integrated HTTP clients to test your REST services directly from your IDE.'
 ---
 ![testing restful web services idea](./IntelliJIDEA_icon.png)

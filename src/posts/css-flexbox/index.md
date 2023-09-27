@@ -5,7 +5,6 @@ dateModified: "2020-05-08"
 tags: ["CSS"]
 path: '/css-flexbox'
 featuredImage: 'css-flexbox.png'
-disqusArticleIdentifier: '99052 http://vojtechruzicka.com/?p=99052'
 excerpt: 'Flexbox is a powerful layout tool, which allows you to automatically arrange and size items inside a container.'
 ---
 

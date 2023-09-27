@@ -4,7 +4,6 @@ date: "2018-12-21T22:12:03.284Z"
 tags: ['Blogging']
 path: '/blogging-tools'
 featuredImage: './blogging-tools.jpg'
-disqusArticleIdentifier: '99018 http://vojtechruzicka.com/?p=99018'
 excerpt: 'A set of useful tools I use regularly to help me when blogging.'
 ---
 

@@ -4,7 +4,6 @@ date: "2018-04-20T22:12:03.284Z"
 tags: ['Java']
 path: '/jshell-repl'
 featuredImage: './jshell.jpg'
-disqusArticleIdentifier: '99003 http://vojtechruzicka.com/?p=99003'
 excerpt: 'From version 9, Java now has its own interactive REPL console, which is useful for quick checks, prototyping and educational purposes.'
 ---
 

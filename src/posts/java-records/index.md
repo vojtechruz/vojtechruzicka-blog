@@ -4,7 +4,6 @@ date: "2020-02-03T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-records'
 featuredImage: './java-records.jpg'
-disqusArticleIdentifier: '99046 http://vojtechruzicka.com/?p=99046'
 excerpt: 'Records are new type in Java 14, which allow you to declare simple data classes without all the boilerplate.'
 ---
 

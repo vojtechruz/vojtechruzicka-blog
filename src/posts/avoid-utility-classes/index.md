@@ -4,7 +4,6 @@ date: "2017-03-07T22:12:03.284Z"
 tags: ['OOP', 'Java']
 path: '/avoid-utility-classes'
 featuredImage: './avoid-utility-classes.jpg'
-disqusArticleIdentifier: '734 http://vojtechruzicka.com/?p=734'
 excerpt: 'Utility classes, while popular, have some serious implications and you should think twice before using them.'
 ---
 ![avoid utility classes](./avoid-utility-classes.jpg)

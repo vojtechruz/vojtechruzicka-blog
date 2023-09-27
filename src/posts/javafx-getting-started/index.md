@@ -4,7 +4,6 @@ date: "2019-10-01T22:13:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-getting-started'
 featuredImage: './install.jpg'
-disqusArticleIdentifier: '99034 http://vojtechruzicka.com/?p=99034'
 excerpt: 'How to setup and start working with JavaFX using Maven, Gradle or JavaFX SDK.'
 series: JavaFX
 order: 1

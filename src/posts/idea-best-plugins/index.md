@@ -5,7 +5,6 @@ dateModified: "2021-11-20"
 tags: ["IDEA"]
 path: '/idea-best-plugins'
 featuredImage: './idea-best-plugins.jpg'
-disqusArticleIdentifier: '99045 http://vojtechruzicka.com/?p=99045'
 excerpt: 'A collection of useful plugins to enhance your IntelliJ IDEA experience.'
 ---
 

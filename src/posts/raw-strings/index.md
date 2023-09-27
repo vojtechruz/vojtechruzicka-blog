@@ -5,7 +5,6 @@ dateModified: "2019-06-24"
 tags: ['Java']
 path: '/raw-strings'
 featuredImage: './raw-strings.jpg'
-disqusArticleIdentifier: '99017 http://vojtechruzicka.com/?p=99017'
 excerpt: "Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions."
 ---
 

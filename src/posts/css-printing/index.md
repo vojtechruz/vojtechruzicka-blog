@@ -4,7 +4,6 @@ date: "2020-04-10T22:12:03.284Z"
 tags: ['CSS']
 path: '/css-printing'
 featuredImage: 'css-printing.jpg'
-disqusArticleIdentifier: '99050 http://vojtechruzicka.com/?p=99050'
 excerpt: 'How to adjust your pages with CSS to be printer-friendly.'
 ---
 

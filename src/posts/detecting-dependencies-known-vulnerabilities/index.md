@@ -5,7 +5,6 @@ dateModified: "2018-12-16"
 tags: ['Java', 'Security']
 path: '/detecting-dependencies-known-vulnerabilities'
 featuredImage: './dc-large.png'
-disqusArticleIdentifier: '808 http://vojtechruzicka.com/?p=808'
 excerpt: 'How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI and track vulnerable dependencies over time?'
 --- 
 ![detecting dependencies with known vulnerabilities](./dc-large.png)

@@ -4,7 +4,6 @@ date: "2019-09-25T22:12:03.284Z"
 tags: ["Java", "Spring"]
 path: '/spring-boot-add-war-to-embedded-tomcat'
 featuredImage: './spring-boot-add-war-to-embedded-tomcat.jpg'
-disqusArticleIdentifier: '99033 http://vojtechruzicka.com/?p=99033'
 excerpt: 'How to deploy external WAR files to your Spring Boot Embedded Tomcat.'
 ---
 

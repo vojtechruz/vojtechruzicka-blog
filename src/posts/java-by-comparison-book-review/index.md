@@ -5,7 +5,6 @@ dateModified: "2019-07-03"
 tags: ["Java", "Books"]
 path: '/java-by-comparison-book-review'
 featuredImage: './java-by-comparison.jpg'
-disqusArticleIdentifier: '99023 http://vojtechruzicka.com/?p=99023'
 excerpt: 'This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics with before and after comparison in a concise, easy to read and understand way.'
 ---
 

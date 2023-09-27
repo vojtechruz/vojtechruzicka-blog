@@ -4,7 +4,6 @@ date: "2019-09-19T22:12:03.284Z"
 tags: ["Maven"]
 path: '/maven-archetypes'
 featuredImage: './archetype.jpg'
-disqusArticleIdentifier: '99032 http://vojtechruzicka.com/?p=99032'
 excerpt: 'How to generate new projects from Maven archetypes, create your own and number of alternative tools.'
 ---
 

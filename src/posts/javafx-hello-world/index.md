@@ -4,7 +4,6 @@ date: "2019-10-01T22:15:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-hello-world'
 featuredImage: './javafx-hello-world.jpg'
-disqusArticleIdentifier: '99035 http://vojtechruzicka.com/?p=99035'
 excerpt: 'Tutorial on how to build your first JavaFX application.'
 series: JavaFX
 order: 2

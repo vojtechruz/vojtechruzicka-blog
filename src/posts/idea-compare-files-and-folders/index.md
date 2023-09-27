@@ -4,7 +4,6 @@ date: "2019-10-25T22:12:03.284Z"
 tags: ["IDEA"]
 path: '/idea-compare-files-and-folders'
 featuredImage: './idea-compare.jpg'
-disqusArticleIdentifier: '99041 http://vojtechruzicka.com/?p=99041'
 excerpt: 'IntelliJ IDEA offers numerous ways of comparing files, folders and code snippets and even synchronizing folder contents.'
 ---
 

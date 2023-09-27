@@ -4,7 +4,6 @@ date: "2019-10-04T22:12:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-layouts-advanced'
 featuredImage: './ui-layout-advanced.jpg'
-disqusArticleIdentifier: '99038 http://vojtechruzicka.com/?p=99038'
 excerpt: 'How to organize and position your GUI components in JavaFX application using advanced layouts.'
 order: 5
 series: JavaFX

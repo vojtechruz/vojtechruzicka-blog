@@ -5,7 +5,6 @@ dateModified: "2019-04-28"
 tags: ['Spring', 'Java']
 path: '/spring-boot-devtools'
 featuredImage: './spring-dev-tools.jpg'
-disqusArticleIdentifier: '99014 http://vojtechruzicka.com/?p=99014'
 excerpt: 'How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive?'
 ---
 

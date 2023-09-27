@@ -5,7 +5,6 @@ dateModified: "2018-12-21"
 tags: ['Javascript']
 path: '/reactiveconf-2018'
 featuredImage: './reactive-conf-1.jpg'
-disqusArticleIdentifier: '99015 http://vojtechruzicka.com/?p=99015'
 excerpt: 'My experience as a volunteer at Reactive Conf Prague 2018.'
 ---
 

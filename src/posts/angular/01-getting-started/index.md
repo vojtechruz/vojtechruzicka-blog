@@ -4,7 +4,6 @@ date: "2020-07-20T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular/01-getting-started'
 featuredImage: './angular-getting-started.jpg'
-disqusArticleIdentifier: '6661 http://vojtechruzicka.com/?p=6661'
 excerpt: 'How to get started with Angular from scratch, part 1.'
 hidden: 'true'
 ---

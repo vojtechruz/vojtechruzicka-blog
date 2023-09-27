@@ -4,7 +4,6 @@ date: "2019-10-01T22:20:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-fxml-scene-builder'
 featuredImage: './scene-builder.jpg'
-disqusArticleIdentifier: '99036 http://vojtechruzicka.com/?p=99036'
 excerpt: 'How to build GUI with JavaFX using FXML markup and SceneBuilder.'
 series: JavaFX
 order: 3

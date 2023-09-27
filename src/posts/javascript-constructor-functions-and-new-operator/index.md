@@ -4,7 +4,6 @@ date: "2018-02-02T22:12:03.284Z"
 tags: ['Javascript']
 path: '/javascript-constructor-functions-and-new-operator'
 featuredImage: './constructor-functions.jpg'
-disqusArticleIdentifier: '1548 http://vojtechruzicka.com/?p=1548'
 excerpt: What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
 ---
 ![javascript constructor functions](./constructor-functions.jpg)

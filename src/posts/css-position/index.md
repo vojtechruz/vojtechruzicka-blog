@@ -4,7 +4,6 @@ date: "2020-03-31T22:12:03.284Z"
 tags: ["CSS"]
 path: '/css-position'
 featuredImage: './css-position.jpg'
-disqusArticleIdentifier: '99047 http://vojtechruzicka.com/?p=99047'
 excerpt: 'How to understand and properly use CSS position property to control placement of your elements.'
 ---
 

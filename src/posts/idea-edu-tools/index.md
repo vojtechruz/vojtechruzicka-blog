@@ -5,7 +5,6 @@ dateModified: "2020-03-16"
 tags: ["IDEA"]
 path: '/idea-edu-tools'
 featuredImage: './idea-edu-tools.jpg'
-disqusArticleIdentifier: '99026 http://vojtechruzicka.com/?p=99026'
 excerpt: 'Study programming courses directly in your IDE or create your own.'
 ---
 

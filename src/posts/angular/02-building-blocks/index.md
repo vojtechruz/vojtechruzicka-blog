@@ -4,7 +4,6 @@ date: "2020-07-21T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular/02-building-blocks'
 featuredImage: './building-blocks.jpg'
-disqusArticleIdentifier: '6662 http://vojtechruzicka.com/?p=6662'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
 hidden: 'true'
 ---

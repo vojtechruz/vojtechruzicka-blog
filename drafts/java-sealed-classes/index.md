@@ -4,7 +4,6 @@ date: "2020-08-15T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-sealed-classes'
 featuredImage: './seal.jpg'
-disqusArticleIdentifier: '99054 http://vojtechruzicka.com/?p=99054'
 excerpt: 'Sealed classes or interfaces may restrict which other classes or interfaces can extend it.'
 ---
 

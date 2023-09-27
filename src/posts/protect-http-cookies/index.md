@@ -5,7 +5,6 @@ dateModified: "2020-03-20"
 tags: ['HTTP']
 path: '/protect-http-cookies'
 featuredImage: './protect-cookies.jpg'
-disqusArticleIdentifier: '1444 http://vojtechruzicka.com/?p=1444'
 excerpt: 'Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.'
 ---
 ![protect cookies](./protect-cookies.jpg)

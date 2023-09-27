@@ -4,7 +4,6 @@ date: "2019-10-11T22:12:03.284Z"
 tags: ["JAMStack"]
 path: '/netlify-analytics'
 featuredImage: './netlify-analytics.jpg'
-disqusArticleIdentifier: '99040 http://vojtechruzicka.com/?p=99040'
 excerpt: 'Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.'
 ---
 

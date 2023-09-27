@@ -4,7 +4,6 @@ date: "2019-02-03T22:12:03.284Z"
 tags: ['Javascript']
 path: '/destructuring-javascript'
 featuredImage: './destructuring.jpg'
-disqusArticleIdentifier: '99019 http://vojtechruzicka.com/?p=99019'
 excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
 ---
 

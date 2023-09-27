@@ -5,7 +5,6 @@ dateModified: "2018-12-31"
 tags: ['Java']
 path: '/explicitly-declare-serialversionuid'
 featuredImage: './serialization.jpg'
-disqusArticleIdentifier: '238 http://vojtechruzicka.com/?p=238'
 excerpt: 'Should you explicitly declare serialVersionUID or leave it to be automatically generated?'
 ---
 ![serialversionuuid](./serialization.jpg)

@@ -5,7 +5,6 @@ dateModified: "2019-10-24"
 tags: ['Blogging', 'JAMStack']
 path: '/jamstack-migration-netlify'
 featuredImage: './jamstack-migration-netlify.jpg'
-disqusArticleIdentifier: '99004 http://vojtechruzicka.com/?p=99004'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site deployed on Netlify.'
 ---
 

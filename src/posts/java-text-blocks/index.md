@@ -5,7 +5,6 @@ dateModified: "2020-04-16"
 tags: ["Java"]
 path: '/java-text-blocks'
 featuredImage: './java-text-blocks.jpg'
-disqusArticleIdentifier: '99028 http://vojtechruzicka.com/?p=99028'
 excerpt: 'Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.'
 ---
 

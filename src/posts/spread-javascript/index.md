@@ -4,7 +4,6 @@ date: "2019-01-30T22:12:03.284Z"
 tags: ['Javascript']
 path: '/spread-javascript'
 featuredImage: './spread.jpg'
-disqusArticleIdentifier: '99018 http://vojtechruzicka.com/?p=99018'
 excerpt: 'What do three dots (...) mean in javascript? They can be used for various different purposes.'
 ---
 

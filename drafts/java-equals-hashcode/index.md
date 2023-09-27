@@ -4,7 +4,6 @@ date: ""
 tags: ["Java"]
 path: '/java-equals-hashcode'
 featuredImage: './java-equals-hashcode.jpg'
-disqusArticleIdentifier: 'TODO http://vojtechruzicka.com/?p=TODO'
 excerpt: ''
 ---
 

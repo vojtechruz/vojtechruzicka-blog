@@ -5,7 +5,6 @@ dateModified: "2021-11-20"
 tags: ["JAMStack"]
 path: '/gatsby-build-netlify-plugins'
 featuredImage: 'gatsby-build-netlify-plugins.jpg'
-disqusArticleIdentifier: '99053 http://vojtechruzicka.com/?p=99053'
 excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x faster.'
 ---
 

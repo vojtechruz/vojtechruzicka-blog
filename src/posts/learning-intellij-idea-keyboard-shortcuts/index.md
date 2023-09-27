@@ -4,7 +4,6 @@ date: "2016-05-08T22:12:03.284Z"
 tags: ['IDEA']
 path: '/learning-intellij-idea-keyboard-shortcuts'
 featuredImage: './learning-intellij-idea-shortcuts.jpg'
-disqusArticleIdentifier: '357 http://vojtechruzicka.com/?p=357'
 excerpt: 'Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to learn IntelliJ IDEA shortcuts quicker than just by memorizing them one by one.'
 ---
 ![IDEA Keyboard Shortcuts](./learning-intellij-idea-shortcuts.jpg)

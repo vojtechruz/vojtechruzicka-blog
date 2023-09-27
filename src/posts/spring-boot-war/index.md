@@ -4,7 +4,6 @@ date: "2019-07-20T22:12:03.284Z"
 tags: ["Java", "Spring"]
 path: '/spring-boot-war'
 featuredImage: './spring-boot-war.jpg'
-disqusArticleIdentifier: '99031 http://vojtechruzicka.com/?p=99031'
 excerpt: 'How to change your JAR Spring Boot app to be packaged and deployed as WAR without sacrificing direct execution capabilities of embedded app server.'
 ---
 

@@ -4,7 +4,6 @@ date: "2017-11-22T22:12:03.284Z"
 tags: ['Security']
 path: '/snyk-detecting-dependencies-with-known-vulnerabilities'
 featuredImage: './snyk-logo.jpg'
-disqusArticleIdentifier: '1225 http://vojtechruzicka.com/?p=1225'
 excerpt: 'How to detect and fix security vulnerabilities in your dependencies using Snyk?'
 ---
 ![snyk](./snyk-logo.jpg)

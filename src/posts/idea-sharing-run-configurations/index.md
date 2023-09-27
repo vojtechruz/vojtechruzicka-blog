@@ -4,7 +4,6 @@ date: "2020-04-03T22:12:03.284Z"
 tags: ['IDEA']
 path: '/idea-sharing-run-configurations'
 featuredImage: 'idea-sharing-run-configurations.jpg'
-disqusArticleIdentifier: '99048 http://vojtechruzicka.com/?p=99048'
 excerpt: 'Finally, with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version control.'
 ---
 

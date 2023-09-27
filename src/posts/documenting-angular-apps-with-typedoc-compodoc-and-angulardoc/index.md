@@ -4,7 +4,6 @@ date: "2017-12-18T22:12:03.284Z"
 tags: ['Javascript', 'Angular']
 path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc'
 featuredImage: './documentation.jpg'
-disqusArticleIdentifier: '1268 http://vojtechruzicka.com/?p=1268'
 excerpt: There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what is the most suitable for your app.
 ---
 ![compodoc](./documentation.jpg)

@@ -5,7 +5,6 @@ dateModified: "2020-04-15"
 tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-presentations'
 featuredImage: './intellij-idea-presentation.jpg'
-disqusArticleIdentifier: '935 http://vojtechruzicka.com/?p=935'
 excerpt: How to make the most of the IntelliJ IDEA's view modes to make best presentations possible including visualization of the keyboard input?
 ---
 ![idea presentations](./intellij-idea-presentation.jpg)

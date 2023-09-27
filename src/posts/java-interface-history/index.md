@@ -4,7 +4,6 @@ date: "2019-07-05T22:12:03.284Z"
 tags: ["Java"]
 path: '/java-interface-history'
 featuredImage: './java-interface-history.jpg'
-disqusArticleIdentifier: '99029 http://vojtechruzicka.com/?p=99029'
 excerpt: 'Java interface changed a lot through the years. What were the changes during its evolution?'
 ---
 

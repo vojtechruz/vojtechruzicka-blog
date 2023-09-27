@@ -4,7 +4,6 @@ date: "2019-10-01T22:40:03.284Z"
 tags: ["Java", "JavaFX"]
 path: '/javafx-layouts-basic'
 featuredImage: './ui-layout.jpg'
-disqusArticleIdentifier: '99037 http://vojtechruzicka.com/?p=99037'
 excerpt: 'How to organize and layout your GUI components in JavaFX application.'
 order: 4
 series: JavaFX

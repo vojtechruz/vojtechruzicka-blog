@@ -4,7 +4,6 @@ date: "2020-07-22T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular/03-components'
 featuredImage: './components.jpg'
-disqusArticleIdentifier: '6663 http://vojtechruzicka.com/?p=6663'
 excerpt: 'Angular apps are composed of components, which encapsulate view, logic and styling.'
 hidden: 'true'
 ---

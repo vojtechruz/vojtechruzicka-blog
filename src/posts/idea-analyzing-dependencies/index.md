@@ -5,7 +5,6 @@ dateModified: "2019-07-02"
 tags: ["IDEA"]
 path: '/idea-analyzing-dependencies'
 featuredImage: './dependencies.jpg'
-disqusArticleIdentifier: '99025 http://vojtechruzicka.com/?p=99025'
 excerpt: 'How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.'
 ---
 

@@ -5,7 +5,6 @@ dateModified: "2022-05-22"
 tags: ["Security", "IDEA"]
 path: '/idea-snyk-plugin'
 featuredImage: './idea-snyk-plugin.jpg'
-disqusArticleIdentifier: '99027 http://vojtechruzicka.com/?p=99027'
 excerpt: 'How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.'
 ---
 

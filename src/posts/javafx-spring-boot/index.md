@@ -4,7 +4,6 @@ date: "2019-11-18T22:12:03.284Z"
 tags: ["Spring", "JavaFX"]
 path: '/javafx-spring-boot'
 featuredImage: './javafx-spring-boot.jpg'
-disqusArticleIdentifier: '99044 http://vojtechruzicka.com/?p=99044'
 excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 ---
 

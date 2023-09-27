@@ -4,7 +4,6 @@ date: "2019-11-07T22:12:03.284Z"
 tags: ["JAMStack"]
 path: '/stackbit'
 featuredImage: './stackbit.png'
-disqusArticleIdentifier: '99042 http://vojtechruzicka.com/?p=99042'
 excerpt: 'How to easily create full-blown JAMStack sites with a theme, CMS, and deployment using various static site generators.'
 ---
 
