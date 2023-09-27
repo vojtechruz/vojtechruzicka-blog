@@ -17,7 +17,6 @@ const ArchivesPage = ({
       <ul>
         {group
           .sort((a, b) => {
-            //TODO do sorting in graphql
             return b.totalCount - a.totalCount;
           })
           .map((tag) => (
