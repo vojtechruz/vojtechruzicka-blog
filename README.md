@@ -17,17 +17,17 @@ If you would like to contribute - such as fixing or updating some information, p
 To enable search you will need to provide your own configuration for Algolia DocSearch. You will need to provide following properties (environment variables):
 
 ```
-DOCSEARCH_APP_ID
-DOCSEARCH_INDEX_NAME
-DOCSEARCH_API_KEY
+GATSBY_DOCSEARCH_APP_ID
+GATSBY_DOCSEARCH_INDEX_NAME
+GATSBY_DOCSEARCH_API_KEY
 ```
 
 For local development you can create `.env.development` file in the root directory and add values for your env variables:
 
 ```
-DOCSEARCH_APP_ID=XXX
-DOCSEARCH_INDEX_NAME=XXX
-DOCSEARCH_API_KEY=XXX
+GATSBY_DOCSEARCH_APP_ID=XXX
+GATSBY_DOCSEARCH_INDEX_NAME=XXX
+GATSBY_DOCSEARCH_API_KEY=XXX
 ```
 
 For production build, you will need to set these variables on the build machine or your build service (such as Netlify).
