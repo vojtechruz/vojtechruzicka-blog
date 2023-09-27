@@ -3,24 +3,25 @@
     background-color: rgb(6, 11, 16);
 
     a {
-      color: #6ab0f3!important;
+      color: #6ab0f3 !important;
 
       &:hover {
-        color: lighten(#6ab0f3,5%)!important;
+        color: lighten(#6ab0f3, 5%) !important;
       }
     }
 
     .anchor.before {
-      fill: #6ab0f3!important;
+      fill: #6ab0f3 !important;
       &:hover {
-        fill: lighten(#6ab0f3,5%)!important;
+        fill: lighten(#6ab0f3, 5%) !important;
       }
     }
 
-    .menu-items a, .blog-name a {
-      color: #b3b9c5!important;
+    .menu-items a,
+    .blog-name a {
+      color: #b3b9c5 !important;
       &:hover {
-        color: lighten(#b3b9c5,25%)!important;
+        color: lighten(#b3b9c5, 25%) !important;
       }
     }
 
@@ -37,7 +38,12 @@
       }
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: lighten(#b3b9c5, 20%);
     }
 
@@ -64,27 +70,29 @@
       border-radius: 5px;
       padding: 0 0.5em;
       margin: 0 0.2em;
-      box-shadow:none;
+      box-shadow: none;
       background-color: lighten(rgb(18, 24, 31), 10%);
     }
 
-    .gatsby-resp-image-wrapper, img, .front-post-image {
-      opacity: .75;
-      transition: opacity .5s ease-in-out;
+    .gatsby-resp-image-wrapper,
+    img,
+    .front-post-image {
+      opacity: 0.75;
+      transition: opacity 0.5s ease-in-out;
       &:hover {
         opacity: 1;
       }
     }
 
     .msg-info {
-      background-color: darken(#00529B, 10%);
+      background-color: darken(#00529b, 10%);
       color: lighten(#b3b9c5, 10%);
       border: 1px lighten(#b3b9c5, 10%) solid;
     }
 
     .msg-warn {
       color: lighten(#b3b9c5, 10%);
-      background-color: darken(firebrick,15%);
+      background-color: darken(firebrick, 15%);
       border: 1px lighten(#b3b9c5, 10%) solid;
       padding: 0.5em 1em;
       margin-bottom: 1em;
@@ -104,59 +112,62 @@
 
   body .search-box-container {
     .DocSearch-Button {
-      background-color: lighten(rgb(18, 24, 31), 5%)!important;
+      background-color: lighten(rgb(18, 24, 31), 5%) !important;
     }
 
     &:hover .DocSearch-Button {
-      color: lighten(#b3b9c5,25%)!important;
-      background-color: lighten(rgb(18, 24, 31), 10%)!important;
+      color: lighten(#b3b9c5, 25%) !important;
+      background-color: lighten(rgb(18, 24, 31), 10%) !important;
       .DocSearch-Search-Icon {
-        color: lighten(#b3b9c5,25%)!important;
+        color: lighten(#b3b9c5, 25%) !important;
       }
       border: 1px solid lighten(#b3b9c5, 20%);
     }
   }
 
-  .DocSearch-Modal, .DocSearch-Hit-source {
-    background-color: rgb(6, 11, 16)!important;
-    box-shadow: none!important;
+  .DocSearch-Modal,
+  .DocSearch-Hit-source {
+    background-color: rgb(6, 11, 16) !important;
+    box-shadow: none !important;
   }
 
   .DocSearch-Footer {
-    background-color: rgb(6, 11, 16)!important;
-    box-shadow: none!important;
+    background-color: rgb(6, 11, 16) !important;
+    box-shadow: none !important;
   }
 
-  .DocSearch-Hit, .DocSearch-Hit a {
-    background-color: rgb(18, 24, 31)!important;
-    box-shadow: none!important;
+  .DocSearch-Hit,
+  .DocSearch-Hit a {
+    background-color: rgb(18, 24, 31) !important;
+    box-shadow: none !important;
   }
 
   .DocSearch-Form {
-    background-color: lighten(rgb(18, 24, 31), 10%)!important;
+    background-color: lighten(rgb(18, 24, 31), 10%) !important;
   }
 
-  .DocSearch-Hit-Container, .DocSearch-Hit-source {
-    color: lighten(#969faf, 12%)!important;
+  .DocSearch-Hit-Container,
+  .DocSearch-Hit-source {
+    color: lighten(#969faf, 12%) !important;
   }
 
-  .DocSearch-Input, .DocSearch-Reset {
-    color: white!important;
+  .DocSearch-Input,
+  .DocSearch-Reset {
+    color: white !important;
   }
 
   .DocSearch-Commands-Key {
-    color: lighten(#969faf, 12%)!important;
-    background: none!important;
-    background-color: lighten(rgb(18, 24, 31), 10%)!important;
-    box-shadow: none!important;
-    border: 1px solid lighten(rgb(18, 24, 31), 17%)!important;;
+    color: lighten(#969faf, 12%) !important;
+    background: none !important;
+    background-color: lighten(rgb(18, 24, 31), 10%) !important;
+    box-shadow: none !important;
+    border: 1px solid lighten(rgb(18, 24, 31), 17%) !important;
   }
 
   .gatsby-code-button {
-    top: 48px!important;
-    right: 4px!important;
+    top: 48px !important;
+    right: 4px !important;
   }
-
 
   /**
    * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
@@ -168,7 +179,7 @@
   pre[class*="language-"] {
     color: #ccc;
     background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
     font-size: 1em;
     text-align: left;
     white-space: pre;
@@ -185,13 +196,12 @@
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-
   }
 
   /* Code blocks */
   pre[class*="language-"] {
     padding: 1em;
-    margin: .5em 0;
+    margin: 0.5em 0;
     overflow: auto;
   }
 
@@ -202,7 +212,7 @@
 
   /* Inline code */
   :not(pre) > code[class*="language-"] {
-    padding: .1em 0.2em;
+    padding: 0.1em 0.2em;
     //white-space: normal;
   }
 
@@ -279,5 +289,4 @@
   .token.inserted {
     color: green;
   }
-
 }

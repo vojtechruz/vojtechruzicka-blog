@@ -1,5 +1,5 @@
 import React from "react";
-import { OutboundLink } from "gatsby-plugin-google-gtag"
+import { OutboundLink } from "gatsby-plugin-google-gtag";
 
 class FollowMe extends React.Component {
   render() {
@@ -32,7 +32,10 @@ class FollowMe extends React.Component {
     );
 
     const feedlyIcon = (
-      <div className="follow-me-icon feedly" title="Feedly: Subscribe to my RSS feed">
+      <div
+        className="follow-me-icon feedly"
+        title="Feedly: Subscribe to my RSS feed"
+      >
         <OutboundLink
           aria-label="Feedly link"
           target="blank"
@@ -102,17 +105,19 @@ class FollowMe extends React.Component {
     );
 
     return (
-        <div>
-            <div className="lets-connect"><h4>Let's connect</h4></div>
-            <div className="follow-me">
-                {twitterIcon}
-                {rssIcon}
-                {feedlyIcon}
-                {facebookIcon}
-                {linkedInIcon}
-                {githubIcon}
-            </div>
+      <div>
+        <div className="lets-connect">
+          <h4>Let's connect</h4>
         </div>
+        <div className="follow-me">
+          {twitterIcon}
+          {rssIcon}
+          {feedlyIcon}
+          {facebookIcon}
+          {linkedInIcon}
+          {githubIcon}
+        </div>
+      </div>
     );
   }
 }

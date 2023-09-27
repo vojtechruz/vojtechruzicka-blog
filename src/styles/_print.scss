@@ -1,23 +1,29 @@
 @media print {
-
   #article-content p a:after {
     content: " (" attr(href) ") ";
     font-size: 80%;
   }
 
-  .gatsby-highlight ,.gatsby-resp-image-wrapper {
+  .gatsby-highlight,
+  .gatsby-resp-image-wrapper {
     break-inside: avoid-page;
   }
 
-  .menu-items, .social, .follow-me, .similar-posts, .gatsby-code-button, .bio, .bottom-post-tags {
-    display: none!important;
+  .menu-items,
+  .social,
+  .follow-me,
+  .similar-posts,
+  .gatsby-code-button,
+  .bio,
+  .bottom-post-tags {
+    display: none !important;
   }
 
   .content-root {
-    border: none!important;
+    border: none !important;
   }
 
   #article-content p .gatsby-resp-image-wrapper:first-of-type {
-    display: none!important;
+    display: none !important;
   }
 }

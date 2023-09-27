@@ -2,25 +2,24 @@
 @import "print";
 @import "dark-theme";
 
-
 $link_color: #007acc;
 :root {
-  --docsearch-primary-color: #007acc!important;
+  --docsearch-primary-color: #007acc !important;
 }
 @import "@docsearch/css";
 
 $border-color: hsla(0, 0%, 0%, 0.1);
 $border-color-dark: hsla(0, 0%, 0%, 0.2);
-$navbar-text-color: hsla(204,12.449720506%,0%,0.77)!important;
+$navbar-text-color: hsla(204, 12.449720506%, 0%, 0.77) !important;
 
 a {
   color: $link_color;
 }
 
 a:hover {
-  color: lighten($link_color,7%);
+  color: lighten($link_color, 7%);
   svg {
-    fill: lighten($link_color,7%);
+    fill: lighten($link_color, 7%);
   }
 }
 
@@ -106,13 +105,12 @@ a:hover {
 }
 
 .menu-items {
-
   margin-top: 2px;
   display: flex;
 
   a {
     margin-right: 1rem;
-    text-decoration: none!important;
+    text-decoration: none !important;
     font-weight: 500;
     color: $navbar-text-color;
   }
@@ -125,8 +123,8 @@ a:hover {
   font-weight: 500;
 
   a {
-    text-decoration: none!important;
-    color: $navbar-text-color
+    text-decoration: none !important;
+    color: $navbar-text-color;
   }
 }
 
@@ -134,7 +132,7 @@ a:hover {
   display: flex;
   align-items: center;
   margin-bottom: 2.1rem;
-  border-bottom: 1px solid hsla(0, 0% ,0%, 0.3);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.3);
   padding-bottom: 1rem;
 
   hr {
@@ -152,7 +150,7 @@ a:hover {
   }
 
   a:hover {
-    color: lighten($link_color,7%)!important;
+    color: lighten($link_color, 7%) !important;
   }
 
   .navigation {
@@ -184,7 +182,7 @@ a:hover {
     }
 
     &:hover.feedly svg {
-      fill: #6CC655;
+      fill: #6cc655;
 
       .inner {
         fill: #fff;
@@ -207,11 +205,10 @@ a:hover {
       fill: #333;
     }
 
-
     svg {
       height: 2rem;
       width: 2rem;
-      fill: lighten(hsla(204,12.449720506%,0%,0.77), 10%);
+      fill: lighten(hsla(204, 12.449720506%, 0%, 0.77), 10%);
     }
   }
 }
@@ -220,7 +217,7 @@ li {
   margin-bottom: 0.3rem;
 }
 
-.pagination  {
+.pagination {
   display: flex;
   justify-content: center;
 
@@ -230,9 +227,8 @@ li {
   }
 
   .current-page {
-    font-weight: 500
+    font-weight: 500;
   }
-
 }
 
 @media only screen and (max-width: 40em) {
@@ -242,7 +238,7 @@ li {
 }
 
 body {
-  background-color: hsla(0, 0% ,0%, 0.04);
+  background-color: hsla(0, 0%, 0%, 0.04);
   // https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-anchor
   overflow-anchor: auto;
 }
@@ -260,12 +256,12 @@ body {
   padding: 1rem;
   padding-top: 0;
   margin-bottom: 1rem;
-  background-color: hsla(0, 0% ,0%, 0.01);
-  border:1px solid $border-color;
+  background-color: hsla(0, 0%, 0%, 0.01);
+  border: 1px solid $border-color;
 
   &:hover {
-    background-color: hsla(0, 0% ,0%, 0.03);
-    border:1px solid $border-color-dark;
+    background-color: hsla(0, 0%, 0%, 0.03);
+    border: 1px solid $border-color-dark;
   }
 }
 
@@ -288,30 +284,31 @@ kbd {
   border-radius: 4px;
   padding: 0 0.5em;
   margin: 0 0.2em;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.2),
+    0 0 0 2px #fff inset;
   background-color: #f7f7f7;
 }
 
 .msg-info {
-  color: #00529B;
-  background-color: #BDE5F8;
-  border: 1px darken(#BDE5F8, 1%) solid;
+  color: #00529b;
+  background-color: #bde5f8;
+  border: 1px darken(#bde5f8, 1%) solid;
   padding: 0.5em 1em;
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
 .msg-warn {
-  color: #9F6000;
-  background-color: #FEEFB3;
-  border: 1px darken(#FEEFB3, 1%) solid;
+  color: #9f6000;
+  background-color: #feefb3;
+  border: 1px darken(#feefb3, 1%) solid;
   padding: 0.5em 1em;
   margin-bottom: 1em;
   margin-top: 1em;
 }
 
 .toc {
-
   background-color: #fff;
   border: 1px solid $border-color;
   font-size: 0.8rem;
@@ -329,7 +326,7 @@ kbd {
     margin-bottom: 0;
   }
 
-  .toc-list>ul {
+  .toc-list > ul {
     margin-left: 0;
   }
 }
@@ -349,7 +346,8 @@ kbd {
   }
 }
 
-.share-label, .notification-link {
+.share-label,
+.notification-link {
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -378,7 +376,6 @@ kbd {
     border-radius: 1px;
     background-color: transparent;
     border: 1px solid $border-color;
-
   }
 
   .DocSearch-Search-Icon {
@@ -395,7 +392,6 @@ kbd {
     .DocSearch-Search-Icon {
       color: $navbar-text-color;
     }
-
   }
 }
 

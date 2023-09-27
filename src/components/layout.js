@@ -10,10 +10,11 @@ class Template extends React.Component {
     const { children } = this.props;
 
     return (
-      <div className="content-root"
+      <div
+        className="content-root"
         style={{
           maxWidth: rhythm(32),
-          padding: `${rhythm(1.5)} ${rhythm(1.5)}`
+          padding: `${rhythm(1.5)} ${rhythm(1.5)}`,
         }}
       >
         <Navigation />

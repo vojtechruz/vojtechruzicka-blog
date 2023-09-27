@@ -1,8 +1,8 @@
 import React from "react";
 import get from "lodash/get";
 import profilePic from "../../components/profile-big.jpg";
-import { OutboundLink } from "gatsby-plugin-google-gtag"
-import Layout from "../../components/layout"
+import { OutboundLink } from "gatsby-plugin-google-gtag";
+import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 
 class AboutPage extends React.Component {
@@ -79,7 +79,7 @@ class AboutPage extends React.Component {
     return (
       <Layout>
         <div className="about-page">
-            <h1>About</h1>
+          <h1>About</h1>
           <h2>Stay informed</h2>
           <h4>Get notified about the newest posts</h4>
           <ul>
@@ -110,7 +110,6 @@ class AboutPage extends React.Component {
               </OutboundLink>
             </li>
           </ul>
-
           <h4>Additional links</h4>
           <ul>
             <li>
@@ -135,46 +134,48 @@ class AboutPage extends React.Component {
             </li>
           </ul>
           <h2>Found any issues?</h2>
-            This whole blog and its content is available on <OutboundLink href="https://github.com/vojtechruz/vojtechruzicka-blog">GitHub</OutboundLink>. Feel free to create a Pull Request if you find some issues in the text or you can just check the code if you are curious about GatsbyJS powered blogs.
+          This whole blog and its content is available on{" "}
+          <OutboundLink href="https://github.com/vojtechruz/vojtechruzicka-blog">
+            GitHub
+          </OutboundLink>
+          . Feel free to create a Pull Request if you find some issues in the
+          text or you can just check the code if you are curious about GatsbyJS
+          powered blogs.
         </div>
       </Layout>
     );
   }
 }
-export function Head({data}) {
-
+export function Head({ data }) {
   const siteTitle = get(data, "site.siteMetadata.title");
-  const siteDescription = get(
-      data,
-      "site.siteMetadata.description"
-  );
+  const siteDescription = get(data, "site.siteMetadata.description");
   const siteUrl = get(data, "site.siteMetadata.siteUrl");
   const title = `About Me | ${siteTitle}`;
 
   return (
-      <>
-        <title>{title}</title>
-        <meta name="description" content={siteDescription} />
-        <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb"/>
-        <html lang="en" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
+    <>
+      <title>{title}</title>
+      <meta name="description" content={siteDescription} />
+      <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
+      <html lang="en" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={siteUrl + profilePic} />
-        <meta property="og:url" content={siteUrl + "/about/"} />
-        <meta property="og:site_name" content={siteTitle} />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="fb:app_id" content="2072264049710958" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={siteDescription} />
+      <meta property="og:image" content={siteUrl + profilePic} />
+      <meta property="og:url" content={siteUrl + "/about/"} />
+      <meta property="og:site_name" content={siteTitle} />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="en_US" />
+      <meta property="fb:app_id" content="2072264049710958" />
 
-        <meta name="twitter:creator" content="@vojtechruzicka" />
-        <meta name="twitter:site" content="@vojtechruzicka" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={siteDescription} />
-      </>
-  )
+      <meta name="twitter:creator" content="@vojtechruzicka" />
+      <meta name="twitter:site" content="@vojtechruzicka" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={siteDescription} />
+    </>
+  );
 }
 
 export default AboutPage;
@@ -190,7 +191,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-
-
-

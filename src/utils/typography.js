@@ -3,8 +3,8 @@ import Bootstrap from "typography-theme-bootstrap";
 
 Bootstrap.overrideThemeStyles = () => ({
   "a.gatsby-resp-image-link": {
-    boxShadow: "none"
-  }
+    boxShadow: "none",
+  },
 });
 
 Bootstrap.scaleRatio = 1.75;

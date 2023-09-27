@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "gatsby-remark-code-buttons": "^2.0.7",
-    "prettier": "^2.0.5"
+    "prettier": "3.0.3"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
@@ -59,7 +59,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.js",
+    "format": "prettier --write src/**/*.js src/**/*.scss",
     "build": "gatsby build"
   }
 }
