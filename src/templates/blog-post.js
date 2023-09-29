@@ -22,6 +22,7 @@ import { OutboundLink } from "gatsby-plugin-google-gtag";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import profilePic from "../components/profile-big.jpg";
+import Giscus from "@giscus/react";
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -218,6 +219,23 @@ class BlogPostTemplate extends React.Component {
         </div>
         {similarPosts}
         <hr />
+        <Giscus
+          src="https://giscus.app/client.js"
+          repo="vojtechruz/vojtechruzicka-blog"
+          repoId="MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY="
+          category="Announcements"
+          categoryId="DIC_kwDOB0knwM4CZvj3"
+          mapping="pathname"
+          strict="1"
+          reactionsEnabled="1"
+          emitMetadata="0"
+          inputPosition="top"
+          theme="preferred_color_scheme"
+          lang="en"
+          loading="lazy"
+          crossOrigin="anonymous"
+          async
+        ></Giscus>
       </Layout>
     );
   }

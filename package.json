@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@docsearch/js": "^3.5.2",
+    "@giscus/react": "^2.3.0",
     "@weknow/gatsby-remark-codepen": "^0.1.0",
     "gatsby": "^5.12.5",
     "gatsby-cli": "^5.12.1",
