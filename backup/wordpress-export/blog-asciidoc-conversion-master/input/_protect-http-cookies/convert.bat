@@ -1,1 +1,0 @@
-pandoc protect-http-cookies.html --standalone --from=html --to=markdown --output=protect-http-cookies.md --wrap=none

@@ -1,1 +1,0 @@
-pandoc bem.html --standalone --from=html --to=markdown --output=bem.md --wrap=none

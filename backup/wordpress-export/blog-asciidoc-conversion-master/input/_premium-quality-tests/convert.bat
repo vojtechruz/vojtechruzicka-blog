@@ -1,1 +1,0 @@
-pandoc premium-quality-tests.html --standalone --from=html --to=markdown --output=premium-quality-tests.md --wrap=none

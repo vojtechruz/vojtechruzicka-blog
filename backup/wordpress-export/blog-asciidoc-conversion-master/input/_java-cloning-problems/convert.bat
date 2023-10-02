@@ -1,1 +1,0 @@
-pandoc java-cloning-problems.html --standalone --from=html --to=markdown --output=java-cloning-problems.md --wrap=none

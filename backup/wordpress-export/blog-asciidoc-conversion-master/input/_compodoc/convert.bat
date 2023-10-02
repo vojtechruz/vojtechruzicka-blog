@@ -1,1 +1,0 @@
-pandoc compodoc.html --standalone --from=html --to=markdown --output=compodoc.md --wrap=none

@@ -1,1 +1,0 @@
-pandoc detecting-known-vulnerabilities.html --standalone --from=html --to=markdown --output=detecting-known-vulnerabilities.md --wrap=none

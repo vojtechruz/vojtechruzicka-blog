@@ -1,1 +1,0 @@
-pandoc serialversion-uid.html --standalone --from=html --to=markdown --output=serialversion-uid.md --wrap=none

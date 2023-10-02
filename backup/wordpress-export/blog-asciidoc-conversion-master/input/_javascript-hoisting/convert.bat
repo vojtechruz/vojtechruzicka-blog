@@ -1,1 +1,0 @@
-pandoc javascript-hoisting.html --standalone --from=html --to=markdown --output=javascript-hoisting.md --wrap=none

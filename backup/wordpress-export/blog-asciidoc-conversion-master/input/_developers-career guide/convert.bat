@@ -1,1 +1,0 @@
-pandoc developers-career-guide.html --standalone --from=html --to=markdown --output=developers-career-guide.md --wrap=none

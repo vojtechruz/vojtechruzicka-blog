@@ -1,1 +1,0 @@
-pandoc learning-intellij-shortcuts.html --standalone --from=html --to=markdown --output=learning-intellij-shortcuts.md --wrap=none

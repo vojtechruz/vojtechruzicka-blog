@@ -1,1 +1,0 @@
-pandoc preventing-clickjacking.html --standalone --from=html --to=markdown --output=preventing-clickjacking.md --wrap=none

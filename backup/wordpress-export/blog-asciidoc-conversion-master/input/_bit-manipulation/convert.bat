@@ -1,1 +1,0 @@
-pandoc bit-manipulation.html --standalone --from=html --to=markdown --output=bit-manipulation.md --wrap=none

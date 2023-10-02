@@ -5,7 +5,7 @@ This is the source code for my blog powered by GatsbyJS, running at `https://www
 Feel free to fork this blog and use it for your purposes. You can delete all the posts and change the personal info, themes or anything else.
 
 ## Contributing
-If you would like to contribute - such as fixing or updating some information, propose a guest post etc, please check `CONTRIBUTING.md`.
+If you would like to contribute - such as fixing or updating some information, propose a guest post etc., please check `CONTRIBUTING.md`.
 
 ## Running locally in development
 1. Make sure you have [node.js](https://nodejs.org/en/) installed.

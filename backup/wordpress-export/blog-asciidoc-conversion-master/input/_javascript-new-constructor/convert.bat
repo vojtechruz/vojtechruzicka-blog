@@ -1,1 +1,0 @@
-pandoc javascript-new-constructor.html --standalone --from=html --to=markdown --output=javascript-new-constructor.md --wrap=none

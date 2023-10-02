@@ -1,1 +1,0 @@
-pandoc rest-springfox.html --standalone --from=html --to=markdown --output=rest-springfox.md --wrap=none
