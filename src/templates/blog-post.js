@@ -48,7 +48,7 @@ class BlogPostTemplate extends React.Component {
       similarPosts = (
         <div className="similar-posts">
           <hr />
-          <h4>Similar posts:</h4>
+          <div className="similar-posts-label">Similar posts:</div>
           <ul>
             {relatedPosts.map((post) => {
               let path = post.node.frontmatter.path;
@@ -150,13 +150,14 @@ class BlogPostTemplate extends React.Component {
         <div className="social">
           <p className="notification-link">
             Get notifications about new posts on{" "}
+            <OutboundLink href="https://www.vojtechruzicka.com/feed/">
+              {rssIcon}RSS,
+            </OutboundLink>{" "}
             <OutboundLink href="https://twitter.com/vojtechruzicka">
               {twitterIcon}Twitter
             </OutboundLink>
-            ,{" "}
-            <OutboundLink href="https://www.vojtechruzicka.com/feed/">
-              {rssIcon}RSS
-            </OutboundLink>{" "}
+            {" "}
+
             or{" "}
             <OutboundLink href="https://eepurl.com/bZ0waf">
               {emailIcon}Email
@@ -164,7 +165,7 @@ class BlogPostTemplate extends React.Component {
             .
           </p>
           <div className="share-label">
-            <h4>Share this post:</h4>
+            Share this post:
           </div>
           <div className="share-icons">
             <span title="Share this post on Facebook">

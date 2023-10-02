@@ -84,6 +84,12 @@ class AboutPage extends React.Component {
           <h4>Get notified about the newest posts</h4>
           <ul>
             <li>
+              {rssIcon}
+              <OutboundLink href="https://www.vojtechruzicka.com/feed/">
+                Subscribe to RSS Feed
+              </OutboundLink>
+            </li>
+            <li>
               <OutboundLink href="https://twitter.com/vojtechruzicka">
                 {twitterIcon}Follow @vojtechruzicka
               </OutboundLink>
@@ -92,12 +98,6 @@ class AboutPage extends React.Component {
               {emailIcon}
               <OutboundLink href="https://eepurl.com/bZ0waf">
                 Receive new posts by email
-              </OutboundLink>
-            </li>
-            <li>
-              {rssIcon}
-              <OutboundLink href="https://www.vojtechruzicka.com/feed/">
-                Subscribe to RSS Feed
               </OutboundLink>
             </li>
           </ul>

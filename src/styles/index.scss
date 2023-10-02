@@ -354,7 +354,14 @@ kbd {
 
 .share-label {
   margin-top: 2rem;
-  font-weight: bold;
+}
+
+.share-label, .similar-posts-label {
+  @extend h4;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
 }
 
 .top-pagination {
