@@ -306,7 +306,8 @@ export function Head({ data, pageContext }) {
       <title>{title}</title>
       <meta name="description" content={post.frontmatter.excerpt} />
       <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
-
+      <html lang="en" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
       <meta property="og:title" content={post.frontmatter.title} />
       <meta property="og:description" content={post.frontmatter.excerpt} />
       <meta
@@ -373,7 +374,7 @@ export const pageQuery = graphql`
         tags
         featuredImage {
           childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED)
+            gatsbyImageData(layout: CONSTRAINED, formats: [AUTO, WEBP, AVIF])
             original {
               src
             }
