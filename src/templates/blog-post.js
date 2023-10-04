@@ -155,18 +155,14 @@ class BlogPostTemplate extends React.Component {
             </OutboundLink>{" "}
             <OutboundLink href="https://twitter.com/vojtechruzicka">
               {twitterIcon}Twitter
-            </OutboundLink>
-            {" "}
-
+            </OutboundLink>{" "}
             or{" "}
             <OutboundLink href="https://eepurl.com/bZ0waf">
               {emailIcon}Email
             </OutboundLink>
             .
           </p>
-          <div className="share-label">
-            Share this post:
-          </div>
+          <div className="share-label">Share this post:</div>
           <div className="share-icons">
             <span title="Share this post on Facebook">
               <FacebookShareButton
@@ -306,7 +302,6 @@ export function Head({ data, pageContext }) {
     <>
       <title>{title}</title>
       <meta name="description" content={post.frontmatter.excerpt} />
-      <meta name="monetization" content="$ilp.uphold.com/J6E8FdPnGRZb" />
       <html lang="en" />
       <link rel="icon" type="image/png" href="/favicon.png" />
       <meta property="og:title" content={post.frontmatter.title} />
