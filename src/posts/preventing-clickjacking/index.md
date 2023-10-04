@@ -68,23 +68,24 @@ This is the only version of a frame-busting script recommended by the [OWASP Cli
 
 ### X-Frame-Options
 
-A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header: X-Frame-Options. If the client\'s browser receives such header, it will respect it and not render the page. The possible values of the header are following:
+A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header: `X-Frame-Options`. If the client\'s browser receives such header, it will respect it and not render the page. The possible values of the header are following:
 
 -   `DENY` - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.
 -   `SAMEORIGIN` - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.
 -   `ALLOW-FROM` - This allows you to define a trusted location from which your page can be rendered in a frame.
 
-Please know that `ALLOW-FROM` option is not widely supported in the same way like `DENY` and `SAMEORIGIN` are. In case the client\'s browser is not compatible, it just ignores the header and you are left with no clickjacking protection whatsoever.
+Please note that `ALLOW-FROM` option is not widely supported in the same way as `DENY` and `SAMEORIGIN` are. In case the client\'s browser is not compatible, it just ignores the header, and you are left with no clickjacking protection whatsoever.
 
-The image bellow shows the compatibility ([see more](http://caniuse.com/#feat=x-frame-options)) of the X-Frame-Options header. Dark green (IE, Edge, Firefox) represent full compatibility. Lighter green represents just DENY and SAMEORIGIN, but unsupported ALLOW-FROM.
+The image bellow shows the compatibility ([see more](http://caniuse.com/#feat=x-frame-options)) of the `X-Frame-Options` header. Green represent full compatibility. Striped brown represents just `DENY` and `SAMEORIGIN`, but unsupported `ALLOW-FROM`.
 
 ![x-frame-options-compatibility](./X-Frame-options-compatibility.png)
 
-Based on the current stats that is just 12.79% of users will have full compatibility and 82.13% will not support ALLOW-FROM. That means you should stick only with DENY and SAME-ORIGIN.
+Based on the current stats (10/2023) just 0.7% of users will have full compatibility and the rest does not support `ALLOW-FROM`. That means you should stick only with `DENY` and `SAME-ORIGIN`, which currently has 97.34% support. Historically, the support was much higher and was 
+present also in other browsers on top of IE. Because this functionality was never properly standardized, the support was later dropped and the feature was deprecated in favor of Content-Security-Policy.
 
 ### Content-Security-Policy
 
-While X-Frame-Options is widely supported (at least without `ALLOW-FROM`), it was never officially standardized. The standard, which is addressing whitelisting of frame sources, is newer Content Security Policy header. It comes in two levels - 1 and 2. Level 1 is widely supported, but it is the level 2 which adds frame-ancestors directive, which is supposed to replace X-Frame-Options. Level 2 is not widely supported [yet](http://caniuse.com/#search=Content%20security%20policy) - currently 68.65% of the clients.
+While X-Frame-Options is widely supported (at least without `ALLOW-FROM`), it was never officially standardized. The standard, which is addressing whitelisting of frame sources, is newer Content Security Policy header. It comes in two levels - 1 and 2. It is the level 2 which adds `frame-ancestors` directive, which is supposed to replace `X-Frame-Options`. Level 2 is now finally [widely supported](https://caniuse.com/contentsecuritypolicy2) - currently 96.21% of the clients.
 
 ![content-security-policy-level-2](./Content-Security-Policy-Level-2.png)
 
@@ -151,7 +152,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 
 ## Online testing
-You can easily check whether your site is vulnerable to clickjacking by using one of the [clickjacking online testing tools](https://clickjacker.io/) .Since some of the frameworks and providers add security headers preventing clickjacking automatically, it is possible that your site is already safe.
+You can easily check whether your site is vulnerable to clickjacking by using one of the [clickjacking online testing tools](https://clickjacker.io/). Since some of the frameworks and providers add security headers preventing clickjacking automatically, it is possible that your site is already safe.
 
 ## Conclusion
 
