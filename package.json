@@ -39,7 +39,7 @@
     "react-dom": "^18.2.0",
     "react-share": "^4.4.1",
     "react-typography": "^0.16.23",
-    "sass": "^1.68.0",
+    "sass": "^1.69.0",
     "typography": "^0.16.24",
     "typography-theme-bootstrap": "^0.16.19"
   },
