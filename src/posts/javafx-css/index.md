@@ -7,9 +7,7 @@ featuredImage: './css.jpg'
 excerpt: 'How to style JavaFX components using good old CSS.'
 ---
 
-![CSS In JavaFX](css.jpg)
-
-How to style JavaFX components using good old CSS.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

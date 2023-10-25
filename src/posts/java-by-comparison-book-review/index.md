@@ -8,9 +8,7 @@ featuredImage: './java-by-comparison.jpg'
 excerpt: 'This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics with before and after comparison in a concise, easy to read and understand way.'
 ---
 
-![Java By Comparison](java-by-comparison.jpg)
-
-This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics with before and after comparison in a concise, easy to read and understand way.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Authors
 The book was written by three authors: [Simon Harrer](https://twitter.com/simonharrer), [Jörg Lenhard](https://joerglenhard.wordpress.com/) and [Linus Dietz](https://lynyus.org/).
@@ -22,7 +20,7 @@ The idea is simple. The book contains 70 independent items. Similar items are gr
 
 Each item is not just a recommendation or a best practice. Instead, it starts with a problematic snippet of code, which works but has some smells. Then there is a description of what is exactly wrong and why.
 
-On the next page there is a the original snippet, fixed according to a proposed best practice and an explanation of what changed and why is it better.
+On the next page there is the original snippet, fixed according to a proposed best practice and an explanation of what changed and why is it better.
 
 What is really useful is that the layout of the book consistently keeps each item just on two pages - on the left you can see the problem and on the right the solution. This makes it really easy to compare both at the same time.
 

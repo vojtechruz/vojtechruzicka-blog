@@ -7,9 +7,8 @@ path: '/pivotal-certified-spring-web-application-developer-notes'
 featuredImage: './spring-web.jpg'
 excerpt: 'Study materials and an exam review for Pivotal Certified Spring Web Application Developer Exam 4.2, with flash-cards and study notes.'
 ---
-![spring web certification](./spring-web.jpg)
 
-Study materials and an exam review for Pivotal Certified Spring Web Application Developer Exam 4.2, with flash-cards and study notes.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 **Certification voucher**
 -------------------------

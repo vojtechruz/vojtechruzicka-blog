@@ -6,9 +6,8 @@ path: '/book-review-256-bloghacks'
 featuredImage: './tomato.jpg'
 excerpt: 'A detailed review of a guide to blogging by Yegor Bugayenko.'
 ---
-![256 bloghacks](./tomato.jpg)
 
- A detailed review of a guide to blogging by Yegor Bugayenko.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 About the author
 ----------------

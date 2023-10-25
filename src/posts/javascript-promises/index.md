@@ -7,7 +7,7 @@ featuredImage: './promise.jpg'
 excerpt: 'Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.'
 ---
 
-![Promises](./promise.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Synchronous execution
 Traditionally, the javascript code is executed synchronously. The code is executed from top to bottom, line by line. The execution flow continues to the next line only when the execution of the previous line is fully finished.

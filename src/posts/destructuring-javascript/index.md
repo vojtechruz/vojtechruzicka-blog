@@ -7,7 +7,7 @@ featuredImage: './destructuring.jpg'
 excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
 ---
 
-![Destructuring](destructuring.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Destructuring assignment
 The destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's look into more detail how this works.

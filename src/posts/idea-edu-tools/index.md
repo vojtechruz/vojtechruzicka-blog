@@ -5,12 +5,12 @@ dateModified: "2020-03-16"
 tags: ["IDEA"]
 path: '/idea-edu-tools'
 featuredImage: './idea-edu-tools.jpg'
-excerpt: 'Study programming courses directly in your IDE or create your own.'
+excerpt: 'With IntelliJ IDEA Edu Tools plugin you can study various programming courses directly in your IDE and work on all the assignments. Alternatively, you can create courses yourself to share with others.
+'
 ---
 
-![IDEA Edu Tools](idea-edu-tools.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-With IntelliJ IDEA Edu Tools plugin you can study various programming courses directly in your IDE and work on all the assignments. Alternatively, you can create courses yourself to share with others.
 
 ## Getting started
 ### Installation

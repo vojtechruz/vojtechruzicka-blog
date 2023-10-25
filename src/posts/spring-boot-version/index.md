@@ -7,7 +7,7 @@ featuredImage: './spring-boot-version.jpg'
 excerpt: 'How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?'
 ---
 
-![Spring boot Version Info](./spring-boot-version.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 This post covers obtaining simple build-related information without adding any additional dependencies. For much more detailed info, various metrics and health monitoring you should consider using Spring Boot Actuator:
 

@@ -7,9 +7,7 @@ featuredImage: './try-with-resources.jpg'
 excerpt: 'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using "try-finally".'
 ---
 
-![Java try with resources](./try-with-resources.jpg)
-
-Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages closing automatically instead of explicitly using `try-finally`.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Traditional try-catch-finally
 With traditional `try-catch`, you can execute a block of code and handle any exceptions which may occur:

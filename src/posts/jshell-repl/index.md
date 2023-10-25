@@ -7,7 +7,7 @@ featuredImage: './jshell.jpg'
 excerpt: 'From version 9, Java now has its own interactive REPL console, which is useful for quick checks, prototyping and educational purposes.'
 ---
 
-![jshell repl](./jshell.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 REPL
 ----

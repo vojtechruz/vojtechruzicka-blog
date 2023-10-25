@@ -7,9 +7,8 @@ path: '/preventing-clickjacking'
 featuredImage: './clickjacking.jpg'
 excerpt: 'Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?'
 ---
-![preventing clickjacking](./clickjacking.jpg)
 
-Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly harmless element. How to prevent it?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Clickjacking
 

@@ -7,9 +7,7 @@ featuredImage: './get-rid-of-webxml.jpg'
 excerpt: 'From Servlet 3.0 on, web.xml is optional. How to get rid of it in your Spring MVC app and what is the replacement?'
 ---
 
-![Get rid of webm.xml](./get-rid-of-webxml.jpg)
-
-From Servlet 3.0 on, web.xml is optional. How to get rid of it in your Spring MVC app?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## web.xml and Servlet 3.0
 Web.xml, also known as deployment descriptor, is traditionally used as a configuration file for Java web applications. It defines servlets, their mappings, servlet filters, lifecycle listeners and more. Originally it was the only way to provide such configuration. Over the time, once popular XML configuration lost its appeal and popularity in favor of Java-based annotation configuration. The same trend can also be observed in Spring Framework.

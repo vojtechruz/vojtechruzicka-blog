@@ -6,9 +6,8 @@ path: '/bit-manipulation-java-bitwise-bit-shift-operations'
 featuredImage: './binary.jpg'
 excerpt: 'Java enables you to manipulate integers on a bit level, that means operating on specific bits, which represent an integer number. In some cases, it can be really handy.'
 ---
-![bit manipulation java](./binary.jpg)
 
-Java enables you to manipulate integers on a bit level, that means operating on specific bits, which represent an integer number. In some cases, it can be really handy.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Bitwise operators
 

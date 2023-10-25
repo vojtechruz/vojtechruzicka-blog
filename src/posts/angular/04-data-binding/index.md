@@ -8,9 +8,7 @@ excerpt: 'Data binding allows you to sync data automatically in and out of compo
 hidden: 'true'
 ---
 
-![Angular Tutorial: Data Binding](data-binding.jpg)
-
-Data binding allows you to sync data automatically in and out of components and fire events to external listeners.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

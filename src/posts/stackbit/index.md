@@ -7,9 +7,7 @@ featuredImage: './stackbit.png'
 excerpt: 'How to easily create full-blown JAMStack sites with a theme, CMS, and deployment using various static site generators.'
 ---
 
-![Stackbit](stackbit.png)
-
-How to easily create full-blown JAMStack sites with a theme, CMS, and deployment using various static site generators.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## JAMStack
 JAMStack is a powerful concept of building static sites. It is an alternative to having a traditional heavyweight CMS, like WordPress, which is also responsible for dynamically creating and serving your content.

@@ -413,5 +413,10 @@ kbd {
 }
 
 .post-header-divider {
-  margin-top: 30px;
+  margin-top: 1.5em;
+}
+
+#article-content .gatsby-resp-image-wrapper,
+.post-header-featured-image {
+  margin-bottom: 1.5em;
 }

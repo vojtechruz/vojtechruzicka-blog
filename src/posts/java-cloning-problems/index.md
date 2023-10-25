@@ -7,9 +7,8 @@ path: '/java-cloning-problems'
 featuredImage: './clone.jpg'
 excerpt: Java's mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
 ---
-![java cloning problems](./clone.jpg)
 
-Java's mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide to use Java cloning anyway?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Why clone objects?
 ------------------

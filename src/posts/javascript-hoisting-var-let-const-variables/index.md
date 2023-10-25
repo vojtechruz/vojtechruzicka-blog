@@ -6,9 +6,8 @@ path: '/javascript-hoisting-var-let-const-variables'
 featuredImage: './hoisting.jpg'
 excerpt: One of the Javascript's oddities is that you can use variables and functions before they are declared. It's called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.
 ---
-![javascript hoisting](./hoisting.jpg)
 
-One of the Javascript's oddities is that you can use variables and functions even before they are declared. It's called hoisting. Fortunately, in ES6 let and const variables offer much better behavior.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Hoisting
 --------

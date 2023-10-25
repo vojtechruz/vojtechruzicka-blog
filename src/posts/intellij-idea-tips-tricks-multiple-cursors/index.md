@@ -7,9 +7,8 @@ path: '/intellij-idea-tips-tricks-multiple-cursors'
 featuredImage: './intellij-idea-multiple-cursors.jpg'
 excerpt: 'Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.'
 ---
-![idea multiple cursors](./intellij-idea-multiple-cursors.jpg)
 
-Sometimes it is useful to edit multiple places in a file at once, which can save you precious time and increase your productivity. IntelliJ IDEA supports having multiple cursors at once, meaning you can type and edit at multiple locations at the same time.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Column Selection
 

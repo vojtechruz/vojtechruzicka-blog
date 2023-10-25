@@ -7,7 +7,7 @@ featuredImage: './async-await.jpg'
 excerpt: 'Async await allows you to work with asynchronous code in a cleaner and more convenient way.'
 ---
 
-![Async Await](async-await.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Promises
 This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or need a quick recap, check the following article.

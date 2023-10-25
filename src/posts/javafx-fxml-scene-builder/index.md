@@ -9,10 +9,7 @@ series: JavaFX
 order: 3
 ---
 
-![FXML and Scene Builder](scene-builder.jpg)
-
-How to build GUI with JavaFX using FXML markup and SceneBuilder.
-
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

@@ -8,9 +8,7 @@ featuredImage: './javadoc-author.jpg'
 excerpt: Are you still using @author Javadoc tag? Maybe it's time to reconsider. Let's discuss why the tag may be actually harmful and why you should stop using it.
 ---
 
-![javadoc author tag](./javadoc-author.jpg)
-
-Are you still using @author Javadoc tag? Maybe it's time to reconsider. Let's discuss why the tag may be actually harmful and why you should stop using it.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Javadoc @author tag
 

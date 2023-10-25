@@ -8,9 +8,7 @@ featuredImage: './dependencies.jpg'
 excerpt: 'How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.'
 ---
 
-![Dependency graph](dependencies.jpg)
-
-How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Dependency Matrix
 

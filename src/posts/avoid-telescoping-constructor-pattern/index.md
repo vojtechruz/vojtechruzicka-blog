@@ -9,9 +9,8 @@ excerpt: 'Telescoping constructor pattern is quite common practice. It has, howe
 author: 'Vojtech Ruzicka'
 hidden: 'false'
 ---
-![telescoping constructor pattern](telescoping-constructor.jpg)
 
-Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the alternative approaches and when should you use them?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Telescoping Constructor
 -----------------------

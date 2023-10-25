@@ -9,6 +9,7 @@ class PostHeader extends React.Component {
     return (
       <div>
         <GatsbyImage
+          className="post-header-featured-image"
           image={
             this.props.frontmatter.featuredImage.childImageSharp.gatsbyImageData
           }

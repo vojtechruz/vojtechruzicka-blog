@@ -7,7 +7,7 @@ featuredImage: './idea-editorconfig.jpg'
 excerpt: How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.
 ---
 
-![IntelliJ IDEA Editorconfig](idea-editorconfig.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## EditorConfig
 When working in a team, it is a good practice to make sure your code style is consistent across your team. Often it is not as important what your specific rules are as much as that everybody sticks with the same conventions. This makes your codebase much cleaner, easier to read, and maintain.

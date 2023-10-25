@@ -6,9 +6,8 @@ path: '/javascript-this-keyword'
 featuredImage: './javascript-this.jpg'
 excerpt: This is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
 ---
-![javascript this](./javascript-this.jpg)
 
-'This' is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much anything depending on the context.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 What the hell is *this*?
 ------------------------

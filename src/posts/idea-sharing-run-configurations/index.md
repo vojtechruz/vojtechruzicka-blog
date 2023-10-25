@@ -7,9 +7,7 @@ featuredImage: 'idea-sharing-run-configurations.jpg'
 excerpt: 'Finally, with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version control.'
 ---
 
-![IDEA Sharing Run Configurations](./idea-sharing-run-configurations.jpg)
-
-Finally, with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version control.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## IDEA settings sharing
 When developing in a team, it is vital to stick to a common set of practices to keep consistency in the development process. Having your IDE configured in the similar way can greatly help you with this. Fortunately, IDEA offers several ways of settings sharing, which can be very useful in such situations. It can be also beneficial for individuals when working with multiple machines. You can read more about it in the following article:

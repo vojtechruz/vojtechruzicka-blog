@@ -8,9 +8,7 @@ featuredImage: './switch.jpg'
 excerpt: 'Java 12 introduced a whole lot of useful improvements to the good old switch, which makes it way more useful.'
 ---
 
-![Switch](switch.jpg)
-
-Java 12 introduced a whole lot of useful improvements to the good old switch, which makes it way more useful.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-info">
 There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to reflect it. 

@@ -7,9 +7,8 @@ path: '/exam-notes-pivotal-certified-spring-professional'
 featuredImage: './spring-core.jpg'
 excerpt: 'Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study notes.'
 ---
-![pivotal certified  spring professional](./spring-core.jpg)
 
-Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study notes.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Resources
 ---------

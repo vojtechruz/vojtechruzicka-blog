@@ -9,9 +9,7 @@ order: 5
 series: JavaFX
 ---
 
-![JavaFX Advanced Layouts](ui-layout-advanced.jpg)
-
-How to organize and position your GUI components in JavaFX application using advanced layouts.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the rest of the available layouts.
 

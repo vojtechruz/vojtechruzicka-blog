@@ -8,7 +8,7 @@ featuredImage: './search.jpg'
 excerpt: 'How to add search option to your static JAMStack site using Algolia Search and Algolia DocSearch.'
 ---
 
-![Search](search.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Searching static sites
 A few months ago I finally managed to migrate my blog from WordPress to a static site build with GatsbyJS and deployed on [Netlify](https://www.vojtechruzicka.com/jamstack-migration-netlify/).

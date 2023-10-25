@@ -9,9 +9,7 @@ excerpt: 'Effortless creation and management of git hooks for your Node/NPM proj
 author: 'Vojtech Ruzicka'
 ---
 
-![Husky](husky.jpg)
-
-In this article, you will learn how to easily create and manage git hooks for your Node/NPM projects using Husky.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Git Hooks
 Simply put, git hooks are custom scripts, which can be run automatically when specific events occur. There are client-side hooks which are triggered on actions such as committing or merging. Server-side hooks run in situations such as receiving push data from the client.

@@ -4,11 +4,11 @@ date: "2017-05-23T22:12:03.284Z"
 path: '/java-9-compact-strings'
 tags: ['Java']
 featuredImage: './compact-strings.jpg'
-excerpt: 'Java 9 brings a new, improved string, which in most cases, will reduce String memory consumption to half.'
+excerpt: 'Java 9 brings a new, improved string, which in most cases, will greatly reduce String memory consumption.'
 ---
-![java compact strings](./compact-strings.jpg)
 
-Java 9 brings a new, improved string, which in most cases, will greatly reduce String memory consumption.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
+
 
 String memory consumption
 -------------------------

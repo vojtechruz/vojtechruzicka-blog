@@ -9,9 +9,7 @@ order: 4
 series: JavaFX
 ---
 
-![JavaFX Layouts](ui-layout.jpg)
-
-How to organize and layout your GUI components in JavaFX application.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
 

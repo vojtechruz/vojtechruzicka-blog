@@ -7,9 +7,7 @@ featuredImage: './netlify-analytics.jpg'
 excerpt: 'Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.'
 ---
 
-![Netlify Analytics](netlify-analytics.jpg)
-
-Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Netlify Analytics
 Netlify is a cool service focused on building and deploying your static and [JAM Stack](https://www.vojtechruzicka.com/gatsby-migration/) sites. If you're interested you can read more about the service in one of my previous posts:

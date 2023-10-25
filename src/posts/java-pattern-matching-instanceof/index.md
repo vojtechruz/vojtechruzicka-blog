@@ -8,7 +8,7 @@ featuredImage: './pattern-matching.jpg'
 excerpt: 'This new feature in Java 14 allows you to simplify your code and get rid of a lot of boilerplate when using instanceof.'
 ---
 
-![Java Pattern Matching InstanceOf](pattern-matching.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## instanceof
 To better understand this new feature, let's look into how `instanceof` operator works. If you are already familiar with it, feel free to skip to the next section.

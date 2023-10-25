@@ -8,7 +8,7 @@ featuredImage: './idea-best-plugins.jpg'
 excerpt: 'A collection of useful plugins to enhance your IntelliJ IDEA experience.'
 ---
 
-![IDEA best plugins](idea-best-plugins.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## [Key promoter X](https://plugins.jetbrains.com/plugin/9792-key-promoter-x/)
 Using keyboard shortcuts instead of your mouse can greatly increase your productivity. With so many features IDEA offers, it can be intimidating and difficult to learn all the shortcuts. Fortunately, there is a plugin called [Key Promoter X](/learning-intellij-idea-keyboard-shortcuts/), which can help you. 

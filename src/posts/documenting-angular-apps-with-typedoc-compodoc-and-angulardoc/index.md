@@ -6,9 +6,8 @@ path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc'
 featuredImage: './documentation.jpg'
 excerpt: There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what is the most suitable for your app.
 ---
-![compodoc](./documentation.jpg)
 
-There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what is the most suitable for your app.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Documentation in AngularJS
 --------------------------

@@ -7,7 +7,7 @@ featuredImage: './spring-boot-actuator.jpg'
 excerpt: 'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.'
 ---
 
-![Spring Boot Actuator](spring-boot-actuator.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Basic build information
 In one of my previous articles, I described how to obtain some basic information about the current build of your application at runtime in Spring Boot.

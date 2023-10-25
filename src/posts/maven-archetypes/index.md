@@ -7,9 +7,7 @@ featuredImage: './archetype.jpg'
 excerpt: 'How to generate new projects from Maven archetypes, create your own and number of alternative tools.'
 ---
 
-![Maven Archetypes](archetype.jpg)
-
-How to generate new projects from Maven archetypes, create your own and number of alternative tools.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Archetypes
 When starting a new project, it can be tedious and time-consuming to set up everything from scratch. Fortunately, Maven has built-in functionality which allows you to generate a project from a template. This template is called archetype.

@@ -6,9 +6,8 @@ path: '/javascript-constructor-functions-and-new-operator'
 featuredImage: './constructor-functions.jpg'
 excerpt: What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
 ---
-![javascript constructor functions](./constructor-functions.jpg)
 
-What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the alternatives?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Creating objects
 ----------------

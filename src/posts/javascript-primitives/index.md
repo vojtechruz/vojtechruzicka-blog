@@ -7,9 +7,8 @@ path: '/javascript-primitives'
 featuredImage: './primitives.jpg'
 excerpt: 'What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?'
 ---
-![javascript primitives](./primitives.jpg)
 
-What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use them?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Primitives versus Objects
 

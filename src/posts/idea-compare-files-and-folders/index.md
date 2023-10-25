@@ -7,9 +7,7 @@ featuredImage: './idea-compare.jpg'
 excerpt: 'IntelliJ IDEA offers numerous ways of comparing files, folders and code snippets and even synchronizing folder contents.'
 ---
 
-![IntelliJ IDEA compare files and folders](idea-compare.jpg)
-
-IntelliJ IDEA offers numerous ways of comparing files, folders and code snippets and even synchronizing folder contents.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Comparing project files
 Let's say there are two similar files in your project, and you need to compare them line by line. With IDEA, that's very easy. Just select both files in your project window (holding <kbd>Ctrl</kbd> for multi-selection).

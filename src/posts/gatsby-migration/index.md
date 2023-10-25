@@ -7,9 +7,7 @@ featuredImage: './jam.jpg'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.'
 ---
 
-![jam](jam.jpg)
-
-How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Before
 When I started my blog back in 2016, I wanted to focus as much as possible on creating content rather than

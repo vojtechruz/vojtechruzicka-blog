@@ -8,7 +8,7 @@ excerpt: 'How to get started with Angular from scratch, part 1.'
 hidden: 'true'
 ---
 
-![Angular Tutorial: Getting Started](angular-getting-started.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## About this series
 In this series, we'll learn how to use the Angular framework. This is intended for absolute beginners, we'll cover everything you need to know. This is the first post in the series.

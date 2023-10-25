@@ -8,7 +8,7 @@ excerpt: 'How to define possible inputs for your components and also output even
 hidden: 'true'
 ---
 
-![Angular Tutorial: Component inputs and outputs](./input-output.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

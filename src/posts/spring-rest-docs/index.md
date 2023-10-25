@@ -7,7 +7,7 @@ featuredImage: './rest-docs.jpg'
 excerpt: 'Test driven REST API documentation as an alternative to traditional Swagger docs.'
 ---
 
-![Spring REST Docs](./rest-docs.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## SpringFox And Swagger
 Traditional and popular approach to documenting your REST API is Swagger (aka OpenAPI), which I covered in detail in one of my previous articles.

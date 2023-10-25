@@ -5,11 +5,10 @@ dateModified: "2019-06-20"
 tags: ['IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services'
 featuredImage: './IntelliJIDEA_icon.png'
-excerpt: 'IntelliJ IDEA offers two integrated HTTP clients to test your REST services directly from your IDE.'
+excerpt: 'It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.'
 ---
-![testing restful web services idea](./IntelliJIDEA_icon.png)
 
-It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP client which you can use without the need of a dedicated external client.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-info">
 This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.

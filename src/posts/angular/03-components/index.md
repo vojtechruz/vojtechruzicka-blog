@@ -4,13 +4,11 @@ date: "2020-07-22T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular/03-components'
 featuredImage: './components.jpg'
-excerpt: 'Angular apps are composed of components, which encapsulate view, logic and styling.'
+excerpt: 'Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series.'
 hidden: 'true'
 ---
 
-![Angular Tutorial: Creating Components](components.jpg)
-
-Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

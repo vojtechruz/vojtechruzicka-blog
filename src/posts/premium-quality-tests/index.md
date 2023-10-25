@@ -6,9 +6,8 @@ path: '/premium-quality-tests'
 featuredImage: './premium.png'
 excerpt: 'Test quality is just as important as that of production code. Tests should not be excluded from quality checks and the same quality rules should be applied.'
 ---
-![premium quality tests](./premium.png)
 
-Test quality is just as important as that of production code. Tests should not be excluded from quality checks and the same quality rules should be applied.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Relaxed rules for tests
 -----------------------

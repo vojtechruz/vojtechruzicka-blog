@@ -7,9 +7,8 @@ path: '/practicing-coding-interview-pramp'
 featuredImage: './practicing-coding-interview.jpg'
 excerpt: 'Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to practice. A lot. Solving problems on your own is a good start, but practicing online with a real person as an interviewer is much better.'
 ---
-![pramp coding interview](./practicing-coding-interview.jpg)
 
-Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to practice. A lot. Solving problems on your own is a good start, but practicing online with a real person as an interviewer is much better.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-info">
 In November 2021, <a href="https://blog.tryexponent.com/pramp-joining-exponent/">Pramp was acquired</a> by <a href="https://www.tryexponent.com/">Exponent</a>. According to the statement Pramp should still be available for free, but both platforms should be more integrated in the future.

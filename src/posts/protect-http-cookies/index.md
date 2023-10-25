@@ -7,9 +7,8 @@ path: '/protect-http-cookies'
 featuredImage: './protect-cookies.jpg'
 excerpt: 'Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.'
 ---
-![protect cookies](./protect-cookies.jpg)
 
-Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity and wreak havoc.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 What are Cookies
 ----------------

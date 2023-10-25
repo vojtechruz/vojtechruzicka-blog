@@ -7,9 +7,8 @@ path: '/chrome-audit-lighthouse'
 featuredImage: './lighthouse.jpg'
 excerpt: 'Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as Performance, SEO, Best Practices, Accessibility, Progressive Web Application compliance and more?'
 ---
-![Lighthouse](./lighthouse.jpg)
 
-Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as Performance, SEO, Best Practices, Accessibility, Progressive Web Application compliance and more?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Running an Audit
 

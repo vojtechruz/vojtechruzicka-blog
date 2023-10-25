@@ -9,9 +9,7 @@ series: JavaFX
 order: 1
 ---
 
-![Getting started](install.jpg)
-
-How to set up and start working with JavaFX using Maven, Gradle, or JavaFX SDK.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

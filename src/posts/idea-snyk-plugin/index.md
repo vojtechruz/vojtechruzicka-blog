@@ -8,7 +8,7 @@ featuredImage: './idea-snyk-plugin.jpg'
 excerpt: 'How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.'
 ---
 
-![IDEA Snyk Plugin](idea-snyk-plugin.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Dependencies with security vulnerabilities
 Making sure your application is as secure as possible is very important. Having security vulnerabilities can lead to serious consequences if they are exploited. You should always make sure your own code is as safe as possible.

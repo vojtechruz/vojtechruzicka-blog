@@ -8,7 +8,7 @@ featuredImage: 'gatsby-build-netlify-plugins.jpg'
 excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x faster.'
 ---
 
-![3x faster GatsbyJS build with netlify plugins](gatsby-build-netlify-plugins.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-info">
   <b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>.

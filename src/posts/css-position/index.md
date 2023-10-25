@@ -7,7 +7,7 @@ featuredImage: './css-position.jpg'
 excerpt: 'How to understand and properly use CSS position property to control placement of your elements.'
 ---
 
-![CSS Position](css-position.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 
 ## Position property

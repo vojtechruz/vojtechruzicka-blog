@@ -8,9 +8,7 @@ featuredImage: 'css-flexbox.png'
 excerpt: 'Flexbox is a powerful layout tool, which allows you to automatically arrange and size items inside a container.'
 ---
 
-![CSS Flexbox](css-flexbox.png)
-
-Flexbox is a powerful layout tool, which allows you to automatically arrange and size items inside a container.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Flexbox
 Flexbox, short for Flexible Box, is defined in the [CSS Flexible Box Layout Module specifiation](https://www.w3.org/TR/css-flexbox-1/).

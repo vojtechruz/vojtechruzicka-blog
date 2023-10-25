@@ -8,9 +8,7 @@ featuredImage: './commitlint.jpg'
 excerpt: 'Automatically check and enforce your commit conventions either with various available configurations.'
 ---
 
-![Commitlint](commitlint.jpg)
-
-Automatically check and enforce your commit conventions either with various available configurations.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Commit conventions
 Although you can put pretty much anything in your commit messages, it is beneficial to have a more standardized and structured approach. It is better to stick to a convention, so all your commit messages follow the same structure. This has many advantages:

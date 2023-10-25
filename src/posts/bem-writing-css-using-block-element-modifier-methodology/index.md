@@ -6,9 +6,8 @@ path: '/bem-writing-css-using-block-element-modifier-methodology'
 featuredImage: './bem.jpg'
 excerpt: 'BEM is a lightweight front-end development methodology which makes your code more flexible, modular and reusable.'
 ---
-![bem](./bem.jpg)
 
-BEM is a lightweight front-end development methodology which makes your code more flexible, modular and reusable.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 What is BEM?
 ------------

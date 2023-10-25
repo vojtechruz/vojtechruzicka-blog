@@ -7,9 +7,7 @@ featuredImage: './spring-boot-admin.png'
 excerpt: 'Monitor and manage you Spring Boot apps with a nice UI on top of Spring Boot Actuator endpoints.'
 ---
 
-![Spring Boot Admin](spring-boot-admin.png)
-
-Monitor and manage you Spring Boot apps  with a nice UI on top of Spring Boot Actuator endpoints.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Spring Boot Actuator
 Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application, so you can easily monitor and manage it in production. The endpoints offer health-check, metrics monitoring, access to logs, thread dumps, heap dumps, environmental info and more. I've covered Actuator in depth in the following article:

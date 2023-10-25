@@ -7,9 +7,8 @@ path: '/explicitly-declare-serialversionuid'
 featuredImage: './serialization.jpg'
 excerpt: 'Should you explicitly declare serialVersionUID or leave it to be automatically generated?'
 ---
-![serialversionuuid](./serialization.jpg)
 
-Should you explicitly declare serialVersionUID or leave it to be automatically generated?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## What is serialVersionUID?
 

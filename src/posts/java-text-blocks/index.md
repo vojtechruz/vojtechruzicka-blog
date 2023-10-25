@@ -8,7 +8,7 @@ featuredImage: './java-text-blocks.jpg'
 excerpt: 'Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.'
 ---
 
-![Java Text Blocks](java-text-blocks.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-info">
 <strong>UPDATE:</strong> After several preview versions, this functionality is finally scheduled to be released in Java 15 - see <a href="https://openjdk.java.net/jeps/378">JEP 378: Text Blocks</a>.

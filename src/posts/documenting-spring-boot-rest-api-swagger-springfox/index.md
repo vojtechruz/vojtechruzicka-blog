@@ -6,9 +6,8 @@ path: '/documenting-spring-boot-rest-api-swagger-springfox'
 featuredImage: './springfox.jpg'
 excerpt: 'How to document your Spring Boot REST APIs using Swagger with SpringFox?'
 ---
-![springfox](./springfox.jpg)
 
-How to document your Spring Boot REST APIs using Swagger with SpringFox?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 Swagger and SpringFox
 ---------------------

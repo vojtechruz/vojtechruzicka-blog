@@ -6,10 +6,10 @@ tags: ['Java', 'Security']
 path: '/detecting-dependencies-known-vulnerabilities'
 featuredImage: './dc-large.png'
 excerpt: 'How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI and track vulnerable dependencies over time?'
---- 
-![detecting dependencies with known vulnerabilities](./dc-large.png)
+---
 
-How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI and track vulnerable dependencies over time?
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
+
 
 Vulnerable Dependencies
 -----------------------

@@ -7,9 +7,7 @@ featuredImage: './spring-boot-add-war-to-embedded-tomcat.jpg'
 excerpt: 'How to deploy external WAR files to your Spring Boot Embedded Tomcat.'
 ---
 
-![Spring add war to embedded Tomcat](spring-boot-add-war-to-embedded-tomcat.jpg)
-
-How to deploy external WAR files to your Spring Boot Embedded Tomcat.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Deploying war
 By default Spring Boot runs as a jar inside with embedded Tomcat ([although you can deploy it as a regular WAR](https://www.vojtechruzicka.com/spring-boot-war/)). Running with an embedded application server is great, but sometimes you may need to bundle another war with your embedded application. Maybe you have a legacy app you need to include and don't want to set up a regular Tomcat for this.

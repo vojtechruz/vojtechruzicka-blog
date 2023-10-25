@@ -8,9 +8,7 @@ featuredImage: './spring-dev-tools.jpg'
 excerpt: 'How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive?'
 ---
 
-![Spring Boot DevTools](spring-dev-tools.jpg)
-
-How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive? 
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Setup
 As usually with Spring Boot, the setup is really simple. All you need to do is to add the right dependency, and you are good to go. Spring Boot detects this and auto-configures DevTools accordingly.

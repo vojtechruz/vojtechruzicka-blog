@@ -6,9 +6,8 @@ path: '/java-9-enhanced-deprecation'
 featuredImage: './deprecated.jpg'
 excerpt: '@Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.'
 ---
-![java enhanced deprecation](./deprecated.jpg)
 
-@Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document the deprecation of API.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Java 8 Deprecation
 

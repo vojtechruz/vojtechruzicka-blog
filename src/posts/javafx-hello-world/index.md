@@ -9,9 +9,7 @@ series: JavaFX
 order: 2
 ---
 
-![JavaFX Hello world](javafx-hello-world.jpg)
-
-Tutorial on how to build your first JavaFX application.
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started/). 
 

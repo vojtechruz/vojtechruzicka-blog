@@ -7,7 +7,7 @@ featuredImage: './javafx-spring-boot.jpg'
 excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 ---
 
-![Spring Boot and JavaFX integration](javafx-spring-boot.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">

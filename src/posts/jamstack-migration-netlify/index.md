@@ -8,7 +8,7 @@ featuredImage: './jamstack-migration-netlify.jpg'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site deployed on Netlify.'
 ---
 
-![Migration to JAM Stack - Netlify](./jamstack-migration-netlify.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## JAM Stack Migration - Part 2
 Recently I managed to finally get rid of WordPress and migrate my blog to JAM Stack, built with a static site generator called GatsbyJS. I described what JAM Stack is, how I migrated and how great Gatsby is in my previous post - [Migration to GatsbyJS and JAM stack from WordPress](https://www.vojtechruzicka.com/gatsby-migration/). 

@@ -7,7 +7,7 @@ featuredImage: './staticman.jpg'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
 ---
 
-![Staticman](staticman.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Dynamic content in static sites 
 Static JAMStack sites are great. If you are not familiar with them, you can check my older post on how I migrated my blog from WordPress to a static site using Gatsby.

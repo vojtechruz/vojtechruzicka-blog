@@ -8,7 +8,7 @@ featuredImage: './raw-strings.jpg'
 excerpt: "Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special characters. Especially useful for regular expressions."
 ---
 
-![Java Raw Strings](raw-strings.jpg)
+<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 <div class="msg-warn">Raw string literals <a href="https://www.infoq.com/news/2018/12/jdk-12-new-features">didn't make it to the Java 12</a>. The similar functionality is available in Java 13 instead as a preview feature - Text Blocks. For more details see the post below.</div>
 
