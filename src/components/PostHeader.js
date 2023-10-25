@@ -16,6 +16,7 @@ class PostHeader extends React.Component {
           alt={this.props.frontmatter.title}
         />
         <div>{this.props.frontmatter.excerpt}</div>
+        <hr className="post-header-divider" />
       </div>
     );
   }

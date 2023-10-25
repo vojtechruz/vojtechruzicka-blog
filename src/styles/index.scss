@@ -356,7 +356,8 @@ kbd {
   margin-top: 2rem;
 }
 
-.share-label, .similar-posts-label {
+.share-label,
+.similar-posts-label {
   @extend h4;
   font-weight: 500;
   font-size: 1.1rem;
@@ -409,4 +410,8 @@ kbd {
   .DocSearch.DocSearch-Button {
     height: 36px;
   }
+}
+
+.post-header-divider {
+  margin-top: 30px;
 }

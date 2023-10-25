@@ -23,6 +23,11 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import profilePic from "../components/profile-big.jpg";
 import Giscus from "@giscus/react";
+import Warning from "../components/Warning";
+import Info from "../components/Info";
+import PostLink from "../components/PostLink";
+import PostHeader from "../components/PostHeader";
+import { MDXProvider } from "@mdx-js/react";
 
 function BlogPostTemplate(props) {
   const post = props.data.mdx;
@@ -103,9 +108,14 @@ function BlogPostTemplate(props) {
   }
 
   let lastUpdated;
-  if (post.frontmatter.dateModified) {
+  if (
+    post.frontmatter.dateModified &&
+    post.frontmatter.dateModified !== post.frontmatter.date
+  ) {
     lastUpdated = <div>Last Updated: {dateModified}</div>;
   }
+
+  const shortcodes = { Warning, Info, PostLink, PostHeader };
 
   return (
     <Layout>
@@ -126,7 +136,9 @@ function BlogPostTemplate(props) {
         </div>
 
         {/*Feature image needs to be part of the article otherwise sites such as pocket and feedly wont load proper image*/}
-        <div id="article-content">{body}</div>
+        <div id="article-content">
+          <MDXProvider components={shortcodes}>{body}</MDXProvider>
+        </div>
       </div>
       <hr
         style={{
