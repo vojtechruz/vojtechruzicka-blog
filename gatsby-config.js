@@ -13,6 +13,9 @@ module.exports = {
   pathPrefix: "/",
   plugins: [
     {
+      resolve: "gatsby-plugin-mdx-frontmatter",
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
@@ -27,9 +30,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.mdx`],
+        gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-code-buttons",
             options: {
@@ -107,7 +111,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: `gatsby-plugin-feed-mdx`,
       options: {
         query: `
                 {
@@ -137,8 +141,8 @@ module.exports = {
         },
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges
                 .filter((edge) => edge.node.frontmatter.hidden !== "true")
                 .map((edge) => {
                   return Object.assign({}, edge.node.frontmatter, {
@@ -173,7 +177,7 @@ module.exports = {
             },
             query: `
                         {
-                          allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+                          allMdx(sort: {frontmatter: {date: DESC}}) {
                             edges {
                               node {
                                 html

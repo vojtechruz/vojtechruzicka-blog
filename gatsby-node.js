@@ -2,6 +2,22 @@ const _ = require("lodash");
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
+exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
+  createTypes(`
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter
+    }
+
+type MdxFrontmatter {
+      tags: [String]
+      hidden: String
+      author: String
+      excerpt: String!
+      links: [String]
+    }
+  `);
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -13,7 +29,7 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(`
         {
-          allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+          allMdx(sort: { frontmatter: { date: DESC } }) {
             edges {
               node {
                 fields {
@@ -22,8 +38,24 @@ exports.createPages = ({ graphql, actions }) => {
                 frontmatter {
                   title
                   tags
-                  date
+                  date(formatString: "MMM DD, YYYY")
                   path
+                  links
+                  excerpt
+                  featuredImage {
+                    childImageSharp {
+                      gatsbyImageData(
+                        layout: CONSTRAINED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
+                      original {
+                        src
+                      }
+                    }
+                  }
+                }
+                internal {
+                  contentFilePath
                 }
               }
             }
@@ -36,7 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges;
+        const posts = result.data.allMdx.edges;
 
         // Tag pages:
         let tags = [];
@@ -66,7 +98,7 @@ exports.createPages = ({ graphql, actions }) => {
               return false;
             }
 
-            var filteredTags = post.node.frontmatter.tags.filter((tag) => {
+            let filteredTags = post.node.frontmatter.tags.filter((tag) => {
               if (p.node.frontmatter.tags.indexOf(tag) !== -1) {
                 return true;
               }
@@ -80,13 +112,25 @@ exports.createPages = ({ graphql, actions }) => {
           });
 
           related = _.shuffle(related).slice(0, 6);
+          let links;
+          if (!post.node.frontmatter.links) {
+            links = {};
+          } else {
+            links = {};
+            post.node.frontmatter.links.forEach((link) => {
+              links[link] = posts.find(
+                (post) => post.node.frontmatter.path === link,
+              ).node;
+            });
+          }
 
           createPage({
             path: post.node.fields.slug,
-            component: blogPost,
+            component: `${blogPost}?__contentFilePath=${post.node.internal.contentFilePath}`,
             context: {
               slug: post.node.fields.slug,
               related,
+              links,
             },
           });
         });
@@ -117,7 +161,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === `Mdx`) {
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,

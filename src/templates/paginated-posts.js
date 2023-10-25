@@ -11,7 +11,7 @@ import { graphql } from "gatsby";
 
 class BlogIndex extends React.Component {
   render() {
-    const posts = get(this, "props.data.allMarkdownRemark.edges").filter(
+    const posts = get(this, "props.data.allMdx.edges").filter(
       (post) => post.node.frontmatter.hidden !== "true",
     );
     const pagesTotal = get(this, "props.pageContext.pagesTotal");
@@ -180,7 +180,7 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: $pageSize
       skip: $pageSkip
       sort: { frontmatter: { date: DESC } }
