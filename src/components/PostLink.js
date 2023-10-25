@@ -6,7 +6,6 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 class PostLink extends React.Component {
   render(props) {
-    console.log(this);
     const node = this.props.node;
 
     return (

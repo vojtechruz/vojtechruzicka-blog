@@ -180,7 +180,6 @@ module.exports = {
                           allMdx(sort: {frontmatter: {date: DESC}}) {
                             edges {
                               node {
-                                html
                                 fields { slug }
                                 frontmatter {
                                   excerpt
