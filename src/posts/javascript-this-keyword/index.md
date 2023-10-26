@@ -9,18 +9,14 @@ excerpt: This is a very straightforward concept in other languages. Not so in ja
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-What the hell is *this*?
-------------------------
-
+## What the hell is *this*?
 If you are coming from another language, which is Object Oriented, such as Java, you are no doubt familiar with the concept of *this*. *This* keyword is used inside of a class and refers to the current instance. No more, no less.
 
 In Javascript, *this* is yet another concept, which behaves in an unexpected way. Like other concepts such as new operator or classes, it tricks you into making some false assumptions based on concepts which you know from other languages. Because the syntax and naming are the same or very similar, yet the concept is different. What's more, its behavior is not the same depending on whether you are in the strict mode or not.
 
 Every time a function is invoked, *this* is assigned a reference to an object based on how the function was called. Is it a regular function? A method called on an object? Fat arrow function? Method of an ES6 class? That\'s the key to understanding the topic. What\'s confusing about this is that the very same function can have a different value of *this* based on circumstances. Turns out that this does not depend on the function itself but rather on how the function is called. The same function will have different *this* when called as a method of an object and when provided as a callback function. You need to be careful because the functions can be passed around and in such case, *this* may be different from what you expected.
 
-Function invocation
--------------------
-
+## Function invocation
 When calling a function *this* is referring to the global object. The global object depends on how you run your code -- if you are executing in a browser, it is the window object. In node.js it is an object called global.
 
 ```javascript
@@ -44,9 +40,7 @@ function logThisInStrictMode() {
 logThisInStrictMode(); // undefined
 ```
 
-Method invocation
------------------
-
+## Method invocation
 A method is basically a function, which is a property of an object. In methods, the situation is simple -- *this* refers to the object the method is owned by.
 
 ```javascript
@@ -107,9 +101,7 @@ var greetingFunction = john.greet;
 greetingFunction(); // Hi! My name is undefined
 ```
 
-In constructor functions
-------------------------
-
+## In constructor functions
 When you are using [constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constructor-functions-and-new-operator/), *this* behaves a bit differently than usual. In short, what *new* operator does is that:
 
 1.  It creates a new blank object.
@@ -128,9 +120,7 @@ var Person = function (firstName, lastName) {
 var john = new Person('John', 'Doe');
 ```
 
-In classes
-----------
-
+## In classes
 When using *this* inside of methods of an ES6 class, it points to the current object. That's nice.
 
 ```javascript
@@ -150,9 +140,7 @@ john.greet(); // Hi! My name is John Doe
 
 However, when using nested functions inside such methods, they behave as regular functions. Same as nested functions in object methods. There is one caveat though. The code inside classed is automatically executed in strict mode even if it is not explicitly declared! As we already know, strict mode changes behavior inside functions so this is undefined instead of pointing to the global object.
 
-In fat arrow functions
-----------------------
-
+## In fat arrow functions
 In short, fat arrow functions are a more concise way of writing function expressions introduced in ES6. Their biggest advantage is, however, not saving a few characters when typing. They greatly simplify usage of *this*. The thing is that unlike function expressions, where *this* points to the global object, in fat arrow functions *this* is taken from the enclosing function. Remember section about methods and how we used trick *var that = this* to preserve original *this* of the other function? Arrow functions are shorter and you don\'t need to worry about such tricks.
 
 ```javascript
@@ -182,9 +170,7 @@ var john = {
 john.greet(['Jane', 'James', 'Jill']); // Hi Jane. My name is John ...
 ```
 
-Setting this directly - apply, call, bind
------------------------------------------
-
+## Setting this directly - apply, call, bind
 Sometimes it is handy to be able to directly set the value of *this* when calling a function. Fortunately, there are three methods in javascript exactly for that. All of them are available to all the functions as they are on the function\'s prototype. They are: *apply*, *call* and *bind*.
 
 *Apply* and *call* are very similar to each other. They allow you to invoke their function with a value of this specified as a parameter and by providing arguments to be passed to the function call. The value returned is the value returned by the function called. The only way in which they differ is that one expects the function arguments as an array and the other one as direct arguments. Let\'s compare.
@@ -223,9 +209,7 @@ var boundGreetFunction = john.greet.bind(john);
 boundGreetFunction(); // Hi! My name is John
 ```
 
-Conclusion
-----------
-
+## Conclusion
 Understanding how *this* works in Javascript under various circumstances is crucial and prevents a lot of confusion and headache. Keep in mind that this depends not on the function itself but rather on how the function is called. Since functions are first-class citizens in Javascript, they can be passed around and *this* will change accordingly. It is, therefore, useful to remember to prevent possible errors with actions such as:
 
 -   Using strict mode to prevent accidental mutation of the global object
