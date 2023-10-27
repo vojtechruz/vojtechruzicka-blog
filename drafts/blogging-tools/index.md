@@ -24,7 +24,7 @@ The base version is free and should be sufficient in most cases. The paid versio
 
 ![Grammarly assistant](grammarly.png)
 
-Currently I use the paid version, which is currently at $11.66 monthly if paid annually. I know there are other similar products, but I have no personal experience with them. Tried just Grammarly and it suits my needs.
+Currently, I use the paid version, which is currently at $11.66 monthly if paid annually. I know there are other similar products, but I have no personal experience with them. Tried just Grammarly and it suits my needs.
 
 # Warble
 [Warble](https://warble.co/) is a great tool to help you on Twitter. It allows you to define keywords, phrases or hashtags and set them as alert. Whenever anyone posts on twitter something matching your criteria, you get notified by email about the tweet.
