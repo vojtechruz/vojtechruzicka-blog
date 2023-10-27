@@ -10,12 +10,10 @@ excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<div class="msg-info">
-  <b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>.
-</div>
+<Info><b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>.</Info>
 
 ## Netlify build plugins
-Netlify build plugins allow you to run custom plugins as a part of your Nelify build process. This allows you to alter your build and run some additional actions.
+Netlify build plugins allow you to run custom plugins as a part of your Netlify build process. This allows you to alter your build and run some additional actions.
 
 ## Enabling plugins
 Netlify build plugins are not enabled by default. This feature is still in beta (as of 5/2020). You can, however, explicitly enable beta build plugin support. Just click on the link `Build Plugins` in the main navigation.
@@ -37,7 +35,7 @@ Settings → Build & Deploy → Build image selection
 After selecting repositories, you can see the list of available plugins.
 
 ## Configuration
-Plugins are not enabled and configured directly from the Netlify UI. Instead, you enable and configure your build plugins in `netlify.toml` file, which should be located inside of your project on the root level.
+Plugins are not enabled and configured directly from the Netlify UI. Instead, you enable and configure your build plugins in `netlify.toml` file, which should be located inside your project on the root level.
 
 The configuration for [netlify-plugin-gatsby-cache](https://github.com/jlengstorf/netlify-plugin-gatsby-cache) can be as simple as this:
 
@@ -63,41 +61,21 @@ My current site is as follows:
 - 119 GraphQL queries
 - 92 articles
 
-Without the plugin the [build takes](https://app.netlify.com/sites/vojtechruzicka/deploys/5ea34fc56c47bb0006f3e03a) **13m 20s**. With the plugin [it takes](https://app.netlify.com/sites/vojtechruzicka/deploys/5ea35478f6337a0007874256) **3m 44s**. That is 3.57x faster!
+Without the plugin the build takes **13m 20s**. With the plugin it takes **3m 44s**. That is 3.57x faster!
 
 The time can vary as it depends on the size of your site and the changes that you make.
 
 The official docs also [provide examples of time reduction](https://github.com/jlengstorf/netlify-plugin-gatsby-cache#how-much-of-a-difference-does-this-plugin-make-in-build-times):
- 
-<table>
-<thead>
-<tr>
-<th>Site Size</th>
-<th>No Cache</th>
-<th>Cache</th>
-<th>Savings</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><ul><li>231 GraphQL queries</li><li>1,871 images</li><li>224 pages</li></ul></td>
-<td>293207ms (<a href="https://app.netlify.com/sites/lengstorf/deploys/5dceed27d58a580008daaccc" rel="nofollow">build log</a>)</td>
-<td>72835ms (<a href="https://app.netlify.com/sites/lengstorf/deploys/5dcef2463da4810008d48aaa" rel="nofollow">build log</a>)</td>
-<td>75%</td>
-</tr>
-<tr>
-<td><ul><li>5 GraphQL queries</li><li> No image processing</li><li> 32 pages</li></ul></td>
-<td>22072ms (<a href="https://app.netlify.com/sites/build-plugin-test/deploys/5dceed49e746a200091c76fe" rel="nofollow">build log</a>)</td>
-<td>15543ms (<a href="https://app.netlify.com/sites/build-plugin-test/deploys/5dceedbfad95d0000bcd46d1" rel="nofollow">build log</a>)</td>
-<td>30%</td>
-</tr>
-</tbody>
-</table>
+
+| Site Size                                                                           | No Cache  | Cache    | Savings |
+|-------------------------------------------------------------------------------------|-----------|----------|---------|
+| <ul><li>231 GraphQL queries</li><li>1,871 images</li><li>224 pages</li></ul>        |  293207ms | 72835ms  | 75%     |
+| <ul><li>5 GraphQL queries</li><li> No image processing</li><li> 32 pages</li></ul>  |  22072ms  | 15543ms  | 30%     |
 
 ## More plugins
 There are currently 20 plugins available, featured on the Netlify site. Here are some of the interesting ones:
 
-- [netlify-plugin-a11y](https://github.com/sw-yx/netlify-plugin-a11y): Validate your site with pa11y and fail the build if there are accessibility problems.
+- [netlify-plugin-a11y](https://github.com/sw-yx/netlify-plugin-a11y): Validate your site with a11y and fail the build if there are accessibility problems.
 - [netlify-build-plugin-speedcurve](https://github.com/tkadlec/netlify-build-plugin-speedcurve): Test your performance using SpeedCurve after each deploy.
 - [netlify-plugin-checklinks](https://github.com/munter/netlify-plugin-checklinks): Check your site for broken links.
 - [netlify-plugin-inline-source](https://github.com/Tom-Bonnike/netlify-plugin-inline-source): Inline some of your assets to reduce the amount of HTTP request and increase performance.
@@ -107,5 +85,5 @@ There are currently 20 plugins available, featured on the Netlify site. Here are
 ## Additional resources
 - [Introducing Netlify Build Plugins](https://www.netlify.com/build/plugins-beta/)
 - [What's a Netlify Build Plugin Series](https://www.netlify.com/blog/2020/04/30/whats-a-netlify-build-plugin-series-part-1-using-build-plugins/)
- - [Build plugins documentation](https://docs.netlify.com/configure-builds/build-plugins/)
- - [How to make your own build plugin](https://www.netlify.com/blog/2019/10/16/creating-and-using-your-first-netlify-build-plugin/)
+- [Build plugins documentation](https://docs.netlify.com/configure-builds/build-plugins/)
+- [How to make your own build plugin](https://www.netlify.com/blog/2019/10/16/creating-and-using-your-first-netlify-build-plugin/)

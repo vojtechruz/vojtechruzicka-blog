@@ -1,8 +1,15 @@
-require("dotenv").config({
+import * as dotenv from 'dotenv';
+import remarkGfm from "remark-gfm"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
+
+dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-module.exports = {
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+const config = {
   siteMetadata: {
     title: "Vojtech Ruzicka's Programming Blog",
     author: "Vojtech Ruzicka",
@@ -33,6 +40,9 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`],
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
         gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-code-buttons",
@@ -251,3 +261,5 @@ module.exports = {
     `gatsby-plugin-netlify`,
   ],
 };
+
+export default config;

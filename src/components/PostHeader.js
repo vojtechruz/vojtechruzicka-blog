@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
-import { rhythm } from "../utils/typography";
-import Tags from "./Tags";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 class PostHeader extends React.Component {

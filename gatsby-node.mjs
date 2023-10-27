@@ -1,8 +1,12 @@
+import { createRequire } from "module"
+
+const require = createRequire(import.meta.url)
+
 const _ = require("lodash");
 const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 
-exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
+export const createSchemaCustomization = ({ actions: { createTypes } }) => {
   createTypes(`
     type Mdx implements Node {
       frontmatter: MdxFrontmatter
@@ -18,7 +22,7 @@ type MdxFrontmatter {
   `);
 };
 
-exports.createPages = ({ graphql, actions }) => {
+export const createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
@@ -158,7 +162,7 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+export const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
