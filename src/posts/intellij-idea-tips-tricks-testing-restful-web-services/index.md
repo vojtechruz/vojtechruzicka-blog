@@ -30,15 +30,15 @@ This opens a new tool window called REST client.
 
 ![idea-rest-client](./idea-rest-client.png)
 
-The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. You can provide additional data on the `Request` tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate `Cookies` tab.
+The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method (GET/POST/PUT/\...), target URL and path. You can provide additional data on the `Request` tab, such as HTTP headers, request parameters, and body. You can also specify cookies to be sent on a separate `Cookies` tab.
 
 ![Cookies](./cookies.png)
 
-And then you just hit `Submit Request`. IDEA sends a new HTTP request to the target location and displays the response received in the `Response` tab. Response headers can be viewed in the `Response Headers` tab.
+And then you just hit `Submit Request`. IDEA sends a new HTTP request to the target location and displays the response received in the `Response` tab. Response headers can be viewed in the `Response Headers` tab.
 
 ![Response](./response.png)
 
-And that\'s pretty much it. On top of this, the client offers some additional features such as:
+And that's pretty much it. On top of this, the client offers some additional features such as:
 
 -   Importing and exporting request from/to an XML file. This can be handy when reporting bugs, so the issue can be easily reproduced. And also to persist request between starts of IDEA as REST client\'s state is not preserved.
 -   You can generate basic authentication header from a username and password.
@@ -76,7 +76,7 @@ When no HTTP method is specified, it assumes you want to use GET. No headers or 
 For simple GET requests, you are already covered. But often you need something more complicated. First of all, you will need other methods than just GET. To specify an HTTP method, simply add its name before the URL:
 
 ```json
-GET http://localhost:8090/persons/all
+GET http://localhost:8090/persons/all
 ```
 
 Then you\'ll need a bunch of HTTP headers. Just add them below the URL, one per line as key-value pairs separated by a colon. Since cookies are just HTTP header, you can include them with the other headers.
@@ -93,19 +93,19 @@ Cookie: name=value; name2=value2; name3=value3
 But HTTP headers are not enough. For methods such as POST, you\'ll also want to specify body the of the request. You can do so by leaving one blank line after the end of the request declaration. The body can be multiline. You can have multiple requests in one file and separate them by a line with \#\#\#.
 
 ```json
-POST http://localhost:8090/persons/add/
+POST http://localhost:8090/persons/add/
 Content-Type: application/json
 
 {
-    "name": "JohnDoe",
-    "age": 29
+    "name": "JohnDoe",
+    "age": 29
 }
 ```
 
 Alternatively, you can specify, that the body should be read from an external file. To do this, you need to provide left angle bracket followed by space and the path to the file.
 
 ```json
-POST http://localhost:8090/persons/add/
+POST http://localhost:8090/persons/add/
 Content-Type: application/json
 
 < person.json
@@ -168,7 +168,7 @@ The environments and their variables are defined in a file called `rest-client.e
 In your HTTP Requests file (even scratch) you can then reference variables surrounded by double curly braces:
 
 ```json
-GET http://{{host}}:8090/persons/all/
+GET http://{{host}}:8090/persons/all/
 ```
 
 You can run a specific configuration by clicking the run icon in the gutter: 
@@ -283,11 +283,11 @@ In case you need HTTP proxy for your calls, both clients share proxy settings of
 
 ## History
 
-What's cool is that IDEA automatically stores the history of all the requests you performed (up to 50 items). It is available from `Tools → HTTP Client → Show HTTP Requests history`. What it actually does is that it opens a file called `http-requests-log.http` in `.idea/httpRequests` folder. It can look something like this:
+What's cool is that IDEA automatically stores the history of all the requests you performed (up to 50 items). It is available from `Tools → HTTP Client → Show HTTP Requests history`. What it actually does is that it opens a file called `http-requests-log.http` in `.idea/httpRequests` folder. It can look something like this:
 
 ```json
-POST http://localhost:8090/persons/add
-Content-Type: application/json
+POST http://localhost:8090/persons/add
+Content-Type: application/json
 
 < C:/_MY/rest-demo/person.json
 
@@ -295,7 +295,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8090/persons/all
+GET http://localhost:8090/persons/all
 
 <> 2018-01-11T115612.200.json
 
