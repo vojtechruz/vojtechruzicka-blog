@@ -428,3 +428,8 @@ kbd {
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.DocSearch-Container {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: saturate(180%) blur(10px);
+}

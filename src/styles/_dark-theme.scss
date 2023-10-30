@@ -294,4 +294,9 @@
     background-color: darken(#00529b, 10%) !important;
     color: lighten(#b3b9c5, 10%) !important;
   }
+
+  .DocSearch-Container {
+    background: rgba(255, 255, 255, 0.075) !important;
+    backdrop-filter: saturate(180%) blur(10px) !important;
+  }
 }
