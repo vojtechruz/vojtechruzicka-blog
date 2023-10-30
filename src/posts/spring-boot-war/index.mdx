@@ -10,7 +10,7 @@ excerpt: 'How to change your JAR Spring Boot app to be packaged and deployed as 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## WAR vs JAR
-By default, Spring Boot applications are packaged as executable JAR files with embedded Tomcat. You can run them directly by `java -jar` command. Traditional Java web applications need a servlet container (application server) to run. You need to have such server installed, configured, and then deploy your applications to it. And you need to have such server prepared for each environment. With Spring Boot, this approach is inverted as the app server is directly in your JAR. This has many advantages, but sometimes you may need to have your Spring Boot app as a traditional WAR instead. For example, if you are tied by your company policies and need to deploy to a provided app server. 
+By default, Spring Boot applications are packaged as executable JAR files with embedded Tomcat. You can run them directly by `java -jar` command. Traditional Java web applications need a servlet container (application server) to run. You need to have such container installed, configured, and then deploy your applications to it. And you need to have it prepared for each environment. With Spring Boot, this approach is inverted as the application server is directly in your JAR. This has many advantages, but sometimes you may need to have your Spring Boot app as a traditional WAR instead. For example, if you are tied by your company policies and need to deploy to a provided app server.
 
 In this post, we'll examine how to package Spring Boot app as WAR, without sacrificing direct executability.
 
@@ -19,11 +19,11 @@ When you are creating a new app, the process is fortunately very easy. Instead o
 
 By default, all the advanced options are hidden. You can set just the basics such as Spring version, language, or build tool. And of course all the dependencies.
 
-You need to open the *Options* section to specify packaging.
+You need to open the `Options` section to specify packaging.
 
 ![Spring Boot initializr](spring-boot-initializr.png)
 
-In the advanced options section, there is *Packaging* selection. By default, there is *Jar*. This means you'll be able to run the JAR directly as it contains an embedded Tomcat application server. 
+In the advanced options section, there is `Packaging` selection. By default, there is `Jar`. This means you'll be able to run the JAR directly as it contains an embedded Tomcat application server.
 
 You cannot deploy JARs to other applications servers (Tomcat, Jetty, JBoss, ...) to run them there. They only work with WARs. To be able to deploy your app to these, you need to change the packaging to *WAR*.
 
@@ -31,7 +31,7 @@ You cannot deploy JARs to other applications servers (Tomcat, Jetty, JBoss, ...)
 
 What's great is such WAR is still executable on its own, which is useful. For example, it's great for local development, even if you use a regular app server in production.
 
-After you're done with the setup, you can click *Generate project* and a zip file with your app will be downloaded.
+After you're done with the setup, you can click `Generate project` and a zip file with your app will be downloaded.
 
 ### IDEA integration
 Generating apps with Spring Initializr is way more convenient and less error-prone than creating them manually. There is still a bit of inconvenience as you need to go to an external web page, download a zip file and unpack it.
