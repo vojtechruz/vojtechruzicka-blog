@@ -13,7 +13,7 @@ excerpt: '@Deprecated annotation, introduced in Java 5, received several enhance
 
 ### @deprecated JavaDoc tag
 
-In Java 1.1, a new JavaDoc tag was introduced - `@deprecated`. Java 1.1 introduced many new APIs, which were meant to replace some old ones. There was a need to document this, therefore the new tag was added. In the tag\'s body, you should define the reason, why the deprecation was introduced as well as any API, which should be used instead using @see or @link. Example can be _java.ioFile.toURL()_
+In Java 1.1, a new JavaDoc tag was introduced - `@deprecated`. Java 1.1 introduced many new APIs, which were meant to replace some old ones. There was a need to document this, therefore the new tag was added. In the tag's body, you should define the reason, why the deprecation was introduced as well as any API, which should be used instead using @see or @link. Example can be _java.ioFile.toURL()_
 
 ```java
 /**

@@ -49,7 +49,7 @@ In addition to toggling of the Power Saving mode, you can set the level of inspe
 
 Depending on your setting, the Hector icon will indicate the current level of highlighting.
 
-When you are in Power Saving mode, you don\'t have to give up your precious inspections. You can just run them on demand instead of constant real-time evaluation using *Analyze → Inspect Code* or *Run Inspection by Name\...*
+When you are in Power Saving mode, you don't have to give up your precious inspections. You can just run them on demand instead of constant real-time evaluation using *Analyze → Inspect Code* or *Run Inspection by Name\...*
 
 ![inspections](./inspections.png)
 

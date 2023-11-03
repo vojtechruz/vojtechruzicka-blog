@@ -125,7 +125,7 @@ You can specify some other parameters to help you with your investigation, but f
 
 Fortunately, IDEA offers a nice GUI tool to work with Maven dependency graphs. This tool is in IntelliJ for quite some time, but as of version 2019.1, it received some needed enhancements, which make it much more useful in projects with large dependency graphs.
 
-To show the graph, go inside a `pom.xml` file and press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Alternatively `Right click → Diagrams → Show Dependencies`.
+To show the graph, go inside a `pom.xml` file and press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Alternatively `Right click → Diagrams → Show Dependencies`.
 
 You'll see zoomed out dependency graph, where it is not possible to see individual item names unless you zoom in. Looking for individual items manually can be a lot of pain. Fortunately, you can use `Find` as usual using <kbd>Ctrl</kbd> + <kbd>F</kbd>.
 
@@ -163,7 +163,7 @@ In the left panel, you can browse your dependencies (viewed either as list or tr
 ## Analyzing Gradle dependencies
 Since version `2019.2`, IDEA can finally show you dependency diagram not only for Maven, but also for Gradle. Yay! It works pretty much the same as Maven dependency diagram.
 
-Just go to your `build.gradle` file and then press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Or `Right click → Diagrams → Show Dependencies`.
+Just go to your `build.gradle` file and then press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Or `Right click → Diagrams → Show Dependencies`.
 
 ## Conclusion
 When you create an application, properly structuring your dependencies is very important as architecture with tight and tangled dependencies can be very hard to maintain, extend and modify. Fortunately, IDEA can help with a Dependency Structure Matrix, which provides a useful graphical view of your internal dependencies.

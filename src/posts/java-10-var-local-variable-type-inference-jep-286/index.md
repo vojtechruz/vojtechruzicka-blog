@@ -34,13 +34,13 @@ Much better, right?
 
 ## JEP 286: Local-Variable Type Inference
 
-Even though the diamond operator helps a bit, you can use it for generics only, and there is still a lot of boilerplate. What if you could just write \'var\' instead of an explicit type like this:
+Even though the diamond operator helps a bit, you can use it for generics only, and there is still a lot of boilerplate. What if you could just write `var` instead of an explicit type like this:
 
 ```java
 var joe = new User();
 ```
 
-No more type duplication and much more concise, right? Don\'t get fooled though - this does not mean that Java has suddenly a dynamic typing now. Everything is still statically typed. It is just syntactic sugar for writing:
+No more type duplication and much more concise, right? Don't get fooled though - this does not mean that Java has suddenly a dynamic typing now. Everything is still statically typed. It is just syntactic sugar for writing:
 
 ```java
 User joe = new User();
@@ -103,11 +103,11 @@ In this case, you are forcing the compiler to infer both left and right-hand sid
 
 ## Backwards compatibility
 
-How does this feature affect your existing applications? Will they be compatible? Adding a new keyword would mean that you no longer can use it as an identifier, which would break existing applications. In fact, var is not a keyword, but rather a reserver type name.  That means you can still use var as variable, package or method name. You cannot, however, use it now as a class or interface name. Applications doing so will no longer compile. Fortunately, such name conflicts with Java naming convention, so you should be safe. As long as you follow the convention, that is.
+How does this feature affect your existing applications? Will they be compatible? Adding a new keyword would mean that you no longer can use it as an identifier, which would break existing applications. In fact, var is not a keyword, but rather a reserver type name.  That means you can still use var as variable, package or method name. You cannot, however, use it now as a class or interface name. Applications doing so will no longer compile. Fortunately, such name conflicts with Java naming convention, so you should be safe. As long as you follow the convention, that is.
 
 ## Performance
 
-If you are concerned about a performance hit this feature could bring, don\'t be. Remember, the types are not inferred at runtime but at compile time. That means the resulting bytecode is the same as with explicit type declaration - it does include the information about the type. That means no extra processing at runtime.
+If you are concerned about a performance hit this feature could bring, don't be. Remember, the types are not inferred at runtime but at compile time. That means the resulting bytecode is the same as with explicit type declaration - it does include the information about the type. That means no extra processing at runtime.
 
 ## Criticism
 
@@ -117,15 +117,15 @@ Some argue that using var achieves actually the opposite effect - the code is le
 
 ### val not included
 
-In most of other statically typed languages, the Local Variable Inference is already a thing. Java is, as always, late to the party. On JVM, both Kotlin and Scala support it and both in a different way than Java. Instead of just var, they provide two options - var and val. Var is meant for variables, which can be reassigned, val for those that not (it is the equivalent of Java\'s final keyword).
+In most of other statically typed languages, the Local Variable Inference is already a thing. Java is, as always, late to the party. On JVM, both Kotlin and Scala support it and both in a different way than Java. Instead of just var, they provide two options - var and val. Var is meant for variables, which can be reassigned, val for those that not (it is the equivalent of Java's final keyword).
 
-Why does not Java offer the same? Actually, when the JEP-286 was discussed, there were both variants on the table. There was a [survey ](https://www.surveymonkey.com/results/SM-FLWGS5PW/)with about 2500 respondents, which was supposed to gather preferences on which option should be chosen. Including some other naming conventions such as let or auto.
+Why does not Java offer the same? Actually, when the JEP-286 was discussed, there were both variants on the table. There was a [survey](https://www.surveymonkey.com/results/SM-FLWGS5PW/) with about 2500 respondents, which was supposed to gather preferences on which option should be chosen. Including some other naming conventions such as let or auto.
 
 While var + val variant was a clear winner by a number of votes (48% vs 23%), it was rejected in favor of var only. To [quote Brian Goetz](http://mail.openjdk.java.net/pipermail/platform-jep-discuss/2016-December/000066.html):
 
 > While it was not the most popular choice in the survey, it was
-> clearly the choice that the most people were OK with.  Many hated
-> var/val; others hated var/let.  Almost no one hated var-only.
+> clearly the choice that the most people were OK with.  Many hated
+> var/val; others hated var/let.  Almost no one hated var-only.
 
 There are more reasons of course. One of them is a clash with final keyword. Val would basically mean *final var* leading to inconsistency of final keyword usage. For local variables, val would not be so important anyway as they are usually [effectively final](http://ilkinulas.github.io/programming/java/2016/03/27/effectively-final-java.html) anyway and immutability is much more important on field level than on method level, where each method is ideally very short.
 

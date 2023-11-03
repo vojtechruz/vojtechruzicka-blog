@@ -43,7 +43,7 @@ And that's pretty much it. On top of this, the client offers some additional fea
 -   Importing and exporting request from/to an XML file. This can be handy when reporting bugs, so the issue can be easily reproduced. And also to persist request between starts of IDEA as REST client's state is not preserved.
 -   You can generate basic authentication header from a username and password.
 -   Request/response history is saved.
--   Integration with JAX-RS - IDEA can detect your @Path annotations and offer them in the path field, so you don\'t have to manually search for the value.
+-   Integration with JAX-RS - IDEA can detect your @Path annotations and offer them in the path field, so you don't have to manually search for the value.
 -   Code completion for common HTTP headers.
 
 ## The New Way - Using Http Request File
@@ -79,7 +79,7 @@ For simple GET requests, you are already covered. But often you need something m
 GET http://localhost:8090/persons/all
 ```
 
-Then you\'ll need a bunch of HTTP headers. Just add them below the URL, one per line as key-value pairs separated by a colon. Since cookies are just HTTP header, you can include them with the other headers.
+Then you'll need a bunch of HTTP headers. Just add them below the URL, one per line as key-value pairs separated by a colon. Since cookies are just HTTP header, you can include them with the other headers.
 
 ```json
 GET http://localhost:8090/persons/all
@@ -90,7 +90,7 @@ Cookie: name=value; name2=value2; name3=value3
 
 ### Adding body
 
-But HTTP headers are not enough. For methods such as POST, you\'ll also want to specify body the of the request. You can do so by leaving one blank line after the end of the request declaration. The body can be multiline. You can have multiple requests in one file and separate them by a line with \#\#\#.
+But HTTP headers are not enough. For methods such as POST, you'll also want to specify body the of the request. You can do so by leaving one blank line after the end of the request declaration. The body can be multiline. You can have multiple requests in one file and separate them by a line with \#\#\#.
 
 ```json
 POST http://localhost:8090/persons/add/
@@ -180,14 +180,14 @@ You can run a specific configuration by clicking the run icon in the gutter:
 
 ![Live Template example](./idea-http-client-live-template.gif)
 
-|Template|Usage    |
-|--------|---------|
-|gtr     |GET Request|
-|gtrp    |GET Request with query parameters|
-|ptr     |POST Request with simple body|
-|ptrp    |Post Request with parameter-like body|
-|mptr    |Post Request to submit a form|
-|fptr    |Post Request to submit a form with a file|
+| Template | Usage                                     |
+|----------|-------------------------------------------|
+| gtr      | GET Request                               |
+| gtrp     | GET Request with query parameters         |
+| ptr      | POST Request with simple body             |
+| ptrp     | Post Request with parameter-like body     |
+| mptr     | Post Request to submit a form             |
+| fptr     | Post Request to submit a form with a file |
 
 ### Testing Responses 
 In addition to performing requests and checking responses, IDEA offers a simple "test framework" so you can check the response with various assertions such as expected status code.
@@ -302,7 +302,7 @@ GET http://localhost:8090/persons/all
 ###
 ```
 
-The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by <kbd>Ctrl</kbd> + Click. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA\'s integrated DIFF tool.
+The really nice thing is that it is just another `.http` file. That means that you can directly execute the requests from there again and it uses the same syntax. The second cool thing is that it preserves not only requests but also responses (response bodies only, unfortunately). Each Response body is saved in a separated file indicated by angle brackets. The type of the file corresponds to the received content type, so here it is JSON, but it can be HTML or something else. You can navigate to the response file by <kbd>Ctrl</kbd> + Click. Actually, the same response information is also shown in scratch files, but not in physical `.http` files. When performing the same request multiple times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA's integrated DIFF tool.
 
 ![compare](./compare.png)
 

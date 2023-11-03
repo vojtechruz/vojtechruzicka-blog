@@ -33,7 +33,7 @@ To install the plugin go to the `Settings → Plugins → Markteplace` and searc
 You can check the source code or contribute in [this GitHub repository](https://github.com/halirutan/IntelliJ-Key-Promoter-X)
 Grab the plugin from the following Git repository.  
 
-## You can\'t remember them all
+## You can't remember them all
 
 Knowing all the useful shortcuts is no doubt handy and a big time-saver. It does, however, take some time to learn them. In the meantime, it is useful to remember some shortcuts, which can compensate for your lack of knowledge of others. The first one is Find action (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> or <kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>A</kbd> on Mac) dialog, which lets you search for specific actions and commands and quickly execute them.
 

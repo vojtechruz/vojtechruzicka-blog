@@ -77,16 +77,16 @@ Staticman loads its configuration from a yaml file called `staticman.yml`. A sam
 
 Here is a list of some of the most important configuration properties:
 
-| Property   | Description   |
-|------------|---------------|
+| Property       | Description                                                                                                                  |
+|----------------|------------------------------------------------------------------------------------------------------------------------------|
 | allowedFields  | An array of the form fields, which should be accepted. If a field is received and it is not specified here, it is discarded. |
-| branch | Name of the git branch Staticman should use. |
-| commitMessage | Commit message to be used. |
-| fileName | Each entry is stored as a file. This property determines the name. You can use placeholders such as @{id] or {@timestamp}. |
-|format| Format of the files created. Can be yaml, json or frontmatter|
-|moderation|If true, Staticman will create a Pull Request instead of pushing directly to your configured branch.|
-|pah| Path to a directory where your Staticman files will be created.|
-|requiredFields| Array of required fields. If some of them are missing, the entry will be rejected.|
+| branch         | Name of the git branch Staticman should use.                                                                                 |
+| commitMessage  | Commit message to be used.                                                                                                   |
+| fileName       | Each entry is stored as a file. This property determines the name. You can use placeholders such as @{id] or {@timestamp}.   |
+| format         | Format of the files created. Can be yaml, json or frontmatter                                                                |
+| moderation     | If true, Staticman will create a Pull Request instead of pushing directly to your configured branch.                         |
+| pah            | Path to a directory where your Staticman files will be created.                                                              |
+| requiredFields | Array of required fields. If some of them are missing, the entry will be rejected.                                           |
 
 ### Creating a form
 Now all you need is to create a form, which accepts user input and submits it to Staticman. You need to define all the fields which you want to collect and submit the form to:

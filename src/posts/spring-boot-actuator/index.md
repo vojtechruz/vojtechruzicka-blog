@@ -89,21 +89,21 @@ And now `/info`. It looks like it is returning just an empty json: `{}`.
 ## More endpoints
 Not very impressive so far. Of course, Actuator offers much more than this. Otherwise, it wouldn't be very useful. There are some examples of available endpoints, with the full list available in the [official docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints).
 
-| Endpoint   | Description   |
-|------------|---------------|
-| health  | Application health info  |
-| info  | Info about the application  |
-| env  | Properties from environment  |
-| metrics  | Various metrics about the app  |
-| mappings  | `@RequestMapping` Controller mappings  |
-| shutdown  | Triggers application shutdown  |
-| httptrace  | HTTP request/response log  |
-| loggers  | Display and configure logger info  |
-| logfile  | Contents of the log file  |
-| threaddump  | Perform thread dump  |
-| heapdump  | Obtain JVM heap dump  |
-| caches  | Check available caches  |
-| integrationgraph | Graph of Spring Integration components  |
+| Endpoint         | Description                            |
+|------------------|----------------------------------------|
+| health           | Application health info                |
+| info             | Info about the application             |
+| env              | Properties from environment            |
+| metrics          | Various metrics about the app          |
+| mappings         | `@RequestMapping` Controller mappings  |
+| shutdown         | Triggers application shutdown          |
+| httptrace        | HTTP request/response log              |
+| loggers          | Display and configure logger info      |
+| logfile          | Contents of the log file               |
+| threaddump       | Perform thread dump                    |
+| heapdump         | Obtain JVM heap dump                   |
+| caches           | Check available caches                 |
+| integrationgraph | Graph of Spring Integration components |
 
 ## Exposing endpoints
 For most of the endpoints, Actuator offers two ways of connecting to them:

@@ -16,7 +16,7 @@ Consider the following code:
 sayHi();
 
 function sayHi() {
-   console.log('Hi there!');
+   console.log('Hi there!');
 }
 ```
 
@@ -112,16 +112,16 @@ console.log(foo); // ReferenceError: foo is not defined
 ```
 
 ## let
-In ES6 in addition to *var*, there were two new variable types introduced - *let* and *const*. What are they good for if there already is *var*? One of the differences is that their scope is not the entire function but rather only the enclosing block. That is, some section of code wrapped in curly braces {}. Like the body of an *if* statement or *for* loop. Finally, you can minimize the scope of your variables to the bare minimum without ugly workarounds such as IIFE.
+In ES6 in addition to *var*, there were two new variable types introduced - *let* and *const*. What are they good for if there already is *var*? One of the differences is that their scope is not the entire function but rather only the enclosing block. That is, some section of code wrapped in curly braces {}. Like the body of an *if* statement or *for* loop. Finally, you can minimize the scope of your variables to the bare minimum without ugly workarounds such as IIFE.
 
-Another difference (and advantage) of *let* over *var* is how hoisting works. Variables declared using *var* can be accessed in the whole scope (and we already know that *var* has a bigger scope). You can access them before they are declared. In such case, their value would be undefined though, as only declarations and not initializations are hoisted. This is generally considered a bad practice. *Let* behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in the \'Temporal Dead Zone\'.
+Another difference (and advantage) of *let* over *var* is how hoisting works. Variables declared using *var* can be accessed in the whole scope (and we already know that *var* has a bigger scope). You can access them before they are declared. In such case, their value would be undefined though, as only declarations and not initializations are hoisted. This is generally considered a bad practice. *Let* behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in the \'Temporal Dead Zone\'.
 
 To better understand the difference between *var* and *let*, we need to compare their life cycle. When a scope is entered, the first thing which happens is that the whole scope (function body, block) is searched for variable declarations. Then there is a memory space allocated for each of the variables. After this, the body of the function or block is executed line by line. That\'s basically how hoisting works and why you can access your variables before declaring them.
 
 There is one key difference how this behaves between *var* and *let/const* though.
 
 -   In case of *var*, after creating variable definitions, before executing line by line each of the variables is initialized with the undefined value.
--   In case of *let/const*, the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in the *Temporal Dead Zone* and accessing it results in Reference Error.
+-   In case of *let/const*, the initialization to undefined does not happen until the line where the declaration actually happens. And only if there is no assignment immediately. On the lines above the variable is in the *Temporal Dead Zone* and accessing it results in Reference Error.
 
 One of the advantages of *let* over *var* is also pollution of global scope. When you declare a variable using *var* on the root level, it is automatically declared on the global object:
 
@@ -138,9 +138,9 @@ console.log(window.foo) //undefined
 ```
 
 ## const
-Const behaves in a very similar way to let. It is also block scoped and cannot be used until declared. There is, however, one key difference. Once variable declared using *const* keyword is assigned a value, you cannot reassign it. You also need to initialize the variable immediately when declaring it.  It is useful as this prevents accidental reassignment of the variable. It also promotes good coding practices as it prohibits using a single variable for multiple purposes during its lifecycle, which is confusing and error-prone. And how can you even have a nice descriptive name of a variable which does multiple different things?
+Const behaves in a very similar way to let. It is also block scoped and cannot be used until declared. There is, however, one key difference. Once variable declared using *const* keyword is assigned a value, you cannot reassign it. You also need to initialize the variable immediately when declaring it.  It is useful as this prevents accidental reassignment of the variable. It also promotes good coding practices as it prohibits using a single variable for multiple purposes during its lifecycle, which is confusing and error-prone. And how can you even have a nice descriptive name of a variable which does multiple different things?
 
-While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of [primitives](https://www.vojtechruzicka.com/javascript-primitives/) such as numbers, strings or booleans, you are safe as they are immutable.
+While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to objects. In case of [primitives](https://www.vojtechruzicka.com/javascript-primitives/) such as numbers, strings or booleans, you are safe as they are immutable.
 
 ## let vs const
 Because of the advantages of *const* described above, it is a good practice to prefer *const* over *let*. Actually, in most of the cases, you can safely use *const*. There are only a few cases where you really need *let*. One of the examples can be loops. Because the iterating variable gets changed with every step through the loop you cannot use *const*. However, you can avoid using loops in many cases in favor of more functional way such as - map, filter or reduce. When using a linter (and you should use it), it [can check](https://eslint.org/docs/rules/prefer-const) for you cases where you can safely replace *let* with *const* as the variable is never reassigned.

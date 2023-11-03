@@ -114,7 +114,7 @@ One caveat to watch for and which is confusing is that even though null is a pri
 
 ## Object Wrappers
 
-Alright, we know that objects have properties, which you can access using a dot. Like `person.name = 'john'`. Primitives don't have anything like that, they are just a single value. And strings are primitives. How come that the following will work then?
+Alright, we know that objects have properties, which you can access using a dot. Like `person.name = 'john'`. Primitives don't have anything like that, they are just a single value. And strings are primitives. How come that the following will work then?
 
 ```javascript
 var name = 'John';
@@ -220,4 +220,4 @@ console.log(john + 1); //46
 
 ## Summary
 
-Javascript provides six primitive types - number, boolean, string, null, undefined and symbol. Primitives are immutable and are compared by value. When needed, Javascript wraps a primitive by an object wrapper. It is not recommended to create these wrappers explicitly. If the conversion needs to be done the other way around - from an object to a prototype, the `valueOf` method is called to obtain a primitive value. You can use your own implementation of `valueOf`.
+Javascript provides six primitive types - number, boolean, string, null, undefined and symbol. Primitives are immutable and are compared by value. When needed, Javascript wraps a primitive by an object wrapper. It is not recommended to create these wrappers explicitly. If the conversion needs to be done the other way around - from an object to a prototype, the `valueOf` method is called to obtain a primitive value. You can use your own implementation of `valueOf`.

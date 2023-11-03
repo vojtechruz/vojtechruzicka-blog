@@ -40,18 +40,18 @@ Dle nové metodiky se nyní osm z deseti položek určuje na základě dat o zra
 
 Po předchozím neúspěchu v dubnu byla konečně zveřejněna zbrusu nová verze v prosinci. Obsahuje následujících deset položek:
 
-  Položka                                          | Popis
- -------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  1\. Injekce                                      | Zranitelnosti vsunutím škodlivého kódu jako např. SQL Injection. Nastává pokud neověřená data jsou použita v dotazu nebo příkazu a interpretována. Může vést k úniku a ztrátě dat nebo spuštění nežádoucího kódu.
-  2\. Nefunkční autentizace                        | Autentizace je často implementována chybně nebo nedostatečně. Může vést k převzetí uživatelských účtů nebo celého systému.
-  3\. Nezabezpečení citlivých dat                  | Nezabezpečený přenos a uchovávání citivých dat. Útočník může tato data změnit nebo zneužít k dalším útokům.
-  4\. XML External Entities (XXE)                  | Externí entity v XML mohou být zneužity k přístupu k chráněným souborům, spuštění škodlivého kódu nebo DDoS útokům.
-  5\. Nefunkční kontrola přístupu                  | Útočník může využít chyb v kontrole přístupu, aby se dostal k citlivým datům a chráněným funkcím systému.
-  6\. Chybná konfigurace                           | Použití výchozí konfigurace, nekompletní konfigurace, detailní výpis chyb na klientovi, špatné HTTP hlavičky a další.
-  7\. Cross-Site Scripting (XSS)                   | Pokud není sanitizován vstup od uživatele, může útočník spustit škodlivý javascriptový kód v prohlížeči oběti.
-  8\. Nezabezpečená Deserializace                  | Nezabezpečená deserializace může vést k řadě útoků včetně spuštění škodlivého kódu.
-  9\. Použití komponent se známými zranitelnostmi  | Útočník může využít zranitelnosti v komponentách a frameworcích třetích stran, zvláště pokud jsou použity neaktualizované verze se známými zranitelnostmi.
-  10\. Nedostatečné logování a monitorování        | Nedostatečné logování a monitorování včetně chybějící automatické notifikace znemožňuje včasnou reakci na útoky a umožňuje útočníkům nerušeně hledat zranitelnosti v aplikaci.
+| Položka                                         | Popis                                                                                                                                                                                                             |
+|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1\. Injekce                                     | Zranitelnosti vsunutím škodlivého kódu jako např. SQL Injection. Nastává pokud neověřená data jsou použita v dotazu nebo příkazu a interpretována. Může vést k úniku a ztrátě dat nebo spuštění nežádoucího kódu. |
+| 2\. Nefunkční autentizace                       | Autentizace je často implementována chybně nebo nedostatečně. Může vést k převzetí uživatelských účtů nebo celého systému.                                                                                        |
+| 3\. Nezabezpečení citlivých dat                 | Nezabezpečený přenos a uchovávání citivých dat. Útočník může tato data změnit nebo zneužít k dalším útokům.                                                                                                       |
+| 4\. XML External Entities (XXE)                 | Externí entity v XML mohou být zneužity k přístupu k chráněným souborům, spuštění škodlivého kódu nebo DDoS útokům.                                                                                               |
+| 5\. Nefunkční kontrola přístupu                 | Útočník může využít chyb v kontrole přístupu, aby se dostal k citlivým datům a chráněným funkcím systému.                                                                                                         |
+| 6\. Chybná konfigurace                          | Použití výchozí konfigurace, nekompletní konfigurace, detailní výpis chyb na klientovi, špatné HTTP hlavičky a další.                                                                                             |
+| 7\. Cross-Site Scripting (XSS)                  | Pokud není sanitizován vstup od uživatele, může útočník spustit škodlivý javascriptový kód v prohlížeči oběti.                                                                                                    |
+| 8\. Nezabezpečená Deserializace                 | Nezabezpečená deserializace může vést k řadě útoků včetně spuštění škodlivého kódu.                                                                                                                               |
+| 9\. Použití komponent se známými zranitelnostmi | Útočník může využít zranitelnosti v komponentách a frameworcích třetích stran, zvláště pokud jsou použity neaktualizované verze se známými zranitelnostmi.                                                        |
+| 10\. Nedostatečné logování a monitorování       | Nedostatečné logování a monitorování včetně chybějící automatické notifikace znemožňuje včasnou reakci na útoky a umožňuje útočníkům nerušeně hledat zranitelnosti v aplikaci.                                    |
 
 Co se změnilo
 ------------

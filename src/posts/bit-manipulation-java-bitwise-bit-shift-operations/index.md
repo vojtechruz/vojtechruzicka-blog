@@ -63,12 +63,12 @@ Exclusive OR (XOR) results in 1 only if both the compared bits have a different 
 
 Below is a table showing a comparison of results of all the bitwise operators mentioned above based on different values of the compared bits (A and B).
 
-  A  | B | A & B | A \| B | A \^ B
-  ---|---|-------|--------|--------
-  1  | 0 | 0     | 1      | 1
-  0  | 1 | 0     | 1      | 1
-  1  | 1 | 1     | 1      | 0
-  0  | 0 | 0     | 0      | 0
+| A | B | A & B | A \| B | A \^ B |
+|---|---|-------|--------|--------|
+| 1 | 0 | 0     | 1      | 1      |
+| 0 | 1 | 0     | 1      | 1      |
+| 1 | 1 | 1     | 1      | 0      |
+| 0 | 0 | 0     | 0      | 0      |
 
 Bit Shift Operators
 -------------------

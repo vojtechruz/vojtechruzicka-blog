@@ -189,13 +189,12 @@ Angular data binding is an important concept, which makes your application dynam
 
 We have four kinds of data binding:
 
-Name | Syntax | Direction | Description
------|--------|-----------|-------------
-Interpolation | `{{}}` | Class → Template | Resolves expression to string. |
-Property binding | `[]` | Class → Template | Binds an expression result to a property of DOM node or component input. |
-Event binding | `()` | Template → Class | Executes expression when an event on a DOM node or component is triggered.
-Two-way binding | `[()]` | Class ↔ Template | Synchronizes value between the class and the template. Requires `FormsModule`.
-
+| Name             | Syntax | Direction        | Description                                                                    |
+|------------------|--------|------------------|--------------------------------------------------------------------------------|
+| Interpolation    | `{{}}` | Class → Template | Resolves expression to string.                                                 |
+| Property binding | `[]`   | Class → Template | Binds an expression result to a property of DOM node or component input.       |
+| Event binding    | `()`   | Template → Class | Executes expression when an event on a DOM node or component is triggered.     |
+| Two-way binding  | `[()]` | Class ↔ Template | Synchronizes value between the class and the template. Requires `FormsModule`. |
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise operators or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation and property binding, there should be no side effects.
 

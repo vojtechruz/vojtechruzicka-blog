@@ -32,7 +32,7 @@ The problem with the object's clone() method is that it is protected. That is a 
  
 ### Implementation
 
-The first thing you need to do for your class to support cloning is to implement Cloneable interface. Even if you don\'t want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call `super.clone()`.
+The first thing you need to do for your class to support cloning is to implement Cloneable interface. Even if you don't want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call `super.clone()`.
 
 The basic implementation of the clone method in a class implementing Cloneable interface would be similar to this:
 

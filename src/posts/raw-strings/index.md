@@ -61,16 +61,16 @@ String myString = "This is my string\n" +
 
 Special characters such as newline are escaped with backslash `\`. This is necessary for double quotes `"` as they would terminate the string and also for backslash `\` character as it would rather indicate escaped character. In addition to that there is a whole bunch of escape sequences in java:
 
-|Sequence|Usage    |
-|--------|---------|
-|\t    |Tab|
-|\b    |Backspace (remove previous character)|
-|\n    |New line|
-|\r    |Carriage return|
-|\f    |Form feed|
-|\\'    |Single quote character|
-|\\"    |Double quote character|
-|\\\    |Backslash character|
+| Sequence | Usage                                 |
+|----------|---------------------------------------|
+| \t       | Tab                                   |
+| \b       | Backspace (remove previous character) |
+| \n       | New line                              |
+| \r       | Carriage return                       |
+| \f       | Form feed                             |
+| \\'      | Single quote character                |
+| \\"      | Double quote character                |
+| \\\      | Backslash character                   |
 
 String literals are usually hard to read because they are plagued with escape sequences:
 

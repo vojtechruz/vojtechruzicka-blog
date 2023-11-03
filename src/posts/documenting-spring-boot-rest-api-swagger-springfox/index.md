@@ -17,7 +17,7 @@ One of the most popular API documentation specifications is OpenApi, formerly kn
 It is however not realistic to write such documentation by hand and keep it updated whenever your code changes. This is where SpringFox comes into play. It is a Swagger integration for Spring Framework. It can automatically inspect your classes, detect Controllers, their methods, model classes they use and URLs to which they are mapped. Without any handwritten documentation, it can generate a lot of information about your API just by inspecting classes in your application. How cool is that? Most importantly, whenever you make changes they'll be reflected in the documentation.
 
 ## Starting project
-To start, you'll need a Spring Boot application with some Rest Controllers, I\'ve prepared a simple one [here](https://github.com/vojtechruz/rest-docs-starter).
+To start, you'll need a Spring Boot application with some Rest Controllers, I've prepared a simple one [here](https://github.com/vojtechruz/rest-docs-starter).
 
 For this article, I used SpringFox 2.9.2 and Spring Boot 1.5.10.RELEASE. It uses version 2 of the Swagger specification. Version 3 is already out, but it is not yet (as of 2/2018) supported by SpringFox. The support should be available in the [next version](https://github.com/springfox/springfox/releases).
 

@@ -80,7 +80,7 @@ You can see all the properties, constructors, and methods of the selected compon
 
 ![compodoc-modules](./documentation-compodoc-modules.png)
 
-Compodoc also allows you to see a nice diagram of your application\'s routing, which is always handy.
+Compodoc also allows you to see a nice diagram of your application's routing, which is always handy.
 
 ![compodoc-routes](./documentation-compodoc-routes.png)
 

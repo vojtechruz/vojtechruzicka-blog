@@ -14,7 +14,7 @@ If you are coming from another language, which is Object Oriented, such as Java,
 
 In Javascript, *this* is yet another concept, which behaves in an unexpected way. Like other concepts such as new operator or classes, it tricks you into making some false assumptions based on concepts which you know from other languages. Because the syntax and naming are the same or very similar, yet the concept is different. What's more, its behavior is not the same depending on whether you are in the strict mode or not.
 
-Every time a function is invoked, *this* is assigned a reference to an object based on how the function was called. Is it a regular function? A method called on an object? Fat arrow function? Method of an ES6 class? That\'s the key to understanding the topic. What\'s confusing about this is that the very same function can have a different value of *this* based on circumstances. Turns out that this does not depend on the function itself but rather on how the function is called. The same function will have different *this* when called as a method of an object and when provided as a callback function. You need to be careful because the functions can be passed around and in such case, *this* may be different from what you expected.
+Every time a function is invoked, *this* is assigned a reference to an object based on how the function was called. Is it a regular function? A method called on an object? Fat arrow function? Method of an ES6 class? That\'s the key to understanding the topic. What\'s confusing about this is that the very same function can have a different value of *this* based on circumstances. Turns out that this does not depend on the function itself but rather on how the function is called. The same function will have different *this* when called as a method of an object and when provided as a callback function. You need to be careful because the functions can be passed around and in such case, *this* may be different from what you expected.
 
 ## Function invocation
 When calling a function *this* is referring to the global object. The global object depends on how you run your code -- if you are executing in a browser, it is the window object. In node.js it is an object called global.
@@ -41,7 +41,7 @@ logThisInStrictMode(); // undefined
 ```
 
 ## Method invocation
-A method is basically a function, which is a property of an object. In methods, the situation is simple -- *this* refers to the object the method is owned by.
+A method is basically a function, which is a property of an object. In methods, the situation is simple -- *this* refers to the object the method is owned by.
 
 ```javascript
 var john = {
