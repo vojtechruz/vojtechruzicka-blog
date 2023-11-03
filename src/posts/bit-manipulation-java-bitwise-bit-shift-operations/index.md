@@ -23,7 +23,7 @@ These operators can be performed on integer types and its variants - that is
 
 ### Unary bitwise complement operator \[\~\]
 
-This fancy name basically means bit negation. It takes every single bit of the number and flips its value. That is - 0 becomes 1 and vice versa. Unary means that it needs just one operand. The operator is \~ and it is just placed before the number:
+This fancy name basically means bit negation. It takes every single bit of the number and flips its value. That is - 0 becomes 1 and vice versa. Unary means that it needs just one operand. The operator is \~ and it is just placed before the number:
 
 ```java
 ~someVariable
@@ -35,13 +35,13 @@ or
 ~42
 ```
 
-For example, let\'s use \~42:
+For example, let's use \~42:
 
 1.  The binary representation of 42 is 101010.
 2.  Because 42 is int, it is represented as a 32-bit value, that is 32x ones or zeros.
-3.  So all the positions to the left of 101010 are actually filled with zeros up to 32 bits total.
-4.  That is 00000000 00000000 00000000 00101010
-5.  Flipped value of the number above would then be 11111111 11111111 11111111 11010101
+3.  So all the positions to the left of 101010 are actually filled with zeros up to 32 bits total.
+4.  That is 00000000 00000000 00000000 00101010
+5.  Flipped value of the number above would then be 11111111 11111111 11111111 11010101
 
 ### Bitwise AND \[&\]
 
@@ -55,7 +55,7 @@ For example: 1010 & 1100 would result in 1000 as the first bit from the left is 
 
 Bitwise OR results in 1 when at least one of the compared bits is 1 (or both), otherwise it results in 0.
 
-### Bitwise Exclusive OR (XOR) \[\^\]
+### Bitwise Exclusive OR (XOR) \[\^\]
 
 Exclusive OR (XOR) results in 1 only if both the compared bits have a different value, otherwise, it results in 0.
 
@@ -87,7 +87,7 @@ becomes
 00000000 00000000 00000000 00101000
 ```
 
-You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2^*n*.
+You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2^*n*.
 
 There are several additional interesting aspects to this:
 
@@ -101,11 +101,11 @@ There are actually two types of right shift. Signed and unsigned. The difference
 
 One solution is that the leftmost (Most Significant) bit is a sign bit. That means that its value indicates whether the number is positive or negative. This has, however, some disadvantages such as that there are two ways of representing zero.
 
-Java uses another approach, which is called *two\'s complement*. Negative numbers are representing by negating (flipping) all the bits and then adding 1. Still, if the leftmost bit is 0, the number is positive. Otherwise, it is negative.
+Java uses another approach, which is called *two's complement*. Negative numbers are representing by negating (flipping) all the bits and then adding 1. Still, if the leftmost bit is 0, the number is positive. Otherwise, it is negative.
 
 ### Signed Right Shift \[\>\>\]
 
-Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2*^n*. Or division by 2^*n* -1 in case of odd numbers.
+Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2*^n*. Or division by 2^*n* -1 in case of odd numbers.
 
 ### Unsigned Right Shift \[\>\>\>\]
 
@@ -139,4 +139,4 @@ Note that there is no compound assignment operator for Unary bitwise complement 
 
 ## Conclusion
 
-Bit manipulation can be very handy in some cases and is really efficient. Increased performance, however, comes at its cost. The readability suffers a lot at it can be really puzzling for somebody who is not familiar with the bit manipulation concept. If the scenario you are using is not performance-critical, you may want to consider, whether the tradeoff of performance for readability is really worth it and maybe rewrite your solution in a more readable way. Don\'t use bit manipulation everywhere possible just because you learned a cool new concept.
+Bit manipulation can be very handy in some cases and is really efficient. Increased performance, however, comes at its cost. The readability suffers a lot at it can be really puzzling for somebody who is not familiar with the bit manipulation concept. If the scenario you are using is not performance-critical, you may want to consider, whether the tradeoff of performance for readability is really worth it and maybe rewrite your solution in a more readable way. Don't use bit manipulation everywhere possible just because you learned a cool new concept.

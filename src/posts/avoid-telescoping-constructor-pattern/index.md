@@ -51,7 +51,7 @@ john.setDescription("I am a huge fan on JavaBeans convention!");
 This has several advantages:
 
 -   Easy to implement and change
--   Easy to read - setters are named and you know which fields are assigned which value instantly
+-   Easy to read - setters are named, and you know which fields are assigned which value instantly
 -   Easy to scale - Adding more and more parameters is still easy
 
 However, there are also disadvantages, which may or may not concern you depending on the scenario:
@@ -79,7 +79,7 @@ One of the disadvantages of having multiple constructors is reduced readability.
 As you can see those are static methods, which return an instance of the enclosing class. There are some advantages over constructors, most notably:
 
 -   Each can have a different descriptive name, unlike constructors, revealing the intent of that method.
--   Is not required to return a brand new instance every single time - can be used for instance caching, pooling etc.
+-   Is not required to return a brand-new instance every single time - can be used for instance caching, pooling etc.
 
 Unlike JavaBeans, static factory methods can return immutable instances, when delegating to appropriate constructor. However, like constructors, they do not scale well and are not suitable when there is a lot of different parameters, which can be used in any combination.
 

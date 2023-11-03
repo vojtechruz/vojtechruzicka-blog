@@ -19,7 +19,7 @@ There is a handy plugin, which helps you to learn all the necessary keyboard sho
 
 ![Key Promoter Popup Example](./key-promoter.png)
 
-And that\'s it. The effect is two-fold. First, when you see a pop-up with the shortcut every time you click, sooner or later you remember the shortcut. Moreover, for your frequently clicked actions, the pop up becomes so annoying after a while, that you\'ll make anything (hopefully learn the shortcut) to avoid seeing it again. This plugin is especially useful when transitioning from a different IDE like Eclipse or NetBeans and you don\'t know any shortcuts at all.
+And that's it. The effect is two-fold. First, when you see a pop-up with the shortcut every time you click, sooner or later you remember the shortcut. Moreover, for your frequently clicked actions, the pop up becomes so annoying after a while, that you'll make anything (hopefully learn the shortcut) to avoid seeing it again. This plugin is especially useful when transitioning from a different IDE like Eclipse or NetBeans and you don't know any shortcuts at all.
 
 ![Key promoter Statistics](./key-promoter-stats.png)
 

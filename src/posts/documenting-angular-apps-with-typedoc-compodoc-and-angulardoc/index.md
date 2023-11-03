@@ -76,7 +76,7 @@ Once you run the compodoc command it will automatically generate your documentat
 
 ![compodoc](./documentation-compodoc.png)
 
-You can see all the properties, constructors, and methods of the selected component. What\'s more, you can also view the component\'s source code, HTML template or resulting DOM structure. Since Angular applications consist of modules, it is vital to be able to document them and their relationships. Compodoc allows you to do that. You can even see relationships of each module in a nice diagram.
+You can see all the properties, constructors, and methods of the selected component. What's more, you can also view the component's source code, HTML template or resulting DOM structure. Since Angular applications consist of modules, it is vital to be able to document them and their relationships. Compodoc allows you to do that. You can even see relationships of each module in a nice diagram.
 
 ![compodoc-modules](./documentation-compodoc-modules.png)
 

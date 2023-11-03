@@ -38,7 +38,7 @@ In addition to 0-100 score ranking, Lighthouse measures various performance metr
 
 Under the metrics, you can see the *Filmstrip view*. That is how your page looked during the loading process. It is useful to check whether your page is gradually rendering some content instead of being white for the most time as the users perceive such pages as faster and are less likely to leave when the page is still loading.
 
-But what\'s really useful is that the tool recommends you different ways how to increase the performance in your case with real data - that is how much time can you actually save by addressing various issues.
+But what's really useful is that the tool recommends you different ways how to increase the performance in your case with real data - that is how much time can you actually save by addressing various issues.
 
 ![Lighthouse Performance Opportunities](./chrome-audit-performance-opportunities.png)
 
@@ -66,7 +66,7 @@ This category focuses on Search Engine Optimization. It covers mainly that your 
 
 ### Google Chrome extension
 
-Originally, before Lighthouse was integrated as a part of Chrome Dev Tools, it was available as a standalone Chrome extension. And it still is. This may be handy if you are stuck with an older version of Chrome. Or If you want to try the newest features of Lighthouse. That\'s because stable Chrome does not include the latest and Greatest version of Lighthouse, but the extension does.
+Originally, before Lighthouse was integrated as a part of Chrome Dev Tools, it was available as a standalone Chrome extension. And it still is. This may be handy if you are stuck with an older version of Chrome. Or If you want to try the newest features of Lighthouse. That's because stable Chrome does not include the latest and Greatest version of Lighthouse, but the extension does.
 
 ### Command Line Interface
 

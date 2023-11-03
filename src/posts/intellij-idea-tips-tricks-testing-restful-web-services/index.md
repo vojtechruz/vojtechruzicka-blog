@@ -40,7 +40,7 @@ And then you just hit `Submit Request`. IDEA sends a new HTTP request to the tar
 
 And that's pretty much it. On top of this, the client offers some additional features such as:
 
--   Importing and exporting request from/to an XML file. This can be handy when reporting bugs, so the issue can be easily reproduced. And also to persist request between starts of IDEA as REST client\'s state is not preserved.
+-   Importing and exporting request from/to an XML file. This can be handy when reporting bugs, so the issue can be easily reproduced. And also to persist request between starts of IDEA as REST client's state is not preserved.
 -   You can generate basic authentication header from a username and password.
 -   Request/response history is saved.
 -   Integration with JAX-RS - IDEA can detect your @Path annotations and offer them in the path field, so you don\'t have to manually search for the value.

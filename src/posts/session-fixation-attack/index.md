@@ -39,7 +39,7 @@ Once the attacker has the Session Id obtained, they need to make sure the victim
 
 ### URL Parameter
 
-The easiest way to make the victim use the attacker\'s SID is when the server supports Session Id passed as an URL parameter.
+The easiest way to make the victim use the attacker's SID is when the server supports Session Id passed as an URL parameter.
 
 It this case the attacker sends the victim a link containing SID, for example:
 

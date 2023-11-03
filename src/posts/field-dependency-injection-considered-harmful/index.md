@@ -12,7 +12,7 @@ excerpt: 'Field injection is a very popular practice in Dependency Injection fra
 
 ## Injection Types
 
-There are three main ways to inject your dependencies into your class. Constructor, Setter (Method) and Field injection. Let\'s quickly compare the code of the same dependencies injected by all the approaches.
+There are three main ways to inject your dependencies into your class. Constructor, Setter (Method) and Field injection. Let's quickly compare the code of the same dependencies injected by all the approaches.
 
 ### Constructor
 
@@ -67,7 +67,7 @@ private DependencyC dependencyC;
 
 ## What is wrong?
 
-As you can see, the Field variant looks very nice. It is very short, concise, there is no boilerplate code. The code is easy to read and navigate. Your class can just focus on the important and is not polluted by DI boilerplate. You just put the @Autowired annotation above the fields and that\'s it. No special constructors or setters just for DI container to provide your dependencies. Java is very verbose as is, so every opportunity to make your code shorter is welcome, right?
+As you can see, the Field variant looks very nice. It is very short, concise, there is no boilerplate code. The code is easy to read and navigate. Your class can just focus on the important and is not polluted by DI boilerplate. You just put the @Autowired annotation above the fields and that's it. No special constructors or setters just for DI container to provide your dependencies. Java is very verbose as is, so every opportunity to make your code shorter is welcome, right?
 
 ### Single Responsibility Principle Violation
 
@@ -92,11 +92,11 @@ Unlike constructor, field injection cannot be used to assign dependencies to fin
 
 ## Constructor vs Setter Injection
 
-So the Field injection may not be the way to go. What\'s left? Setters and Constructors. Which one should be used?
+So the Field injection may not be the way to go. What's left? Setters and Constructors. Which one should be used?
 
 ### Setters
 
-Setters should be used to inject optional dependencies. The class should be able to function when they are not provided. The dependencies can be changed anytime after the object is instantiated. That may on may not be an advantage depending on the circumstances. Sometimes it is desirable to have an immutable object. Sometimes it is good to change the object\'s collaborators at runtime - such as JMX managed MBeans.
+Setters should be used to inject optional dependencies. The class should be able to function when they are not provided. The dependencies can be changed anytime after the object is instantiated. That may on may not be an advantage depending on the circumstances. Sometimes it is desirable to have an immutable object. Sometimes it is good to change the object's collaborators at runtime - such as JMX managed MBeans.
 
 The official recommendation from [Spring 3.x documentation](http://docs.spring.io/spring/docs/3.1.x/spring-framework-reference/html/beans.html#d0e2778) encourages the use of setters over constructors:
 

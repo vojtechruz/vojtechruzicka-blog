@@ -24,7 +24,7 @@ The type is repeated twice even if it is the same on left and right. With Generi
 Map<User, List> accounts = new Map<User, List>();
 ```
 
-In Java 7, there is a nice feature, called diamond operator. It allows you to provide just a pair of empty angle brackets instead of all the type parameters declaration on the right-hand \'s side.
+In Java 7, there is a nice feature, called diamond operator. It allows you to provide just a pair of empty angle brackets instead of all the type parameters declaration on the right-hand's side.
 
 ```java
 Map<User, List> accounts = new HashMap<>();
