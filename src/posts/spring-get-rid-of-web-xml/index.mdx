@@ -31,7 +31,7 @@ For more info about replacing web.xml with annotations see [Servlet 3.0 Tutorial
 In Spring MVC, web.xml used to be the place, where you needed to declare and configure Dispatcher Servlet, which is a Front Controller, receiving all the requests and dispatching to all the other components such as Controllers. Fortunately, Spring offers a convenient, XML-free way of declaring Dispatcher Servlet.
 
 ## Interface WebApplicationInitializer
-In version 3.1, Spring introduced WebApplicationInitializer. It is an interface, which you can implement. If you do so, Spring will detect your class and execute its method `onStartup(ServletContext container)`, inside which you can define Configuration of your Dispatcher Servlet and do all the other config such as registering and mapping of other servlets, filters or lifecycle listeners. Most importantly, inside the method, you'll need to create your application context. This usually means having root application context and web application context. The specific class you'll need to use for your app context will depend whether you still use XML configuration or Java configuration.
+In version 3.1, Spring introduced `WebApplicationInitializer`. It is an interface, which you can implement. If you do so, Spring will detect your class and execute its method `onStartup(ServletContext container)`, inside which you can define Configuration of your Dispatcher Servlet and do all the other config such as registering and mapping of other servlets, filters or lifecycle listeners. Most importantly, inside the method, you'll need to create your application context. This usually means having root application context and web application context. The specific class you'll need to use for your app context will depend whether you still use XML configuration or Java configuration.
 
 ### XML Config
 To create application context based on XML configuration files, you'll need to use `XmlWebApplicationContext`.
@@ -57,7 +57,7 @@ public class XmlWebAppInitializer implements WebApplicationInitializer {
 ```
 
 ### Java Config
-If you are already using Java Configuration files in favor of XML or you want to migrate, you'll need application context which will load the configuration from annotation-based java classes. You'll need to use `AnnotationConfigWebApplicationContext` instead of `XmlWebApplicationContext`.
+If you are already using Java Configuration files in favor of XML or you want to migrate, you'll need application context which will load the configuration from annotation-based Java classes. You'll need to use `AnnotationConfigWebApplicationContext` instead of `XmlWebApplicationContext`.
 
 ```java
 public class AnnotationWebAppInitializer implements WebApplicationInitializer {
@@ -80,7 +80,7 @@ public class AnnotationWebAppInitializer implements WebApplicationInitializer {
 ```
 
 ## More servlets, filters and listeners
-So far so good, our Dispatcher Servlet is configured. But web.xml is not used only for the dispatcher, but for all the servlets, their filters, listeners and more. How to configure these? Just call a corresponding method on the `ServletContext` object, which is an input parameter of the method:
+So far so good, our Dispatcher Servlet is configured. But `web.xml` is not used only for the dispatcher, but for all the servlets, their filters, listeners and more. How to configure these? Just call a corresponding method on the `ServletContext` object, which is an input parameter of the method:
 
 ```java
 @Override
