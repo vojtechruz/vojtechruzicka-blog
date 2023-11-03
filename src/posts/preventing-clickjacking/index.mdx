@@ -23,9 +23,9 @@ The attack scenario can be for example the following:
 
 A more specific example can be the following:
 
-1.  Create a web page \"You just won an iPad. Claim your prize HERE\"
+1.  Create a web page "You just won an iPad. Claim your prize HERE"
 2.  Load my Twitter profile page in a transparent iframe on top of it
-3.  Position the twitter frame in the way that when a victim means to click the \"Claim Prize\" button, they actually click the \"Follow\" button on my twitter profile.
+3.  Position the twitter frame in the way that when a victim means to click the "Claim Prize" button, they actually click the "Follow" button on my Twitter profile.
 
 ## Prevention
 
@@ -68,7 +68,6 @@ This is the only version of a frame-busting script recommended by the [OWASP Cli
 ### X-Frame-Options
 
 A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header: `X-Frame-Options`. If the client\'s browser receives such header, it will respect it and not render the page. The possible values of the header are following:
-
 -   `DENY` - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.
 -   `SAMEORIGIN` - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.
 -   `ALLOW-FROM` - This allows you to define a trusted location from which your page can be rendered in a frame.
@@ -109,7 +108,6 @@ Content-Security-Policy: frame-ancestors [source] [someOtherSource];
 ```
 
 ## Server-wide protection
-
 The easiest and the most robust way of adding security HTTP headers is not per application, but per server. If you know that all your applications and pages on the server will use the same framing policy, you can declare it directly on the whole server level. Most of the application and HTTP servers support that out of the box. You can easily find the configuration for your favorite server. For example - for Apache, you just need to add
 
 ```
@@ -154,5 +152,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 You can easily check whether your site is vulnerable to clickjacking by using one of the [clickjacking online testing tools](https://clickjacker.io/). Since some of the frameworks and providers add security headers preventing clickjacking automatically, it is possible that your site is already safe.
 
 ## Conclusion
-
 You should make sure you apply clickjacking protection to your site. If you do not use frames, the safest measure is to provide X-Frame-Options `DENY` HTTP header. If you use frames, but just from your origin, you should use X-Frame-Options `SAMEORIGIN`. If you need to allow frames from a trusted host, the situation is a bit trickier. Due to browser compatibility issues, you need to provide both X-Frame-Options `ALLOW-FROM` and Content Security Policy frame-ancestors directive to make sure you cover as many client browsers as possible. Of course, legacy browsers do not support either of the HTTP headers, and you will need to deploy Framebuster javascript to reduce the risk.
