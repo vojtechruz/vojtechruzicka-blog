@@ -25,7 +25,7 @@ Code coverage is measured on a Coverage tab in Developer Tools. To open Dev Tool
 - <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> (Mac) 
 - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Windows, Linux) 
 
-Then type `Show Coverage`.
+Then type `Show Coverage`.
 
 ![show-coverage](./show-coverage.gif)
 
@@ -39,7 +39,7 @@ When you manage to open the coverage tab, it will look like this:
 
 ## Capturing Code Coverage
 
-After opening the `Coverage` tab, you just need to press the record button (*Instrument Coverage*). Then you start to execute the desired use case. That is - you start to navigate the application, click buttons, fill forms and such. When you are finished you just press the button again to stop recording and show the coverage results. This is an example of  coverage results from browsing stackoverflow.com:
+After opening the `Coverage` tab, you just need to press the record button (*Instrument Coverage*). Then you start to execute the desired use case. That is - you start to navigate the application, click buttons, fill forms and such. When you are finished you just press the button again to stop recording and show the coverage results. This is an example of  coverage results from browsing stackoverflow.com:
 
 ![stack-overflow-coverage](./stack-overflow-coverage.png)
 
@@ -53,7 +53,7 @@ Green lines mean that the code on the line was executed fully, red lines were no
 
 ## Dynamic coverage
 
-When using the coverage feature you need to be careful not to jump to conclusions too quickly. Coverage data shown is gathered dynamically based on your behavior and actions in your application. That means it is gathered and computed only based on actions you actually performed during your recorded session. Many elements on the page are usually rendered dynamically only under certain conditions. Some of them may be rendered only in certain corner cases which rarely occur and which you did not encounter while recording the session. Such code would be marked as unused, but you cannot really remove it as it would be missing in some scenarios. Always be careful when removing portions of code that you consider unused as it always does not have to be the case.
+When using the coverage feature you need to be careful not to jump to conclusions too quickly. Coverage data shown is gathered dynamically based on your behavior and actions in your application. That means it is gathered and computed only based on actions you actually performed during your recorded session. Many elements on the page are usually rendered dynamically only under certain conditions. Some of them may be rendered only in certain corner cases which rarely occur and which you did not encounter while recording the session. Such code would be marked as unused, but you cannot really remove it as it would be missing in some scenarios. Always be careful when removing portions of code that you consider unused as it always does not have to be the case.
 
 ## Export
 **UPDATE:** Starting from version 73, you can finally export coverage data. In the top bar of the `Coverage` tab, there is a new `Export...` button, which allows you to export the data in JSON format:

@@ -12,7 +12,7 @@ excerpt: What does Javascript's new operator do? What are constructor functions?
 Creating objects
 ----------------
 
-In your applications, most of the time you don\'t work with [primitives](https://www.vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create objects with object literal like this:
+In your applications, most of the time you don\'t work with [primitives](https://www.vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create objects with object literal like this:
 
 ```javascript
 var Person = {
@@ -41,7 +41,7 @@ var john = new Person('John', 'Doe');
 
 The *Person* is a constructor function. Its whole purpose is to create new objects which represent different persons. We can be sure that each person will have the first name and the last name, which are provided as parameters to this function. Notice that unlike regular functions, constructors begin by convention with a capital letter. This way you can easily tell them apart from ordinary functions.
 
-Then we are creating a specific person instance called *john* with *firstName* \'John\' and *lastName* \'Doe\'. Notice that there is a *new* keyword before the *Person* constructor function call. It is actually an operator and it is responsible for all the magic when creating new persons. It does actually quite a lot:
+Then we are creating a specific person instance called *john* with *firstName* \'John\' and *lastName* \'Doe\'. Notice that there is a *new* keyword before the *Person* constructor function call. It is actually an operator and it is responsible for all the magic when creating new persons. It does actually quite a lot:
 
 1.  It creates a new blank object.
 2.  It makes *this* to point to this newly created object inside the constructor function
@@ -102,7 +102,7 @@ var person = Person('John', 'Doe'); // capital letter, I should use new
 It is also helpful when constructor names are nouns and regular functions are verbs:
 
 ```javascript
-var size = new computeSize(); // lowercase letter;  computeSize doesn't sound like noun
+var size = new computeSize(); // lowercase letter;  computeSize doesn't sound like noun
 ```
 
 ### Explicit check of *this*

@@ -10,9 +10,7 @@ excerpt: 'Protecting your sensitive cookies is very important as stolen session 
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-What are Cookies
-----------------
-
+## What are Cookies
 HTTP protocol itself is stateless. That means when a server receives two requests it cannot tell whether they originate from the same user. There is no conversation context preserved between requests. While it has many advantages such as good scalability, often you want to identify a user you already interacted with and keep state. For example, a user should usually be able to log-in and after that, all their requests should be considered as those of an authenticated user. In other words, you want to recognize such user when they send their next request.
 
 But how can you achieve this? One way is using Cookies. Whenever a server receives a request from a client, it can provide a special HTTP response header called *Set-Cookie*. It can look something like this:
@@ -27,24 +25,20 @@ What it basically says is: Here is a little piece of information (cookies are ke
 Cookie:=[cookie_name]=[cookie_value]; [other_cookie_name]=[other_cookie_value]
 ```
 
-Securing the cookies
---------------------
-
+## Securing the cookies
 Okay, so cookies can be used to store information on the client and then sent to a server with each request. Information such as the unique identifier of a logged in user. And it is sent in the form of HTTP header. Now imagine someone gets their dirty hands on your precious cookie. Since your session cookie represents your identity, the attacker can use it to impersonate you. To perform restricted actions as if they were you. Transfer money, steal sensitive information, delete important data -- this kind of stuff. This means you need to make sure your cookies are as protected as possible. So what are the ways you can mitigate the risk of someone stealing your cookies?
 
-Preventing Cross Site Scripting with HttpOnly attribute
--------------------------------------------------------
-
+## Preventing Cross Site Scripting with HttpOnly attribute
 Cookies can be directly accessed from javascript. It is very easy:
 
 ```javascript
-var cookies = document.cookie;
+let  cookies = document.cookie;
 ```
 
 Not only it is easy to steal cookies this way, but the attacker can tamper with existing cookies or create new ones:
 
 ```javascript
-document.cookie = "my_precious_cookie=some_harmful_value";
+document.cookie = "my_precious_cookie=some_harmful_value";
 ```
 
 You may think you are safe because you are in control of what javascript gets executed on your pages. Wrong. If your application contains Cross-Site Scripting vulnerability, it is easy for an attacker to inject any malicious javascript to be executed on the victim's machines. Once they do that, it is easy to steal your cookies and send them to the attacker.
@@ -55,12 +49,10 @@ Because of such situations, it would be really handy to disable access to your c
 Set-Cookie: [cookie_name]=[cookie_value]; HttpOnly
 ```
 
-Protect Cookies during transport with Secure attribute
-------------------------------------------------------
-
+## Protect Cookies during transport with Secure attribute
 Alright, we've mitigated the risk that the attacker will steal or change our cookies from javascript. But there are more ways to steal our cookies. One of them is in-transit. That means someone can read the request on its way to the server and they will be able to see the cookie as it is just an HTTP header. How do we prevent this?
 
-You should use HTTPS of course, so your data is secure even in-transit. This way man-in-the-middle cannot read your cookies. Unless... Well, there are ways a client can access your HTTPS site using regular HTTP. Maybe they manually type http://. Maybe you have mixed content. Maybe you do use HTTP Strict Transport Security to enforce HTTPS, but the client's browser does not support it yet. Either way, you risk your precious cookies transmitted over an unsecured channel.
+You should use HTTPS of course, so your data is secure even in-transit. This way man-in-the-middle cannot read your cookies. Unless... Well, there are ways a client can access your HTTPS site using regular HTTP. Maybe they manually type http://. Maybe you have mixed content. Maybe you do use HTTP Strict Transport Security to enforce HTTPS, but the client's browser does not support it yet. Either way, you risk your precious cookies transmitted over an unsecured channel.
 
 Fortunately, there is a way to prevent this. Similar to *HttpOnly*, there is another attribute that instructs the browser that it should only send the cookie over a secured channel.
 
@@ -68,9 +60,7 @@ Fortunately, there is a way to prevent this. Similar to *HttpOnly*, there is ano
 Set-Cookie: [cookie_name]=[cookie_value]; Secure
 ```
 
-Prevent Cross-Site Request Forgery with SameSite attribute
-----------------------------------------------------------
-
+## Prevent Cross-Site Request Forgery with SameSite attribute
 When a browser reads a page, there are usually some resources from other domains, which are loaded as well such as images, scripts or social media buttons. The default browser behavior is that it sends cookies which browser has for the external site with the request. Since cookies are sent with cross-domain requests, this can be exploited to trick a previously authenticated user into performing some restricted action on the external site. This type of attack is called [Cross-Site Request Forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) (or CSRF).
 
 Fortunately, when setting a cookie, you can specify that browser should send it to you only if the request is originating from the same origin (is not cross-domain). This cookie parameter is called *SameSite*. It has two possible values:
@@ -103,8 +93,7 @@ This should result in increased security. There are additional changes in how br
 
 This new bahavior is still [not widely supported by all the browsers](https://caniuse.com/#search=samesite) as of 3/2020. Chrome supports this, starting with version 80, the same goes with Edge. In Firefox, you can explicitly enable the support since version 69, however, it is not enabled by default. You can still use `Samesite=None` as it is backward compatible and is be ignored by older browsers.
 
-Minimize Cookie Availability
-----------------------------
+## Minimize Cookie Availability
 
 ### Don't Share cookies with subdomains
 
@@ -124,7 +113,7 @@ There is another parameter which can be used to define the scope of the cookie, 
 http://www.example.com/blog/2017/
 ```
 
-By default, if unspecified, it is set to the path of the resource which set the cookie. Be careful not to set manually a value which is too permissive. When you set \'/\' that means that all the resources on the given domain will receive the cookie. This can be dangerous when you have multiple applications sitting on the same domain which are different only in their path:
+By default, if unspecified, it is set to the path of the resource which set the cookie. Be careful not to set manually a value which is too permissive. When you set \'/\' that means that all the resources on the given domain will receive the cookie. This can be dangerous when you have multiple applications sitting on the same domain which are different only in their path:
 
 ```json
 http://www.example.com/first-app
@@ -137,19 +126,17 @@ In this case, the apps would be sharing cookies. That means that if one of them 
 
 In the same way you want to reduce the cookie's scope to minimize the number of places where it can be stolen, you want to minimize the cookie's lifespan to decrease the time when the cookie is vulnerable.
 
-Cookie lifespan is, if not specified, just for one session. That means until the user closes their browser. Well, at least in theory. These days browsers usually have some mechanisms for session restoration or continue to run in the background so you [cannot depend](http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/) on session cookies being immediately wiped.
+Cookie lifespan is, if not specified, just for one session. That means until the user closes their browser. Well, at least in theory. These days browsers usually have some mechanisms for session restoration or continue to run in the background so you [cannot depend](http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/) on session cookies being immediately wiped.
 
 You can specify cookie expiration or lifespan using *Max-Age* and *Expires* [attributes.](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
 
 For sensitive cookies use the shortest sufficient lifespan possible. Using these parameters you can set cookie lifespan to infinity, which is obviously not a good idea. It is also worth mentioning that to further limit the lifespan of your session cookies, you should limit session duration server side and provide your users with a means of manually terminating their session (logout).
 
-Conclusion
-----------
-
+## Conclusion
 It is extremely important to protect your sensitive cookies, such as these containing session identifiers. If such a cookie is lost, an attacker can assume your identity and do everything you have permissions to do. You should protect your cookies against Cross Site Scripting with HttpOnly attribute so they are not available from javascript.
 
 Cookies are also vulnerable during transport, so you should apply HTTPS and make sure your sensitive cookies are not transmitted using plain HTTP by specifying *Secured* cookie attribute.
 
-To defend against Cros Site Request Forgery, you should add the *SameSite* attribute with either *strict* or *lax* value. But be aware of currently limited browser support.
+To defend against Cross Site Request Forgery, you should add the *SameSite* attribute with either *strict* or *lax* value. But be aware of currently limited browser support.
 
 The limit attack vectors you should keep the availability of your cookie at the minimum. That means limiting the scope (*Domain* and *Path*) and lifespan (*Expires* and *Max-Age*).

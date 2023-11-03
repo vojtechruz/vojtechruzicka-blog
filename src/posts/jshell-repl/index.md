@@ -10,15 +10,15 @@ excerpt: 'From version 9, Java now has its own interactive REPL console, which i
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## REPL
-REPL stands for Read-Eval-Print-Loop. It may sound a bit cryptic, but it is just a fancy name for an interactive shell for a programming language. Many languages these days already have a REPL available. Even on JVM Groovy, Kotlin, Scala, and Clojure already have it. Java starting with version 9 finally has its very own REPL called JShell ([based on Java Enhancement Proposal 222](http://openjdk.java.net/jeps/222)).
+REPL stands for Read-Eval-Print-Loop. It may sound a bit cryptic, but it is just a fancy name for an interactive shell for a programming language. Many languages these days already have a REPL available. Even on JVM Groovy, Kotlin, Scala, and Clojure already have it. Java starting with version 9 finally has its very own REPL called JShell ([based on Java Enhancement Proposal 222](http://openjdk.java.net/jeps/222)).
 
-Alright, so Java finally has its new shiny REPL. But what is it good for? Well, in a nutshell, it allows you to write independent snippets of Java code to the console (READ), immediately execute them (EVAL), then see the results (PRINT) and continue remembering what you already wrote (LOOP). It is a perfect tool if you want to try a piece of code quickly, draft an algorithm, check how some method behaves for unusual input, create and test a code snippet for your blog post etc. You just quickly try some throwaway code and immediately see the results. The best part is - it does not require most of the Java boilerplate.
+Alright, so Java finally has its new shiny REPL. But what is it good for? Well, in a nutshell, it allows you to write independent snippets of Java code to the console (READ), immediately execute them (EVAL), then see the results (PRINT) and continue remembering what you already wrote (LOOP). It is a perfect tool if you want to try a piece of code quickly, draft an algorithm, check how some method behaves for unusual input, create and test a code snippet for your blog post etc. You just quickly try some throwaway code and immediately see the results. The best part is - it does not require most of the Java boilerplate.
 
 While prototyping and quick code verification are important, there is another reason why having a REPL is useful. Especially in a verbose language full of boilerplate such as Java. Imagine you are teaching the Java language to complete beginners. What do you need to write a simple hello world program that just prints to the console? A lot of boilerplate such as a class with the main method. The problem is you need to expose the student to a lot of concepts they don\'t need to worry about right now such as classes, methods, static, string arrays and so on. Then when you make changes, you need to recompile and rerun the whole thing.
 
-The interactive console does not require class with main and immediately shows you output. You can try various constructs and you see results quickly. You don\'t need any IDE. You can start programming with minimal setup and minimal knowledge of all the advanced concepts, learning just one construct at the time. This high barrier to entry also resulted in many schools and institutions abandoning Java as their introduction to programming language choice. The educational aspect was actually the primary motivation for the feature as stated in the JEP222:
+The interactive console does not require class with main and immediately shows you output. You can try various constructs and you see results quickly. You don\'t need any IDE. You can start programming with minimal setup and minimal knowledge of all the advanced concepts, learning just one construct at the time. This high barrier to entry also resulted in many schools and institutions abandoning Java as their introduction to programming language choice. The educational aspect was actually the primary motivation for the feature as stated in the JEP222:
 
-> Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial "Hello, world!" program.
+> Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial "Hello, world!" program.
 
 ## Running JShell
 JShell is bundled with JDK 9+ installation. It resides in your JDK\\bin folder. For example on Windows it can be here:
@@ -27,7 +27,7 @@ JShell is bundled with JDK 9+ installation. It resides in your JDK\\bin folder. 
 C:\Program Files\Java\jdk-9.0.4\bin\jshell.exe
 ```
 
-To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - Support In IntelliJ IDEA).
+To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - Support In IntelliJ IDEA).
 
 ```
 C:\Users\vojtech> jshell -v

@@ -4,7 +4,7 @@ date: "2016-05-08T22:12:03.284Z"
 tags: ['IDEA']
 path: '/learning-intellij-idea-keyboard-shortcuts'
 featuredImage: './learning-intellij-idea-shortcuts.jpg'
-excerpt: 'Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to learn IntelliJ IDEA shortcuts quicker than just by memorizing them one by one.'
+excerpt: 'Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to learn IntelliJ IDEA shortcuts quicker than just by memorizing them one by one.'
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -13,8 +13,8 @@ excerpt: 'Learning shortcut keys of your favorite IDE can greatly boost your p
 
 There is a handy plugin, which helps you to learn all the necessary keyboard shortcuts in IntelliJ IDEA - Key promoter. How does it work? It is quite simple:
 
-1.  Every time you click using your mouse on a button/command/menu item/\... it shows you a pop-up displaying a keyboard shortcut for that action.
-2.  If you click the same action several times (can be configured), plugin suggest to set up the keyboard shortcut for given action.
+1.  Every time you click using your mouse on a button/command/menu item/\... it shows you a pop-up displaying a keyboard shortcut for that action.
+2.  If you click the same action several times (can be configured), plugin suggest to set up the keyboard shortcut for given action.
 3.  The statistics of your top missed keyboard shortcuts are calculated, so you know which shortcuts it is worth learning first.
 
 ![Key Promoter Popup Example](./key-promoter.png)
@@ -28,7 +28,7 @@ What's also useful is that Key Promoter will detect that you're frequently click
 ![Key promoter can suggest you to create a shortcut](./suggest-shortcut.png)
 
 ## Getting the plugin
-To install the plugin go to the  `Settings → Plugins → Markteplace` and search for *Key Promoter X*. *Key Promoter* is an original version of the plugin by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. *Key Promoter X* is a reworked version of that original plugin started by [Aimo Thiele](https://github.com/athiele) and now developed and maintained by [Patrick Scheibe](https://github.com/halirutan). The original plugin was last updated in 2012 and does not work well in new versions of IDEA.
+To install the plugin go to the `Settings → Plugins → Markteplace` and search for *Key Promoter X*. *Key Promoter* is an original version of the plugin by [Dmitry Kashin](https://www.linkedin.com/in/kadim), which is no longer under active development. *Key Promoter X* is a reworked version of that original plugin started by [Aimo Thiele](https://github.com/athiele) and now developed and maintained by [Patrick Scheibe](https://github.com/halirutan). The original plugin was last updated in 2012 and does not work well in new versions of IDEA.
 
 You can check the source code or contribute in [this GitHub repository](https://github.com/halirutan/IntelliJ-Key-Promoter-X)
 Grab the plugin from the following Git repository.  

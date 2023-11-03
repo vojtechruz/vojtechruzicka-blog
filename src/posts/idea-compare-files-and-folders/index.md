@@ -60,7 +60,7 @@ Even if you're not using any Version Control system, IDEA stores historical vers
 Here you can browse older versions of your current file and see the difference between the old and the current version and apply any changes if required.
 
 ## Compare with VCS
-If you're using a Version Control System, you have several more comparison options. For example, if you're using Git, you can go to `VCS → Git` or right click your editor and select `Git`. Now you can:
+If you're using a Version Control System, you have several more comparison options. For example, if you're using Git, you can go to `VCS → Git` or right-click your editor and select `Git`. Now you can:
 
 - **Compare with the same repository version**: Compares the current local file with the version in your remote repository 
 - **Compare with branch**: Compares the local file with the same file in a different branch

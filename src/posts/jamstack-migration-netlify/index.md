@@ -23,7 +23,7 @@ While GitHub pages are good and will do the job, there is one service, which is 
 ## Netlify to the rescue
 All right, Netlify has many nice features, let's dig a bit deeper.
 
-### Simple Setup - Continous Deployment
+### Simple Setup - Continuous Deployment
 What I love about Netlify is its simplicity. It can take just a minute to set up continuous deployment from your git repository.
 
 1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
