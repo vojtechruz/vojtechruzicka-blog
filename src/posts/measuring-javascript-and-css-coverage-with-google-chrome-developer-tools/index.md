@@ -12,7 +12,7 @@ excerpt: 'A new feature in Google Chrome Developer Tools allows you to measure c
 
 ## Why is it useful
 
-This feature was added in Google [Chrome 59](https://developers.google.com/web/updates/2017/04/devtools-release-notes) along with several other useful features such as full-page screenshots and blocking of requests. It allows you to record your session and when you are done, you can check which parts of your Javascript and CSS code were actually used during the session and which not. Each application usually accumulates a lot of JS and CSS code over time and a significant amount of it usually consists of code which is no longer used. Removing this dead code is important as it will speed up the loading times of your pages. What\'s more, your code will become less complex, which will make the maintenance and further development of your application easier and less painful.
+This feature was added in Google [Chrome 59](https://developers.google.com/web/updates/2017/04/devtools-release-notes) along with several other useful features such as full-page screenshots and blocking of requests. It allows you to record your session and when you are done, you can check which parts of your Javascript and CSS code were actually used during the session and which not. Each application usually accumulates a lot of JS and CSS code over time and a significant amount of it usually consists of code which is no longer used. Removing this dead code is important as it will speed up the loading times of your pages. What's more, your code will become less complex, which will make the maintenance and further development of your application easier and less painful.
 
 ## Enabling Code Coverage
 
@@ -62,4 +62,4 @@ When using the coverage feature you need to be careful not to jump to conclusion
 
 ## Conclusion
 
-Google Chrome\'s new feature adds integrated support for calculating dynamic code coverage for Javascript and CSS files, which can be used to detect unused code or code which is used just in some specific scenarios. Such code is a good candidate for removal or Lazy Loading, where you can greatly speed up initial load time for your application.
+Google Chrome's new feature adds integrated support for calculating dynamic code coverage for Javascript and CSS files, which can be used to detect unused code or code which is used just in some specific scenarios. Such code is a good candidate for removal or Lazy Loading, where you can greatly speed up initial load time for your application.

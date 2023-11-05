@@ -43,7 +43,7 @@ document.cookie = "my_precious_cookie=some_harmful_value";
 
 You may think you are safe because you are in control of what javascript gets executed on your pages. Wrong. If your application contains Cross-Site Scripting vulnerability, it is easy for an attacker to inject any malicious javascript to be executed on the victim's machines. Once they do that, it is easy to steal your cookies and send them to the attacker.
 
-Because of such situations, it would be really handy to disable access to your cookies from javascript. Fortunately, you can do it quite easily. When the server sets cookies, you can provide some additional attributes. One of them is [HttpOnly](https://www.owasp.org/index.php/HttpOnly), which says that the cookie will not be accessible in the client\'s browser from javascript:
+Because of such situations, it would be really handy to disable access to your cookies from javascript. Fortunately, you can do it quite easily. When the server sets cookies, you can provide some additional attributes. One of them is [HttpOnly](https://www.owasp.org/index.php/HttpOnly), which says that the cookie will not be accessible in the client's browser from javascript:
 
 ```json
 Set-Cookie: [cookie_name]=[cookie_value]; HttpOnly

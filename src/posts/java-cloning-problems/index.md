@@ -28,7 +28,7 @@ The description of the Object's clone() method is the following (from the JavaDo
 
 The implementation of Object's clone() method is - first check whether the current class actually implements Cloneable. If yes, proceed with the cloning execution. If not, throw `CloneNotSupportedException` checked exception.
 
-The problem with the object's clone() method is that it is protected. That is a serious issue. By implementing Cloneable, the class does not actually provide cloning functionality. You cannot be sure that a class implementing Clonable actually overrides the clone method. What\'s worse, you cannot accept objects of type Clonable in your method and call clone(). You need to know the exact type (e.g., Person) to be able to call clone(). The use of Clonable interface is highly inconsistent with the regular use of interfaces. Instead of committing to be able to provide some functionality to the callers, implementing Cloneable instead modifies the behavior of a protected method in a whole different class.
+The problem with the object's clone() method is that it is protected. That is a serious issue. By implementing Cloneable, the class does not actually provide cloning functionality. You cannot be sure that a class implementing Clonable actually overrides the clone method. What's worse, you cannot accept objects of type Clonable in your method and call clone(). You need to know the exact type (e.g., Person) to be able to call clone(). The use of Clonable interface is highly inconsistent with the regular use of interfaces. Instead of committing to be able to provide some functionality to the callers, implementing Cloneable instead modifies the behavior of a protected method in a whole different class.
  
 ### Implementation
 
@@ -54,11 +54,11 @@ public Person clone() throws CloneNotSupportedException {
 
 ### Deep copy
 
-The implementation above utilizes Object\'s implementation of cloning thus returning a [shallow copy](https://stackoverflow.com/q/184710/4560142) of the object. That means, if the copied object contains references to other objects, these objects are not cloned. This results in copied object pointing to the same objects as the original. A deep copy would clone even referenced objects. It may be fine in some cases, but not in others. Usually, you want your copies to be independent and changes in one should not result in unwanted changes in the other.
+The implementation above utilizes Object's implementation of cloning thus returning a [shallow copy](https://stackoverflow.com/q/184710/4560142) of the object. That means, if the copied object contains references to other objects, these objects are not cloned. This results in copied object pointing to the same objects as the original. A deep copy would clone even referenced objects. It may be fine in some cases, but not in others. Usually, you want your copies to be independent and changes in one should not result in unwanted changes in the other.
 
-Nevertheless, the shallow copy could be sufficient in some cases. One of the cases is if the object is immutable (including its references). If the object cannot change state, it safe to provide just a shallow copy functionality. The same applies if all the fields of the object\'s fields are primitives (and/or immutables). Primitives are copied by value, not by reference, which means the copied instance will be completely independent on the original.
+Nevertheless, the shallow copy could be sufficient in some cases. One of the cases is if the object is immutable (including its references). If the object cannot change state, it safe to provide just a shallow copy functionality. The same applies if all the fields of the object's fields are primitives (and/or immutables). Primitives are copied by value, not by reference, which means the copied instance will be completely independent on the original.
 
-In other cases, it is necessary to provide deep copy functionality. The problem is that you can no longer use Object\'s clone mechanism for that and you need to implement your own. In such cases, it may be easier to try on of the alternative cloning approaches (see Alternatives below). If you want to implement it anyway, you have basically two options. First - do all the cloning manually - create a new instance using a constructor and fill all the fields. Second - still use `super.clone()`, but instead of returning the cloned object directly, just manually copy the fields which are not safe - that is primitive or immutable.
+In other cases, it is necessary to provide deep copy functionality. The problem is that you can no longer use Object's clone mechanism for that and you need to implement your own. In such cases, it may be easier to try on of the alternative cloning approaches (see Alternatives below). If you want to implement it anyway, you have basically two options. First - do all the cloning manually - create a new instance using a constructor and fill all the fields. Second - still use `super.clone()`, but instead of returning the cloned object directly, just manually copy the fields which are not safe - that is primitive or immutable.
 
 The problem with the second approach is that it does not work well with final fields as you cannot receive an already constructed object and then assign its final fields. That goes directly against maximizing immutability.
 
@@ -77,7 +77,7 @@ public Person(Person personToCopy) {
 }
 ```
 
-This has several advantages. You don\'t need to implement any interface. You can accept any interface your class implements as an input and use it as a source of the clone instead (however, then this is rather a conversion constructor then, but can be useful under some circumstances). It does not force you to throw `CloneNotSupportedException` checked exception (and the caller is not forced to catch the exception).
+This has several advantages. You don't need to implement any interface. You can accept any interface your class implements as an input and use it as a source of the clone instead (however, then this is rather a conversion constructor then, but can be useful under some circumstances). It does not force you to throw `CloneNotSupportedException` checked exception (and the caller is not forced to catch the exception).
 
 ### Static Factory Methods
 
@@ -93,7 +93,7 @@ public static Person deepCopyPerson(Person personToCopy) {
 }
 ```
 
-I find it useful to include in the method\'s name whether it is a deep or a shallow copy, so it is immediately obvious from the code and it does not need to be documented separately. Depending on the needs you can choose whether you need a shallow or a deep copy or provide both. Unlike with copy constructors, you can decide whether to return an instance of the same class or rather any subclass.
+I find it useful to include in the method's name whether it is a deep or a shallow copy, so it is immediately obvious from the code and it does not need to be documented separately. Depending on the needs you can choose whether you need a shallow or a deep copy or provide both. Unlike with copy constructors, you can decide whether to return an instance of the same class or rather any subclass.
 
 ### Serialization/Deserialization
 
@@ -118,7 +118,7 @@ This also has some limitations and disadvantages:
 -   Transient fields are not cloned (Transient means not to be serialized)
 -   Way more expensive than clone or copy constructors/factory methods
 
-In some cases, this can be used, but you don\'t always have the luxury of having all the objects Serializable and with no transient fields. Especially when using third-party classes. Also, the performance hit is very significant. Depending on the amount of cloning required and performance requirements, it can be easily too much. More info about performance hit and the serialization approach, in general, can be found in [Java Tip 76: An alternative to the deep copy technique](http://www.javaworld.com/article/2077578/learn-java/java-tip-76--an-alternative-to-the-deep-copy-technique.html).
+In some cases, this can be used, but you don't always have the luxury of having all the objects Serializable and with no transient fields. Especially when using third-party classes. Also, the performance hit is very significant. Depending on the amount of cloning required and performance requirements, it can be easily too much. More info about performance hit and the serialization approach, in general, can be found in [Java Tip 76: An alternative to the deep copy technique](http://www.javaworld.com/article/2077578/learn-java/java-tip-76--an-alternative-to-the-deep-copy-technique.html).
 
 ### Reflection
 
@@ -126,7 +126,7 @@ Reflection is yet another way of making a copy of an object. Using reflection yo
 
 If you are following JavaBeans convention and a shallow copy is enough for you (maybe all the fields are immutable/primitives?), you can use [Apache Commons BeanUtils.cloneBean()](https://commons.apache.org/proper/commons-beanutils/javadocs/v1.8.3/apidocs/org/apache/commons/beanutils/BeanUtils.html#cloneBean(java.lang.Object)), which provides this functionality. Alternatively, if you are using Spring, you can use similar util - [Spring BeanUtils.copyProperties()](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/BeanUtils.html).
 
-If you are looking for a deep copy, you cannot use BeanUtils. There are some other alternatives, such as [uk.com.robust-it.cloning library](https://github.com/kostaskougios/cloning) or [Kryo\'s deep cloning feature](https://github.com/EsotericSoftware/kryo#copyingcloning).
+If you are looking for a deep copy, you cannot use BeanUtils. There are some other alternatives, such as [uk.com.robust-it.cloning library](https://github.com/kostaskougios/cloning) or [Kryo's deep cloning feature](https://github.com/EsotericSoftware/kryo#copyingcloning).
 
 This approach can be used even if the classes don\'t implement the Serializable and therefore is well suited also for third-party libraries, where you cannot modify the code to support serialization or regular cloning. The performance is also much better than the regular serialization.
 

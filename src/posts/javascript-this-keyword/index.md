@@ -14,7 +14,7 @@ If you are coming from another language, which is Object Oriented, such as Java,
 
 In Javascript, *this* is yet another concept, which behaves in an unexpected way. Like other concepts such as new operator or classes, it tricks you into making some false assumptions based on concepts which you know from other languages. Because the syntax and naming are the same or very similar, yet the concept is different. What's more, its behavior is not the same depending on whether you are in the strict mode or not.
 
-Every time a function is invoked, *this* is assigned a reference to an object based on how the function was called. Is it a regular function? A method called on an object? Fat arrow function? Method of an ES6 class? That\'s the key to understanding the topic. What\'s confusing about this is that the very same function can have a different value of *this* based on circumstances. Turns out that this does not depend on the function itself but rather on how the function is called. The same function will have different *this* when called as a method of an object and when provided as a callback function. You need to be careful because the functions can be passed around and in such case, *this* may be different from what you expected.
+Every time a function is invoked, *this* is assigned a reference to an object based on how the function was called. Is it a regular function? A method called on an object? Fat arrow function? Method of an ES6 class? That's the key to understanding the topic. What's confusing about this is that the very same function can have a different value of *this* based on circumstances. Turns out that this does not depend on the function itself but rather on how the function is called. The same function will have different *this* when called as a method of an object and when provided as a callback function. You need to be careful because the functions can be passed around and in such case, *this* may be different from what you expected.
 
 ## Function invocation
 When calling a function *this* is referring to the global object. The global object depends on how you run your code -- if you are executing in a browser, it is the window object. In node.js it is an object called global.
@@ -88,13 +88,13 @@ var john = {
 john.greet(['Jane', 'James', 'Jill']);
 ```
 
-This works, but there are more solutions, which we\'ll cover later. For now, keep in mind that *this* points to the owner object ONLY when you call the method through the object:
+This works, but there are more solutions, which we'll cover later. For now, keep in mind that *this* points to the owner object ONLY when you call the method through the object:
 
 ```javascript
 john.greet(); //finally works
 ```
 
-If you take the very same method and call it in a different way, this will be different. Let\'s say we store the method to a variable and then invoke it. Suddenly, when it is not called on an object, it is just an ordinary function and, as we know, the function's this points to the global object.
+If you take the very same method and call it in a different way, this will be different. Let's say we store the method to a variable and then invoke it. Suddenly, when it is not called on an object, it is just an ordinary function and, as we know, the function's this points to the global object.
 
 ```javascript
 var greetingFunction = john.greet;
@@ -141,7 +141,7 @@ john.greet(); // Hi! My name is John Doe
 However, when using nested functions inside such methods, they behave as regular functions. Same as nested functions in object methods. There is one caveat though. The code inside classed is automatically executed in strict mode even if it is not explicitly declared! As we already know, strict mode changes behavior inside functions so this is undefined instead of pointing to the global object.
 
 ## In fat arrow functions
-In short, fat arrow functions are a more concise way of writing function expressions introduced in ES6. Their biggest advantage is, however, not saving a few characters when typing. They greatly simplify usage of *this*. The thing is that unlike function expressions, where *this* points to the global object, in fat arrow functions *this* is taken from the enclosing function. Remember section about methods and how we used trick *var that = this* to preserve original *this* of the other function? Arrow functions are shorter and you don\'t need to worry about such tricks.
+In short, fat arrow functions are a more concise way of writing function expressions introduced in ES6. Their biggest advantage is, however, not saving a few characters when typing. They greatly simplify usage of *this*. The thing is that unlike function expressions, where *this* points to the global object, in fat arrow functions *this* is taken from the enclosing function. Remember section about methods and how we used trick *var that = this* to preserve original *this* of the other function? Arrow functions are shorter and you don't need to worry about such tricks.
 
 ```javascript
 //The old way using function expressions
@@ -171,7 +171,7 @@ john.greet(['Jane', 'James', 'Jill']); // Hi Jane. My name is John ...
 ```
 
 ## Setting this directly - apply, call, bind
-Sometimes it is handy to be able to directly set the value of *this* when calling a function. Fortunately, there are three methods in javascript exactly for that. All of them are available to all the functions as they are on the function\'s prototype. They are: *apply*, *call* and *bind*.
+Sometimes it is handy to be able to directly set the value of *this* when calling a function. Fortunately, there are three methods in javascript exactly for that. All of them are available to all the functions as they are on the function's prototype. They are: *apply*, *call* and *bind*.
 
 *Apply* and *call* are very similar to each other. They allow you to invoke their function with a value of this specified as a parameter and by providing arguments to be passed to the function call. The value returned is the value returned by the function called. The only way in which they differ is that one expects the function arguments as an array and the other one as direct arguments. Let's compare.
 
