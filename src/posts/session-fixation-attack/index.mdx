@@ -42,9 +42,9 @@ It this case the attacker sends the victim a link containing SID, for example:
 https://www.example.com/?SID=123456
 ```
 
-The victim uses the link to Sign in to the application. Because the Session Id is already provided, the server does not generate a new SID but uses the provided one instead. Once the victim is authenticated, the SID (known to the attacker) remains the same and the session is compromised.
+The victim uses the link to sign in to the application. Because the Session Id is already provided, the server does not generate a new SID but uses the provided one instead. Once the victim is authenticated, the SID (known to the attacker) remains the same and the session is compromised.
 
-In Java, you can define how should the session ID be transmitted in web.xml. There are [three options](http://www.logicbig.com/tutorials/java-ee-tutorial/java-servlet/session-tracking-mode/) - URL, COOKIE, SSL. To prevent session fixation attack using URL parameter, you should set tracking mode either to COOKIE or SSL.
+In Java, you can define how should the session ID be transmitted in `web.xml`. There are [three options](http://www.logicbig.com/tutorials/java-ee-tutorial/java-servlet/session-tracking-mode/) - URL, COOKIE, SSL. To prevent session fixation attack using URL parameter, you should set tracking mode either to COOKIE or SSL.
 
 ```xml
 <session-config>
@@ -56,11 +56,11 @@ In Java, you can define how should the session ID be transmitted in web.xml. The
 
 When a server is not using URL parameter to pass the SID, it usually uses cookies. While cookies are a safer approach, they can also be vulnerable.
 
-Cross-site scripting (XSS) is a type of vulnerability, where malicious javascript code can be executed in the victim's browser. This can be combined with various other vulnerabilities to perform an attack. Javascript can be used to set cookies. For security reasons, you can set cookies only for the domain of your current page. However, in XSS the malicious javascript is actually served from the same domain, so this safeguard is avoided. Malicious javascript can then be used to set a value of session cookie to the SID know by the attacker.
+Cross-site scripting (XSS) is a type of vulnerability, where malicious javascript code can be executed in the victim's browser. This can be combined with various other vulnerabilities to perform an attack. Javascript can be used to set cookies. For security reasons, you can set cookies only for the domain of your current page. However, in XSS the malicious javascript is actually served from the same domain, so this safeguard is avoided. Malicious javascript can then be used to set a value of session cookie to the SID known by the attacker.
 
 Be aware that the attributes of the session cookie can be set in a way that the cookie is persisted after browser quits and the expiration date can be set in the distant future.
 
-Cookies can have optional parameter HttpOnly. With this parameter, client-side scripts will not be able to access the value of such cookie. Session Cookies should be always HttpOnly to mitigate various XSS related session vulnerabilities. When using HTTPS, the session cookie should also have \"Secure\" parameter, which makes sure that it only gets transmitted when a secure connection is established.
+Cookies can have optional parameter `HttpOnly`. With this parameter, client-side scripts will not be able to access the value of such cookie. Session Cookies should be always `HttpOnly` to mitigate various XSS related session vulnerabilities. When using HTTPS, the session cookie should also have `Secure` parameter, which makes sure that it only gets transmitted when a secure connection is established.
 
 Starting with Servlet 3.0, you can declare in web.xml that all session cookies should be HttpOnly and/or Secure.
 
@@ -75,7 +75,7 @@ Starting with Servlet 3.0, you can declare in web.xml that all session cookies s
 
 ### Setting cookie via meta tag
 
-A Lesser known fact is that on the client's side you can set cookies not only using JavaScript but also in document's header using a special meta tag.
+A lesser known fact is that on the client's side you can set cookies not only using JavaScript but also in document's header using a special meta tag.
 
 ```html
 <meta http-equiv="Set-Cookie" Content="SID=123456;expires=Saturday,18-Feb-2017 12:00:00 GMT">
@@ -110,15 +110,15 @@ Please note - while servlet specification does not provide any session fixation 
 ## Spring Security
 The good news is that Spring Security provides [session fixation protection](http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#ns-session-fixation) out of the box and it is enabled by default. If necessary, the mechanism can be changed or completely disabled. The default mechanism depends on the version of Servlet container used:
 
--   For Servlets 3.0 and older, \"migrateSession\" will be used - a new session is created and all the attributes of the old session are copied to the new one.
--   For Servlets 3.1 and newer, \"changeSessionId\" will be used - HttpServletRequest\#changeSessionId() method provided by the Servlet Container will be used. All the attributes of the existing session are preserved, but Session ID is changed.
+-   For Servlets 3.0 and older, `migrateSession` will be used - a new session is created and all the attributes of the old session are copied to the new one.
+-   For Servlets 3.1 and newer, `changeSessionId` will be used - `HttpServletRequest.changeSessionId()` method provided by the Servlet Container will be used. All the attributes of the existing session are preserved, but Session ID is changed.
 
 There are two additional settings, which can be used:
 
--   \"newSession\" - New session is created, but all the attributes of the old session are not preserved. Protects against session fixation and may be useful, when session data are no longer needed after login.
--   \"none\" - Do not create new session nor change session id. Leaves application vulnerable to session fixation. Should be avoided if possible.
+-   `newSession` - New session is created, but all the attributes of the old session are not preserved. Protects against session fixation and may be useful, when session data are no longer needed after login.
+-   `none` - Do not create new session nor change session id. Leaves application vulnerable to session fixation. Should be avoided if possible.
 
-To configure session fixation protection in XML, you can use session-fixation-protection attribute of the \<session-management\> tag:
+To configure session fixation protection in XML, you can use session-fixation-protection attribute of the `<session-management\>` tag:
 
 ```xml
 <session-management session-fixation-protection="migrateSession">
@@ -138,7 +138,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement().sessionFixation().newSession();
     }
 
-    …
+    ...
 }
 ```
 
