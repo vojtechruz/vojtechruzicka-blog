@@ -51,7 +51,7 @@ A & B means that all the bits of both numbers are compared one by one and the re
 
 For example: 1010 & 1100 would result in 1000 as the first bit from the left is the only one where both operands contain 1.
 
-### Bitwise OR \[\|\]
+### Bitwise OR \[ \| \]
 
 Bitwise OR results in 1 when at least one of the compared bits is 1 (or both), otherwise it results in 0.
 
@@ -70,8 +70,7 @@ Below is a table showing a comparison of results of all the bitwise operators me
 | 1 | 1 | 1     | 1      | 0      |
 | 0 | 0 | 0     | 0      | 0      |
 
-Bit Shift Operators
--------------------
+## Bit Shift Operators
 
 ### Signed Left Shift \[\<\<\]
 
@@ -87,13 +86,13 @@ becomes
 00000000 00000000 00000000 00101000
 ```
 
-You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2^*n*.
+You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting a number by one is equivalent to multiplying it by 2, or more generally left shifting a number by *n* positions is equivalent to multiplication by 2<sup>*n*</sup>.
 
 There are several additional interesting aspects to this:
 
 -   Even though you can use shifting of byte, short or char, they are promoted to 32-bit integer before the shifting
 -   Bit-shift operators never throw an exception
--   The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \<\<35 is equivalent to 5 \<\< 3.
+-   The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \<\< 35 is equivalent to 5 \<\< 3.
 
 ### Negative Integers in Java
 
@@ -105,7 +104,7 @@ Java uses another approach, which is called *two's complement*. Negative numbers
 
 ### Signed Right Shift \[\>\>\]
 
-Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2*^n*. Or division by 2^*n* -1 in case of odd numbers.
+Signed right shift moves all the bits by given number of positions to the right. However, it preserves the sign. Positive numbers remain positive and negative ones remain negative. Similar to left shift, the right shift of *n* positions is equivalent to division by 2<sup>*n*</sup>. Or division by 2<sup>*n*</sup> -1 in case of odd numbers.
 
 ### Unsigned Right Shift \[\>\>\>\]
 
@@ -126,17 +125,16 @@ x += 1;
 
 You are probably familiar with compound assignment operators for arithmetic operations such as `+=`, `-=` or `*=`. But in addition to these, Java also offers variants for bitwise operators:
 
-  Operator  | Example  | Is equivalent to |
-------------|----------|------------------|
-  \|=       | x \|= 5  | x = x \| 5       |
-  ^=        | x ^= 5   | x = x ^ 5        |
-  &=        | x &= 5   | x = x & 5        |
-  <<=       | x <<= 5  | x = x << 5       |
-  >>=       | x >>= 5  | x = x >> 5       |
-  >>>=      | x >>>= 5 | x = x >>> 5      |
+| Operator | Example     | Is equivalent to |
+|----------|-------------|------------------|
+| \|=      | x \|= 5     | x = x \| 5       |
+| ^=       | x ^= 5      | x = x ^ 5        |
+| &=       | x &= 5      | x = x & 5        |
+| \<\<=    | x \<\<= 5   | x = x \<\< 5     |
+| \>\>=    | x \>\>= 5   | x = x \>\> 5     |
+| \>\>\>=  | x \>\>\>= 5 | x = x \>\>\> 5   |
   
-Note that there is no compound assignment operator for Unary bitwise complement operator \[\~\].
+Note that there is no compound assignment operator for Unary bitwise complement operator `~`.
 
 ## Conclusion
-
 Bit manipulation can be very handy in some cases and is really efficient. Increased performance, however, comes at its cost. The readability suffers a lot at it can be really puzzling for somebody who is not familiar with the bit manipulation concept. If the scenario you are using is not performance-critical, you may want to consider, whether the tradeoff of performance for readability is really worth it and maybe rewrite your solution in a more readable way. Don't use bit manipulation everywhere possible just because you learned a cool new concept.
