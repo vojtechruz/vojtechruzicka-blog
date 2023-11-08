@@ -5,6 +5,7 @@ tags: ['Security', 'HTTP']
 path: '/session-fixation-attack'
 featuredImage: './session-fixation.jpg'
 excerpt: Session fixation is a type of attack, where the attacker can hijack user's session. What are some of the variants and how to prevent this type of attack?
+links: ["/protect-http-cookies"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -73,12 +74,18 @@ Starting with Servlet 3.0, you can declare in web.xml that all session cookies s
 </session-config>
 ```
 
+You can read more about how to properly protect and handle your cookies in the following article:
+
+<PostLink node={props.pageContext.links["/protect-http-cookies"]} />
+
+
 ### Setting cookie via meta tag
 
 A lesser known fact is that on the client's side you can set cookies not only using JavaScript but also in document's header using a special meta tag.
 
 ```html
-<meta http-equiv="Set-Cookie" Content="SID=123456;expires=Saturday,18-Feb-2017 12:00:00 GMT">
+<meta http-equiv="Set-Cookie"
+      Content="SID=123456;expires=Saturday,18-Feb-2017 12:00:00 GMT">
 ```
 
 This works even when the JavaScript is disabled. The most common way to exploit this vulnerability would be in a situation where the page displays content provided by the users. If it's not properly sanitized, the meta tag can be injected into the code of the page. Although the meta tags belong to the header part of the HTML page, the attack is likely to succeed even if injected into the body, depending on the browser used, [as it often gets interpreted](http://stackoverflow.com/q/1447842/4560142).
