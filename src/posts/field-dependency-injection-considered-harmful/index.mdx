@@ -67,11 +67,11 @@ private DependencyC dependencyC;
 
 ## What is wrong?
 
-As you can see, the Field variant looks very nice. It is very short, concise, there is no boilerplate code. The code is easy to read and navigate. Your class can just focus on the important and is not polluted by DI boilerplate. You just put the @Autowired annotation above the fields and that's it. No special constructors or setters just for DI container to provide your dependencies. Java is very verbose as is, so every opportunity to make your code shorter is welcome, right?
+As you can see, the Field variant looks very nice. It is very short, concise, there is no boilerplate code. The code is easy to read and navigate. Your class can just focus on its business logic and is not polluted by DI boilerplate. You just put the `@Autowired` annotation above the fields and that's it. No special constructors or setters just for DI container to provide your dependencies. Java is very verbose as is, so every opportunity to make your code shorter is welcome, right?
 
 ### Single Responsibility Principle Violation
 
-It is very easy to add new dependencies. Maybe too easy. There is no problem in adding six, ten or even dozen dependencies. When you are using constructors for DI, after a certain point, the number of constructor params becomes too high and it is immediately obvious that something is wrong. Having too many dependencies usually means that the class has too many responsibilities. That may be a violation of Single Responsibility Principle and separation of concerns and is a good indicator, that the class requires further inspection and possible refactoring. There is no such red flag when injecting directly into fields as this approach can scale indefinitely.
+It is very easy to add new dependencies. Maybe too easy. There is no problem in adding six, ten or even dozen dependencies. When you are using constructors for DI, after a certain point, the number of constructor params becomes too high, and it is immediately obvious that something is wrong. Having too many dependencies usually means that the class has too many responsibilities. That may be a violation of Single Responsibility Principle and separation of concerns and is a good indicator, that the class requires further inspection and possible refactoring. There is no such red flag when injecting directly into fields as this approach can scale indefinitely.
 
 ### Dependency Hiding
 
@@ -83,7 +83,7 @@ One of the core ideas of the DI frameworks is that the managed class should have
 
 However, when injecting directly into fields, you provide no direct way of instantiating the class with all its required dependencies. That means:
 
--   There is a way (by calling the default constructor) to create an object using *new* in a state when it lacks some of its mandatory collaborators and usage will result in the NullPointerException.
+-   There is a way (by calling the default constructor) to create an object using `new` in a state when it lacks some of its mandatory collaborators and usage will result in the `NullPointerException`.
 -   Such a class cannot be reused outside DI containers (tests, other modules) as there is no way except reflection to provide it with its required dependencies.
 
 ### Immutability
