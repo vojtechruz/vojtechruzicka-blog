@@ -15,7 +15,11 @@
   .similar-posts,
   .gatsby-code-button,
   .bio,
-  .bottom-post-tags {
+  .bottom-post-tags,
+  giscus-widget,
+  .pagination,
+  .post-header-featured-image,
+  .lets-connect {
     display: none !important;
   }
 
@@ -23,7 +27,11 @@
     border: none !important;
   }
 
-  #article-content p .gatsby-resp-image-wrapper:first-of-type {
-    display: none !important;
+  img, pre {
+    break-inside: avoid-page;
+  }
+
+  h1, h2, h3, h4 {
+    break-after: avoid-page;
   }
 }
