@@ -25,7 +25,7 @@ If you add your stylesheet this way, it will be applied **in addition** to your 
 <link rel="stylesheet" media="print" href="printing-stylesheet.css">
 ```
 
-Having separate stylesheet just for printing can be useful, if you want to [load it dynamically](http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml), only when needed or you prefer your print styles to be completely separated.
+Having separate stylesheet just for printing can be useful, if you want to [load it dynamically](http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml), only when needed, or you prefer your print styles to be completely separated.
 
 ## Media queries    
 A more modern way of including print-specific CSS is using [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
@@ -46,7 +46,7 @@ Or only when using a screen.
 }
 ```
 
-This approach may be preferred to separate print stylesheet as you can easily have regular and print CSS for a page/component in the same place. This makes the maintenance easier and it is less likely that you will forget to update printing styles when making changes to regular styles.
+This approach may be preferred to separate print stylesheet as you can easily have regular and print CSS for a page/component in the same place. This makes the maintenance easier, and it is less likely that you will forget to update printing styles when making changes to regular styles.
 
 ## Check your CSS framework
 If you are using external CSS styles, for example, a framework such as Bootstrap, you should first check its print support.
@@ -135,8 +135,8 @@ h2 {
 
 You can also insert page breaks after an element using `break-after`.
 
-<div class="msg-info">
-There are older properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before">page-break-before</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after">page-break-after</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside">page-break-inside</a>, which are now deprecated in favor of <em>break-before</em>, <em>break-after</em> and <em>break-inside</em>.</div>
+
+<Info>There are older properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before">page-break-before</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after">page-break-after</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside">page-break-inside</a>, which are now deprecated in favor of <em>break-before</em>, <em>break-after</em> and <em>break-inside</em>.</Info>
 
 
 ### Paragraph splitting
@@ -300,7 +300,7 @@ It is usually preferred to do as much as possible in CSS, but sometimes using JS
 It can be time-consuming to open print preview dialog in your browser whenever you make changes and want to check how your page looks when printing. Fortunately, in Developer Tools, you can easily emulate how the page would look like when printing without triggering he print dialog.
 
 ### Chrome
-In Chrome Devtools the you can [switch to print view](https://developers.google.com/web/tools/chrome-devtools/css/print-preview): 
+In the Chrome Devtools you can [switch to print view](https://developers.google.com/web/tools/chrome-devtools/css/print-preview):
 1. Open your Devtools
 2. Press  or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>  (or <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> on Mac)
 3. Search for `rendering`
