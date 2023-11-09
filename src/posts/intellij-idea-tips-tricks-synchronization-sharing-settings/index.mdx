@@ -6,6 +6,7 @@ tags: ['IDEA']
 path: '/intellij-idea-tips-tricks-synchronization-sharing-settings'
 featuredImage: './idea-settings-featured.jpg'
 excerpt: 'Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can use it when working on multiple computers or to share unified settings in your team.'
+links: ["/idea-editorconfig"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -22,7 +23,7 @@ The first way to synchronize settings is using Settings Repositories. The way it
 
 To enable this feature just go to:
 
-```json
+```
 File → Settings Repository
 ```
 
@@ -30,13 +31,13 @@ And enter the URL of your git repo. If you are just starting an empty repo will 
 
 ![settings-repo](./settings-repo.jpg)
 
-And that's it, you're done. In most cases. However, IDEA offers a neat feature -- you can actually define multiple Settings Repositories. What is it good for? Well, maybe there are some settings you want to share with your teammates to ensure consistency on your project. But then, of course, you want some of your setting to be personal and just for you. After all, every user has different preferences.
+And that's it, you're done. In most cases. However, IDEA offers a neat feature - you can actually define multiple Settings Repositories. What is it good for? Well, maybe there are some settings you want to share with your teammates to ensure consistency on your project. But then, of course, you want some of your setting to be personal and just for you. After all, every user has different preferences.
 
-In such case, IDEA will consider one of the repositories primary. That is the one for your own settings. The synchronization works both ways -- from the server to the client and the opposite way. The rest of the repositories are secondary and are read-only. You can only fetch settings from them but they are not affected by your local settings changes.
+In such case, IDEA will consider one of the repositories primary. That is the one for your own settings. The synchronization works both ways -- from the server to the client and the opposite way. The rest of the repositories are secondary and are read-only. You can only fetch settings from them, but they are not affected by your local settings changes.
 
 To configure multiple repositories go to
 
-```json
+```
 Settings → Tools → Settings Repository
 ```
 
@@ -44,7 +45,7 @@ Here you can see your primary repository, which you set up earlier. Underneath y
 
 ![settings-repo-more](./settings-repo-more.jpg)
 
-Note that you can also disable automatic synchronization and use just sync on demand by *VCS → Sync Settings.*
+Note that you can also disable automatic synchronization and use just sync on demand by `VCS → Sync Settings`.
 
 ## Sync settings using JetBrains Account
 
@@ -52,7 +53,7 @@ The second way of settings synchronization was available for some time as a stan
 
 Under the hood, it actually uses a variation of Settings Repository mechanism, but you are shielded from it. It is much more convenient because you don't have to create a Git Repo to store the settings and provide its address to your IDE. On top of that, unlike Settings Repositories, it allows you to also synchronize your installed plugins. Pretty cool, right?
 
-The first thing you need to do is to make sure you have a [JetBrains account](https://sales.jetbrains.com/hc/en-gb/articles/208459005-What-is-JetBrains-Account-). If you don't have one, you can create it [here](https://account.jetbrains.com/login). Once you have your JetBrains account, you'll need to Log in to IDEA using it. Just head to *Help → Register*. Then you just need to select *Activate new License with JetBrains Account* and enter your credentials. Then click *Activate*.
+The first thing you need to do is to make sure you have a [JetBrains account](https://sales.jetbrains.com/hc/en-gb/articles/208459005-What-is-JetBrains-Account-). If you don't have one, you can create it [here](https://account.jetbrains.com/login). Once you have your JetBrains account, you'll need to Log in to IDEA using it. Just head to `Help → Register`. Then you just need to select `Activate new License with JetBrains Account` and enter your credentials. Then click `Activate`.
 
 ![idea-registration](./idea-registration.png)
 
@@ -89,28 +90,7 @@ Since version `2019.2` IDEA offers a powerful alternative for editor settings sh
 
 Unlike regular IDE settings, these can be set per folder, committed to version control and are automatically picked up by IDEA right after cloning your project. For more info, check the following article.
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/idea-editorconfig/" style="box-shadow: none;">Configuring IntelliJ IDEA code style per folder</a></h4><small class="front-post-info"><span class="front-post-info-date">09 July, 2019</span><div class="post-tags"><ul><li><a href="/tags/idea/">#IDEA</a></li></ul></div></small><div><a class="front-post-image" href="/idea-editorconfig/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6875%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABQBAQAAAAAAAAAAAAAAAAAAAAL/2gAMAwEAAhADEAAAAUrXSHuFAx//xAAaEAADAQADAAAAAAAAAAAAAAABAgMABBIh/9oACAEBAAEFAioVhctor1m/g4zFKb//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAbEAACAgMBAAAAAAAAAAAAAAAAAQIRECEyQf/aAAgBAQAGPwKSUrOdsSKQvbx//8QAHBAAAgICAwAAAAAAAAAAAAAAAAERMSFBEFGR/9oACAEBAAE/IYAhKzHJKJGPrSG107KwXss+8f/aAAwDAQACAAMAAAAQo8//xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQMBAT8QZdv/xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQIBAT8QIMv/xAAeEAACAgEFAQAAAAAAAAAAAAABEQAhMRBBUWFxgf/aAAgBAQABPxBDZq8kFj5Cqi5l1QgTyMA7Q5GMRa47yZRWnmWn/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><picture><source srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
-/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
-/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
-/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
-/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
-/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
-/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
-/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
-/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
-/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
-/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" src="/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
-/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
-/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
-/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
-/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
-/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/idea-editorconfig/5e4a3/idea-editorconfig.jpg 45w,
-/linked/idea-editorconfig/e451c/idea-editorconfig.jpg 90w,
-/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg 180w,
-/linked/idea-editorconfig/b3ebb/idea-editorconfig.jpg 270w,
-/linked/idea-editorconfig/8841e/idea-editorconfig.jpg 360w,
-/linked/idea-editorconfig/989b1/idea-editorconfig.jpg 1600w" src="/linked/idea-editorconfig/29fd0/idea-editorconfig.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.</span></div></div>
-
+<PostLink node={props.pageContext.links["/idea-editorconfig"]} />
 
 ## Conclusion
 
