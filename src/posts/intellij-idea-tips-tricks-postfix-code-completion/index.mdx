@@ -59,7 +59,7 @@ What's really nice about the plugin is that the template syntax is really easy t
 
 The first line consists of postfix, which triggers the template `.toInt` and after the colon, there is a text description. Then there is a number of lines, which define what result should be generated based on a different input type to which is the postfix applied.
 
-That means that the same postfix can define different results when applied to different types. In the example above, you can see that converting String to Integer using `.toInt` postfix will result in `Integer.parseInt(\$expr\$)`. However, applying the same prefix to a number will result in a type cast `(int) (\$expr\$)`.
+That means that the same postfix can define different results when applied to different types. In the example above, you can see that converting String to Integer using `.toInt` postfix will result in `Integer.parseInt($expr$)`. However, applying the same prefix to a number will result in a type cast `(int) ($expr$)`.
 
 The plugin adds a new section in `Settings` under `Editor → Custom Postfix Templates`. There you can see the list of all the templates and also edit it in case you want to alter them or add your own. What's handy is that the plugin will show you a DIFF against the default state, so you can tell what you've changed.
 
