@@ -7,6 +7,7 @@ path: '/githooks-husky'
 featuredImage: './husky.jpg'
 excerpt: 'Effortless creation and management of git hooks for your Node/NPM projects with Husky.'
 author: 'Vojtech Ruzicka'
+links: ["/snyk-detecting-dependencies-with-known-vulnerabilities"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -31,20 +32,8 @@ You can make sure user has their name and email filled. You can check the commit
 
 Typical usage is also static code analysis or linting. That means checking your code for common issues, bad practices, naming conventions and more. It can also be useful to run a tool such as Prettier to make sure the code is nicely formatted before commit. This saves many headaches during code reviews. You can even check your code for security vulnerabilities with a tool like Snyk.
 
+<PostLink node={props.pageContext.links["/snyk-detecting-dependencies-with-known-vulnerabilities"]} />
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/snyk-detecting-dependencies-with-known-vulnerabilities/" style="box-shadow: none;">Snyk – Detecting dependencies with known vulnerabilities</a></h4><small class="front-post-info"><span class="front-post-info-date">22 November, 2017</span><div class="post-tags"><ul><li><a href="/tags/security/">#Security</a></li></ul></div></small><div><a class="front-post-image" href="/snyk-detecting-dependencies-with-known-vulnerabilities/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 49.3421%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAAD/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAWa6pokuj//EABoQAAICAwAAAAAAAAAAAAAAAAECAxMAEBT/2gAIAQEAAQUCjd+i5wFkfEAv1//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EAB0QAAEDBQEAAAAAAAAAAAAAAAABAhEDECEiMUH/2gAIAQEABj8CheJJK0jZvo/F/wD/xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAhQRBx/9oACAEBAAE/IWJrgkID73JGoi47wSgsNz3/2gAMAwEAAgADAAAAEEPP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQIBAT8QZ//EABwQAQEAAgIDAAAAAAAAAAAAAAERACEQMUGh0f/aAAgBAQABPxANtUPLXpxdOQixqEKb79YkzYNgLpIdfMCrekLu3EGUGbOP/9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/snyk/5e4a3/snyk-logo.jpg 45w,
-/linked/snyk/e451c/snyk-logo.jpg 90w,
-/linked/snyk/29fd0/snyk-logo.jpg 180w,
-/linked/snyk/b3ebb/snyk-logo.jpg 270w,
-/linked/snyk/8841e/snyk-logo.jpg 360w,
-/linked/snyk/95b54/snyk-logo.jpg 540w,
-/linked/snyk/51a58/snyk-logo.jpg 1520w" src="/linked/snyk/29fd0/snyk-logo.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/snyk/5e4a3/snyk-logo.jpg 45w,
-/linked/snyk/e451c/snyk-logo.jpg 90w,
-/linked/snyk/29fd0/snyk-logo.jpg 180w,
-/linked/snyk/b3ebb/snyk-logo.jpg 270w,
-/linked/snyk/8841e/snyk-logo.jpg 360w,
-/linked/snyk/95b54/snyk-logo.jpg 540w,
-/linked/snyk/51a58/snyk-logo.jpg 1520w" src="/linked/snyk/29fd0/snyk-logo.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How to detect and fix security vulnerabilities in your dependencies using Snyk?</span></div></div>
 
 ## Distribution to team members
 With server-side hooks the distribution is easy. You usually have just one primary server repository. This means all the team members usually push their changes to one central place. You set up your hooks there and you're done.
