@@ -6,6 +6,7 @@ tags: ['Blogging', 'JAMStack']
 path: '/jamstack-migration-netlify'
 featuredImage: './jamstack-migration-netlify.jpg'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site deployed on Netlify.'
+links: ["/netlify-analytics"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -26,21 +27,19 @@ All right, Netlify has many nice features, let's dig a bit deeper.
 ### Simple Setup - Continuous Deployment
 What I love about Netlify is its simplicity. It can take just a minute to set up continuous deployment from your git repository.
 
-1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
+##### 1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
 
-___
-
-2. You select which git provider (GitHub, GitLab, BitBucket) you want to use.
+##### 2. You select which git provider (GitHub, GitLab, BitBucket) you want to use.
 
  ![Select your Git Provider](./netlify-deploy-1.png)
 ___
 
-3. Then a repository you want to deploy to Netlify.
+##### 3. Then you select a repository you want to deploy to Netlify.
 
  ![Select your Git Repository](./netlify-deploy-2.png)
 ___
 
-4. You select a build command (e.g. `gatsby build`) and the default branch to build from. Netlify is usually able to prefill this for you by detecting your static code generator from your repo's code.
+##### 4. You select a build command (e.g. `gatsby build`) and the default branch to build from. Netlify is usually able to prefill this for you by detecting your static code generator from your repo's code.
 
  ![Select your deployment options](./netlify-deploy-3.png)
 ___
@@ -55,14 +54,14 @@ One of the weaknesses of my previous WordPress setup was performance. The proble
 Content Delivery Network (CDN) solves this issue. CND offers many nodes distributed in various geographic locations. When you are requesting a resource from a CDN, you are served from the node which is geographically closest. Moreover, if one of the nodes goes down, the traffic is redirected to the next one. Since your static site is not changing until the next build, it is easy to scale and distribute your whole site over a CDN. Netlify does this out of the box, utilizing [multiple intelligent ultra-fast CDNs](https://www.netlify.com/blog/2016/04/15/make-your-site-faster-with-netlifys-intelligent-cdn/) based on multiple providers. That means a tremendous performance and reliability gain over the original WordPress solution. What's more, Netlify's logic layer on top of the CDN allows instant cache invalidations, rollbacks or custom redirect, rewrite or proxy rules.
 
 ### One click HTTPS
+<Info>**UPDATE:** As of July 2018, <a href="https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/">all new sites on Netlify are HTTPS by default</a>. You no longer need to explicitly enable it.</Info>
+
 Having a secure HTTPS connection enabled on a site like a blog, where no sensitive data is transferred, may seem a bit pointless. However, there are several good reasons to use HTTPS anyway. 
 
 First of all, sites using HTTPS get a [ranking boost](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) in search results on Google. That means your site is displayed above the similar sites not using HTTPS, which can bring much traffic. Moreover, Google Chrome is going to show "Not Secure" on all the pages not using HTTPS [soon enough](https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html), which can scare off your visitors. When running over HTTP, you also risk public networks injecting content and advertisements into your pages, which can ruin user experience and lead to loss of users.
 
 If you want to use [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/) and enjoy its benefits such as increased performance, you need to migrate to HTTPS.  Netlify utilizes [Let's Encrypt](https://letsencrypt.org/) - a free, automated, and open Certificate Authority.
 
-**UPDATE:**
-As of July 2018, [All new sites on Netlify are HTTPS by default](https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/). You no longer need to explicitly enable it.
 
 ### Deploy preview per branch
 By default, Netlify deploys only changes in one configured branch. However, you can configure it to extend this behavior to multiple branches or even to all of them. In such case, whenever you make changes in such branch, Netlify builds and deploys your pages, but not to your primary domain. Instead, it creates a custom domain just for your branch, where you can check how your site works before going public. You can share it with others to gather feedback on your new version, perform testing and so on. It is handy as you can test your site in a production-like environment before actually publishing it. No more "It works on my machine" excuses.
@@ -86,27 +85,7 @@ You can use any CMS you want, but if you want to stick with Netlify, you can uti
 ### UPDATE: Netlify Analytics
 One of the new features recently introduced is Netlify Analytics. All the data is captured on the server, so there is no performance hit from downloading and executing client-side analytics, no extra requests. It works even with adblockers and disabled Javascript. You can read a full review in the following post:
 
- <div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/netlify-analytics/" style="box-shadow: none;">Netlify Analytics Review: Google Analytics alternative?</a></h4><small class="front-post-info"><span class="front-post-info-date">11 October, 2019</span><div class="post-tags"><ul><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/netlify-analytics/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 56.25%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQAE/8QAFQEBAQAAAAAAAAAAAAAAAAAABAD/2gAMAwEAAhADEAAAAR0jV0G1W2j/AP/EABoQAAICAwAAAAAAAAAAAAAAAAACAQMSISL/2gAIAQEAAQUCWBF3gKUCxz//xAAYEQACAwAAAAAAAAAAAAAAAAAAAQMREv/aAAgBAwEBPwGZ0YZ//8QAFxEBAAMAAAAAAAAAAAAAAAAAAAISMf/aAAgBAgEBPwGGLv/EABYQAQEBAAAAAAAAAAAAAAAAAAABIP/aAAgBAQAGPwJMR//EABoQAAIDAQEAAAAAAAAAAAAAAAABESExQVH/2gAIAQEAAT8hn2kyHgtpCSMOmW3wRgf/2gAMAwEAAgADAAAAEHgP/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAwEBPxBByGN2/8QAFhEBAQEAAAAAAAAAAAAAAAAAAQAR/9oACAECAQE/EDmpY3//xAAbEAEBAAIDAQAAAAAAAAAAAAABEQAhMUFhkf/aAAgBAQABPxAmUI17ghOpak+5CUV3m7soc3L5Fg79ykipXP/Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><source srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
- /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
- /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
- /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
- /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
- /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
- /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
- /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
- /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
- /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
- /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" src="/linked/netlify-analytics/29fd0/netlify-analytics.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><source srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
- /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
- /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
- /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
- /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
- /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/netlify-analytics/5e4a3/netlify-analytics.jpg 45w,
- /linked/netlify-analytics/e451c/netlify-analytics.jpg 90w,
- /linked/netlify-analytics/29fd0/netlify-analytics.jpg 180w,
- /linked/netlify-analytics/b3ebb/netlify-analytics.jpg 270w,
- /linked/netlify-analytics/8841e/netlify-analytics.jpg 360w,
- /linked/netlify-analytics/989b1/netlify-analytics.jpg 1600w" src="/linked/netlify-analytics/29fd0/netlify-analytics.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.</span></div></div>
+<PostLink node={props.pageContext.links["/netlify-analytics"]} />
 
 ### And much more
 Features above make Netlify such a great and powerful tool, yet easy to use. Netlify, however, offers much more. These more advanced, features are not needed for my simple use case of a personal blog, but they can be valuable in other cases.
