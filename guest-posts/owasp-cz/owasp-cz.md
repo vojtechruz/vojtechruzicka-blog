@@ -31,8 +31,7 @@ Na rozdíl od ostatních osmi položek, tyto dvě nebyly zařazeny do seznamu na
 
 Další problém byl s rozdílnou granularitou zranitelností. Vedle specifických problémů jako je Cross Site Scripting jsou najednou zcela obecné položky jako je "Nedostatečná ochrana proti útokům". Úroveň detailu jednotlivých zranitelností byla tedy zcela nekonzistetní.
 
-Top Ten 2017, pokus druhý
-----------------------
+## Top Ten 2017, pokus druhý
 
 Kritiku první verze nebral OWASP na lehkou váhu a rozhodl se učinit řadu změn. Prvním zásadním krokem byla obměna vedení, následně metodiky. A transparentnost především - vše je nyní veřejně na [GitHubu](https://github.com/OWASP/Top10) - dokument samotný, zpětná vazba, úkoly i [nasbíraná data](https://github.com/OWASP/Top10/tree/master/2017/datacall), na základě kterých jsou položky do seznamu zahrnuty. Už žádné další informace pohřbené v historii diskuzí v mailing listech.
 
@@ -53,8 +52,7 @@ Po předchozím neúspěchu v dubnu byla konečně zveřejněna zbrusu nová ver
 | 9\. Použití komponent se známými zranitelnostmi | Útočník může využít zranitelnosti v komponentách a frameworcích třetích stran, zvláště pokud jsou použity neaktualizované verze se známými zranitelnostmi.                                                        |
 | 10\. Nedostatečné logování a monitorování       | Nedostatečné logování a monitorování včetně chybějící automatické notifikace znemožňuje včasnou reakci na útoky a umožňuje útočníkům nerušeně hledat zranitelnosti v aplikaci.                                    |
 
-Co se změnilo
-------------
+## Co se změnilo
 
 #### Cross-side request forgery odstraněno
 
@@ -103,22 +101,22 @@ Jedinou skutečně efektivní ochranou je používat serializaci pouze v přípa
 - Moduly pracující s deserializací by měly běžet s co možná nejmenšími právy a izolovaně.
 - Kontrola integrity přijímaných objektů, aby se zamezilo manipulaci s nimi.
 
-2013                                                                                                      |2017
-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------
-1\. Injekce                                                                                               | 1\. Injekce
-2\. Nefunkční autentizace a správa sessions                                                               | 2\. Nefunkční autentizace
-3\. Cross-Site Scripting                                                                                  | 3\. Nezabezpečení citlivých dat 
-4\. Přímé odkazy na objekty **(Sloučeno s 7)**                                                            | 4\. XML External Entities **(Nové)**
-5\. Chybná konfigurace                                                                                    | 5\. Nefunkční kontrola přístupu **(Sloučeno 4+7)**
-6\. Nezabezpečení citlivých dat                                                                           | 6\. Chybná konfigurace
-7\. Chybějící kontrola přístupu na úrovni funkcí **(Sloučeno s 4)**                                       | 7\. Cross-Site Scripting
-8\. Cross-Site Request Forgery **(Odstraněno)**                                                           | 8\. Nezabezpečená Deserializace **(Nové, od komunity)**
-9\. Použití komponent se známými zranitelnostmi                                                           |  9\. Použití komponent se známými zranitelnostmi
-10\. Nezabezpečené přesměrování **(Odstraněno)**                                                          | 10\. Nedostatečné logování a monitorování **(Nové, od komunity)**
+| 2013                                                                | 2017                                                              |
+|---------------------------------------------------------------------|-------------------------------------------------------------------|
+| 1\. Injekce                                                         | 1\. Injekce                                                       |
+| 2\. Nefunkční autentizace a správa sessions                         | 2\. Nefunkční autentizace                                         |
+| 3\. Cross-Site Scripting                                            | 3\. Nezabezpečení citlivých dat                                   |
+| 4\. Přímé odkazy na objekty **(Sloučeno s 7)**                      | 4\. XML External Entities **(Nové)**                              |
+| 5\. Chybná konfigurace                                              | 5\. Nefunkční kontrola přístupu **(Sloučeno 4+7)**                |
+| 6\. Nezabezpečení citlivých dat                                     | 6\. Chybná konfigurace                                            |
+| 7\. Chybějící kontrola přístupu na úrovni funkcí **(Sloučeno s 4)** | 7\. Cross-Site Scripting                                          |
+| 8\. Cross-Site Request Forgery **(Odstraněno)**                     | 8\. Nezabezpečená Deserializace **(Nové, od komunity)**           |
+| 9\. Použití komponent se známými zranitelnostmi                     | 9\. Použití komponent se známými zranitelnostmi                   |
+| 10\. Nezabezpečené přesměrování **(Odstraněno)**                    | 10\. Nedostatečné logování a monitorování **(Nové, od komunity)** |
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Další projekty OWASP
----------------
+## Další projekty OWASP
 
 OWASP Top 10 se hodí k získání základního povědomí o bezpečnosti webových aplikací, ale rozhodně nejde příliš do hloubky. Je třeba si uvědomit, že vybraných deset položek je pouze špička ledovce. Rozhodně nelze očekávat, že když pokryjete tyto zranitelnost, máte vyhráno. Zranitelností je nepřeberné množství a technik jak se jim bránit jakbysmet. Top 10 není bezpečnostní Biblí, není to vyčerpávající příručka o tom, jak zabezpečit Vaše aplikace. Pouze zvyšuje všeobecné povědomí o hrozbách. Po detailních návodech se musíte poohlížet jinde. Kde ale začít? Samozřejmě u ostatních projektů OWASPu. Těch je mnoho, ale pro začátek za zmínku stojí například:
 
