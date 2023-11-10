@@ -6,6 +6,7 @@ tags: ['JAMStack']
 path: '/jamstack-search-algolia'
 featuredImage: './search.jpg'
 excerpt: 'How to add search option to your static JAMStack site using Algolia Search and Algolia DocSearch.'
+links: ["/gatsby-migration"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -13,26 +14,14 @@ excerpt: 'How to add search option to your static JAMStack site using Algolia Se
 ## Searching static sites
 A few months ago I finally managed to migrate my blog from WordPress to a static site build with GatsbyJS and deployed on [Netlify](https://www.vojtechruzicka.com/jamstack-migration-netlify/).
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/gatsby-migration/" style="box-shadow: none;">Migration to GatsbyJS and JAM stack from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">25 March, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging/">#Blogging</a></li><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/gatsby-migration/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAVAQEBAAAAAAAAAAAAAAAAAAACBP/aAAwDAQACEAMQAAABK1R50KdE/wD/xAAbEAEAAgIDAAAAAAAAAAAAAAACAAEEERITFP/aAAgBAQABBQIE8n1y7O/OIsU2qxhP/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEv/aAAgBAwEBPwFQYZ//xAAVEQEBAAAAAAAAAAAAAAAAAAAQcf/aAAgBAgEBPwGn/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERIRIx/9oACAEBAAY/Ao0J5R+GKMvTN1n/xAAbEAEAAgIDAAAAAAAAAAAAAAABABExUSGRwf/aAAgBAQABPyElC3tgsPZ5LUmUbeTZcAEUbgTPcz//2gAMAwEAAgADAAAAEIc//8QAFhEBAQEAAAAAAAAAAAAAAAAAAFFh/9oACAEDAQE/EKNn/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERITFB/9oACAECAQE/EE50Uun/xAAeEAEBAAICAgMAAAAAAAAAAAABEQAhMYFBUbHB8P/aAAgBAQABPxBGrRCxfKp8ZHuqI/j7xyIqdmJSgsKZ06yMQDh374yaNVWRejP/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.</span></div></div>
+<PostLink node={props.pageContext.links["/gatsby-migration"]} />
 
 I was very impressed with the results of the migration, especially performance-wise. I was able to migrate all the functionality, except site-wide search.
 
 With server generating your pages, searching is easy. WordPress offers search option out of the box. With static sites, which have no dynamic backend, this gets trickier. 
 
 ## Client-side search
-One option to enable search for your application is to use full client-side search with libraries such as [js-search](https://github.com/bvaughn/js-search). The idea is simple. When you build your static site using your favorite static site generator, you also generate a search index of your pages. That basically means generating a lot of JSON with the contents of your site and then distributing this along with your static files. The search is lightning-fast because everything happens on the client. The problem is that this solution may not be good for full-text search. Bringing this much data to the client just for search can mean a significant performance hit. Especially if your site has a lot of content. Moreover, just a fraction of users is likely to use the search option. The rest just download useless junk. You sacrifice one of the greatest advantages of going static - performance just for adding a search option.
+One option to enable search for your application is to use full client-side search with libraries such as [js-search](https://github.com/bvaughn/js-search). The idea is simple. When you build your static site using your favorite static site generator, you also generate a search index of your pages. That basically means generating a lot of JSON with the contents of your site and then distributing this along with your static files. The search is lightning-fast because everything happens on the client. The problem is that this solution may not be good for full-text search. Bringing this much data to the client just for search can mean a significant performance hit. Especially if your site has a lot of content. Moreover, just a fraction of users is likely to use the search option. The rest just download useless junk. You sacrifice one of the greatest advantages of going static - performance - just for adding a search option.
  
 ## Good old Google Custom Search
 All right, so for full-text search, it may not be such a good idea to download the whole search index to the client. Since our static site does not have a dedicated backend, we need to use third-party to handle the search. The first obvious choice is to use Google search. [Google Custom Search](https://cse.google.com) to be precise.
@@ -90,7 +79,7 @@ One of the advantages of DocSearch how easy it is to set up and configure. You j
 </script> 
 ```
 
-You just need to provide proper selector (such as CSS class or id) for the input search element. Algolia team also configures the project for you and they store the configuration file in their git repo. In case you need to make any changes, you just create a Pull Request, which gets quickly merged. In the config file, you define a hierarchy of your pages sections. That means, for example, that H1 headings have more weight in search results than H2. And H3 have even less weight. Ordinary paragraphs have the least relevance. With custom selectors you can define where precisely in your page is your content, so you can easily ignore sections such as footer or navigation. Here is an example of a simple configuration for my site:
+You need to provide fill in a proper selector (such as CSS class or id) for the input search element, API key and name of your search index. Algolia team also configures the project for you and they store the configuration file in their git repo. In case you need to make any changes, you just create a Pull Request, which gets quickly merged. In the config file, you define a hierarchy of your pages sections. That means, for example, that H1 headings have more weight in search results than H2. And H3 have even less weight. Ordinary paragraphs have the least relevance. With custom selectors you can define where precisely in your page is your content, so you can easily ignore sections such as footer or navigation. Here is an example of a simple configuration for my site:
 
 ```json
 {
