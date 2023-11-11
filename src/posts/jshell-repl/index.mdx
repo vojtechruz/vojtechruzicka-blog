@@ -21,13 +21,13 @@ The interactive console does not require class with main and immediately shows y
 > Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial "Hello, world!" program.
 
 ## Running JShell
-JShell is bundled with JDK 9+ installation. It resides in your JDK\\bin folder. For example on Windows it can be here:
+JShell is bundled with JDK 9+ installation. It resides in your JDK\bin folder. For example on Windows it can be here:
 
 ```
 C:\Program Files\Java\jdk-9.0.4\bin\jshell.exe
 ```
 
-To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - Support In IntelliJ IDEA).
+To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - [Support In IntelliJ IDEA](/jshell-repl/#support-in-intellij-idea)).
 
 ```
 C:\Users\vojtech> jshell -v
@@ -57,7 +57,7 @@ jshell> Math.sqrt($1)+7
 $2 ==> 17.246950765959596
 ```
 
-First of all, notice that we were able to use $1 variable from the previous example. The state is preserved between each command. Another noteworthy feature is that, as you can see, semicolons are optional in most cases.
+First of all, notice that we were able to use $1 variable from the previous example. The state is preserved between commands. Another noteworthy feature is that, as you can see, semicolons are optional in most cases.
 
 ## Variables
 Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables. 
@@ -114,7 +114,8 @@ A common scenario is when a method uses another method or variable, which is not
 jshell> String myMethod(String name) {
    ...> return otherMethodNotDeclared();
    ...> }
-|  created method myMethod(String), however, it cannot be invoked until method otherMethodNotDeclared() is declared
+|  created method myMethod(String), however, it cannot be invoked
+   until method otherMethodNotDeclared() is declared
 ```
 
 Similar to `/vars` for variables, you can list all currently declared methods with `/methods`.
@@ -180,7 +181,7 @@ While you can write and edit everything directly in the JShell console, it is no
 
 ![JShell Default Editor](./jshell-editor.png)
 
-Not very cutting edge, is it? Fortunately, you can configure your own editor to open when executing the `/edit` command. One way is to sen the environmental variable `JSHELLEDITOR`. Alternatively, you can set the editor directly from JShell. Use `-retain` option to persist this setting between sessions.
+Not very cutting edge, is it? Fortunately, you can configure your own editor to open when executing the `/edit` command. One way is to set the environmental variable `JSHELLEDITOR`. Alternatively, you can set the editor directly from JShell. Use `-retain` option to persist this setting between sessions.
 
 ```
 jshell> /set editor myEditor -retain
@@ -208,7 +209,7 @@ Snippet.Kind kind = snippet.kind();
 String source = snippet.source();
 ```
 
-To obtain the full source code of the snippet, you can use `snippet.source()`. To determine the type of the snippet (variable declaration, importm, method declaration, ...) you can use `snippet.kind()`.
+To obtain the full source code of the snippet, you can use `snippet.source()`. To determine the type of the snippet (variable declaration, imports, method declaration, ...) you can use `snippet.kind()`.
 
 ## Alternatives
 The first interesting alternative to plain JShell is called [Try Artifact](https://github.com/bhagatsingh/try-artifact). Instead of obtaining jar dependencies manually and adding them to the classpath, it allows you to download and use Maven artifacts directly from the console.
@@ -223,7 +224,7 @@ Another useful alternative is using a REPL directly in the browser. You can try 
 ## Support In IntelliJ IDEA
 The good news is that if you use IntelliJ IDEA, you don't need to worry about having JShell on the classpath, as IDEA offers excellent integration with JShell out of the box directly in the IDE. You get all the useful features such as code completion, syntax highlighting, error detection and more.
 
-To access JShell from IDEA,  go to *Tools → JShell Console...*.
+To access JShell from IDEA,  go to `Tools → JShell Console...`.
 
 What's also useful is that you can prepare all the code in advance and then just run it on demand rather than in the interactive console mode, which is often much more convenient.
 
