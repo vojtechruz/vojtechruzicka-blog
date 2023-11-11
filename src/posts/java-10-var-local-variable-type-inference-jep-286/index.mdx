@@ -1,7 +1,7 @@
 ---
 title: 'Java 10 – var – Local Variable Type Inference (JEP-286)'
 date: "2018-01-04T22:12:03.284Z"
-dateModified: "2018-12-16"
+dateModified: "2023-11-11"
 tags: ['Java']
 path: '/java-10-var-local-variable-type-inference-jep-286'
 featuredImage: './local-variable-inference-java-10.jpg'
@@ -48,7 +48,7 @@ User joe = new User();
 
 How is this possible? Well, if you are declaring a variable and initializing it at the same time (assigning a value), you can detect what type your variable should be based on the value assigned. No need to repeat the type twice. Since it is just a syntactic sugar, the compiler detects the type at compile time and the resulting bytecode is exactly the same as if you declared the type explicitly.
 
-This feature is likely to be part of Java 10 and is described in detail in [Java Enhancement Proposal 286](http://openjdk.java.net/jeps/286).
+This feature is is introduced in Java 10 and is described in detail in [Java Enhancement Proposal 286](http://openjdk.java.net/jeps/286).
 
 ## Better readability
 
@@ -72,7 +72,7 @@ List<PersonalAccount> myAccounts = userAccounts.get(ME);
 
 ## Limitations
 
-Locations and situations where you can use var are actually somewhat limited. As the name suggests, you can use it only for local variables. Not for class fields, not for method return types. The only place where you can use them is in for and for-each loops:
+Locations and situations where you can use var are actually somewhat limited. As the name suggests, you can use it only for local variables. Not for class fields, not for method return types. The only other place where you can use them is in for and for-each loops:
 
 ```java
 for (var user: users) {...}
@@ -117,7 +117,7 @@ Some argue that using var achieves actually the opposite effect - the code is le
 
 ### val not included
 
-In most of other statically typed languages, the Local Variable Inference is already a thing. Java is, as always, late to the party. On JVM, both Kotlin and Scala support it and both in a different way than Java. Instead of just var, they provide two options - var and val. Var is meant for variables, which can be reassigned, val for those that not (it is the equivalent of Java's final keyword).
+In most of the other statically typed languages, the Local Variable Inference is already a thing. Java is, as always, late to the party. On JVM, both Kotlin and Scala support it and both in a different way than Java. Instead of just var, they provide two options - var and val. Var is meant for variables, which can be reassigned, val for those that not (it is the equivalent of Java's final keyword).
 
 Why does not Java offer the same? Actually, when the JEP-286 was discussed, there were both variants on the table. There was a [survey](https://www.surveymonkey.com/results/SM-FLWGS5PW/) with about 2500 respondents, which was supposed to gather preferences on which option should be chosen. Including some other naming conventions such as let or auto.
 
@@ -129,21 +129,14 @@ While var + val variant was a clear winner by a number of votes (48% vs 23%), it
 
 There are more reasons of course. One of them is a clash with final keyword. Val would basically mean *final var* leading to inconsistency of final keyword usage. For local variables, val would not be so important anyway as they are usually [effectively final](http://ilkinulas.github.io/programming/java/2016/03/27/effectively-final-java.html) anyway and immutability is much more important on field level than on method level, where each method is ideally very short.
 
-## Try It
-
-Even though Java 10 is not released yet, you can already try the feature. Download [JDK 10](http://jdk.java.net/10/). IntelliJ IDEA already has [good support](https://blog.jetbrains.com/idea/2017/11/intellij-idea-2017-3-eap-brings-support-for-local-variable-type-inference/) for this feature.
-
-## UPDATE: Style guide 
-Check out this useful guide for `var` best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
-
-## UPDATE: Java 11
-Currently (even pre-java 10), for lambdas you can omit explicit type declaration and it will be inferred.
+## Usage in lambdas
+Even before the introduction of `var`, for lambdas you could omit explicit type declaration, and it would be inferred.
 
 ```java
 (x, y) -> x.process(y)
 ```
 
-From Java 11, you'll be able to use `var` here also, so the syntax is uniform. 
+From Java 11, you are able to use `var` here also, so the syntax is uniform.
 
 ```java
 (var x, var y) -> x.process(y)
@@ -172,6 +165,10 @@ There are some limitations though. If you use `var`, you need to use it for all 
 ```
 
 See [JEP 323: Local-Variable Syntax for Lambda Parameters](http://openjdk.java.net/jeps/323) for more details.
+
+## Style guide
+Check out this useful guide for `var` best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
+
 
 ## Conclusion
 
