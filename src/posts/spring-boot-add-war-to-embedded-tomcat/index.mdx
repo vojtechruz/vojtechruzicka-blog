@@ -46,8 +46,9 @@ You can either put these in your `application.properties` or pass them as comman
 ```java
 @Bean
 @ConditionalOnProperty(name = "external.war.file")
-public TomcatServletWebServerFactory servletContainerFactory(@Value("${external.war.file}") String path,
-                                                             @Value("${external.war.context}") String contextPath) {
+public TomcatServletWebServerFactory
+       servletContainerFactory(@Value("${external.war.file}") String path,
+                               @Value("${external.war.context}") String contextPath) {
     return new TomcatServletWebServerFactory() {
 
         @Override
