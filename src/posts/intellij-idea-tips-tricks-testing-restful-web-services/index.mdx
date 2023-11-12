@@ -10,9 +10,7 @@ excerpt: 'It is often useful to be able to send HTTP requests directly from your
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<div class="msg-info">
-This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
-</div>
+<Info>This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.</Info>
 
 ## Integrated HTTP Client
 
@@ -43,7 +41,7 @@ And that's pretty much it. On top of this, the client offers some additional fea
 -   Importing and exporting request from/to an XML file. This can be handy when reporting bugs, so the issue can be easily reproduced. And also to persist request between starts of IDEA as REST client's state is not preserved.
 -   You can generate basic authentication header from a username and password.
 -   Request/response history is saved.
--   Integration with JAX-RS - IDEA can detect your @Path annotations and offer them in the path field, so you don't have to manually search for the value.
+-   Integration with JAX-RS - IDEA can detect your `@Path` annotations and offer them in the path field, so you don't have to manually search for the value.
 -   Code completion for common HTTP headers.
 
 ## The New Way - Using Http Request File
@@ -90,7 +88,7 @@ Cookie: name=value; name2=value2; name3=value3
 
 ### Adding body
 
-But HTTP headers are not enough. For methods such as POST, you'll also want to specify body the of the request. You can do so by leaving one blank line after the end of the request declaration. The body can be multiline. You can have multiple requests in one file and separate them by a line with \#\#\#.
+But HTTP headers are not enough. For methods such as POST, you'll also want to specify body the of the request. You can do so by leaving one blank line after the end of the request declaration. The body can be multiline. You can have multiple requests in one file and separate them by a line with `###`.
 
 ```json
 POST http://localhost:8090/persons/add/
