@@ -5,6 +5,7 @@ tags: ["JAMStack"]
 path: '/stackbit'
 featuredImage: './stackbit.png'
 excerpt: 'How to easily create full-blown JAMStack sites with a theme, CMS, and deployment using various static site generators.'
+links: ["/gatsby-migration", "/jamstack-migration-netlify"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -18,20 +19,7 @@ When you build your sites statically, you can easily distribute them via a CDN f
 
 You can learn more about JAMStack and its benefits in one of my previous posts on how I migrated from WordPress to GatsbyJS:
 
-
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/gatsby-migration/" style="box-shadow: none;">Migration to GatsbyJS and JAM stack from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">25 March, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging/">#Blogging</a></li><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/gatsby-migration/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAVAQEBAAAAAAAAAAAAAAAAAAACBP/aAAwDAQACEAMQAAABK1R50KdE/wD/xAAbEAEAAgIDAAAAAAAAAAAAAAACAAEEERITFP/aAAgBAQABBQIE8n1y7O/OIsU2qxhP/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEv/aAAgBAwEBPwFQYZ//xAAVEQEBAAAAAAAAAAAAAAAAAAAQcf/aAAgBAgEBPwGn/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERIRIx/9oACAEBAAY/Ao0J5R+GKMvTN1n/xAAbEAEAAgIDAAAAAAAAAAAAAAABABExUSGRwf/aAAgBAQABPyElC3tgsPZ5LUmUbeTZcAEUbgTPcz//2gAMAwEAAgADAAAAEIc//8QAFhEBAQEAAAAAAAAAAAAAAAAAAFFh/9oACAEDAQE/EKNn/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERITFB/9oACAECAQE/EE50Uun/xAAeEAEBAAICAgMAAAAAAAAAAAABEQAhMYFBUbHB8P/aAAgBAQABPxBGrRCxfKp8ZHuqI/j7xyIqdmJSgsKZ06yMQDh374yaNVWRejP/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.</span></div></div>
+<PostLink node={props.pageContext.links["/gatsby-migration"]} />
 
 ## Building Static sites
 While JAMStack-powered sites have many advantages, there are drawbacks as well. The main disadvantage is that it takes much more effort to build a full-fledged site including theme, Content Management System and deployment.
@@ -103,28 +91,7 @@ As a git repository hosting, you can currently use GitHub, but GitLab and Bitbuc
 
 As a deployment method, there is currently offered just Netlify. It is a great service, which I currently use for my blog, you can read more details about it in this post:
 
-
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/jamstack-migration-netlify/" style="box-shadow: none;">Migration to JAM stack and Netlify from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">21 May, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging/">#Blogging</a></li><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/jamstack-migration-netlify/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAECA//aAAwDAQACEAMQAAABdxcMyOUQv//EABkQAAIDAQAAAAAAAAAAAAAAAAABAhESIf/aAAgBAQABBQJ1U0ZK5lEl3//EABYRAQEBAAAAAAAAAAAAAAAAAAASE//aAAgBAwEBPwGGb//EABcRAQADAAAAAAAAAAAAAAAAAAABAxP/2gAIAQIBAT8Bmxs//8QAGBAAAgMAAAAAAAAAAAAAAAAAAAERIDH/2gAIAQEABj8CHBlP/8QAGBABAQEBAQAAAAAAAAAAAAAAAREAITH/2gAIAQEAAT8hkVFFnDSADU+jSLMPLO4Wt//aAAwDAQACAAMAAAAQ7B//xAAWEQEBAQAAAAAAAAAAAAAAAAABABH/2gAIAQMBAT8QQmQMv//EABYRAQEBAAAAAAAAAAAAAAAAAAEQIf/aAAgBAgEBPxATY//EABoQAQEAAwEBAAAAAAAAAAAAAAERACExQWH/2gAIAQEAAT8QGr3lt/cFhPBDmPvRruLMUpdcwLohFzRkpYZ//9k=" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0;"><picture><source srcset="/linked/jamstack-migration-netlify/5e4a3/jamstack-migration-netlify.jpg 45w,
-/linked/jamstack-migration-netlify/e451c/jamstack-migration-netlify.jpg 90w,
-/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg 180w,
-/linked/jamstack-migration-netlify/b3ebb/jamstack-migration-netlify.jpg 270w,
-/linked/jamstack-migration-netlify/8841e/jamstack-migration-netlify.jpg 360w,
-/linked/jamstack-migration-netlify/2b1a3/jamstack-migration-netlify.jpg 900w" sizes="(max-width: 180px) 100vw, 180px"><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jamstack-migration-netlify/5e4a3/jamstack-migration-netlify.jpg 45w,
-/linked/jamstack-migration-netlify/e451c/jamstack-migration-netlify.jpg 90w,
-/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg 180w,
-/linked/jamstack-migration-netlify/b3ebb/jamstack-migration-netlify.jpg 270w,
-/linked/jamstack-migration-netlify/8841e/jamstack-migration-netlify.jpg 360w,
-/linked/jamstack-migration-netlify/2b1a3/jamstack-migration-netlify.jpg 900w" src="/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg" alt="" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: none 0s ease 0s;"></picture><noscript><picture><source srcset="/linked/jamstack-migration-netlify/5e4a3/jamstack-migration-netlify.jpg 45w,
-/linked/jamstack-migration-netlify/e451c/jamstack-migration-netlify.jpg 90w,
-/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg 180w,
-/linked/jamstack-migration-netlify/b3ebb/jamstack-migration-netlify.jpg 270w,
-/linked/jamstack-migration-netlify/8841e/jamstack-migration-netlify.jpg 360w,
-/linked/jamstack-migration-netlify/2b1a3/jamstack-migration-netlify.jpg 900w" sizes="(max-width: 180px) 100vw, 180px" /><img loading="lazy" sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jamstack-migration-netlify/5e4a3/jamstack-migration-netlify.jpg 45w,
-/linked/jamstack-migration-netlify/e451c/jamstack-migration-netlify.jpg 90w,
-/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg 180w,
-/linked/jamstack-migration-netlify/b3ebb/jamstack-migration-netlify.jpg 270w,
-/linked/jamstack-migration-netlify/8841e/jamstack-migration-netlify.jpg 360w,
-/linked/jamstack-migration-netlify/2b1a3/jamstack-migration-netlify.jpg 900w" src="/linked/jamstack-migration-netlify/29fd0/jamstack-migration-netlify.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site deployed on Netlify.</span></div></div>
+<PostLink node={props.pageContext.links["/jamstack-migration-netlify"]} />
 
 GitHub Pages and GitLab pages are going to be supported soon, as well. 
 
