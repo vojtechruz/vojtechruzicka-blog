@@ -148,7 +148,7 @@ Implementation directly in interfaces. It doesn't look quite right. So why was t
 
 There is one problem with interfaces. Once you expose your interfaces to other people, it is very hard to change them. Once you specify your API and others start using it, it is pretty much set in stone. Unless you want to break all your users.
 
-Java, traditionally, takes backward compatibility very seriously. Default methods provide a way to extend existing interfaces with new methods. What's crucial is that default methods already provide some implementation. That means that classes implementing your interface does not need to implement any new methods and are still compatible. Of course, they can decide to later override default methods if the implementation is not fitting. So in a nutshell, you can provide new functionality to existing classes implementing your interface while preserving binary compatibility.
+Java, traditionally, takes backward compatibility very seriously. Default methods provide a way to extend existing interfaces with new methods. What's crucial is that default methods already provide some implementation. That means that classes implementing your interface do not need to implement any new methods and are still compatible. Of course, they can decide to later override default methods if the implementation is not fitting. So in a nutshell, you can provide new functionality to existing classes implementing your interface while preserving binary compatibility.
 
 ### Conflicts
 Let's assume we have one class implementing two interfaces. These interfaces have each a default method with the same name and signature. 
