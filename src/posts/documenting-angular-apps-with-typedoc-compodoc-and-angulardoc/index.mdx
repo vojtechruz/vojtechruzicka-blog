@@ -4,7 +4,7 @@ date: "2017-12-18T22:12:03.284Z"
 tags: ['Javascript', 'Angular']
 path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc'
 featuredImage: './documentation.jpg'
-excerpt: There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what is the most suitable for your app.
+excerpt: There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what is the most suitable in your case.
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -14,7 +14,7 @@ When working with plain JS applications, you would use documentation tools speci
 
 However, when working with a framework such as AngularJS (that is -- Angular 1.x), it is handy to have something more powerful. That means -- you need not only to document generic JS code, but you also want to take into consideration specifics of your framework.
 
-For AngularJS, there is a special flavor of JSDoc called [ngdoc](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation). It adds a lot of angularJS specific stuff on top of regular JSDoc. It is then processed by a utility called [Dgeni](https://github.com/angular/dgeni).
+For AngularJS, there is a special flavor of JSDoc called [ngdoc](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation). It adds a lot of AngularJS specific stuff on top of regular JSDoc. It is then processed by a utility called [Dgeni](https://github.com/angular/dgeni).
 
 ## Documenting TypeScript with TypeDoc
 Angular 2+ is way different than AngularJS. What's more, you usually write your code not in JS, but in TypeScript. That means you cannot use JSDoc nor ngdoc. You need a new tool. Turns out, that for TypeScript, there is a tool similar to JSDoc called [TypeDoc](http://typedoc.org/). It is, however, angular-agnostic, so you cannot use any framework-specific goodies.
@@ -23,11 +23,11 @@ Angular 2+ is way different than AngularJS. What's more, you usually write your 
 
 To install TypeDoc locally for your current project, just run:
 
-```json
+```bash
  npm install typedoc --save-dev
 ```
 
-To be able to run typedoc as an NPM script, you need to update your package.json -- the scripts section:
+To be able to run typedoc as an NPM script, you need to update your `package.json` - the scripts section:
 
 ```json
 "scripts":{
@@ -36,14 +36,14 @@ To be able to run typedoc as an NPM script, you need to update your package.json
 }
 ```
 
-After this, you can run typescript generation for your current project by simply executing *npm run typedoc*.
+After this, you can run typescript generation for your current project by simply executing `npm run typedoc`.
 
-TypeDoc tool will be executed in mode *modules* using *common.js* modules. Exclude defines a pattern which describes files to be omitted. It is useful for example for tests. Then using \--out you are first defining output folder to which the documentation should be generated to (here it is *docs/typedoc*). The last is then the root directory containing the source code (here *src/app*).  There are many more config parameters you can use (see the [docs](https://github.com/TypeStrong/typedoc)).
+TypeDoc tool will be executed in mode `modules` using `common.js` modules. Exclude defines a pattern which describes files to be omitted. It is useful for example for tests. Then using `--out` you are first defining output folder to which the documentation should be generated to (here it is `docs/typedoc`). The last is then the root directory containing the source code (here `src/app`).  There are many more config parameters you can use (see the [docs](https://github.com/TypeStrong/typedoc)).
 
 ![typedoc-1](./documentation-typedoc.png)
 ![typedoc-2](./documentation-typedoc-2.png)
 
-TypeDoc contains two themes out of the box. The default one and 'minimal'. To specify a theme use* \--theme* option followed by the name of the predefined theme or a path to a custom one.
+TypeDoc contains two themes out of the box. The default one and 'minimal'. To specify a theme use `--theme` option followed by the name of the predefined theme or a path to a custom one.
 
 ## CompoDoc
 While you can use TypeDoc to document Angular apps, it will treat your code as any other plain TypeScript app. That means no Angular specific documentation. But there is a whole lot to be documented. [Compodoc](https://compodoc.github.io/website/) solves this, it is focused on Angular apps specifically giving you a much more tailored solution.
@@ -52,11 +52,11 @@ While you can use TypeDoc to document Angular apps, it will treat your code as a
 
 To install compodoc, simply run
 
-```json
+```bash
  npm install --save-dev @compodoc/compodoc
 ```
 
-Then update your *package.json*
+Then update your `package.json`
 
 ```json
 "scripts": {
@@ -66,7 +66,7 @@ Then update your *package.json*
 
 Then you can run compodoc as a normal npm script using
 
-```json
+```bash
 npm run compodoc
 ```
 
