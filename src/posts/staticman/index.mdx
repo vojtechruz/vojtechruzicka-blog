@@ -5,6 +5,7 @@ tags: ['JAMStack']
 path: '/staticman'
 featuredImage: './staticman.jpg'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
+links: ["/gatsby-migration"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -12,19 +13,7 @@ excerpt: 'How to make your JAMStack site truly static even with user-generated c
 ## Dynamic content in static sites 
 Static JAMStack sites are great. If you are not familiar with them, you can check my older post on how I migrated my blog from WordPress to a static site using Gatsby.
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/gatsby-migration/" style="box-shadow: none;">Migration to GatsbyJS and JAM stack from WordPress</a></h4><small class="front-post-info"><span class="front-post-info-date">25 March, 2018</span><div class="post-tags"><ul><li><a href="/tags/blogging/">#Blogging</a></li><li><a href="/tags/jam-stack/">#JAMStack</a></li></ul></div></small><div><a class="front-post-image" href="/gatsby-migration/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 66.6667%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAABAD/xAAVAQEBAAAAAAAAAAAAAAAAAAACBP/aAAwDAQACEAMQAAABK1R50KdE/wD/xAAbEAEAAgIDAAAAAAAAAAAAAAACAAEEERITFP/aAAgBAQABBQIE8n1y7O/OIsU2qxhP/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAECEv/aAAgBAwEBPwFQYZ//xAAVEQEBAAAAAAAAAAAAAAAAAAAQcf/aAAgBAgEBPwGn/8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERIRIx/9oACAEBAAY/Ao0J5R+GKMvTN1n/xAAbEAEAAgIDAAAAAAAAAAAAAAABABExUSGRwf/aAAgBAQABPyElC3tgsPZ5LUmUbeTZcAEUbgTPcz//2gAMAwEAAgADAAAAEIc//8QAFhEBAQEAAAAAAAAAAAAAAAAAAFFh/9oACAEDAQE/EKNn/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERITFB/9oACAECAQE/EE50Uun/xAAeEAEBAAICAgMAAAAAAAAAAAABEQAhMYFBUbHB8P/aAAgBAQABPxBGrRCxfKp8ZHuqI/j7xyIqdmJSgsKZ06yMQDh374yaNVWRejP/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/jam/5e4a3/jam.jpg 45w,
-/linked/jam/e451c/jam.jpg 90w,
-/linked/jam/29fd0/jam.jpg 180w,
-/linked/jam/b3ebb/jam.jpg 270w,
-/linked/jam/8841e/jam.jpg 360w,
-/linked/jam/95b54/jam.jpg 540w,
-/linked/jam/2b1a3/jam.jpg 900w" src="/linked/jam/29fd0/jam.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">How and Why I migrated from WordPress to static JAM Stack site built with Gatsby JS.</span></div></div>
+<PostLink node={props.pageContext.links["/gatsby-migration"]} />
 
 Long story short, you get excellent performance, increased security and more. Static sites do have their limitations though. Most of the pages use some kind of user-generated content. Usually, it is comments, user reviews, discussions, and various others.
 
@@ -47,7 +36,7 @@ How great is that? Of course, you don't want users spamming your site, so Static
 
 ## Setup
 
-### Granting Github access
+### Granting GitHub access
 The first thing you need to do is to grant Staticman privileges to access your Github repo. Go to `Settings → Collaborators` section of your repository and add `staticmanapp` as a collaborator.
 
 ![Staticman Collaborators Setup](staticman-collaborators.jpg)
@@ -77,16 +66,16 @@ Staticman loads its configuration from a yaml file called `staticman.yml`. A sam
 
 Here is a list of some of the most important configuration properties:
 
-| Property       | Description                                                                                                                  |
-|----------------|------------------------------------------------------------------------------------------------------------------------------|
-| allowedFields  | An array of the form fields, which should be accepted. If a field is received and it is not specified here, it is discarded. |
-| branch         | Name of the git branch Staticman should use.                                                                                 |
-| commitMessage  | Commit message to be used.                                                                                                   |
-| fileName       | Each entry is stored as a file. This property determines the name. You can use placeholders such as @{id] or {@timestamp}.   |
-| format         | Format of the files created. Can be yaml, json or frontmatter                                                                |
-| moderation     | If true, Staticman will create a Pull Request instead of pushing directly to your configured branch.                         |
-| pah            | Path to a directory where your Staticman files will be created.                                                              |
-| requiredFields | Array of required fields. If some of them are missing, the entry will be rejected.                                           |
+| Property       | Description                                                                                                                    |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------|
+| allowedFields  | An array of the form fields, which should be accepted. If a field is received and it is not specified here, it is discarded.   |
+| branch         | Name of the git branch Staticman should use.                                                                                   |
+| commitMessage  | Commit message to be used.                                                                                                     |
+| fileName       | Each entry is stored as a file. This property determines the name. You can use placeholders such as `@{id]` or `{@timestamp}`. |
+| format         | Format of the files created. Can be yaml, json or frontmatter                                                                  |
+| moderation     | If true, Staticman will create a Pull Request instead of pushing directly to your configured branch.                           |
+| pah            | Path to a directory where your Staticman files will be created.                                                                |
+| requiredFields | Array of required fields. If some of them are missing, the entry will be rejected.                                             |
 
 ### Creating a form
 Now all you need is to create a form, which accepts user input and submits it to Staticman. You need to define all the fields which you want to collect and submit the form to:
@@ -101,12 +90,12 @@ An example of such form:
   <label><input name="fields[name]" type="text" />Name</label>
   <label><input name="fields[email]" type="email" />E-mail</label>
   <label><textarea name="fields[message]"></textarea>Message</label>
-  
+
   <button type="submit">Submit</button>
 </form>
 ```
 
-Note the `/comments` section at the end of action URL. This is a section identifier (marked as `{PROPERTY}` in the url template above), which allows you to have multiple configurations for your site. Eg. One for comments, one for user reviews etc. In this case, we're saying that we want to use configuration specified under the `comments` section of your configuration file.
+Note the `/comments` section at the end of action URL. This is a section identifier (marked as `{PROPERTY}` in the url template above), which allows you to have multiple configurations for your site. E.g. One for comments, one for user reviews etc. In this case, we're saying that we want to use configuration specified under the `comments` section of your configuration file.
 
 ```yaml
 comments:
@@ -114,7 +103,7 @@ comments:
   ...
 reviews:
   allowedFields: ["name", "email", "rating"]
-  ...  
+  ...
 ```
 
 If you want to redirect the user to a specific url after submit you can do it by including this hidden field:
@@ -138,7 +127,7 @@ message: Hello StaticMan!
 date: 1535118541
 ```
 
-What you need to do is to make sure your static site generator reads this data (you can set a different format than yaml if you need to) and generates static content based on it. This will, of course, vary greatly depending on which generator you use. 
+What you need to do is to make sure your static site generator reads this data (you can set a different format than yaml if you need to) and generates static content based on it. This will, of course, vary greatly depending on which generator you use.
 
 For example, if using Gatsby, you can use [gatsby-transformer-yaml](https://www.gatsbyjs.org/packages/gatsby-transformer-yaml/) to read the yaml data and then just populate your comments section based on this data as you would with any other data source.
 
@@ -151,7 +140,7 @@ You can turn on moderation of user submissions by setting `moderation: true` in 
 ### Running your own instance
 If using Staticman as a service does not suit your needs for any reason, you can [run your own instance](https://staticman.net/docs/api).
 
-### Akismet 
+### Akismet
 Staticman offers integration with [Akismet](https://akismet.com/) spam filter. This can be great when running your own instance, but unfortunately does not work [currently](https://github.com/eduardoboucas/staticman/issues/83) on public Staticman instance as it is using shared Akismet account under the hood, which reached the maximum usage limit.
 
 ### Email notifications
@@ -161,7 +150,7 @@ Staticman supports email notifications on new user submissions using [Mailgun](h
 Staticman supports re-captcha integration. You'll need to [create a re-captcha account](https://www.google.com/recaptcha/admin) first. You will receive a `site-key` and `secret`. Your secret is not used directly by Staticman and you need to encrypt it first.
 
 ```
-https://api.staticman.net/v2/encrypt/SECRET  
+https://api.staticman.net/v2/encrypt/SECRET
 ```
 
 You should receive encrypted secret back in the response. You then use it in your `staticman.yml` config file:
@@ -200,4 +189,4 @@ The source code of a simple GatsbyJS site using Staticman can be found [here](ht
 Running example is available [here](https://staticman-example.netlify.app/).
 
 ## Conclusion
-Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.
+Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance, and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.
