@@ -4,7 +4,7 @@ date: "2019-09-19T22:12:03.284Z"
 tags: ["Maven"]
 path: '/maven-archetypes'
 featuredImage: './archetype.jpg'
-excerpt: 'How to generate new projects from Maven archetypes, create your own and number of alternative tools.'
+excerpt: 'How to generate new projects from Maven archetypes, create your own and some alternative tools.'
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -17,7 +17,7 @@ There is a number of archetypes available which allow you to create various type
 You can even create your own archetypes and share them with others.
 
 ## Generating from command line
-You can generate your project from an archetype in your command line using the following commad via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
+You can generate your project from an archetype in your command line using the following command via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
 
 ```
 mvn archetype:generate 
@@ -30,7 +30,7 @@ In the example above, you specify just identifiers of your archetype and the com
 
 However, you can specify all these upfront, so no interaction is needed from your side. This can be useful, for example, when generating a project as a part of some automated script which should not have any user interaction.
 
-```shell{4-8}
+```shell{5-8}
 mvn archetype:generate 
 -DarchetypeGroupId=org.springframework.boot 
 -DarchetypeArtifactId=spring-boot-sample-simple-archetype 
@@ -158,7 +158,7 @@ gradle init
 ### Spring Boot Initializr
 When working with Spring Boot, you can still use Maven archetypes, but there is a better, way more powerful tool offered directly by Spring.
 
-It is called [Spring Initializr](https://start.spring.io/). It is a simple wizard, where you can define many options for your application and then generates your project based on your choices.
+It is called [Spring Initializr](https://start.spring.io/). It is a simple wizard, where you can define many options for your application, and then it generates your project based on your choices.
 
 ![Spring Boot Initializr](spring-boot-initializr.png)
 
