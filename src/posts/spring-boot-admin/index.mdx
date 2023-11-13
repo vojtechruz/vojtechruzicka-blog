@@ -5,6 +5,7 @@ tags: ['Spring', 'Java']
 path: '/spring-boot-admin'
 featuredImage: './spring-boot-admin.png'
 excerpt: 'Monitor and manage you Spring Boot apps with a nice UI on top of Spring Boot Actuator endpoints.'
+links: ["/spring-boot-actuator"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -12,20 +13,7 @@ excerpt: 'Monitor and manage you Spring Boot apps with a nice UI on top of Sprin
 ## Spring Boot Actuator
 Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application, so you can easily monitor and manage it in production. The endpoints offer health-check, metrics monitoring, access to logs, thread dumps, heap dumps, environmental info and more. I've covered Actuator in depth in the following article:
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/spring-boot-actuator/" style="box-shadow: none;">Actuator: Spring Boot Production Monitoring and Management</a></h4><small class="front-post-info"><span class="front-post-info-date">03 September, 2018</span><div class="post-tags"><ul><li><a href="/tags/spring/">#Spring</a></li><li><a href="/tags/java/">#Java</a></li></ul></div></small><div><a class="front-post-image" href="/spring-boot-actuator/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 75%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQFA//EABYBAQEBAAAAAAAAAAAAAAAAAAEAAv/aAAwDAQACEAMQAAABSozacLmxh//EABkQAAMBAQEAAAAAAAAAAAAAAAECAwARBP/aAAgBAQABBQJfSy6NjXMOFYdMgqEnf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABwQAAEEAwEAAAAAAAAAAAAAAAEAEBESAiEiYf/aAAgBAQAGPwLWIRuA02hcmT63/8QAGxAAAwACAwAAAAAAAAAAAAAAAAERITFRYXH/2gAIAQEAAT8hxQ4VCaiFzWvDPkTpUYaTnAg8I//aAAwDAQACAAMAAAAQLy//xAAWEQEBAQAAAAAAAAAAAAAAAAAAARH/2gAIAQMBAT8QrH//xAAXEQADAQAAAAAAAAAAAAAAAAAAASER/9oACAECAQE/EMQ3af/EABwQAQEAAgMBAQAAAAAAAAAAAAERACExQaFRwf/aAAgBAQABPxBwBR+L+5rml6GIiHkO1u8s1qxV7leG40Wu4YkufaXh79z/2Q==" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/spring-boot-actuator/5e4a3/spring-boot-actuator.jpg 45w,
-/linked/spring-boot-actuator/e451c/spring-boot-actuator.jpg 90w,
-/linked/spring-boot-actuator/29fd0/spring-boot-actuator.jpg 180w,
-/linked/spring-boot-actuator/b3ebb/spring-boot-actuator.jpg 270w,
-/linked/spring-boot-actuator/8841e/spring-boot-actuator.jpg 360w,
-/linked/spring-boot-actuator/95b54/spring-boot-actuator.jpg 540w,
-/linked/spring-boot-actuator/989b1/spring-boot-actuator.jpg 1600w" src="/linked/spring-boot-actuator/29fd0/spring-boot-actuator.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/spring-boot-actuator/5e4a3/spring-boot-actuator.jpg 45w,
-/linked/spring-boot-actuator/e451c/spring-boot-actuator.jpg 90w,
-/linked/spring-boot-actuator/29fd0/spring-boot-actuator.jpg 180w,
-/linked/spring-boot-actuator/b3ebb/spring-boot-actuator.jpg 270w,
-/linked/spring-boot-actuator/8841e/spring-boot-actuator.jpg 360w,
-/linked/spring-boot-actuator/95b54/spring-boot-actuator.jpg 540w,
-/linked/spring-boot-actuator/989b1/spring-boot-actuator.jpg 1600w" src="/linked/spring-boot-actuator/29fd0/spring-boot-actuator.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.</span></div></div>
-
+<PostLink node={props.pageContext.links["/spring-boot-actuator"]} />
 
 ## Spring Boot Admin
 Actuator is powerful and great and it is easy and convenient to consume the endpoints with some other application - you just make a simple REST call. It is not so great when used by a human. For humans, it is much more convenient to have a nice user interface you can use to browse all the monitoring data and manage your application. This is actually what Spring Boot Admin Does. It provides you a nice UI layer on top of actuator endpoints with a few extra features on top.
@@ -196,7 +184,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logout().logoutUrl("/logout").and()
             .httpBasic().and()
             .csrf()
-            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .csrfTokenRepository(CookieCsrfTokenRepository
+                                .withHttpOnlyFalse())
             .ignoringAntMatchers(
                 "/instances",
                 "/actuator/**"
