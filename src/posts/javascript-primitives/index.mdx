@@ -18,7 +18,7 @@ Javascript offers six primitive types:
 - boolean
 - undefined
 - null
-- symbol. 
+- symbol
 
 Everything else is not a primitive. It is an object. Dates, arrays, functions, regular expressions - everything.
 
@@ -38,7 +38,7 @@ Examples of primitives are `61`, `'Kitty'` or `false`.
 In the example above, you can see that an object is basically a collection of name-value pairs. You can change their values ('mutate' them, we say that objects are mutable) or you can even add your own new properties or remove existing ones.
 
 ```javascript
-var john = {
+let john = {
     firstName: 'John',
     lastName: 'Doe'
 }
@@ -62,9 +62,9 @@ Primitives are compared by value, objects are compared by reference. What does i
 However, when comparing two objects, you need to be more careful. They are compared by their identity. That means it does not matter if the two objects have the same properties with the same values. They are equal only if they are the same instance. That is - if comparing two variables, they are equal only if they point to the very same object.
 
 ```javascript
-var john = {name: 'John', name: 'Doe'};
-var stillJohn = john;
-var evilTwin = {name: 'John', name: 'Doe'};
+let john = {name: 'John', name: 'Doe'};
+let stillJohn = john;
+let evilTwin = {name: 'John', name: 'Doe'};
 
 john === john //true
 john === stillJohn //true
@@ -107,7 +107,7 @@ Both `null` and `undefined` are primitive types representing the absence of valu
 
 1.  A variable was declared but not initialized
 2.  Return value of methods that do not return anything
-3.  Value of function parameters when called did not provide value
+3.  Value of function parameters when caller did not provide value
 4.  Accessing a property of an object which does not exist
 
 One caveat to watch for and which is confusing is that even though null is a primitive, calling `typeof null` [returns object](https://stackoverflow.com/q/18808226/4560142). In contrast, `typeof undefined` returns `undefined`.
@@ -117,7 +117,7 @@ One caveat to watch for and which is confusing is that even though null is a pri
 Alright, we know that objects have properties, which you can access using a dot. Like `person.name = 'john'`. Primitives don't have anything like that, they are just a single value. And strings are primitives. How come that the following will work then?
 
 ```javascript
-var name = 'John';
+let name = 'John';
 console.log(name.length); //prints 4
 console.log(name.toUpperCase()); //prints JOHN
 ```
@@ -194,7 +194,7 @@ When you are working with objects, there are some cases when you would rather ne
 A good example can be Date. `toString()` returns a human-readable description of the date, while `valueOf()` returns a number representing the date as the number of passed milliseconds since `1 January 1970 00:00:00 UTC` and the date.
 
 ```javascript
-var date = new Date();
+let date = new Date();
 console.log(date.toString()); //Wed Jan 24 2018 14:12:07 GMT+0100 (Central Europe Standard Time)
 console.log(date.valueOf()); //1516817671281
 ```
@@ -202,7 +202,7 @@ console.log(date.valueOf()); //1516817671281
 You rarely need to call `valueOf()` yourself, but javascript does it under the hood when a primitive is expected, for example when using `+` operator. You can even define your own implementation of `valueOf()` and `toString()`:
 
 ```javascript
-var john = {
+let john = {
     firstName: 'John',
     lastName: 'Doe',
     age: 45,
