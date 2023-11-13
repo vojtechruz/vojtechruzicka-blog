@@ -5,6 +5,7 @@ tags: ["Javascript"]
 path: '/javascript-async-await'
 featuredImage: './async-await.jpg'
 excerpt: 'Async await allows you to work with asynchronous code in a cleaner and more convenient way.'
+links: ["/javascript-promises"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -12,19 +13,7 @@ excerpt: 'Async await allows you to work with asynchronous code in a cleaner and
 ## Promises
 This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or need a quick recap, check the following article.
 
-<div class="linked-article"><h4 class="front-post-title" style="margin-bottom: 0.375rem;"><a href="/javascript-promises/" style="box-shadow: none;">Javascript promises tutorial</a></h4><small class="front-post-info"><span class="front-post-info-date">28 March, 2019</span><div class="post-tags"><ul><li><a href="/tags/javascript/">#Javascript</a></li></ul></div></small><div><a class="front-post-image" href="/javascript-promises/"><div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden;"><div style="width: 100%; padding-bottom: 51.7778%;"></div><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIDBAX/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//aAAwDAQACEAMQAAAB0XiYUugKf//EABsQAAEEAwAAAAAAAAAAAAAAAAECAxExEBIy/9oACAEBAAEFAnFSNpwq2+BX/8QAFxEBAAMAAAAAAAAAAAAAAAAAAgEQEf/aAAgBAwEBPwFHIr//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAVEAEBAAAAAAAAAAAAAAAAAAAQAv/aAAgBAQAGPwJp/8QAGRABAAMBAQAAAAAAAAAAAAAAAQAhMRFh/9oACAEBAAE/IWQNgrDTvkMlOcFJhP/aAAwDAQACAAMAAAAQ1z//xAAVEQEBAAAAAAAAAAAAAAAAAAABEP/aAAgBAwEBPxAI/wD/xAAXEQEBAQEAAAAAAAAAAAAAAAABACEx/9oACAECAQE/EOMaX//EABsQAAIDAQEBAAAAAAAAAAAAAAERACFRcaHx/9oACAEBAAE/EAptKWsQzQACGvsKvJllnYByDQnkn//Z" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;"><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/promises/5e4a3/promise.jpg 45w,
-/linked/promises/e451c/promise.jpg 90w,
-/linked/promises/29fd0/promise.jpg 180w,
-/linked/promises/b3ebb/promise.jpg 270w,
-/linked/promises/8841e/promise.jpg 360w,
-/linked/promises/95b54/promise.jpg 540w,
-/linked/promises/2b1a3/promise.jpg 900w" src="/linked/promises/29fd0/promise.jpg" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;"></picture><noscript><picture><img sizes="(max-width: 180px) 100vw, 180px" srcset="/linked/promises/5e4a3/promise.jpg 45w,
-/linked/promises/e451c/promise.jpg 90w,
-/linked/promises/29fd0/promise.jpg 180w,
-/linked/promises/b3ebb/promise.jpg 270w,
-/linked/promises/8841e/promise.jpg 360w,
-/linked/promises/95b54/promise.jpg 540w,
-/linked/promises/2b1a3/promise.jpg 900w" src="/linked/promises/29fd0/promise.jpg" alt="" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></a><span class="front-post-excerpt">Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.</span></div></div>
+<PostLink node={props.pageContext.links["/javascript-promises"]} />
 
 ## Async
 Let's assume we have a simple function returning some value
@@ -91,13 +80,13 @@ class Foo {
 ```
 
 ## Await
-Await syntax is simple you just put `await` before your promise:
+Await syntax is simple you just put `await` before your function returning a promise:
 
 ```javascript
-await myPromise;
+await myFunctionReturningPromise();
 ```
 
-What it does is that it waits for the promise to resolve and if successful it returns the value. The execution of the program does not continue to the next line until the promise is settled.
+What it does is that it waits for the promise to resolve and if successful it returns the value. The execution of the program does not continue to the next line until the promise is settled. You can use `await` only inside `async` function.
 
 ```javascript
 const myPromise = new Promise((resolve, reject) => {
@@ -118,7 +107,7 @@ SyntaxError: await is only valid in async function
 One implication of this is that you cannot use `await` in the top-level code.
 
 ## Multiple calls
-Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each call depends on the value returned by the previous one.
+Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each call depends on the value returned by the previous one. That means those calls should be executed one after another in synchronous order.
 
 ```javascript
 const first = await firstCall();
@@ -126,7 +115,7 @@ const second = await secondCall(first);
 const third = await  thidrCall(second);
 ```
 
-It is a concise, easy to read way to represent multiple async calls. With promises, it would be not so nice chain of `then()` clauses, which is not so nice. Of course, still much better than chained callbacks.
+It is a concise, easy to read way to represent multiple async calls executed one after another. With promises, it would be not so nice chain of `then()` clauses, which is much harder to read. Of course, still much better than chained callbacks.
 
 ## Error handling
 When working with promises, you can provide `then()` clause, which handles the case where the promise is fulfilled successfully and `catch()` clause to handle any errors when the promise is rejected. There is even `finally()` clause which executes no matter whether the promise was fulfilled or rejected.
