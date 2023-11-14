@@ -1,7 +1,7 @@
 ---
 title: 'Java Pattern Matching: InstanceOf (JEP 305)'
 date: "2020-04-05T22:12:03.284Z"
-dateModified: "2020-05-29"
+dateModified: "2023-11-14"
 tags: ['Java']
 path: '/java-pattern-matching-instanceof'
 featuredImage: './pattern-matching.jpg'
@@ -11,7 +11,7 @@ excerpt: 'This new feature in Java 14 allows you to simplify your code and get r
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## instanceof
-To better understand this new feature, let's look into how `instanceof` operator works. If you are already familiar with it, feel free to skip to the next section.
+To better understand this new feature, let's look into how `instanceof` operator works. If you are already familiar with it, feel free to skip to the [next section](#pattern-matching-for-instanceof).
 
 In short, it tests whether the given object is of the given type. Based on this, it returns either `true` or `false`.
 
@@ -106,71 +106,6 @@ After checking `instanceof`, after `&&`, we can use the `cat` variable already t
 The good news is that there is good support for this feature in IntelliJ IDEA, introduced in version [2020.1](https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/) (along with support for other Java 14 new features, such as [Records](https://www.vojtechruzicka.com/java-records/) or [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/))
 
 ![IDEA pattern matching instanceof](idea-patter-matching-instanceof.png)
-
-## Try it yourself!
-To try this feature yourself, you'll need to have [JDK 14 installed](https://jdk.java.net/14/). 
-
-### Preview feature
-Pattern matching for instanceof functionality is available in Java 14. However, currently only as a preview feature. What does it mean?
-
->A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented, and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use; this may lead to it becoming permanent in a future Java SE Platform.
-> 
->Before the next JDK feature release, the feature's "real world" strengths and weaknesses will be evaluated to decide if the feature has a long-term role in the Java SE Platform and, if so, whether it needs refinement. Consequently, the feature may be granted final and permanent status (with or without refinements), or undergo a further preview period (with or without refinements), or else be removed.
-
-Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
-
-
-### IntelliJ IDEA setup
-In IntelliJ IDEA, you can enable preview features under `File → Project Structure`.
-
-![Idea Preview features](idea-preview-settings.png)
-
-### Manual compilation
-Alternatively, if building manually, you need to provide the following params to `javac`:
-
-```
-javac --release 14 --enable-preview ...
-```
-
-That is for compile-time. At run-time, you just provide `--enable-preview`
-
-```
-java --enable-preview ...
-```
-
-### Maven projects
-
-For Maven builds, you can use the following configuration:
-
-```xml
-<build>
-    <plugins>
-        <plugin>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <release>14</release>
-                <compilerArgs>
-                    --enable-preview
-                </compilerArgs>
-                <source>14</source>
-                <target>14</target>
-            </configuration>
-        </plugin>
-        <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-                <argLine>--enable-preview</argLine>
-            </configuration>
-        </plugin>
-        <plugin>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <configuration>
-                <argLine>--enable-preview</argLine>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-```
 
 ## UPDATE: Java 15
 In Java 15, this feature is still present as a preview feture - [JEP 375: Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375). Although there is a new JEP for it, [there are no changes](https://bugs.openjdk.java.net/browse/JDK-8235186) relative to the Java 14 version.
