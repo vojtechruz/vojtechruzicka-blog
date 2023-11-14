@@ -20,7 +20,7 @@ function sayHi() {
 }
 ```
 
-It works and prints \'Hi there!\'. Even though the function is defined after it is used. Or another example:
+It works and prints 'Hi there!'. Even though the function is defined after it is used. Or another example:
 
 ```javascript
 john = 'John Doe';
@@ -36,8 +36,8 @@ var john = 'John Doe';
 
 It is actually consisting of two parts:
 
--   *var john* means that variable john is declared
--   *= \'John Doe\';* means that previously declared variable *john* is assigned a value of string \'John Doe\'
+-   `var john` means that variable john is declared
+-   `= 'John Doe';` means that previously declared variable `john` is assigned a value of string `John Doe`
 
 It is basically one-liner for:
 
@@ -83,9 +83,9 @@ for (var i = 0; i < 10; i++) {
 console.log(i); // 10, What? 'i' still exists outside the for block!
 ```
 
-Unlike in many other languages, variables declared using *var* keyword do not respect block scope. That means you would expect that variable \'i\' from a for loop would be accessible only inside the loop. Wrong. The scope of a variable declared in Javascript depends on where you declare it.
+Unlike in many other languages, variables declared using *var* keyword do not respect block scope. That means you would expect that variable 'i' from a for loop would be accessible only inside the loop. Wrong. The scope of a variable declared in Javascript depends on where you declare it.
 
--   If you declare it inside of a function body, its scope is the whole function\'s body. And because of hoisting, it can be accessed anywhere in the body.
+-   If you declare it inside of a function body, its scope is the whole function's body. And because of hoisting, it can be accessed anywhere in the body.
 -   If you declare your variable on the root level it is in the global scope. It is actually a variable of the global object (e.g. window).
 
 If we take our example with for loop, the variable *i* is actually now declared also as a property of window - that is *window.i*!
@@ -114,7 +114,7 @@ console.log(foo); // ReferenceError: foo is not defined
 ## let
 In ES6 in addition to *var*, there were two new variable types introduced - *let* and *const*. What are they good for if there already is *var*? One of the differences is that their scope is not the entire function but rather only the enclosing block. That is, some section of code wrapped in curly braces {}. Like the body of an *if* statement or *for* loop. Finally, you can minimize the scope of your variables to the bare minimum without ugly workarounds such as IIFE.
 
-Another difference (and advantage) of *let* over *var* is how hoisting works. Variables declared using *var* can be accessed in the whole scope (and we already know that *var* has a bigger scope). You can access them before they are declared. In such case, their value would be undefined though, as only declarations and not initializations are hoisted. This is generally considered a bad practice. *Let* behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in the \'Temporal Dead Zone\'.
+Another difference (and advantage) of *let* over *var* is how hoisting works. Variables declared using *var* can be accessed in the whole scope (and we already know that *var* has a bigger scope). You can access them before they are declared. In such case, their value would be undefined though, as only declarations and not initializations are hoisted. This is generally considered a bad practice. *Let* behaves differently.  You can access it only after it was declared. Until then, the variable is considered to be in the 'Temporal Dead Zone'.
 
 To better understand the difference between *var* and *let*, we need to compare their life cycle. When a scope is entered, the first thing which happens is that the whole scope (function body, block) is searched for variable declarations. Then there is a memory space allocated for each of the variables. After this, the body of the function or block is executed line by line. That's basically how hoisting works and why you can access your variables before declaring them.
 
