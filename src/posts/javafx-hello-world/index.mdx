@@ -39,7 +39,9 @@ A scene represents the contents of a stage. Each stage can have multiple scenes,
 Each scene can contain various components, which are called nodes. These can be controls like buttons or labels or even layouts, which can contain multiple nested components. Each scene can have one nested node, but it can be a layout, which can host multiple components. The nesting can be multiple levels deep - layouts can contain other layouts and regular components.
 
 ### Summary
-Each application can have multiple stages - windows. Each stage can switch multiple scenes. Scenes contain nodes - layouts and regular components.
+- Each application can have multiple stages - windows.
+- Each stage can switch multiple scenes.
+- Scenes contain nodes - layouts and regular components.
 
 You can visualize the hierarchy like this:
 
@@ -148,7 +150,7 @@ helloWorldLabel.setAlignment(Pos.CENTER);
 Finally, we need to set  the scene to the stage we already have:
 
 ```java{14}
- @Override
+@Override
 public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Hello world Application");
     primaryStage.setWidth(300);
