@@ -35,9 +35,7 @@ Alternatively, if you don't mind doing some extra work, custom search offers an 
 If you don't care about the downsides much, this can be very easy and quick way to add search for your static site. If you don't like it, there are still alternatives.
 
 ## Algolia DocSearch
-<div class="msg-info">
-<b>UPDATE:</b> The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is version 3<a href="https://docsearch.algolia.com/docs/DocSearch-v3"> available </a>. One major change is that you can now apply not only with technical documentation site, but also a technical blog. It now also offers react components out of the box. The configuration and code examples are no longer up to date, please refer to the official documentation instead.
-</div>
+<Info><b>UPDATE:</b> The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is version 3<a href="https://docsearch.algolia.com/docs/DocSearch-v3"> available </a>. One major change is that you can now apply not only with technical documentation site, but also a technical blog. It now also offers react components out of the box. The configuration and code examples are no longer up to date, please refer to the official documentation instead.</Info>
 
 [Algolia DocSearch](https://community.algolia.com/docsearch/) is similar to Google Custom Search in a way that you don't need to download the whole search index to the client and that the search is provided by third-party service.
 
@@ -66,15 +64,18 @@ One of the advantages of DocSearch how easy it is to set up and configure. You j
 
 ```html
 <!-- at the end of the HEAD --> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> 
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 
 <!-- at the end of the BODY --> 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script> 
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js">
+</script>
 <script type="text/javascript"> docsearch({ 
- apiKey: '### PROVIDED  BY ALGOLIA ####', 
- indexName: '### PROVIDED  BY ALGOLIA ####', 
- inputSelector: '### REPLACE ME ####', 
- debug: false // Set debug to true if you want to inspect the dropdown 
+    apiKey: '### PROVIDED  BY ALGOLIA ####',
+    indexName: '### PROVIDED  BY ALGOLIA ####',
+    inputSelector: '### REPLACE ME ####',
+    debug: false // Set debug to true if you want to inspect the dropdown
 }); 
 </script> 
 ```

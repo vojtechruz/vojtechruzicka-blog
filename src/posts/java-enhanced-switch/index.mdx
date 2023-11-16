@@ -148,9 +148,7 @@ As you can see, we can now use the result of a switch expression and assign it t
 
 Notice a few differences to the regular switch statement. First of all, it needs to end with a semicolon. Then, there is a new keyword `yield`. It is similar to the `return` statement. But for switch expression instead. It marks value to be returned from a switch branch. Because `yield` terminates the switch expression, you don't need to have `break` after it.
 
-<div class="msg-info">
-The yield statement is targeted to be introduced in Java 13. For Java 12, you should use break instead. See <a href="#history">History</a> Section below.
-</div>
+<Info>The yield statement is targeted to be introduced in Java 13. For Java 12, you should use break instead. See <a href="#history">History</a> section below.</Info>
 
 ### Null Pointer Exception Safety
 There is another significant difference. Unlike with regular switch, the switch expression needs to cover all the possible input values.
