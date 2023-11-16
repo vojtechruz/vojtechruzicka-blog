@@ -27,9 +27,9 @@ This is the fourth article in the JavaFX series. In the previous article, I desc
 </div>
 
 ## Layouts
-Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole no matter what components are inside. Moreover, each scene can only hold one component, so you need a layout as a root component for your scene, so you can fit all the components you need. Of course, one layout is usually not enough, but you can nest layouts. That means you can put one layout inside another.
+Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole no matter what is inside. Moreover, each scene can only hold one component, so you need a layout as a root for your scene, so you can fit all the components you need. Of course, one layout is usually not enough. Fortunately, you can nest your layouts -it is possible to put one layout inside another, even multiple levels deep.
 
-In addition to that, layouts also organize and position your components inside. Based on the layout used, child components can be positioned for example:
+In addition to that, layouts also organize and position your components inside. Based on the layout used, child components can be positioned in a different way. For example:
 - One after another horizontally
 - One after another vertically
 - One on top of each other as a stack
@@ -71,7 +71,7 @@ Our elements are now neatly laid out horizontally in a row, one after another:
 
 However, it does not look very good as they are right after each other with no spacing. Fortunately, we can define the spacing between components using `spacing` property of the HBox:
 
-```
+```xml
 <HBox spacing="10">
      ...
 </HBox>
@@ -143,7 +143,7 @@ vbox.getChildren().addAll(btn1, btn2, btn3, btn4);
 ```
 
 ## StackPane
-This layout is useful for stacking its components one on top of each other. The order of insertion determines the order of the items. That means the first item is on the bottom, the next is on top of it and so on.
+This layout is useful for stacking its components one on top of each other. The order of insertion determines the order of the items. That means the first item is in back, the next is on top of it and so on.
 
 This can be useful, for example, for having an image and then having some text or button on top of it.
 
@@ -221,7 +221,7 @@ The following image illustrates these two modes:
 
 ![Flow pane horizontal vs vertical](flow-pane-comparison.png)
 
-Note that items don't necessarily have to have the same size as they do have in the image above.
+Items don't necessarily need to have the same size as they do have in the image above.
 
 Note how the position of the components is recalculated if you change the size of the container:
 
@@ -259,6 +259,8 @@ Constructing TilePane is no different from FlowPane except for the name.
 
 ```xml
 <TilePane vgap="10" hgap="10" orientation="VERTICAL" >
+  ...
+</TilePane>
 ```
 
 The same in Java:
