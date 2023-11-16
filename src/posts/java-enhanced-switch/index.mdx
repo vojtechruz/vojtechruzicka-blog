@@ -10,9 +10,7 @@ excerpt: 'Java 12 introduced a whole lot of useful improvements to the good old 
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<div class="msg-info">
-There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to reflect it. 
-</div>
+<Info>There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to reflect it.</Info>
 
 ## Traditional switch
 Good old switch is available in Java from the very beginning, and little has changed since then until now. Java's switch follows closely the design of C and C++ including the weird parts.
@@ -96,33 +94,6 @@ Unfortunately, the old traditional switch does not support this.
 ## Enhanced Switch
 Java 12 brought a whole lot of improvements to the traditional switch as [Java Enhancement Proposal 325: Switch Expressions (Preview)](http://openjdk.java.net/jeps/325). It solves most of the issues of the traditional switch and is prerequisite of [pattern matching](https://openjdk.java.net/jeps/305), which is to be provided in the future.
 
-### Preview Feature
-Enhanced switch functionality is, however, currently only available as a [preview feature](https://openjdk.java.net/projects/jdk/13/).
-
-What does it mean?
-
->A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented, and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use; this may lead to it becoming permanent in a future Java SE Platform.
-> 
->Before the next JDK feature release, the feature's "real world" strengths and weaknesses will be evaluated to decide if the feature has a long-term role in the Java SE Platform and, if so, whether it needs refinement. Consequently, the feature may be granted final and permanent status (with or without refinements), or undergo a further preview period (with or without refinements), or else be removed.
-
-Such features are shipped in the JDK but are not enabled by default. You need to explicitly enable them to use them. Needless to say, it is not intended for production use, but rather for evaluation and experimentation as it may get removed or heavily changed in a future release.
-
-First, make sure you actually have [JDK 13 installed](https://jdk.java.net/13/). Then, in IntelliJ IDEA you can enable preview features under `File → Project Structure`.
-
-![Idea Preview features](idea-enable-preview-features.png)
-
-Alternatively, if building manually, you need to provide the following params to `javac`:
-
-```
-javac --release 13 --enable-preview ...
-```
-
-That is for compile-time. At run-time, you just provide `--enable-preview`
-
-```
-java --enable-preview ...
-```
-
 ### Multiple values in a case
 We already covered that one value per `case` is problematic and it limits you. Fortunately, with an enhanced switch, there is no longer such limitation. You can simply provide multiple comma-separated values:
 
@@ -202,7 +173,8 @@ String message = switch (errorCode) {
 This will result in the following error:
 
 ```
-Error:(11, 26) java: the switch expression does not cover all possible input values
+Error:(11, 26) java: the switch expression does not cover all possible
+input values
 ```
 
 So with switch expression, you have to cover all the possible inputs. Either by providing `case` for all the possible values (which can be easy for enums) or by providing `default` case.
