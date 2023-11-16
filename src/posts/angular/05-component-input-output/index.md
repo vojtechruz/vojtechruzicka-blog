@@ -10,7 +10,6 @@ hidden: 'true'
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>
@@ -371,7 +370,6 @@ Not all the fields should be available as inputs, some represent the internal st
 
 Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output()` decorator.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>

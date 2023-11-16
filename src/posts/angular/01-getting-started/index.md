@@ -249,7 +249,6 @@ We learned how to prepare your system by installing Node.js and Angular CLI. The
 ## What's next
 In the next article [Building Blocks](/angular/02-building-blocks), we'll learn what the basic building blocks of Angular applications are.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>

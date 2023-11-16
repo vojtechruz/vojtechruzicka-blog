@@ -10,7 +10,6 @@ hidden: 'true'
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>
@@ -350,7 +349,6 @@ It is very similar with styling. Although you can have styles directly in your T
 ## What's Next
 In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and out of components and creating and handling events.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>

@@ -9,7 +9,6 @@ excerpt: 'How to style JavaFX components using good old CSS.'
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -299,7 +298,6 @@ That means if you set the background color of a specific label both inline and o
 There are numerous CSS properties in JavaFX, and describing them is beyond the scope of this post, for a detailed list, please see the official [JavaFX CSS Reference Guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).
 
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>

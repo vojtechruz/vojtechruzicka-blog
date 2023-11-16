@@ -11,7 +11,6 @@ order: 3
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -360,7 +359,6 @@ Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
 ## What's next
 In the next post in our series, we'll cover some [basic layout we can use to organize our GUI components](/javafx-layouts-basic/).
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>

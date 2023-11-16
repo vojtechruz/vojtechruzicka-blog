@@ -13,7 +13,6 @@ series: JavaFX
 
 In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the rest of the available layouts.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -307,7 +306,6 @@ The center has a dynamic size and fills the rest of the space not occupied by ot
 ## What's next
 Now when we know how to use various layouts, we'll cover how to style JavaFX  components using CSS.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>

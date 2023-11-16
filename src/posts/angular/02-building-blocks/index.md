@@ -13,7 +13,6 @@ hidden: 'true'
 This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting Started
 ](https://www.vojtechruzicka.com/angular-tutorial-getting-started)
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>
@@ -207,7 +206,6 @@ We also learned how Angular applications are started:
 ## What's Next
 In the next article in the series, we'll learn more about [Angular Components](/angular/03-components).
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>

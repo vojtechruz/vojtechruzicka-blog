@@ -10,7 +10,6 @@ hidden: 'true'
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>
@@ -198,7 +197,6 @@ We have four kinds of data binding:
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise operators or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation and property binding, there should be no side effects.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
   <ol>

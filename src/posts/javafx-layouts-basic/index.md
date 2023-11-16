@@ -13,7 +13,6 @@ series: JavaFX
 
 This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -274,7 +273,6 @@ tilePane.setOrientation(Orientation.VERTICAL);
 ## What's next
 In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced/).
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>

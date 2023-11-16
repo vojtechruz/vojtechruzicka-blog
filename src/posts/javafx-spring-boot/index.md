@@ -9,7 +9,6 @@ excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -284,7 +283,6 @@ This has one implication. In your constructor and `@PostConstruct` you can alrea
 ## Conclusion
 JavaFX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages its own lifecycle and lifecycle of its controllers. JavaFX Weaver makes the integration possible and quite straightforward, so you can finally use all the cool features of Spring even with JavaFX.
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>

@@ -13,7 +13,6 @@ order: 2
 
 This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started/). 
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
@@ -175,7 +174,6 @@ Now our window contains a scene with a label component.
 ## What's Next
 In the next step in the series, we'll cover how to [write our GUI in XML rather in Java](/javafx-fxml-scene-builder/).
 
-<!--TODO remove this after they fix gatsby-remark-series -->
 <div class="series-table-of-content">
   <div>All posts in the JavaFX series</div>
   <ol>
