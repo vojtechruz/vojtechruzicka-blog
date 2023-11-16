@@ -179,9 +179,7 @@ export class MainComponent {
 
 Nothing special here, we utilized event binding, which we already know how to use. Whenever the button is clicked, we call our new `clearName()` method.
 
-<div class="msg-info">
-When using two-way data binding with ngModel, you need to import FormsModule to your module (in the imports section).
-</div>
+<Info>When using two-way data binding with ngModel, you need to import FormsModule to your module (in the imports section).</Info>
 
 ## What we've learned
 Angular data binding is an important concept, which makes your application dynamic. It allows real-time synchronization of data and events between your component's class and template.

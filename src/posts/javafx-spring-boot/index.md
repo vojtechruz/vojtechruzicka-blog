@@ -22,7 +22,7 @@ excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
    </ol>
 </div>
 
-<div class="msg-info">There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.</div>
+<Info>There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.</Info>
 
 ## JavaFX & Spring
 When working with Java these days, you rarely work just with plain Java. In most of the projects, people usually use the Spring Framework or Spring Boot, respectively. It has a lot of advantages and many useful features.

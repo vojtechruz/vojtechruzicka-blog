@@ -133,7 +133,7 @@ If you check the `index.html` file again, you'll notice that it contains our com
 
 It turns out that Angular CLI, as a part of the build compiles all your typescript files and bundles them together with your libraries. Then it includes the resulting scripts in your `index.html` file. You can easily check that by inspecting the source code of your app in the browser using `Right click → View page source`. 
 
-<div class="msg-info">Be careful that just inspecting the page contents in Dev Tools won't work as it does not show the original source code but rather the actual contents of the DOM, which is manipulated by Angular at runtime</div>
+<Info>Be careful that just inspecting the page contents in Dev Tools won't work as it does not show the original source code but rather the actual contents of the DOM, which is manipulated by Angular at runtime</Info>
 
 ```html {12-16}
 <!doctype html>
