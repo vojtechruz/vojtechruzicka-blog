@@ -4,7 +4,7 @@ date: "2020-07-22T22:12:03.284Z"
 tags: ['Angular']
 path: '/angular/03-components'
 featuredImage: './components.jpg'
-excerpt: 'Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series.'
+excerpt: "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series."
 hidden: 'true'
 ---
 
@@ -39,7 +39,7 @@ Now let's create our first component called `main`. First, we'll need a Typescri
 
 Each component is a Typescript class:
 
-```
+```typescript
 export class MainComponent {
 
 }
@@ -48,7 +48,7 @@ export class MainComponent {
 ### @Component decorator
 Now we need to provide additional metadata to the component, so Angular knows how to handle it. This is done using `@Component` decorator on the class level. Since this is not recognized by Typescript by default, we need to import it.
 
-```
+```typescript
 import {Component} from "@angular/core";
 
 @Component()
@@ -60,7 +60,7 @@ export class MainComponent {
 ### Selector
 Much better, but still not enough. We need to pass some metadata to the `@Component`. You can put in a configuration object with various properties. Let's start with the `selector`.
 
-```
+```typescript{4}
 import {Component} from "@angular/core";
 
 @Component({
@@ -95,7 +95,7 @@ Note that our component is called `main`, but the selector is `app-main`. Why is
 ### Template
 We have a component, but there is no HTML associated, which should be used for rendering it. Let's change that.
 
-```
+```typescript{5}
 import {Component} from "@angular/core";
 
 @Component({
@@ -155,7 +155,7 @@ export class AppModule { }
 
 Note that our component here is referred to as `MainComponent`. This name corresponds to the Typescript class we used at the beginning:
 
-```
+```typescript
 export class MainComponent {
 
 }
@@ -170,7 +170,7 @@ That is the same HTML we specified in the `template: '<h1>Hello Angular!</h1>'`.
 ### Expanding the template
 Our component works, but it is rather simple. Let's expand its template a bit.
 
-```
+```typescript{5-7}
 @Component({
   selector: 'app-main',
   template: `
@@ -190,7 +190,7 @@ Let's create a new file in the same directory called `main.component.html` and c
 
 Now we need to change `template` to `templateUrl` and give it a path to our new HTML file.
 
-```
+```typescript{3}
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html'
@@ -202,7 +202,7 @@ That's much cleaner. We have our template neatly separated from our Typescript f
 ### Adding some styling
 Our component works, but it does not look very pretty. We have no styling at all. Fortunately, we can easily add some with `styles`.
 
-```
+```typescript
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -221,20 +221,18 @@ Same as with the HTML template in our previous example, this is not very clean t
 
 Similarly to extracting HTML to a separate file, you can do the same with styles. Let's create a file called `main.component.scss` and move our styles inside. Then we can link it using `styleUrls`.
 
-```
+```typescript{4}
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: [
-    './main.component.scss'
-  ]
+  styleUrls: ['./main.component.scss']
 })
 ```
 
 ## Generating components
 We managed to create our first component, but it was not very easy and convenient. Fortunately, Angular CLI allows you to create new components automatically. Just navigate in your terminal to the directory where you want your component to be created (let's use `src/app/` for now) and run the following command:
 
-```
+```bash
 ng generate component component-name
 ```
 
@@ -285,7 +283,7 @@ What's important is that the `bootstrap` section still contains only `MainCompon
 ### Customizing footer
 The HTML template of our new component, has already some content generated in `footer.component.html`. Let's change it to something more meaningful:
 
-```
+```html
 <hr>
 <div class="footer">
   Author: John Doe, © 2020
@@ -294,7 +292,7 @@ The HTML template of our new component, has already some content generated in `f
 
 We can also add some styling to `footer.component.scss`:
 
-```
+```css
 .footer {
   color: gray;
 }
@@ -315,7 +313,7 @@ We need to know what `selector` was generated for us so that we can use it later
 
 Now we want to nest the footer component in our MainComponent. We need to add it to the HTML template of the MainComponent, which is in file `main.component.html`. Let's add our new tag there to the bottom.
 
-```
+```html{5}
 <h1>Hello Angular!</h1>
 <p>This is my very first component! How cool is that?</p>
 <p>It does not do much at the moment and it looks ugly.</p>
