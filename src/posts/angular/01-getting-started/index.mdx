@@ -33,7 +33,7 @@ First, we need to [download Node.js](https://nodejs.org/en/download/) and instal
 
 For the version requirements of the latest Angular version, [you can check the package.json](https://github.com/angular/angular-cli/blob/master/package.json) of the Angular CLI project.
 
-```
+```json
 "engines": {
     "node": ">=10.13.0 <13.0.0",
     "yarn": ">=1.22.4"
@@ -42,7 +42,7 @@ For the version requirements of the latest Angular version, [you can check the p
 
 If you have Node.js already installed, you can check your version by running:
 
-```
+```bash
 node -v
 ```
 
@@ -51,7 +51,7 @@ You can also use this command to verify that the installation was successful.
 ### Angular CLI
 Now when we have Node, we can use its Node Package Manager (npm) to download and install the Angular CLI to our machine.
 
-```
+```bash
 npm install -g @angular/CLI
 ```
 
@@ -59,7 +59,7 @@ This installs the latest version of Angular CLI. Note the `-g` option. It means 
 
 You can verify the installation by running:
 
-```
+```bash
 ng version
 ```
 
@@ -97,11 +97,11 @@ Note that all the commands in Angular CLI start with `ng` followed by the name o
 ## Generating new project
 Now with all prerequisites installed, we can create our first project. Hooray! Fortunately, you don't have to create the whole project structure and all the files manually. We can use Angular CLI to generate a fully functional starter project automatically. Simply run:
 
-```
+```bash
 ng new hello-angular
 ```
 
-This will generate a new project **in the current directory** with the name specified (hello-angular in this case). You'll be prompted a few basic questions before the project is generated.
+This will generate a new project **in the current directory** with the name specified (`hello-angular` in this case). You'll be prompted a few basic questions before the project is generated.
 
 ```
 ? Would you like to add Angular routing? No
@@ -118,7 +118,7 @@ We don't need routing for now, and you can specify any styling option you are co
 ## Running the app
 Now when our first project is ready, we can run it using Angular CLI. It is as simple as running the following command:
 
-```
+```bash
 ng serve
 ```
 
@@ -127,7 +127,8 @@ You need to run this in the root directory of your project. The project is gener
 When you run `ng serve` Angular first compiles and bundles all your files and then runs a local development server, so you can check your app locally.
 
 ```
-** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+** Angular Live Development Server is listening on localhost:4200,
+open your browser on http://localhost:4200/ **
 ```
 
 Simply go to [http://localhost:4200/](http://localhost:4200/) to check your new app.
@@ -180,11 +181,11 @@ Note that the generated component by Angular CLI is a bit irregular as it contai
 Again, if you used something else than SASS during project creation, the styles file will have a different extension, but the concept is still the same.
 
 #### index.html
-This is the main HTML file for your application. You can see that it is pretty much empty. That's because Angular is a Single Page Application (SPA) framework. Instead of defining all your content in HTML, it dynamically changes the contents of the DOM using JavaScript based on user actions. That's why even if switching between 'pages', you don't see full reload of the page as Angular is jus dynamically switching contents of your page.
+This is the main HTML file for your application. You can see that it is pretty much empty. That's because Angular is a Single Page Application (SPA) framework. Instead of defining all your content in HTML, it dynamically changes the contents of the DOM using JavaScript based on user actions. That's why even if switching between 'pages', you don't see full reload of the page as Angular is just dynamically switching contents of your page.
 
 The most interesting part is the following:
 
-```
+```html
 <body>
   <app-root></app-root>
 </body>
@@ -217,13 +218,13 @@ Now let's make some changes to our application. Let's change this title:
 
 Let's open the `app.component.html` and look for this line:
 
-```
+```html
 <span>{{ title }} app is running!</span>
 ```
 
 Looks like the title is not hard-coded but rather uses a variable `title` to generate the text. Variables, which are used in the HTML template, are defined in the corresponding Typescript file of the same component. We'll need to look at `app.component.ts`. And there it is:
 
-```
+```typescript
 export class AppComponent {
   title = 'hello-angular';
 }
@@ -231,7 +232,7 @@ export class AppComponent {
 
 Let's change it to something else:
 
-```
+```typescript
 export class AppComponent {
   title = 'My first Angular App';
 }
