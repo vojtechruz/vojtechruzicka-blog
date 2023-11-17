@@ -79,7 +79,7 @@ This is important for Angular change detection. Also, because the change detecti
 ## Property binding
 In HTML, you can modify certain elements by adding additional attributes.
 
-```
+```html
 <button disabled>Submit!</button>
 ```
 
@@ -87,7 +87,7 @@ Here we added the `disabled` attribute to a button, so it cannot be clicked. The
 
 You can achieve this behavior with Angular property binding. If you wrap an attribute with a pair of square brackets `[]`, then you can bind its value to an expression.
 
-```
+```html
 <button [disabled]='isSubmitButtonDisabled'>Submit!</button>
 ```
 
@@ -110,7 +110,7 @@ Fortunately, you can bind events of HTML elements (and components) from your tem
 
 Let's try to react to a button click event. For event binding, you need to wrap the event name in parentheses, for example, `(click)`. Then you can specify an expression to be executed:
 
-```
+```html
 <button (click)='buttonClicked()'>Click me!</button>
 ```
 
