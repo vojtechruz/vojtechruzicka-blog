@@ -29,7 +29,7 @@ Let's first cover the situation when a component needs some data from the outsid
 
 Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding), which would be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable changes, the component gets new data. So far, we covered only data binding to simple elements such as `button`, just a quick reminder:
 
-```
+```html
 <button [disabled]='isSubmitButtonDisabled'>Submit!</button>
 ```
 
@@ -37,7 +37,7 @@ This way, the `disabled` property of the button would be updated whenever `isSub
 
 Let's assume we have a Step Count component, which displays the number your daily steps from your fitness tracker.
 
-```
+```typescript
 @Component({
   selector: 'app-step-count',
   template: `
@@ -51,7 +51,7 @@ export class StepCountComponent {
 
 In our template, we use `{{steps}}` to display the contents of `steps` field. It is 0 by default, which is fine when you start your day, but eventually, you'll walk a bit. How does this value get updated then? We need a way to expose this property to the outside and then be able to bind to it like this:
 
-```
+```html
 <app-step-count [steps]="dailySteps"></app-step-count>
 ```
 
@@ -103,7 +103,7 @@ So far, we've covered only the flow of the data from the outside into the compon
 
 Remember how we were able to listen to some events of DOM elements such as clicking a button and then executing some logic?
 
-```
+```html
 <button (click)='buttonClicked()'>Click me!</button>
 ```
 
@@ -111,7 +111,7 @@ Here we use regular brackets around the event name `(click)`. After the equals, 
 
 Let's have a simple component for accepting or rejecting cookies on our site. We want to use this nice component on our home page to warn our visitors about cookies. And we need to react to their action - whether they accept or reject cookies. The `cookies-info` component should not, however, take any action itself. It should just notify its parent component of what happened. The parent component can then decide what the appropriate action is. The cookie info can be just a "dumb" component. It can show the disclaimer and collect the answer, but let the parent component take the responsibility for deciding what to do based on the answer.
  
- ```
+ ```typescript
  @Component({
    selector: 'app-cookies-info',
    template: `
@@ -147,7 +147,7 @@ export class CookiesInfoComponent {
 }
 ```
 
-Nothing new here. We already know how to listen to button clicks. We just call a different method based on which of the buttons was clicked. Now we need to somehow expose events to the users of our components.
+Nothing new here. We already know how to listen to button clicks. We just call a different method based on which of the buttons was clicked. Now we need to somehow expose events to the users of our component.
  
  In our case, we can consider two events:
  1. User accepts cookies - `acceptCookies`
@@ -209,11 +209,15 @@ The last step is to mark our events as available for data binding. Remember that
  
 Now we're good to go, we can use our `app-cookies-info` inside another component and react to its `acceptCookies` and `declineCookies` events. 
 
-```
+```html
 <app-cookies-info (acceptCookies)="onCookiesAccepted()" (declineCookies)="onCookiesDeclined()"></app-cookies-info>
 ```
  
-Since this is event binding and not property binding, we use `()` instead of `[]`. Same as with `@Input` - the name of the event used for binding is the same as the name of the field marked with `@Output()`. If you want to expose a different event name, you can define its name like this - `Output('someDifferentEventName)`.
+Since this is event binding and not property binding, we use `()` instead of `[]`. Same as with `@Input` - the name of the event used for binding is the same as the name of the field marked with `@Output()`. If you want to expose a different event name, you can define its name like this:
+
+```javascript
+@Output('someDifferentEventName')
+```
 
 ### Events with values 
 Our previous example was rather simple in the sense that we just fired an event that something happened. Often, we need more than that. We need to include some additional data with our event. For example, when listening to mouse click events, you are interested not only that mouse was clicked, but also which button and what screen coordinates was the cursor at.
@@ -222,7 +226,7 @@ Let's change our cookie component a bit to demonstrate this. Instead of having t
  - `true` if cookies were accepted
  - `false` if cookies were declined
 
-When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - e.g., `emit(false)`.
+When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - e.g. `emit(false)`.
 
 ```typescript{12,15,19}
 @Component({
@@ -252,12 +256,15 @@ Notice how the way we constructed our event emitter changed - `new EventEmitter<
 
 With passing a value with our events, the way how we handle binding also changes a bit. We need to be able to access the payload (event data). This data can be accessed using `$event` variable. This way, we can pass the event payload to other functions or use it in expressions.
 
-```
+```html
 BEFORE:
-<app-cookies-info (acceptCookies)="onCookiesAccepted()" (declineCookies)="onCookiesDeclined()"></app-cookies-info>
+<app-cookies-info (acceptCookies)="onCookiesAccepted()"
+                  (declineCookies)="onCookiesDeclined()">
+</app-cookies-info>
 
 NOW:
-<app-cookies-info (cookiesAnswer)="onCookiesAnswer($event)"></app-cookies-info>
+<app-cookies-info (cookiesAnswer)="onCookiesAnswer($event)">
+</app-cookies-info>
 ```
 
 Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAnswer`, which accepts a boolean. The actual boolean value passed into it is represented by `$event` variable and depends on what we produced using our `emit()`. 
@@ -369,6 +376,8 @@ Components can have multiple inputs, which are marked by `@Input()` decorator. W
 Not all the fields should be available as inputs, some represent the internal state of the component and should be not exposed. This reduces complexity of the interface and makes the component easier to understand and use. The more inputs are exposed, the harder the component is to change and maintain.
 
 Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output()` decorator.
+
+You can set up two-way data binding as well. Then you need both `@Input()` and `@Output()` and need to follow naming convention - the name of the output property should be the name of the input property + `Change` suffix.
 
 <div class="series-table-of-content">
   <div>All posts in the Angular Tutorial series</div>
