@@ -40,7 +40,7 @@ Let's see an example:
 }
 ```
 
-There are two essential concepts here. The first one is the selector. That's `.button`. This determines to which components the styling should be applied. There it is for ALL the buttons.
+There are two essential concepts here. The first one is the selector. That's `.button`. This determines to which components the styling should be applied. In this case it is for ALL the buttons.
 
 The second part is actual styling properties, which will be applied to all the components, which match our selector. Properties are everything inside the curly braces.
 
@@ -130,9 +130,9 @@ label.setId("foo");
 Although CSS used in JavaFX is very similar to the original web CSS, there is one big difference. The property names are different, and there is a lot of new properties specific to JavaFX. They are prefixed with `-fx-`.
 
 Here are some examples:
-- `-fx-background-color`: Background color
-- `-fx-text-fill`: Text color
-- `-fx-font-size`: Text size
+- `-fx-background-color` - Background color
+- `-fx-text-fill` - Text color
+- `-fx-font-size` - Text size
 
 You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html). 
 
@@ -141,10 +141,10 @@ In addition to regular classes, which mark specific components, there are so-cal
 
 There's a whole bunch of built-in pseudo-classes. Let's take a look at Button. There are multiple pseudo-classes, you can use such as:
 
-- `hover`: mouse is over the button
-- `focused`: the button has the focus
-- `disabled`: the button is disabled
-- `pressed`: the button is pressed
+- `hover` - mouse is over the button
+- `focused` - the button has the focus
+- `disabled` - the button is disabled
+- `pressed` - the button is pressed
 
 The pseudo-classes start with `:` (e.g. `:hover`) in the CSS selectors. You need, of course, specify to which component your pseudo class belongs - e.g. `button:hover`. The following example shows a selector, which is applied for all buttons, which have focus:
 
@@ -221,7 +221,7 @@ This stylesheet provides the default styling but takes the lowest priority compa
 ## Scene stylesheet
 In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder/):
 
-```xml
+```xml{3}
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="styles.css"
