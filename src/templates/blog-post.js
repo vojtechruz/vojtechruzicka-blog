@@ -28,6 +28,7 @@ import Info from "../components/Info";
 import PostLink from "../components/PostLink";
 import PostHeader from "../components/PostHeader";
 import CodePen from "../components/CodePen";
+import YouTubeVideo from "../components/YouTubeVideo";
 import SeriesTableOfContents from "../components/SeriesTableOfContents";
 import { MDXProvider } from "@mdx-js/react";
 
@@ -122,7 +123,7 @@ function BlogPostTemplate(props) {
     lastUpdated = <div>Last Updated: {dateModified}</div>;
   }
 
-  const shortcodes = { Warning, Info, PostLink, PostHeader, SeriesTableOfContents, CodePen };
+  const shortcodes = { Warning, Info, PostLink, PostHeader, SeriesTableOfContents, CodePen, YouTubeVideo };
 
   return (
     <Layout>
