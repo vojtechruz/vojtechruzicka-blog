@@ -44,7 +44,7 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've also added some background colors and borders, so you can better see the layout.
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ExVPBzM/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/ExVPBzM/"></CodePen>
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines that the container should lay out its children using Flexbox.
 
@@ -87,7 +87,7 @@ In our example, the child items were displayed horizontally, from left to right.
 
 You can control the flow direction of flex items by defining `flex-direction`. This is done on the container level, not the item level.
 
-- `row` (default,  horizontal, from left to right) 
+- `row` (default,  horizontal, from left to right)
 - `row-reverse` (horizontal, from right to left)
 - `column` (vertical, from top to bottom)
 - `column-reverse` (vertical, from bottom to up)
@@ -101,7 +101,7 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 }
 ```
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoKONW/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaoKONW/"></CodePen>
 
 <Warning>If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications. This only changes the visual order of the elements, not their logical order. Screen readers will still process the items in the order they are declared in your HTML. The same applies for navigation using <i>Tab</i> key.</Warning>
 
@@ -109,7 +109,7 @@ We said that `row` means horizontally, left to right. It is not entirely true, t
 
 ### Main vs. cross axis
 To better understand some of the following concepts, we need to introduce some more terminology. Flexbox uses two axes. The `main` axis and the `cross` axis. They are perpendicular to each other.
- 
+
 ![Flexbox Axis](flexbox-axis.png)
 
 - The main axis is horizontal in row mode and vertical in column mode
@@ -133,8 +133,7 @@ It allows you to **align items on the main flex axis**, that is:
 - horizontally when the `flex-direction` is `row` or `row-reverse`
 - vertically when the `flex-direction` is `column` or `column-reverse`
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/YzyqOdZ/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/YzyqOdZ/"></CodePen>
 
 Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top, or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
 
@@ -142,18 +141,17 @@ Because you can have either normal or reversed flex order, you can't specify ali
 The `justify-content` property can be used not only for aligning items, but also for spreading items evenly across all the available space on the main axis.
 
 You can use these values:
-- `justify-content: space-between;` 
+- `justify-content: space-between;`
 - `justify-content: space-around;`
-- `justify-content: space-evenly;` 
+- `justify-content: space-evenly;`
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/wvKGYvx/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/wvKGYvx/"></CodePen>
 
 In all cases, the items are distributed, so the space between neighboring items is always the same. **The three values differ only in a way how the spacing between first and last item and the edge of the container is calculated**.
 
-- `space-between;`: first and last items have no space relative to the edge of the container  
+- `space-between;`: first and last items have no space relative to the edge of the container
 - `space-around;`: half of the space compared to the gaps between items
-- `space-evenly;`: same space as between items 
+- `space-evenly;`: same space as between items
 
 ## Align items
 We learned how to align items on the main axis using `justify-content`. What about the other axis, the `cross` axis?
@@ -175,8 +173,7 @@ You can use `align-items` property on the container level to define cross-axis a
 - `stretch`: stretch the component to fill the available space on the cross axis (respects `max-width` and `max-height` of items)
 - `baseline`: items are aligned by their baselines
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/PoPzgEb/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/PoPzgEb/"></CodePen>
 
 This works as expected and is self-explanatory, considering what we've already learned. The `baseline` setting is a bit trickier, though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography)). The following image from Wikipedia shows this nicely.
 
@@ -184,9 +181,9 @@ This works as expected and is self-explanatory, considering what we've already l
 
 Let's look at a specific example:
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/GRpqLeW/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/GRpqLeW/"></CodePen>
 
-As you can see, the baseline, in this case, is usually the bottom of the first line of text in each item. The bottom here means where most of the regular letters end. There are some letters such as `p` or `j`. that go under the baseline. 
+As you can see, the baseline, in this case, is usually the bottom of the first line of text in each item. The bottom here means where most of the regular letters end. There are some letters such as `p` or `j`. that go under the baseline.
 
 Note how multiline items and items with no content are handled. You can check more details about the [baseline calculation in Flexbox](https://drafts.csswg.org/css-flexbox-1/#flex-baselines).
 
@@ -194,8 +191,7 @@ Note how multiline items and items with no content are handled. You can check mo
 ### Wrapping
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which do not fit the size of its parent container?
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbQdev/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/ZEbQdev/"></CodePen>
 
 By default, the container tries to shrink the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. We'll learn how to control or disable this behavior a bit later using `flex-shrink`.
 
@@ -207,8 +203,7 @@ This may be ok in some cases, but usually, you want more control over how this c
 
 The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaojgPQ/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaojgPQ/"></CodePen>
 
 
 ### Aligning wrapped content
@@ -218,7 +213,7 @@ Do not confuse this with `align-items` and `justify-content`.
 - `justify-content`: aligns across the **main** axis
   - the main axis is horizontal when in row mode
   - the main axis is vertical when in column mode
-- `align-items`: aligns items within a row on **cross** axis  
+- `align-items`: aligns items within a row on **cross** axis
   - the cross axis is perpendicular to the main axis
 - `align-content`: **aligns wrapped lines** across the **cross** axis
   - used to align multiple wrapped lines; for regular cross axis aligning, we can use `align-items`
@@ -234,13 +229,10 @@ The good news is that the possible values of `align-content` are very similar as
 - `space-between`
 - `space-around`
 - `space-evenly`
-  
+
 The alignment just works on the other axis, but the behavior is the same.
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/OJyNKXW/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
-
-
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/OJyNKXW/"></CodePen>
 
 ## Item level properties
 So far, we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
@@ -259,31 +251,27 @@ All these settings apply for the whole container. It is possible to also handle 
 - `stretch`
 - `baseline`
 
-
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/vYNKqMw/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYNKqMw/"></CodePen>
 
 Of course, this can be combined with defining alignment on the container level using `align-items`. You can define general alignment for the items on the container level, and then override it for individual items. For example, you can define items to be aligned for the whole container using `align-items: flex-end;` and then change the alignment for individual items using `align-self`.
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYJmeP/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/yLYJmeP/"></CodePen>
 
 ### Ordering items
 Items in the flexbox container are not necessarily displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/ZEbGeRO/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/ZEbGeRO/"></CodePen>
 
 Multiple items can have the same `order` value. Such items belong to the same *ordinal group*. Items within the same group are then ordered in the same order in which they are declared in HTML.
 
 For example, if you have three items with order 1, they will be placed after all the items with the lower order. All these three items with the same order value will then be placed in the same order as in HTML.
 
-
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/BaoNWGg/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaoNWGg/"></CodePen>
 
 #### Visual, not logical order
-You have to be careful when changing the order in a flexbox container this way. This only changes the visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML. 
+You have to be careful when changing the order in a flexbox container this way. This only changes the visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML.
 
 This has several implications. Most notably, any assistive technologies such as screen readers will process the items in their original order. This also applies to keyboard navigation using <kbd>Tab</kbd> key, unless you also explicitly change `tab-order` of your components.
 
@@ -302,7 +290,7 @@ However, this can be changed by assigning any numeric value greater than 0. **Ne
 
 Let's say we assign `flex-grow: 1;` to all items. This means that the extra space will be assigned proportionally to each item in a way that each item gets the same amount of extra space. This is because their `flex-grow` values are the same.
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/bGVwJLg/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/bGVwJLg/"></CodePen>
 
 So what does the value actually do?
 
@@ -317,9 +305,9 @@ The common misconception is that ratio, let's say 2:1, means that the first comp
 #### Values between 0 and 1
 Values greater than 0, but less than 1 have special behavior. **If the sum of all the `flex-grow` values in a container is less than 1, items will still grow, but will not fill the entire container.**
 
-For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty. 
+For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty.
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/yLYarGj/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/yLYarGj/"></CodePen>
 
 In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be occupied while the items with `0.1` will get 1/6 of space each, and the item with `0.4` will get `4/6` of distributed space.
 
@@ -330,7 +318,7 @@ This property determines how items should be reduced in size if there is not eno
 
 Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. The ratio of these values determines how much each item will shrink compared to others. The difference is that the default value is `1`. This means that the items will shrink by default (but they don't grow by default).
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/dyYpLxo/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/dyYpLxo/"></CodePen>
 
 We already encountered this with wrapping - items shrink only to certain degree, so they can still fit their content. After that point, these items will overflow unless you specify wrapping.
 
@@ -338,7 +326,7 @@ There is one more notable difference between `flex-grow` and `flex-shrink`. In a
 
 In other words, larger items  (which are able to shrink more) will shrink faster than smaller items (which have limited space left for shrinking).
 
-<iframe height="400" scrolling="no" src="//codepen.io/vojtechruz/embed/preview/WNQGBrz/?height=400&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" style={{width: '100%'}}></iframe>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/WNQGBrz/"></CodePen>
 
 
 #### Flex-basis
