@@ -1,6 +1,6 @@
-import { createRequire } from "module"
+import { createRequire } from "module";
 
-const require = createRequire(import.meta.url)
+const require = createRequire(import.meta.url);
 
 const _ = require("lodash");
 const path = require("path");
@@ -45,6 +45,8 @@ export const createPages = ({ graphql, actions }) => {
                   date(formatString: "MMM DD, YYYY")
                   path
                   links
+                  series
+                  order
                   excerpt
                   featuredImage {
                     childImageSharp {
@@ -91,8 +93,8 @@ export const createPages = ({ graphql, actions }) => {
             path: `/tags/${_.kebabCase(tag)}/`,
             component: tagTemplate,
             context: {
-              tag,
-            },
+              tag
+            }
           });
         });
 
@@ -123,8 +125,37 @@ export const createPages = ({ graphql, actions }) => {
             links = {};
             post.node.frontmatter.links.forEach((link) => {
               links[link] = posts.find(
-                (post) => post.node.frontmatter.path === link,
+                (post) => post.node.frontmatter.path === link
               ).node;
+            });
+          }
+
+          let seriesInfo = {};
+          if (post.node.frontmatter.series) {
+            seriesInfo.series = post.node.frontmatter.series;
+            let seriesPosts = posts.filter(p => p.node.frontmatter.series === seriesInfo.series);
+            seriesPosts.sort((a, b) => {
+              let first = a.node.frontmatter.order;
+              let second = b.node.frontmatter.order;
+              if (!first) {
+                first = 999;
+              }
+              if (!second) {
+                second = 999;
+              }
+              return first - second;
+            });
+
+            seriesInfo.posts = seriesPosts.map(p => {
+              let isCurrent = false;
+              if (post.node.frontmatter.path === p.node.frontmatter.path) {
+                isCurrent = true;
+              }
+              return {
+                path: p.node.frontmatter.path,
+                title: p.node.frontmatter.title,
+                order: p.node.frontmatter.order,
+                isCurrent: isCurrent };
             });
           }
 
@@ -135,7 +166,8 @@ export const createPages = ({ graphql, actions }) => {
               slug: post.node.fields.slug,
               related,
               links,
-            },
+              seriesInfo
+            }
           });
         });
 
@@ -153,11 +185,11 @@ export const createPages = ({ graphql, actions }) => {
               pageSize: pageSize,
               pageSkip: index * pageSize,
               pagesTotal: Math.ceil(posts.length / pageSize),
-              currentPage: index + 1,
-            },
+              currentPage: index + 1
+            }
           });
         });
-      }),
+      })
     );
   });
 };
@@ -170,7 +202,7 @@ export const onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value
     });
   }
 };

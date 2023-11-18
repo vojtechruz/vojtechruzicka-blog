@@ -27,6 +27,7 @@ import Warning from "../components/Warning";
 import Info from "../components/Info";
 import PostLink from "../components/PostLink";
 import PostHeader from "../components/PostHeader";
+import SeriesTableOfContents from "../components/SeriesTableOfContents";
 import { MDXProvider } from "@mdx-js/react";
 
 function BlogPostTemplate(props) {
@@ -72,6 +73,11 @@ function BlogPostTemplate(props) {
     );
   }
 
+  let toc;
+  if(props.pageContext.seriesInfo.series) {
+    toc = <SeriesTableOfContents seriesInfo={props.pageContext.seriesInfo}></SeriesTableOfContents>
+  }
+
   const twitterIcon = (
     <svg
       className="about-icon"
@@ -115,7 +121,7 @@ function BlogPostTemplate(props) {
     lastUpdated = <div>Last Updated: {dateModified}</div>;
   }
 
-  const shortcodes = { Warning, Info, PostLink, PostHeader };
+  const shortcodes = { Warning, Info, PostLink, PostHeader, SeriesTableOfContents };
 
   return (
     <Layout>
@@ -138,6 +144,7 @@ function BlogPostTemplate(props) {
         {/*Feature image needs to be part of the article otherwise sites such as pocket and feedly wont load proper image*/}
         <div id="article-content">
           <MDXProvider components={shortcodes}>{body}</MDXProvider>
+          {toc}
         </div>
       </div>
       <hr

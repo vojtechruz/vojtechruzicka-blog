@@ -6,20 +6,11 @@ path: '/angular/03-components'
 featuredImage: './components.jpg'
 excerpt: "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series."
 hidden: 'true'
+series: 'Angular Tutorial'
+order: 3
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
-
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li class="series-current">Components</li>
-    <li><a href="/angular/04-data-binding">Data Binding</a></li>
-    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
-  </ol>
-</div>
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
 ## Getting started
 Let's start with a fresh application to recap the usage of Angular CLI. We need to generate a new project using `ng new`. Then navigate inside its directory and run `ng serve` to launch the local development server on `http://localhost:4200/`.
@@ -347,13 +338,3 @@ It is very similar with styling. Although you can have styles directly in your T
 ## What's Next
 In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and out of components and creating and handling events.
 
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li class="series-current">Components</li>
-    <li><a href="/angular/04-data-binding">Data Binding</a></li>
-    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
-  </ol>
-</div>

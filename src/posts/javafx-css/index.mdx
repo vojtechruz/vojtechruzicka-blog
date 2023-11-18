@@ -5,22 +5,12 @@ tags: ["Java", "JavaFX"]
 path: '/javafx-css'
 featuredImage: './css.jpg'
 excerpt: 'How to style JavaFX components using good old CSS.'
+order: 6
+series: JavaFX
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
-<div class="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li class="series-current">JavaFX Tutorial: CSS Styling</li>
-    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
-  </ol>
-</div>
 
 ## Separating visuals
 In the previous [article about FXML](/javafx-fxml-scene-builder/), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in an FXML file, while the interaction logic is neatly separated in a controller.
@@ -296,17 +286,3 @@ That means if you set the background color of a specific label both inline and o
 
 ## Further reading
 There are numerous CSS properties in JavaFX, and describing them is beyond the scope of this post, for a detailed list, please see the official [JavaFX CSS Reference Guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).
-
-
-<div class="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
-    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li class="series-current">JavaFX Tutorial: CSS Styling</li>
-    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
-  </ol>
-</div>

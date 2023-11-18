@@ -10,20 +10,7 @@ order: 1
 links: ["/maven-archetypes"]
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
-
-<div className="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li className="series-current">JavaFX Tutorial: Getting started</li>
-    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
-  </ol>
-</div>
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
 ## Getting Java
 JavaFX, of course, requires you to have JDK installed. Obtaining the required dependencies, however, varies based on which version of Java you have.
@@ -149,16 +136,3 @@ File → New → Project → JavaFX
 
 ## What's next
 This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world/).
-
-<div className="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li className="series-current">JavaFX Tutorial: Getting started</li>
-    <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
-    <li><a href="/javafx-spring-boot/">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</a></li>
-  </ol>
-</div>

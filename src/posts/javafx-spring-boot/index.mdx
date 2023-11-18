@@ -5,22 +5,11 @@ tags: ["Spring", "JavaFX"]
 path: '/javafx-spring-boot'
 featuredImage: './javafx-spring-boot.jpg'
 excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
+order: 7
+series: JavaFX
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
-
-<div class="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
-        <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
-    <li class="series-current">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</li>
-   </ol>
-</div>
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
 <Info>There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.</Info>
 
@@ -282,16 +271,3 @@ This has one implication. In your constructor and `@PostConstruct` you can alrea
 
 ## Conclusion
 JavaFX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages its own lifecycle and lifecycle of its controllers. JavaFX Weaver makes the integration possible and quite straightforward, so you can finally use all the cool features of Spring even with JavaFX.
-
-<div class="series-table-of-content">
-  <div>All posts in the JavaFX series</div>
-  <ol>
-    <li><a href="/javafx-getting-started/">JavaFX Tutorial: Getting started</a></li>
-        <li><a href="/javafx-hello-world/">JavaFX Tutorial: Hello world</a></li>
-    <li><a href="/javafx-fxml-scene-builder/">JavaFX Tutorial: FXML and SceneBuilder</a></li>
-    <li><a href="/javafx-layouts-basic/">JavaFX Tutorial: Basic layouts</a></li>
-    <li><a href="/javafx-layouts-advanced/">JavaFX Tutorial: Advanced layouts</a></li>
-    <li><a href="/javafx-css/">JavaFX Tutorial: CSS Styling</a></li>
-    <li class="series-current">JavaFX Weaver: Integration of JavaFX and Spring Boot applications</li>
-   </ol>
-</div>

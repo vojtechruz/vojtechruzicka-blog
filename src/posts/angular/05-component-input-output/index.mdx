@@ -6,20 +6,11 @@ path: '/angular/05-component-input-output'
 featuredImage: './input-output.jpg'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
 hidden: 'true'
+series: 'Angular Tutorial'
+order: 5
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
-
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li><a href="/angular/03-components">Components</a></li>
-    <li><a href="/angular/04-data-binding">Data Binding</a></li>
-    <li  class="series-current">Component input and output</li>
-  </ol>
-</div>
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
 ## Inter-component communication
 We already covered that in your application, you usually use many components, and you nest them one in another. Possibly multiple levels deep. These components usually need a way to communicate with each other. Let's cover how this can be achieved.
@@ -378,14 +369,3 @@ Not all the fields should be available as inputs, some represent the internal st
 Parent components can also bind to events, which are exposed by child components. This is an event binding, one-way from the child component to the parent. The name of the event is the same as the name of the field marked with `@Output()` unless specified inside the `@Output()` decorator.
 
 You can set up two-way data binding as well. Then you need both `@Input()` and `@Output()` and need to follow naming convention - the name of the output property should be the name of the input property + `Change` suffix.
-
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li><a href="/angular/03-components">Components</a></li>
-    <li><a href="/angular/04-data-binding">Data Binding</a></li>
-    <li  class="series-current">Component input and output</li>
-  </ol>
-</div>

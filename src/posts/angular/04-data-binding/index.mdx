@@ -6,20 +6,11 @@ path: '/angular/04-data-binding'
 featuredImage: './data-binding.jpg'
 excerpt: 'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
 hidden: 'true'
+series: 'Angular Tutorial'
+order: 4
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
-
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li><a href="/angular/03-components">Components</a></li>
-    <li class="series-current">Data Binding</li>
-    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
-  </ol>
-</div>
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
 
 ## Data binding
 Each component has its own HTML template and the corresponding Typescript file. The template is the view of the component. It defines what are the HTML contents of the component to be rendered. The typescript adds some state and behavior. In most cases, your HTML component is not static, you want to reflect what state and data you have in your typescript class. Data binding allows you to dynamically display your data in the template, react to the user events, and even set up two-way data synchronization between the template and the typescript component class.
@@ -194,14 +185,3 @@ We have four kinds of data binding:
 | Two-way binding  | `[()]` | Class ↔ Template | Synchronizes value between the class and the template. Requires `FormsModule`. |
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise operators or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation and property binding, there should be no side effects.
-
-<div class="series-table-of-content">
-  <div>All posts in the Angular Tutorial series</div>
-  <ol>
-    <li><a href="/angular/01-getting-started">Getting Started</a></li>
-    <li><a href="/angular/02-building-blocks">Building Blocks</a></li>
-    <li><a href="/angular/03-components">Components</a></li>
-    <li class="series-current">Data Binding</li>
-    <li><a href="/angular/05-component-input-output">Component input and output</a></li>
-  </ol>
-</div>

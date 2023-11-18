@@ -1,8 +1,15 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
+import SeriesTableOfContents from "./SeriesTableOfContents";
 
 class PostHeader extends React.Component {
   render() {
+    let toc;
+    if(this.props.series && this.props.series.series) {
+      console.log("XXX")
+      toc = <SeriesTableOfContents seriesInfo={this.props.series}></SeriesTableOfContents>
+    }
+
     return (
       <div>
         <GatsbyImage
@@ -15,6 +22,7 @@ class PostHeader extends React.Component {
         />
         <div>{this.props.frontmatter.excerpt}</div>
         <hr className="post-header-divider" />
+        {toc}
       </div>
     );
   }
