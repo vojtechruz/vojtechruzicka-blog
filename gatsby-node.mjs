@@ -36,9 +36,6 @@ export const createPages = ({ graphql, actions }) => {
           allMdx(sort: { frontmatter: { date: DESC } }) {
             edges {
               node {
-                fields {
-                  slug
-                }
                 frontmatter {
                   title
                   tags
@@ -100,7 +97,7 @@ export const createPages = ({ graphql, actions }) => {
 
         posts.forEach((post) => {
           let related = posts.filter((p) => {
-            if (p.node.fields.slug === post.node.fields.slug) {
+            if (p.node.frontmatter.path === post.node.frontmatter.path) {
               return false;
             }
 
@@ -160,10 +157,10 @@ export const createPages = ({ graphql, actions }) => {
           }
 
           createPage({
-            path: post.node.fields.slug,
+            path: post.node.frontmatter.path,
             component: `${blogPost}?__contentFilePath=${post.node.internal.contentFilePath}`,
             context: {
-              slug: post.node.fields.slug,
+              slug: post.node.frontmatter.path,
               related,
               links,
               seriesInfo
@@ -198,7 +195,7 @@ export const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode });
+    const value = node.frontmatter.path
     createNodeField({
       name: `slug`,
       node,

@@ -2,10 +2,10 @@
 title: 'Javascript promises tutorial'
 date: "2019-03-28T22:12:03.284Z"
 tags: ["Javascript"]
-path: '/javascript-promises'
+path: '/javascript-promises/'
 featuredImage: './promise.jpg'
 excerpt: 'Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.'
-links: ["/javascript-this-keyword", "/javascript-async-await"]
+links: ["/javascript-this-keyword/", "/javascript-async-await/"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -60,7 +60,7 @@ Another common use case would be reacting to certain events such as button click
 ## Callbacks and this
 Be careful when using `this` keyword with callbacks. If you are using a function, which is a property of an object, `this` will refer to the parent object. But when you provide it as a callback, it will no longer point to its object, which can lead to unexpected behavior. To learn in detail about issues with `this`, check the following article:
 
-<PostLink node={props.pageContext.links["/javascript-this-keyword"]} />
+<PostLink node={props.pageContext.links["/javascript-this-keyword/"]} />
 
 ## Promises
 Promises offer an alternative approach to callbacks when working with asynchronous calls.
@@ -333,4 +333,4 @@ For support in IE, you need to use a [polyfill](https://ourcodeworld.com/article
 
 ## Async await
 While promises are easier to write, read and maintain than callbacks, they still have their issues, especially in more complex cases of promise chains. `Async-await` is an interesting alternative to plain promises, which allows you to have asynchronous code, which reads as synchronous code, is simple and concise. Check the following post for detailed explanation.
-<PostLink node={props.pageContext.links["/javascript-async-await"]} />
+<PostLink node={props.pageContext.links["/javascript-async-await/"]} />

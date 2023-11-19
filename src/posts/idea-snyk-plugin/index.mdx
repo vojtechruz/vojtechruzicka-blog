@@ -3,10 +3,10 @@ title: 'Detecting vulnerable dependencies in IntelliJ IDEA'
 date: "2019-06-07T22:12:03.284Z"
 dateModified: "2022-05-22"
 tags: ["Security", "IDEA"]
-path: '/idea-snyk-plugin'
+path: '/idea-snyk-plugin/'
 featuredImage: './idea-snyk-plugin.jpg'
 excerpt: 'How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.'
-links: ["/snyk-detecting-dependencies-with-known-vulnerabilities"]
+links: ["/snyk-detecting-dependencies-with-known-vulnerabilities/"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -25,7 +25,7 @@ In the past, detecting vulnerable dependencies was difficult. There were public 
 
 Fortunately, later, automatic tools became available, which could scan your dependencies and cross-check with vulnerability databases. One example can be [OWASP Dependency Check](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). Later, even more powerful services appeared, most notably Snyk.
 
-<PostLink node={props.pageContext.links["/snyk-detecting-dependencies-with-known-vulnerabilities"]} />
+<PostLink node={props.pageContext.links["/snyk-detecting-dependencies-with-known-vulnerabilities/"]} />
 
 It can be integrated with your Continuous Integration to break the build if critical vulnerabilities are found. What's more, it can even monitor your app, and once a new version fixing your vulnerabilities is released, it will automatically create a Pull request with the new version. How cool is that?
 

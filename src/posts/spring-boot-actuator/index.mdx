@@ -2,10 +2,10 @@
 title: 'Actuator: Spring Boot Production Monitoring and Management'
 date: "2018-09-03T22:12:03.284Z"
 tags: ['Spring', 'Java']
-path: '/spring-boot-actuator'
+path: '/spring-boot-actuator/'
 featuredImage: './spring-boot-actuator.jpg'
 excerpt: 'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.'
-links: ["/spring-boot-version", "/spring-boot-admin"]
+links: ["/spring-boot-version/", "/spring-boot-admin/"]
 ---
 
 <PostHeader frontmatter={props.data.mdx.frontmatter} />
@@ -13,7 +13,7 @@ links: ["/spring-boot-version", "/spring-boot-admin"]
 ## Basic build information
 In one of my previous articles, I described how to obtain some basic information about the current build of your application at runtime in Spring Boot.
 
-<PostLink node={props.pageContext.links["/spring-boot-version"]} />
+<PostLink node={props.pageContext.links["/spring-boot-version/"]} />
 
 While this can be handy, it is usually not sufficient. There is a lot more you are usually interested in. And most importantly, it does not involve just the information known at build time, but rather what is the application's current status at runtime. In these situations, you should use Spring Boot Actuator.
 
@@ -410,7 +410,7 @@ More detailed description of the changes can be found in [Spring Boot 2.0 actuat
 ## Adding Graphical User Interface
 Actuator endpoints are great, but monitoring and managing your application just through JMX and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really useful in the cloud environment with many dynamic instances of your app.
 
-<PostLink node={props.pageContext.links["/spring-boot-admin"]} />
+<PostLink node={props.pageContext.links["/spring-boot-admin/"]} />
 
 ## Conclusion
 Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator Endpoints. However, bear in mind that having public endpoints which allow you to tinker with your app and expose sensitive data is not a good idea. Always be sure to secure your endpoints. 

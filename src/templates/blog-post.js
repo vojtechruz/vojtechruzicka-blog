@@ -370,7 +370,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
+    mdx(frontmatter: { path: { eq: $slug } }) {
       id
       frontmatter {
         excerpt
