@@ -179,7 +179,7 @@ function BlogPostTemplate(props) {
         <div className="share-icons">
           <span title="Share this post on Facebook">
             <FacebookShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="Facebook share button"
             >
               <FacebookIcon round size={shareIconSize} />
@@ -187,7 +187,7 @@ function BlogPostTemplate(props) {
           </span>
           <span title="Share this post on Twitter">
             <TwitterShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="Twitter share button"
             >
               <TwitterIcon round size={shareIconSize} />
@@ -195,7 +195,7 @@ function BlogPostTemplate(props) {
           </span>
           <span title="Share this post on LinkedIn">
             <LinkedinShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="LinkedIn share button"
             >
               <LinkedinIcon round size={shareIconSize} />
@@ -203,7 +203,7 @@ function BlogPostTemplate(props) {
           </span>
           <span title="Share this post on Reddit">
             <RedditShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="Reddit share button"
             >
               <RedditIcon round size={shareIconSize} />
@@ -211,7 +211,7 @@ function BlogPostTemplate(props) {
           </span>
           <span title="Share this post on Tumblr">
             <TumblrShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="Tumblr share button"
             >
               <TumblrIcon round size={shareIconSize} />
@@ -219,7 +219,7 @@ function BlogPostTemplate(props) {
           </span>
           <span title="Share this post via Email">
             <EmailShareButton
-              url={siteUrl + props.pageContext.slug}
+              url={siteUrl + post.frontmatter.path}
               aria-label="Email share button"
             >
               <EmailIcon round size={shareIconSize} />
