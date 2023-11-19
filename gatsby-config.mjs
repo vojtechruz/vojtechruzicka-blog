@@ -157,8 +157,8 @@ const config = {
                 .map((edge) => {
                   return Object.assign({}, edge.node.frontmatter, {
                     description: edge.node.frontmatter.excerpt,
-                    url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                    guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                    url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                    guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
                     custom_elements: [
                       { "content:encoded": edge.node.html },
                       {
@@ -190,11 +190,11 @@ const config = {
                           allMdx(sort: {frontmatter: {date: DESC}}) {
                             edges {
                               node {
-                                fields { slug }
                                 frontmatter {
                                   excerpt
                                   title
                                   date
+                                  path
                                   hidden
                                   featuredImage {
                                     childImageSharp {
