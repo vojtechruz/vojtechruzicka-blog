@@ -10,14 +10,14 @@ class PostLink extends React.Component {
 
     return (
       <div>
-        <div className="linked-article" key={node.fields.slug}>
+        <div className="linked-article" key={node.frontmatter.path}>
           <h4
             className="front-post-title"
             style={{
               marginBottom: rhythm(1 / 4),
             }}
           >
-            <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
+            <Link style={{ boxShadow: "none" }} to={node.frontmatter.path}>
               {node.frontmatter.title}
             </Link>
           </h4>
@@ -28,7 +28,7 @@ class PostLink extends React.Component {
             <Tags tags={node.frontmatter.tags} />
           </small>
           <div>
-            <Link to={node.fields.slug} className="front-post-image">
+            <Link to={node.frontmatter.path} className="front-post-image">
               <GatsbyImage
                 image={
                   node.frontmatter.featuredImage.childImageSharp.gatsbyImageData
