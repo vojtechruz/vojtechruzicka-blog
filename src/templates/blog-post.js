@@ -269,7 +269,7 @@ export function Head({ data, pageContext }) {
     {
       "@context": "http://schema.org",
       "@type": "BlogPosting",
-      url: siteUrl + pageContext.slug,
+      url: siteUrl + post.frontmatter.path,
       image:
         siteUrl + post.frontmatter.featuredImage.childImageSharp.original.src,
       datePublished: post.frontmatter.date,
@@ -277,7 +277,7 @@ export function Head({ data, pageContext }) {
       dateModified: dateModified,
       headline: post.frontmatter.title,
       description: post.frontmatter.excerpt,
-      mainEntityOfPage: siteUrl + pageContext.slug,
+      mainEntityOfPage: siteUrl + post.frontmatter.path,
       author: {
         "@type": "Person",
         name: "Vojtech Ruzicka",
