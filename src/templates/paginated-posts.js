@@ -79,16 +79,16 @@ class BlogIndex extends React.Component {
       <Layout>
         {topPagination}
         {posts.map(({ node }) => {
-          const title = get(node, "frontmatter.title") || node.fields.slug;
+          const title = get(node, "frontmatter.title") || node.frontmatter.path;
           return (
-            <div className="linked-article" key={node.fields.slug}>
+            <div className="linked-article" key={node.frontmatter.path}>
               <h4
                 className="front-post-title"
                 style={{
                   marginBottom: rhythm(1 / 4),
                 }}
               >
-                <Link style={{ boxShadow: "none" }} to={node.fields.slug}>
+                <Link style={{ boxShadow: "none" }} to={node.frontmatter.path}>
                   {title}
                 </Link>
               </h4>
@@ -99,7 +99,7 @@ class BlogIndex extends React.Component {
                 <Tags tags={node.frontmatter.tags} />
               </small>
               <div>
-                <Link to={node.fields.slug} className="front-post-image">
+                <Link to={node.frontmatter.path} className="front-post-image">
                   <GatsbyImage
                     image={
                       node.frontmatter.featuredImage.childImageSharp
@@ -187,15 +187,13 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          fields {
-            slug
-          }
           frontmatter {
             excerpt
             date(formatString: "DD MMMM, YYYY")
             title
             tags
             hidden
+            path
             featuredImage {
               childImageSharp {
                 gatsbyImageData(layout: CONSTRAINED, width: 217)
