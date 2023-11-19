@@ -6,7 +6,6 @@ class PostHeader extends React.Component {
   render() {
     let toc;
     if(this.props.series && this.props.series.series) {
-      console.log("XXX")
       toc = <SeriesTableOfContents seriesInfo={this.props.series}></SeriesTableOfContents>
     }
 

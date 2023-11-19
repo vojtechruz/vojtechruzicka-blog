@@ -152,8 +152,21 @@ const config = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
+              const rssCutoffDate = new Date("2023-01-01")
+
               return allMdx.edges
                 .filter((edge) => edge.node.frontmatter.hidden !== "true")
+                .filter((edge) => {
+                  // Don't include old posts in the RSS feed
+                  const postDate = new Date(edge.node.frontmatter.date)
+
+                  if(postDate > rssCutoffDate) {
+                    return true;
+                  }
+
+                  return false;
+                }
+                )
                 .map((edge) => {
                   return Object.assign({}, edge.node.frontmatter, {
                     description: edge.node.frontmatter.excerpt,
