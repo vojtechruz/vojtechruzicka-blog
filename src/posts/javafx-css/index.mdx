@@ -1,0 +1,288 @@
+---
+title: 'JavaFX Tutorial: CSS Styling'
+date: "2019-10-10T22:12:03.284Z"
+tags: ["Java", "JavaFX"]
+path: '/javafx-css/'
+featuredImage: './css.jpg'
+excerpt: 'How to style JavaFX components using good old CSS.'
+order: 6
+series: JavaFX
+---
+
+<PostHeader frontmatter={props.data.mdx.frontmatter} series={props.pageContext.seriesInfo} />
+
+
+## Separating visuals
+In the previous [article about FXML](/javafx-fxml-scene-builder/), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in an FXML file, while the interaction logic is neatly separated in a controller.
+
+Now there is a third part on top of this. FXML manages only what components are in your app, their properties, and how they are nested. It does not define the visuals of the component, though. That is - fonts, colors, backgrounds, paddings. To be honest, you can achieve it in FXML, but you shouldn't. Instead, visuals should be clearly separated in CSS stylesheets.
+
+This way, your styling is independent and can be easily replaced or changed without affecting the rest of the application. You can easily even have multiple themes, which you can switch on demand.
+
+## CSS
+You probably know CSS (Cascading Style Sheets) from the web, where it is used to style HTML pages. In JavaFX, this is very similar, although JavaFX uses a set of its own custom properties.
+
+Let's see an example:
+
+```css
+.button {
+    -fx-font-size: 15px;
+}
+```
+
+There are two essential concepts here. The first one is the selector. That's `.button`. This determines to which components the styling should be applied. In this case it is for ALL the buttons.
+
+The second part is actual styling properties, which will be applied to all the components, which match our selector. Properties are everything inside the curly braces.
+
+Each property has a specific value. In our example, we have a property `-fx-font-size`, which means how big the text will be. The value is 15px here but could be anything else we would desire.
+
+To sum it up - we created a rule which says - all the buttons everywhere should have their text of size 15px.
+
+## Selectors
+Now let's take a closer look at how selectors work in JavaFX. It pretty much the same as in regular CSS.
+
+### Class
+Class in CSS represents multiple similar elements. For example, buttons or checkboxes. A selector, which should apply to all of the elements of the same class starts with a dot `.` followed directly by the class name. The convention is to separate individual words with a comma `-`. The following selector applies to all the elements with class `label`.
+
+```css
+.label {
+    // Some properties
+}
+```
+
+#### Built-in classes
+The good news is that all the built-in JavaFX components (such as Label or Button) have already a class assigned out of the box. If you want to target all the labels in your app, you don't have to add any custom classes to each of your labels. Each Label has by default `label` class.
+
+It is easy to determine the class name from the component.
+- Take the name of the Java class of the component - eg. Label
+- Make the name lower-case
+- If it consists of multiple words, separate them by `-`
+
+Some examples:
+- Label → label
+- CheckBox → check-box
+
+When using such classes as selectors, don' forget to add `.`. That means the selector for the `label` class is `.label`.
+
+#### Custom classes
+If build-in classes are not enough, you can add your own custom classes to your components. You can have multiple classes separated by a comma:
+
+```xml
+<Label styleClass="my-label,other-class">I am a simple label</Label>
+```
+
+Or in Java:
+
+```java
+Label label = new Label("I am a simple label");
+label.getStyleClass().addAll("my-label", "other-class");
+```
+
+Adding classes this way does not remove the default class of the component (`label` in this case).
+
+There is one special class called `root`. It means the root component of your scene. You can use it to style everything inside your scene (such as setting a global font). It is similar to using body tag selector in HTML.
+
+### ID
+Another way of selecting components in CSS is to use the component's ID. It is a unique identifier of a component. Unlike classes, which can be assigned to multiple components, ID should be unique in a scene.
+
+While classes are using `.` before the name in their selectors, IDs are marked with `#`.
+
+```css
+#my-component {
+  ...
+}
+```
+
+In FXML, you can use `fx:id` to set the component's CSS id.
+
+```xml
+<Label fx:id="foo">I am a simple label</Label>
+```
+
+There is one caveat, though. [This same ID is used to link to a component object declared in your controller with the same name](/javafx-fxml-scene-builder/#injecting-components-to-controller). Since the id and the name of the field in controller need to match, `fx:id` needs to respect Java's naming restriction for field names. Even though the CSS naming convention dictates individual words separated by `-`, it is an invalid character for Java field names. For `fx:id` with multiple words, you need, therefore, to use a different naming convention such as CamelCase or use underscores.
+
+```xml
+<!--  This is not valid  -->
+<Label fx:id="my-label">I am a simple label</Label>
+<!--  This is valid  -->
+<Label fx:id="my_label">I am a simple label</Label>
+<Label fx:id="MyLabel">I am a simple label</Label>
+```
+
+In Java, you can just call the `setId()` method on your component.
+
+```java
+Label label = new Label("I am a simple label");
+label.setId("foo");
+```
+
+## Properties
+Although CSS used in JavaFX is very similar to the original web CSS, there is one big difference. The property names are different, and there is a lot of new properties specific to JavaFX. They are prefixed with `-fx-`.
+
+Here are some examples:
+- `-fx-background-color` - Background color
+- `-fx-text-fill` - Text color
+- `-fx-font-size` - Text size
+
+You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html). 
+
+## Pseudo-classes
+In addition to regular classes, which mark specific components, there are so-called pseudo-classes, which mark a state of a component. This can be, for example, a class for marking that a component has the focus or there is the mouse cursor over the component.
+
+There's a whole bunch of built-in pseudo-classes. Let's take a look at Button. There are multiple pseudo-classes, you can use such as:
+
+- `hover` - mouse is over the button
+- `focused` - the button has the focus
+- `disabled` - the button is disabled
+- `pressed` - the button is pressed
+
+The pseudo-classes start with `:` (e.g. `:hover`) in the CSS selectors. You need, of course, specify to which component your pseudo class belongs - e.g. `button:hover`. The following example shows a selector, which is applied for all buttons, which have focus:
+
+```css
+.button:focused {
+    -fx-background-color: red;
+}
+```
+
+Unlike in CSS, which has just basic pseudo-classes for states like focus and hover, JavaFX has component-specific pseudo-classes, which relate to different states or properties of components.
+
+For example:
+- Scrollbars have `horizontal` and `vertical` pseudo-classes
+- Cells have `odd` and `even`
+- TitledPane has `expanded` and `collapsed`  
+
+### Custom pseudo-classes 
+In addition to build-in pseudo-classes, you can define and use your own.
+
+Let's create our custom Label (inheriting from Label class). It will have a new boolean property called `shiny`. If it is true, we want our Label to have a `shiny` pseudo-class.
+
+When the Label has the `shiny` pseudo-class, we'll set its background to gold:
+
+```css
+.shiny-label:shiny {
+    -fx-background-color: gold;
+}
+```
+
+Now the class itself.
+
+```java
+public class ShinyLabel extends Label {
+    private BooleanProperty shiny;
+
+    public ShinyLabel() {
+        getStyleClass().add("shiny-label");
+
+        shiny = new SimpleBooleanProperty(false);
+        shiny.addListener(e -> {
+            pseudoClassStateChanged(PseudoClass.getPseudoClass("shiny"), shiny.get());
+        });
+    }
+
+    public boolean isShiny() {
+        return shiny.get();
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny.set(shiny);
+    }
+}
+```
+
+There are several important parts here:
+1. We have our boolean property `BooleanProperty` instead of regular `boolean`. This means it is observable, and we can listen to changes in its value.
+2. We register a listener to be called every time the shiny value is changed using `shiny.addListener()`
+3. When the value changes, we add/remove the shiny pseudo-class depending on the current value `pseudoClassStateChanged(PseudoClass.getPseudoClass("shiny"), shiny.get())`.
+4. We add a custom class for all the labels `shiny-label`, instead we would have just the `label` class from our parent. This way, we can select only shiny labels.
+
+## Default stylesheet
+Even if you don't provide any styles yourself, each JavaFX application already has some visual styling. There is a default stylesheet, which is applied to every application. It is called modena (since JavaFX 8, previously it used to be caspian).
+
+This stylesheet can be found in:
+
+```
+jfxrt.jar\com\sun\javafx\scene\control\skin\modena\modena.css
+```
+
+Or you can check the file [directly here](./modena.css). In the same directory, there is a whole bunch of images used by the stylesheet.
+
+This stylesheet provides the default styling but takes the lowest priority compared to other types of stylesheets, so you can easily override it.
+
+## Scene stylesheet
+In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder/):
+
+```xml{3}
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="styles.css"
+            ...
+            >
+  ...
+</BorderPane>
+```
+
+Or in your Java code:
+
+```java
+String stylesheet = getClass().getResource("/styles.css").toExternalForm();
+scene.getStylesheets().add(stylesheet);
+```
+
+Note the `toExternalForm()` call. Scene expects stylesheet contents as a string, not the file, so we need to provide the contents of our stylesheet instead.
+
+## Parent stylesheet
+In addition to having a stylesheet for a whole scene, sometimes it may be useful to have styling on layout level. That is - for an individual container such as VBox, HBox, or GridPane. The common parent of all layouts is `Parent` class, which defines methods for handling stylesheets on layout level. These styles apply only for the components in the given layout, not for the whole scene. Layout level styling takes precedence over scene level styling.
+
+```xml
+<HBox stylesheets="styles.css">
+    ...
+</HBox>
+```
+
+In Java, you need to load the stylesheet contents yourself, same as previously with scene:
+
+```java
+HBox box = new HBox();
+String stylesheet = getClass().getResource("/styles.css").toExternalForm();
+box.getStylesheets().add(stylesheet);
+```
+
+## Inline styles
+So far, we've covered only cases of assigning an external stylesheet to a whole scene or layout. But it is possible to set individual style properties on the component level.
+
+Here you don't have to bother with a selector as all the properties are set to a specific component.
+
+You can provide multiple properties separated by semicolon:
+
+```xml
+<Label style="-fx-background-color: blue; -fx-text-fill: white">
+  I'm feeling blue.
+</Label>
+```
+
+In Java, you can use `setStyle()` method:
+
+```java
+Label label = new Label("I'm feeling blue.");
+label.setStyle("-fx-background-color: blue; -fx-text-fill: white");
+```
+
+Styling on component level takes precedence over both scene and parent (layout) styling.
+
+### Why to avoid them
+Styling on component level may be convenient, but it is a quick and dirty solution. You give up the main advantage of CSS, which is separating styling from the styled components. You hardcode your visuals directly to the components now. You can no longer easily switch your stylesheets when needed, you cannot change themes.
+
+Moreover, you no longer have a single central place where your styling is defined. When you need to change something across a set of similar components, you need to modify each of the components individually instead of editing just one place in your external stylesheet. Inline styling components should be therefore avoided.
+
+## Stylesheet priorities
+You can provide styling on multiple levels - scene, parent, inline styles, and there is a default modena stylesheet. If you change that same property of the same component on multiple levels, JavaFX has a priority setting, which resolves what styles should be used. The list of priorities is - from highest to lowest:
+
+1. Inline styles
+2. Parent styles
+3. Scene styles
+4. Default styles
+
+That means if you set the background color of a specific label both inline and on the scene level, JavaFX will use the value set in inline styles as it has higher priority.
+
+## Further reading
+There are numerous CSS properties in JavaFX, and describing them is beyond the scope of this post, for a detailed list, please see the official [JavaFX CSS Reference Guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).

@@ -356,7 +356,8 @@ kbd {
   margin-top: 2rem;
 }
 
-.share-label, .similar-posts-label {
+.share-label,
+.similar-posts-label {
   @extend h4;
   font-weight: 500;
   font-size: 1.1rem;
@@ -408,5 +409,95 @@ kbd {
 
   .DocSearch.DocSearch-Button {
     height: 36px;
+  }
+}
+
+.post-header-divider {
+  margin-top: 1.5em;
+}
+
+#article-content .gatsby-resp-image-wrapper,
+.post-header-featured-image {
+  margin-bottom: 1.5em;
+}
+
+.gatsby-code-button-toaster-text {
+  background-color: $link_color;
+  color: white;
+  font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.DocSearch-Container {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+.responsive-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+}
+
+.responsive-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px){
+  .not-small-screen  {
+    display: none;
+  }
+
+  .DocSearch.DocSearch-Button {
+    height: 28px!important;
+  }
+
+  .blog-name {
+    font-size: 1.2em;
+  }
+
+
+  .content-root {
+    padding-left: 1.25em!important;
+    padding-right: 1.25em!important;
+    padding-top: 1.25em!important;
+  }
+  td, th {
+    padding-right: 0.25rem!important;
+  }
+
+  .linked-article {
+    padding-left: 0.9em;
+    padding-right: 0.9em;
+  }
+}
+
+@media (max-width: 500px) {
+  .blog-name {
+    font-size: 1em;
+  }
+
+  .content-root {
+    padding-left: 1em!important;
+    padding-right: 1em!important;
+    padding-top: 1.25em!important;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .front-post-title {
+    font-size: 1em;
+  }
+
+  .front-post-excerpt {
+    padding-left: 1em;
   }
 }

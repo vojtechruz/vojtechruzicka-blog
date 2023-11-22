@@ -105,7 +105,7 @@
       margin-right: -1em;
       margin-left: -1em;
       padding-right: 1em;
-      padding-left: 0.75em;
+      padding-left: 1em;
       border-left: none;
     }
   }
@@ -288,5 +288,15 @@
 
   .token.inserted {
     color: green;
+  }
+
+  .gatsby-code-button-toaster-text {
+    background-color: darken(#00529b, 10%) !important;
+    color: lighten(#b3b9c5, 10%) !important;
+  }
+
+  .DocSearch-Container {
+    background: rgba(255, 255, 255, 0.075) !important;
+    backdrop-filter: saturate(180%) blur(10px) !important;
   }
 }

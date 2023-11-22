@@ -8,7 +8,7 @@ import get from "lodash/get";
 
 const ArchivesPage = ({
   data: {
-    allMarkdownRemark: { group },
+    allMdx: { group },
   },
 }) => (
   <Layout>
@@ -73,7 +73,7 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    allMarkdownRemark {
+    allMdx {
       group(field: { frontmatter: { tags: SELECT } }) {
         fieldValue
         totalCount
