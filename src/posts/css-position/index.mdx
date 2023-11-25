@@ -55,7 +55,7 @@ For example, `top: 20px;` means that the element will be moved **down** 20 pixel
 
 In the example below, gray squares mark the original position of each element before it was moved using `position: relative;`.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/mdJamVb/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/mdJamVb/" title="CodePen example - Position relative"></CodePen>
 
 As you can see, the **space required for the original location of the element is still allocated**.
 
@@ -68,24 +68,24 @@ Using `top`, `bottom`, `left`, and `right` properties, you determine where the e
 
 **If there is no such parent, it is set relative to the whole page.**
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYObeJw/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYObeJw/" title="CodePen example - Position absolute"></CodePen>
 
 Each orange box is positioned relative to the gray container box. This is possible because the container has `position` set to `relative`. If the container's position was `static`, the orange boxes **would be positioned relative to the whole page**.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/YzXBrLo/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/YzXBrLo/" title="CodePen example - Position absolute - if parent is not relative, items are positioned based on whole page, not parent"></CodePen>
 
 Another important behavior to notice is that we explicitly set the height of the gray container to `200 px`. That's because, unlike with `relative` position, **absolutely positioned elements are removed from the normal document flow and don't occupy any space when calculating the size of the parent container**.
 
 When we don't specify the height of the gray container box, it will collapse to zero as it does not contain any elements, which are used to determine its size.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/JjdxrBw/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/JjdxrBw/" title="CodePen example - Position absolute - elements are removed from document flow and dont reserve space"></CodePen>
 
 ### fixed
 Fixed positioning is similar to `absolute` in a way that the element is also removed from the normal document flow, and its original space is not reserved.
 
 The position is determined relative to the viewport. This means that even if you scroll, the element preserves its original location on the page. This can be useful, for example, if you want to have a navigation bar, which is always visible on the top, no matter where you are on the page. Or a cookie info bar on the bottom.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/xxGMweV/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/xxGMweV/" title="CodePen example - Position fixed"></CodePen>
 
 Although this can be tempting, be careful with its usage. On a mobile device with a small screen, it can be a big deal if a large portion of your screen is always covered with a navigation bar or something similar. It dramatically reduces space for the actual content of your page and can significantly limit usability.
 
@@ -94,7 +94,7 @@ The sticky position is the latest addition to the list of `position` properties.
 
 The element is normally positioned on the page, but when you reach its position when scrolling, its position becomes fixed. It sticks to its location and stays there when you scroll further.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYObLja/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYObLja/" title="CodePen example - Position sticky" ></CodePen>
 
 #### Browser Support
 The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky). 
@@ -125,7 +125,7 @@ z-index: 1;
 
 The elements with higher `z-index` are displayed in front of elements with lower `z-index`.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/abOPmwy/"></CodePen>
+<CodePen url="https://codepen.io/vojtechruz/embed/preview/abOPmwy/" title="CodePen example - How z index affects order of elements"></CodePen>
 
 In the example, you can see that you can also specify negative numbers, which places these elements behind those with no `z-index` or index with value 0.
 

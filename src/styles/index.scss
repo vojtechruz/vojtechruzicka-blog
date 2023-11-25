@@ -198,7 +198,7 @@ a:hover {
     }
 
     &:hover.facebook svg {
-      fill: #3b5998;
+      fill: rgb(8, 102, 255);
     }
 
     &:hover.github svg {
@@ -449,27 +449,27 @@ kbd {
   height: 100%;
 }
 
-@media (max-width: 768px){
-  .not-small-screen  {
+@media (max-width: 768px) {
+  .not-small-screen {
     display: none;
   }
 
   .DocSearch.DocSearch-Button {
-    height: 28px!important;
+    height: 28px !important;
   }
 
   .blog-name {
     font-size: 1.2em;
   }
 
-
   .content-root {
-    padding-left: 1.25em!important;
-    padding-right: 1.25em!important;
-    padding-top: 1.25em!important;
+    padding-left: 1.25em !important;
+    padding-right: 1.25em !important;
+    padding-top: 1.25em !important;
   }
-  td, th {
-    padding-right: 0.25rem!important;
+  td,
+  th {
+    padding-right: 0.25rem !important;
   }
 
   .linked-article {
@@ -484,9 +484,9 @@ kbd {
   }
 
   .content-root {
-    padding-left: 1em!important;
-    padding-right: 1em!important;
-    padding-top: 1.25em!important;
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+    padding-top: 1.25em !important;
   }
 
   .logo {
@@ -499,5 +499,12 @@ kbd {
 
   .front-post-excerpt {
     padding-left: 1em;
+  }
+
+  :not(pre) > code[class*="language-"] {
+    white-space: normal;
+    border: none;
+    background-color: unset;
+    font-style: italic;
   }
 }

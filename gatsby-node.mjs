@@ -101,6 +101,11 @@ export const createPages = ({ graphql, actions }) => {
               return false;
             }
 
+            // Exclude posts from the same series
+            if (p.node.frontmatter.series  && (p.node.frontmatter.series === post.node.frontmatter.series)) {
+              return false;
+            }
+
             let filteredTags = post.node.frontmatter.tags.filter((tag) => {
               if (p.node.frontmatter.tags.indexOf(tag) !== -1) {
                 return true;
