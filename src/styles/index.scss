@@ -500,4 +500,11 @@ kbd {
   .front-post-excerpt {
     padding-left: 1em;
   }
+
+  :not(pre) > code[class*="language-"] {
+    white-space: normal;
+    border: none;
+    background-color: unset;
+    font-style: italic;
+  }
 }
