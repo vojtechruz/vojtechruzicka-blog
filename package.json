@@ -41,7 +41,7 @@
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-share": "^4.4.1",
+    "react-share": "^5.0.2",
     "react-typography": "^0.16.23",
     "sass": "^1.69.5",
     "typography": "^0.16.24",
