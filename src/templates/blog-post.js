@@ -29,6 +29,7 @@ import PostLink from "../components/PostLink";
 import PostHeader from "../components/PostHeader";
 import CodePen from "../components/CodePen";
 import YouTubeVideo from "../components/YouTubeVideo";
+import Video from "../components/Video";
 import SeriesTableOfContents from "../components/SeriesTableOfContents";
 import { MDXProvider } from "@mdx-js/react";
 
@@ -135,6 +136,7 @@ function BlogPostTemplate(props) {
     SeriesTableOfContents,
     CodePen,
     YouTubeVideo,
+    Video,
   };
 
   return (

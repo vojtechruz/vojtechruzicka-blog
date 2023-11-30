@@ -441,7 +441,8 @@ kbd {
   height: 0;
 }
 
-.responsive-video iframe {
+.responsive-video iframe,
+.responsive-video video {
   position: absolute;
   top: 0;
   left: 0;
