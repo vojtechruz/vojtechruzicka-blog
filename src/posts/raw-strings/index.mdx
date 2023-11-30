@@ -115,7 +115,7 @@ public class Main {
 
 Each of the lines of the raw string contains some spaces at left as indentation, so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
 
-```
+```custom
 This is my string
         which I want to be
         on multiple lines.
@@ -125,7 +125,7 @@ The string contains the indentation, which was supposed only to format the code 
 
 A quick fix would be to remove the indentation, but it would be hard to read:
 
-```
+```typescript
 public class Main {
 
     public static void main(String[] args) {
@@ -141,7 +141,7 @@ There are actually several new methods in the `String` class, which are useful f
 
 The method `align()` trims horizontal and vertical indentation of the string and keeps just relative indentation of the lines. 
 
-```
+```typescript
 public class Main {
 
     public static void main(String[] args) {
@@ -160,7 +160,7 @@ public class Main {
 
 After alignment, the output will be this:
 
-```
+```custom
 This is my string
 which I want to be
 on multiple lines.
@@ -188,8 +188,8 @@ myString.align(2);
 Other languages, which currently support Raw String literals usually also support string interpolation. It is basically a fancy name for substituting variable placeholders in the string with values, such as:
 
 ```kotlin
-    val name = "John"
-    println("Hi, my name is ${name}.")
+val name = "John"
+println("Hi, my name is ${name}.")
 ```
 
 Unfortunately, this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
@@ -199,7 +199,7 @@ The good news is that since version 2018.3, IDEA already supports Raw String Lit
 
 You can convert from good old string literals to the raw variant and vice versa. IDEA will handle escape sequence conversion and splitting to multiline for you.
 
-![IDEA convert to raw string literal](convert-to-raw.gif)
+<Video src={props.data.mdx.frontmatter.path+"convert-to-raw"} />
 
 IDEA is also able to detect if you are unnecessarily using too many backticks and will be able to remove excess backticks for you.
 
