@@ -3,7 +3,7 @@ import React from "react";
 class YouTubeVideo extends React.Component {
   render() {
     return (
-      <div className="responsive-video">
+      <div className="youtube-video">
         <iframe
           title={this.props.title}
           width="560"
