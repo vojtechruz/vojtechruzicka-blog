@@ -40,7 +40,7 @@ Get-ChildItem -Path ".\src\posts\*\*.gif" | Sort-Object Length -Descending | For
         New-Item -Path "static\videos\" -Name $directory -ItemType Directory
     }
 
-    Copy-Item $_.FullName -Destination $directoryPath
+#    Copy-Item $_.FullName -Destination $directoryPath
     $mp4Path = $directoryPath+"\"+$_.BaseName+".mp4"
     & "C:\Program Files\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe" -i $_.FullName -vf "crop=trunc(iw/2)*2:trunc(ih/2)*2, scale='min(900,iw)':-2" -f mp4 -c:v libx264 -pix_fmt yuv420p -preset veryslow -fps_mode passthrough $mp4Path
 
