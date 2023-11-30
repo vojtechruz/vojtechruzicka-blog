@@ -114,7 +114,7 @@ Note that IDEA does help you with autocomplete for both existing files for body 
 ### File upload
 The following example shows sending a form with some text fields and a file to be uploaded.
 
-```
+```json
 ### Send a form with the text and file fields
 POST https://httpbin.org/post
 Content-Type: multipart/form-data; boundary=WebAppBoundary
@@ -176,7 +176,7 @@ You can run a specific configuration by clicking the run icon in the gutter:
 ### Live templates
 [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press <kbd>Tab</kbd> key, IDEA expands it to a code snippet. For example you can expand `sout` to `System.out.println()`. There is a number of existing templates, and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
 
-![Live Template example](./idea-http-client-live-template.gif)
+<Video src={props.data.mdx.frontmatter.path+"idea-http-client-live-template"} />
 
 | Template | Usage                                     |
 |----------|-------------------------------------------|
