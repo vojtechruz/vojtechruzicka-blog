@@ -191,11 +191,11 @@ That means you should make sure calling `close()` multiple times would not cause
 ## IntelliJ IDEA integration
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
 
-![IntelliJ IDEA surround with 'try-with-resources'](idea-surround-with-try-with-resources.gif)
+<Video src={props.data.mdx.frontmatter.path+"idea-surround-with-try-with-resources"} />
 
 Using the same keyboard shortcut, IDEA allows you to convert traditional `try-catch-finally` to `try-with-resources`.
 
-![IntelliJ IDEA convert to 'try-with-resources'](idea-replace-with-try-with-resources.gif)
+<Video src={props.data.mdx.frontmatter.path+"idea-replace-with-try-with-resources"} />
 
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
