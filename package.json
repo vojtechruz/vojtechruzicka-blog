@@ -43,13 +43,13 @@
     "react-dom": "^18.2.0",
     "react-share": "^5.0.3",
     "react-typography": "^0.16.23",
-    "sass": "^1.70.0",
+    "sass": "^1.74.1",
     "typography": "^0.16.24",
     "typography-theme-bootstrap": "^0.16.19"
   },
   "devDependencies": {
     "gatsby-remark-code-buttons": "^2.0.7",
-    "prettier": "3.2.4"
+    "prettier": "3.2.5"
   },
   "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog",
   "keywords": [
