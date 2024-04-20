@@ -100,7 +100,7 @@ No matter how many backticks you use or whether you use raw or original string l
 ## Formatting
 One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Imagine the following code.
 
-```
+```typescript
 public class Main {
 
     public static void main(String[] args) {
@@ -115,7 +115,7 @@ public class Main {
 
 Each of the lines of the raw string contains some spaces at left as indentation, so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
 
-```custom
+```json
 This is my string
         which I want to be
         on multiple lines.
