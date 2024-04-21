@@ -140,7 +140,81 @@ spring.ai.openai.api-key=XXX
 TODO
 
 ## Image generation
-TODO
+
+### Generating images
+For image generation we can inject `ImageClient` through dependency injection wherever needed and utilize it for generating our images. Let's create a new service, which will receive `ImageClient` through constructor injection automatically.
+
+
+```java
+@Service
+public class ImageService {
+
+    private final ImageClient imageClient;
+
+    public ImageService(ImageClient imageClient) {
+        this.imageClient = imageClient;
+    }
+}
+```
+
+Now we can crate a method, which will generate images based on text prompt:
+
+```java
+  public ImageResponse generateImage(String prompt) {
+      ImageOptions imageOptions = ImageOptionsBuilder.builder()
+              .withN(1)
+              .withHeight(1024)
+              .withWidth(1024).build();
+
+      return imageClient.call(new ImagePrompt(prompt, imageOptions));
+    }
+```
+
+Note that in addition to text prompt, which specifies what should our image be about (such as 'Bunch of cute cats playing on sofa.') we also need to provide `ImageOptions` object, which we generated with a provided builder. Image options specify additional parameters for generation such as dimensions, number of images to be generated (`withN()`), format etc.
+
+In the example above, we used  generic `ImageOptions`, which is an abstraction, which can be used no matter which model (such as OpenAI) is used. Instead, it is possible to use ImageOptions for a specific model, where we can provide more options specific to that particular model. This gives us more parameters to work with and greater flexibility, but it ties our implementation to a specific model. Changing the model later would mean updating the code and migration to options specific to the new model. This means more work and not all options may be supported by the new model. You need to decide whether you prefer more options or would like to rather abstract from individual models.
+
+Here is an example with OpenAI specific options:
+
+```java
+OpenAiImageOptions openAiImageOptions = OpenAiImageOptions.builder()
+  .withQuality("hd")
+  .withN(1)
+  .withHeight(1024)
+  .withWidth(1024).build();
+```
+
+### Obtaining generated images
+Our new image service uses `ImageClient` provided by Spring AI and returns response of type `ImageResponse`. This response contains not only the image generated, but also various metadata and can contain have multiple images if we ask for them via `withN` in `ImageOptions`. In fact, the response does not contain the images directly, but also URL where the generated images are located.
+
+We can create a new method in our controller, which will generate our image based on user-provided prompt and redirect them to the URL of the generated image, so it will be displayed directly in the browser.
+
+```java
+@RestController
+public class AiController {
+
+    private final ChatService chatService;
+    private final ImageService imageService;
+
+    public AiController(ChatService chatService, ImageService imageService) {
+        this.chatService = chatService;
+        this.imageService = imageService;
+    }
+
+    @GetMapping("generate-image")
+    public void generateImage(HttpServletResponse response, @RequestParam("prompt") String prompt) throws IOException {
+        ImageResponse imageResponse = imageService.generateImage(prompt);
+
+        // Get URL of the generated image
+        String imageUrl = imageResponse.getResult().getOutput().getUrl();
+
+        // Send redirect to the image URL
+        response.sendRedirect(imageUrl);
+    }
+
+}
+```
+
 
 ## AI Provider abstraction
 TODO
