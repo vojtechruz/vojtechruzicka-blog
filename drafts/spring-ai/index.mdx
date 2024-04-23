@@ -11,6 +11,9 @@ excerpt: 'How to get started with Spring AI and easily integrate Artificial Inte
 
 <Info>At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already use Spring AI for many use cases, but the API and usage may change in the future.</Info>
 
+## Source code
+Source code of the final application with all the functionality described in this article can be found on [Github](https://github.com/vojtechruz/spring-ai-demo).
+
 ## New project
 The easiest way to set up Spring AI is to create a new application using Spring Initializr. This way you'll avoid couple of manual configuration steps and the creation is much faster. If you need to update existing application with AI capabilities, you can skip to [Existing project](#existing-project) section below.
 
@@ -137,7 +140,83 @@ spring.ai.openai.api-key=XXX
 <Info>While this will work for our simple hello world application, it is usually not good idea to have your secret credentials stored with the application itself and available to all in git. You can instead set environmental variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when launching the application.</Info>
 
 ## Text generation
-TODO
+
+### Simple queries
+
+Basic prompt-based text generation is quite simple. We need to inject `ChatClient` as a dependency to a class where we want to use that and the call `chatClient.call(prompt)` method passing in String query. As a result we will receive generated response.
+
+```java
+@Service
+public class ChatService {
+
+    private final ChatClient chatClient;
+
+    public ChatService(ChatClient chatClient) {
+        this.chatClient = chatClient;
+    }
+
+    public String queryAi(String prompt) {
+        return chatClient.call(prompt);
+    }
+
+}
+```
+
+Now we can call our service wherever needed, for example, we can expose new REST endoint via a new Controller:
+
+```java
+@RestController
+public class AiController {
+
+    private final ChatService chatService;
+    private final ImageService imageService;
+
+    public AiController(ChatService chatService, ImageService imageService) {
+        this.chatService = chatService;
+        this.imageService = imageService;
+    }
+
+    @GetMapping("ask-ai")
+    public String askAi(@RequestParam("prompt") String prompt){
+        return chatService.queryAi(prompt);
+    }
+
+}
+```
+
+Now we can start our application and test in browser by calling [http://localhost:8080/ask-ai?prompt=how%20are%20you](http://localhost:8080/ask-ai?prompt=how%20are%20you).
+
+### Template queries
+In the example above, we let our application or external users to define the whole prompt. Sometimes it's exactly what we need, however sometimes we would like to have more control over the queries. Let's say we would like to have predefined queries over which we have full control and only provide certain parameters to adjust the queries.
+
+Let's imagine our application provides useful tips what to do on vacation. User only provides us with the city and his interest and we generate tips of what to do in the city.
+
+Instead of user providing the whole prompt, we can prepare a template such as:
+
+```
+I am a tourist visiting city of {city}. I am mostly interested in {interest}. Tell me tips on what to do there.
+```
+
+And then only fill in user provided details instead of the placeholders. In Spring AI we can do this with `PromptExample`. Let's update our `ChatService`.
+
+```java
+  public String getCityGuide(String city, String interest) {
+      PromptTemplate promptTemplate = new PromptTemplate("I am a tourist visiting city of {city}. I am mostly interested in {interest}. Tell me tips on what to do there.");
+
+      Prompt prompt = promptTemplate.create(Map.of("city", city, "interest", interest));
+
+      return chatClient.call(prompt).getResult().getOutput().getContent();
+  }
+```
+
+To expose our new functionality we can update our Controller:
+
+```java
+@GetMapping("city-guide")
+public String cityGuide(@RequestParam("city") String city, @RequestParam("interest") String interest) {
+    return chatService.getCityGuide(city, interest);
+}
+```
 
 ## Image generation
 
