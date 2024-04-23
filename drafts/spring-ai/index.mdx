@@ -200,13 +200,13 @@ I am a tourist visiting city of {city}. I am mostly interested in {interest}. Te
 And then only fill in user provided details instead of the placeholders. In Spring AI we can do this with `PromptExample`. Let's update our `ChatService`.
 
 ```java
-  public String getCityGuide(String city, String interest) {
-      PromptTemplate promptTemplate = new PromptTemplate("I am a tourist visiting city of {city}. I am mostly interested in {interest}. Tell me tips on what to do there.");
+public String getCityGuide(String city, String interest) {
+    PromptTemplate promptTemplate = new PromptTemplate("I am a tourist visiting city of {city}. I am mostly interested in {interest}. Tell me tips on what to do there.");
 
-      Prompt prompt = promptTemplate.create(Map.of("city", city, "interest", interest));
+    Prompt prompt = promptTemplate.create(Map.of("city", city, "interest", interest));
 
-      return chatClient.call(prompt).getResult().getOutput().getContent();
-  }
+    return chatClient.call(prompt).getResult().getOutput().getContent();
+}
 ```
 
 To expose our new functionality we can update our Controller:
@@ -296,14 +296,14 @@ public class AiController {
 
 
 ## AI Provider abstraction
-TODO
+Even though this article used OpenAI, the functionality of our application is not tightly coupled to it. We could easily switch later to different provider just by changing our Maven dependency. This way the impact of changing AI provider is minimized - we don't need to rewrite half of our application risking breaking existing functionality and introducing bugs. Spring already follows this approach with many of its abstractions. When using Spring caching, you are not tied to specific cache and can easily switch caching provider without affecting much of your code.
+
+Note that classes, which we used such as `ChatClient` or `ImageClient` are not OpenAI specific and will continue to work even replacing OpenAI with different provider. There are some exceptions such as when providing image generation options, you can either use generic options with less functionality or OpenAI specific options. In these cases you need to decide if you need extra functionality provided by you specific AI provider or you are good with generic functionality. In case the generic functionality is enough, it will make migrating to different AI provider easier as no changes will be needed.
 
 ## Conclusion
-TODO
+In this article we covered basic functionality for Spring AI using OpenAI for both image and text generation. Spring AI offers more functionality, which is beyond the scope of this article, but you can check official documentation for more details. Keep in mind that we used pre-production version of Spring AI and some features are likely to be changed, removed or added. You should not use this version for your real applications until final version is released.
 
 ## Further reading
+- [Demo application for this article](https://github.com/vojtechruz/spring-ai-demo).
 - [Spring AI Reference documentation](https://docs.spring.io/spring-ai/reference/index.html)
-- [Spring AI Github Repository](https://github.com/spring-projects/spring-ai)
-
-TODO - Add github sample repo
-TODO update cover image
+- [Spring AI GitHub Repository](https://github.com/spring-projects/spring-ai)
