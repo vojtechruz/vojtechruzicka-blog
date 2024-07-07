@@ -132,7 +132,10 @@ export function Head({ data, pageContext }) {
   let nextPageHeaderLink;
   let prevPageHeaderLink;
 
-  if (currentPage > 1) {
+  if (currentPage === 2) {
+    prevPageHeaderLink = <link rel="prev" href={siteUrl} />;
+  }
+  if (currentPage > 2) {
     const prevPagePath = `/pages/${currentPage - 1}/`;
     prevPageHeaderLink = <link rel="prev" href={siteUrl + prevPagePath} />;
   }
