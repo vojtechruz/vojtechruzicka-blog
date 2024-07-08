@@ -31,3 +31,6 @@ GATSBY_DOCSEARCH_API_KEY=XXX
 ```
 
 For production build, you will need to set these variables on the build machine or your build service (such as Netlify).
+
+## Google analytics
+Similar to search configuration, Google Analytics key is stored in environmental variable `GA_ID`, which needs to be configured for analytics to work.
