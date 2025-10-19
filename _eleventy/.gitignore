@@ -6,3 +6,4 @@ public
 /.idea/
 /*.iml
 .env.development
+_site/
