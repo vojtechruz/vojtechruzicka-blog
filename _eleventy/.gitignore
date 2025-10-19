@@ -1,0 +1,8 @@
+node_modules/
+public
+.DS_Store
+.intermediate-representation/
+.cache/
+/.idea/
+/*.iml
+.env.development
