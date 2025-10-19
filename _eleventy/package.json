@@ -1,0 +1,24 @@
+{
+  "name": "vojtech-ruzicka-blog",
+  "version": "2.0.0",
+  "description": "Vojtech Ruzicka's Programming Blog",
+  "main": "N/A",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vojtechruz/vojtechruzicka-blog.git"
+  },
+  "keywords": [
+    "blog",
+    "programming"
+  ],
+  "author": "Vojtech Ruzicka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vojtechruz/vojtechruzicka-blog/issues"
+  },
+  "homepage": "https://github.com/vojtechruz/vojtechruzicka-blog#readme",
+  "type": "module"
+}
