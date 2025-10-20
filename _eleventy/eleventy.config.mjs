@@ -1,4 +1,10 @@
 export default async function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy({
+      "./src/static/": "/" // Copy static files to the output directory
+    })
+
+  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+
 
   return {
     dir: {
@@ -7,6 +13,7 @@ export default async function (eleventyConfig) {
       output: "_site"         // Output directory
     },
     markdownTemplateEngine: "njk",  // Use Nunjucks for markdown
-    htmlTemplateEngine: "njk"       // Use Nunjucks for HTML
+    htmlTemplateEngine: "njk",       // Use Nunjucks for HTML
+    dataTemplateEngine: 'njk',
   };
 }
