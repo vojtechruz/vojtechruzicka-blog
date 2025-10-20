@@ -4,7 +4,6 @@
   "description": "Vojtech Ruzicka's Programming Blog",
   "main": "N/A",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx eleventy --serve"
   },
   "repository": {
