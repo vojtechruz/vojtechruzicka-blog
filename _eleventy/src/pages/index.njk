@@ -1,11 +1,47 @@
 ---
-title: "About me"
-permalink: /
+pagination:
+  data: collections.posts
+  size: 1            # items per page
+  alias: posts        # variable name in template
+  reverse: false
+eleventyComputed:
+  # "/" for page 1, "/pages/2/" for page 2, etc.
+  permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/pages/{{ pagination.pageNumber + 1 }}/{% endif %}"
+  title: "{% if pagination.pageNumber == 0 %}Latest posts{% else %}Page {{ pagination.pageNumber + 1 }} – Latest posts{% endif %}"
 ---
 {% extends "layouts/post-list.njk" %}
 
 {% block postList %}
 
-  <p>posts</p>
+<h1 class="visually-hidden">{{ title }}</h1>
+
+<ul class="post-list">
+  {% for post in pagination.items %}
+    <li>
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+      <small>— {{ post.date }}</small>
+      {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+<nav class="pagination" aria-label="Pagination">
+  {% if pagination.href.previous %}
+    <a href="{{ pagination.href.previous }}" rel="prev">« Previous</a>
+  {% endif %}
+
+  {% for pageHref in pagination.hrefs %}
+  {% set pageNumber = loop.index %}
+  {% if loop.index0 == pagination.pageNumber %}
+  <span class="current" aria-current="page">{{ pageNumber }}</span>
+  {% else %}
+  <a href="{{ pageHref }}">{{ pageNumber }}</a>
+  {% endif %}
+  {% endfor %}
+
+  {% if pagination.href.next %}
+    <a href="{{ pagination.href.next }}" rel="next">Next »</a>
+  {% endif %}
+</nav>
 
 {% endblock %}
