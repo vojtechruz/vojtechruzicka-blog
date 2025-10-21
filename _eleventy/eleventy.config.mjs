@@ -1,3 +1,5 @@
+import EleventyPluginSass from "@11tyrocks/eleventy-plugin-sass-lightningcss";
+
 export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "./src/static/": "/" // Copy static files to the output directory
@@ -11,6 +13,7 @@ export default async function (eleventyConfig) {
 
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
+  eleventyConfig.addPlugin(EleventyPluginSass);
 
   return {
     dir: {
