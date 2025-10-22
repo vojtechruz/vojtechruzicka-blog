@@ -1,4 +1,5 @@
 import EleventyPluginSass from "@11tyrocks/eleventy-plugin-sass-lightningcss";
+import rss from "@11ty/eleventy-plugin-rss";
 import site from "./src/_data/site.js";
 
 export default async function (eleventyConfig) {
@@ -15,6 +16,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
   eleventyConfig.addPlugin(EleventyPluginSass);
+  eleventyConfig.addPlugin(rss);
 
   return {
     dir: {
