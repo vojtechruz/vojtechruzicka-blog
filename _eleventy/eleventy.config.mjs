@@ -1,4 +1,5 @@
 import EleventyPluginSass from "@11tyrocks/eleventy-plugin-sass-lightningcss";
+import site from "./src/_data/site.js";
 
 export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
