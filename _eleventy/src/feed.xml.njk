@@ -1,0 +1,29 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}/</link>
+    <description>{{ site.description }}</description>
+    <language>en</language>
+    <lastBuildDate>{{ (collections.posts | first).date | utcRfc822 }}</lastBuildDate>
+
+    {% for post in collections.posts %}
+    {% if post.date >= feeds.minDate %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ post.url | absoluteUrl(site.url) }}</link>
+      <guid isPermaLink="true">{{ post.url | absoluteUrl(site.url) }}</guid>
+      <pubDate>{{ post.date | utcRfc822 }}</pubDate>
+
+      {% set body = (post.data.description or post.templateContent) | htmlToAbsoluteUrls(site.url) | safe %}
+      <description><![CDATA[{{ post.data.excerpt }}]]></description>
+      <content:encoded><![CDATA[{{ body }}]]></content:encoded>
+    </item>
+    {% endif %}
+    {% endfor %}
+  </channel>
+</rss>
