@@ -16,6 +16,9 @@
 
   <title>{{metaTitle}}</title>
 
+  <link rel="alternate" type="application/rss+xml"  title="{{ site.title }}" href="{{ '/feed.xml' | absoluteUrl(site.url) }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/atom.xml' | absoluteUrl(site.url) }}">
+
   {% block head %}{% endblock %}
 </head>
 <body class="{{ bodyClass or '' }}">

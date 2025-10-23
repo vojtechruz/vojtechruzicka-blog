@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
   {%- if page.url and not page.data.eleventyExcludeFromCollections and page.outputPath.endsWith('.html') %}
   <url>
     <loc>{{ page.url | absoluteUrl(site.url) }}</loc>
-    <lastmod>{{ page.date | dateToRfc3339 }}</lastmod>
+    <lastmod>{{ page.date | toRfc3339 }}</lastmod>
   </url>
   {%- endif %}
   {%- endfor %}
