@@ -1,51 +1,42 @@
 {% set current = page.url %}
+<header>
+  <nav class="main-navigation" aria-label="Main navigation">
+    <a class="logo" href="/" aria-hidden="true" tabindex="-1" rel="home">
+    <!--TODO try eleventy image; keep alt empy to mark it decorative; fixed size to prevent layout shift-->
+    </a>
 
-<nav class="main-navigation" aria-label="Main navigation">
-  <a class="logo" href="/" aria-hidden="true" tabindex="-1" rel="home">
-<!--TODO try eleventy image; keep alt empy to mark it decorative; fixed size to prevent layout shift-->
-    <!--    <img-->
-<!--      src="/images/vojtech-ruzicka.jpg"-->
-<!--      srcset="/images/vojtech-ruzicka-64.jpg 64w,-->
-<!--              /images/vojtech-ruzicka-128.jpg 128w"-->
-<!--      sizes="(min-width: 128px) 128px, 100vw"-->
-<!--      alt=""-->
-<!--      width="128"-->
-<!--      height="128"-->
-<!--      decoding="async"-->
-<!--    />-->
-  </a>
+    <div class="navigation">
+      <div class="blog-name">
+        {{site.title}}
+      </div>
 
-  <div class="navigation">
-    <div class="blog-name">
-      {{site.title}}
+      <ul class="menu-items">
+        <li>
+          <a href="/"
+             {% if current == '/' %}
+          class="active" aria-current="page"
+          {% endif %}>
+          Home
+          </a>
+        </li>
+        <li>
+          <a href="/archives/"
+            {% if current.startsWith('/archives/') %}
+              class="active" aria-current="page"
+            {% endif %}>
+          Topics
+          </a>
+        </li>
+        <li>
+          <a href="/about/"
+            {% if current == '/about/' %}
+              class="active" aria-current="page"
+              {% endif %}>
+            About <span class="not-small-screen">me</span>
+          </a>
+        </li>
+      </ul>
+
     </div>
-
-    <ul class="menu-items">
-      <li>
-        <a href="/"
-           {% if current == '/' %}
-        class="active" aria-current="page"
-        {% endif %}>
-        Home
-        </a>
-      </li>
-      <li>
-        <a href="/archives/"
-           {% if current.startsWith('/archives/') %}
-        class="active" aria-current="page"
-        {% endif %}>
-        Topics
-        </a>
-      </li>
-      <li>
-        <a href="/about/"
-           {% if current == '/about/' %}
-        class="active" aria-current="page"
-        {% endif %}>
-        About <span class="not-small-screen">me</span>
-        </a>
-      </li>
-    </ul>
-
-  </div>
-</nav>
+  </nav>
+</header>

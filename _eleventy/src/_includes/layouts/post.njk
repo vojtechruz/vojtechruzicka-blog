@@ -2,7 +2,9 @@
 
 {% block content %}
   <article class="post">
-    <h1>{{ title }}</h1>
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
     {{ content | safe }}
   </article>
 {% endblock %}
