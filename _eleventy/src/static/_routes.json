@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": ["/_headers", "/_redirects"],
+  "redirects": [
+    { "source": "/author/vojtechruzicka/", "destination": "/", "status": 301 },
+    { "source": "/learning-intellij-idea-keyboard-shortucts", "destination": "/learning-intellij-idea-keyboard-shortcuts", "status": 301 },
+    { "source": "/tags", "destination": "/archives", "status": 301 },
+    { "source": "/tags/", "destination": "/archives", "status": 301 }
+  ]
+}
