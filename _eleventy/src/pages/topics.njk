@@ -6,6 +6,22 @@ permalink: /archives/
 
 {% block pageContent %}
 
-  <p>topics</p>
+{# Build an array of { name, count } for all tags #}
+{% set tagStats = [] %}
+{% for t in collections.tagList %}
+  {% set count = (collections[t] or []) | length %}
+  {% set _ = tagStats.push({ name: t, count: count }) %}
+{% endfor %}
+
+{# Sort by count desc, name asc on ties #}
+{% set sorted = tagStats | sortByCountThenName %}
+
+<ul class="tag-list">
+  {% for t in sorted %}
+    <li>
+      <a href="/tags/{{ t.name | slugify }}/">{{ t.name }} ({{ t.count }})</a>
+    </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
