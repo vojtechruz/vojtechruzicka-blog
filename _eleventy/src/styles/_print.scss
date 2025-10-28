@@ -1,0 +1,20 @@
+@media print {
+  #post p a:after {
+    content: " (" attr(href) ") ";
+    font-size: 80%;
+  }
+
+  img,
+  pre {
+    break-inside: avoid-page;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid-page;
+  }
+
+  //  TODO HIDE ELEMENTS NOT SUITABLE FOR PRINT
+}

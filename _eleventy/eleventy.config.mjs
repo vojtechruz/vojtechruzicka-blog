@@ -29,6 +29,27 @@ export default async function (eleventyConfig) {
     return [...tagsSet].sort();
   });
 
+  // Add readable date filter
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
+    if (!dateObj) return '';
+
+    const date = dateObj instanceof Date ? dateObj : new Date(dateObj);
+
+    if (isNaN(date.getTime())) {
+      return String(dateObj);
+    }
+
+    // Use UTC methods to avoid timezone shifts
+    const day = date.getUTCDate();
+    const month = date.toLocaleDateString('en-US', {
+      month: 'long',
+      timeZone: 'UTC'
+    });
+    const year = date.getUTCFullYear();
+
+    return `${day} ${month}, ${year}`;
+  });
+
   eleventyConfig.setNunjucksEnvironmentOptions({
     trimBlocks: true,   // removes the newline after {% ... %}
     lstripBlocks: true, // strips leading spaces before {% ... %}
