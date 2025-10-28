@@ -8,6 +8,7 @@ import configureNunjucks from "./config/templating.js";
 import registerDateFilters from "./config/filters/dates.js";
 import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
+import registerShortcodes from "./config/shortcodes.js";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -31,6 +32,9 @@ export default async function (eleventyConfig) {
   registerDateFilters(eleventyConfig);
   registerUrlFilters(eleventyConfig);
   registerSortingFilters(eleventyConfig);
+
+  //ShortCodes
+  registerShortcodes(eleventyConfig);
 
   return {
     dir: {
