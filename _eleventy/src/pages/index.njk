@@ -26,7 +26,7 @@ eleventyComputed:
           <span class="front-post-info-date">{{ post.date | readableDate }}</span>
           <div class="post-tags">
             <ul>
-              {% for tag in collections.tagList %}
+              {% for tag in post.data.tags %}
               <li><a href="/tags/{{tag | slugify}}/">#{{tag}}</a></li>
               {% endfor %}
             </ul>
