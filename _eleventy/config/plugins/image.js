@@ -1,5 +1,6 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import path from "path";
+import { logWarning } from "../logger.js";
 
 export default function registerImagePlugin(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
@@ -26,13 +27,17 @@ export default function registerImagePlugin(eleventyConfig) {
       // options: set of options passed to the Image call
 
       // Extract filename without extension
-      const filename = path.basename(src, path.extname(src))
+      const filenameRaw = path.basename(src, path.extname(src));
+      const filenameSanitized = filenameRaw
         .toLowerCase()
         .replace(/\s+/g, '-')  // Replace spaces with hyphens
         .replace(/[^a-z0-9-]/g, '');  // Remove special chars
 
+      if( filenameRaw !== filenameSanitized ) {
+        logWarning(`Image filename "${filenameRaw}" sanitized to "${filenameSanitized}"`);
+      }
 
-      return `${filename}-${id}-${width}.${format}`;
+      return `${filenameSanitized}-${id}-${width}.${format}`;
     }
   });
 }
