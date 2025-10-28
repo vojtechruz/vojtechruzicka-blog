@@ -4,6 +4,12 @@
   <article id="post">
     <header>
       <h1>{{ title }}</h1>
+      //tODO tags, date, date modified
+      <img src="{{ featuredImage }}" alt="{{ title }}" class="post-header-featured-image"
+           loading="eager"
+           fetchpriority="high"
+           decoding="async">
+      <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
     {{ content | safe }}
   </article>

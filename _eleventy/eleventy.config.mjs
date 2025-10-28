@@ -2,6 +2,7 @@ import registerPassthrough from "./config/passthrough.js";
 import registerPostsCollection from "./config/collections/posts.js";
 import registerTagListCollection from "./config/collections/tagList.js";
 import registerSassPlugin from "./config/plugins/sass.js";
+import registerImagePlugin from "./config/plugins/image.js";
 import registerLayouts from "./config/layouts.js";
 import configureNunjucks from "./config/templating.js";
 import registerDateFilters from "./config/filters/dates.js";
@@ -21,6 +22,7 @@ export default async function (eleventyConfig) {
 
   // Plugins
   registerSassPlugin(eleventyConfig);
+  registerImagePlugin(eleventyConfig);
 
   // Templating options
   configureNunjucks(eleventyConfig);
