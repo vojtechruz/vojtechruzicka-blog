@@ -38,7 +38,7 @@
 /robots.txt
   Cache-Control: public, max-age=86400
 
-# Long-cache immutable assets (adjust folders to match your Eleventy output)
+# Long-cache immutable assets
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 /static/*
@@ -51,6 +51,20 @@
   Cache-Control: public, max-age=31536000, immutable
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+/*/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+/*/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
 
 # Safety net by extension (covers any assets not living in the folders above)
 /*.css
