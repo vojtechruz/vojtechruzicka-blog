@@ -3,7 +3,7 @@ import registerPostsCollection from "./config/collections/posts.js";
 import registerTagListCollection from "./config/collections/tagList.js";
 import registerSassPlugin from "./config/plugins/sass.js";
 import registerLayouts from "./config/layouts.js";
-import configureNunjucks from "./config/templating/nunjucks.js";
+import configureNunjucks from "./config/templating.js";
 import registerDateFilters from "./config/filters/dates.js";
 import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
