@@ -1,6 +1,7 @@
 import registerPassthrough from "./config/passthrough.js";
 import registerPostsCollection from "./config/collections/posts.js";
 import registerTagListCollection from "./config/collections/tagList.js";
+import registerTagStatsCollection from "./config/collections/tagStats.js";
 import registerSassPlugin from "./config/plugins/sass.js";
 import registerImagePlugin from "./config/plugins/image.js";
 import registerLayouts from "./config/layouts.js";
@@ -17,6 +18,7 @@ export default async function (eleventyConfig) {
   // Collections
   registerPostsCollection(eleventyConfig);
   registerTagListCollection(eleventyConfig);
+  registerTagStatsCollection(eleventyConfig);
 
   // Layout aliases
   registerLayouts(eleventyConfig);
