@@ -24,9 +24,9 @@ eleventyComputed:
   {% for post in pagination.items %}
     <li>
       <div class="linked-article">
-        <h4 class="front-post-title">
+        <h2 class="front-post-title">
           <a href="{{post.url}}">{{ post.data.title }}</a>
-        </h4>
+        </h2>
         <div class="front-post-info">
           <time class="front-post-info-date" datetime="{{ post.date | htmlDateString }}">
             {{ post.date | readableDate }}
@@ -39,7 +39,13 @@ eleventyComputed:
         </div>
         <div>
           <a class="front-post-image" href="{{ post.url }}">
-
+            <img src="/../{{post.data.postDir}}/{{ post.data.featuredImage }}"
+                 alt=""
+                 aria-hidden="true"
+                 loading="lazy"
+                 decoding="async"
+                 sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px"
+                 eleventy:widths="200,300,400">
           </a>
           <span class="front-post-excerpt">
             {{post.data.excerpt}}
