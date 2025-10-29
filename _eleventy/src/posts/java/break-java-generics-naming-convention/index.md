@@ -3,11 +3,8 @@ title: Break the Java Generics Naming Convention?
 date: "2016-04-30T22:12:03.284Z"
 tags: ['Java']
 path: '/break-java-generics-naming-convention/'
-featuredImage: './break-java-generics-naming-convention.jpg'
 excerpt: 'Choosing descriptive, intent-revealing names is one of the key principles of writing clean code, which is easy to read and understand and usually requires little to no comments. According to the official convention, generic type parameter names are supposed to be just one capital letter. Should you break this convention to make your names more descriptive?'
 ---
-
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
 
 ## Java Generics Naming Convention
 
