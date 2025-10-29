@@ -6,7 +6,7 @@ pagination:
   addAllPagesToCollections: true
 eleventyComputed:
   permalink: /tags/{{ tag | slugify }}/index.html
-  title: 'Posts tagged #{{tag}}'
+  title: 'Posts tagged {{tag}}'
 ---
 {% extends "layouts/page.njk" %}
 
@@ -23,7 +23,12 @@ eleventyComputed:
   <a href="/archives/"> Browse all tags </a>
 </p>
 
-<p>{{ taggedPosts | length }} post{% if taggedPosts | length != 1 %}s{% endif %} tagged with #{{ tag }}</p>
+<p>
+  There {% if taggedPosts | length == 1 %}is {% else %}are {% endif %}
+  {% if taggedPosts | length == 1 %}one{% else %}{{ taggedPosts | length }}{% endif %}
+  post{% if taggedPosts | length != 1 %}s{% endif %}
+  tagged with <strong>{{ tag }}</strong>:
+</p>
 
 <ul>
   {% for post in taggedPosts %}

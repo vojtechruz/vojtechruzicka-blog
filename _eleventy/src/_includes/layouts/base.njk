@@ -22,6 +22,7 @@
   {% block head %}{% endblock %}
 </head>
 <body class="{{ bodyClass or '' }}">
+  <a class="skip-link" href="#content">Skip to content</a>
   {% include "components/header.njk" %}
   <main id="content">{% block content %}{% endblock %}</main>
   {% include "components/footer.njk" %}
