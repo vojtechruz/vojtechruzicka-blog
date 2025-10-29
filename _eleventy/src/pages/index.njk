@@ -15,6 +15,11 @@ eleventyComputed:
 
 <h1 class="visually-hidden">{{ title }}</h1>
 
+{% if pagination.pageNumber > 0 %}
+  {% include "components/pagination.njk" %}
+{% endif %}
+
+
 <ul class="post-list">
   {% for post in pagination.items %}
     <li>
@@ -45,23 +50,6 @@ eleventyComputed:
   {% endfor %}
 </ul>
 
-<nav class="pagination" aria-label="Pagination">
-  {% if pagination.href.previous %}
-    <a href="{{ pagination.href.previous }}" rel="prev">« Previous</a>
-  {% endif %}
-
-  {% for pageHref in pagination.hrefs %}
-  {% set pageNumber = loop.index %}
-  {% if loop.index0 == pagination.pageNumber %}
-  <span class="current" aria-current="page">{{ pageNumber }}</span>
-  {% else %}
-  <a href="{{ pageHref }}">{{ pageNumber }}</a>
-  {% endif %}
-  {% endfor %}
-
-  {% if pagination.href.next %}
-    <a href="{{ pagination.href.next }}" rel="next">Next »</a>
-  {% endif %}
-</nav>
+{% include "components/pagination.njk" %}
 
 {% endblock %}
