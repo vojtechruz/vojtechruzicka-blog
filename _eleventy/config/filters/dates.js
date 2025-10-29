@@ -17,7 +17,7 @@ export default function registerDateFilters(eleventyConfig) {
     });
     const year = date.getUTCFullYear();
 
-    return `${day} ${month}, ${year}`;
+    return `${month} ${day}, ${year}`;
   });
 
   // RFC 1123 / RFC 822-ish (HTTP date) in UTC, e.g. "Wed, 24 Apr 2024 22:12:03 GMT"
@@ -30,5 +30,18 @@ export default function registerDateFilters(eleventyConfig) {
   eleventyConfig.addFilter("toRfc3339", (value) => {
     const d = value instanceof Date ? value : new Date(value);
     return d.toISOString().replace(/\.\d{3}Z$/, "Z");
+  });
+
+  // Add HTML date string filter (for <time datetime>)
+  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+    if (!dateObj) return "";
+
+    const date = dateObj instanceof Date ? dateObj : new Date(dateObj);
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+
+    // ISO 8601: YYYY-MM-DD
+    return date.toISOString().split("T")[0];
   });
 }

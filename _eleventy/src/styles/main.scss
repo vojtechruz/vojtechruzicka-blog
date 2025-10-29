@@ -19,6 +19,23 @@
   gap: 0.5rem;
 }
 
+.post-list {
+  list-style: none;
+}
+
+#post .post-tags {
+  display: inline-block;
+
+  li {
+    display: inline;
+    margin: 0.15rem;
+  }
+
+  &::before {
+    content: "•";
+  }
+}
+
 .tag-name::before {
   content: "#";
 }

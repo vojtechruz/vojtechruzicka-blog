@@ -4,14 +4,29 @@
   <article id="post">
     <header>
       <h1>{{ title }}</h1>
-      //tODO tags, date, date modified
+
+      <div>
+        <span class="date-published">{{date | readableDate}}</span>
+          <ul class="post-tags">
+            {% for tag in tags %}
+              <li><a class="tag-name" href="/tags/{{tag}}">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
+      </div>
+        {%if dateModified %}
+          <div>Last Updated: {{dateModified | readableDate }}</div>
+        {% endif %}
+
+
       <img src="{{ featuredImage }}" alt="{{ title }}" class="post-header-featured-image"
            loading="eager"
            fetchpriority="high"
            decoding="async">
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
+
     <hr className="post-header-divider" />
+
     {{ content | safe }}
   </article>
 {% endblock %}
