@@ -88,3 +88,24 @@
     margin-right: 0;
   }
 }
+
+img.lqip {
+  opacity: 0.9;
+  filter: blur(20px);
+  transition: filter 0.6s ease-out, opacity 0.3s ease-out;
+  background-color: #f0f0f0;
+}
+img.lqip[data-loaded] {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Respect user accessibility setting - no animated transition */
+@media (prefers-reduced-motion: reduce) {
+  img.lqip {
+    transition: none;
+    filter: none;
+    opacity: 1;
+  }
+}
+

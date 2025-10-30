@@ -58,6 +58,9 @@ export default async function (eleventyConfig) {
   // náš transform MUSÍ přijít až po image transformu
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
+  // Rebuild when this file changes in --serve mode
+  eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
+
   return {
     dir: {
       input: "src", // Input directory

@@ -1,63 +1,120 @@
+// config/htm-transform/lqipSvgTransform.js
+// ESM module
+
 import path from "node:path";
 import fs from "node:fs/promises";
 import sharp from "sharp";
 import { load } from "cheerio";
 
-const OUTPUT_DIR = "_site";     // přizpůsob svému outputu
-const GRID_W = 16;              // šířka „mozaiky“ (čím méně, tím menší SVG)
-const GRID_H = 10;              // výška „mozaiky“
-const BLUR_STD_DEV = 0.2;        // intenzita rozostření ve filtru
-
+/**
+ * --- Configuration ---
+ */
+const OUTPUT_DIR = process.env.ELEVENTY_OUTPUT_DIR || "_site";
 const PROJECT_ROOT = process.cwd();
 
-function getBufferForSmallestPath(smallest) {
-  // DEV mód: eleventy --serve dává /.11ty/image/?src=...&width=...
-  if (smallest.startsWith("/.11ty/image/")) {
-    const q = smallest.split("?")[1] || "";
+/**
+ * Approximate total number of cells in the mosaic.
+ * The grid (width x height) will adapt to image aspect ratio.
+ * 160 ≈ 16×10 for 16:10 aspect ratio — tweak to your liking.
+ */
+const CELLS_TOTAL = 160;
+
+/**
+ * Minimum number of cells on the shorter side, to avoid being too coarse.
+ */
+const MIN_SIDE_CELLS = 8;
+
+/** Convert 0–255 to two-digit hex */
+function to2(v) {
+  return v.toString(16).padStart(2, "0");
+}
+
+/**
+ * Load binary buffer for the “smallest” image candidate.
+ *
+ * DEV mode (`--serve`):
+ *   Eleventy Image outputs virtual URLs like /.11ty/image/?src=...&width=...
+ *   → we extract the `src` param and read the original image from /src/ folder
+ *
+ * BUILD mode:
+ *   Uses real static files in the output directory (_site/…)
+ */
+async function getBufferForSmallestPath(smallestUrl) {
+  if (smallestUrl.startsWith("/.11ty/image/")) {
+    const q = smallestUrl.split("?")[1] || "";
     const params = new URLSearchParams(q);
-    const srcParam = params.get("src"); // např. "src\posts\...\featured.jpg"
+    const srcParam = params.get("src");
     if (!srcParam) throw new Error("Missing src param in /.11ty/image URL");
     const decoded = decodeURIComponent(srcParam);
-    // zdrojový obrázek ber z repo rootu
     const abs = path.join(PROJECT_ROOT, decoded.replace(/^[\\/]/, ""));
     return fs.readFile(abs);
   }
-
-  // BUILD mód: už existuje fyzický soubor v _site
-  const absOut = path.join(OUTPUT_DIR, smallest.replace(/^\//, ""));
+  // build mode: file already exists in _site/
+  const absOut = path.join(OUTPUT_DIR, smallestUrl.replace(/^\//, ""));
   return fs.readFile(absOut);
 }
 
-function rgbToHex([r, g, b]) {
-  return "#" + [r, g, b].map(v => v.toString(16).padStart(2, "0")).join("");
+/**
+ * Pick the smallest candidate URL inside a <picture>:
+ * - Prefer first <source srcset>, then <img srcset>, then <img src>.
+ */
+function pickSmallestUrl($pic, $img) {
+  const $firstSource = $pic.find("source").first();
+  const srcset = $firstSource.attr("srcset") || $img.attr("srcset");
+  if (srcset) {
+    const candidate = srcset.split(",")[0].trim().split(" ")[0];
+    if (candidate) return candidate;
+  }
+  return $img.attr("src") || "";
 }
 
-function buildSvg({ pixels, width, height }) {
-  const rectW = 1, rectH = 1; // pracujeme v „virtuálních“ jednotkách
-  const svgW = width * rectW;
-  const svgH = height * rectH;
+/**
+ * Compute adaptive mosaic grid (number of cells in width/height)
+ * based on image aspect ratio.
+ */
+function computeGrid(aspect) {
+  const base = Math.sqrt(CELLS_TOTAL * aspect);
+  let gridW = Math.max(MIN_SIDE_CELLS, Math.round(base));
+  let gridH = Math.max(MIN_SIDE_CELLS, Math.round(gridW / aspect));
 
+  // basic clamping to avoid extremes
+  gridW = Math.max(MIN_SIDE_CELLS, gridW);
+  gridH = Math.max(MIN_SIDE_CELLS, gridH);
+
+  return { gridW, gridH };
+}
+
+/**
+ * Build inline SVG mosaic (no blur filter).
+ * Uses viewBox matching pixel grid and preserveAspectRatio="xMidYMid slice"
+ * to avoid stretching.
+ */
+function buildSvgFromRaw({ data, width, height, channels }) {
   let rects = "";
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      const idx = (y * width + x) * 3;
-      const color = rgbToHex([pixels[idx], pixels[idx + 1], pixels[idx + 2]]);
-      rects += `<rect x="${x}" y="${y}" width="${rectW}" height="${rectH}" fill="${color}"/>`;
+      const i = (y * width + x) * channels;
+      const r = channels === 1 ? data[i] : data[i];
+      const g = channels === 1 ? data[i] : data[i + 1];
+      const b = channels === 1 ? data[i] : data[i + 2];
+      rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="#${to2(r)}${to2(g)}${to2(b)}"/>`;
     }
   }
 
-  // Inline SVG s blur filtrem
   return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="none">
-  <defs>
-    <filter id="b" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="${BLUR_STD_DEV}" />
-    </filter>
-  </defs>
-  <g filter="url(#b)">${rects}</g>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 ${width} ${height}"
+     preserveAspectRatio="xMidYMid slice">
+  <g>${rects}</g>
 </svg>`.trim();
 }
 
+/**
+ * --- Eleventy Transform ---
+ * Runs on every generated HTML page.
+ * Finds <picture> tags, generates a tiny SVG LQIP from the smallest image,
+ * and injects it as background-image on the <img>.
+ */
 export async function lqipSvgTransform(content, outputPath) {
   if (!outputPath || !outputPath.endsWith(".html")) return content;
 
@@ -69,46 +126,59 @@ export async function lqipSvgTransform(content, outputPath) {
     const $img = $pic.find("img").first();
     if (!$img.length) return;
 
-    // vezmeme nejmenší kandidáta z libovolného srcsetu (obvykle je první)
-    const $source = $pic.find("source").first();
-    const srcset = $source.attr("srcset") || $img.attr("srcset");
-    if (!srcset) return;
-    const smallest = srcset.split(",")[0].trim().split(" ")[0];
+    const smallest = pickSmallestUrl($pic, $img);
     if (!smallest) return;
-
-    const filePath = path.join(OUTPUT_DIR, smallest.replace(/^\//, ""));
 
     jobs.push((async () => {
       try {
-        // načti a zmenši do pevné mřížky, ať je SVG malé a konzistentní
-        const buf = await getBufferForSmallestPath(smallest);
-        const meta = await sharp(buf).metadata();
-        const svgW = GRID_W;
-        const svgH = GRID_H;
+        // Determine aspect ratio from width/height attributes if present
+        const wAttr = parseInt($img.attr("width") || "", 10);
+        const hAttr = parseInt($img.attr("height") || "", 10);
+        const aspect = wAttr && hAttr ? (wAttr / hAttr) : (16 / 9);
 
-        // Resamplujeme na GRID_W×GRID_H a vytáhneme raw RGB
-        const { data } = await sharp(buf)
-          .resize(svgW, svgH, { fit: "cover" })
-          .removeAlpha()
-          .raw()
+        // Compute adaptive grid size
+        const { gridW, gridH } = computeGrid(aspect);
+
+        // Load image buffer (origin in serve mode, built file otherwise)
+        const buf = await getBufferForSmallestPath(smallest);
+
+        // Downsample and extract raw RGB data
+        const { data, info } = await sharp(buf)
+          .toColorspace("srgb")
+          .resize(gridW, gridH, { fit: "cover" })
+          .raw({ depth: "uchar" })
           .toBuffer({ resolveWithObject: true });
 
-        const svg = buildSvg({ pixels: data, width: svgW, height: svgH });
+        // Build SVG mosaic
+        const svg = buildSvgFromRaw({
+          data,
+          width: info.width,
+          height: info.height,
+          channels: info.channels,
+        });
 
-        // data URL (UTF-8; escapneme uvozovky a procenta)
-        const svgUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+        // Base64-encode to avoid escaping issues
+        const svgUrl = `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 
-        // nastavíme jako background-image na <img>
-        const prev = $img.attr("style") || "";
-        const style =
-          `background-image:url('${svgUrl}');background-size:cover;` +
-          `background-position:center;background-repeat:no-repeat;` +
-          prev;
-        $img.attr("style", style);
-        console.log(`Processed ${filePath}`);
+        // Apply background LQIP to <img>
+        const prevImgStyle = $img.attr("style") || "";
+        $img.attr(
+          "style",
+          `display:block;` +
+          `background-image:url('${svgUrl}');` +
+          `background-size:cover;` +
+          `background-position:center;` +
+          `background-repeat:no-repeat;` +
+          prevImgStyle
+        );
+
+        // Optional fade-in hook: add CSS class + data-loaded flag
+        const existingOnload = $img.attr("onload") || "";
+        $img.attr("onload", existingOnload + "this.dataset.loaded=1;");
+        $img.addClass("lqip");
+
       } catch (e) {
-        // nechceme zbourat build při chybě placeholderu
-        console.error(`Error processing ${filePath}:`, e);
+        console.error("LQIP error for", smallest, e);
       }
     })());
   });
@@ -116,3 +186,27 @@ export async function lqipSvgTransform(content, outputPath) {
   await Promise.all(jobs);
   return $.html();
 }
+
+/**
+ * --- Usage in .eleventy.js ---
+ *
+ * import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+ * import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
+ *
+ * export default function(eleventyConfig) {
+ *   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+ *     extensions: "html",
+ *     formats: ["avif","webp","jpeg"],
+ *     widths: [400,800,1200],
+ *     urlPath: "/img/",
+ *     outputDir: "_site/img/",
+ *   });
+ *
+ *   // Must run AFTER the image transform
+ *   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
+ *
+ *   // Rebuild when this file changes in --serve mode
+ *   eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
+ * }
+ *
+ */
