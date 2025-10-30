@@ -60,3 +60,25 @@
     z-index: 1000;
   }
 }
+
+
+/* Heading anchor links for markdown-it-anchor */
+:where(h1,h2,h3,h4,h5,h6) .header-anchor {
+  /* hide by default, show on hover/focus */
+  opacity: 0;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  font-size: 0.85em;
+  transition: opacity 0.15s ease-in-out;
+}
+
+:where(h1,h2,h3,h4,h5,h6):hover .header-anchor,
+:where(h1,h2,h3,h4,h5,h6) .header-anchor:focus,
+:where(h1,h2,h3,h4,h5,h6) .header-anchor:focus-visible {
+  opacity: 1;
+}
+
+/* Ensure the anchor icon does not affect heading line-height too much */
+:where(h1,h2,h3,h4,h5,h6) .header-anchor {
+  line-height: 1;
+}

@@ -24,6 +24,9 @@
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-img": "^6.0.4",
-    "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.2.0"
+    "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.2.0",
+    "cheerio": "^1.1.2",
+    "markdown-it-anchor": "^8.6.7",
+    "sharp": "^0.34.4"
   }
 }

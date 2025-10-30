@@ -10,6 +10,9 @@ import registerDateFilters from "./config/filters/dates.js";
 import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
 import registerShortcodes from "./config/shortcodes.js";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
+import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -37,6 +40,25 @@ export default async function (eleventyConfig) {
 
   //ShortCodes
   registerShortcodes(eleventyConfig);
+
+  // Markdown library with heading anchors
+  const md = markdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+  }).use(markdownItAnchor, {
+    // Auto-generate permalinks for headings
+    permalink: markdownItAnchor.permalink.ariaHidden({
+      placement: "before",
+      class: "header-anchor",
+      symbol: "🔗",
+    }),
+    // Keep default slugify or provide your own if needed
+  });
+  eleventyConfig.setLibrary("md", md);
+
+  // náš transform MUSÍ přijít až po image transformu
+  eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
   return {
     dir: {
