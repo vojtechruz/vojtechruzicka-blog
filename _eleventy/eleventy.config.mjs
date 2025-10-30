@@ -13,6 +13,7 @@ import registerShortcodes from "./config/shortcodes.js";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
+import { wrapPicturesTransform } from "./config/htm-transform/wrapPicturesTransform.js";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -58,8 +59,12 @@ export default async function (eleventyConfig) {
   // náš transform MUSÍ přijít až po image transformu
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
-  // Rebuild when this file changes in --serve mode
+  // Wrap <picture> in a div.image-wrapper (run after LQIP transform)
+  eleventyConfig.addTransform("wrap-pictures", wrapPicturesTransform);
+
+  // Rebuild when these files change in --serve mode
   eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
+  eleventyConfig.addWatchTarget("./config/htm-transform/wrapPicturesTransform.js");
 
   return {
     dir: {
