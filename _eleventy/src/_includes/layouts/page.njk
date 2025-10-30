@@ -1,12 +1,12 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <div class="page">
+  <main id="content" class="page content">
     <header>
       <h1>{{ title }}</h1>
     </header>
     {% block pageContent %}
       {{ content | safe }}
     {% endblock %}
-  </div>
+  </main>
 {% endblock %}

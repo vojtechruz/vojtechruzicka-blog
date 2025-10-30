@@ -1,42 +1,42 @@
 {% set current = page.url %}
-<header>
-  <nav class="main-navigation" aria-label="Main navigation">
+<header class="main-navigation">
+  <nav aria-label="Main navigation">
     <a class="logo" href="/" aria-hidden="true" tabindex="-1" rel="home">
     <!--TODO try eleventy image; keep alt empy to mark it decorative; fixed size to prevent layout shift-->
     </a>
 
-    <div class="navigation">
-      <div class="blog-name">
-        {{site.title}}
-      </div>
+      <div class="navigation">
+        <div class="blog-name">
+          {{site.title}}
+        </div>
 
-      <ul class="menu-items">
-        <li>
-          <a href="/"
-             {% if current == '/' %}
-          class="active" aria-current="page"
-          {% endif %}>
-          Home
-          </a>
-        </li>
-        <li>
-          <a href="/archives/"
-            {% if current.startsWith('/archives/') %}
-              class="active" aria-current="page"
+        <ul class="menu-items">
+          <li>
+            <a href="/"
+               {% if current == '/' %}
+            class="active" aria-current="page"
             {% endif %}>
-          Topics
-          </a>
-        </li>
-        <li>
-          <a href="/about/"
-            {% if current == '/about/' %}
-              class="active" aria-current="page"
+            Home
+            </a>
+          </li>
+          <li>
+            <a href="/archives/"
+              {% if current.startsWith('/archives/') %}
+                class="active" aria-current="page"
               {% endif %}>
-            About <span class="not-small-screen">me</span>
-          </a>
-        </li>
-      </ul>
+            Topics
+            </a>
+          </li>
+          <li>
+            <a href="/about/"
+              {% if current == '/about/' %}
+                class="active" aria-current="page"
+                {% endif %}>
+              About <span class="not-small-screen">me</span>
+            </a>
+          </li>
+        </ul>
 
-    </div>
+      </div>
   </nav>
 </header>

@@ -1,7 +1,8 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <article id="post">
+<main id="content" class="post content" >
+  <article>
     <header>
       <h1>{{ title }}</h1>
 
@@ -25,8 +26,9 @@
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
 
-    <hr className="post-header-divider" />
+    <hr class="post-header-divider" />
 
     {{ content | safe }}
   </article>
+</main>
 {% endblock %}

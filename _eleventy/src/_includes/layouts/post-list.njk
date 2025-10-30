@@ -1,16 +1,18 @@
 {% extends "layouts/base.njk" %}
 
-{% if pagination %}
-  {% if pagination.href.previous %}
-    <link rel="prev" href="{{ pagination.href.previous }}">
+<main  id="content" class="page content">
+  {% if pagination %}
+    {% if pagination.href.previous %}
+      <link rel="prev" href="{{ pagination.href.previous }}">
+    {% endif %}
+    {% if pagination.href.next %}
+      <link rel="next" href="{{ pagination.href.next }}">
+    {% endif %}
   {% endif %}
-  {% if pagination.href.next %}
-    <link rel="next" href="{{ pagination.href.next }}">
-  {% endif %}
-{% endif %}
 
-{% block content %}
-  {% block postList %}
-    {{ content | safe }}
+  {% block content %}
+    {% block postList %}
+      {{ content | safe }}
+    {% endblock %}
   {% endblock %}
-{% endblock %}
+</main>

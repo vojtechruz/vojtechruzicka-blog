@@ -24,7 +24,14 @@
 <body class="{{ bodyClass or '' }}">
   <a class="skip-link" href="#content">Skip to content</a>
   {% include "components/header.njk" %}
-  <main id="content">{% block content %}{% endblock %}</main>
+
+  <div class="main">
+    {% block content %}{% endblock %}
+    <aside class="sidebar" role="complementary">
+      <p>Sidebar content...</p>
+    </aside>
+  </div>
+
   {% include "components/footer.njk" %}
 </body>
 </html>
