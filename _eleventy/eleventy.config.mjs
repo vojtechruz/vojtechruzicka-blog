@@ -43,15 +43,13 @@ export default async function (eleventyConfig) {
 
   // Markdown library with heading anchors
   const md = markdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
+    html: true
   }).use(markdownItAnchor, {
     // Auto-generate permalinks for headings
     permalink: markdownItAnchor.permalink.ariaHidden({
       placement: "before",
       class: "header-anchor",
-      symbol: "🔗",
+      symbol: "",
     }),
     // Keep default slugify or provide your own if needed
   });
