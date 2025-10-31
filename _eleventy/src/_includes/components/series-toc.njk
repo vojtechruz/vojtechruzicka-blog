@@ -19,14 +19,18 @@
   {# Sort by numeric order #}
   {% set seriesPosts = seriesPosts | sort(false, false, 'order') %}
 
-  <nav class="series-toc" aria-labelledby="series-toc-heading">
-    <h4 id="series-toc-heading">All posts in the {{ seriesName }} series</h4>
+  <nav class="series-toc" aria-label="Series navigation">
+    <p class="toc-heading">All posts in the {{ seriesName }} series</p>
     <ol>
       {% for item in seriesPosts %}
         {% if item.isCurrent %}
-          <li class="series-current" aria-current="page">{{ item.title }}</li>
+          <li>
+            <a href="{{ item.url }}" aria-current="page" class="series-current">
+              {{ item.title }} xxx
+            </a>
+          </li>
         {% else %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+          <li><a href="{{ item.url }}">{{ item.title }} yyy</a></li>
         {% endif %}
       {% endfor %}
     </ol>

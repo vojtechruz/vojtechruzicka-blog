@@ -142,6 +142,10 @@ $toc-indent-step: 1.25rem;
 $toc-border-color: #ddd;
 $toc-font-size: 0.95rem;
 
+.toc-heading {
+  font-weight: 600;
+}
+
 .toc {
   font-size: $toc-font-size;
   line-height: 1.4;
@@ -222,7 +226,52 @@ $toc-font-size: 0.95rem;
   }
 
   .series-current {
-    // TODO highlight
+    font-weight: 600;
   }
 }
 //---------------------- Series TOC end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////TODO temp
+/* Global link styles */
+a {
+  color: #007acc; /* your brand blue */
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+a:hover,
+a:focus {
+  color: #005fa3; /* slightly darker hover */
+}
+
+a:visited {
+  color: #5c87b2; /* desaturated tone of same hue */
+}

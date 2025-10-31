@@ -41,13 +41,16 @@
 
 {% block sidebar %}
   {% include "components/series-toc.njk" %}
+
   {% set tocHtml = content | toc %}
   {% if tocHtml and (tocHtml | trim) %}
-  <nav class="toc" aria-label="Table of contents">
-    <h4>Table of contents</h4>
-    <div class="toc-list">
-      {{ tocHtml | safe }}
-    </div>
-  </nav>
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-heading">Table of contents</p>
+      <div class="toc-list">
+        {{ tocHtml
+        | replace(r/<\/?nav[^>]*>/gi, '')
+        | safe }}
+      </div>
+    </nav>
   {% endif %}
 {% endblock %}
