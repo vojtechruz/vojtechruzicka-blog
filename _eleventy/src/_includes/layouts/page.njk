@@ -1,7 +1,9 @@
 {% extends "layouts/base.njk" %}
 
 {% block head %}
-  {% include "components/social-metatags.njk", { kind: "website" } %}
+{% set kind = "website" %}
+{% include "components/social-metatags.njk" %}
+  {% include "components/jsonld.njk" %}
 {% endblock %}
 
 

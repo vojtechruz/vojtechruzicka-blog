@@ -1,7 +1,10 @@
 {% extends "layouts/base.njk" %}
 
+{# // TODO input parameter can now be taken from variable used in jsonld page type and then since there is no input both following can be put to base layout #}
 {% block head %}
-  {% include "components/social-metatags.njk", { kind: "website" } %}
+  {% set kind = "website" %}
+  {% include "components/social-metatags.njk" %}
+  {% include "components/jsonld.njk" %}
 {% endblock %}
 
 <main  id="content" class="page content">
