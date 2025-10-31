@@ -34,6 +34,7 @@
 {% endblock %}
 
 {% block sidebar %}
+  {% include "components/series-toc.njk" %}
   {% set tocHtml = content | toc %}
   {% if tocHtml and (tocHtml | trim) %}
   <nav class="toc" aria-label="Table of contents">

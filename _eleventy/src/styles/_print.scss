@@ -1,4 +1,5 @@
 @media print {
+  // This will print link target url after each anchor tag
   #post p a:after {
     content: " (" attr(href) ") ";
     font-size: 80%;
