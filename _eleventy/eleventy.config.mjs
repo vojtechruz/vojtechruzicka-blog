@@ -12,6 +12,7 @@ import registerSortingFilters from "./config/filters/sorting.js";
 import registerShortcodes from "./config/shortcodes.js";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
 import { wrapPicturesTransform } from "./config/htm-transform/wrapPicturesTransform.js";
 
@@ -30,6 +31,9 @@ export default async function (eleventyConfig) {
   // Plugins
   registerSassPlugin(eleventyConfig);
   registerImagePlugin(eleventyConfig);
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ["h2", "h3", "h4"],
+  });
 
   // Templating options
   configureNunjucks(eleventyConfig);

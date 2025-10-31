@@ -32,3 +32,15 @@
   </article>
 </main>
 {% endblock %}
+
+{% block sidebar %}
+  {% set tocHtml = content | toc %}
+  {% if tocHtml and (tocHtml | trim) %}
+  <nav class="toc" aria-label="Table of contents">
+    <h4>Table of contents</h4>
+    <div class="toc-list">
+      {{ tocHtml | safe }}
+    </div>
+  </nav>
+  {% endif %}
+{% endblock %}
