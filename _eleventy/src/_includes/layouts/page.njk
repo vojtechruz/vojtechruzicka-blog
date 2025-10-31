@@ -1,5 +1,10 @@
 {% extends "layouts/base.njk" %}
 
+{% block head %}
+  {% include "components/social-metatags.njk", { kind: "website" } %}
+{% endblock %}
+
+
 {% block content %}
   <main id="content" class="page content">
     <header>

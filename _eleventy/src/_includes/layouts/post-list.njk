@@ -1,5 +1,9 @@
 {% extends "layouts/base.njk" %}
 
+{% block head %}
+  {% include "components/social-metatags.njk", { kind: "website" } %}
+{% endblock %}
+
 <main  id="content" class="page content">
   {% if pagination %}
     {% if pagination.href.previous %}
