@@ -84,6 +84,18 @@ function computeGrid(aspect) {
   return { gridW, gridH };
 }
 
+// TODO this should fix cropping of images with weird aspect ratios
+// - .resize(gridW, gridH, { fit: "cover" })
+// + .resize(gridW, gridH, { fit: "inside" })
+// diff
+// Zkopírovat kód
+// - preserveAspectRatio="xMidYMid slice"
+// + preserveAspectRatio="xMidYMid meet"
+// diff
+// Zkopírovat kód
+// - background-size:cover;
+// + background-size:contain;
+
 /**
  * Build inline SVG mosaic (no blur filter).
  * Uses viewBox matching pixel grid and preserveAspectRatio="xMidYMid slice"

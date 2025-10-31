@@ -1,0 +1,34 @@
+{% if series %}
+  {# Determine the series name from the current page front matter #}
+  {% set seriesName = series %}
+
+  {# Collect all posts from the same series #}
+  {% set seriesPosts = [] %}
+  {% for post in collections.posts %}
+    {% if post.data.series and post.data.series == seriesName %}
+      {% set item = {
+        title: post.data.title,
+        url: post.url,
+        order: (post.data['series-order'] or 999999),
+        isCurrent: (post.url == page.url)
+      } %}
+      {% set _ = seriesPosts.push(item) %}
+    {% endif %}
+  {% endfor %}
+
+  {# Sort by numeric order #}
+  {% set seriesPosts = seriesPosts | sort(false, false, 'order') %}
+
+  <nav class="series-toc" aria-labelledby="series-toc-heading">
+    <h4 id="series-toc-heading">All posts in the {{ seriesName }} series</h4>
+    <ol>
+      {% for item in seriesPosts %}
+        {% if item.isCurrent %}
+          <li class="series-current" aria-current="page">{{ item.title }}</li>
+        {% else %}
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}
