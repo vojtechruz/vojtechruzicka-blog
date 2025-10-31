@@ -13,5 +13,13 @@
 .main {
   max-width: 70ch;
   margin: 0 auto;
+  display: flex;
+}
+
+// When on small screen then switch from two columns to one column with sidebar first
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column-reverse;
+  }
 }
 

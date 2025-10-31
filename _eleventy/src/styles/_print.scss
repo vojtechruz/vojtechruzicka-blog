@@ -16,5 +16,9 @@
     break-after: avoid-page;
   }
 
+  // TODO consider replacing with noprint class
+  .footer, .post-header-featured-image {
+    display: none;
+  }
   //  TODO HIDE ELEMENTS NOT SUITABLE FOR PRINT
 }
