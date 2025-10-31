@@ -13,13 +13,6 @@ export default function codepen(
   defaultTab = "result",
   showCaption = true
 ) {
-  // Normalize flexible arguments for Nunjucks friendliness
-  if (typeof title === "number" || (typeof title === "string" && /^\d+$/.test(title))) {
-    showCaption = false;
-    defaultTab = String(height ?? "result");
-    height = Number(title) || 400;
-    title = "CodePen embed";
-  }
   if (typeof height === "string" && /^\d+$/.test(height)) height = Number(height);
 
   const embedUrl = toEmbedUrl(String(input));

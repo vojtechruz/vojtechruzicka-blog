@@ -2,6 +2,7 @@ import warning from "./shortcodes/warning.js";
 import info from "./shortcodes/info.js";
 import youtube from "./shortcodes/youtube.js";
 import codepen from "./shortcodes/codepen.js";
+import video from "./shortcodes/video.js";
 
 export default function registerShortcodes(eleventyConfig) {
   // Paired shortcodes
@@ -11,4 +12,5 @@ export default function registerShortcodes(eleventyConfig) {
   // Single shortcodes
   eleventyConfig.addShortcode("youtube", youtube);
   eleventyConfig.addShortcode("codepen", codepen);
+  eleventyConfig.addShortcode("video", video);
 }
