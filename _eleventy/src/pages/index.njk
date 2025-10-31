@@ -31,25 +31,24 @@ eleventyComputed:
           <time class="front-post-info-date" datetime="{{ post.date | htmlDateString }}">
             {{ post.date | readableDate }}
           </time>
-          <ul class="post-tags">
+          <ul class="post-tags" aria-label="Tags">
             {% for tag in post.data.tags %}
             <li><a href="/tags/{{tag | slugify}}/"><span class="tag-name">{{tag}}</span></a></li>
             {% endfor %}
           </ul>
         </div>
         <div>
-          <a class="front-post-image" href="{{ post.url }}">
+          <a class="front-post-image" href="{{ post.url }}" aria-hidden="true" tabindex="-1">
             <img src="/../{{post.data.postDir}}/{{ post.data.featuredImage }}"
                  alt=""
-                 aria-hidden="true"
                  loading="lazy"
                  decoding="async"
                  sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px"
                  eleventy:widths="200,300,400">
           </a>
-          <span class="front-post-excerpt">
+          <p class="front-post-excerpt">
             {{post.data.excerpt}}
-          </span>
+          </p>
         </div>
       </div>
     </li>
