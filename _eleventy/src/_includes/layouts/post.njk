@@ -35,7 +35,10 @@
     <hr class="post-header-divider" />
 
     {{ content | safe }}
+
+
   </article>
+  {% include "components/comments.njk" %}
 </main>
 {% endblock %}
 
