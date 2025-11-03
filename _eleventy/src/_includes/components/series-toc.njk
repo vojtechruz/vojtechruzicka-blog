@@ -26,11 +26,11 @@
         {% if item.isCurrent %}
           <li>
             <a href="{{ item.url }}" aria-current="page" class="series-current">
-              {{ item.title }} xxx
+              {{ item.title }}
             </a>
           </li>
         {% else %}
-          <li><a href="{{ item.url }}">{{ item.title }} yyy</a></li>
+          <li><a href="{{ item.url }}">{{ item.title }} </a></li>
         {% endif %}
       {% endfor %}
     </ol>
