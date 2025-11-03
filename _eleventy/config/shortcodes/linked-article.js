@@ -1,3 +1,4 @@
+import { readableDateUTC, htmlDateString, slugify, escapeHtml } from "../utils/formatting.js";
 // Renders a linked article card by permalink (URL)
 // Usage examples:
 // - In Nunjucks: {% linkedArticle "/my-post/" %}
@@ -23,9 +24,8 @@ export default function linkedArticle(permalink, maybeCollections) {
   const url = post.url || (post.page && post.page.url) || String(permalink || "");
   const title = String(data.title || "");
 
-  const d = post.date instanceof Date ? post.date : new Date(post.date);
-  const readableDate = isNaN(d) ? "" : formatReadableDate(d);
-  const htmlDate = isNaN(d) ? "" : toHtmlDateString(d);
+  const readableDate = readableDateUTC(post.date);
+  const htmlDate = htmlDateString(post.date);
 
   const tags = Array.isArray(data.tags) ? data.tags : [];
   const tagLinks = tags.map(tag => {
@@ -62,34 +62,5 @@ export default function linkedArticle(permalink, maybeCollections) {
 </div>`;
 }
 
-function formatReadableDate(date) {
-  // Replicates filters/dates.js readableDate (UTC)
-  const day = date.getUTCDate();
-  const month = date.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
-  const year = date.getUTCFullYear();
-  return `${month} ${day}, ${year}`;
-}
 
-function toHtmlDateString(date) {
-  // ISO 8601: YYYY-MM-DD
-  return date.toISOString().split("T")[0];
-}
 
-function slugify(input) {
-  return String(input)
-    .trim()
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "") // remove diacritics
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}

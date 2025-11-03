@@ -9,6 +9,7 @@
 // Notes:
 // - Put your files under _eleventy/src/static so they are copied to the site root.
 //   Example path in repo: _eleventy/src/static/videos/my-talk.mp4 → site URL: /videos/my-talk.mp4
+import { escapeHtml, hash } from "../utils/formatting.js";
 export default function video(
   input,
   title = "Video",
@@ -120,22 +121,4 @@ function toAspectCss(aspect) {
   if (!Number.isNaN(num) && num > 0) return String(num);
   // Fallback default
   return "16 / 9";
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function hash(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h << 5) - h + str.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h);
 }

@@ -9,6 +9,7 @@ import configureNunjucks from "./config/templating.js";
 import registerDateFilters from "./config/filters/dates.js";
 import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
+import registerTextFilters from "./config/filters/text.js";
 import registerShortcodes from "./config/shortcodes.js";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
@@ -42,6 +43,7 @@ export default async function (eleventyConfig) {
   registerDateFilters(eleventyConfig);
   registerUrlFilters(eleventyConfig);
   registerSortingFilters(eleventyConfig);
+  registerTextFilters(eleventyConfig);
 
   //ShortCodes
   registerShortcodes(eleventyConfig);

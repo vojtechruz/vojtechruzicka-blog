@@ -5,6 +5,7 @@
 //   {% youtube "VIDEO_ID", 400 %}
 //   {% youtube "VIDEO_ID", "A descriptive title", 400, 30 %}  {# start at 30s #}
 // Accepts either a plain video ID or a full YouTube URL; will extract the ID.
+import { escapeHtml } from "../utils/formatting.js";
 export default function youtube(input, title = "YouTube video", height = 400, start = 0) {
   // Normalize flexible arguments for Nunjucks friendliness
   if (typeof title === "number") {
@@ -57,13 +58,4 @@ function extractYouTubeId(input) {
   // Fallback: try to pull last path segment
   const parts = String(input).split("/");
   return parts[parts.length - 1];
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }

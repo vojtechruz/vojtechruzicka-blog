@@ -6,6 +6,7 @@
 //   {% codepen "user/pen/slug", "Optional title", 500, "result+css" %}
 //   {% codepen "user/pen/slug", "Visible caption below", 500, "result+css", true %}
 // Accepts a full URL or a partial path (user/pen/slug or user/embed/slug). Ensures embed URL.
+import { escapeHtml, hash } from "../utils/formatting.js";
 export default function codepen(
   input,
   title = "CodePen embed",
@@ -66,22 +67,4 @@ function toEmbedUrl(input) {
     }
     return `https://codepen.io/${path}/embed`;
   }
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/\"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function hash(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h << 5) - h + str.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h);
 }
