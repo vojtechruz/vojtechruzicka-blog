@@ -16,6 +16,7 @@ import markdownItAnchor from "markdown-it-anchor";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
 import { wrapPicturesTransform } from "./config/htm-transform/wrapPicturesTransform.js";
+import shikiMarkdownPlugin from "@shikijs/markdown-it";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -48,6 +49,13 @@ export default async function (eleventyConfig) {
   //ShortCodes
   registerShortcodes(eleventyConfig);
 
+  // Inicializace Shiki pluginu (asynchronně!)
+  const shikiPlugin = await shikiMarkdownPlugin({
+    themes: { light: "github-light", dark: "github-dark" },
+    // Volitelně: omezení jazyků kvůli výkonu
+    // langs: ["javascript", "typescript", "java", "kotlin", "bash", "json", "markdown", "html", "css", "nunjucks"]
+  });
+
   // Markdown library with heading anchors
   const md = markdownIt({
     html: true
@@ -59,10 +67,9 @@ export default async function (eleventyConfig) {
       symbol: "",
     }),
     // Keep default slugify or provide your own if needed
-  });
+  }).use(shikiPlugin);
   eleventyConfig.setLibrary("md", md);
 
-  // náš transform MUSÍ přijít až po image transformu
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
   // Wrap <picture> in a div.image-wrapper (run after LQIP transform)
