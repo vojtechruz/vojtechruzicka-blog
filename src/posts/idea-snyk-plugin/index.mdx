@@ -37,7 +37,11 @@ It would be much better if you could check locally when adding a new dependency 
 Fortunately, Snyk recently released also IntelliJ IDEA plugin, which monitors your dependencies and can show you security vulnerabilities directly in your IDE.
 
 ## Snyk plugin
-<Info>The plugin is available for free for both the Community and Ultimate editions.</Info>
+{% info %}
+The plugin is available for free for both the Community and Ultimate editions.
+{% endinfo %}
+
+
 
 
 The [Snyk Plugin](https://plugins.jetbrains.com/plugin/10972-snyk-vulnerability-scanning) is available directly from the plugin marketplace. You can access it using `Settings → Plugins`.
@@ -82,7 +86,11 @@ This allows you to browse your dependencies in a new `Dependency Checker` tab.
 
 ![List of dependencies scanned by Dependency Checker](dependency-checker-full.png)
 
-<Info>Currently, vulnerability scanning is only available for IntelliJ IDEA Ultimate. With the Community Edition, you can still use the Snyk plugin.</Info>
+{% info %}
+Currently, vulnerability scanning is only available for IntelliJ IDEA Ultimate. With the Community Edition, you can still use the Snyk plugin.
+{% endinfo %}
+
+
 
 ## Conclusion
 Snyk IDEA plugin offers a simple, yet powerful way to detect security vulnerabilities in your dependencies directly in your IDE. This way, you can discover vulnerable libraries early in the development process without the need to wait for Continuous Integration check. This, however, does not mean you should depend only on the plugin. You should still have CI check in place as a safeguard and continuous monitoring, which Snyk offers, to make sure you discover new vulnerabilities and their fixes once they are available.

@@ -9,7 +9,11 @@ excerpt: 'How to get started with Spring AI and easily integrate Artificial Inte
 
 
 
-<Info>At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already use Spring AI for many use cases, but the API and usage may change in the future.</Info>
+{% info %}
+At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already use Spring AI for many use cases, but the API and usage may change in the future.
+{% endinfo %}
+
+
 
 ## Source code
 Source code of the final application with all the functionality described in this article can be found on [Github](https://github.com/vojtechruz/spring-ai-demo).
@@ -79,7 +83,11 @@ repositories {
 
 ### Dependency Management
 
-<Info>At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the <a href="https://docs.spring.io/spring-ai/docs/">Spring AI site</a> and use it instead.</Info>
+{% info %}
+At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the <a href="https://docs.spring.io/spring-ai/docs/">Spring AI site</a> and use it instead.
+{% endinfo %}
+
+
 
 While you can add your dependencies with a version directly specified, it is usually not the preferred way in Spring Boot applications. Typically, you don't specify any versions directly except for the parent pom, which defines all the versions of individual dependencies. When you add a new dependency, you don't need to worry about specifying the version as it is then inherited from the parent pom. This has the advantage that you don't need to worry about determining the exact version of your components, and your dependencies will work well together.
 
@@ -143,7 +151,11 @@ Now, we need to provide our application with the new API Key so it can connect t
 spring.ai.openai.api-key=<YOUR_API_KEY>
 ```
 
-<Info>While this will work for our simple hello world application, it is usually not a good idea to have your secret credentials stored with the application itself and available to all in git. You can instead set environmental variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when launching the application.</Info>
+{% info %}
+While this will work for our simple hello world application, it is usually not a good idea to have your secret credentials stored with the application itself and available to all in git. You can instead set environmental variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when launching the application.
+{% endinfo %}
+
+
 
 ## Text generation
 
