@@ -7,7 +7,7 @@ featuredImage: './premium.png'
 excerpt: 'Test quality is just as important as that of production code. Tests should not be excluded from quality checks and the same quality rules should be applied.'
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
+
 
 ## Relaxed rules for tests
 On one of my previous projects, we introduced SonarQube static code analysis checks to detect bad practices and code smells automatically. Before that, our codebase started to rot slowly and this was supposed to be the solution for that. It worked. Everybody was eager to keep the code clean. We were zealously purging all the remaining issues and then we were vigorously keeping zero items. Everybody was happy. We did, however, make one huge mistake. We decided the exclude all the tests from the checks. Even in code reviews, we did not insist on keeping the quality up to the level of the production code. Tests were allowed to be a mess as long as they were actually testing well the production code.

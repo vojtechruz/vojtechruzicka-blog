@@ -8,7 +8,7 @@ featuredImage: './intellij-idea-slow.jpg'
 excerpt: 'Running IntelliJ IDEA IDE can be taxing on your machine, especially for large projects, here are a few tips, which can help you to achieve better performance.'
 ---
 
-<PostHeader frontmatter={props.data.mdx.frontmatter} />
+
 
 ## Unload Modules
 Working on a large project with many modules can greatly reduce the IDE performance. IDEA needs to process a huge amount of files when searching, refactoring or inspecting the code. However, it is often not necessary to work with all the modules at the same time. Maybe you are responsible for just one independent module. Maybe you are developing just frontend/backend part of the application. Or maybe the app contains a lot of legacy modules, which are hardly ever touched. In such cases, it would be really helpful to exclude some modules from IDEA's activity completely. Version 2017.2 [introduced a new feature](https://blog.jetbrains.com/idea/2017/06/intellij-idea-2017-2-eap-introduces-unloaded-modules/) called *Unload Modules*, which allows you to define which modules of the project should be excluded. This can greatly improve IDEA's performance. Once you need an unloaded module again, you can load it, so it is available to IDEA.
