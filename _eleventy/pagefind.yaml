@@ -1,0 +1,11 @@
+site: _site
+glob: "/**/index.html"
+exclude_selectors:
+  - "nav"
+  - "footer"
+  - ".toc"
+  - ".comments"
+  - "pre"
+  - "code"
+  - "social-share"
+force_language: "en"

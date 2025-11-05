@@ -4,7 +4,9 @@
   "description": "Vojtech Ruzicka's Programming Blog",
   "main": "N/A",
   "scripts": {
-    "start": "npx eleventy --serve"
+    "start": "npx eleventy --serve",
+    "build": "eleventy",
+    "postbuild": "pagefind --site _site"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
     "@shikijs/markdown-it": "^3.14.0",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^8.6.7",
+    "pagefind": "^1.4.0",
     "shiki": "^3.14.0"
   }
 }
