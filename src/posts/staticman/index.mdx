@@ -3,7 +3,6 @@ title: 'Staticman: User generated content made static'
 date: "2018-08-25T12:12:03.284Z"
 tags: ['JAMStack']
 path: '/staticman/'
-featuredImage: './staticman.jpg'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
 links: ["/gatsby-migration/"]
 ---
@@ -30,7 +29,7 @@ It turns out you can achieve this easily with a tool called [Staticman](https://
 2. Since static sites have no backend, the form submits to a Staticman service instead.
 3. Staticman pushes the changes to your git repo.
 4. As usual, your site can be automatically [rebuilt and redeployed](https://www.vojtechruzicka.com/jamstack-migration-netlify/) on code change.
-5. The user submitted data is now a core part of your static site.
+5. The user-submitted data is now a core part of your static site.
 
 How great is that? Of course, you don't want users spamming your site, so Staticman offers you an option to moderate submissions by creating a Pull Request instead of directly pushing to your branch. If you want more sophisticated protection, it does offer integration with Akismet anti-spam filter or re-captcha.
 
@@ -51,7 +50,7 @@ Now you need to open the following URL in your browser to make Staticman accept 
 https://api.staticman.net/v2/connect/{your GitHub username}/{your repository name}
 ```
 
-With a real data it looks something like this:
+With real data it looks something like this:
 
 ```
 https://api.staticman.net/v2/connect/vojtechruz/staticman-example
@@ -106,7 +105,7 @@ reviews:
   ...
 ```
 
-If you want to redirect the user to a specific url after submit you can do it by including this hidden field:
+If you want to redirect the user to a specific url after submitting, you can do it by including this hidden field:
 
 ```html
 <input name="options[redirect]" type="hidden" value="https://www.example.com" />
@@ -127,9 +126,9 @@ message: Hello StaticMan!
 date: 1535118541
 ```
 
-What you need to do is to make sure your static site generator reads this data (you can set a different format than yaml if you need to) and generates static content based on it. This will, of course, vary greatly depending on which generator you use.
+What you need to do is to make sure your static site generator reads this data (you can set a different format than YAML if you need to) and generates static content based on it. This will, of course, vary greatly depending on which generator you use.
 
-For example, if using Gatsby, you can use [gatsby-transformer-yaml](https://www.gatsbyjs.org/packages/gatsby-transformer-yaml/) to read the yaml data and then just populate your comments section based on this data as you would with any other data source.
+For example, if using Gatsby, you can use [gatsby-transformer-yaml](https://www.gatsbyjs.org/packages/gatsby-transformer-yaml/) to read the YAML data and then just populate your comments section based on this data as you would with any other data source.
 
 ## Moderation
 You can turn on moderation of user submissions by setting `moderation: true` in your config file. Staticman then creates a Pull Request for each user submission, which you can either accept or decline.
@@ -184,9 +183,11 @@ Finally you need to include these hidden fields in your Staticman form:
 You can find detailed info about re-captcha integration [here](https://github.com/eduardoboucas/staticman-recaptcha).
 
 ## Example
-The source code of a simple GatsbyJS site using Staticman can be found [here](https://github.com/vojtechruz/staticman-example).
 
-Running example is available [here](https://staticman-example.netlify.app/).
+The source code for a simple GatsbyJS site integrating Staticman is available on
+[GitHub Staticman example repository](https://github.com/vojtechruz/staticman-example).
+
+You can also check [a live and interactive version of the site](https://staticman-example.netlify.app/).
 
 ## Conclusion
 Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance, and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.

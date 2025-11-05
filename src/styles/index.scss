@@ -1,12 +1,9 @@
-@import "syntax-highlighting";
-@import "print";
 @import "dark-theme";
 
 $link_color: #007acc;
 :root {
   --docsearch-primary-color: #007acc !important;
 }
-@import "@docsearch/css";
 
 $border-color: hsla(0, 0%, 0%, 0.1);
 $border-color-dark: hsla(0, 0%, 0%, 0.2);
