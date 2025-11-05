@@ -37,27 +37,17 @@
           </li>
         </ul>
         <div class="nav-search" role="search">
-          <div id="search"></div>
+          <div id="search">
+            <!-- This content gents on demand replaced by pagefind -->
+            <div id="search">
+              <div class="pagefind-ui svelte-e9gkc3">
+                <input type="text"
+                       placeholder="Search…" title="Search…">
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
   </nav>
-
-  <!-- TODO put htis into head -->
-  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-
-  <script src="/pagefind/pagefind-ui.js"></script>
-  <script type="module">
-    window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({
-      element: "#search",
-      showSubResults: true,
-      showImages: false,
-      resetStyles: false,
-      translations: {
-        placeholder: "Hledat…",
-        zero_results: "Nic nenalezeno pro “{query}”.",
-        many_results: "{count} výsledků pro “{query}”."
-      }
-    })});
-  </script>
 </header>

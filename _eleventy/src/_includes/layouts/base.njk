@@ -33,5 +33,87 @@
   </div>
 
   {% include "components/footer.njk" %}
+
+  <!--  //TODO externalize-->
+  <script>
+    (() => {
+      let booting = null;
+
+      function loadCSS(href) {
+        return new Promise((resolve, reject) => {
+          const el = document.createElement('link');
+          el.rel = 'stylesheet';
+          el.href = href;
+          el.onload = resolve;
+          el.onerror = reject;
+          document.head.appendChild(el);
+        });
+      }
+
+      function loadJS(src) {
+        return new Promise((resolve, reject) => {
+          const s = document.createElement('script'); // classic script, NOT type="module"
+          s.src = src;
+          s.onload = resolve;
+          s.onerror = () => reject(new Error('Failed to load ' + src));
+          document.head.appendChild(s);
+        });
+      }
+
+      async function ensureSearch() {
+        if (booting) return booting;
+        const container = document.querySelector('#search');
+        if (!container) throw new Error('Search container #search not found');
+
+        booting = (async () => {
+          await loadCSS('/pagefind/pagefind-ui.css');
+          await loadJS('/pagefind/pagefind-ui.js');
+
+          if (!window.PagefindUI) throw new Error('window.PagefindUI not available');
+          // Optional: clear container if you had placeholder content
+          container.innerHTML = '';
+
+          new window.PagefindUI({
+            element: '#search',          // or: element: container
+            showSubResults: true,
+            showImages: false,
+            resetStyles: false,
+            translations: {
+              placeholder: "Search…",
+              one_result: "1 result for '[SEARCH_TERM]'.",
+              many_results: "{count} results for '[SEARCH_TERM]'.",
+              zero_results: "No results for '[SEARCH_TERM]'.",
+              search_label: "Search the site",
+              clear_search: "Clear",
+              load_more: "Load more"
+            }
+
+          });
+
+          document.querySelector(".pagefind-ui__search-input").focus({ preventScroll: true });
+        })().catch(err => { console.error(err); booting = null; });
+
+        return booting;
+      }
+
+      // Hook up your trigger(s)
+      const trigger = document.getElementById('open-search') || document.getElementById('search');
+      if (trigger) {
+        ['click','focus','mouseenter'].forEach(ev =>
+          trigger.addEventListener(ev, () => { ensureSearch(); }, { once: true })
+        );
+      }
+
+      // Keyboard shortcuts (optional)
+      document.addEventListener('keydown', (e) => {
+        const inField = /^(input|textarea|select)$/i.test(e.target.tagName) || e.target.isContentEditable;
+        if (inField) return;
+        const slash = e.key === '/';
+        const modK  = (e.key.toLowerCase() === 'k') && (e.ctrlKey || e.metaKey);
+        if (slash || modK) { e.preventDefault(); ensureSearch(); }
+      });
+    })();
+  </script>
+
 </body>
 </html>
