@@ -8,24 +8,28 @@ export default {
   sameAs: [
     "https://github.com/vojtechruz",
     "https://www.linkedin.com/in/vojtechruzicka/",
-    "https://bsky.app/profile/vojtechruzicka.com"
+    "https://bsky.app/profile/vojtechruzicka.com",
+    "https://www.facebook.com/vojtechruzickablog",
+    "https://twitter.com/vojtechruzicka",
   ],
 
   // Person profile (optional but recommended for About page)
   person: {
     name: "Vojtech Ruzicka",
-    image: "/images/vojtech.jpg",        // can be absolute or site-root path
+    birthDate: "1986.07.27",
+    image: "/images/vojtech.jpg",        // TODO
     url: "https://www.vojtechruzicka.com/about/",
-    jobTitle: "Software Developer & Tech Blogger",
-    worksFor: "Self-employed",           // or company name
+    jobTitle: "Full-Stack Software Developer",
     sameAs: [                            // overrides/extends site.sameAs for Person
       "https://github.com/vojtechruz",
       "https://www.linkedin.com/in/vojtechruzicka/",
-      "https://bsky.app/profile/vojtechruzicka.com"
+      "https://bsky.app/profile/vojtechruzicka.com",
+      "https://www.facebook.com/vojtechruzickablog",
+      "https://twitter.com/vojtechruzicka",
     ],
-    email: "mailto:me@vojtechruzicka.com"
+    email: "vojtech.ruz@gmail.com",
   },
 
-  defaultShareImage: "/images/default-share.png",
+  defaultShareImage: "/images/default-share.png",//TODO
   twitter: "@vojtechruzicka"
 };
