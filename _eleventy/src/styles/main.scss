@@ -10,6 +10,9 @@
 //@use "typography";
 //@use "components";
 
+/* jednou na začátku stylesheetu */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   font-family: var(--font-body);
   font-size: clamp(16px, 1.1vw + 12px, 18px);
@@ -136,7 +139,6 @@ h1, h2, h3, h4 {
 }
 
 article {
-  padding-inline: 1.5rem;
   line-height: 1.6;
   font-size: 1rem;
 }
@@ -186,6 +188,17 @@ $toc-font-size: 0.95rem;
       }
     }
   }
+}
+
+.post-header-divider {
+  margin-top: var(--gap-large);
+  height: 2px;
+  background: var(--color-border);
+  border: none;
+}
+
+.post-header-excerpt {
+  margin-top: var(--gap-large);
 }
 
 

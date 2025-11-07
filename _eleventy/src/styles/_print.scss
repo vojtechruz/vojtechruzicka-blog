@@ -1,3 +1,5 @@
+@use "variables";
+
 @media print {
   // This will print link target url after each anchor tag
   #post p a:after {

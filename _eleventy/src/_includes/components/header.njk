@@ -10,43 +10,41 @@
           {{site.title}}
         </div>
 
-        <ul class="menu-items">
-          <li>
-            <a href="/"
-               {% if current == '/' %}
-            class="active" aria-current="page"
-            {% endif %}>
-            Home
-            </a>
-          </li>
-          <li>
-            <a href="/archives/"
-              {% if current.startsWith('/archives/') %}
-                class="active" aria-current="page"
+        <div class="menu-container">
+          <ul class="menu-items">
+            <li>
+              <a href="/"
+                 {% if current == '/' %}
+              class="active" aria-current="page"
               {% endif %}>
-            Topics
-            </a>
-          </li>
-          <li>
-            <a href="/about/"
-              {% if current == '/about/' %}
-                class="active" aria-current="page"
+              Home
+              </a>
+            </li>
+            <li>
+              <a href="/archives/"
+                {% if current.startsWith('/archives/') %}
+                  class="active" aria-current="page"
                 {% endif %}>
-              About <span class="not-small-screen">me</span>
-            </a>
-          </li>
-        </ul>
-        <div class="nav-search" role="search">
-          <div id="search">
-            <!-- This content gents on demand replaced by pagefind -->
+              Topics
+              </a>
+            </li>
+            <li>
+              <a href="/about/"
+                {% if current == '/about/' %}
+                  class="active" aria-current="page"
+                  {% endif %}>
+                About <span class="not-small-screen">me</span>
+              </a>
+            </li>
+          </ul>
+          <div class="nav-search" role="search">
             <div id="search">
-              <div class="pagefind-ui svelte-e9gkc3">
-                <input type="text"
-                       placeholder="Search…" title="Search…">
+              <!-- This content gents on demand replaced by pagefind -->
+                <div class="pagefind-ui">
+                  <input type="text" placeholder="Search…" title="Search…">
+                </div>
               </div>
             </div>
-
-          </div>
         </div>
       </div>
   </nav>

@@ -1,3 +1,5 @@
+@use "variables";
+
 .post img {
   max-width: 100%;
   height: auto;
@@ -11,12 +13,17 @@
 }
 
 .main {
-  max-width: 90ch;
-  margin: 0 auto;
   display: flex;
   flex-grow: 1;
   gap: var(--gap-small);
   padding: var(--gap-small);
+  //margin-inline: auto;
+  justify-content: center;
+}
+
+.content {
+  max-width: 70ch;
+  padding: 0 var(--gap-large);
 }
 
 .sidebar {
@@ -46,9 +53,9 @@ body {
 }
 
 // When on small screen then switch from two columns to one column with sidebar first
-@media (max-width: 768px) {
+@media (max-width: variables.$breakpoint-medium) {
   .main {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .sidebar {

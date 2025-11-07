@@ -1,30 +1,85 @@
-.share-list { display:flex; gap:.6rem; padding:0; margin:0; list-style:none; }
-.share-icon {
-  width:2.75rem; height:2.75rem; border-radius:999rem;
-  display:inline-flex; align-items:center; justify-content:center;
-  background:var(--share-bg,#f4f4f4); cursor:pointer;
-  transition:background .2s ease, transform .15s ease, box-shadow .2s ease;
+@use "variables";
+
+.share-list {
+  display: flex;
+  gap: .6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
-.share-icon svg { width:1.2rem; height:1.2rem; fill:currentColor; color:var(--icon-color,#555); }
-.share-icon:hover { background:var(--share-bg-hover,#eee); }
-.share-icon:active { transform:translateY(1px) scale(.98); }
-.share-icon:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in oklab,currentColor 35%,transparent); }
+
+.share-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--share-bg, #f4f4f4);
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+
+.share-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+  color: var(--icon-color, #555);
+}
+
+.share-icon:hover {
+  background: var(--share-bg-hover, #eee);
+}
+
+.share-icon:active {
+  transform: translateY(1px) scale(.98);
+}
+
+.share-icon:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklab, currentColor 35%, transparent);
+}
 
 /* brand hovers (optional) */
-.share-bluesky:hover svg  { color:#1185fe; }
-.share-mastodon:hover svg { color:#6364ff; }
-.share-linkedin:hover svg { color:#0a66c2; }
-.share-x:hover svg      { color: #1da1f2; }
-.share-reddit:hover svg { color: #ff4500; }
-.share-copy:hover svg  { color: #2ecc71; }
-.share-email:hover svg { color: #d44638; }
-
-@media (prefers-color-scheme: dark){
-  .share-icon { background:#2a2a2a; }
-  .share-icon:hover { background:#333; }
-  .share-icon svg { color:#cfcfcf; }
+.share-bluesky:hover svg {
+  color: #1185fe;
 }
 
+.share-mastodon:hover svg {
+  color: #6364ff;
+}
+
+.share-linkedin:hover svg {
+  color: #0a66c2;
+}
+
+.share-x:hover svg {
+  color: #1da1f2;
+}
+
+.share-reddit:hover svg {
+  color: #ff4500;
+}
+
+.share-copy:hover svg {
+  color: #2ecc71;
+}
+
+.share-email:hover svg {
+  color: #d44638;
+}
+
+@media (prefers-color-scheme: dark) {
+  .share-icon {
+    background: #2a2a2a;
+  }
+  .share-icon:hover {
+    background: #333;
+  }
+  .share-icon svg {
+    color: #cfcfcf;
+  }
+}
 
 
 .share-icon {

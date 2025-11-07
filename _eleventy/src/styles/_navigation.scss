@@ -16,6 +16,7 @@
 .blog-name {
   font-weight: 600;
   letter-spacing: .2px;
+  white-space: nowrap;
 }
 
 
@@ -42,5 +43,33 @@
     &:hover {
       background: var(--color-bg-hightlight);
     }
+  }
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+
+@media (max-width: variables.$breakpoint-medium) {
+
+  .main-navigation .navigation {
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    flex-basis: 100%;
+
+    .menu-items {
+      gap: 0;
+    }
+  }
+}
+
+@media (max-width: variables.$breakpoint-small) {
+  .menu-container {
+    flex-direction: column;
   }
 }
