@@ -1,6 +1,6 @@
 export default (text) => {
   return `
-<div class="msg-warn">
+<div class="msg msg-warn">
   ${text}
 </div>
 `;
