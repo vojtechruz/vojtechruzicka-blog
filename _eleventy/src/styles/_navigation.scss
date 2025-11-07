@@ -1,1 +1,46 @@
 @use "variables";
+
+.main-navigation {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.main-navigation .navigation {
+  max-width: 100ch;
+  margin: 0 auto;
+  padding: .8rem 1rem;
+  display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: center;
+}
+
+.blog-name {
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+
+.menu-items {
+  display: flex;
+  gap: .8rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .4rem .6rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+
+    &.active {
+      background: var(--color-bg-active);
+    }
+    &:hover {
+      background: var(--color-bg-hightlight);
+    }
+  }
+}
