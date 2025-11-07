@@ -14,6 +14,7 @@
 
       <div>
         <span class="date-published">{{date | readableDate}}</span>
+        <span class="date-modified">{{dateModified | readableDate}}</span>
           <ul class="post-tags">
             {% for tag in tags %}
               <li><a class="tag-name" href="/tags/{{tag}}">{{tag}}</a></li>

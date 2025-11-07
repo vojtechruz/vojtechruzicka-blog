@@ -1,27 +1,74 @@
-
 :root {
-
+  /* Border radius scale */
   --radius-sm: .375rem;
 
-  //Colors
-  --color-bg-dark: #0b1220;
-  --color-bg-light: #0f172a;
-  --color-bg-lighter: #1e293b;
-  --color-bg-active: #334155;
-  --color-bg-hightlight: #475569;
-  --color-text: #e5e7eb;
-  --color-link: #60a5fa;
-  --color-link-hover: #93c5fd;
-  --color-border: #233046;
+  /* ===== SURFACE LAYERS (Dark theme) =====
+     These represent increasing elevation / foreground layers.
+     Keep these consistent for layout structure. */
+  --color-bg-dark: ;    /* Primary page background */
+  --color-bg-light: ;   /* Main content container / header background */
+  --color-bg-lighter: ; /* Elevated cards / panels */
 
-  // Fonts
+  /* Semantic surface aliases (optional but improves clarity in layout code) */
+  --color-surface-0: #0b1220;   /* Base background */
+  --color-surface-1: #0f172a;  /* Default content surface */
+  --color-surface-2: #1e293b;/* Slightly elevated surface */
+
+  /* Highlight & active states
+     (used for selected menu items, hover list rows, etc.) */
+  --color-bg-active: #334155;       /* Active / selected background */
+  --color-bg-highlight: #475569;    /* Mild highlight background */
+
+  /* ===== TEXT COLORS ===== */
+  --color-text: #e5e7eb;        /* Default high-contrast foreground text */
+  --color-text-muted: #94a3b8;  /* Secondary text (metadata, timestamps) */
+  --color-text-subtle: #64748b; /* Very subtle text (captions, helper notes) */
+  --color-text-inverse: #0b1220;/* Text on light foreground surfaces (e.g., badges) */
+
+  /* ===== LINKS & INTERACTIVE ===== */
+  --color-link: #60a5fa;        /* Primary link color */
+  --color-link-hover: #93c5fd;  /* Hover link color (lighter accent) */
+  --color-accent: #34d399;      /* Accent highlight color (also "success") */
+
+  /* ===== BORDERS & DIVIDERS ===== */
+  --color-border: #2a3a54;   //#233046   /* Subtle, but still visible on dark backgrounds */
+  --hr-color: #233046;          /* Divider lines inside content */
+
+  /* ===== SEMANTIC STATES =====
+     Use these for callouts, alerts, notifications, badges, etc. */
+  /* INFO */
+  --color-info:        #38bdf8;
+  --color-info-bg:     rgba(56, 189, 248, 0.14);
+  --color-info-border: rgba(56, 189, 248, 0.36);
+
+  /* SUCCESS */
+  --color-success:        #34d399;
+  --color-success-bg:     rgba(52, 211, 153, 0.14);
+  --color-success-border: rgba(52, 211, 153, 0.36);
+
+  /* WARNING */
+  --color-warning:        #fbbf24;
+  --color-warning-bg:     rgba(251, 191, 36, 0.16);
+  --color-warning-border: rgba(251, 191, 36, 0.38);
+
+  /* ERROR */
+  --color-error:          #f87171;
+  --color-error-bg:       rgba(248, 113, 113, 0.16);
+  --color-error-border:   rgba(248, 113, 113, 0.38);
+
+  /* ===== ACCESSIBILITY & INTERACTION ===== */
+  --color-focus-ring: #93c5fd;     /* High-visibility keyboard focus outline */
+  --color-selection-bg: #1d4ed8;   /* Text highlight selection background */
+  --color-selection-text: #ffffff; /* Text color when selected */
+
+  /* ===== TYPOGRAPHY ===== */
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-heading: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  // Gaps
-  --gap-large: 2rem;
-  --gap-medium: 1.1rem;
-  --gap-small: 0.35rem;
+  /* ===== SPACING SCALE ===== */
+  --gap-large: 2rem;    /* Large layout spacing */
+  --gap-medium: 1.1rem; /* Standard spacing */
+  --gap-small: 0.35rem; /* Tight spacing (labels, nav items) */
 }
 
 // Responsive breakpoints
