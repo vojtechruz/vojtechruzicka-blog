@@ -1,11 +1,13 @@
-@use "print";
+@use "variables";
 @use "layout";
+@use "print";
 @use "social";
+@use "incubator";
 
-:root {
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-heading: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-}
+//@use "theme-dark";
+//@use "base";
+//@use "typography";
+//@use "components";
 
 body {
   font-family: var(--font-body);
@@ -232,48 +234,3 @@ $toc-font-size: 0.95rem;
   }
 }
 //---------------------- Series TOC end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////TODO temp
-/* Global link styles */
-a {
-  color: #007acc; /* your brand blue */
-  text-decoration: underline;
-  transition: color 0.2s;
-}
-
-a:hover,
-a:focus {
-  color: #005fa3; /* slightly darker hover */
-}
-
-a:visited {
-  color: #5c87b2; /* desaturated tone of same hue */
-}

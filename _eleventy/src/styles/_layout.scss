@@ -11,9 +11,39 @@
 }
 
 .main {
-  max-width: 70ch;
+  max-width: 90ch;
   margin: 0 auto;
   display: flex;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.sidebar {
+  margin-left: 0.3rem;
+  padding: 0 1rem;
+}
+
+.content h1, .sidebar .toc-heading {
+  margin-top: 1.1rem;
+}
+
+.footer {
+  height: 3rem;
+
+  .footer-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 // When on small screen then switch from two columns to one column with sidebar first
