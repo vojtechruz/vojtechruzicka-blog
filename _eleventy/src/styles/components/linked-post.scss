@@ -97,13 +97,6 @@
   display: block;
   border-radius: var(--radius-sm);
   overflow: hidden;
-
-  img {
-    display: block;
-    width: 140px;
-    height: auto;
-    border-radius: var(--radius-sm);
-  }
 }
 
 /* Excerpt */
@@ -113,6 +106,7 @@
   line-height: 1.5;
   margin-top: -3px;
   font-size: 1rem;
+  max-height: 120px;
 }
 
 /* Hover effect on the whole card */
@@ -137,7 +131,7 @@
 
 /* Náhled */
 .front-post-image .image-wrapper {
-  width: 140px;
+  height: 120px;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -151,3 +145,17 @@
   display: block;
 }
 
+.post blockquote {
+  margin: var(--gap-medium) 0;
+  padding: 1.2rem 1.6rem;
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-surface-2) 85%, black);
+  border-radius: var(--radius-sm);
+  font-style: italic;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.post-content blockquote > :last-child {
+  margin-bottom: 0; /* žádné extra mezery na konci */
+}
