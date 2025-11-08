@@ -1,21 +1,12 @@
 @use "variables";
-/* Shiki code blocks — drop this into your stylesheet (e.g. _incubator.scss) */
 
-/* Container */
 pre.shiki {
-  /* Map Shiki variables to your theme so tokens contrast correctly */
-  --shiki-bg: var(--color-surface-1);
-  --shiki-dark-bg: var(--color-surface-1);
-
   margin: var(--gap-medium) 0;
   padding: 1rem 1.1rem;
   background: var(--color-surface-1);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   overflow: auto;
-
-  /* Subtle inset to lift content */
-  box-shadow: inset 0 1px 0 color-mix(in oklab, #fff 3%, transparent);
 }
 
 /* Lines layout */
@@ -29,6 +20,10 @@ pre.shiki .line {
 /* Hover assist while scanning */
 pre.shiki .line:hover {
   background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+  margin-left: -1.1rem;
+  margin-right: -1.1rem;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
 }
 
 /* Highlighted lines (supports multiple common flags) */
@@ -38,45 +33,15 @@ pre.shiki .line[data-highlighted] {
   background: color-mix(in oklab, var(--color-bg-highlight) 45%, transparent);
   border-left: 3px solid var(--color-accent);
   margin-left: -1.1rem;
+  margin-right: -1.1rem;
   padding-left: calc(1.1rem - 3px);
-}
-
-pre.shiki {
-  position: relative;
-}
-
-pre.shiki[data-language]::after {
-  content: attr(data-language);
-  position: absolute;
-  top: 0.4rem;
-  right: 0.6rem;
-  font-size: 0.65rem;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-
-  padding: 0.2rem 0.45rem;
-  border-radius: var(--radius-sm);
-
-  color: var(--color-text-muted);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
-  opacity: 0.85;
-
-  pointer-events: none;
 }
 
 /* Scrollbar cosmetics (webkit/blink) */
 pre.shiki::-webkit-scrollbar { height: 10px; }
 pre.shiki::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--color-border) 60%, transparent);
-  border-radius: 8px;
-}
-
-/* Selection colors inside code */
-pre.shiki ::selection {
-  background: var(--color-selection-bg);
-  color: var(--color-selection-text);
+  border-radius: 3px;
 }
 
 /* Inline code (non-Shiki) */
@@ -85,16 +50,6 @@ pre.shiki ::selection {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 0.1rem 0.35rem;
-}
-
-/*
-  Optional: enable soft-wrapping for long lines by adding .is-wrapping
-  to the <pre class="shiki"> element (or toggle it via JS).
-*/
-pre.shiki.is-wrapping code { display: block; }
-pre.shiki.is-wrapping .line {
-  white-space: pre-wrap;
-  word-break: break-word;
 }
 
 /* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
