@@ -60,3 +60,65 @@ pre.shiki,
 pre.shiki span {
   color: var(--shiki-dark);
 }
+
+pre.shiki {
+  --code-pad-x: 1.1rem;
+
+  /* barevné proměnné odvozené z tvého theme */
+  --diff-add-bg: color-mix(in oklab, var(--color-success) 14%, transparent);
+  --diff-add-bg-highlighted: color-mix(in oklab, var(--color-success) 30%, transparent);
+  --diff-add-border: var(--color-success);
+
+  --diff-remove-bg: color-mix(in oklab, var(--color-error) 14%, transparent);
+  --diff-remove-bg-highlighted: color-mix(in oklab, var(--color-error) 30%, transparent);
+  --diff-remove-border: var(--color-error);
+}
+
+
+/* základ: diff řádky přes celou šířku s levým zvýrazněním */
+pre.shiki .line.diff {
+  margin-left: calc(-1 * var(--code-pad-x));
+  padding-left: var(--code-pad-x);
+  border-left: 3px solid transparent;
+  position: relative;
+}
+
+/* ADD (+) */
+pre.shiki .line.diff.add {
+  background: var(--diff-add-bg);
+  border-left-color: var(--diff-add-border);
+}
+
+/* REMOVE (-) */
+pre.shiki .line.diff.remove {
+  background: var(--diff-remove-bg);
+  border-left-color: var(--diff-remove-border);
+}
+
+pre.shiki .line.diff::before {
+  position: absolute;
+  left: 0.35rem;
+  content: '';
+  font-weight: 700;
+  opacity: .7;
+  color: var(--color-text-muted);
+}
+pre.shiki .line.diff.add::before    { content: '+'; color: var(--diff-add-border); }
+pre.shiki .line.diff.remove::before { content: '−'; color: var(--diff-remove-border);  }
+
+/* kompatibilita s tvým “line highlight” – ať vyhraje diff border i pozadí */
+pre.shiki .line.highlighted.diff {
+
+  &.add {
+    background-color: var(--diff-add-bg-highlighted);
+  }
+
+  &.remove {
+    background-color: var(--diff-remove-bg-highlighted);
+  }
+}
+
+/* zachovat hover efekt, ale subtilněji, když už je diff */
+pre.shiki .line.diff:hover {
+  filter: brightness(1.02);
+}
