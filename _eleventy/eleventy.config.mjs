@@ -17,6 +17,7 @@ import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
 import { wrapPicturesTransform } from "./config/htm-transform/wrapPicturesTransform.js";
 import shikiMarkdownPlugin from "@shikijs/markdown-it";
+import { transformerMetaHighlight } from "@shikijs/transformers";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -58,7 +59,6 @@ export default async function (eleventyConfig) {
     }
   };
 
-  // Inicializace Shiki pluginu (asynchronně!)
   const shikiPlugin = await shikiMarkdownPlugin({
     themes: {
       light: "github-dark-dimmed",
@@ -68,7 +68,7 @@ export default async function (eleventyConfig) {
     inlineStyle: false,
     defaultBackground: false,
     defaultColor: false,
-    transformers: [dataLanguageTransformer],   // ← add this
+    transformers: [dataLanguageTransformer, transformerMetaHighlight()]
   });
 
   // Markdown library with heading anchors
