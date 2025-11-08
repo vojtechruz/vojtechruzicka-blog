@@ -11,8 +11,8 @@
 
   /* Semantic surface aliases (optional but improves clarity in layout code) */
   --color-surface-0: #0b1220;   /* Base background */
-  --color-surface-1: #0f172a;  /* Default content surface */
-  --color-surface-2: #1e293b;/* Slightly elevated surface */
+  --color-surface-1: #111827; //#0f172a;  /* Default content surface */
+  --color-surface-2: #0f172a;//#1e293b;/* Slightly elevated surface */
 
   /* Highlight & active states
      (used for selected menu items, hover list rows, etc.) */
@@ -32,6 +32,7 @@
 
   /* ===== BORDERS & DIVIDERS ===== */
   --color-border: #2a3a54;   //#233046   /* Subtle, but still visible on dark backgrounds */
+  --color-border-muted: #233046;   //#233046   /* Subtle, but still visible on dark backgrounds */
   --hr-color: #233046;          /* Divider lines inside content */
 
   /* ===== SEMANTIC STATES =====

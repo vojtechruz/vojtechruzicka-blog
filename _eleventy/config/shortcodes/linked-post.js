@@ -1,10 +1,10 @@
 import { readableDateUTC, htmlDateString, slugify, escapeHtml } from "../utils/formatting.js";
-// Renders a linked article card by permalink (URL)
+// Renders a linked post card by permalink (URL)
 // Usage examples:
-// - In Nunjucks: {% linkedArticle "/my-post/" %}
-// - In Markdown (Nunjucks enabled): {% linkedArticle page.url %}
-// - In Nunjucks loops: {% linkedArticle post.url %}
-export default function linkedArticle(permalink, maybeCollections) {
+// - In Nunjucks: {% linkedPost "/my-post/" %}
+// - In Markdown (Nunjucks enabled): {% linkedPost page.url %}
+// - In Nunjucks loops: {% linkedPost post.url %}
+export default function linkedPost(permalink, maybeCollections) {
   // Resolve collections from passed argument or context
   const ctx = (this && (this.ctx || this)) ? (this.ctx || this) : {};
   const collections = maybeCollections || ctx.collections || (ctx.page && ctx.page.collections) || {};
@@ -18,7 +18,7 @@ export default function linkedArticle(permalink, maybeCollections) {
 
   // TODO - fail in this case
   if (!post) {
-    return `<div class="linked-article linked-article--missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
+    return `<div class="linked-post linked-post--missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
   }
 
   const data = post.data || {};
@@ -40,7 +40,7 @@ export default function linkedArticle(permalink, maybeCollections) {
   const imgUrl = (featuredImage && postDir) ? `/../${postDir}/${featuredImage}` : "";
   const excerpt = String(data.excerpt || "");
 
-  return `<div class="linked-article">
+  return `<div class="linked-post">
   <h2 class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>
   </h2>

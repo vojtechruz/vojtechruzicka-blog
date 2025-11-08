@@ -41,6 +41,15 @@ body {
   margin-top: var(--gap-medium);
 }
 
+.post-list {
+  padding:0;
+
+  h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
 .footer {
   height: 3rem;
 

@@ -1,0 +1,125 @@
+@use "../variables";
+
+.linked-post {
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--radius-sm);
+  padding: var(--gap-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  transition: background 0.18s ease, border-color 0.18s ease;
+
+  &:hover {
+    background: var(--color-surface-2);
+    border-color: var(--color-bg-highlight);
+  }
+}
+
+.linked-post h2.front-post-title {
+  margin: 0!important;          // eliminuje default margin u H2
+  padding: 0!important;
+  line-height: 1.25;  // udrží kompaktní vzhled
+}
+
+.linked-post h2.front-post-title a {
+  display: inline-block;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+.front-post-title a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+}
+
+/* Meta info row */
+.front-post-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  font-size: .875rem;
+  color: var(--color-text-muted);
+  align-items: center;
+}
+
+.front-post-info-date {
+  white-space: nowrap;
+}
+
+/* Tags */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  a {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-2);
+    color: var(--color-text-muted);
+    font-size: .75rem;
+    text-decoration: none;
+
+    &:hover {
+      background: var(--color-bg-highlight);
+      color: var(--color-text);
+    }
+  }
+}
+
+/* Layout: image + text block */
+.linked-post > div {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: flex-start;
+}
+
+.front-post-image {
+  flex-shrink: 0;
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 140px;
+    height: auto;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Excerpt */
+.front-post-excerpt {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Hover effect on the whole card */
+.linked-post:hover .front-post-title a {
+  color: var(--color-link-hover);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: variables.$breakpoint-medium) {
+  .linked-post > div {
+    flex-direction: column;
+  }
+
+  .front-post-image img {
+    width: 100%;
+    max-width: 320px;
+  }
+}

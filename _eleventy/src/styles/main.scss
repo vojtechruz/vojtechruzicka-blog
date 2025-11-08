@@ -1,7 +1,8 @@
 @use "variables";
 @use "layout";
 @use "print";
-@use "social";
+@use "components/social";
+@use "components/linked-post";
 @use "incubator";
 @use "navigation";
 
@@ -23,7 +24,6 @@ h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.25;
-  margin-block: 1.2em 0.6em;
 }
 
 /* For accessibility instead of display:none */
@@ -47,6 +47,9 @@ h1, h2, h3, h4 {
 
 .post-list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
 }
 
 #post .post-tags {
