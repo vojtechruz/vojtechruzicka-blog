@@ -49,6 +49,15 @@ export default async function (eleventyConfig) {
   //ShortCodes
   registerShortcodes(eleventyConfig);
 
+  const dataLanguageTransformer = {
+    name: "data-language",
+    pre() {
+      // this.options.lang is the detected fence language (e.g., 'js', 'java')
+      this.pre.properties ??= {};
+      this.pre.properties["data-language"] = this.options.lang || "text";
+    }
+  };
+
   // Inicializace Shiki pluginu (asynchronně!)
   const shikiPlugin = await shikiMarkdownPlugin({
     themes: {
@@ -58,7 +67,8 @@ export default async function (eleventyConfig) {
     cssVariablePrefix: "--shiki-",
     inlineStyle: false,
     defaultBackground: false,
-    defaultColor: false
+    defaultColor: false,
+    transformers: [dataLanguageTransformer],   // ← add this
   });
 
   // Markdown library with heading anchors

@@ -12,7 +12,6 @@ pre.shiki {
   background: var(--color-surface-1);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  //color: var(--color-text);
   overflow: auto;
 
   /* Subtle inset to lift content */
@@ -42,19 +41,29 @@ pre.shiki .line[data-highlighted] {
   padding-left: calc(1.1rem - 3px);
 }
 
-/* Optional: language badge (requires data-language on <pre>) */
-pre.shiki { position: relative; }
-pre.shiki::after {
+pre.shiki {
+  position: relative;
+}
+
+pre.shiki[data-language]::after {
   content: attr(data-language);
   position: absolute;
-  top: 6px;
-  right: 8px;
-  font-size: 0.75rem;
-  color: var(--color-text-subtle);
-  background: color-mix(in oklab, var(--color-surface-2) 85%, black);
-  border: 1px solid var(--color-border-muted);
-  border-radius: 999px;
-  padding: 0.1rem 0.5rem;
+  top: 0.4rem;
+  right: 0.6rem;
+  font-size: 0.65rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-sm);
+
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  opacity: 0.85;
+
+  pointer-events: none;
 }
 
 /* Scrollbar cosmetics (webkit/blink) */
