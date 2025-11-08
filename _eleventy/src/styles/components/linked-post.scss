@@ -19,6 +19,7 @@
 .linked-post h2.front-post-title {
   line-height: 1.25;  // udrží kompaktní vzhled
   margin-top: -0.65rem;
+  margin-bottom: var(--gap-small);
 }
 
 .linked-post h2.front-post-title a {
@@ -47,6 +48,7 @@
   font-size: .875rem;
   color: var(--color-text-muted);
   align-items: center;
+  margin-bottom: var(--gap-small);
 }
 
 .front-post-info-date {
@@ -109,6 +111,8 @@
   margin: 0;
   color: var(--color-text-muted);
   line-height: 1.5;
+  margin-top: -3px;
+  font-size: 1rem;
 }
 
 /* Hover effect on the whole card */
@@ -127,3 +131,23 @@
     max-width: 320px;
   }
 }
+
+
+
+
+/* Náhled */
+.front-post-image .image-wrapper {
+  width: 140px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.front-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+

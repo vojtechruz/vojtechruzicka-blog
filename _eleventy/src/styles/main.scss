@@ -21,6 +21,7 @@ body {
 }
 
 h1, h2, h3, h4 {
+  color: var(--color-text-heading);
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.25;
@@ -166,7 +167,7 @@ $toc-font-size: 0.95rem;
 .post-header-divider {
   margin-top: var(--gap-large);
   height: 2px;
-  background: var(--color-border);
+  background: color-mix(in srgb, var(--color-border) 80%, transparent);
   border: none;
 }
 
@@ -276,6 +277,7 @@ $toc-font-size: 0.95rem;
 :root[data-theme="light"] .header-anchor{ color: var(--color-text-subtle); }
 
 /* Applies to headings that have the permalink anchor */
+.post h1,
 .post h2,
 .post h3,
 .post h4 {
