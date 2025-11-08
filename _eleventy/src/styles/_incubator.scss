@@ -56,7 +56,6 @@ a:hover { color: var(--color-link-hover); }
 
 
 
-/* ToC panel (jen vnitřní box) */
 .toc {
   margin-top: 1.5rem;
   background: var(--color-surface-1);     /* #111827 */
@@ -67,5 +66,23 @@ a:hover { color: var(--color-link-hover); }
   padding-left: var(--gap-medium);
   padding-bottom: var(--gap-medium);
   position: sticky;
-  top: 6rem;                               /* dolaď dle headeru */
+  top: 6rem;
+}
+
+
+
+
+.post blockquote {
+  margin: var(--gap-medium) 0;
+  padding: 1.2rem 1.6rem;
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-surface-2) 85%, black);
+  border-radius: var(--radius-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.post-content blockquote > :last-child {
+  margin-bottom: 0; /* žádné extra mezery na konci */
 }

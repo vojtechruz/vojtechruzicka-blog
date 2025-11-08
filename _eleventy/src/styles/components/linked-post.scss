@@ -145,17 +145,3 @@
   display: block;
 }
 
-.post blockquote {
-  margin: var(--gap-medium) 0;
-  padding: 1.2rem 1.6rem;
-  border-left: 3px solid var(--color-accent);
-  background: color-mix(in srgb, var(--color-surface-2) 85%, black);
-  border-radius: var(--radius-sm);
-  font-style: italic;
-  color: var(--color-text);
-  line-height: 1.55;
-}
-
-.post-content blockquote > :last-child {
-  margin-bottom: 0; /* žádné extra mezery na konci */
-}
