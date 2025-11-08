@@ -51,9 +51,14 @@ export default async function (eleventyConfig) {
 
   // Inicializace Shiki pluginu (asynchronně!)
   const shikiPlugin = await shikiMarkdownPlugin({
-    themes: { light: "github-light", dark: "github-dark" },
-    // Volitelně: omezení jazyků kvůli výkonu
-    // langs: ["javascript", "typescript", "java", "kotlin", "bash", "json", "markdown", "html", "css", "nunjucks"]
+    themes: {
+      light: "github-dark-dimmed",
+      dark: "github-dark-dimmed"
+    },
+    cssVariablePrefix: "--shiki-",
+    inlineStyle: false,
+    defaultBackground: false,
+    defaultColor: false
   });
 
   // Markdown library with heading anchors

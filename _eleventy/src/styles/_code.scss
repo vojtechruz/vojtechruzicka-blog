@@ -1,0 +1,97 @@
+@use "variables";
+/* Shiki code blocks — drop this into your stylesheet (e.g. _incubator.scss) */
+
+/* Container */
+pre.shiki {
+  /* Map Shiki variables to your theme so tokens contrast correctly */
+  --shiki-bg: var(--color-surface-1);
+  --shiki-dark-bg: var(--color-surface-1);
+
+  margin: var(--gap-medium) 0;
+  padding: 1rem 1.1rem;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  //color: var(--color-text);
+  overflow: auto;
+
+  /* Subtle inset to lift content */
+  box-shadow: inset 0 1px 0 color-mix(in oklab, #fff 3%, transparent);
+}
+
+/* Lines layout */
+pre.shiki code { display: grid; }
+pre.shiki .line {
+  min-height: 1.35em;
+  line-height: 1.5;
+  white-space: pre; /* change to pre-wrap if you prefer wrapping */
+}
+
+/* Hover assist while scanning */
+pre.shiki .line:hover {
+  background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+}
+
+/* Highlighted lines (supports multiple common flags) */
+pre.shiki .line.highlighted,
+pre.shiki .line[aria-selected="true"],
+pre.shiki .line[data-highlighted] {
+  background: color-mix(in oklab, var(--color-bg-highlight) 45%, transparent);
+  border-left: 3px solid var(--color-accent);
+  margin-left: -1.1rem;
+  padding-left: calc(1.1rem - 3px);
+}
+
+/* Optional: language badge (requires data-language on <pre>) */
+pre.shiki { position: relative; }
+pre.shiki::after {
+  content: attr(data-language);
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  background: color-mix(in oklab, var(--color-surface-2) 85%, black);
+  border: 1px solid var(--color-border-muted);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
+
+/* Scrollbar cosmetics (webkit/blink) */
+pre.shiki::-webkit-scrollbar { height: 10px; }
+pre.shiki::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--color-border) 60%, transparent);
+  border-radius: 8px;
+}
+
+/* Selection colors inside code */
+pre.shiki ::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+/* Inline code (non-Shiki) */
+:not(pre) > code {
+  background: color-mix(in oklab, var(--color-surface-2) 85%, black);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1rem 0.35rem;
+}
+
+/*
+  Optional: enable soft-wrapping for long lines by adding .is-wrapping
+  to the <pre class="shiki"> element (or toggle it via JS).
+*/
+pre.shiki.is-wrapping code { display: block; }
+pre.shiki.is-wrapping .line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
+/* Default to dark scheme (matches current site theme). If you later add light mode,
+   add media queries or data-theme switches to choose --shiki-light instead. */
+pre.shiki,
+pre.shiki span {
+  color: var(--shiki-dark);
+}

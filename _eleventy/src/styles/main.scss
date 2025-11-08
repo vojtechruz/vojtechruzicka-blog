@@ -5,11 +5,7 @@
 @use "components/linked-post";
 @use "incubator";
 @use "navigation";
-
-//@use "theme-dark";
-//@use "base";
-//@use "typography";
-//@use "components";
+@use "code";
 
 /* jednou na začátku stylesheetu */
 *, *::before, *::after { box-sizing: border-box; }
