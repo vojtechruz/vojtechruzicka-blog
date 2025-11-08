@@ -17,9 +17,8 @@
 }
 
 .linked-post h2.front-post-title {
-  margin: 0!important;          // eliminuje default margin u H2
-  padding: 0!important;
   line-height: 1.25;  // udrží kompaktní vzhled
+  margin-top: -0.65rem;
 }
 
 .linked-post h2.front-post-title a {
@@ -61,22 +60,27 @@
   gap: .4rem;
   list-style: none;
   padding: 0;
-  margin: 0;
 
   a {
     display: inline-block;
     padding: 2px 6px;
     border-radius: var(--radius-sm);
     background: var(--color-surface-2);
-    color: var(--color-text-muted);
-    font-size: .75rem;
+    border: 1px solid var(--color-border-muted);
     text-decoration: none;
 
     &:hover {
       background: var(--color-bg-highlight);
-      color: var(--color-text);
+      color: var(--color-link-hover);
+      border: 1px solid var(--color-link-hover);
+
     }
   }
+}
+
+.post .post-tags {
+  margin-top: var(--gap-small);
+  margin-bottom: var(--gap-medium);
 }
 
 /* Layout: image + text block */
