@@ -50,6 +50,7 @@ pre.shiki::-webkit-scrollbar-thumb {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 0.1rem 0.35rem;
+  white-space: nowrap;
 }
 
 /* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
