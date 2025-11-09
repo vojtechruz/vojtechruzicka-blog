@@ -30,7 +30,7 @@
 
     &:focus {
       border-color: var(--color-link-hover);
-      box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.25); // nebo jiné, sladěné s brand
+      box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.25);
       outline: none;
     }
   }
@@ -87,9 +87,6 @@
   display: none !important;
 }
 
-/* === MODAL LAYOUT === */
-.pagefind-ui__form { position: static; } /* už nepotřebujeme relative na formu */
-
 .pagefind-ui__drawer {
   position: fixed !important;
   z-index: 1000;
@@ -116,11 +113,10 @@
   }
 }
 
-/* horní input a clear – stejné jako nahoře v threadu */
 .pagefind-ui .pagefind-ui__search-input {
   height: 46px !important;
-  padding-left: 36px !important;   /* lupa vlevo */
-  padding-right: 40px !important;  /* clear vpravo */
+  padding-left: 36px !important;
+  padding-right: 40px !important;
   border-radius: 10px;
   border: 1px solid var(--color-border);
   background: var(--color-surface-1);
@@ -129,7 +125,6 @@
 }
 .pagefind-ui .pagefind-ui__form { top: 0; background: inherit; padding: .5rem .5rem 0; }
 
-/* lupa vlevo v inputu */
 .pagefind-ui .pagefind-ui__form::before{
   content:""; position:absolute; left:1rem; top: calc(0.5rem + 23px); transform: translateY(-50%);
   width:18px; height:18px; opacity:.7; pointer-events:none;
@@ -138,7 +133,6 @@
   mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat center/contain;
 }
 
-/* clear vpravo */
 .pagefind-ui .pagefind-ui__search-clear{
   position:absolute; right:.75rem; top: calc(0.5rem + 23px); transform: translateY(-50%);
   width:32px;height:32px; display:grid; place-items:center;
@@ -147,11 +141,9 @@
 }
 .pagefind-ui .pagefind-ui__suppressed{ display:none !important; }
 
-/* === LIST === */
 .pagefind-ui__results{
   display:flex !important;
   flex-direction:column !important;
-  //gap:.5rem !important;
   margin:0;
   padding: 0;
 }
@@ -162,7 +154,7 @@
   padding-top: 0;
 
 }
-//.pagefind-ui__result:last-child{ border-bottom:0; }
+
 .pagefind-ui__result-title a{ font-weight:600; color:var(--color-text-heading); text-decoration:none; }
 .pagefind-ui__result-link a{ font-weight:500; color:var(--color-text); text-decoration:none; }
 .pagefind-ui__result-title a:hover{ color:var(--color-link); text-decoration:underline; }
@@ -179,13 +171,12 @@
     margin-left: 0;
 }
 
-/* Backdrop pro hledání */
 .backdrop-search {
   position: fixed;
   inset: 0;
-  z-index: 30;                 /* menší než drawer (ten dej 1000+) */
+  z-index: 30;
   background: rgba(0,0,0,.35);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   opacity: 0;
   pointer-events: none;
   transition: opacity .15s ease;
@@ -199,9 +190,6 @@
 body.search-open {
   overflow: hidden;
 }
-
-
-
 
 .pagefind-ui__result:hover {
   background: color-mix(in srgb, var(--color-bg-active), transparent 82%);
