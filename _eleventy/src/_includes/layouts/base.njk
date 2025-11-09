@@ -66,7 +66,6 @@
         if (!container) throw new Error('Search container #search not found');
 
         booting = (async () => {
-          // await loadCSS('/pagefind/pagefind-ui.css');
           await loadJS('/pagefind/pagefind-ui.js');
 
           if (!window.PagefindUI) throw new Error('window.PagefindUI not available');
@@ -75,14 +74,14 @@
 
           new window.PagefindUI({
             element: '#search',
-            showSubResults: true,
+            showSubResults: false,
             showImages: false,
             resetStyles: false,
             translations: {
               placeholder: "Search…",
-              one_result: "1 result for '[SEARCH_TERM]'.",
-              many_results: "[COUNT] results for '[SEARCH_TERM]'.",
-              zero_results: "No results for '[SEARCH_TERM]'.",
+              one_result: "Found 1 result for '[SEARCH_TERM]'.",
+              many_results: "Found [COUNT] results for '[SEARCH_TERM]'.",
+              zero_results: "No results found for '[SEARCH_TERM]'.",
               search_label: "Search the site",
               clear_search: "×",
               load_more: "Load more"
@@ -90,6 +89,53 @@
 
           });
 
+          //TODO extract and refactor
+          queueMicrotask(() => {
+            const drawer = document.querySelector(".pagefind-ui__drawer");
+            const input  = document.querySelector(".pagefind-ui__search-input");
+
+            // 1) Vytvoř backdrop (jen jednou)
+            let backdrop = document.querySelector(".backdrop-search");
+            if (!backdrop) {
+              backdrop = document.createElement("div");
+              backdrop.className = "backdrop-search";
+              document.body.appendChild(backdrop);
+            }
+
+            // 2) Klik na backdrop zavře vyhledávání
+            backdrop.addEventListener("click", () => {
+              if (input) {
+                input.value = "";
+                input.dispatchEvent(new Event("input", { bubbles: true }));
+                input.blur();
+              }
+              hideBackdrop();
+            });
+
+            // 3) Sleduj otevření/skrývání draweru (Pagefind přepíná class)
+            const mo = new MutationObserver(() => {
+              const open = drawer && !drawer.classList.contains("pagefind-ui__hidden");
+              document.body.classList.toggle("search-open", open);
+              backdrop.classList.toggle("is-visible", open);
+              if (open) input?.focus();
+            });
+            if (drawer) mo.observe(drawer, { attributes: true, attributeFilter: ["class"] });
+
+            // 4) ESC zavře
+            window.addEventListener("keydown", (e) => {
+              if (e.key === "Escape" && drawer && !drawer.classList.contains("pagefind-ui__hidden")) {
+                input.value = "";
+                input.dispatchEvent(new Event("input", { bubbles: true }));
+                input.blur();
+                hideBackdrop();
+              }
+            });
+
+            function hideBackdrop() {
+              document.body.classList.remove("search-open");
+              backdrop.classList.remove("is-visible");
+            }
+          });
           document.querySelector(".pagefind-ui__search-input").focus({ preventScroll: true });
         })().catch(err => { console.error(err); booting = null; });
 
