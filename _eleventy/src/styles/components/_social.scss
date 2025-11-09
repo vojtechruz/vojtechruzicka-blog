@@ -1,132 +1,110 @@
 @use "../variables";
 
+// Layout listu
 .share-list {
   display: flex;
-  gap: .6rem;
+  flex-wrap: wrap;
+  gap: .5rem;
   padding: 0;
   margin: 0;
   list-style: none;
+
+  @media (max-width: variables.$breakpoint-small) { gap: .4rem; }
 }
 
+/* Tlačítko/ikona */
 .share-icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
   border-radius: 999rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--share-bg, #f4f4f4);
+  display: inline-grid;
+  place-items: center;
+  background: var(--color-surface-2);
+  border: 1px solid color-mix(in oklab, var(--color-border), transparent 35%);
+  color: var(--color-text);
   cursor: pointer;
-  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
-}
-
-.share-icon svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  fill: currentColor;
-  color: var(--icon-color, #555);
-}
-
-.share-icon:hover {
-  background: var(--share-bg-hover, #eee);
-}
-
-.share-icon:active {
-  transform: translateY(1px) scale(.98);
-}
-
-.share-icon:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px color-mix(in oklab, currentColor 35%, transparent);
-}
-
-/* brand hovers (optional) */
-.share-bluesky:hover svg {
-  color: #1185fe;
-}
-
-.share-mastodon:hover svg {
-  color: #6364ff;
-}
-
-.share-linkedin:hover svg {
-  color: #0a66c2;
-}
-
-.share-x:hover svg {
-  color: #1da1f2;
-}
-
-.share-reddit:hover svg {
-  color: #ff4500;
-}
-
-.share-copy:hover svg {
-  color: #2ecc71;
-}
-
-.share-email:hover svg {
-  color: #d44638;
-}
-
-@media (prefers-color-scheme: dark) {
-  .share-icon {
-    background: #2a2a2a;
-  }
-  .share-icon:hover {
-    background: #333;
-  }
-  .share-icon svg {
-    color: #cfcfcf;
-  }
-}
-
-
-.share-icon {
   position: relative;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+          background .2s ease,
+          transform .12s ease,
+          box-shadow .2s ease,
+          border-color .2s ease;
+
+  svg {
+    inline-size: 1.15rem;
+    block-size: 1.15rem;
+    fill: currentColor;
+  }
+
+  &:hover {
+    background: color-mix(in oklab, var(--color-surface-2), white 6%);
+  }
+
+  &:active { transform: translateY(1px) scale(.98); }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-focus-ring), transparent 0%);
+  }
 }
 
-/* Clipboard icon turns green */
-.share-copy.copied svg {
-  color: #2ecc71;
-  transform: scale(1.15);
-  transition: transform 0.2s ease, color 0.2s ease;
+/* Jemné brand tónování na hoveru (nepřebíjí téma) */
+.share-bluesky:hover { color: #1185fe; }
+.share-mastodon:hover { color: #6364ff; }
+.share-linkedin:hover { color: #0a66c2; }
+.share-x:hover { color: #1da1f2; }
+.share-reddit:hover { color: #ff4500; }
+.share-copy:hover { color: var(--color-success); }
+.share-email:hover { color: #d44638; }
+
+/* Feedback pro kopírování */
+.share-copy.copied {
+  color: var(--color-success);
+
+  svg {
+    transform: scale(1.12);
+    transition: transform .18s ease;
+  }
+
+  &::after {
+    content: "Copied!";
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: -1.7rem;
+    transform: translateX(-50%);
+    background: var(--color-surface-1);
+    color: var(--color-text);
+    font-size: .72rem;
+    line-height: 1;
+    padding: .3rem .5rem;
+    border: 1px solid color-mix(in oklab, var(--color-border), transparent 25%);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeSlide 1.8s ease-out forwards;
+    pointer-events: none;
+    z-index: 1;
+  }
 }
 
-/* Tooltip text */
-.share-copy.copied::after {
-  content: "Copied!";
-  position: absolute;
-  top: -1.6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: pink;
-  color: white;
-  font-size: 0.7rem;
-  line-height: 1;
-  padding: 0.3rem 0.5rem;
-  border-radius: 0.3rem;
-  white-space: nowrap;
-  opacity: 0;
-  animation: fadeSlide 2s ease-out forwards;
+/* A11y: reduced motion + high-contrast */
+@media (prefers-reduced-motion: reduce) {
+  .share-icon,
+  .share-copy.copied svg { transition: none; }
+  .share-copy.copied::after { animation: none; opacity: 1; }
 }
 
-/* Smooth fade-slide animation */
+@media (forced-colors: active) {
+  .share-icon { border: 1px solid ButtonText; }
+  .share-icon:focus-visible { outline: 2px solid Highlight; box-shadow: none; }
+}
+
+/* Tooltip animace */
 @keyframes fadeSlide {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 0.3rem);
-  }
-  10% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  80% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -0.3rem);
-  }
+  0%   { opacity: 0; transform: translate(-50%, .25rem); }
+  15%  { opacity: 1; transform: translate(-50%, 0); }
+  80%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -.2rem); }
 }

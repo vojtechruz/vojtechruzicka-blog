@@ -1,42 +1,46 @@
-{% set shareUrl = (site.url + page.url) | url %}
-{% set shareTitle = (title or page.title or site.title) | url %}
+{# --- Derived params --- #}
+{% set absoluteUrl = site.url + page.url %}
+{% set shareUrlParam = absoluteUrl | urlencode %}
+{% set shareTitleParam = (title or page.title or site.title) | urlencode %}
 
 <nav class="social-share" aria-label="Share this post">
   <ul role="list" class="share-list">
     <li>
       <a class="share-icon share-bluesky"
-         href="https://bsky.app/intent/compose?text={{ shareTitle }}%20{{ shareUrl }}"
+         href="https://bsky.app/intent/compose?text={{ shareTitleParam }}%20{{ shareUrlParam }}"
          aria-label="Share on Bluesky" target="_blank" rel="noopener noreferrer">
         {% include "../icons/bluesky.njk" %}
       </a>
     </li>
+
     <li>
       <a class="share-icon share-mastodon"
-         href="https://toot.kytta.dev/?text={{ shareTitle }}%20{{ shareUrl }}"
+         href="https://toot.kytta.dev/?text={{ shareTitleParam }}%20{{ shareUrlParam }}"
          aria-label="Share on Mastodon" target="_blank" rel="noopener noreferrer">
         {% include "../icons/mastodon.njk" %}
       </a>
     </li>
+
     <li>
       <a class="share-icon share-linkedin"
-         href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrl }}"
+         href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrlParam }}"
          aria-label="Share on LinkedIn" target="_blank" rel="noopener noreferrer">
         {% include "../icons/linkedin.njk" %}
       </a>
     </li>
+
     <li>
       <a class="share-icon share-x"
-         href="https://twitter.com/intent/tweet?text={{ shareTitle }}&url={{ shareUrl }}"
-         aria-label="Share on X"
-         target="_blank" rel="noopener noreferrer">
+         href="https://twitter.com/intent/tweet?text={{ shareTitleParam }}&url={{ shareUrlParam }}"
+         aria-label="Share on X" target="_blank" rel="noopener noreferrer">
         {% include "../icons/x.njk" %}
       </a>
     </li>
+
     <li>
       <a class="share-icon share-reddit"
-         href="https://www.reddit.com/submit?url={{ shareUrl }}&title={{ shareTitle }}"
-         aria-label="Share on Reddit"
-         target="_blank" rel="noopener noreferrer">
+         href="https://www.reddit.com/submit?url={{ shareUrlParam }}&title={{ shareTitleParam }}"
+         aria-label="Share on Reddit" target="_blank" rel="noopener noreferrer">
         {% include "../icons/reddit.njk" %}
       </a>
     </li>
@@ -45,32 +49,42 @@
       <button type="button"
               class="share-icon share-copy"
               aria-label="Copy link to clipboard"
-              data-url="{{ site.url }}{{ page.url }}">
+              data-url="{{ absoluteUrl }}">
         {% include "../icons/copy.njk" %}
       </button>
     </li>
 
     <li>
       <a class="share-icon share-email"
-         href="mailto:?subject={{ title | url }}&body={{ (site.url + page.url) | url }}"
+         href="mailto:?subject={{ (title or page.title or site.title) | urlencode }}&body={{ absoluteUrl | urlencode }}"
          aria-label="Share via Email">
         {% include "../icons/mail.njk" %}
       </a>
     </li>
   </ul>
 </nav>
+
 <script>
-  document.addEventListener('click', e => {
+  // Copy-to-clipboard feedback
+  document.addEventListener('click', (e) => {
     const btn = e.target.closest('.share-copy');
     if (!btn) return;
-    const url = btn.dataset.url || window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-      btn.classList.add('copied');
-      btn.setAttribute('aria-label', 'Link copied');
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        btn.setAttribute('aria-label', 'Copy link to clipboard');
-      }, 2000);
-    });
+
+    const url = btn.dataset.url || location.href;
+
+    (async () => {
+      try {
+        await navigator.clipboard.writeText(url);
+        const prev = btn.getAttribute('aria-label') || 'Copy link to clipboard';
+        btn.classList.add('copied');
+        btn.setAttribute('aria-label', 'Link copied');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.setAttribute('aria-label', prev);
+        }, 2000);
+      } catch {
+        window.prompt('Copy this URL:', url);
+      }
+    })();
   });
 </script>
