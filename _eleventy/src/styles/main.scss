@@ -46,7 +46,7 @@
 
 
 
-/* jednou na začátku stylesheetu */
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -94,14 +94,12 @@ h1, h2, h3, h4 {
     margin: 0.15rem;
   }
 
-  &::before {
-    content: "•";
+  .tag-name::before {
+    content: "#";
   }
 }
 
-.tag-name::before {
-  content: "#";
-}
+
 
 /*
   Visually hidden "Skip to content" link for accessibility.

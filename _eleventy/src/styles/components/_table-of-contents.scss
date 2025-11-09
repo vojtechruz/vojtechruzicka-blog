@@ -25,14 +25,13 @@ $toc-font-size: 0.95rem;
 
 // TOC -----------------------------------------------------------------------------------------------------------------
 
-
-.toc-heading {
-  font-weight: 600;
-}
-
 .toc {
   font-size: $toc-font-size;
   line-height: 1.4;
+
+  .toc-heading {
+    font-weight: 600;
+  }
 
   ol {
     list-style: none;

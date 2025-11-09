@@ -37,7 +37,7 @@ body {
   }
 }
 
-// When on small screen then switch from two columns to one column with sidebar first
+// When on small screen then switch from two columns to one column with sidebar hidden
 @media (max-width: variables.$breakpoint-medium) {
   .main {
     flex-direction: column;

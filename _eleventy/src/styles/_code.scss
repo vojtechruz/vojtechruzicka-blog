@@ -9,12 +9,14 @@ pre.shiki {
   overflow: auto;
 }
 
-/* Lines layout */
-pre.shiki code { display: grid; }
+pre.shiki code {
+  display: grid;
+}
+
 pre.shiki .line {
   min-height: 1.35em;
   line-height: 1.5;
-  white-space: pre; /* change to pre-wrap if you prefer wrapping */
+  white-space: pre;
 }
 
 /* Hover assist while scanning */
@@ -27,9 +29,7 @@ pre.shiki .line:hover {
 }
 
 /* Highlighted lines (supports multiple common flags) */
-pre.shiki .line.highlighted,
-pre.shiki .line[aria-selected="true"],
-pre.shiki .line[data-highlighted] {
+pre.shiki .line.highlighted {
   background: color-mix(in oklab, var(--color-bg-highlight) 45%, transparent);
   border-left: 3px solid var(--color-accent);
   margin-left: -1.1rem;
@@ -54,8 +54,7 @@ pre.shiki::-webkit-scrollbar-thumb {
 }
 
 /* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
-/* Default to dark scheme (matches current site theme). If you later add light mode,
-   add media queries or data-theme switches to choose --shiki-light instead. */
+/* TODO shiki-light for light theme */
 pre.shiki,
 pre.shiki span {
   color: var(--shiki-dark);
@@ -64,7 +63,6 @@ pre.shiki span {
 pre.shiki {
   --code-pad-x: 1.1rem;
 
-  /* barevné proměnné odvozené z tvého theme */
   --diff-add-bg: color-mix(in oklab, var(--color-success) 14%, transparent);
   --diff-add-bg-highlighted: color-mix(in oklab, var(--color-success) 30%, transparent);
   --diff-add-border: var(--color-success);
@@ -74,8 +72,6 @@ pre.shiki {
   --diff-remove-border: var(--color-error);
 }
 
-
-/* základ: diff řádky přes celou šířku s levým zvýrazněním */
 pre.shiki .line.diff {
   margin-left: calc(-1 * var(--code-pad-x));
   padding-left: var(--code-pad-x);
@@ -83,13 +79,11 @@ pre.shiki .line.diff {
   position: relative;
 }
 
-/* ADD (+) */
 pre.shiki .line.diff.add {
   background: var(--diff-add-bg);
   border-left-color: var(--diff-add-border);
 }
 
-/* REMOVE (-) */
 pre.shiki .line.diff.remove {
   background: var(--diff-remove-bg);
   border-left-color: var(--diff-remove-border);
@@ -103,10 +97,18 @@ pre.shiki .line.diff::before {
   opacity: .7;
   color: var(--color-text-muted);
 }
-pre.shiki .line.diff.add::before    { content: '+'; color: var(--diff-add-border); }
-pre.shiki .line.diff.remove::before { content: '−'; color: var(--diff-remove-border);  }
 
-/* kompatibilita s tvým “line highlight” – ať vyhraje diff border i pozadí */
+pre.shiki .line.diff.add::before {
+  content: '+';
+  color: var(--diff-add-border);
+}
+
+pre.shiki .line.diff.remove::before {
+  content: '−';
+  color: var(--diff-remove-border);
+}
+
+/* When highlighted and diff at the same time, make the diff color stronger */
 pre.shiki .line.highlighted.diff {
 
   &.add {
@@ -118,7 +120,6 @@ pre.shiki .line.highlighted.diff {
   }
 }
 
-/* zachovat hover efekt, ale subtilněji, když už je diff */
 pre.shiki .line.diff:hover {
   filter: brightness(1.02);
 }
