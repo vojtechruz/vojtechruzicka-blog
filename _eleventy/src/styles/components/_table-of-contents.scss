@@ -1,0 +1,92 @@
+@use "../variables";
+
+$toc-indent-step: 1.25rem;
+$toc-border-color: #ddd;
+$toc-font-size: 0.95rem;
+
+// Series TOC ----------------------------------------------------------------------------------------------------------
+
+.series-toc {
+  margin-bottom: 1.5rem;
+  font-size: $toc-font-size;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  ol {
+    padding-left: 1.25rem;
+  }
+
+  .series-current {
+    font-weight: 600;
+  }
+}
+
+// TOC -----------------------------------------------------------------------------------------------------------------
+
+
+.toc-heading {
+  font-weight: 600;
+}
+
+.toc {
+  font-size: $toc-font-size;
+  line-height: 1.4;
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: var(--gap-small) 0;
+    }
+
+    // second level
+    ol {
+      margin-top: 0.25em;
+      margin-left: $toc-indent-step;
+      border-left: 1px solid $toc-border-color;
+      padding-left: 0.75em;
+
+      // third level
+      ol {
+        margin-left: $toc-indent-step * 1.5;
+        border-left: 1px solid $toc-border-color;
+        padding-left: 0.75em;
+
+        // fourth level
+        ol {
+          margin-left: $toc-indent-step * 2;
+          border-left: 1px solid $toc-border-color;
+          padding-left: 0.75em;
+        }
+      }
+    }
+  }
+}
+
+//TODO this addes hierarchical numbering like 1, 1.1 - maybe use it conditionally only for more complex posts?
+//
+//.toc {
+//  ol {
+//    counter-reset: item;
+//    list-style: none; /* remove default numbering */
+//    padding-left: 1.5em;
+//  }
+//
+//  li {
+//    display: block;
+//    position: relative;
+//  }
+//
+//  li::before {
+//    content: counters(item, ".") " ";
+//    counter-increment: item;
+//    position: absolute;
+//    left: -1.5em;
+//    color: #555;
+//    font-weight: 500;
+//  }
+//}
