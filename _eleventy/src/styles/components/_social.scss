@@ -1,8 +1,14 @@
 @use "../variables";
 
+.social-share {
+  margin-top: var(--gap-large);
+  margin-bottom: var(--gap-large);
+}
+
 // Layout listu
 .share-list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: .5rem;
   padding: 0;
