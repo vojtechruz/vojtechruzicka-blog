@@ -1,0 +1,90 @@
+@use "../variables";
+
+.pagefind-ui {
+  width: 20ch;
+  position: relative;
+
+  input[type="text"] {
+    width: 100%;
+    height: auto;
+    font-weight: normal;
+    padding: 0.55rem 0.8rem;
+    border-radius: 0.5rem;
+
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.4;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+
+    &::placeholder {
+      color: var(--color-muted);
+      opacity: 0.75;
+    }
+
+    &:hover {
+      border-color: var(--color-muted);
+    }
+
+    &:focus {
+      border-color: var(--color-link-hover);
+      box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.25); // nebo jiné, sladěné s brand
+      outline: none;
+    }
+  }
+}
+
+
+
+/* Kontejner */
+.nav-search  {
+  position: relative;
+}
+
+/* Input drží padding, aby se clear nepřekrýval */
+.pagefind-ui__search-input {
+  padding-right: 2.2rem !important; /* místo pro ikonku */
+}
+
+/* Clear button → ikonka uvnitř inputu */
+.pagefind-ui__search-clear {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.7rem;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  background: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+
+  opacity: 0.7;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+/* Hover & focus */
+.pagefind-ui__search-clear:hover,
+.pagefind-ui__search-clear:focus-visible {
+  opacity: 1;
+  color: var(--color-link-hover);
+}
+
+/* Když není co mazat, UI ji skrývá pomocí této classy */
+.pagefind-ui__suppressed {
+  display: none !important;
+}
+
+.pagefind-ui__search-clear {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.pagefind-ui {
+  position: relative;
+}

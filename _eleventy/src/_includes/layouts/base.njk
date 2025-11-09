@@ -66,7 +66,7 @@
         if (!container) throw new Error('Search container #search not found');
 
         booting = (async () => {
-          await loadCSS('/pagefind/pagefind-ui.css');
+          // await loadCSS('/pagefind/pagefind-ui.css');
           await loadJS('/pagefind/pagefind-ui.js');
 
           if (!window.PagefindUI) throw new Error('window.PagefindUI not available');
@@ -74,17 +74,17 @@
           container.innerHTML = '';
 
           new window.PagefindUI({
-            element: '#search',          // or: element: container
+            element: '#search',
             showSubResults: true,
             showImages: false,
             resetStyles: false,
             translations: {
               placeholder: "Search…",
               one_result: "1 result for '[SEARCH_TERM]'.",
-              many_results: "{count} results for '[SEARCH_TERM]'.",
+              many_results: "[COUNT] results for '[SEARCH_TERM]'.",
               zero_results: "No results for '[SEARCH_TERM]'.",
               search_label: "Search the site",
-              clear_search: "Clear",
+              clear_search: "×",
               load_more: "Load more"
             }
 

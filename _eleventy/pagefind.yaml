@@ -1,5 +1,5 @@
 site: _site
-glob: "/**/index.html"
+glob: "**/*.html"
 exclude_selectors:
   - "nav"
   - "footer"
