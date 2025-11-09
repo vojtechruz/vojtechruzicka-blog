@@ -36,19 +36,15 @@
   }
 }
 
-
-
-/* Kontejner */
 .nav-search  {
   position: relative;
+  margin-top: -0.5rem;
 }
 
-/* Input drží padding, aby se clear nepřekrýval */
 .pagefind-ui__search-input {
   padding-right: 2.2rem !important; /* místo pro ikonku */
 }
 
-/* Clear button → ikonka uvnitř inputu */
 .pagefind-ui__search-clear {
   position: absolute;
   right: 0.6rem;
@@ -68,14 +64,12 @@
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-/* Hover & focus */
 .pagefind-ui__search-clear:hover,
 .pagefind-ui__search-clear:focus-visible {
   opacity: 1;
   color: var(--color-link-hover);
 }
 
-/* Když není co mazat, UI ji skrývá pomocí této classy */
 .pagefind-ui__suppressed {
   display: none !important;
 }
@@ -87,4 +81,87 @@
 
 .pagefind-ui {
   position: relative;
+}
+
+.pagefind-ui__hidden {
+  display: none !important;
+}
+
+/* === MODAL LAYOUT === */
+.pagefind-ui__form { position: static; } /* už nepotřebujeme relative na formu */
+
+.pagefind-ui__drawer {
+  position: fixed !important;
+  z-index: 1000;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(560px, 80vw, 820px);
+  max-height: 75vh;
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  padding: 0.75rem;
+}
+
+/* horní input a clear – stejné jako nahoře v threadu */
+.pagefind-ui .pagefind-ui__search-input {
+  height: 46px !important;
+  padding-left: 36px !important;   /* lupa vlevo */
+  padding-right: 40px !important;  /* clear vpravo */
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-1);
+  color: var(--color-text);
+  font: inherit;
+}
+.pagefind-ui .pagefind-ui__form { position: sticky; top: 0; background: inherit; padding: .5rem .5rem 0; }
+
+/* lupa vlevo v inputu */
+.pagefind-ui .pagefind-ui__form::before{
+  content:""; position:absolute; left:1rem; top: calc(0.5rem + 23px); transform: translateY(-50%);
+  width:18px; height:18px; opacity:.7; pointer-events:none;
+  background: currentColor; color: var(--color-muted);
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat center/contain;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>') no-repeat center/contain;
+}
+
+/* clear vpravo */
+.pagefind-ui .pagefind-ui__search-clear{
+  position:absolute; right:.75rem; top: calc(0.5rem + 23px); transform: translateY(-50%);
+  width:32px;height:32px; display:grid; place-items:center;
+  background:transparent; border:0; border-radius:8px; cursor:pointer;
+  color:var(--color-muted);
+}
+.pagefind-ui .pagefind-ui__suppressed{ display:none !important; }
+
+/* === LIST === */
+.pagefind-ui__results{
+  display:flex !important; flex-direction:column !important;
+  gap:.5rem !important; padding:.5rem;
+}
+.pagefind-ui__result{
+  display:block; padding:.75rem .25rem;
+  border-bottom:1px solid var(--color-border);
+}
+.pagefind-ui__result:last-child{ border-bottom:0; }
+.pagefind-ui__result-title a{ font-weight:600; color:var(--color-text); text-decoration:none; }
+.pagefind-ui__result-title a:hover{ color:var(--color-link); text-decoration:underline; }
+.pagefind-ui__result-excerpt{ color:var(--color-muted); font-size:.95rem; line-height:1.55; }
+.pagefind-ui__result-number{ display:none !important; }
+.pagefind-ui__result-excerpt mark{
+  background: color-mix(in srgb, var(--color-accent), transparent 70%);
+  color: var(--color-text);
+  padding: 0 .2em; border-radius: 4px;
+}
+
+/* === BACKDROP (blur + ztmavení) === */
+body.search-open::before{
+  content:""; position:fixed; inset:0; z-index:999;
+  backdrop-filter: blur(3px);
+  background: rgba(0,0,0,.35);
 }
