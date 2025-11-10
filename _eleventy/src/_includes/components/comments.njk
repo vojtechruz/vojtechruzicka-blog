@@ -1,3 +1,11 @@
+{% set giscusThemeUrl -%}
+  {% if eleventy.env.runMode == "serve" -%}
+https://copies-approve-dryer-nashville.trycloudflare.com/styles/giscus-theme.css
+  {%- else -%}
+https://copies-approve-dryer-nashville.trycloudflare.com/styles/giscus-theme.css
+  {%- endif %}
+{%- endset %}
+
 <section id="comments">
   <!-- TODO externatize values to DATA -->
   <!-- TODO Move from announcements section to Gisqus Comments category -->
@@ -14,7 +22,7 @@
           data-reactions-enabled="1"
           data-emit-metadata="0"
           data-input-position="top"
-          data-theme="preferred_color_scheme"
+          data-theme="{{ giscusThemeUrl }}"
           data-lang="en"
           data-loading="lazy"
           crossorigin="anonymous"

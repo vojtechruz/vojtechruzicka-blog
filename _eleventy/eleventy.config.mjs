@@ -94,6 +94,17 @@ export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
   eleventyConfig.addWatchTarget("./config/htm-transform/wrapPicturesTransform.js");
 
+  // CORS for giscus iframe for local development
+  eleventyConfig.setServerOptions({
+    headers: {
+      "Access-Control-Allow-Origin": "https://giscus.app",
+      "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Cross-Origin-Resource-Policy": "cross-origin"
+    },
+    showAllHosts: true
+  });
+
   return {
     dir: {
       input: "src", // Input directory
