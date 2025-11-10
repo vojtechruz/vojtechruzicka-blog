@@ -1,0 +1,91 @@
+/* Custom theme for Giscus – panel/card look */
+/* Color source: your variables
+   surface-1: #111827, surface-2: #0f172a, text: #c7d2da, text-muted: #94a3b8,
+   border: #2a3a54, link: #60a5fa, link-hover: #93c5fd, focus: #93c5fd
+*/
+:root {
+  color-scheme: dark;
+
+  /* primary GitHub/Giscus tokens */
+  --color-bg-primary: #111827;          /* content surface (inside inputs, body)  */
+  --color-bg-secondary: #0f172a;        /* card/panel background                  */
+  --color-border-default: #2a3a54;
+  --color-border-muted: #233046;
+
+  --color-fg-default: #c7d2da;
+  --color-fg-muted: #94a3b8;
+
+  --color-btn-bg: #0f172a;
+  --color-btn-text: #c7d2da;
+  --color-btn-hover-bg: #162235;        /* ~lighten(surface-2, ~6%) */
+  --color-btn-border: #2a3a54;
+
+  --color-accent-fg: #60a5fa;
+  --color-accent-fg-hover: #93c5fd;
+  --color-accent-emphasis: #60a5fa;
+
+  --color-focus-ring: #93c5fd;
+
+  /* a few GitHub/Primer aliases some témata používají */
+  --color-canvas-default: var(--color-bg-primary);
+  --color-canvas-subtle:  var(--color-bg-secondary);
+  --color-neutral-muted: rgba(199, 210, 218, .18); /* reaction bg, subtle lines */
+
+  /* kosmetika */
+  --gsc-radius: 0.375rem; /* = tvoje --radius-sm */
+}
+
+/* Panel feel (bezpečné – jsme uvnitř iframu) */
+.gsc-comments {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--gsc-radius);
+}
+
+/* Zaoblení některých podsekcí */
+.gsc-comments .gsc-header,
+.gsc-comments .gsc-comment-box,
+.gsc-comments .gsc-reactions,
+.gsc-comments .gsc-timeline,
+.gsc-comments .gsc-timeline-item {
+  border-radius: var(--gsc-radius);
+}
+
+/* Inputs */
+.gsc-comments input,
+.gsc-comments textarea,
+.gsc-comments select {
+  background: var(--color-bg-primary);
+  color: var(--color-fg-default);
+  border-color: var(--color-border-default);
+}
+
+/* Buttons */
+.gsc-comments .Button,
+.gsc-comments button {
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border-color: var(--color-btn-border);
+}
+
+.gsc-comments .Button:hover,
+.gsc-comments button:hover {
+  background: var(--color-btn-hover-bg);
+}
+
+/* Links */
+.gsc-comments a { color: var(--color-accent-fg); }
+.gsc-comments a:hover { color: var(--color-accent-fg-hover); }
+
+/* Focus */
+.gsc-comments :focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Jemnější dělicí čáry */
+.gsc-comments hr,
+.gsc-comments .border,
+.gsc-comments .gsc-comment-box .gsc-reply-box {
+  border-color: var(--color-border-muted);
+}
