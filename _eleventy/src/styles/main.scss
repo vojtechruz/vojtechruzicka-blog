@@ -4,10 +4,11 @@
 @use "incubator";
 @use "navigation";
 @use "code";
-@use "components/social";
+@use "components/social-share";
 @use "components/linked-post";
 @use "components/table-of-contents";
 @use "components/search";
+@use "components/footer";
 
 
 
@@ -297,4 +298,9 @@ article {
   border-color: var(--color-info-border);
   background: var(--color-info-bg);
   color: var(--color-info);
+}
+
+#comments {
+  padding-top: var(--gap-large);
+  padding-bottom: var(--gap-xlarge);
 }

@@ -61,9 +61,10 @@
   --font-heading: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* ===== SPACING SCALE ===== */
-  --gap-large: 2rem;    /* Large layout spacing */
-  --gap-medium: 1.1rem; /* Standard spacing */
-  --gap-small: 0.35rem; /* Tight spacing (labels, nav items) */
+  --gap-xlarge: 3rem;
+  --gap-large: 2rem;
+  --gap-medium: 1.1rem;
+  --gap-small: 0.35rem;
 }
 
 // Responsive breakpoints
