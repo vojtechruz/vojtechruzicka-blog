@@ -1,7 +1,7 @@
 import { registerPassthrough, registerLayouts, configureNunjucks} from "./config/basic-config.js";
 import registerPostsCollection from "./config/collections/posts.js";
-import registerTagListCollection from "./config/collections/tagList.js";
-import registerTagStatsCollection from "./config/collections/tagStats.js";
+import registerTagListCollection from "./config/collections/tag-list.js";
+import registerTagStatsCollection from "./config/collections/tag-stats.js";
 import registerSassPlugin from "./config/plugins/sass.js";
 import registerImagePlugin from "./config/plugins/image.js";
 import registerDateFilters from "./config/filters/dates.js";
