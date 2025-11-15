@@ -12,7 +12,7 @@ excerpt: 'Monitor and manage you Spring Boot apps with a nice UI on top of Sprin
 ## Spring Boot Actuator
 Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application, so you can easily monitor and manage it in production. The endpoints offer health-check, metrics monitoring, access to logs, thread dumps, heap dumps, environmental info and more. I've covered Actuator in depth in the following article:
 
-<PostLink node={props.pageContext.links["/spring-boot-actuator/"]} />
+{% linkedPost "/spring-boot-actuator/" %}
 
 ## Spring Boot Admin
 Actuator is powerful and great and it is easy and convenient to consume the endpoints with some other application - you just make a simple REST call. It is not so great when used by a human. For humans, it is much more convenient to have a nice user interface you can use to browse all the monitoring data and manage your application. This is actually what Spring Boot Admin Does. It provides you a nice UI layer on top of actuator endpoints with a few extra features on top.

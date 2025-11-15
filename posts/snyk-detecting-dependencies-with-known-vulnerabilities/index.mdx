@@ -168,7 +168,7 @@ If your project is free of vulnerabilities, you can even include this nice badge
 ## IDE Integration
 Having automatic checks for vulnerable dependencies as a part of your Continuous Integration is great. It is, however, even better to discover such vulnerabilities as early as possible. That's in your IDE still during development. When introducing a new dependency, you can check easily directly in your IDEA whether it contains security vulnerabilities with Snyk IDEA plugin.
 
-<PostLink node={props.pageContext.links["/idea-snyk-plugin/"]} />
+{% linkedPost "/idea-snyk-plugin/" %}
 
 ## Conclusion
 Making sure your dependencies are up-to-date and contain no security vulnerabilities is very important and often overlooked. Snyk is a cool tool, which can help you with that. It is in some aspects similar to OWASP Dependency-Check [described in the previous article](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). It has some nice features on top of what Dependency Check offers. Integration with a wide range of cloud services and version control systems. What\'s great is that it not only finds the vulnerabilities but directly offers means to fix them in the form of updates or patches. Hell, it can even automatically create a Pull Request for that. The downside is that many of the cool features are currently available just for node dependencies and not others like Java. We can only hope this will change soon.

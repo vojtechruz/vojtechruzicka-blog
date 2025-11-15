@@ -59,7 +59,7 @@ Another common use case would be reacting to certain events such as button click
 ## Callbacks and this
 Be careful when using `this` keyword with callbacks. If you are using a function, which is a property of an object, `this` will refer to the parent object. But when you provide it as a callback, it will no longer point to its object, which can lead to unexpected behavior. To learn in detail about issues with `this`, check the following article:
 
-<PostLink node={props.pageContext.links["/javascript-this-keyword/"]} />
+{% linkedPost "/javascript-this-keyword/" %}
 
 ## Promises
 Promises offer an alternative approach to callbacks when working with asynchronous calls.
@@ -332,4 +332,4 @@ For support in IE, you need to use a [polyfill](https://ourcodeworld.com/article
 
 ## Async await
 While promises are easier to write, read and maintain than callbacks, they still have their issues, especially in more complex cases of promise chains. `Async-await` is an interesting alternative to plain promises, which allows you to have asynchronous code, which reads as synchronous code, is simple and concise. Check the following post for detailed explanation.
-<PostLink node={props.pageContext.links["/javascript-async-await/"]} />
+{% linkedPost "/javascript-async-await/" %}

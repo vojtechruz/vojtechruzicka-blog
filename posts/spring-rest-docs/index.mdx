@@ -12,7 +12,7 @@ excerpt: 'Test driven REST API documentation as an alternative to traditional Sw
 ## SpringFox And Swagger
 Traditional and popular approach to documenting your REST API is Swagger (aka OpenAPI), which I covered in detail in one of my previous articles.
 
-<PostLink node={props.pageContext.links["/documenting-spring-boot-rest-api-swagger-springfox/"]} />
+{% linkedPost "/documenting-spring-boot-rest-api-swagger-springfox/" %}
 
 It is a powerful tool, which can be useful especially when you want to generate your docs for your existing API effortlessly. It detects all the endpoints, input and output parameters automatically and generates the docs. However, if you want to provide custom descriptions of all the endpoints and fields, you'll end up with polluting your code with many annotations. The vast majority of your Controller and Model classes' code is plagued with documentation-specific annotations, which makes them hard to read. In the example below, everything except the highlighted lines is REST API documentation specific.
 

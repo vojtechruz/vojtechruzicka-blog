@@ -36,7 +36,7 @@ The bad news is that this is configured locally in your `.git` directory, so by 
 
 Fortunately, there is a tool called Husky for Node/NPM projects, which solves this issue. You can define your hooks in your project and they are automatically installed for you when running the project. This way all the developers will have proper hooks installed with no effort. If you need to change your hooks, you can do it n just one place, and it gets propagated to all your developers. You can read more about Husky in one of my previous posts:
 
-<PostLink node={props.pageContext.links["/githooks-husky/"]} />
+{% linkedPost "/githooks-husky/" %}
 
 While Husky can be used to enforce your commit conventions, it can do much more. You can run your static code analysis, tests, automatic code formatting, and much more when committing.
 
