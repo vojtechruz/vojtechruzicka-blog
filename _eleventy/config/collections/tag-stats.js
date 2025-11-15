@@ -1,3 +1,4 @@
+// Collection of pairs - tag name and number of posts with a that tag
 export default function registerTagStatsCollection(eleventyConfig) {
   eleventyConfig.addCollection("tagStats", (api) => {
     const counts = new Map();

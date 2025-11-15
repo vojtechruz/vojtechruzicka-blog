@@ -13,7 +13,6 @@ export default {
     "https://twitter.com/vojtechruzicka",
   ],
 
-  // Person profile (optional but recommended for About page)
   person: {
     name: "Vojtech Ruzicka",
     birthDate: "1986.07.27",

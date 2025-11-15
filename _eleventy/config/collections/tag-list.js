@@ -1,3 +1,4 @@
+// Alphabetically ordered list of unique tags across all posts
 export default function registerTagListCollection(eleventyConfig) {
   eleventyConfig.addCollection("tagList", function (collectionApi) {
     const tagsSet = new Set();

@@ -99,6 +99,7 @@ export default {
 
   metaTitle: (data) =>
     data.title ? `${data.title} | ${data.site.title}` : data.site.title,
+  isLocalDevelopment:  process.env.ELEVENTY_RUN_MODE === "serve",
 };
 //TODO verify and clean, there are still some dummy data and not all fields may be used
 // TODO move functions from this file?
