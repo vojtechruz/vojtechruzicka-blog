@@ -8,9 +8,45 @@ export function toDate(value) {
 }
 
 // Matches existing filters/dates.js behavior (UTC, fallback to String(value) when invalid)
+/**
+ * Coerce various inputs into a Date. If the input is a date-only string
+ * like "YYYY-MM-DD", interpret it as midnight UTC of that day so that
+ * downstream ISO/RFC formatters include a time component at 00:00:00Z.
+ */
+export function toDateUtcMidnightIfDateOnly(value) {
+  if (!value) return null;
+  if (value instanceof Date) {
+    // If it's exactly local midnight (common when frontmatter had only YYYY-MM-DD),
+    // convert to UTC midnight of the same calendar date to avoid TZ shifting to previous/next day.
+    if (
+      value.getHours() === 0 &&
+      value.getMinutes() === 0 &&
+      value.getSeconds() === 0 &&
+      value.getMilliseconds() === 0
+    ) {
+      const y = value.getFullYear();
+      const m = value.getMonth(); // 0-11
+      const d = value.getDate();
+      return new Date(Date.UTC(y, m, d, 0, 0, 0));
+    }
+    return value;
+  }
+  const str = String(value).trim();
+  // Detect plain date without time (YYYY-MM-DD)
+  const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(str);
+  if (isDateOnly) {
+    // Explicitly construct as UTC midnight to avoid TZ shifts
+    const [y, m, d] = str.split("-").map((n) => parseInt(n, 10));
+    // Date.UTC uses month 0-11
+    return new Date(Date.UTC(y, m - 1, d, 0, 0, 0));
+  }
+  const d = new Date(str);
+  return isNaN(d.getTime()) ? null : d;
+}
+
 export function readableDateUTC(value) {
   if (!value) return "";
-  const date = value instanceof Date ? value : new Date(value);
+  const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
   if (isNaN(date.getTime())) {
     return String(value);
   }
@@ -22,7 +58,7 @@ export function readableDateUTC(value) {
 
 export function htmlDateString(value) {
   if (!value) return "";
-  const date = value instanceof Date ? value : new Date(value);
+  const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
   if (isNaN(date.getTime())) {
     return "";
   }

@@ -1,6 +1,6 @@
 ---
 title: Vaadin 8 Certification
-date: "2017-09-19T22:12:03.284Z"
+date: "2017-09-19"
 tags: ['Career', 'Java']
 path: '/vaadin-8-certification/'
 excerpt: 'If you are considering taking Vaadin 8 certification, this review can come in handy.'
