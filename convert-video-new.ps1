@@ -2,9 +2,9 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 # --- Konfigurace ---
-$SrcRoot    = '.\src\posts'                      # kořen GIFů
+$SrcRoot    = '.\posts'                      # kořen GIFů
 $SrcGlob    = Join-Path $SrcRoot '**\*.gif'      # podporuje více úrovní složek
-$OutRoot    = 'static\videos'
+$OutRoot    = '\videos'
 $FfmpegExe  = 'C:\programs\ffmpeg-8.0-full_build\bin\ffmpeg.exe'
 $MaxWidth   = 900
 $ForceRebuild = $false          # $true = překóduj vše znovu, $false = jen změněné
