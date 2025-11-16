@@ -23,7 +23,7 @@ function shareImageUrl({ featuredImage, page, site }) {
 function detectKinds(url, filePathStem, hasDate) {
   const isHome = url === "/";
   const isHomePaginated = url.startsWith("/pages/");
-  const isTopics = url === "/tags/";                           // topics index (historical: /tags/)
+  const isTopics = url === "/tags/";
   const isTag = url.startsWith("/tags/") && url !== "/tags/";
   const isPost = Boolean(hasDate) || (filePathStem || "").startsWith("/posts/");
   return { isHome, isHomePaginated, isTopics, isTag, isPost };
@@ -99,6 +99,7 @@ export default {
 
   metaTitle: (data) =>
     data.title ? `${data.title} | ${data.site.title}` : data.site.title,
+
   isLocalDevelopment:  process.env.ELEVENTY_RUN_MODE === "serve",
 };
 //TODO verify and clean, there are still some dummy data and not all fields may be used
