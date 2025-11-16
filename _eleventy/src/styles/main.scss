@@ -1,9 +1,9 @@
 @use "variables";
 @use "layout";
 @use "print";
-@use "incubator";
 @use "navigation";
 @use "code";
+
 @use "components/social-share";
 @use "components/linked-post";
 @use "components/table-of-contents";
@@ -38,18 +38,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 body {
   font-family: var(--font-body);
