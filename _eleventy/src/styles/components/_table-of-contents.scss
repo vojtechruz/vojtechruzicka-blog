@@ -26,6 +26,13 @@ $toc-font-size: 0.95rem;
 // TOC -----------------------------------------------------------------------------------------------------------------
 
 .toc {
+  margin-top: 1.5rem;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--gap-medium) var(--gap-medium);
+  position: sticky;
+  top: 6rem;
   font-size: $toc-font-size;
   line-height: 1.4;
 
@@ -42,7 +49,7 @@ $toc-font-size: 0.95rem;
       margin: var(--gap-small) 0;
     }
 
-    // second level
+    // second level and deeper
     ol {
       margin-top: 0.25em;
       margin-left: $toc-indent-step;
@@ -52,14 +59,10 @@ $toc-font-size: 0.95rem;
       // third level
       ol {
         margin-left: $toc-indent-step * 1.5;
-        border-left: 1px solid $toc-border-color;
-        padding-left: 0.75em;
 
         // fourth level
         ol {
           margin-left: $toc-indent-step * 2;
-          border-left: 1px solid $toc-border-color;
-          padding-left: 0.75em;
         }
       }
     }
@@ -76,18 +79,6 @@ $toc-font-size: 0.95rem;
   }
 }
 
-.toc {
-  margin-top: 1.5rem;
-  background: var(--color-surface-1);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding-top: 0;
-  padding-right: var(--gap-medium);
-  padding-left: var(--gap-medium);
-  padding-bottom: var(--gap-medium);
-  position: sticky;
-  top: 6rem;
-}
 
 //TODO this adds hierarchical numbering like 1, 1.1 - maybe use it conditionally only for more complex posts?
 //
