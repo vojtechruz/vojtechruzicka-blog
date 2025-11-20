@@ -17,15 +17,15 @@
 }
 
 .linked-post h2.front-post-title {
-  line-height: 1.25;  // udrží kompaktní vzhled
+  line-height: 1.25; // udrží kompaktní vzhled
   margin-top: -0.65rem;
   margin-bottom: var(--gap-small);
 }
 
 .linked-post h2.front-post-title a {
   display: inline-block;
-  margin: 0!important;
-  padding: 0!important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .front-post-title a {
@@ -41,10 +41,9 @@
 }
 
 /* Meta info row */
-.front-post-info {
+.linked-post .front-post-info {
   display: flex;
   flex-wrap: wrap;
-  gap: .75rem;
   font-size: .875rem;
   color: var(--color-text-muted);
   align-items: center;
@@ -59,7 +58,7 @@
 .post-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
+  gap: var(--gap-small);
   list-style: none;
   padding: 0;
 
@@ -88,7 +87,7 @@
 }
 
 /* Layout: image + text block */
-.linked-post > div {
+.linked-post>div {
   display: flex;
   gap: var(--gap-medium);
   align-items: flex-start;
@@ -132,7 +131,7 @@
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: variables.$breakpoint-medium) {
-  .linked-post > div {
+  .linked-post>div {
     flex-direction: column;
   }
 

@@ -9,7 +9,11 @@
 @use "components/search";
 @use "components/footer";
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 
 .post-header-featured-image {
@@ -22,7 +26,7 @@
 }
 
 .post-list {
-  padding:0;
+  padding: 0;
 
   h2 {
     margin-top: 0;
@@ -44,7 +48,10 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--color-text-heading);
   font-family: var(--font-heading);
   font-weight: 600;
@@ -62,10 +69,11 @@ h1, h2, h3, h4 {
   width: 1px;
 }
 
-.menu-items, .post-tags {
+.menu-items,
+.post-tags {
   list-style: none;
   display: flex;
-  gap: 0.5rem;
+  gap: calc(var(--gap-small)*1.5);
 }
 
 .post-list {
@@ -105,8 +113,8 @@ h1, h2, h3, h4 {
     left: 0;
     top: 0;
     padding: .5rem 1rem;
-    background: #000;
-    color: #fff;
+    background: #000; // High contrast requirement
+    color: #fff; // High contrast requirement
     z-index: 1000;
   }
 }
@@ -142,11 +150,23 @@ article {
 
 
 
-.post-header-divider {
+.post-header-divider, .divider {
   margin-top: var(--gap-large);
   height: 2px;
   background: color-mix(in srgb, var(--color-border) 80%, transparent);
   border: none;
+}
+
+.divider {
+  margin-bottom: var(--gap-large);
+}
+
+.post-footer {
+  //margin-block: var(--gap-medium);
+  margin-block: var(--gap-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
 }
 
 .post-header-excerpt {
@@ -154,57 +174,71 @@ article {
   color: var(--color-text-muted);
 }
 
-.date-published, .date-modified {
+.date-published,
+.date-modified {
   color: var(--color-text-subtle);
 }
 
 /* Better scroll positioning when jumping to headings */
-:is(h2,h3,h4)[id]{ scroll-margin-top: 7rem; position:relative; }
+:is(h2, h3, h4)[id] {
+  scroll-margin-top: 7rem;
+  position: relative;
+}
 
 //TODO add copy to clipboard functionality
 /* The anchor icon */
-.header-anchor{
-  display:inline-grid;
-  place-items:center;
-  inline-size: 1.25em;        /* reserve space to avoid layout shift */
+.header-anchor {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.25em;
+  /* reserve space to avoid layout shift */
   block-size: 1.25em;
-  margin-inline-start: .35em; /* logical spacing (RTL-safe) */
+  margin-inline-start: .35em;
+  /* logical spacing (RTL-safe) */
   border-radius: .35em;
   color: var(--color-text-subtle);
   text-decoration: none;
-  opacity: 0;                 /* default hidden on pointer devices */
-  transform: translateY(.1em);/* align to text baseline a bit nicer */
+  opacity: 0;
+  /* default hidden on pointer devices */
+  transform: translateY(.1em);
+  /* align to text baseline a bit nicer */
   transition: opacity .18s ease, color .18s ease, box-shadow .18s ease;
   outline: none;
 }
 
 /* Icon via mask + currentColor, so it adapts to theme */
-.header-anchor::before{
+.header-anchor::before {
   content: "";
-  inline-size: 1em; block-size: 1em;
+  inline-size: 1em;
+  block-size: 1em;
   background: currentColor;
   -webkit-mask: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
 <path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/>\
 </svg>") no-repeat center / 100% 100%;
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/></svg>")
-  no-repeat center / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/></svg>") no-repeat center / 100% 100%;
 }
 
 /* Reveal on hover/focus; color on interaction */
-:is(h2,h3,h4):hover .header-anchor,
-.header-anchor:focus-visible{ opacity: 1; color: var(--color-link); }
+:is(h2, h3, h4):hover .header-anchor,
+.header-anchor:focus-visible {
+  opacity: 1;
+  color: var(--color-link);
+}
 
 /* Nice keyboard focus */
-.header-anchor:focus-visible{
-  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-link) 35%, transparent);
+.header-anchor:focus-visible {
+  &:before {
+    color: var(--color-link-hover);
+  }
 }
 
 /* Touch devices: always visible (no hover) */
-@media (hover: none){ .header-anchor{ opacity: .75; } }
-
-/* Light/dark harmony (optional) */
-:root[data-theme="light"] .header-anchor{ color: var(--color-text-subtle); }
+@media (hover: none) {
+  .header-anchor {
+    opacity: .75;
+  }
+}
 
 /* Applies to headings that have the permalink anchor */
 .post h1,
@@ -212,7 +246,8 @@ article {
 .post h3,
 .post h4 {
   position: relative;
-  scroll-margin-top: 6rem; /* prevents heading from sitting under the fixed nav */
+  scroll-margin-top: 6rem;
+  /* prevents heading from sitting under the fixed nav */
 }
 
 /* The inserted anchor icon */
@@ -220,10 +255,12 @@ article {
 .post h3 .header-anchor,
 .post h4 .header-anchor {
   position: absolute;
-  left: -2.3rem;            /* distance into the left gutter */
+  left: -2.3rem;
+  /* distance into the left gutter */
   top: 52.5%;
   transform: translateY(-50%);
-  opacity: 0;               /* hide by default */
+  opacity: 0;
+  /* hide by default */
   text-decoration: none;
   color: var(--color-text-muted);
   font-size: 0.9em;
@@ -244,7 +281,8 @@ article {
 
 /* Mobile: always show icon (no hover available) */
 //TODO use variable breakpoint
-@media (max-width: 600px) {
+@media (max-width: variables.$breakpoint-medium) {
+
   .post h2 .header-anchor,
   .post h3 .header-anchor,
   .post h4 .header-anchor {
@@ -257,7 +295,7 @@ article {
 
 .msg {
   border-width: 1px;
-  border-style:solid;
+  border-style: solid;
   padding: var(--gap-medium);
   margin: var(--gap-medium) 0;
   border-radius: var(--radius-sm);
@@ -299,19 +337,38 @@ body {
   margin: 0;
 }
 
-a { color: var(--color-link); }
-a:hover { color: var(--color-link-hover); }
+a {
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
 
 // Focus outline
 :where(a, button, input, textarea, select, [tabindex]) :focus-visible,
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-link) 35%, transparent);
+  //outline: none;
+  outline: 2px solid var(--color-link-hover);
   border-radius: var(--radius-sm);
 }
 
+a:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+  //outline: 2px solid color-mix(in srgb, var(--color-link) 70%, white);
+}
 
+.social-share {
+  text-align: center;
+}
 
+.social-share-label {
+  //font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
 
 
 
@@ -343,6 +400,6 @@ a:hover { color: var(--color-link-hover); }
   line-height: 1.55;
 }
 
-.post-content blockquote > :last-child {
+.post-content blockquote> :last-child {
   margin-bottom: 0;
 }

@@ -38,8 +38,8 @@
   --color-btn-hover-border: #2a3a54;
   --color-btn-active-bg:    #0e1a2b;
   --color-btn-active-border:#2a3a54;
-  --color-btn-selected-bg:  #111827;
-  --color-btn-primary-text:   #ffffff;
+  --color-btn-selected-bg: #111827;
+  --color-btn-primary-text: #ffffff;
   --color-btn-primary-hover-bg: #60a5fa;
   --color-btn-primary-selected-bg: #1d4ed8;
   --color-btn-primary-border: transparent;
@@ -51,13 +51,13 @@
   --color-btn-primary-selected-shadow: 0 0 transparent;
 
   /* --- Segmented controls (tabs Write/Preview) --------------------------- */
-  --color-action-list-item-default-hover-bg: rgba(147,162,184,.12);
-  --color-segmented-control-bg:              rgba(49,68,101,.18);
-  --color-segmented-control-button-bg:       #0f172a;
+  --color-action-list-item-default-hover-bg: rgba(147, 162, 184, .12);
+  --color-segmented-control-bg: rgba(49, 68, 101, .18);
+  --color-segmented-control-button-bg: #0f172a;
   --color-segmented-control-button-selected-border: #3a537a;
 
   /* --- Neutral / scales -------------------------------------------------- */
-  --color-neutral-muted: rgba(147,162,184,.40);
+  --color-neutral-muted: rgba(147, 162, 184, .40);
   --color-primer-shadow-inset: 0 0 transparent;
   --color-scale-gray-7: #233046;
   --color-scale-blue-8: #0c2d6b;
@@ -98,19 +98,20 @@
   --color-social-reaction-bg-hover: #233046;
   --color-social-reaction-bg-reacted-hover: #0c2d6b;
 
-  --color-btn-primary-disabled-text: rgba(255,255,255,.35);
-  --color-btn-primary-disabled-border: rgba(96,165,250,.12);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, .35);
+  --color-btn-primary-disabled-border: rgba(96, 165, 250, .12);
   --color-btn-primary-disabled-bg: color-mix(in srgb, #60a5fa 20%, transparent);
 
 
-}
+  }
 
-button[disabled] {
-  cursor: not-allowed;
-}
-button, a {
-  transition:
-          background-color .15s ease,
-          color .15s ease,
-          border-color .15s ease;
-}
+  button[disabled] {
+    cursor: not-allowed;
+  }
+
+  button, a {
+    transition:
+      background-color .15s ease,
+      color .15s ease,
+      border-color .15s ease;
+  }

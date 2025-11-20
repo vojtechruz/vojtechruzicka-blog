@@ -12,7 +12,10 @@
     max-width: 100ch;
     margin: 0 auto;
     padding: .8rem 1rem;
-    display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--gap-medium);
+    align-items: center;
   }
 
   .blog-name {
@@ -32,7 +35,7 @@
     a {
       display: inline-flex;
       align-items: center;
-      gap: .35rem;
+      gap: var(--gap-small);
       padding: .4rem .6rem;
       border-radius: var(--radius-sm);
       color: var(--color-text);
@@ -42,6 +45,7 @@
       &.active {
         background: var(--color-bg-active);
       }
+
       &:hover {
         background: var(--color-bg-highlight);
       }

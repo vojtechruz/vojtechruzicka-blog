@@ -37,10 +37,15 @@
 
     {{ content | safe }}
 
-    {% include "components/social-share.njk" %}
+    <hr class="divider">
+
 
   </article>
-  {% include "components/comments.njk" %}
+  <div class="post-footer">
+    {% include "components/social-share.njk" %}
+    {% include "components/comments.njk" %}
+  </div>
+
 </main>
 {% endblock %}
 

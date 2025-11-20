@@ -4,47 +4,21 @@
 {% set shareTitleParam = (title or page.title or site.title) | urlencode %}
 
 <nav class="social-share" aria-label="Share this post">
+  <p class="social-share-label">Share this article</p>
   <ul role="list" class="share-list">
+
+    {# Native share (only shown if navigator.share is available) #}
     <li>
-      <a class="share-icon share-bluesky"
-         href="https://bsky.app/intent/compose?text={{ shareTitleParam }}%20{{ shareUrlParam }}"
-         aria-label="Share on Bluesky" target="_blank" rel="noopener noreferrer">
-        {% include "../icons/bluesky.njk" %}
-      </a>
+      <button type="button"
+              class="share-icon share-native"
+              id="native-share-button"
+              aria-label="Share using your apps"
+              hidden>
+        {% include "../icons/share.njk" %}
+      </button>
     </li>
 
-    <li>
-      <a class="share-icon share-mastodon"
-         href="https://toot.kytta.dev/?text={{ shareTitleParam }}%20{{ shareUrlParam }}"
-         aria-label="Share on Mastodon" target="_blank" rel="noopener noreferrer">
-        {% include "../icons/mastodon.njk" %}
-      </a>
-    </li>
-
-    <li>
-      <a class="share-icon share-linkedin"
-         href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrlParam }}"
-         aria-label="Share on LinkedIn" target="_blank" rel="noopener noreferrer">
-        {% include "../icons/linkedin.njk" %}
-      </a>
-    </li>
-
-    <li>
-      <a class="share-icon share-x"
-         href="https://twitter.com/intent/tweet?text={{ shareTitleParam }}&url={{ shareUrlParam }}"
-         aria-label="Share on X" target="_blank" rel="noopener noreferrer">
-        {% include "../icons/x.njk" %}
-      </a>
-    </li>
-
-    <li>
-      <a class="share-icon share-reddit"
-         href="https://www.reddit.com/submit?url={{ shareUrlParam }}&title={{ shareTitleParam }}"
-         aria-label="Share on Reddit" target="_blank" rel="noopener noreferrer">
-        {% include "../icons/reddit.njk" %}
-      </a>
-    </li>
-
+    {# Copy link (universal fallback) #}
     <li>
       <button type="button"
               class="share-icon share-copy"
@@ -54,37 +28,61 @@
       </button>
     </li>
 
-    <li>
-      <a class="share-icon share-email"
-         href="mailto:?subject={{ (title or page.title or site.title) | urlencode }}&body={{ absoluteUrl | urlencode }}"
-         aria-label="Share via Email">
-        {% include "../icons/mail.njk" %}
-      </a>
-    </li>
   </ul>
 </nav>
 
 <script>
-  // Copy-to-clipboard feedback
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.share-copy');
-    if (!btn) return;
+  (function () {
+    const nativeBtn = document.getElementById('native-share-button');
+    const shareUrl = "{{ absoluteUrl }}";
 
-    const url = btn.dataset.url || location.href;
+    // Enable native share if supported
+    if (nativeBtn && navigator.share) {
+      nativeBtn.hidden = false;
 
-    (async () => {
-      try {
-        await navigator.clipboard.writeText(url);
-        const prev = btn.getAttribute('aria-label') || 'Copy link to clipboard';
-        btn.classList.add('copied');
-        btn.setAttribute('aria-label', 'Link copied');
-        setTimeout(() => {
-          btn.classList.remove('copied');
-          btn.setAttribute('aria-label', prev);
-        }, 2000);
-      } catch {
-        window.prompt('Copy this URL:', url);
-      }
-    })();
-  });
+      nativeBtn.addEventListener('click', async () => {
+        try {
+          await navigator.share({
+            title: document.title,
+            text: document.querySelector('meta[name="description"]')
+              ? document.querySelector('meta[name="description"]').content
+              : '',
+            url: shareUrl
+          });
+        } catch (err) {
+          // user cancelled or share failed — ignore
+        }
+      });
+    }
+
+    // Copy-to-clipboard feedback
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.share-copy');
+      if (!btn) return;
+
+      const url = btn.dataset.url || location.href;
+
+      (async () => {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(url);
+          } else {
+            window.prompt('Copy URL of this page:', url);
+            return;
+          }
+
+          const prev = btn.getAttribute('aria-label') || 'Copy link to clipboard';
+          btn.classList.add('copied');
+          btn.setAttribute('aria-label', 'Link copied');
+
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.setAttribute('aria-label', prev);
+          }, 2000);
+        } catch {
+          window.prompt('Copy this URL:', url);
+        }
+      })();
+    });
+  })();
 </script>

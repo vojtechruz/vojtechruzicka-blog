@@ -2,7 +2,7 @@
 
 pre.shiki {
   margin: var(--gap-medium) 0;
-  padding: 1rem 1.1rem;
+  padding: calc(var(--gap-medium)*0.9) var(--gap-medium);
   background: var(--color-surface-1);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
@@ -38,18 +38,21 @@ pre.shiki .line.highlighted {
 }
 
 /* Scrollbar cosmetics (webkit/blink) */
-pre.shiki::-webkit-scrollbar { height: 10px; }
+pre.shiki::-webkit-scrollbar {
+  height: 10px;
+}
+
 pre.shiki::-webkit-scrollbar-thumb {
   background: color-mix(in oklab, var(--color-border) 60%, transparent);
-  border-radius: 3px;
+  border-radius: var(--radius-xs);
 }
 
 /* Inline code (non-Shiki) */
-:not(pre) > code {
+:not(pre)>code {
   background: color-mix(in oklab, var(--color-surface-2) 85%, black);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  padding: 0.1rem 0.35rem;
+  padding: 0.1rem var(--gap-small);
   white-space: nowrap;
 }
 
