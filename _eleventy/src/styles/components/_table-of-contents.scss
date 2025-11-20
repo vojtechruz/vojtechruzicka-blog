@@ -1,21 +1,19 @@
 @use "../variables";
 
 $toc-indent-step: 1.25rem;
-$toc-border-color: #ddd;
-$toc-font-size: 0.95rem;
 
 // Series TOC ----------------------------------------------------------------------------------------------------------
 
 .series-toc {
-  margin-bottom: 1.5rem;
-  font-size: $toc-font-size;
+  margin-bottom: var(--gap-medium);
+  font-size: 0.95rem;
 
   h4 {
     margin-top: 0;
   }
 
   ol {
-    padding-left: 1.25rem;
+    padding-left: var(--gap-medium);
   }
 
   .series-current {
@@ -26,14 +24,14 @@ $toc-font-size: 0.95rem;
 // TOC -----------------------------------------------------------------------------------------------------------------
 
 .toc {
-  margin-top: 1.5rem;
+  margin-top: var(--gap-large);
   background: var(--color-surface-1);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 0 var(--gap-medium) var(--gap-medium);
   position: sticky;
-  top: 6rem;
-  font-size: $toc-font-size;
+  top: 6rem; // TODO: Replace with variable or calculation based on header height
+  font-size: 0.95rem;
   line-height: 1.4;
 
   .toc-heading {
@@ -49,22 +47,12 @@ $toc-font-size: 0.95rem;
       margin: var(--gap-small) 0;
     }
 
-    // second level and deeper
+    // Recursive indentation for nested lists
     ol {
       margin-top: 0.25em;
       margin-left: $toc-indent-step;
-      border-left: 1px solid $toc-border-color;
+      border-left: 1px solid var(--color-border);
       padding-left: 0.75em;
-
-      // third level
-      ol {
-        margin-left: $toc-indent-step * 1.5;
-
-        // fourth level
-        ol {
-          margin-left: $toc-indent-step * 2;
-        }
-      }
     }
   }
 }
