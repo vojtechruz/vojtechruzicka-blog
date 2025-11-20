@@ -66,7 +66,30 @@ $toc-font-size: 0.95rem;
   }
 }
 
-//TODO this addes hierarchical numbering like 1, 1.1 - maybe use it conditionally only for more complex posts?
+.toc-list {
+  li a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+.toc {
+  margin-top: 1.5rem;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding-top: 0;
+  padding-right: var(--gap-medium);
+  padding-left: var(--gap-medium);
+  padding-bottom: var(--gap-medium);
+  position: sticky;
+  top: 6rem;
+}
+
+//TODO this adds hierarchical numbering like 1, 1.1 - maybe use it conditionally only for more complex posts?
 //
 //.toc {
 //  ol {
