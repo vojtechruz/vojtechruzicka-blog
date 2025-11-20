@@ -28,6 +28,10 @@
 
 .post-list {
   padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
 
   h2 {
     margin-top: 0;
@@ -75,13 +79,6 @@ h4 {
   list-style: none;
   display: flex;
   gap: calc(var(--gap-small)*1.5);
-}
-
-.post-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-medium);
 }
 
 #post .post-tags {
@@ -282,8 +279,7 @@ article {
 }
 
 /* Mobile: always show icon (no hover available) */
-//TODO use variable breakpoint
-@media (max-width: variables.$breakpoint-medium) {
+@include variables.respond(medium) {
 
   .post h2 .header-anchor,
   .post h3 .header-anchor,

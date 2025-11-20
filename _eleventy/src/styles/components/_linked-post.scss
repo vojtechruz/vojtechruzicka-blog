@@ -130,7 +130,7 @@
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: variables.$breakpoint-medium) {
+@include variables.respond(medium) {
   .linked-post>div {
     flex-direction: column;
   }

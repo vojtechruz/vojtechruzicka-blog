@@ -59,7 +59,7 @@
   }
 }
 
-@media (max-width: variables.$breakpoint-medium) {
+@include variables.respond(medium) {
 
   .main-navigation .navigation {
 
@@ -74,7 +74,7 @@
   }
 }
 
-@media (max-width: variables.$breakpoint-small) {
+@include variables.respond(small) {
   .menu-container {
     flex-direction: column;
   }

@@ -74,3 +74,18 @@ $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1280px;
 
+
+// Media query helper to keep breakpoints consistent across files
+// Usage: @include respond(medium) { ... }
+@mixin respond($breakpoint) {
+  @if $breakpoint == small {
+    @media (max-width: $breakpoint-small) { @content; }
+  } @else if $breakpoint == medium {
+    @media (max-width: $breakpoint-medium) { @content; }
+  } @else if $breakpoint == large {
+    @media (max-width: $breakpoint-large) { @content; }
+  } @else if $breakpoint == xlarge {
+    @media (max-width: $breakpoint-xlarge) { @content; }
+  }
+}
+
