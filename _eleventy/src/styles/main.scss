@@ -8,6 +8,7 @@
 @use "components/table-of-contents";
 @use "components/search";
 @use "components/footer";
+@use "components/social-icons";
 
 *,
 *::before,
@@ -150,7 +151,8 @@ article {
 
 
 
-.post-header-divider, .divider {
+.post-header-divider,
+.divider {
   margin-top: var(--gap-large);
   height: 2px;
   background: color-mix(in srgb, var(--color-border) 80%, transparent);
@@ -358,36 +360,6 @@ a:focus-visible {
   border-radius: var(--radius-xs);
   //outline: 2px solid color-mix(in srgb, var(--color-link) 70%, white);
 }
-
-.social-share {
-  text-align: center;
-}
-
-.social-share-label {
-  //font-size: 0.85rem;
-  color: var(--color-text-muted);
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .post blockquote {
   margin: var(--gap-medium) 0;
