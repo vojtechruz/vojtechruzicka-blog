@@ -251,7 +251,7 @@ function BlogPostTemplate(props) {
         categoryId="DIC_kwDOB0knwM4CZvj3"
         mapping="pathname"
         strict="1"
-        reactionsEnabled="1"
+        reactionsEnabled="0"
         emitMetadata="0"
         inputPosition="top"
         theme="preferred_color_scheme"
