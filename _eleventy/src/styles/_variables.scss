@@ -1,6 +1,7 @@
 :root {
   --radius-sm: .375rem;
   --radius-xs: .15rem;
+  --radius-full: 999rem; /* Fully rounded pills/circles */
 
   /* ===== SURFACE LAYERS (Dark theme) =====*/
 
@@ -26,9 +27,13 @@
   --color-accent: #2ea3b7;
 
   /* ===== BORDERS & DIVIDERS ===== */
-  --color-border: #2a3a54;   //#233046   /* Subtle, but still visible on dark backgrounds */
-  --color-border-muted: #233046;   //#233046   /* Subtle, but still visible on dark backgrounds */
+  --color-border: #2a3a54; /* Subtle, but still visible on dark backgrounds */
+  --color-border-muted: #233046; /* Subtle, but still visible on dark backgrounds */
   --hr-color: #233046;          /* Divider lines inside content */
+
+  /* ===== ELEVATION (Shadows) ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
 
   /* ===== SEMANTIC STATES =====
      Use these for callouts, alerts, notifications, badges, etc. */

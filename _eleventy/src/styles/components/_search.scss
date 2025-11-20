@@ -31,9 +31,7 @@
       border-color: transparent;
       color: var(--color-text);
       background-color: var(--color-surface-0);
-      //box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.25);
       box-shadow: none;
-      //outline: none;
     }
   }
 }
@@ -76,7 +74,7 @@
   background: var(--color-surface-1);
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+  box-shadow: var(--shadow-lg);
   padding: 0.75rem;
 
   .pagefind-ui__message {

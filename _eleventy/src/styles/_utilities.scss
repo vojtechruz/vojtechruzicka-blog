@@ -1,0 +1,19 @@
+// Small, reusable mixins and helpers
+
+// Reset list styles (removes bullets and default spacing)
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Visually hide element but keep it accessible to screen readers
+@mixin visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

@@ -22,19 +22,19 @@ pre.shiki .line {
 /* Hover assist while scanning */
 pre.shiki .line:hover {
   background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
-  margin-left: -1.1rem;
-  margin-right: -1.1rem;
-  padding-left: 1.1rem;
-  padding-right: 1.1rem;
+  margin-left: calc(-1 * var(--code-pad-x));
+  margin-right: calc(-1 * var(--code-pad-x));
+  padding-left: var(--code-pad-x);
+  padding-right: var(--code-pad-x);
 }
 
 /* Highlighted lines (supports multiple common flags) */
 pre.shiki .line.highlighted {
   background: color-mix(in oklab, var(--color-bg-highlight) 45%, transparent);
   border-left: 3px solid var(--color-accent);
-  margin-left: -1.1rem;
-  margin-right: -1.1rem;
-  padding-left: calc(1.1rem - 3px);
+  margin-left: calc(-1 * var(--code-pad-x));
+  margin-right: calc(-1 * var(--code-pad-x));
+  padding-left: calc(var(--code-pad-x) - 3px);
 }
 
 /* Scrollbar cosmetics (webkit/blink) */

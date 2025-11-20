@@ -1,4 +1,5 @@
 @use "../variables";
+@use "../utilities";
 
 .linked-post {
   background: var(--color-surface-1);
@@ -17,7 +18,7 @@
 }
 
 .linked-post h2.front-post-title {
-  line-height: 1.25; // udrží kompaktní vzhled
+  line-height: 1.25;
   margin-top: -0.65rem;
   margin-bottom: var(--gap-small);
 }
@@ -56,12 +57,11 @@
 
 /* Tags */
 .post-tags {
+  @include utilities.reset-list;
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-small);
-  list-style: none;
-  padding: 0;
-
+  
   a {
     display: inline-block;
     padding: 2px 6px;

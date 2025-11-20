@@ -1,4 +1,5 @@
 @use "variables";
+@use "utilities";
 @use "layout";
 @use "print";
 @use "navigation";
@@ -65,18 +66,12 @@ h4 {
 
 /* For accessibility instead of display:none */
 .visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+  @include utilities.visually-hidden;
 }
 
 .menu-items,
 .post-tags {
-  list-style: none;
+  @include utilities.reset-list;
   display: flex;
   gap: calc(var(--gap-small)*1.5);
 }
@@ -161,7 +156,6 @@ article {
 }
 
 .post-footer {
-  //margin-block: var(--gap-medium);
   margin-block: var(--gap-large);
   display: flex;
   flex-direction: column;
@@ -184,7 +178,6 @@ article {
   position: relative;
 }
 
-//TODO add copy to clipboard functionality
 /* The anchor icon */
 .header-anchor {
   display: inline-grid;
@@ -346,15 +339,13 @@ a:hover {
 // Focus outline
 :where(a, button, input, textarea, select, [tabindex]) :focus-visible,
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  //outline: none;
-  outline: 2px solid var(--color-link-hover);
+  outline: 2px solid var(--color-focus-ring);
   border-radius: var(--radius-sm);
 }
 
 a:focus-visible {
   outline-offset: 2px;
   border-radius: var(--radius-xs);
-  //outline: 2px solid color-mix(in srgb, var(--color-link) 70%, white);
 }
 
 .post blockquote {

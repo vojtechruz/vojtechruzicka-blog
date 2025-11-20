@@ -1,4 +1,5 @@
 @use "../variables";
+@use "../utilities";
 
 $toc-indent-step: 1.25rem;
 
@@ -39,9 +40,7 @@ $toc-indent-step: 1.25rem;
   }
 
   ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include utilities.reset-list;
 
     li {
       margin: var(--gap-small) 0;
