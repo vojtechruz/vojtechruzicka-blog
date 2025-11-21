@@ -21,33 +21,6 @@
     }
 }
 
-.post img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.post-tags {
-    @include utilities.reset-list;
-    display: flex;
-    gap: calc(var(--gap-small)*1.5);
-}
-
-#post .post-tags {
-    display: inline-block;
-
-    li {
-        display: inline;
-        margin: 0.15rem;
-    }
-
-    .tag-name::before {
-        content: "#";
-    }
-}
-
 article {
     line-height: 1.6;
     font-size: 1rem;

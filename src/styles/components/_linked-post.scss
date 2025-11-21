@@ -52,37 +52,6 @@
   white-space: nowrap;
 }
 
-/* Tags */
-.post-tags {
-  @include utilities.reset-list;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--gap-small);
-
-  a {
-    display: inline-block;
-    padding: 2px 6px;
-    border-radius: var(--radius-sm);
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border-muted);
-    text-decoration: none;
-
-    &:hover {
-      background: var(--color-bg-highlight);
-      color: var(--color-link-hover);
-      border: 1px solid var(--color-link-hover);
-
-    }
-  }
-}
-
-
-
-.post .post-tags {
-  margin-top: var(--gap-small);
-  margin-bottom: var(--gap-medium);
-}
-
 /* Layout: image + text block */
 .linked-post>div {
   display: flex;
