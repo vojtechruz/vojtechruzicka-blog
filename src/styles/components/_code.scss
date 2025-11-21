@@ -44,7 +44,6 @@ pre.shiki::-webkit-scrollbar-thumb {
 }
 
 /* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
-/* TODO shiki-light for light theme */
 pre.shiki,
 pre.shiki span {
   color: var(--shiki-dark);

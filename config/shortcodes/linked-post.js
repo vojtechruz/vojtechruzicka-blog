@@ -16,7 +16,7 @@ export default function linkedPost(permalink, maybeCollections) {
     post = all.find(p => p && (p.url === permalink || (p.page && p.page.url === permalink)));
   }
 
-  // TODO - fail in this case
+  // TODO - fail in this case but only in prod build
   if (!post) {
     return `<div class="linked-post linked-post--missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
   }
