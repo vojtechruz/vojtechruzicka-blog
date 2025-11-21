@@ -12,46 +12,21 @@
 
         <div class="menu-container">
           <ul class="menu-items">
+            {% set isHome = (current == '/') %}
             <li>
-              <a href="/"
-                 {% if current == '/' %}
-              class="active" aria-current="page"
-              {% endif %}>
-              Home
-              </a>
+              <a href="/" {% if isHome %}class="active" aria-current="page"{% endif %}>Home</a>
             </li>
+            {% set isTopics = current.startsWith('/archives/') %}
             <li>
-              <a href="/archives/"
-                {% if current.startsWith('/archives/') %}
-                  class="active" aria-current="page"
-                {% endif %}>
-              Topics
-              </a>
+              <a href="/archives/" {% if isTopics %}class="active" aria-current="page"{% endif %}>Topics</a>
             </li>
+            {% set isAbout = (current == '/about/') %}
             <li>
-              <a href="/about/"
-                {% if current == '/about/' %}
-                  class="active" aria-current="page"
-                  {% endif %}>
-                About <span class="not-small-screen">me</span>
-              </a>
+              <a href="/about/" {% if isAbout %}class="active" aria-current="page"{% endif %}>About <span class="not-small-screen">me</span></a>
             </li>
           </ul>
-          <div class="nav-search" role="search">
-            <div id="search">
-              <!-- This content gents on demand replaced by pagefind -->
-              <!-- todo remove hashes -->
-              <div class="pagefind-ui svelte-e9gkc3">
-                <form class="pagefind-ui__form svelte-e9gkc3" role="search" aria-label="Search the site"
-                      action="javascript:void(0);"><input class="pagefind-ui__search-input svelte-e9gkc3" type="text"
-                                                          placeholder="Search…" title="Search…" autocapitalize="none"
-                                                          enterkeyhint="search">
-                  <button class="pagefind-ui__search-clear svelte-e9gkc3 pagefind-ui__suppressed">×</button>
-                  <div class="pagefind-ui__drawer svelte-e9gkc3 pagefind-ui__hidden"></div>
-                </form>
-              </div>
-              </div>
-            </div>
+          {% from "components/search.njk" import renderSearch %}
+          {{ renderSearch('search') }}
         </div>
       </div>
   </nav>

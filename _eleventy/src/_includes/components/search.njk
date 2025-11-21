@@ -1,0 +1,13 @@
+{% macro renderSearch(id=null) %}
+<div class="nav-search">
+  <div class="js-pagefind"{% if id %} id="{{ id }}"{% endif %}>
+    <!-- Placeholder only: will be replaced by Pagefind UI on first interaction -->
+    <div class="pagefind-ui">
+      <form class="pagefind-ui__form" role="search" aria-label="Search the site">
+        <input class="pagefind-ui__search-input" type="text" placeholder="Search…" title="Search the site"
+               aria-label="Search" autocapitalize="none" enterkeyhint="search" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endmacro %}

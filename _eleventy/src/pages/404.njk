@@ -19,7 +19,8 @@ TODO 404 should be not in sitemap and should have noindex
 {% endwarning %}
 
 <h4>Search for posts</h4>
-TODO SEARCH
+{% from "components/search.njk" import renderSearch %}
+{{ renderSearch(null, 'Search the site') }}
 
 <h4>All available posts by category</h4>
 <ul class="tag-list">
