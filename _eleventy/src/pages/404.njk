@@ -1,28 +1,31 @@
 ---
 title: "Page Not Found"
 permalink: /404.html
+eleventyExcludeFromCollections: true
 ---
 {% extends "layouts/page.njk" %}
 
-{% block pageContent %}
+{% block head %}
+{{ super() }}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
 
+{% block pageContent %}
 
 {% set tagsByCount = collections.tagStats | sortByCountThenName %}
 
-
-TODO 404 should be not in sitemap and should have noindex
-
-
 {% warning %}
-  The page you are looking for does not exist.
-  You can either try using search or browse all posts by category below.
+The page you are looking for does not exist.
+You can either try using search or browse all posts by category below.
 {% endwarning %}
 
-<h4>Search for posts</h4>
+<p class="section-404"><a href="/">Go back to homepage</a></p>
+
+<h4 class="section-404">Search for posts</h4>
 {% from "components/search.njk" import renderSearch %}
 {{ renderSearch(null, 'Search the site') }}
 
-<h4>All available posts by category</h4>
+<h4 class="section-404">All available posts by category</h4>
 <ul class="tag-list">
   {% for tag in tagsByCount %}
   <li>
