@@ -22,10 +22,6 @@
   color: var(--color-selection-text);
 }
 
-* {
-  color-scheme: dark;
-}
-
 /* For accessibility instead of display:none */
 .visually-hidden {
   @include utilities.visually-hidden;
