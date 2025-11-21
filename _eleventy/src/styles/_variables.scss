@@ -3,8 +3,8 @@
 
   --radius-xs: .15rem;
   --radius-sm: .375rem;
-  --radius-md: .5rem;   /* Medium corners */
-  --radius-lg: .75rem;  /* Large corners */
+  --radius-md: .5rem;
+  --radius-lg: .75rem;
   --radius-full: 999rem; /* Fully rounded pills/circles */
 
   /* ===== SURFACE LAYERS (Dark theme) =====*/
@@ -22,7 +22,6 @@
   --color-text-heading: #e5e7eb;        /* Default high-contrast foreground text */
   --color-text: #c7d2da;        /* Default high-contrast foreground text */
   --color-text-muted: #94a3b8;  /* Secondary text (metadata, timestamps) */
-  --color-text-subtle: #64748b; /* Very subtle text (captions, helper notes) */
   --color-text-inverse: #0b1220;/* Text on light foreground surfaces (e.g., badges) */
 
   /* ===== LINKS & INTERACTIVE ===== */

@@ -8,7 +8,7 @@
     height: 3px;
     z-index: calc(var(--z-overlay) + 1);
     background: transparent;
-    pointer-events: none; // do not block clicks
+    pointer-events: none;
     transform: translateZ(0); // promote to its own layer
 
     &[hidden] {
@@ -134,7 +134,7 @@ article {
 
 .date-published,
 .date-modified {
-    color: var(--color-text-subtle);
+    color: var(--color-text-muted);
 }
 
 /* Better scroll positioning when jumping to headings */
@@ -147,18 +147,15 @@ article {
 .header-anchor {
     display: inline-grid;
     place-items: center;
-    inline-size: 1.25em;
     /* reserve space to avoid layout shift */
+    inline-size: 1.25em;
     block-size: 1.25em;
     margin-inline-start: .35em;
-    /* logical spacing (RTL-safe) */
     border-radius: .35em;
-    color: var(--color-text-subtle);
     text-decoration: none;
-    opacity: 0;
     /* default hidden on pointer devices */
+    opacity: 0;
     transform: translateY(.1em);
-    /* align to text baseline a bit nicer */
     transition: opacity .18s ease, color .18s ease, box-shadow .18s ease;
     outline: none;
 }
