@@ -61,6 +61,18 @@ $toc-indent-step: 1.25rem;
     overflow: hidden;
     max-width: 100%;
     display: block;
+    border-radius: var(--radius-xs);
+    transition: background-color .15s ease, color .15s ease;
+    padding-inline: var(--gap-small);
+    padding-block-end: 3px;
+  }
+
+  /* Active section highlighting (updated by JS scrollspy) */
+  li a.is-active,
+  li a[aria-current="true"] {
+    color: var(--color-link-hover);
+    font-weight: 600;
+    background: var(--color-bg-active);
   }
 }
 
