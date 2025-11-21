@@ -1,0 +1,25 @@
+@use "../variables";
+@use "../utilities";
+
+.image-wrapper {
+  // CSS custom properties for LQIP (Low Quality Image Placeholder) behavior
+  --lqip-blur-amount: 60px;
+  --lqip-transition-duration: 0.3s;
+  --lqip-bg-color: #f0f0f0;
+
+  overflow: hidden;
+
+  // Low Quality Image Placeholder - blurred initially
+  .lqip {
+    display: block;
+    filter: blur(var(--lqip-blur-amount));
+    transition: filter var(--lqip-transition-duration) ease-out;
+    background-color: var(--lqip-bg-color);
+    overflow: hidden;
+
+    // Remove blur once image is loaded
+    &[data-loaded] {
+      filter: blur(0);
+    }
+  }
+}

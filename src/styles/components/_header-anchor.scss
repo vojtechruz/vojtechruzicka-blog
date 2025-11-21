@@ -1,0 +1,105 @@
+@use "../variables";
+@use "../utilities";
+
+/* Better scroll positioning when jumping to headings */
+:is(h2, h3, h4)[id] {
+  scroll-margin-top: var(--offset-anchor);
+  position: relative;
+}
+
+/* The anchor icon next to headings */
+.header-anchor {
+  display: inline-grid;
+  place-items: center;
+  /* reserve space to avoid layout shift */
+  inline-size: 1.25em;
+  block-size: 1.25em;
+  margin-inline-start: .35em;
+  border-radius: .35em;
+  text-decoration: none;
+  /* default hidden on pointer devices */
+  opacity: 0;
+  transform: translateY(.1em);
+  transition: opacity .18s ease, color .18s ease, box-shadow .18s ease;
+  outline: none;
+}
+
+/* Icon via mask + currentColor, so it adapts to theme */
+.header-anchor::before {
+  content: "";
+  inline-size: 1em;
+  block-size: 1em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
+<path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/>\
+</svg>") no-repeat center / 100% 100%;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/></svg>") no-repeat center / 100% 100%;
+}
+
+:is(h2, h3, h4):hover .header-anchor,
+.header-anchor:focus-visible {
+  opacity: 1;
+  color: var(--color-link);
+}
+
+.header-anchor:focus-visible {
+  &:before {
+    color: var(--color-link-hover);
+  }
+}
+
+/* Touch devices: always visible (no hover) */
+@media (hover: none) {
+  .header-anchor {
+    opacity: .75;
+  }
+}
+
+/* Applies to headings that have the permalink anchor */
+.post h1,
+.post h2,
+.post h3,
+.post h4 {
+  position: relative;
+  scroll-margin-top: var(--offset-anchor-post);
+  /* prevents heading from sitting under the fixed nav */
+}
+
+/* The inserted anchor icon */
+.post h2 .header-anchor,
+.post h3 .header-anchor,
+.post h4 .header-anchor {
+  position: absolute;
+  left: -2.3rem;
+  /* distance into the left gutter */
+  top: 52.5%;
+  transform: translateY(-50%);
+  opacity: 0;
+  /* hide by default */
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  padding: 0.2rem;
+}
+
+/* Show the icon on hover/focus */
+.post h2:hover .header-anchor,
+.post h2:focus-within .header-anchor,
+.post h3:hover .header-anchor,
+.post h3:focus-within .header-anchor,
+.post h4:hover .header-anchor,
+.post h4:focus-within .header-anchor {
+  opacity: 1;
+  color: var(--color-link);
+}
+
+/* Mobile: always show icon (no hover available) */
+@include utilities.respond(medium) {
+  .post h2 .header-anchor,
+  .post h3 .header-anchor,
+  .post h4 .header-anchor {
+    opacity: 1;
+  }
+}

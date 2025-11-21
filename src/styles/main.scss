@@ -4,14 +4,17 @@
 @use "base/reset";
 @use "base/typography";
 @use "base/global";
+@use "base/accessibility";
 @use "base/print";
 
-@use "layout";
+@use "base/layout";
 
 @use "components/navigation";
 @use "components/code";
 @use "components/post";
-
+@use "components/reading-progress";
+@use "components/image-wrapper";
+@use "components/header-anchor";
 @use "components/linked-post";
 @use "components/table-of-contents";
 @use "components/search";
