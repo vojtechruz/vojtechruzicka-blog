@@ -1,0 +1,138 @@
+(() => {
+    // Ensures Pagefind assets are loaded only once
+    let bootAssetsPromise = null;
+
+    function loadJS(src) {
+        return new Promise((resolve, reject) => {
+            const s = document.createElement('script'); // classic script, NOT type="module"
+            s.src = src;
+            s.onload = resolve;
+            s.onerror = () => reject(new Error('Failed to load ' + src));
+            document.head.appendChild(s);
+        });
+    }
+
+    function ensureAssets() {
+        if (!bootAssetsPromise) {
+            bootAssetsPromise = loadJS('/pagefind/pagefind-ui.js').catch(err => {
+                console.error(err);
+                bootAssetsPromise = null;
+            });
+        }
+        return bootAssetsPromise;
+    }
+
+    async function initContainer(container) {
+        if (!container || container.dataset.pagefindInited === '1') return;
+        // Load assets first (only once)
+        await ensureAssets();
+        if (!window.PagefindUI) throw new Error('window.PagefindUI not available');
+
+        // Clear any placeholder content
+        container.innerHTML = '';
+
+        // Create UI instance scoped to this container
+        new window.PagefindUI({
+            element: container,
+            showSubResults: false,
+            showImages: false,
+            resetStyles: false,
+            translations: {
+                placeholder: 'Search…',
+                one_result: "Found 1 result for '[SEARCH_TERM]'.",
+                many_results: "Found [COUNT] results for '[SEARCH_TERM]'.",
+                zero_results: "No results found for '[SEARCH_TERM]'.",
+                search_label: 'Search the site',
+                clear_search: '×',
+                load_more: 'Load more'
+            }
+        });
+
+        // Defer DOM queries until Pagefind has rendered into the container
+        queueMicrotask(() => {
+            const drawer = container.querySelector('.pagefind-ui__drawer');
+            const input = container.querySelector('.pagefind-ui__search-input');
+
+            // Shared backdrop (one per page)
+            let backdrop = document.querySelector('.backdrop-search');
+            if (!backdrop) {
+                backdrop = document.createElement('div');
+                backdrop.className = 'backdrop-search';
+                document.body.appendChild(backdrop);
+            }
+
+            // Close on backdrop click (affects currently open instance only)
+            const closeCurrent = () => {
+                if (input) {
+                    input.value = '';
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    input.blur();
+                }
+                hideBackdrop();
+            };
+            backdrop.addEventListener('click', closeCurrent);
+
+            // Observe open/close state for this instance
+            const mo = new MutationObserver(() => {
+                const open = drawer && !drawer.classList.contains('pagefind-ui__hidden');
+                document.body.classList.toggle('search-open', open);
+                backdrop.classList.toggle('is-visible', open);
+                if (open) input?.focus();
+            });
+            if (drawer) mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
+
+            // ESC closes if this instance is open
+            const onKey = (e) => {
+                if (e.key === 'Escape' && drawer && !drawer.classList.contains('pagefind-ui__hidden')) {
+                    closeCurrent();
+                }
+            };
+            window.addEventListener('keydown', onKey);
+
+            function hideBackdrop() {
+                document.body.classList.remove('search-open');
+                backdrop.classList.remove('is-visible');
+            }
+
+            // Initial focus
+            input?.focus({ preventScroll: true });
+        });
+
+        container.dataset.pagefindInited = '1';
+    }
+
+    // Find all potential search containers: support both legacy #search and new .js-pagefind
+    const containers = Array.from(document.querySelectorAll('.js-pagefind, #search'));
+
+    // Attach lazy-init triggers per container (include pointerdown for better touch support)
+    containers.forEach((container) => {
+        const triggerEvents = ['pointerdown', 'click', 'focusin', 'mouseenter'];
+        const onTrigger = () => initContainer(container);
+        triggerEvents.forEach((ev) => container.addEventListener(ev, onTrigger, { once: true }));
+    });
+
+    // Backwards-compat: explicit opener if present
+    const explicitOpen = document.getElementById('open-search');
+    if (explicitOpen) {
+        ['click', 'focus', 'mouseenter'].forEach((ev) =>
+            explicitOpen.addEventListener(ev, () => {
+                // prefer the first container (header) if available
+                const target = containers[0];
+                if (target) initContainer(target);
+            }, { once: true })
+        );
+    }
+
+    // Keyboard shortcuts (optional): open the first available container lazily
+    document.addEventListener('keydown', (e) => {
+        const inField = /^(input|textarea|select)$/i.test(e.target.tagName) || e.target.isContentEditable;
+        if (inField) return;
+        const slash = e.key === '/';
+        const modK = (e.key.toLowerCase() === 'k') && (e.ctrlKey || e.metaKey);
+        if (slash || modK) {
+            e.preventDefault();
+            const target = containers[0];
+            if (target) initContainer(target);
+        }
+    });
+})();

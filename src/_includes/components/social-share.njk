@@ -9,21 +9,16 @@
 
     {# Native share (only shown if navigator.share is available) #}
     <li>
-      <button type="button"
-              class="share-icon share-native"
-              id="native-share-button"
-              aria-label="Share using your apps"
-              hidden>
+      <button type="button" class="share-icon share-native" id="native-share-button" aria-label="Share using your apps"
+        data-url="{{ absoluteUrl }}" hidden>
         {% include "../icons/share.njk" %}
       </button>
     </li>
 
     {# Copy link (universal fallback) #}
     <li>
-      <button type="button"
-              class="share-icon share-copy"
-              aria-label="Copy link to clipboard"
-              data-url="{{ absoluteUrl }}">
+      <button type="button" class="share-icon share-copy" aria-label="Copy link to clipboard"
+        data-url="{{ absoluteUrl }}">
         {% include "../icons/copy.njk" %}
       </button>
     </li>
@@ -31,58 +26,4 @@
   </ul>
 </nav>
 
-<script>
-  (function () {
-    const nativeBtn = document.getElementById('native-share-button');
-    const shareUrl = "{{ absoluteUrl }}";
-
-    // Enable native share if supported
-    if (nativeBtn && navigator.share) {
-      nativeBtn.hidden = false;
-
-      nativeBtn.addEventListener('click', async () => {
-        try {
-          await navigator.share({
-            title: document.title,
-            text: document.querySelector('meta[name="description"]')
-              ? document.querySelector('meta[name="description"]').content
-              : '',
-            url: shareUrl
-          });
-        } catch (err) {
-          // user cancelled or share failed — ignore
-        }
-      });
-    }
-
-    // Copy-to-clipboard feedback
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.share-copy');
-      if (!btn) return;
-
-      const url = btn.dataset.url || location.href;
-
-      (async () => {
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(url);
-          } else {
-            window.prompt('Copy URL of this page:', url);
-            return;
-          }
-
-          const prev = btn.getAttribute('aria-label') || 'Copy link to clipboard';
-          btn.classList.add('copied');
-          btn.setAttribute('aria-label', 'Link copied');
-
-          setTimeout(() => {
-            btn.classList.remove('copied');
-            btn.setAttribute('aria-label', prev);
-          }, 2000);
-        } catch {
-          window.prompt('Copy this URL:', url);
-        }
-      })();
-    });
-  })();
-</script>
+<script src="/scripts/social-share.js" defer></script>

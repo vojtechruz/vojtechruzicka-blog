@@ -1,22 +1,16 @@
 {% extends "layouts/base.njk" %}
 
 {% block head %}
-  {% set kind = "article" %}
-  {% include "components/social-metatags.njk" %}
-  {% include "components/jsonld.njk" %}
+{% set kind = "article" %}
+{% include "components/social-metatags.njk" %}
+{% include "components/jsonld.njk" %}
 {% endblock %}
 
 {% block content %}
-<main id="content" class="post content" >
+<main id="content" class="post content">
   <!-- Reading progress bar -->
-  <div id="reading-progress"
-       class="reading-progress"
-       role="progressbar"
-       aria-label="Reading progress"
-       aria-valuemin="0"
-       aria-valuemax="100"
-       aria-valuenow="0"
-       hidden>
+  <div id="reading-progress" class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0"
+    aria-valuemax="100" aria-valuenow="0" hidden>
     <span class="reading-progress__bar" aria-hidden="true"></span>
   </div>
   <article data-pagefind-body>
@@ -28,19 +22,17 @@
         <span class="date-modified">{{dateModified | readableDate}}</span>
         <ul class="post-tags">
           {% for tag in tags %}
-            <li><a class="tag-name" href="/tags/{{tag}}">{{tag}}</a></li>
+          <li><a class="tag-name" href="/tags/{{tag}}">{{tag}}</a></li>
           {% endfor %}
         </ul>
       </div>
-        {%if dateModified %}
-          <div>Last Updated: {{dateModified | readableDate }}</div>
-        {% endif %}
+      {%if dateModified %}
+      <div>Last Updated: {{dateModified | readableDate }}</div>
+      {% endif %}
 
 
-      <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image"
-           loading="eager"
-           fetchpriority="high"
-           decoding="async">
+      <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
+        fetchpriority="high" decoding="async">
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
 
@@ -57,235 +49,24 @@
     {% include "components/comments.njk" %}
   </div>
 
-  <script>
-    // Lightweight reading progress bar for post pages
-    (function () {
-      const bar = document.getElementById('reading-progress');
-      if (!bar) return;
-      const barInner = bar.querySelector('.reading-progress__bar');
-      const article = document.querySelector('main.post article');
-      if (!article || !barInner) { bar?.setAttribute('hidden', ''); return; }
-
-      // Resolve a CSS variable (including calc()) to pixels
-      function getCssVarPx(name, fallback = 0) {
-        try {
-          const val = getComputedStyle(document.documentElement).getPropertyValue(name);
-          if (!val) return fallback;
-          if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) return parseFloat(val);
-          const div = document.createElement('div');
-          div.style.position = 'absolute';
-          div.style.visibility = 'hidden';
-          div.style.height = `var(${name})`;
-          document.body.appendChild(div);
-          const px = div.offsetHeight;
-          div.remove();
-          return px || fallback;
-        } catch { return fallback; }
-      }
-
-      let headerOffset = 0;
-      function updateHeaderOffset() {
-        headerOffset = getCssVarPx('--offset-anchor-post', getCssVarPx('--offset-anchor', 0));
-      }
-      updateHeaderOffset();
-
-      let start = 0, end = 0, total = 0;
-      function measure() {
-        const rectTop = article.getBoundingClientRect().top + window.scrollY;
-        start = rectTop;
-        end = rectTop + article.offsetHeight;
-        total = (end - start) - (window.innerHeight - headerOffset);
-        // Hide if there is nothing to scroll within the article
-        if (total <= 0) {
-          bar.setAttribute('hidden', '');
-        } else {
-          bar.removeAttribute('hidden');
-        }
-        update();
-      }
-
-      let ticking = false;
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => { ticking = false; update(); });
-      }
-
-      function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
-
-      function update() {
-        if (total <= 0) return;
-        const scrolledInside = window.scrollY - (start - headerOffset);
-        const ratio = clamp(scrolledInside / total, 0, 1);
-        const percent = Math.round(ratio * 100);
-        bar.style.transform = 'translateZ(0)';
-        barInner.style.transform = `scaleX(${ratio})`;
-        bar.setAttribute('aria-valuenow', String(percent));
-      }
-
-      // Recalculate on resize and when images load (content height changes)
-      window.addEventListener('resize', () => { updateHeaderOffset(); measure(); });
-      window.addEventListener('orientationchange', () => { updateHeaderOffset(); measure(); });
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      // If the post contains images that load later, re-measure when they load
-      const imgs = article.querySelectorAll('img');
-      imgs.forEach(img => {
-        if (img.complete) return; // already loaded
-        img.addEventListener('load', measure, { once: true });
-        img.addEventListener('error', measure, { once: true });
-      });
-
-      // Initial measure + paint
-      measure();
-      onScroll();
-    })();
-  </script>
+  <script src="/scripts/reading-progress.js" defer></script>
 
 </main>
 {% endblock %}
 
 {% block sidebar %}
-  {% include "components/series-toc.njk" %}
+{% include "components/series-toc.njk" %}
 
-  {% set tocHtml = content | toc %}
-  {% if tocHtml and (tocHtml | trim) %}
-    <nav class="toc" aria-label="Table of contents">
-      <p class="toc-heading">Table of contents</p>
-      <div class="toc-list">
-        {{ tocHtml
-        | replace(r/<\/?nav[^>]*>/gi, '')
-        | safe }}
-      </div>
-    </nav>
-<script>
-  // Lightweight scrollspy for the TOC
-  (function () {
-    const toc = document.querySelector('nav.toc');
-    if (!toc) return;
-    const links = Array.from(toc.querySelectorAll('.toc-list a[href^="#"]'));
-    if (!links.length) return;
-
-    // Map href -> heading element
-    const idToLink = new Map();
-    const headings = [];
-    for (const a of links) {
-      try {
-        const id = decodeURIComponent(a.getAttribute('href') || '').slice(1);
-        if (!id) continue;
-        const h = document.getElementById(id);
-        if (h) {
-          idToLink.set(id, a);
-          headings.push(h);
-        }
-      } catch { /* ignore malformed */ }
-    }
-    if (!headings.length) return;
-
-    // Utils: Robustly resolve CSS variable to pixels (handles calc, rem, etc.)
-    function getCssVarPx(name, fallback = 0) {
-      try {
-        const val = getComputedStyle(document.documentElement).getPropertyValue(name);
-        if (!val) return fallback;
-        // Optimization: simple px values don't need DOM manipulation
-        if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) return parseFloat(val);
-
-        // Create a temporary element to resolve complex values like calc()
-        const div = document.createElement('div');
-        div.style.position = 'absolute';
-        div.style.visibility = 'hidden';
-        div.style.height = `var(${name})`;
-        document.body.appendChild(div);
-        const px = div.offsetHeight;
-        div.remove();
-        return px;
-      } catch {
-        return fallback;
-      }
-    }
-
-    let offset = 0;
-    function updateOffset() {
-      offset = getCssVarPx('--offset-anchor-post', getCssVarPx('--offset-anchor', 0));
-    }
-    updateOffset(); // Initial calculation
-
-    let activeId = null;
-    function setActive(id) {
-      if (id === activeId) return;
-      activeId = id;
-      for (const a of links) {
-        const isActive = a.hash === '#' + id;
-        a.classList.toggle('is-active', isActive);
-        if (isActive) {
-          a.setAttribute('aria-current', 'true');
-        } else {
-          a.removeAttribute('aria-current');
-        }
-      }
-    }
-
-    let ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        ticking = false;
-
-        // 1. Check if we are at the bottom of the page (highlight last item)
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
-          const last = headings[headings.length - 1];
-          if (last) setActive(last.id);
-          return;
-        }
-
-        // 2. Find the last heading above the offset
-        let current = null;
-        for (const h of headings) {
-          const rect = h.getBoundingClientRect();
-          // If the heading is above the offset (with a small buffer)
-          if ((rect.top - offset) <= 4) {
-            current = h.id;
-          } else {
-            // Since headings are in order, once we find one below the offset, we can stop
-            break;
-          }
-        }
-
-        // 3. Fallback: If no heading is "above" the offset (e.g. at top of page),
-        // check if the first heading is visible and close to top
-        if (!current) {
-          const first = headings[0];
-          if (first) {
-            const r = first.getBoundingClientRect();
-            if (r.top >= 0 && r.top < window.innerHeight * 0.6) {
-              current = first.id;
-            }
-          }
-        }
-
-        if (current) setActive(current);
-      });
-    }
-
-    // Highlight immediately and on events
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // Update offset on resize in case media queries change the header height
-    window.addEventListener('resize', () => {
-      updateOffset();
-      onScroll();
-    });
-
-    // When clicking a TOC link, update active immediately
-    toc.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if (!a) return;
-      const id = decodeURIComponent(a.getAttribute('href')).slice(1);
-      if (id && idToLink.has(id)) setActive(id);
-    });
-  })();
-</script>
-  {% endif %}
+{% set tocHtml = content | toc %}
+{% if tocHtml and (tocHtml | trim) %}
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc-heading">Table of contents</p>
+  <div class="toc-list">
+    {{ tocHtml
+    | stripNav
+    | safe }}
+  </div>
+</nav>
+<script src="/scripts/toc-scrollspy.js" defer></script>
+{% endif %}
 {% endblock %}
