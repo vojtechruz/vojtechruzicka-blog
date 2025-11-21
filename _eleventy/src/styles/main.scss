@@ -28,8 +28,7 @@
 }
 
 .post-list {
-  padding: 0;
-  list-style: none;
+  @include utilities.reset-list;
   display: flex;
   flex-direction: column;
   gap: var(--gap-medium);
@@ -106,9 +105,9 @@ h4 {
     left: 0;
     top: 0;
     padding: .5rem 1rem;
-    background: #000; // High contrast requirement
-    color: #fff; // High contrast requirement
-    z-index: 1000;
+    background: var(--color-skiplink-bg); // High contrast requirement
+    color: var(--color-skiplink-text); // High contrast requirement
+    z-index: var(--z-overlay);
   }
 }
 
@@ -174,7 +173,7 @@ article {
 
 /* Better scroll positioning when jumping to headings */
 :is(h2, h3, h4)[id] {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: var(--offset-anchor);
   position: relative;
 }
 
@@ -238,7 +237,7 @@ article {
 .post h3,
 .post h4 {
   position: relative;
-  scroll-margin-top: 6rem;
+  scroll-margin-top: var(--offset-anchor-post);
   /* prevents heading from sitting under the fixed nav */
 }
 
@@ -278,6 +277,16 @@ article {
   .post h3 .header-anchor,
   .post h4 .header-anchor {
     opacity: 1;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

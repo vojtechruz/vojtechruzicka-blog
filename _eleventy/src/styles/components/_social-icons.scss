@@ -78,7 +78,7 @@
     white-space: nowrap;
     pointer-events: none;
     opacity: 1;
-    z-index: 999;
+    z-index: var(--z-overlay);
     box-shadow: var(--shadow-sm);
     transition: opacity 0.2s ease;
 }

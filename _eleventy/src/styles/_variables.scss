@@ -1,6 +1,8 @@
 :root {
-  --radius-sm: .375rem;
   --radius-xs: .15rem;
+  --radius-sm: .375rem;
+  --radius-md: .5rem;   /* Medium corners */
+  --radius-lg: .75rem;  /* Large corners */
   --radius-full: 999rem; /* Fully rounded pills/circles */
 
   /* ===== SURFACE LAYERS (Dark theme) =====*/
@@ -71,6 +73,25 @@
   --gap-large: 2rem;
   --gap-medium: 1.1rem;
   --gap-small: 0.35rem;
+
+  /* ===== LAYOUT SIZES ===== */
+  --container-max-content: 70ch;  /* Main content width */
+  --container-max-sidebar: 50ch;  /* Sidebar max width */
+  --container-max-nav: 100ch;     /* Navigation inner max width */
+
+  /* ===== OFFSETS (sticky, anchors) ===== */
+  --offset-toc: 6rem;             /* TOC sticky top offset */
+  --offset-anchor: 7rem;          /* Global heading anchor scroll offset */
+  --offset-anchor-post: 6rem;     /* Post page heading anchor scroll offset */
+
+  /* ===== Z-INDEX LAYERS ===== */
+  --z-backdrop: 30;               /* Modal/search backdrops */
+  --z-nav: 50;                    /* Sticky navigation */
+  --z-overlay: 1000;              /* Overlays, drawers, skip-links */
+
+  /* ===== ACCESSIBILITY HIGH CONTRAST ELEMENTS ===== */
+  --color-skiplink-bg: #000000;
+  --color-skiplink-text: #ffffff;
 }
 
 // Responsive breakpoints

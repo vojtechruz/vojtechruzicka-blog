@@ -31,7 +31,7 @@ $toc-indent-step: 1.25rem;
   border-radius: var(--radius-sm);
   padding: 0 var(--gap-medium) var(--gap-medium);
   position: sticky;
-  top: 6rem; // TODO: Replace with variable or calculation based on header height
+  top: var(--offset-toc);
   font-size: 0.95rem;
   line-height: 1.4;
 
