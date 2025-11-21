@@ -36,9 +36,10 @@ body {
 }
 
 // When on small screen then switch from two columns to one column with sidebar hidden
-@include utilities.respond(medium) {
+@include utilities.respond(large) {
     .main {
         flex-direction: column;
+        align-items: center;
     }
 
     .sidebar {
