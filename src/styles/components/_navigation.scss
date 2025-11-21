@@ -25,11 +25,11 @@
     white-space: nowrap;
   }
 
-
   .menu-items {
     @include utilities.reset-list;
     display: flex;
-    gap: .8rem;
+    gap: calc(var(--gap-medium)*0.9);
+    margin-inline-end: var(--gap-medium);
     align-items: center;
 
     a {

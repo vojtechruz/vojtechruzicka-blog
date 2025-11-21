@@ -3,6 +3,7 @@
 
 @use "base/reset";
 @use "base/typography";
+@use "base/global";
 @use "base/print";
 
 @use "layout";
@@ -16,67 +17,3 @@
 @use "components/search";
 @use "components/footer";
 @use "components/social-icons";
-
-::selection {
-  background: var(--color-selection-bg);
-  color: var(--color-selection-text);
-}
-
-/* For accessibility instead of display:none */
-.visually-hidden {
-  @include utilities.visually-hidden;
-}
-
-.menu-items {
-  @include utilities.reset-list;
-  display: flex;
-  gap: calc(var(--gap-small)*1.5);
-}
-
-/*
-  Visually hidden "Skip to content" link for accessibility.
-  Hidden off-screen by default, but becomes visible and accessible
-  when focused (e.g. via keyboard navigation). This allows keyboard
-  and screen reader users to bypass repeated navigation and jump
-  directly to the main content.
-*/
-.skip-link {
-  position: absolute;
-  left: -9999px;
-
-  &:focus {
-    left: 0;
-    top: 0;
-    padding: .5rem 1rem;
-    background: var(--color-skiplink-bg); // High contrast requirement
-    color: var(--color-skiplink-text); // High contrast requirement
-    z-index: var(--z-overlay);
-    @include utilities.focus-ring(var(--color-skiplink-text));
-  }
-}
-
-body {
-  background-color: var(--color-surface-0);
-  color: var(--color-text);
-  margin: 0;
-}
-
-a {
-  color: var(--color-link);
-}
-
-a:hover {
-  color: var(--color-link-hover);
-}
-
-// Focus outline
-:where(a, button, input, textarea, select, [tabindex]) :focus-visible,
-:where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  @include utilities.focus-ring;
-}
-
-a:focus-visible {
-  outline-offset: 2px;
-  border-radius: var(--radius-xs);
-}
-

@@ -1,0 +1,41 @@
+@use "../variables";
+@use "../utilities";
+
+
+// Focus outline
+:where(a, button, input, textarea, select, [tabindex]) :focus-visible,
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  @include utilities.focus-ring;
+}
+
+a:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* For accessibility instead of display:none */
+.visually-hidden {
+  @include utilities.visually-hidden;
+}
+
+/*
+  Visually hidden "Skip to content" link for accessibility.
+  Hidden off-screen by default, but becomes visible and accessible
+  when focused (e.g. via keyboard navigation). This allows keyboard
+  and screen reader users to bypass repeated navigation and jump
+  directly to the main content.
+*/
+.skip-link {
+  position: absolute;
+  left: -9999px;
+
+  &:focus {
+    left: 0;
+    top: 0;
+    padding: .5rem 1rem;
+    background: var(--color-skiplink-bg); // High contrast requirement
+    color: var(--color-skiplink-text); // High contrast requirement
+    z-index: var(--z-overlay);
+    @include utilities.focus-ring(var(--color-skiplink-text));
+  }
+}

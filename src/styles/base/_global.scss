@@ -1,0 +1,13 @@
+@use "../variables";
+@use "../utilities";
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
+}
+
+body {
+  background-color: var(--color-surface-0);
+  color: var(--color-text);
+  margin: 0;
+}
