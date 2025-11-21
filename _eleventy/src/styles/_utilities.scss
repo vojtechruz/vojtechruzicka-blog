@@ -1,3 +1,5 @@
+@use "variables";
+
 // Small, reusable mixins and helpers
 
 // Reset list styles (removes bullets and default spacing)
@@ -16,4 +18,46 @@
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+// Surface card mixin for consistent "glassy" look
+@mixin surface-card($pad-y: var(--gap-medium), $pad-x: var(--gap-medium)) {
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: $pad-y $pad-x;
+}
+
+// Focus ring mixin for consistent accessibility
+@mixin focus-ring($color: var(--color-focus-ring), $width: 3px, $radius: var(--radius-sm)) {
+  outline: none;
+  box-shadow: 0 0 0 $width color-mix(in oklab, $color 80%, transparent);
+  border-radius: $radius;
+}
+
+// Responsive breakpoint mixin
+@mixin respond($breakpoint) {
+  @if $breakpoint ==small {
+    @media (max-width: variables.$breakpoint-small) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==medium {
+    @media (max-width: variables.$breakpoint-medium) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==large {
+    @media (max-width: variables.$breakpoint-large) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint ==xlarge {
+    @media (max-width: variables.$breakpoint-xlarge) {
+      @content;
+    }
+  }
 }

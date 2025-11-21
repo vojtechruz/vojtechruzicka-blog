@@ -26,10 +26,8 @@ $toc-indent-step: 1.25rem;
 
 .toc {
   margin-top: var(--gap-large);
-  background: var(--color-surface-1);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: 0 var(--gap-medium) var(--gap-medium);
+  @include utilities.surface-card(0, var(--gap-medium));
+  padding-bottom: var(--gap-medium);
   position: sticky;
   top: var(--offset-toc);
   font-size: 0.95rem;

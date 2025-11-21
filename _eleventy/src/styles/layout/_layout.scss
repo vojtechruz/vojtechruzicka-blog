@@ -1,0 +1,47 @@
+@use "../variables";
+@use "../utilities";
+
+.main {
+    display: flex;
+    flex-grow: 1;
+    gap: var(--gap-small);
+    padding: var(--gap-small);
+    justify-content: center;
+}
+
+.content {
+    max-width: 70ch;
+    padding: 0 var(--gap-large);
+}
+
+.sidebar {
+    max-width: 50ch;
+    padding: var(--gap-small) var(--gap-medium);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.footer {
+
+    .footer-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// When on small screen then switch from two columns to one column with sidebar hidden
+@include utilities.respond(medium) {
+    .main {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
