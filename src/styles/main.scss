@@ -5,9 +5,9 @@
 @use "base/typography";
 @use "base/print";
 
-@use "layout/layout";
+@use "layout";
 
-@use "navigation";
+@use "components/navigation";
 @use "components/code";
 @use "components/post";
 
