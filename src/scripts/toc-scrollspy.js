@@ -1,5 +1,5 @@
 // Lightweight scrollspy for the TOC
-(function () {
+(() => {
     const toc = document.querySelector('nav.toc');
     if (!toc) return;
     const links = Array.from(toc.querySelectorAll('.toc-list a[href^="#"]'));

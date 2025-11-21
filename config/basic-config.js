@@ -4,8 +4,7 @@ export function registerLayouts(eleventyConfig) {
 
 export function registerPassthrough(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
-    "./src/static/": "/", // Copy static files to the output directory
-    "./src/scripts/": "/scripts/"
+    "./src/static/": "/" // Copy static files to the output directory
   });
 }
 

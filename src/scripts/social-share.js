@@ -1,4 +1,4 @@
-(function () {
+(() => {
     const nativeBtn = document.getElementById('native-share-button');
     // The URL is now passed via data attribute on the button itself or a parent container
     // But to match previous logic, we can look for it on the copy button or just use location.href as fallback

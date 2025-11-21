@@ -1,5 +1,5 @@
 // Lightweight reading progress bar for post pages
-(function () {
+(() => {
     const bar = document.getElementById('reading-progress');
     if (!bar) return;
     const barInner = bar.querySelector('.reading-progress__bar');
