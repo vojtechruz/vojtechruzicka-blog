@@ -127,7 +127,7 @@
 }
 
 /* ====== RESPONSIVE ====== */
-@include variables.respond(medium) {
+@include utilities.respond(medium) {
   .linked-post>div {
     flex-direction: column;
   }

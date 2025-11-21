@@ -59,7 +59,7 @@
   }
 }
 
-@include variables.respond(medium) {
+@include utilities.respond(medium) {
 
   .main-navigation .navigation {
 
@@ -74,7 +74,7 @@
   }
 }
 
-@include variables.respond(small) {
+@include utilities.respond(small) {
   .menu-container {
     flex-direction: column;
   }

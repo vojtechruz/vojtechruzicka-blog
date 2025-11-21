@@ -19,7 +19,7 @@
     flex-wrap: wrap;
     gap: var(--gap-medium);
 
-    @include variables.respond(small) {
+    @include utilities.respond(small) {
         gap: var(--gap-small);
     }
 }
