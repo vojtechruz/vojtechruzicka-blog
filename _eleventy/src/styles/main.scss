@@ -9,6 +9,7 @@
 
 @use "navigation";
 @use "components/code";
+@use "components/post";
 
 @use "components/linked-post";
 @use "components/table-of-contents";
@@ -16,61 +17,16 @@
 @use "components/footer";
 @use "components/social-icons";
 
-.post-header-featured-image {
-  width: 100%;
-}
-
-
-.content h1 {
-  margin-top: var(--gap-medium);
-}
-
-.post-list {
-  @include utilities.reset-list;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-medium);
-
-  h2 {
-    margin-top: 0;
-    padding-top: 0;
-  }
-}
-
-.post img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* For accessibility instead of display:none */
 .visually-hidden {
   @include utilities.visually-hidden;
 }
 
-.menu-items,
-.post-tags {
+.menu-items {
   @include utilities.reset-list;
   display: flex;
   gap: calc(var(--gap-small)*1.5);
 }
-
-#post .post-tags {
-  display: inline-block;
-
-  li {
-    display: inline;
-    margin: 0.15rem;
-  }
-
-  .tag-name::before {
-    content: "#";
-  }
-}
-
-
 
 /*
   Visually hidden "Skip to content" link for accessibility.
@@ -93,223 +49,6 @@
     @include utilities.focus-ring(var(--color-skiplink-text));
   }
 }
-
-.image-wrapper {
-  // CSS custom properties for LQIP (Low Quality Image Placeholder) behavior
-  --lqip-blur-amount: 60px;
-  --lqip-transition-duration: 0.3s;
-  --lqip-bg-color: #f0f0f0;
-
-  overflow: hidden;
-
-  // Low Quality Image Placeholder - blurred initially
-  .lqip {
-    display: block;
-    filter: blur(var(--lqip-blur-amount));
-    transition: filter var(--lqip-transition-duration) ease-out;
-    background-color: var(--lqip-bg-color);
-    overflow: hidden;
-
-    // Remove blur once image is loaded
-    &[data-loaded] {
-      filter: blur(0);
-    }
-  }
-}
-
-article {
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.post-header-divider,
-.divider {
-  margin-top: var(--gap-large);
-  height: 2px;
-  background: color-mix(in srgb, var(--color-border) 80%, transparent);
-  border: none;
-}
-
-.divider {
-  margin-bottom: var(--gap-large);
-}
-
-.post-footer {
-  margin-block: var(--gap-large);
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-medium);
-}
-
-.post-header-excerpt {
-  margin-top: var(--gap-large);
-  color: var(--color-text-muted);
-}
-
-.date-published,
-.date-modified {
-  color: var(--color-text-subtle);
-}
-
-/* Better scroll positioning when jumping to headings */
-:is(h2, h3, h4)[id] {
-  scroll-margin-top: var(--offset-anchor);
-  position: relative;
-}
-
-/* The anchor icon */
-.header-anchor {
-  display: inline-grid;
-  place-items: center;
-  inline-size: 1.25em;
-  /* reserve space to avoid layout shift */
-  block-size: 1.25em;
-  margin-inline-start: .35em;
-  /* logical spacing (RTL-safe) */
-  border-radius: .35em;
-  color: var(--color-text-subtle);
-  text-decoration: none;
-  opacity: 0;
-  /* default hidden on pointer devices */
-  transform: translateY(.1em);
-  /* align to text baseline a bit nicer */
-  transition: opacity .18s ease, color .18s ease, box-shadow .18s ease;
-  outline: none;
-}
-
-/* Icon via mask + currentColor, so it adapts to theme */
-.header-anchor::before {
-  content: "";
-  inline-size: 1em;
-  block-size: 1em;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>\
-<path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/>\
-</svg>") no-repeat center / 100% 100%;
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 1 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 1 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 1 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 1 0 4.95 4.95l1.25-1.25a.75.75 0 1 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z'/></svg>") no-repeat center / 100% 100%;
-}
-
-/* Reveal on hover/focus; color on interaction */
-:is(h2, h3, h4):hover .header-anchor,
-.header-anchor:focus-visible {
-  opacity: 1;
-  color: var(--color-link);
-}
-
-/* Nice keyboard focus */
-.header-anchor:focus-visible {
-  &:before {
-    color: var(--color-link-hover);
-  }
-}
-
-/* Touch devices: always visible (no hover) */
-@media (hover: none) {
-  .header-anchor {
-    opacity: .75;
-  }
-}
-
-/* Applies to headings that have the permalink anchor */
-.post h1,
-.post h2,
-.post h3,
-.post h4 {
-  position: relative;
-  scroll-margin-top: var(--offset-anchor-post);
-  /* prevents heading from sitting under the fixed nav */
-}
-
-/* The inserted anchor icon */
-.post h2 .header-anchor,
-.post h3 .header-anchor,
-.post h4 .header-anchor {
-  position: absolute;
-  left: -2.3rem;
-  /* distance into the left gutter */
-  top: 52.5%;
-  transform: translateY(-50%);
-  opacity: 0;
-  /* hide by default */
-  text-decoration: none;
-  color: var(--color-text-muted);
-  font-size: 0.9em;
-  transition: opacity 0.2s ease, color 0.2s ease;
-  padding: 0.2rem;
-}
-
-/* Show the icon on hover/focus */
-.post h2:hover .header-anchor,
-.post h2:focus-within .header-anchor,
-.post h3:hover .header-anchor,
-.post h3:focus-within .header-anchor,
-.post h4:hover .header-anchor,
-.post h4:focus-within .header-anchor {
-  opacity: 1;
-  color: var(--color-link);
-}
-
-/* Mobile: always show icon (no hover available) */
-@include utilities.respond(medium) {
-
-  .post h2 .header-anchor,
-  .post h3 .header-anchor,
-  .post h4 .header-anchor {
-    opacity: 1;
-  }
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-
-
-.msg {
-  border-width: 1px;
-  border-style: solid;
-  padding: var(--gap-medium);
-  margin: var(--gap-medium) 0;
-  border-radius: var(--radius-sm);
-}
-
-.msg-warn {
-  border-color: var(--color-warning-border);
-  background: var(--color-warning-bg);
-  color: var(--color-warning);
-}
-
-.msg-error {
-  border-color: var(--color-error-border);
-  background: var(--color-error-bg);
-  color: var(--color-error);
-}
-
-.msg-success {
-  border-color: var(--color-success-border);
-  background: var(--color-success-bg);
-  color: var(--color-success);
-}
-
-.msg-info {
-  border-color: var(--color-info-border);
-  background: var(--color-info-bg);
-  color: var(--color-info);
-}
-
-#comments {
-  padding-top: var(--gap-large);
-  padding-bottom: var(--gap-xlarge);
-}
-
 
 body {
   background-color: var(--color-surface-0);
@@ -334,19 +73,4 @@ a:hover {
 a:focus-visible {
   outline-offset: 2px;
   border-radius: var(--radius-xs);
-}
-
-.post blockquote {
-  margin: var(--gap-medium) 0;
-  padding: 1.2rem 1.6rem;
-  border-left: 3px solid var(--color-accent);
-  background: color-mix(in srgb, var(--color-surface-2) 85%, black);
-  border-radius: var(--radius-sm);
-  font-style: italic;
-  color: var(--color-text-muted);
-  line-height: 1.55;
-}
-
-.post-content blockquote> :last-child {
-  margin-bottom: 0;
 }

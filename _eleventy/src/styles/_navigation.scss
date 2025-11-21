@@ -27,10 +27,10 @@
 
 
   .menu-items {
+    @include utilities.reset-list;
     display: flex;
     gap: .8rem;
     align-items: center;
-    @include utilities.reset-list;
 
     a {
       display: inline-flex;

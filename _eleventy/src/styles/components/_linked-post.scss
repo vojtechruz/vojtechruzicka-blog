@@ -2,10 +2,7 @@
 @use "../utilities";
 
 .linked-post {
-  background: var(--color-surface-1);
-  border: 1px solid var(--color-border-muted);
-  border-radius: var(--radius-sm);
-  padding: var(--gap-medium);
+  @include utilities.surface-card;
   display: flex;
   flex-direction: column;
   gap: var(--gap-small);
@@ -61,7 +58,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap-small);
-  
+
   a {
     display: inline-block;
     padding: 2px 6px;
