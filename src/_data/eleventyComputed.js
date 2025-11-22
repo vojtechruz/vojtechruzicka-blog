@@ -17,7 +17,7 @@ function shareImageUrl({ featuredImage, page, site }) {
   }
   if (featuredImage.startsWith("http")) return featuredImage;
   if (featuredImage.startsWith("/")) return `${site.url}${featuredImage}`;
-  const filename = featuredImage.replace(/^.\//, ""); // strip leading "./"
+  const filename = featuredImage.replace(/^\.\//, ""); // strip leading "./"
   return `${site.url}${page.url}${filename}`;
 }
 
@@ -102,8 +102,6 @@ export default {
   publishedDate: (d) => d.date,
   modifiedDate: (d) => d.dateModified || d.date,
 
-  // Primary tag for posts
-  primaryTag: (d) => pickPrimaryTag(d.tags),
 
   // Breadcrumbs (array of {name,url})
   breadcrumbs: (d) => {
