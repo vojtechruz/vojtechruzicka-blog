@@ -78,4 +78,9 @@
   .menu-container {
     flex-direction: column;
   }
+
+  // On mobile main nav will not be sticky
+  .main-navigation {
+    position: relative;
+  }
 }
