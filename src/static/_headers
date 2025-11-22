@@ -8,7 +8,7 @@
   Permissions-Policy: geolocation=(), camera=(), microphone=()
   Cross-Origin-Opener-Policy: same-origin
   # If you never load http: assets, uncomment the next line to auto-upgrade any stray http URLs
-  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io; media-src 'self'
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data: https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https:; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
   # --- Default caching (safe for HTML) ---
   Cache-Control: public, max-age=0, must-revalidate
   # --- Allow performance monitoring tools too see detailed metrics ---
