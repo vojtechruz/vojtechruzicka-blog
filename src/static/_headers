@@ -7,12 +7,27 @@
   Cross-Origin-Resource-Policy: same-origin
   Permissions-Policy: geolocation=(), camera=(), microphone=()
   Cross-Origin-Opener-Policy: same-origin
-  # If you never load http: assets, uncomment the next line to auto-upgrade any stray http URLs
-  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://giscus.app; style-src 'self' https: 'unsafe-inline'; connect-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
-  # --- Default caching (safe for HTML) ---
-  Cache-Control: public, max-age=0, must-revalidate
+
+  Content-Security-Policy:
+    upgrade-insecure-requests;
+    default-src 'self';
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    object-src 'none';
+    img-src 'self' data: https:;
+    font-src 'self' data: https:;
+    style-src 'self' https: 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval';
+    connect-src 'self';
+    frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app;
+    media-src 'self'
+
   # --- Allow performance monitoring tools too see detailed metrics ---
   Timing-Allow-Origin: *
+
+  # --- Default caching (safe for HTML) ---
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.html
   # Ensure HTML revalidates (fresh content after deploys)
