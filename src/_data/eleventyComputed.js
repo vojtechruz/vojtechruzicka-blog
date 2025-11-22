@@ -39,7 +39,7 @@ function getPageKind(d) {
 }
 
 /** Build breadcrumb array based on kind */
-function buildBreadcrumbs({ url, title, tags, kind }) {
+function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
   const crumbs = [{ name: "Home", url: "/" }];
 
   switch (kind) {
@@ -47,9 +47,10 @@ function buildBreadcrumbs({ url, title, tags, kind }) {
       return crumbs;
 
     case "homePaginated": {
-      const pageNum = url.replace("/pages/", "").replace("/", "");
+      const m = url.match(/^\/pages\/(\d+)\/?$/);
+      const pageNum = m ? m[1] : url;
       return crumbs.concat(
-        { name: "Archive", url: "/archives/" },
+        { name: "Topics", url: "/archives/" },
         { name: `Page ${pageNum}`, url }
       );
     }
@@ -61,13 +62,13 @@ function buildBreadcrumbs({ url, title, tags, kind }) {
       const tagSlug = url.replace(/^\/tags\/|\/$/g, "");
       return crumbs.concat(
         { name: "Topics", url: "/archives/" },
-        { name: tagSlug, url }
+        { name: tagName || tagSlug, url }
       );
     }
 
     case "post": {
       const primary = pickPrimaryTag(tags);
-      const middle = [{ name: "Archive", url: "/archives/" }];
+      const middle = [{ name: "Topics", url: "/archives/" }];
       if (primary) {
         middle.push({ name: primary, url: `/tags/${primary}/` });
       }
@@ -111,6 +112,7 @@ export default {
       title: d.title,
       tags: d.tags,
       kind,
+      tagName: d.tag,
     });
   },
 
