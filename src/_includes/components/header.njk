@@ -16,7 +16,7 @@
             <li>
               <a href="/" {% if isHome %}class="active" aria-current="page"{% endif %}>Home</a>
             </li>
-            {% set isTopics = current.startsWith('/archives/') %}
+            {% set isTopics = (current == '/archives/' or current.startsWith('/tags/')) %}
             <li>
               <a href="/archives/" {% if isTopics %}class="active" aria-current="page"{% endif %}>Topics</a>
             </li>
