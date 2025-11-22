@@ -20,12 +20,13 @@ function shareImageUrl({ featuredImage, page, site }) {
 }
 
 /** Detect page type flags once */
-function detectKinds(url, filePathStem, hasDate) {
+function detectKinds(url, filePathStem) {
   const isHome = url === "/";
   const isHomePaginated = url.startsWith("/pages/");
   const isTopics = url === "/tags/";
   const isTag = url.startsWith("/tags/") && url !== "/tags/";
-  const isPost = Boolean(hasDate) || (filePathStem || "").startsWith("/posts/");
+  const stem = filePathStem || "";
+  const isPost = stem.startsWith("/posts/");
   return { isHome, isHomePaginated, isTopics, isTag, isPost };
 }
 
@@ -65,7 +66,7 @@ function buildBreadcrumbs({ url, title, tags, isHome, isHomePaginated, isTopics,
 
 export default {
   // Canonical basics
-  pageTitle: (d) => d.metaTitle || d.title || d.site?.title,
+  pageTitle: (d) => d.title || d.site?.title,
   pageDescription: (d) => d.description || d.site?.description,
   pageUrl: (d) => (d.site?.url || "") + (d.page?.url || "/"),
 
@@ -77,7 +78,7 @@ export default {
     const u = d.page?.url || "/";
     return u.startsWith("/tags/") && u !== "/tags/";
   },
-  isPost: (d) => Boolean(d.date) || (d.page?.filePathStem || "").startsWith("/posts/"),
+  isPost: (d) => (d.page?.filePathStem || "").startsWith("/posts/"),
   isAbout: (d) => d.pageType === "about" || (d.page?.url === "/about/"),
 
   // Image
@@ -93,14 +94,12 @@ export default {
   // Breadcrumbs (array of {name,url})
   breadcrumbs: (d) => {
     const url = d.page?.url || "/";
-    const kinds = detectKinds(url, d.page?.filePathStem, d.date);
+    const kinds = detectKinds(url, d.page?.filePathStem);
     return buildBreadcrumbs({ url, title: d.title, tags: d.tags, ...kinds });
   },
 
-  metaTitle: (data) =>
-    data.title ? `${data.title} | ${data.site.title}` : data.site.title,
+  metaTitle: (d) =>
+    d.title ? `${d.title} | ${d.site.title}` : d.site.title,
 
   isLocalDevelopment:  process.env.ELEVENTY_RUN_MODE === "serve",
 };
-//TODO verify and clean, there are still some dummy data and not all fields may be used
-// TODO move functions from this file?
