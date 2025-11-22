@@ -31,7 +31,7 @@ function getPageKind(d) {
 
   if (url === "/") return { url, stem, kind: "home" };
   if (url.startsWith("/pages/")) return { url, stem, kind: "homePaginated" };
-  if (url === "/tags/") return { url, stem, kind: "topics" };
+  if (url === "/archives/") return { url, stem, kind: "topics" };
   if (url.startsWith("/tags/") && url !== "/tags/") return { url, stem, kind: "tag" };
   if (stem.startsWith("/posts/")) return { url, stem, kind: "post" };
 
@@ -55,12 +55,12 @@ function buildBreadcrumbs({ url, title, tags, kind }) {
     }
 
     case "topics":
-      return crumbs.concat({ name: "Topics", url: "/tags/" });
+      return crumbs.concat({ name: "Topics", url: "/archives/" });
 
     case "tag": {
       const tagSlug = url.replace(/^\/tags\/|\/$/g, "");
       return crumbs.concat(
-        { name: "Topics", url: "/tags/" },
+        { name: "Topics", url: "/archives/" },
         { name: tagSlug, url }
       );
     }
@@ -92,7 +92,7 @@ export default {
   isTopics: (d) => getPageKind(d).kind === "topics",
   isTag: (d) => getPageKind(d).kind === "tag",
   isPost: (d) => getPageKind(d).kind === "post",
-  isAbout: (d) => d.pageType === "about" || d.page?.url === "/about/",
+  isAbout: (d) => d.page?.url === "/about/",
 
   // Image
   imageUrl: (d) =>
