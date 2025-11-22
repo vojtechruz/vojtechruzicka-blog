@@ -1,44 +1,53 @@
-
 {# Uses precomputed values: pageTitle, pageDescription, pageUrl, imageUrl,
-isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate, modifiedDate, breadcrumbs #}
+isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate, modifiedDate, breadcrumbs, isAbout #}
 
 {% if isPost %}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"BlogPosting",
-    "mainEntityOfPage":{"@type":"WebPage","@id":"{{ pageUrl }}"},
-    "headline":"{{ pageTitle | escape }}",
-    "description":"{{ pageDescription | escape }}",
-    "image":"{{ imageUrl }}",
-    "author":{"@type":"Person","name":"{{ (site.author or site.title) | escape }}"},
-    "publisher":{"@type":"Organization","name":"{{ site.title | escape }}","logo":{"@type":"ImageObject","url":"{{ site.url }}/favicon.png"}},
-    {% if publishedDate %}"datePublished":"{{ publishedDate | toRfc3339 }}",{% endif %}
-    {% if modifiedDate %}"dateModified":"{{ modifiedDate | toRfc3339 }}",{% endif %}
-  "url":"{{ pageUrl }}"
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ pageUrl | dump | safe }} },
+  "headline": {{ pageTitle | dump | safe }},
+  "description": {{ pageDescription | dump | safe }},
+  "image": {{ imageUrl | dump | safe }},
+  "author": { "@type": "Person", "name": {{ (site.author or site.title) | dump | safe }} },
+  "publisher": {
+  "@type": "Organization",
+  "name": {{ site.title | dump | safe }},
+  "logo": { "@type": "ImageObject", "url": {{ (site.url + "/favicon.png") | dump | safe }} }
+  }{% if publishedDate %},
+  "datePublished": {{ (publishedDate | toRfc3339) | dump | safe }}{% endif %}{% if modifiedDate %},
+  "dateModified": {{ (modifiedDate | toRfc3339) | dump | safe }}{% endif %},
+  "url": {{ pageUrl | dump | safe }}
   }
 </script>
 
 {% elif isHome %}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"{{ site.title | escape }}",
-    "url":"{{ site.url }}"{% if site.sameAs and site.sameAs.length %},
-  "sameAs":[{% for s in site.sameAs %}"{{ s }}"{% if not loop.last %},{% endif %}{% endfor %}]{% endif %}{% if site.twitter %},
-  "potentialAction":{"@type":"SearchAction","target":"{{ site.url }}/search/?q={query}","query-input":"required name=query"}{% endif %}
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ site.title | dump | safe }},
+  "url": {{ site.url | dump | safe }}{% if site.sameAs and site.sameAs.length %},
+  "sameAs": [
+  {% for s in site.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %}
+  ]{% endif %}{% if site.twitter %},
+  "potentialAction": {
+  "@type": "SearchAction",
+  "target": {{ (site.url + "/search/?q={query}") | dump | safe }},
+  "query-input": "required name=query"
+  }{% endif %}
   }
 </script>
 
 {% elif isHomePaginated or isTopics or isTag %}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"CollectionPage",
-    "name":"{{ pageTitle | escape }}",
-    "url":"{{ pageUrl }}",
-    "description":"{{ pageDescription | escape }}"
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }}
   }
 </script>
 
@@ -46,46 +55,38 @@ isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate, modifiedDate, b
 {# --- AboutPage (the page) --- #}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"AboutPage",
-    "name":"{{ pageTitle | escape }}",
-    "url":"{{ pageUrl }}",
-    "description":"{{ pageDescription | escape }}",
-    "mainEntity":{
-      "@type":"Person",
-      "name":"{{ (site.person?.name or site.author or site.title) | escape }}",
-  {% if site.person?.image %}
-  "image":"{{ site.person.image if site.person.image.startswith('http') else site.url + site.person.image }}",
-  {% endif %}
-  "url":"{{ site.person.url }}",
-  {% if site.person?.jobTitle %}"jobTitle":"{{ site.person.jobTitle | escape }}",{% endif %}
-  {% if site.person?.worksFor %}"worksFor":{"@type":"Organization","name":"{{ site.person.worksFor | escape }}"},{% endif %}
-  {% if site.person?.email %}"email":"{{ site.person.email }}",{% endif %}
-  {% if (site.person?.sameAs and site.person.sameAs.length) or (site.sameAs and site.sameAs.length) %}
-  "sameAs":[
-  {%- if site.person?.sameAs and site.person.sameAs.length -%}
-  {%- for s in site.person.sameAs -%}"{{ s }}"{% if not loop.last %},{% endif %}{%- endfor -%}
-  {%- elif site.sameAs and site.sameAs.length -%}
-  {%- for s in site.sameAs -%}"{{ s }}"{% if not loop.last %},{% endif %}{%- endfor -%}
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }},
+  "mainEntity": {
+  "@type": "Person"{% set person = site.person %}{% if person and person.image %},
+  "image": {{ ((person.image[0] == '/') ? (site.url + person.image) : person.image) | dump | safe }}{% endif %}{% if person and person.jobTitle %},
+  "jobTitle": {{ person.jobTitle | dump | safe }}{% endif %}{% if person and person.worksFor %},
+  "worksFor": { "@type": "Organization", "name": {{ person.worksFor | dump | safe }} }{% endif %}{% if person and person.email %},
+  "email": {{ person.email | dump | safe }}{% endif %}{% if person and person.url %},
+  "url": {{ person.url | dump | safe }}{% endif %}{% if (person and person.sameAs and person.sameAs.length) or (site.sameAs and site.sameAs.length) %},
+  "sameAs": [
+  {%- if person and person.sameAs and person.sameAs.length -%}
+  {%- for s in person.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{%- endfor -%}
+  {%- else -%}
+  {%- for s in site.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{%- endfor -%}
   {%- endif -%}
-  ],
-  {% endif %}
+  ]{% endif %},
+  "name": {{ ((person and person.name) or site.author or site.title) | dump | safe }}
   }
   }
-
-
-  {# "knowsAbout":[//TODO add tags from site metadata] #}
-
 </script>
 
 {% else %}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"WebPage",
-    "name":"{{ pageTitle | escape }}",
-    "url":"{{ pageUrl }}",
-    "description":"{{ pageDescription | escape }}"
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }}
   }
 </script>
 {% endif %}
@@ -93,11 +94,11 @@ isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate, modifiedDate, b
 {% if not isHome %}
 <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"BreadcrumbList",
-    "itemListElement":[
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
       {% for c in breadcrumbs %}
-      {"@type":"ListItem","position":{{ loop.index }},"name":"{{ c.name | escape }}","item":"{{ site.url }}{{ c.url }}"}{% if not loop.last %},{% endif %}
+      {"@type": "ListItem", "position": {{ loop.index }}, "name": {{ c.name | dump | safe }}, "item": {{ (site.url + c.url) | dump | safe }}}{% if not loop.last %},{% endif %}
       {% endfor %}
     ]
   }
