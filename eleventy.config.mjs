@@ -16,6 +16,7 @@ import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
 import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
+import { dataLanguageTransformer } from "./config/markdown-transform/data-language-transformer.js";
 import shikiMarkdownPlugin from "@shikijs/markdown-it";
 import { transformerMetaHighlight, transformerNotationDiff } from "@shikijs/transformers";
 
@@ -51,14 +52,7 @@ export default async function (eleventyConfig) {
   //ShortCodes
   registerShortcodes(eleventyConfig);
 
-  const dataLanguageTransformer = {
-    name: "data-language",
-    pre() {
-      // this.options.lang is the detected fence language (e.g., 'js', 'java')
-      this.pre.properties ??= {};
-      this.pre.properties["data-language"] = this.options.lang || "text";
-    }
-  };
+  // data-language transformer extracted into its own module for reuse and clarity
 
   const shikiPlugin = await shikiMarkdownPlugin({
     themes: {
