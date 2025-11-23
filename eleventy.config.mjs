@@ -10,15 +10,11 @@ import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
 import registerTextFilters from "./config/filters/text.js";
 import registerShortcodes from "./config/shortcodes.js";
-import markdownIt from "markdown-it";
-import markdownItAnchor from "markdown-it-anchor";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
 import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
-import { dataLanguageTransformer } from "./config/markdown-transform/data-language-transformer.js";
-import shikiMarkdownPlugin from "@shikijs/markdown-it";
-import { transformerMetaHighlight, transformerNotationDiff } from "@shikijs/transformers";
+import registerMarkdownPlugin from "./config/plugins/markdown.js";
 
 export default async function (eleventyConfig) {
   // Passthrough copy rules
@@ -36,6 +32,7 @@ export default async function (eleventyConfig) {
   registerSassPlugin(eleventyConfig);
   registerImagePlugin(eleventyConfig);
   registerEsbuildPlugin(eleventyConfig);
+  await registerMarkdownPlugin(eleventyConfig);
   eleventyConfig.addPlugin(pluginTOC, {
     tags: ["h2", "h3", "h4"],
   });
@@ -52,32 +49,7 @@ export default async function (eleventyConfig) {
   //ShortCodes
   registerShortcodes(eleventyConfig);
 
-  // data-language transformer extracted into its own module for reuse and clarity
-
-  const shikiPlugin = await shikiMarkdownPlugin({
-    themes: {
-      light: "github-dark-dimmed",
-      dark: "github-dark-dimmed"
-    },
-    cssVariablePrefix: "--shiki-",
-    inlineStyle: false,
-    defaultBackground: false,
-    defaultColor: false,
-    transformers: [dataLanguageTransformer, transformerMetaHighlight(), transformerNotationDiff()]
-  });
-
-  // Markdown library with heading anchors
-  const md = markdownIt({
-    html: true
-  }).use(markdownItAnchor, {
-    // Auto-generate permalinks for headings
-    permalink: markdownItAnchor.permalink.ariaHidden({
-      placement: "before",
-      class: "header-anchor",
-      symbol: "",
-    }),
-  }).use(shikiPlugin);
-  eleventyConfig.setLibrary("md", md);
+  // Markdown configuration extracted to config/plugins/markdown.js
 
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
