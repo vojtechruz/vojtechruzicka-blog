@@ -198,27 +198,3 @@ export async function lqipSvgTransform(content, outputPath) {
   await Promise.all(jobs);
   return $.html();
 }
-
-/**
- * --- Usage in .eleventy.js ---
- *
- * import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
- * import { lqipSvgTransform } from "./config/htm-transform/lqipSvgTransform.js";
- *
- * export default function(eleventyConfig) {
- *   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
- *     extensions: "html",
- *     formats: ["avif","webp","jpeg"],
- *     widths: [400,800,1200],
- *     urlPath: "/img/",
- *     outputDir: "_site/img/",
- *   });
- *
- *   // Must run AFTER the image transform
- *   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
- *
- *   // Rebuild when this file changes in --serve mode
- *   eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
- * }
- *
- */

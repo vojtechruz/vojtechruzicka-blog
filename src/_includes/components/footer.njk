@@ -1,17 +1,40 @@
 <footer class="footer">
   <div class="footer-container">
-    <!-- TODO extract urls to data -->
-    <nav class="footer-social">
-      <a href="https://www.vojtechruzicka.com/feed/" aria-label="RSS" class="footer-icon">
+    <nav class="footer-social" aria-label="Social links">
+      <a
+        href="https://www.vojtechruzicka.com/feed/"
+        class="footer-icon"
+        title="Subscribe to RSS feed"
+        aria-label="Subscribe to RSS feed"
+      >
         {% include "icons/rss.njk" %}
       </a>
-      <a href="https://mastodon.social/@vojtechruzicka" rel="me" aria-label="Mastodon" class="footer-icon">
+
+      <a
+        href="https://mastodon.social/@vojtechruzicka"
+        rel="me"
+        class="footer-icon"
+        title="View my Mastodon profile"
+        aria-label="View my Mastodon profile"
+      >
         {% include "icons/mastodon.njk" %}
       </a>
-      <a href="https://www.linkedin.com/in/vojtechruzicka" aria-label="LinkedIn" class="footer-icon">
+
+      <a
+        href="https://www.linkedin.com/in/vojtechruzicka"
+        class="footer-icon"
+        title="View my LinkedIn profile"
+        aria-label="View my LinkedIn profile"
+      >
         {% include "icons/linkedin.njk" %}
       </a>
-      <a href="https://github.com/vojtechruz" aria-label="GitHub" class="footer-icon">
+
+      <a
+        href="https://github.com/vojtechruz"
+        class="footer-icon"
+        title="View my GitHub profile"
+        aria-label="View my GitHub profile"
+      >
         {% include "icons/github.njk" %}
       </a>
     </nav>

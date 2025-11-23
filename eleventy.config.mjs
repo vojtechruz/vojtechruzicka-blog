@@ -145,8 +145,7 @@ export default async function (eleventyConfig) {
   });
 
   // Rebuild when these files change in --serve mode
-  eleventyConfig.addWatchTarget("./config/htm-transform/lqipSvgTransform.js");
-  eleventyConfig.addWatchTarget("./config/htm-transform/wrapPicturesTransform.js");
+  eleventyConfig.addWatchTarget("./config/**/*.js");
 
   // CORS for giscus iframe for local development
   eleventyConfig.setServerOptions({
