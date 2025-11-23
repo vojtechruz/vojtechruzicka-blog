@@ -10,7 +10,8 @@
     {# Native share (only shown if navigator.share is available) #}
     <li>
       <button type="button" class="share-icon share-native" id="native-share-button" aria-label="Share using your apps"
-        data-url="{{ absoluteUrl }}" hidden>
+              title="Share this post"
+              data-url="{{ absoluteUrl }}" hidden>
         {% include "../icons/share.njk" %}
       </button>
     </li>
@@ -18,7 +19,8 @@
     {# Copy link (universal fallback) #}
     <li>
       <button type="button" class="share-icon share-copy" aria-label="Copy link to clipboard"
-        data-url="{{ absoluteUrl }}">
+              title="Copy link to clipboard"
+              data-url="{{ absoluteUrl }}">
         {% include "../icons/copy.njk" %}
       </button>
     </li>

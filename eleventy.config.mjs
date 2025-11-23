@@ -13,8 +13,8 @@ import registerShortcodes from "./config/shortcodes.js";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import pluginTOC from "eleventy-plugin-nesting-toc";
-import { lqipSvgTransform } from "./config/htm-transform/lqip-svg-transform.js";
-import { wrapPicturesTransform } from "./config/htm-transform/wrap-pictures-transform.js";
+import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
+import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import shikiMarkdownPlugin from "@shikijs/markdown-it";
 import { transformerMetaHighlight, transformerNotationDiff } from "@shikijs/transformers";
 
