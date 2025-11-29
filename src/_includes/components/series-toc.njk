@@ -21,7 +21,7 @@
 
   <nav class="series-toc" aria-label="Series navigation">
     <p class="toc-heading">All posts in the {{ seriesName }} series</p>
-    <ol>
+    <ol class="toc-list">
       {% for item in seriesPosts %}
         {% if item.isCurrent %}
           <li>
@@ -35,4 +35,5 @@
       {% endfor %}
     </ol>
   </nav>
+  <hr class="series-toc-divider" aria-hidden="true">
 {% endif %}

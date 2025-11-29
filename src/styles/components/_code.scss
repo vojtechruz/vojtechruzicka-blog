@@ -1,5 +1,7 @@
 @use "../variables";
 
+pre.shiki code { display: grid; }
+
 pre.shiki .line {
   min-height: 1.35em;
   line-height: 1.5;

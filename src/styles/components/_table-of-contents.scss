@@ -6,8 +6,6 @@ $toc-indent-step: 1.25rem;
 // Series TOC ----------------------------------------------------------------------------------------------------------
 
 .series-toc {
-  @include utilities.surface-card(0, var(--gap-medium));
-  margin-top: var(--gap-large);
   font-size: 0.95rem;
   flex: 0 0 auto;
 
@@ -17,6 +15,7 @@ $toc-indent-step: 1.25rem;
 
   ol {
     padding-left: var(--gap-medium);
+    color: var(--color-text-muted);
   }
 
   .series-current {
@@ -27,8 +26,6 @@ $toc-indent-step: 1.25rem;
 // TOC -----------------------------------------------------------------------------------------------------------------
 
 .toc {
-  @include utilities.surface-card(0, var(--gap-medium));
-  padding-bottom: var(--gap-medium);
   font-size: 0.95rem;
   line-height: 1.4;
 
@@ -48,13 +45,13 @@ $toc-indent-step: 1.25rem;
     ol {
       margin-top: 0.25em;
       margin-left: $toc-indent-step;
-      border-left: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-border-muted);
       padding-left: 0.75em;
     }
   }
 
   &:only-of-type {
-    margin-top: var(--gap-large);
+    margin-top: var(--gap-small);
   }
 }
 
@@ -74,17 +71,39 @@ $toc-indent-step: 1.25rem;
     padding-inline: var(--gap-small);
     padding-block-end: 3px;
   }
-
-  /* Active section highlighting (updated by JS scrollspy) */
-  li a.is-active,
-  li a[aria-current="true"] {
-    color: var(--color-link-hover);
-    font-weight: 600;
-    background: var(--color-bg-active);
-  }
 }
 
 .toc {
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
+}
+
+.series-toc-divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--color-border-muted);
+  margin-block: 0;
+}
+
+.toc-list a {
+  text-decoration: none;
+  display: block;
+  padding: 4px 6px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  opacity: 0.9;
+
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.toc-list a:hover {
+  color: var(--color-text);
+  background: rgba(255,255,255,0.03);
+}
+
+.toc-list a.is-active,
+.toc-list a[aria-current="true"] {
+  color: var(--color-accent)!important;
+  font-weight: 600;
+  opacity: 1;
 }
