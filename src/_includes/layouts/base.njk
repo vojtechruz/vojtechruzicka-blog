@@ -38,7 +38,9 @@
   <div class="main">
     {% block content %}{% endblock %}
     <aside class="sidebar" role="complementary">
-      {% block sidebar %}{% endblock %}
+      <div class="sidebar-inner">
+        {% block sidebar %}{% endblock %}
+      </div>
     </aside>
   </div>
 

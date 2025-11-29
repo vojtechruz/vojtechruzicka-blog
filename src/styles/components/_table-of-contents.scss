@@ -8,8 +8,8 @@ $toc-indent-step: 1.25rem;
 .series-toc {
   @include utilities.surface-card(0, var(--gap-medium));
   margin-top: var(--gap-large);
-  margin-bottom: var(--gap-small);
   font-size: 0.95rem;
+  flex: 0 0 auto;
 
   h4 {
     margin-top: 0;
@@ -27,13 +27,15 @@ $toc-indent-step: 1.25rem;
 // TOC -----------------------------------------------------------------------------------------------------------------
 
 .toc {
-  margin-top: var(--gap-small);
   @include utilities.surface-card(0, var(--gap-medium));
   padding-bottom: var(--gap-medium);
-  position: sticky;
-  top: var(--offset-toc);
   font-size: 0.95rem;
   line-height: 1.4;
+
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 
   ol {
     @include utilities.reset-list;
@@ -82,27 +84,7 @@ $toc-indent-step: 1.25rem;
   }
 }
 
-
-//TODO this adds hierarchical numbering like 1, 1.1 - maybe use it conditionally only for more complex posts?
-//
-//.toc {
-//  ol {
-//    counter-reset: item;
-//    list-style: none; /* remove default numbering */
-//    padding-left: 1.5em;
-//  }
-//
-//  li {
-//    display: block;
-//    position: relative;
-//  }
-//
-//  li::before {
-//    content: counters(item, ".") " ";
-//    counter-increment: item;
-//    position: absolute;
-//    left: -1.5em;
-//    color: #555;
-//    font-weight: 500;
-//  }
-//}
+.toc {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}

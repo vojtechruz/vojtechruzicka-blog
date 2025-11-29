@@ -14,9 +14,15 @@
     padding: 0 var(--gap-large);
 }
 
-.sidebar {
+.sidebar-inner {
+    top: var(--offset-sidebar);
     max-width: 50ch;
     padding: var(--gap-small) var(--gap-medium);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    position: sticky;
+    max-height: calc(100vh - 3rem - 2rem);
 }
 
 body {

@@ -34,7 +34,7 @@ export default async function (eleventyConfig) {
   registerEsbuildPlugin(eleventyConfig);
   await registerMarkdownPlugin(eleventyConfig);
   eleventyConfig.addPlugin(pluginTOC, {
-    tags: ["h2", "h3"],
+    tags: ["h2", "h3", "h4"],
   });
 
   // Templating options
