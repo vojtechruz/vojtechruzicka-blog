@@ -24,16 +24,6 @@ pre.shiki .line.highlighted {
   padding-left: calc(var(--code-pad-x) - 3px);
 }
 
-/* Scrollbar cosmetics (webkit/blink) */
-pre.shiki::-webkit-scrollbar {
-  height: 10px;
-}
-
-pre.shiki::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--color-border) 60%, transparent);
-  border-radius: var(--radius-xs);
-}
-
 /* Inline code (non-Shiki) */
 :not(pre)>code {
   background: color-mix(in oklab, var(--color-surface-2) 85%, black);
@@ -59,6 +49,18 @@ pre.shiki {
   --diff-remove-bg: color-mix(in oklab, var(--color-error) 14%, transparent);
   --diff-remove-bg-highlighted: color-mix(in oklab, var(--color-error) 30%, transparent);
   --diff-remove-border: var(--color-error);
+
+  scrollbar-color: var(--color-border) transparent;
+
+  margin: var(--gap-medium) 0;
+  padding: 1rem 1.1rem;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: auto;
+
+  /* Subtle inset to lift content */
+  box-shadow: inset 0 1px 0 color-mix(in oklab, #fff 3%, transparent);
 }
 
 pre.shiki .line.diff {
