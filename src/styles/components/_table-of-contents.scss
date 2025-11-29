@@ -6,7 +6,9 @@ $toc-indent-step: 1.25rem;
 // Series TOC ----------------------------------------------------------------------------------------------------------
 
 .series-toc {
-  margin-bottom: var(--gap-medium);
+  @include utilities.surface-card(0, var(--gap-medium));
+  margin-top: var(--gap-large);
+  margin-bottom: var(--gap-small);
   font-size: 0.95rem;
 
   h4 {
@@ -25,17 +27,13 @@ $toc-indent-step: 1.25rem;
 // TOC -----------------------------------------------------------------------------------------------------------------
 
 .toc {
-  margin-top: var(--gap-large);
+  margin-top: var(--gap-small);
   @include utilities.surface-card(0, var(--gap-medium));
   padding-bottom: var(--gap-medium);
   position: sticky;
   top: var(--offset-toc);
   font-size: 0.95rem;
   line-height: 1.4;
-
-  .toc-heading {
-    font-weight: 600;
-  }
 
   ol {
     @include utilities.reset-list;
@@ -52,6 +50,14 @@ $toc-indent-step: 1.25rem;
       padding-left: 0.75em;
     }
   }
+
+  &:only-of-type {
+    margin-top: var(--gap-large);
+  }
+}
+
+.toc-heading {
+  font-weight: 600;
 }
 
 .toc-list {
