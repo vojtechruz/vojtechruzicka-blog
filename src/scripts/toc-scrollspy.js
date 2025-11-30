@@ -24,10 +24,15 @@
 
   const idToLink = new Map();
   const headings = [];
+
   for (const a of links) {
     try {
-      const id = decodeURIComponent(a.getAttribute("href") || "").slice(1);
+      const href = a.getAttribute("href") || "";
+      // Use the fragment exactly as in the DOM id (no decodeURIComponent),
+      // so ids with encoded commas, parentheses, etc. still match.
+      const id = href.startsWith("#") ? href.slice(1) : href;
       if (!id) continue;
+
       const h = document.getElementById(id);
       if (h) {
         idToLink.set(id, a);
@@ -192,8 +197,8 @@
     const a = e.target.closest("a[href^='#']");
     if (!a) return;
 
-    const rawHref = a.getAttribute("href") || "";
-    const id = decodeURIComponent(rawHref).slice(1);
+    const href = a.getAttribute("href") || "";
+    const id = href.startsWith("#") ? href.slice(1) : href;
     if (!id || !idToLink.has(id)) return;
 
     // Take over scrolling so browser default doesn't fight with our offset logic
