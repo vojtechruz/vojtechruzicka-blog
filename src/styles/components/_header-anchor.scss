@@ -95,11 +95,18 @@
   color: var(--color-link);
 }
 
+// On mobile hide by default, show only on  tap
+.post h2:target .header-anchor,
+.post h3:target .header-anchor,
+.post h3:target .header-anchor  {
+  opacity: 1;
+}
+
 /* Mobile: always show icon (no hover available) */
 @include utilities.respond(medium) {
   .post h2 .header-anchor,
   .post h3 .header-anchor,
   .post h4 .header-anchor {
-    opacity: 1;
+    display: none;
   }
 }
