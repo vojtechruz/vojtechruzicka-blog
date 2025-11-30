@@ -1,4 +1,5 @@
 @use "../variables";
+@use "../utilities";
 
 pre.shiki code { display: grid; }
 
@@ -63,6 +64,11 @@ pre.shiki {
 
   /* Subtle inset to lift content */
   box-shadow: inset 0 1px 0 color-mix(in oklab, #fff 3%, transparent);
+
+  // If pre blocks contain scrollbar browser will include them in tab order even if they have tabindex -1 and they become focusable by keyboard
+  &:focus-within {
+    @include utilities.focus-ring;
+  }
 }
 
 pre.shiki .line.diff {
