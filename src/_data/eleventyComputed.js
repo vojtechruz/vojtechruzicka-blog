@@ -87,7 +87,7 @@ export default {
   pageDescription: (d) => d.description || d.site?.description,
   pageUrl: (d) => (d.site?.url || "") + (d.page?.url || "/"),
 
-  // Page type flags – všechny jedou přes jeden "kind"
+  // Page type flags
   isHome: (d) => getPageKind(d).kind === "home",
   isHomePaginated: (d) => getPageKind(d).kind === "homePaginated",
   isTopics: (d) => getPageKind(d).kind === "topics",

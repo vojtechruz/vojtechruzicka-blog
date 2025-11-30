@@ -4,7 +4,6 @@
 .post .post-tags {
   margin-top: var(--gap-small);
   margin-bottom: var(--gap-medium);
-  gap: calc(var(--gap-small)*1.5);
 }
 
 
@@ -12,23 +11,9 @@
   @include utilities.reset-list;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-small);
+  gap: calc(var(--gap-small)*1.5);
 
   .tag-name::before {
     content: "#";
-  }
-
-  a {
-    display: inline-block;
-    padding: 2px 6px;
-    border-radius: var(--radius-sm);
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border-muted);
-    text-decoration: none;
-
-    &:hover {
-      border-color: color-mix(in srgb, var(--color-link-hover) 80%, transparent);
-      color:       color-mix(in srgb, var(--color-link-hover) 80%, var(--color-text));
-    }
   }
 }

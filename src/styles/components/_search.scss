@@ -205,7 +205,7 @@
   pointer-events: auto;
 }
 
-/* když je otevřeno, zablokuj posun stránky */
+/* when open, block page scrolling */
 body.search-open {
   overflow: hidden;
 }
