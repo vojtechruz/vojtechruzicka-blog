@@ -179,10 +179,9 @@
 }
 
 .pagefind-ui__result-excerpt mark {
-  background: color-mix(in srgb, var(--color-accent), transparent 70%);
-  color: var(--color-text);
-  padding: 0 .2em;
-  border-radius: var(--radius-xs);
+  color: var(--color-accent-subtle);
+  background-color: transparent;
+  font-weight: 600;
 }
 
 .pagefind-ui__results {
@@ -212,10 +211,11 @@ body.search-open {
 }
 
 .pagefind-ui__result:hover {
-  background: color-mix(in srgb, var(--color-bg-active), transparent 82%);
+  background: color-mix(in srgb, var(--color-bg-highlight), transparent 93%);
   border-radius: var(--radius-sm);
+}
 
-  .pagefind-ui__result-title {
-    text-decoration: underline;
-  }
+.pagefind-ui__result-title a:hover {
+  text-decoration: underline;
+  color: var(--color-heading-link-hover);
 }

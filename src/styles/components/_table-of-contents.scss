@@ -104,7 +104,7 @@ $toc-indent-step: 1.25rem;
 
 .toc-list a.is-active,
 .toc-list a[aria-current="true"] {
-  color: var(--color-accent)!important;
+  color: var(--color-accent-subtle)!important;
   font-weight: 600;
   opacity: 1;
 }

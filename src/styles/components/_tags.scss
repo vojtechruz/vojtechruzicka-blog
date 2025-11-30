@@ -27,9 +27,8 @@
     text-decoration: none;
 
     &:hover {
-      background: var(--color-bg-highlight);
-      color: var(--color-link-hover);
-      border: 1px solid var(--color-link-hover);
+      border-color: color-mix(in srgb, var(--color-link-hover) 80%, transparent);
+      color:       color-mix(in srgb, var(--color-link-hover) 80%, var(--color-text));
     }
   }
 }

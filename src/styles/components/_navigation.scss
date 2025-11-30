@@ -40,14 +40,15 @@
       border-radius: var(--radius-sm);
       color: var(--color-text);
       text-decoration: none;
-      transition: background .2s ease, color .2s ease;
+      transition: color .2s ease, color .2s ease;
 
       &.active {
-        background: var(--color-bg-active);
+        color: var(--color-accent);
+        font-weight: 600;
       }
 
       &:hover {
-        background: var(--color-bg-highlight);
+        color: var(--color-accent);
       }
     }
   }

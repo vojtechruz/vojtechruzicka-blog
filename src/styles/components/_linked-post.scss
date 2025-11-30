@@ -32,10 +32,6 @@
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.25;
-
-  &:hover {
-    color: var(--color-link-hover);
-  }
 }
 
 /* Meta info row */
@@ -83,7 +79,7 @@
 
 .front-post-excerpt {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.5;
   margin-top: -3px;
   font-size: 1rem;
@@ -91,8 +87,9 @@
 }
 
 /* Hover effect on the whole card */
-.linked-post:hover .front-post-title a {
-  color: var(--color-link-hover);
+.linked-post .front-post-title a:hover {
+  text-decoration: underline;
+  color: var(--color-heading-link-hover);
 }
 
 /* ====== RESPONSIVE ====== */

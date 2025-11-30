@@ -15,7 +15,6 @@
 
   /* Highlight & active states
      (used for selected menu items, hover list rows, etc.) */
-  --color-bg-active: #334155;       /* Active / selected background */
   --color-bg-highlight: #475569;    /* Mild highlight background */
 
   /* ===== TEXT COLORS ===== */
@@ -27,7 +26,9 @@
   /* ===== LINKS & INTERACTIVE ===== */
   --color-link: #60a5fa;
   --color-link-hover: #93c5fd;
-  --color-accent: #fdba74;
+  --color-heading-link-hover: #93c5fd;
+  --color-accent: #f59e0b;
+  --color-accent-subtle: color-mix(in srgb, var(--color-accent) 80%, transparent);
 
   /* ===== BORDERS & DIVIDERS ===== */
   --color-border: #2a3a54; /* Subtle, but still visible on dark backgrounds */
