@@ -60,6 +60,7 @@ $toc-indent-step: 1.25rem;
 }
 
 .toc-list {
+  padding-inline: 2px;
   li a {
     white-space: nowrap;
     text-overflow: ellipsis;
