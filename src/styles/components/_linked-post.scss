@@ -2,16 +2,10 @@
 @use "../utilities";
 
 .linked-post {
-  @include utilities.surface-card;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-small);
-  transition: background 0.18s ease, border-color 0.18s ease;
-
-  &:hover {
-    background: var(--color-surface-2);
-    border-color: var(--color-bg-highlight);
-  }
+  padding: var(--gap-medium);
+  border: none;
+  background: none;
+  margin-bottom: var(--gap-xxl);
 }
 
 .linked-post h2.front-post-title {
@@ -41,7 +35,7 @@
   font-size: .875rem;
   color: var(--color-text-muted);
   align-items: center;
-  margin-bottom: var(--gap-small);
+  margin-bottom: calc(var(--gap-small)*2);
 }
 
 .front-post-info-date {
@@ -63,7 +57,7 @@
 }
 
 .front-post-image .image-wrapper {
-  height: 120px;
+  width: 160px;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -94,12 +88,13 @@
 
 /* ====== RESPONSIVE ====== */
 @include utilities.respond(medium) {
-  .linked-post>div {
-    flex-direction: column;
+  .front-post-image .image-wrapper {
+    width: 90px;
   }
+}
 
-  .front-post-image img {
-    width: 100%;
-    max-width: 320px;
+@include utilities.respond(small) {
+  .front-post-image, .front-post-image .image-wrapper {
+    display: none;
   }
 }

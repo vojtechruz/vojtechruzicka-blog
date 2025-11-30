@@ -13,7 +13,7 @@
     @include utilities.reset-list;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-medium);
+    gap: calc(var(--gap-medium)*1.1);
 
     h2 {
         margin-top: 0;
