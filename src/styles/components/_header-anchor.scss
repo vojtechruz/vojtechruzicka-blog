@@ -102,7 +102,6 @@
   opacity: 1;
 }
 
-/* Mobile: always show icon (no hover available) */
 @include utilities.respond(medium) {
   .post h2 .header-anchor,
   .post h3 .header-anchor,

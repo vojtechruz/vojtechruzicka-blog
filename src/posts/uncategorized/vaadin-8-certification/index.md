@@ -4,6 +4,7 @@ date: "2017-09-19"
 tags: ['Career', 'Java']
 path: '/vaadin-8-certification/'
 excerpt: 'If you are considering taking Vaadin 8 certification, this review can come in handy.'
+revised: false
 ---
 
 ## Purchasing the voucher
