@@ -4,7 +4,6 @@ date:  "2020-07-22"
 tags: ['Angular']
 path: '/angular/03-components/'
 excerpt: "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series."
-hidden: 'true'
 series: 'Angular Tutorial'
 series-order: 3
 revised: false
@@ -49,7 +48,7 @@ export class MainComponent {
 ### Selector
 Much better, but still not enough. We need to pass some metadata to the `@Component`. You can put in a configuration object with various properties. Let's start with the `selector`.
 
-```typescript{4}
+```typescript {4}
 import {Component} from "@angular/core";
 
 @Component({
@@ -64,7 +63,7 @@ A quick recap - selector is the name of the HTML tag, which represents our compo
 
 Let's go there and replace `<app-root></app-root>` (the main component we previously deleted) with `<app-main></app-main>`.
 
-```html{10}
+```html {10}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -84,7 +83,7 @@ Note that our component is called `main`, but the selector is `app-main`. Why is
 ### Template
 We have a component, but there is no HTML associated, which should be used for rendering it. Let's change that.
 
-```typescript{5}
+```typescript {5}
 import {Component} from "@angular/core";
 
 @Component({
@@ -159,7 +158,7 @@ That is the same HTML we specified in the `template: '<h1>Hello Angular!</h1>'`.
 ### Expanding the template
 Our component works, but it is rather simple. Let's expand its template a bit.
 
-```typescript{5-7}
+```typescript {5-7}
 @Component({
   selector: 'app-main',
   template: `
@@ -179,7 +178,7 @@ Let's create a new file in the same directory called `main.component.html` and c
 
 Now we need to change `template` to `templateUrl` and give it a path to our new HTML file.
 
-```typescript{3}
+```typescript {3}
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html'
@@ -210,7 +209,7 @@ Same as with the HTML template in our previous example, this is not very clean t
 
 Similarly to extracting HTML to a separate file, you can do the same with styles. Let's create a file called `main.component.scss` and move our styles inside. Then we can link it using `styleUrls`.
 
-```typescript{4}
+```typescript {4}
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -252,7 +251,7 @@ ng generate component footer
 
 The component was generated for us and also automatically registered in `app.module.ts.`
 
-```javascript{4}
+```typescript {4}
 @NgModule({
   declarations: [
     MainComponent,
@@ -290,7 +289,7 @@ We can also add some styling to `footer.component.scss`:
 ### Adding a footer to the MainComponent
 Now let's inspect the `footer.component.ts` file, which was generated for us.
 
-```javascript{2}
+```typescript {2}
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -302,7 +301,7 @@ We need to know what `selector` was generated for us so that we can use it later
 
 Now we want to nest the footer component in our MainComponent. We need to add it to the HTML template of the MainComponent, which is in file `main.component.html`. Let's add our new tag there to the bottom.
 
-```html{5}
+```html {5}
 <h1>Hello Angular!</h1>
 <p>This is my very first component! How cool is that?</p>
 <p>It does not do much at the moment and it looks ugly.</p>

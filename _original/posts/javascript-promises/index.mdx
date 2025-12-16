@@ -101,7 +101,7 @@ In case the promise is resolved successfully as expected, the function in `then(
 ### Finally
 In addition to `then()` and `catch()` there is a useful clause called `finally()`. It is run after the promise is settled, no matter whether it was successful or not. It is handy to prevent duplicated code, which would be otherwise both in `catch()` and `then()`. If you have code which should be executed after the promise finishes no matter what, it belongs to `finally()`.
 
-```javascript{4}
+```typescript {4}
 httpClient.get(targetUrl)
 .then(successFunction)
 .catch(failureFunction)

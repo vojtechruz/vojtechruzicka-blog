@@ -4,7 +4,6 @@ date:  "2020-07-24"
 tags: ['Angular']
 path: '/angular/05-component-input-output/'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
-hidden: 'true'
 series: 'Angular Tutorial'
 series-order: 5
 revised: false
@@ -48,7 +47,7 @@ This way, we can pass the current number of steps from the outside and make sure
 
 If you try this, it will not work because by default `steps` property of our component is not exposed and not available for data-binding. We need to specifically mark it as such.
 
-```typescript{4}
+```typescript {4}
 import {Component, Input} from "@angular/core";
 
 export class StepCountComponent {
@@ -61,7 +60,7 @@ It is enough just to add `Input()` decorator to our property, and it will be ava
 
 The name of our property `steps` matches the name of the property, which will be used for binding with `[]`.
 
-```typescript{3,7}
+```typescript {3,7}
 export class StepCountComponent {
   @Input()  
   steps = 0
@@ -74,7 +73,7 @@ export class StepCountComponent {
 
 This is the default behavior, but it can be changed by passing a string value to the `Input()` decorator:
 
-```typescript{2,7}
+```typescript {2,7}
 export class StepCountComponent {
   @Input('numberOfSteps')  
   steps = 0
@@ -115,7 +114,7 @@ Let's have a simple component for accepting or rejecting cookies on our site. We
 
 We have two buttons, but they don't do anything on click. Let's change that.
 
-```typescript{5,6,11,15}
+```typescript {5,6,11,15}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -144,7 +143,7 @@ Nothing new here. We already know how to listen to button clicks. We just call a
  
 Let's define a field for each of them and assign them a new instance of `EventEmmiter`. Later, when a button is clicked, we can use one of our emitters to `.emit()` an event that cookies were either accepted or rejected.
  
-```typescript{11,12,15,19}
+```typescript {11,12,15,19}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -170,7 +169,7 @@ export class CookiesInfoComponent {
 
 The last step is to mark our events as available for data binding. Remember that we needed to mark our field with `@Input()` to make if available for property data binding? This is very similar, but since we are firing events to the outside of the component, we need to use `@Output()`.
  
- ```typescript{11,13}
+ ```typescript {11,13}
  @Component({
    selector: 'app-cookies-info',
    template: `
@@ -217,7 +216,7 @@ Let's change our cookie component a bit to demonstrate this. Instead of having t
 
 When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - e.g. `emit(false)`.
 
-```typescript{12,15,19}
+```typescript {12,15,19}
 @Component({
   selector: 'app-cookies-info',
   template: `
@@ -263,7 +262,7 @@ So far, we covered only one-way data binding. Either input to a component or out
 
 Let's revisit our step count example and add a button, which resets the counter.
 
-```typescript{7,14,15,16}
+```typescript {7,14,15,16}
 import {Component, Input} from "@angular/core";
 
 @Component({
@@ -289,7 +288,7 @@ There is one problem, though. Since we are using one-way data binding with `@Inp
 
 One solution could be to provide an `Output()` event, which notifies the parent component that the count was reset.
 
-```typescript{13,14,17,18}
+```typescript {13,14,17,18}
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({
@@ -315,7 +314,7 @@ export class StepCountComponent {
 
 Now, after changing the value to 0, we notify the parent component, that the steps were reset and let it handle updating its step data.
 
-```html{3}
+```html {3}
 <app-step-count 
     [steps]="steps" 
     (stepsUpdated)="updateSteps($event)">
@@ -326,7 +325,7 @@ Now, after changing the value to 0, we notify the parent component, that the ste
 This will work, but there is, fortunately, an easier way. Remember the 'banana in a box' - `[()]`? We can use it here for two-way binding.
 
 
-```html{2}
+```html {2}
 <app-step-count 
 [(steps)]="steps">
 </app-step-count>
@@ -336,7 +335,7 @@ The changes will now be propagated both from our child `StepCount` component to 
 
 So if we have `steps` input, our output needs to be `stepsChange`:
 
-```typescript{12,14}
+```typescript {12,14}
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 
 @Component({

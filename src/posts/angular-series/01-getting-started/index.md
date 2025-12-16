@@ -4,7 +4,6 @@ date:  "2020-07-20"
 tags: ['Angular']
 path: '/angular/01-getting-started/'
 excerpt: 'How to get started with Angular from scratch, part 1.'
-hidden: 'true'
 series: 'Angular Tutorial'
 series-order: 1
 revised: false

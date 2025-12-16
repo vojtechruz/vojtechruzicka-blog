@@ -4,7 +4,6 @@ date:  "2020-07-23"
 tags: ['Angular']
 path: '/angular/04-data-binding/'
 excerpt: 'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
-hidden: 'true'
 series: 'Angular Tutorial'
 series-order: 4
 revised: false
@@ -16,9 +15,9 @@ Each component has its own HTML template and the corresponding Typescript file. 
 ## Interpolation
 This is the simplest flavor of data binding. It allows you to display some data from your TS class in your HTML template. It is a one-way binding.
 
-It is very easy to use. In your template, you can wrap any expression in a pair of double curly braces `{{}}`. Then the expression is resolved to string based on fields and methods in your typescript class. Let's look at an example.
+It is very easy to use. In your template, you can wrap any expression in a pair of double curly braces `&#123;&#123;&#125;&#125;`. Then the expression is resolved to string based on fields and methods in your typescript class. Let's look at an example.
 
-```javascript{3,6}
+```typescript {3,6}
 @Component({
   selector: 'app-main',
   template: '<h1>{{title}}</h1>'
@@ -32,7 +31,7 @@ In the template `{{title}}` is resolved to the `title` field of our `MainCompone
 
 Properties are often good enough, but sometimes you need something more dynamic. You can bind to methods as well.
 
-```typescript{3,7}
+```typescript {3,7}
 @Component({
   selector: 'app-main',
   template: '<h1>{{getTitle()}}</h1>'
@@ -48,7 +47,7 @@ export class MainComponent {
 But you don't necessarily need to use just fields or methods, you can use expressions such as:
 - `{{ 5*7 }}`
 - `{{ 'The result is: ' + getResult() }}`
-- `{{someObject.someProperty}`
+- `{{someObject.someProperty}}`
 - `{{isReady ? 'Ready to go!' : 'Not ready yet'}}`
 
 As you can see, it is even possible to use the ternary operator, although it may be cleaner and more readable to extract this expression to a separate method.
@@ -105,7 +104,7 @@ Let's try to react to a button click event. For event binding, you need to wrap 
 
 In this case, whenever the `click` event occurs, the method `buttonClicked` will be called on our class. Here is the full example.
 
-```javascript{3,7}
+```typescript {3,7}
 @Component({
   selector: 'app-main',
   template: "<button (click)='buttonClicked()'>Click me!</button>"
@@ -132,7 +131,7 @@ Two-way data binding uses a combination of event binding `()` and property bindi
 
 Now let's look at a specific example.
 
-```typescript{5,8}
+```typescript {5,8}
 @Component({
   selector: 'app-main',
   template: `
@@ -148,7 +147,7 @@ We have a field called `name` in our component and an input (a textbox for user 
 
 But this is not really two-way binding yet, right? Let's add a way to change the value from our class. We need a button, which clears the `name` whenever clicked. Because it is two-way binding, it does not only clear the `name` field, but also the value of our input.
 
-```typescript{5,6,10,12,13,14}
+```typescript {5,6,10,12,13,14}
 @Component({
   selector: 'app-main',
   template: `

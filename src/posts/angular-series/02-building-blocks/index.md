@@ -4,7 +4,6 @@ date:  "2020-07-21"
 tags: ['Angular']
 path: '/angular/02-building-blocks/'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
-hidden: 'true'
 series: 'Angular Tutorial'
 series-order: 2
 revised: false
@@ -90,7 +89,7 @@ Notice that `<app-root></app-root>` is not a standard HTML tag. Instead, it iden
 
 Let's look at the `app.component.ts`:
 
-```javascript {2}
+```typescript {2}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -153,7 +152,7 @@ So now we know how our application's javascript code is included. But what exact
 
 The main entry point of the application is a file called `main.ts`.
 
-```javascript {6}
+```typescript {6}
 if (environment.production) {
   enableProdMode();
 }
@@ -165,7 +164,7 @@ platformBrowserDynamic()
 
 Notice the highlighted line. It specifies, which module should be started. In our case, it is `AppModule`, which is described in `app.module.ts`.
 
-```javascript {3,9}
+```typescript {3,9}
 @NgModule({
   declarations: [
     AppComponent
