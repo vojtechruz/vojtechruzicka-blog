@@ -30,10 +30,19 @@ pre.shiki .line.highlighted {
 /* Inline code (non-Shiki) */
 :not(pre)>code {
   background: color-mix(in oklab, var(--color-surface-2) 85%, black);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: 0.1rem var(--gap-small);
+  padding-bottom: 0.2rem;
   white-space: nowrap;
+
+  color: var(--color-text-heading);
+
+  background: color-mix(in oklab, var(--color-surface-2) 88%, black);
+
+  border: 1px solid color-mix(in oklab, var(--color-border) 70%, white);
+
+  font-family: var(--font-mono);
+  font-size: 0.95em;
 }
 
 /* Apply Shiki token colors from CSS variables so text colors come from the Shiki theme */
