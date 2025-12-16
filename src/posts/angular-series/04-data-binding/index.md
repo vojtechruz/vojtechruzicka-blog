@@ -1,6 +1,6 @@
 ---
 title: 'Angular Tutorial 4: Data binding'
-date:  "2020-07-23"
+date:  '2020-07-23'
 tags: ['Angular']
 path: '/angular/04-data-binding/'
 excerpt: 'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
@@ -76,7 +76,7 @@ Here we added the `disabled` attribute to a button, so it cannot be clicked. The
 You can achieve this behavior with Angular property binding. If you wrap an attribute with a pair of square brackets `[]`, then you can bind its value to an expression.
 
 ```html
-<button [disabled]='isSubmitButtonDisabled'>Submit!</button>
+<button [disabled]="isSubmitButtonDisabled">Submit!</button>
 ```
 
 Now the disabled state is bound to field `isSubmitButtonDisabled` in our component's class. Whether the button is disabled now depends on this value. It is updated whenever the value changes. You can bind to methods or more complicated expressions as with interpolation.
@@ -88,7 +88,7 @@ Note that property binding can also be used to bind to input parameters of compo
 ### Binding to DOM nodes
 When a browser parses HTML, it creates a corresponding DOM node for each HTML tag, such as `<button>`. This property binding does not alter HTML, but rather binds directly to properties of DOM nodes.
 
-This is important to keep in mind. Many HMTL tag attributes have corresponding DOM properties with the same name. However, it is not always the case. Some tag attributes don't have corresponding DOM node properties (such as aria attributes for accessibility) and vice versa.
+This is important to keep in mind. Many HTML tag attributes have corresponding DOM properties with the same name. However, it is not always the case. Some tag attributes don't have corresponding DOM node properties (such as aria attributes for accessibility) and vice versa.
 
 
 ## Event Binding
@@ -99,7 +99,7 @@ Fortunately, you can bind events of HTML elements (and components) from your tem
 Let's try to react to a button click event. For event binding, you need to wrap the event name in parentheses, for example, `(click)`. Then you can specify an expression to be executed:
 
 ```html
-<button (click)='buttonClicked()'>Click me!</button>
+<button (click)="buttonClicked()">Click me!</button>
 ```
 
 In this case, whenever the `click` event occurs, the method `buttonClicked` will be called on our class. Here is the full example.
@@ -107,17 +107,17 @@ In this case, whenever the `click` event occurs, the method `buttonClicked` will
 ```typescript {3,7}
 @Component({
   selector: 'app-main',
-  template: "<button (click)='buttonClicked()'>Click me!</button>"
+  template: '<button (click)="buttonClicked()">Click me!</button>'
 })
 export class MainComponent {
 
   buttonClicked() {
-    console.log("The button was clicked!")
+    console.log('The button was clicked!');
   }
 }
 ```
 
-In theory, instead of calling method, you can directly have some expression such as `(click)='value = 12'`. However, it is a better practice not to have such logic in your template to keep it just a simple view. Your class should be instead responsible for business logic.
+In theory, instead of calling method, you can directly have some expression such as `(click)="value = 12"`. However, it is a better practice not to have such logic in your template to keep it just a simple view. Your class should be instead responsible for business logic.
 
 ### Limitations
 Unlike interpolation, event binding does allow side effects. That's the whole point of reacting to events. You can use assignments (although not `++`, `--`, or compound assignment such as `+=` or `-=`). You cannot still use bitwise operators. This applies to expressions directly in your HTML template. Of course, when calling a method of your TS class instead, you can use any valid Typescript in such method.
@@ -127,7 +127,7 @@ So far, we discussed one-way data binding. Either your class to its template or 
 
 Such binding is less complex and faster, but sometimes you need full-fledged two-way binding. For example, you can have a form with some fields. Whenever the user changes some of these fields, your data in the TS class should be updated. But also, when you change that data in your class, the user should see the new data in their form.
 
-Two-way data binding uses a combination of event binding `()` and property binding `[]` together `[()]`. It can be difficult to remember the order of brackets here, so you can instead remember that the brackets  `[()] `look like *banana in a box*. The logic behind this bracket combination is that `()` defines one-way binding from template to the class. Square brackets `[]` define one-way binding the other way around. Two-way binding is just a combination of these two concepts.
+Two-way data binding uses a combination of event binding `()` and property binding `[]` together `[()]`. It can be difficult to remember the order of brackets here, so you can instead remember that the brackets  `[()]` look like *banana in a box*. The logic behind this bracket combination is that `()` defines one-way binding from template to the class. Square brackets `[]` define one-way binding the other way around. Two-way binding is just a combination of these two concepts.
 
 Now let's look at a specific example.
 
@@ -136,14 +136,15 @@ Now let's look at a specific example.
   selector: 'app-main',
   template: `
     Enter your name:
-    <input [(ngModel)]='name'>
+    <input [(ngModel)]="name">
+  `
 })
 export class MainComponent {
-  name = ''
+  name = '';
 }
 ```
 
-We have a field called `name` in our component and an input (a textbox for user to enter some string in). We bind the value of this input to our `name` field using `[(ngModel)]='name'`. Whenever a user enters some value, our `name` gets updated.
+We have a field called `name` in our component and an input (a textbox for user to enter some string in). We bind the value of this input to our `name` field using `[(ngModel)]="name"`. Whenever a user enters some value, our `name` gets updated.
 
 But this is not really two-way binding yet, right? Let's add a way to change the value from our class. We need a button, which clears the `name` whenever clicked. Because it is two-way binding, it does not only clear the `name` field, but also the value of our input.
 
@@ -152,15 +153,16 @@ But this is not really two-way binding yet, right? Let's add a way to change the
   selector: 'app-main',
   template: `
     Enter your name:
-    <input [(ngModel)]='name'>
-    <button (click)="clearName()">Clear name</button>`
+    <input [(ngModel)]="name">
+    <button (click)="clearName()">Clear name</button>
+  `
 })
 export class MainComponent {
 
-  name = ''
+  name = '';
 
   clearName() {
-    this.name = ''
+    this.name = '';
   }
 }
 ```
