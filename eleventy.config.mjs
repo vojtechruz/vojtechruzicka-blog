@@ -61,7 +61,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addTransform("fix-aria-hidden-header-anchors", fixAriaHiddenHeaderAnchorsTransform);
 
   // Shiki is adding tabindex to code blocks, remove that
-  eleventyConfig.addTransform("strip-pre-tabindex", stripPreTabindex);
+
 
   // Rebuild when these files change in --serve mode
   eleventyConfig.addWatchTarget("./config/**/*.js");
