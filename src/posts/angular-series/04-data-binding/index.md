@@ -8,14 +8,14 @@ series: 'Angular Tutorial'
 series-order: 4
 revised: false
 ---
-
+{% raw %}
 ## Data binding
 Each component has its own HTML template and the corresponding Typescript file. The template is the view of the component. It defines what are the HTML contents of the component to be rendered. The typescript adds some state and behavior. In most cases, your HTML component is not static, you want to reflect what state and data you have in your typescript class. Data binding allows you to dynamically display your data in the template, react to the user events, and even set up two-way data synchronization between the template and the typescript component class.
 
 ## Interpolation
 This is the simplest flavor of data binding. It allows you to display some data from your TS class in your HTML template. It is a one-way binding.
 
-It is very easy to use. In your template, you can wrap any expression in a pair of double curly braces `&#123;&#123;&#125;&#125;`. Then the expression is resolved to string based on fields and methods in your typescript class. Let's look at an example.
+It is very easy to use. In your template, you can wrap any expression in a pair of double curly braces `{{}}`. Then the expression is resolved to string based on fields and methods in your typescript class. Let's look at an example.
 
 ```typescript {3,6}
 @Component({
@@ -186,3 +186,4 @@ We have four kinds of data binding:
 | Two-way binding  | `[()]` | Class ↔ Template | Synchronizes value between the class and the template. Requires `FormsModule`. |
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise operators or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation and property binding, there should be no side effects.
+{% endraw %}
