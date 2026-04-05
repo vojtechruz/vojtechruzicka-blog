@@ -10,7 +10,7 @@ Legend:
 
 ## 1) Project setup and goals
 - [ ] Define success criteria (identical URLs, SEO parity, page speed, core features).
-- [ ] Choose template language(s) for Eleventy (e.g., Nunjucks, Liquid, EJS, 11ty.js).
+- [x] Choose template language(s) for Eleventy (e.g., Nunjucks, Liquid, EJS, 11ty.js).
 - [x] Confirm output directory (default: _site) and deployment target (e.g., Netlify, Vercel, GitHub Pages).
 - [ ] Node version alignment (.node-version / .nvmrc) and engines field in package.json.
 - [x] Install Eleventy and essential plugins as devDependencies.
@@ -120,8 +120,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Extract current/old Gatsby URLs (if structure changed historically).
 - [ ] Map 1:1 to Eleventy permalinks to avoid redirects if possible.
 - [ ] Create explicit redirects for any changed/removed routes.
-  - [ ] Netlify: netlify.toml [[redirects]] or public/_redirects
-  - [ ] Vercel: vercel.json
 - [ ] Verify 301 status codes and canonicalization (trailing slash, www/non-www, http→https).
 - [ ] 410 for removed content when intentional.
 
