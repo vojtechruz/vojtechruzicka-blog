@@ -16,14 +16,17 @@ Each voucher costs $130 or €99. You can buy as many as you want and each grant
 
 The certification consists of 40 questions. Each question is worth 1 point.
 Questions have two to four possible answers. The tricky part is that it is multiple choice.
-That means that all the answers can be correct. Or none of them. Or any combination. That usually makes guessing really hard.
+That means that all the answers can be correct. Or none of them. Or any combination. That usually makes guessing really
+hard.
 You are allowed to use Vaadin Documentation and Javadoc freely, it is not considered cheating.
-So it is really useful to have them at hand during the exam. However, each question has a strict time limit of 90 seconds.
+So it is really useful to have them at hand during the exam. However, each question has a strict time limit of 90
+seconds.
 That is not enough to search for verification of all the possible answers.
 You need to know what the question is about, but you can usually verify one or two answers you are not so sure about.
 If you run out of time for a question, you continue to the next one. You can move only forward.
 There is no way to check back your previous answers.
-If you take as much time as possible for each question, the exam will take nearly one hour, but usually, it can be done faster.
+If you take as much time as possible for each question, the exam will take nearly one hour, but usually, it can be done
+faster.
 
 Before the exam starts, you will receive a warm-up question,
 which will show you what it looks like and what are the controls available.
@@ -39,23 +42,28 @@ Fortunately, the exam can be paused after each question. Clicking the Close butt
 You need to make sure you already marked the answer to the current question and then click Close to suspend the exam.
 Otherwise, the current question would be marked as with an empty answer.
 When Resuming the exam, you will continue with the next question.
-This is a cool feature which allows you to pause the exam in case of some sudden situation, which requires your attention.
+This is a cool feature which allows you to pause the exam in case of some sudden situation, which requires your
+attention.
 
 ## Losing connection
 
 When taking the exam, make sure your connection is as stable as possible. However,
-if you happen to lose the connection during the exam, nothing is lost. You can continue the test later when you manage to reestablish the connection.
+if you happen to lose the connection during the exam, nothing is lost. You can continue the test later when you manage
+to reestablish the connection.
 However, the last question will be marked as incorrect.
 
 ## Failing the exam
 
-The passing limit is at least 60%. That is - you need at least 24 of the 40 questions right. If you do not meet the limit,
+The passing limit is at least 60%. That is - you need at least 24 of the 40 questions right. If you do not meet the
+limit,
 you can buy another try, but you need to wait at least 30 days before doing so.
 
 Be sure to prepare for the exam adequately. The questions are not devilishly hard or tricky,
-but multiple possible answers make the exam much more difficult. During the [free certification week in September 2017](https://vaadin.com/blog/-/blogs/free-vaadin-8-certification-week-digest),
+but multiple possible answers make the exam much more difficult. During the [free certification week in September
+2017](https://vaadin.com/blog/-/blogs/free-vaadin-8-certification-week-digest),
 270 developers out of 1250 made it. That is a 21.6% pass rate, which is not much.
-Possibly, many of the attendees tried the exam out of curiosity and did not prepare as much as if they had paid for it themselves.
+Possibly, many of the attendees tried the exam out of curiosity and did not prepare as much as if they had paid for it
+themselves.
 Still, you should not underestimate your preparation.
 
 ## Passing the exam
@@ -70,7 +78,8 @@ on the Vaadin forums and also add the certificate automatically to your LinkedIn
 ## Vaadin 7 vs 8
 
 The exam is just an updated version of previously available Vaadin 7 certification.
-That means, if you've already passed the previous exam, you will be more than familiar with the format and contents of the test.
+That means, if you've already passed the previous exam, you will be more than familiar with the format and contents of
+the test.
 Many questions are very similar to what was available in the previous version,
 and it should not be too hard to prepare for the updated exam if you already passed the original one.
 

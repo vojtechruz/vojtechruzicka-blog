@@ -2,8 +2,8 @@
 // https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 {
   "config": {
-    // Disable line length — blog posts use long prose lines
-    "MD013": false
+    // Validate line length with max 120 characters (exclude code blocks and tables)
+    "MD013": { "line_length": 120, "code_blocks": false, "tables": false }
   },
   "globs": ["src/posts/**/*.md"]
 }
