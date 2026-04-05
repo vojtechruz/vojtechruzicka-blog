@@ -38,7 +38,7 @@ export function fixAriaHiddenHeaderAnchorsTransform(content, outputPath) {
         }
 
         // Helpful title for copy/link affordance
-        newAttrs += 'title="Copy link to this section"';
+        newAttrs += ' title="Copy link to this section"';
 
         return '<a' + newAttrs + '>';
       }
