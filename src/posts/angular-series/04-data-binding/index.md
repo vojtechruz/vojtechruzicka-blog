@@ -9,10 +9,13 @@ series-order: 4
 revised: false
 ---
 {% raw %}
+
 ## Data binding
+
 Each component has its own HTML template and the corresponding Typescript file. The template is the view of the component. It defines what are the HTML contents of the component to be rendered. The typescript adds some state and behavior. In most cases, your HTML component is not static, you want to reflect what state and data you have in your typescript class. Data binding allows you to dynamically display your data in the template, react to the user events, and even set up two-way data synchronization between the template and the typescript component class.
 
 ## Interpolation
+
 This is the simplest flavor of data binding. It allows you to display some data from your TS class in your HTML template. It is a one-way binding.
 
 It is very easy to use. In your template, you can wrap any expression in a pair of double curly braces `{{}}`. Then the expression is resolved to string based on fields and methods in your typescript class. Let's look at an example.
@@ -53,7 +56,8 @@ But you don't necessarily need to use just fields or methods, you can use expres
 
 As you can see, it is even possible to use the ternary operator, although it may be cleaner and more readable to extract this expression to a separate method.
 
-### Limitations
+### Interpolation Limitations
+
 Although expressions you can use in this way are quite powerful, there are some limitations.
 
 - You cannot use assignment (=, +=, ++, ...)
@@ -63,9 +67,10 @@ Although expressions you can use in this way are quite powerful, there are some 
 
 In general, **the expression should not have any side effects**. You should not change any state. It is easier to follow this with simple expressions, because the direct assignment is not allowed anyway. But be careful not to have any side effects in methods you bind to.
 
-This is important for Angular change detection. Also, because the change detection is executed very often, **expressions should be very simple and fast to execute**. Otherwise, it may negatively impact application performance and user experience. 
+This is important for Angular change detection. Also, because the change detection is executed very often, **expressions should be very simple and fast to execute**. Otherwise, it may negatively impact application performance and user experience.
 
 ## Property binding
+
 In HTML, you can modify certain elements by adding additional attributes.
 
 ```html
@@ -87,15 +92,16 @@ This is one-way binding, from the class to the template, Again, be aware of the 
 Note that property binding can also be used to bind to input parameters of components. We'll cover this in a separate article.
 
 ### Binding to DOM nodes
+
 When a browser parses HTML, it creates a corresponding DOM node for each HTML tag, such as `<button>`. This property binding does not alter HTML, but rather binds directly to properties of DOM nodes.
 
 This is important to keep in mind. Many HTML tag attributes have corresponding DOM properties with the same name. However, it is not always the case. Some tag attributes don't have corresponding DOM node properties (such as aria attributes for accessibility) and vice versa.
 
-
 ## Event Binding
+
 Interpolation covers data flow from the class to the template. What about the other direction, though? In your template, various events can be triggered. Such as button clicks or other user interaction. You need a way to be able to react to these events.
 
-Fortunately, you can bind events of HTML elements (and components) from your template to some methods in your class. 
+Fortunately, you can bind events of HTML elements (and components) from your template to some methods in your class.
 
 Let's try to react to a button click event. For event binding, you need to wrap the event name in parentheses, for example, `(click)`. Then you can specify an expression to be executed:
 
@@ -120,10 +126,12 @@ export class MainComponent {
 
 In theory, instead of calling method, you can directly have some expression such as `(click)="value = 12"`. However, it is a better practice not to have such logic in your template to keep it just a simple view. Your class should be instead responsible for business logic.
 
-### Limitations
+### Event Binding Limitations
+
 Unlike interpolation, event binding does allow side effects. That's the whole point of reacting to events. You can use assignments (although not `++`, `--`, or compound assignment such as `+=` or `-=`). You cannot still use bitwise operators. This applies to expressions directly in your HTML template. Of course, when calling a method of your TS class instead, you can use any valid Typescript in such method.
 
 ## Two-way binding
+
 So far, we discussed one-way data binding. Either your class to its template or vice versa.
 
 Such binding is less complex and faster, but sometimes you need full-fledged two-way binding. For example, you can have a form with some fields. Whenever the user changes some of these fields, your data in the TS class should be updated. But also, when you change that data in your class, the user should see the new data in their form.
@@ -174,9 +182,8 @@ Nothing special here, we utilized event binding, which we already know how to us
 When using two-way data binding with ngModel, you need to import FormsModule to your module (in the imports section).
 {% endinfo %}
 
-
-
 ## What we've learned
+
 Angular data binding is an important concept, which makes your application dynamic. It allows real-time synchronization of data and events between your component's class and template.
 
 We have four kinds of data binding:

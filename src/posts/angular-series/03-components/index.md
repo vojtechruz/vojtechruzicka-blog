@@ -10,6 +10,7 @@ revised: false
 ---
 
 ## Getting started
+
 Let's start with a fresh application to recap the usage of Angular CLI. We need to generate a new project using `ng new`. Then navigate inside its directory and run `ng serve` to launch the local development server on `http://localhost:4200/`.
 
 If all goes well, you should be able to see something similar to this:
@@ -23,6 +24,7 @@ What you can see is the `app.component`. In the next section, we'll replace it w
 Note that now your app won't compile. Don't worry, we'll fix that soon enough.
 
 ## New component
+
 Now let's create our first component called `main`. First, we'll need a Typescript file to contain our component. Start by creating `main.component.ts` in the `src/app` directory.
 
 Each component is a Typescript class:
@@ -34,6 +36,7 @@ export class MainComponent {
 ```
 
 ### @Component decorator
+
 Now we need to provide additional metadata to the component, so Angular knows how to handle it. This is done using `@Component` decorator on the class level. Since this is not recognized by Typescript by default, we need to import it.
 
 ```typescript
@@ -46,6 +49,7 @@ export class MainComponent {
 ```
 
 ### Selector
+
 Much better, but still not enough. We need to pass some metadata to the `@Component`. You can put in a configuration object with various properties. Let's start with the `selector`.
 
 ```typescript {4}
@@ -81,6 +85,7 @@ Let's go there and replace `<app-root></app-root>` (the main component we previo
 Note that our component is called `main`, but the selector is `app-main`. Why is there the `app-` prefix? It is a good practice to have such prefix (can have a different value) for your custom components. This allows you to easily distinguish your own components' tags from ordinary HTML tags and avoid collisions. It also allows you to distinguish your components from any third-party components, which usually have their own prefix. You can even use a different prefix in each module.
 
 ### Template
+
 We have a component, but there is no HTML associated, which should be used for rendering it. Let's change that.
 
 ```typescript {5}
@@ -98,6 +103,7 @@ export class MainComponent {
 As you can see, `template` is used to specify a string, which represents HTML used to render our component. For now, we specified just a simple H1 heading with a hard-coded title.
 
 ### Updating app.module
+
 Our component is now ready, but our project won't compile, and there is no output in the browser.
 
 If you remember the previous post, you can guess what is wrong. Our module `app.module.ts` specifies which components should be recognized in `index.html`. And there is still the old `app.component`, which we deleted. Let's fix that. This is the current content of `app.module.ts`.
@@ -157,6 +163,7 @@ Now if you save your files and go to `http://localhost:4200/`, you should see th
 That is the same HTML we specified in the `template: '<h1>Hello Angular!</h1>'`.
 
 ### Expanding the template
+
 Our component works, but it is rather simple. Let's expand its template a bit.
 
 ```typescript {5-7}
@@ -189,6 +196,7 @@ Now we need to change `template` to `templateUrl` and give it a path to our new 
 That's much cleaner. We have our template neatly separated from our Typescript file.
 
 ### Adding some styling
+
 Our component works, but it does not look very pretty. We have no styling at all. Fortunately, we can easily add some with `styles`.
 
 ```typescript
@@ -219,6 +227,7 @@ Similarly to extracting HTML to a separate file, you can do the same with styles
 ```
 
 ## Generating components
+
 We managed to create our first component, but it was not very easy and convenient. Fortunately, Angular CLI allows you to create new components automatically. Just navigate in your terminal to the directory where you want your component to be created (let's use `src/app/` for now) and run the following command:
 
 ```bash
@@ -237,6 +246,7 @@ This command creates a new directory with the name of your component and inside 
 All the files are already linked together. What's more, your new component gets automatically added to the `app.module`.
 
 ## Nesting components
+
 We currently have just one component in our app. In real applications, this is rarely the case. Usually, you have many components, which you combine together to create the desired output.
 
 You often have one root component in your `index.html`, and the rest of the components are nested inside. The nesting can be multiple levels deep - that means you can have component inside a component inside another component. Also, components are reusable and can be used multiple times.
@@ -244,6 +254,7 @@ You often have one root component in your `index.html`, and the rest of the comp
 ![Component Breakdown](component-breakdown.png)
 
 ### Adding nested component
+
 Let's try nesting in practice. First, we'll need a new component called `footer`, which we'll and into our `main` component. You already know that Angular CLI can help us here a lot:
 
 ```bash
@@ -268,8 +279,8 @@ The component was generated for us and also automatically registered in `app.mod
 
 What's important is that the `bootstrap` section still contains only `MainComponent` as it is the only component, which will be present in `index.html.` But note that our `FooterComponent` was added to the `declarations` section. That's important. All the components we use in our app (no matter whether they are used directly in `index.html`) need to be in this section, so Angular can recognize them.
 
-
 ### Customizing footer
+
 The HTML template of our new component, has already some content generated in `footer.component.html`. Let's change it to something more meaningful:
 
 ```html
@@ -288,6 +299,7 @@ We can also add some styling to `footer.component.scss`:
 ```
 
 ### Adding a footer to the MainComponent
+
 Now let's inspect the `footer.component.ts` file, which was generated for us.
 
 ```typescript {2}
@@ -315,6 +327,7 @@ Our latest changes should be reflected in the browser. The footer component is n
 ![Nested Footer](nested-footer.png)
 
 ## What we've learned
+
 Components are basic building blocks of Angular applications. They are encapsulated, can be reused and nested in each other.
 
 You can easily create new components using Angular CLI with:
@@ -334,5 +347,5 @@ Then each component also needs an HTML template. It can be directly in your TS f
 It is very similar with styling. Although you can have styles directly in your TS with `styles`, it is preferable to extract them in their own file(s) using `styleUrls`.
 
 ## What's Next
-In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and out of components and creating and handling events.
 
+In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and out of components and creating and handling events.

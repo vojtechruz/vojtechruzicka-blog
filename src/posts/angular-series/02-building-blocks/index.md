@@ -12,9 +12,11 @@ revised: false
 This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting Started](https://www.vojtechruzicka.com/angular/01-getting-started/)
 
 ## Building blocks
+
 Before we dig deeper into individual features of Angular, let's take a step back and look at a bigger picture. Let's learn which are the basic building blocks of Angular application.
 
 ### Components
+
 Components are the main building blocks of your application. A component is a piece of User Interface, which can be reused and nested in other components. Each component is self-sufficient. It encapsulates its internals and only exposes inputs, which it accepts and output events that can occur inside.
 
 Each component consists of:
@@ -29,11 +31,13 @@ For additional functionality, components can use other building blocks inside (w
 Breaking down your application to components allows you to reduce complexity and reuse code. Such application is also easier to maintain as your code is broken down into small independent pieces. Components are also easy to test in isolation, and each component usually has its own unit test file.
 
 ### Services
+
 Services contain your business logic and API calls. But wait, components also have their own logic in their Typescript files (such as `app.component.ts`). So how do you decide if your logic should be in a component or in a service? Components should usually contain only their UI logic, which is specific to that component. General business logic should be in services. Services can be used in multiple components. Backend calls are usually in your services, not components.
 
 Another important aspect of services is Dependency Injection. You don't instantiate services yourself, but rather ask Angular for a service to be injected from the outside. This is much more flexible and allows you to modify the injected service based on the current situation or inject different service (which has the same interface) if needed.
 
 ### Directives
+
 Directives don't have UI of their own. Instead, they add some additional logic to components or HTML tags. They are used inside components HTML templates and are used as HTML tag attributes. The following `*ngIf` directive says that the `div` tag should be present only if `isLoading` is true.
 
 ```html
@@ -43,6 +47,7 @@ Directives don't have UI of their own. Instead, they add some additional logic t
 There are a couple more built-in directives, and you can create your own. Directives are useful for component and tag logic, which is often reused across multiple components, so it is better to have it separately rather than in each component.
 
 ### Pipes
+
 Unlike component's the pipes don't have any visible user interface. Instead, they are used in your components to transform and manipulate data. Each pipe accepts some input, optionally some other parameters, and produce some transformed output based on that. There are some built-in pipes such as:
 
 - currency formatting
@@ -54,6 +59,7 @@ Unlike component's the pipes don't have any visible user interface. Instead, the
 Of course, you can write your own.
 
 ### Modules
+
 Different building blocks, such as components and services allow you to organize your app by breaking it down in smaller pieces. Modules are a higher level of organization, which can contain other parts such as components, services, directives, or pipes. Modules are usually focused on grouping building blocks, which are similar in functionality or domain.
 
 Modules can have dependencies on each other. They can use some parts exposed by other modules. Similar to components, modules offer good encapsulation as you can decide what should be publicly exposed and what is only for internal use of that particular module.
@@ -63,6 +69,7 @@ Breaking down your application into multiple modules is a great way of organizin
 ## Putting it together
 
 ### index.html
+
 Now when we know all the building blocks, we can look at how they all fit together. Let's use our application from the last post, or you can simply generate a new application using `ng new`.
 
 So what exactly happens when in between running `ng serve` and our app being displayed in the browser?
@@ -102,7 +109,6 @@ export class AppComponent {
 
 The important part here is `selector: 'app-root'`, which matches the tag name we used:
 
-
 | index.html              | app.component.ts       |
 |-------------------------|------------------------|
 | `<app-root></app-root>` | `selector: 'app-root'` |
@@ -118,15 +124,14 @@ Of course, each component has three parts, which are used when rendering that pa
 There is also a fourth part - unit test file, but it is not used when running your app.
 
 ### Bootstrapping
+
 If you check the `index.html` file again, you'll notice that it contains our component's tag. However, it does not contain any scripts. How is then angular loaded and started when the browser downloads our HTML file?
 
-It turns out that Angular CLI, as a part of the build compiles all your typescript files and bundles them together with your libraries. Then it includes the resulting scripts in your `index.html` file. You can easily check that by inspecting the source code of your app in the browser using `Right click → View page source`. 
+It turns out that Angular CLI, as a part of the build compiles all your typescript files and bundles them together with your libraries. Then it includes the resulting scripts in your `index.html` file. You can easily check that by inspecting the source code of your app in the browser using `Right click → View page source`.
 
 {% info %}
 Be careful that just inspecting the page contents in Dev Tools won't work as it does not show the original source code but rather the actual contents of the DOM, which is manipulated by Angular at runtime
 {% endinfo %}
-
-
 
 ```html {12-16}
 <!doctype html>
@@ -182,6 +187,7 @@ export class AppModule { }
 Note the following section, which is important when starting the application `bootstrap: [AppComponent]`. It defines which components should be visible to Angular when processing the `index.html` file. You can provide multiple components here, but usually, the practice is to have one root component and then the other components nested in it. Such nested components don't have to be present in the `bootstrap` section.
 
 ## Summary
+
 We covered basic building blocks of Angular applications:
 
 - **Components** - reusable fragments of User Interface.
@@ -197,4 +203,5 @@ We also learned how Angular applications are started:
 - The starting module (here `app.module.ts`) defines our root component in the `bootstrap` section, so Angular recognizes it in the `index.html`.
 
 ## What's Next
+
 In the next article in the series, we'll learn more about [Angular Components](/angular/03-components).
