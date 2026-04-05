@@ -66,7 +66,7 @@ ng version
 
 If the installation was successful, you should see output similar to this:
 
-```
+```text
      _                      _                 ____ _     ___
     / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
    / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
@@ -104,7 +104,7 @@ ng new hello-angular
 
 This will generate a new project **in the current directory** with the name specified (`hello-angular` in this case). You'll be prompted a few basic questions before the project is generated.
 
-```
+```text
 ? Would you like to add Angular routing? No
 ? Which stylesheet format would you like to use? (Use arrow keys)
 > CSS
@@ -127,7 +127,7 @@ You need to run this in the root directory of your project. The project is gener
 
 When you run `ng serve` Angular first compiles and bundles all your files and then runs a local development server, so you can check your app locally.
 
-```
+```text
 ** Angular Live Development Server is listening on localhost:4200,
 open your browser on http://localhost:4200/ **
 ```

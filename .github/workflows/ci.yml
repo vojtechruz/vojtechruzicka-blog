@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Validate Markdown
+        run: npm run validate:md
+
       - name: Build site
         run: npm run build
 

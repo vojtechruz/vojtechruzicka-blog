@@ -9,8 +9,7 @@ series-order: 2
 revised: false
 ---
 
-This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting Started
-](https://www.vojtechruzicka.com/angular/01-getting-started/)
+This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting Started](https://www.vojtechruzicka.com/angular/01-getting-started/)
 
 ## Building blocks
 Before we dig deeper into individual features of Angular, let's take a step back and look at a bigger picture. Let's learn which are the basic building blocks of Angular application.
@@ -19,6 +18,7 @@ Before we dig deeper into individual features of Angular, let's take a step back
 Components are the main building blocks of your application. A component is a piece of User Interface, which can be reused and nested in other components. Each component is self-sufficient. It encapsulates its internals and only exposes inputs, which it accepts and output events that can occur inside.
 
 Each component consists of:
+
 - HTML template (`foo.component.html`) - this is HTML structure of each component. It can contain other components or regular HTML tags.
 - Logic written in Typescript (`foo.component.ts`) - This is the logic of the component, inputs, output events, and its state.
 - Styling (`foo.component.scss`) - These are styles that define how the component looks. By default, these apply only to the given component, so you don't have to worry about CSS conflicts.
@@ -110,6 +110,7 @@ The important part here is `selector: 'app-root'`, which matches the tag name we
 That's how Angular knows which component to display instead of the tag `<app-root>`.
 
 Of course, each component has three parts, which are used when rendering that particular component:
+
 - app.component.html
 - app.component.ts
 - app.component.scss

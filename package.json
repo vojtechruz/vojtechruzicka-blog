@@ -9,7 +9,8 @@
     "postbuild": "pagefind --site _site",
     "test": "vitest run",
     "test:watch": "vitest",
-    "validate:html": "html-validate \"_site/**/*.html\""
+    "validate:html": "html-validate \"_site/**/*.html\"",
+    "validate:md": "markdownlint-cli2"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "html-validate": "^10.11.3",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^8.6.7",
+    "markdownlint-cli2": "^0.22.0",
     "pagefind": "^1.4.0",
     "shiki": "^3.14.0",
     "vitest": "^4.1.2"

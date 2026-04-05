@@ -45,6 +45,7 @@ export class MainComponent {
 ```
 
 But you don't necessarily need to use just fields or methods, you can use expressions such as:
+
 - `{{ 5*7 }}`
 - `{{ 'The result is: ' + getResult() }}`
 - `{{someObject.someProperty}}`

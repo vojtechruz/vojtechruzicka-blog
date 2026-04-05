@@ -120,6 +120,7 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
 We need to change all occurences of `AppComponent` to `MainComponent`, including the import. The new content should be the following:
 
 ```typescript {4,8,14}
@@ -245,7 +246,7 @@ You often have one root component in your `index.html`, and the rest of the comp
 ### Adding nested component
 Let's try nesting in practice. First, we'll need a new component called `footer`, which we'll and into our `main` component. You already know that Angular CLI can help us here a lot:
 
-```
+```bash
 ng generate component footer
 ```
 
@@ -318,7 +319,7 @@ Components are basic building blocks of Angular applications. They are encapsula
 
 You can easily create new components using Angular CLI with:
 
-```
+```bash
 ng generate component component-name
 ```
 

@@ -138,8 +138,9 @@ export class CookiesInfoComponent {
 Nothing new here. We already know how to listen to button clicks. We just call a different method based on which of the buttons was clicked. Now we need to somehow expose events to the users of our component.
  
  In our case, we can consider two events:
- 1. User accepts cookies - `acceptCookies`
- 2. User declines cookies - `declineCookies`
+
+1. User accepts cookies - `acceptCookies`
+2. User declines cookies - `declineCookies`
  
 Let's define a field for each of them and assign them a new instance of `EventEmmiter`. Later, when a button is clicked, we can use one of our emitters to `.emit()` an event that cookies were either accepted or rejected.
  
@@ -211,8 +212,9 @@ Since this is event binding and not property binding, we use `()` instead of `[]
 Our previous example was rather simple in the sense that we just fired an event that something happened. Often, we need more than that. We need to include some additional data with our event. For example, when listening to mouse click events, you are interested not only that mouse was clicked, but also which button and what screen coordinates was the cursor at.
 
 Let's change our cookie component a bit to demonstrate this. Instead of having two events - one for accepting and for declining, we'll have just one. The event can be named `cookiesAnswer`. The event will send additional data - in our case, `boolean` is sufficient:
- - `true` if cookies were accepted
- - `false` if cookies were declined
+
+- `true` if cookies were accepted
+- `false` if cookies were declined
 
 When firing the event, it is no longer necessary to call just `emit()`. We can pass the data we want to send with our event inside the `emit()` function - e.g. `emit(false)`.
 

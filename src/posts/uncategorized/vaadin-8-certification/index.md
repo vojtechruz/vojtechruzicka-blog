@@ -70,6 +70,7 @@ Many questions are very similar to what was available in the previous version,
 and it should not be too hard to prepare for the updated exam if you already passed the original one.
 
 ## Study resources
+
 -   [Official Vaadin Docs](https://vaadin.com/docs/-/part/framework/introduction/intro-overview.html)
 -   [Vaadin Tutorial](https://vaadin.com/docs/-/part/framework/tutorial.html)
 -   [Vaadin JavaDoc](https://vaadin.com/api/)
