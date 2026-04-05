@@ -3,19 +3,7 @@
 {
   "config": {
     // Disable line length — blog posts use long prose lines
-    "MD013": false,
-    // Disable trailing spaces — existing content has them
-    "MD009": false,
-    // Disable blank line around headings — existing blog style
-    "MD022": false,
-    // Disable multiple consecutive blank lines — minor style issue
-    "MD012": false,
-    // Disable single trailing newline — minor style issue
-    "MD047": false,
-    // Disable list marker spacing — existing Gatsby-migrated content uses 3 spaces
-    "MD030": false,
-    // Allow duplicate headings — same heading text is valid in different sections
-    "MD024": false
+    "MD013": false
   },
   "globs": ["src/posts/**/*.md"]
 }
