@@ -36,6 +36,9 @@ jobs:
       - name: Validate HTML
         run: npm run validate:html
 
+      - name: Validate XML
+        run: npm run validate:xml
+
       - name: Validate links
         run: npm run validate:links
 
