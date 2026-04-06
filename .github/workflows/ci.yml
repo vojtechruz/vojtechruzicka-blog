@@ -36,5 +36,8 @@ jobs:
       - name: Validate HTML
         run: npm run validate:html
 
+      - name: Validate links
+        run: npm run validate:links
+
       - name: Run tests
         run: npm test

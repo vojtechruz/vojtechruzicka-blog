@@ -1,0 +1,8 @@
+{
+  "recurse": true,
+  "timeout": 30000,
+  "skip": [
+    "http://localhost:4200"
+  ],
+  "verbosity": "error"
+}
