@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:html": "html-validate \"_site/**/*.html\"",
+    "validate:js": "eslint .",
     "validate:md": "markdownlint-cli2",
     "validate:xml": "node scripts/validate-xml.mjs",
     "validate:links": "cd _site && linkinator . --config ../linkinator.config.json",
@@ -41,11 +42,14 @@
     "sharp": "^0.34.4"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
     "@shikijs/markdown-it": "^3.14.0",
     "@xmldom/xmldom": "^0.9.9",
     "esbuild": "^0.27.0",
+    "eslint": "^10.2.0",
     "glob": "^13.0.6",
+    "globals": "^17.4.0",
     "gray-matter": "^4.0.3",
     "html-validate": "^10.11.3",
     "linkinator": "^7.6.1",
