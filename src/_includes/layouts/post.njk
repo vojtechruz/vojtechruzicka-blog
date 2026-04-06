@@ -22,7 +22,7 @@
         <span class="date-modified">{{dateModified | readableDate}}</span>
         <ul class="post-tags">
           {% for tag in tags %}
-          <li><a class="tag-name" href="/tags/{{tag}}">{{tag}}</a></li>
+          <li><a class="tag-name" href="/tags/{{ tag | slugify }}/">{{tag}}</a></li>
           {% endfor %}
         </ul>
       </div>
