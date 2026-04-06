@@ -42,5 +42,8 @@ jobs:
       - name: Validate links
         run: npm run validate:links
 
+      - name: Run Lighthouse CI
+        run: npm run lighthouse
+
       - name: Run tests
         run: npm test
