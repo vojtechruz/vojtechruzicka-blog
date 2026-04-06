@@ -4,7 +4,7 @@
       "staticDistDir": "./_site",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/java/break-java-generics-naming-convention/",
+        "http://localhost/angular/01-getting-started/",
         "http://localhost/tags/java/"
       ],
       "numberOfRuns": 3
