@@ -14,12 +14,20 @@ export default function codepen(
   defaultTab = "result",
   showCaption = true
 ) {
-  if (typeof height === "string" && /^\d+$/.test(height)) height = Number(height);
+  if (typeof height === "string" && /^\d+$/.test(height)) {
+    height = Number(height);
+  }
 
   const embedUrl = toEmbedUrl(String(input));
   const params = new URLSearchParams();
-  if (defaultTab) params.set("default-tab", String(defaultTab));
-  if (height) params.set("height", String(height));
+
+  if (defaultTab) {
+    params.set("default-tab", String(defaultTab));
+  }
+
+  if (height) {
+    params.set("height", String(height));
+  }
 
   const src = `${embedUrl}?${params.toString()}`;
 
@@ -58,7 +66,7 @@ function toEmbedUrl(input) {
       .replace(/\/(pen|details)\//, "/embed/")
       .replace(/\/embed\//, "/embed/");
     return u.toString().replace(/#.*$/, "");
-  } catch (e) {
+  } catch {
     // Not a full URL: accept patterns like user/pen/slug or user/embed/slug
     const path = String(input).replace(/^\/+|\/+$/g, "");
     const parts = path.split("/");

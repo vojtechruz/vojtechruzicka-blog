@@ -5,7 +5,10 @@ const AVOID = new Set(["blog", "post", "misc", "general"]);
 
 /** Pick first non-generic tag, else first tag */
 function pickPrimaryTag(tags = []) {
-  if (!Array.isArray(tags) || tags.length === 0) return null;
+  if (!Array.isArray(tags) || tags.length === 0) {
+    return null;
+  }
+
   const chosen = tags.find((t) => !AVOID.has(String(t).toLowerCase()));
   return chosen || tags[0] || null;
 }
@@ -15,9 +18,17 @@ function shareImageUrl({ featuredImage, page, site }) {
   if (!featuredImage) {
     return `${site.url}${site.defaultShareImage || "/images/default-share.png"}`;
   }
-  if (featuredImage.startsWith("http")) return featuredImage;
-  if (featuredImage.startsWith("/")) return `${site.url}${featuredImage}`;
+
+  if (featuredImage.startsWith("http")) {
+    return featuredImage;
+  }
+
+  if (featuredImage.startsWith("/")) {
+    return `${site.url}${featuredImage}`;
+  }
+
   const filename = featuredImage.replace(/^\.\//, ""); // strip leading "./"
+
   return `${site.url}${page.url}${filename}`;
 }
 
@@ -29,11 +40,25 @@ function getPageKind(d) {
   const url = d.page?.url || "/";
   const stem = d.page?.filePathStem || "";
 
-  if (url === "/") return { url, stem, kind: "home" };
-  if (url.startsWith("/pages/")) return { url, stem, kind: "homePaginated" };
-  if (url === "/archives/") return { url, stem, kind: "topics" };
-  if (url.startsWith("/tags/") && url !== "/tags/") return { url, stem, kind: "tag" };
-  if (stem.startsWith("/posts/")) return { url, stem, kind: "post" };
+  if (url === "/") {
+    return { url, stem, kind: "home" };
+  }
+
+  if (url.startsWith("/pages/")) {
+    return { url, stem, kind: "homePaginated" };
+  }
+
+  if (url === "/archives/") {
+    return { url, stem, kind: "topics" };
+  }
+
+  if (url.startsWith("/tags/") && url !== "/tags/") {
+    return { url, stem, kind: "tag" };
+  }
+
+  if (stem.startsWith("/posts/")) {
+    return { url, stem, kind: "post" };
+  }
 
   return { url, stem, kind: "page" };
 }

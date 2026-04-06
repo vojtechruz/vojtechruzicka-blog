@@ -1,9 +1,16 @@
 // Shared formatting utilities for filters and shortcodes
 
 export function toDate(value) {
-  if (!value) return null;
-  if (value instanceof Date) return value;
+  if (!value) {
+    return null;
+  }
+
+  if (value instanceof Date) {
+    return value;
+  }
+
   const d = new Date(value);
+
   return isNaN(d.getTime()) ? null : d;
 }
 
@@ -14,7 +21,10 @@ export function toDate(value) {
  * downstream ISO/RFC formatters include a time component at 00:00:00Z.
  */
 export function toDateUtcMidnightIfDateOnly(value) {
-  if (!value) return null;
+  if (!value) {
+    return null;
+  }
+
   if (value instanceof Date) {
     // If it's exactly local midnight (common when frontmatter had only YYYY-MM-DD),
     // convert to UTC midnight of the same calendar date to avoid TZ shifting to previous/next day.
@@ -45,23 +55,34 @@ export function toDateUtcMidnightIfDateOnly(value) {
 }
 
 export function readableDateUTC(value) {
-  if (!value) return "";
+  if (!value) {
+    return "";
+  }
+
   const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
+
   if (isNaN(date.getTime())) {
     return String(value);
   }
+
   const day = date.getUTCDate();
   const month = date.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
   const year = date.getUTCFullYear();
+
   return `${month} ${day}, ${year}`;
 }
 
 export function htmlDateString(value) {
-  if (!value) return "";
+  if (!value) {
+    return "";
+  }
+
   const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
+
   if (isNaN(date.getTime())) {
     return "";
   }
+
   return date.toISOString().split("T")[0];
 }
 

@@ -44,7 +44,11 @@ async function getBufferForSmallestPath(smallestUrl) {
     const q = smallestUrl.split("?")[1] || "";
     const params = new URLSearchParams(q);
     const srcParam = params.get("src");
-    if (!srcParam) throw new Error("Missing src param in /.11ty/image URL");
+
+    if (!srcParam) {
+      throw new Error("Missing src param in /.11ty/image URL");
+    }
+
     const decoded = decodeURIComponent(srcParam);
     const abs = path.join(PROJECT_ROOT, decoded.replace(/^[\\/]/, ""));
     return fs.readFile(abs);
@@ -63,7 +67,10 @@ function pickSmallestUrl($pic, $img) {
   const srcset = $firstSource.attr("srcset") || $img.attr("srcset");
   if (srcset) {
     const candidate = srcset.split(",")[0].trim().split(" ")[0];
-    if (candidate) return candidate;
+
+    if (candidate) {
+      return candidate;
+    }
   }
   return $img.attr("src") || "";
 }
@@ -128,7 +135,9 @@ function buildSvgFromRaw({ data, width, height, channels }) {
  * and injects it as background-image on the <img>.
  */
 export async function lqipSvgTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith(".html")) return content;
+  if (!outputPath || !outputPath.endsWith(".html")) {
+    return content;
+  }
 
   const $ = load(content);
   const jobs = [];
@@ -136,10 +145,16 @@ export async function lqipSvgTransform(content, outputPath) {
   $("picture").each((_, pic) => {
     const $pic = $(pic);
     const $img = $pic.find("img").first();
-    if (!$img.length) return;
+
+    if (!$img.length) {
+      return;
+    }
 
     const smallest = pickSmallestUrl($pic, $img);
-    if (!smallest) return;
+
+    if (!smallest) {
+      return;
+    }
 
     jobs.push((async () => {
       try {

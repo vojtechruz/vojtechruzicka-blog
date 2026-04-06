@@ -11,7 +11,9 @@ import { load } from "cheerio";
  * - Skips wrapping if the immediate parent is already a div.image-wrapper
  */
 export async function wrapPicturesTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith(".html")) return content;
+  if (!outputPath || !outputPath.endsWith(".html")) {
+    return content;
+  }
 
   const $ = load(content);
 
@@ -19,10 +21,19 @@ export async function wrapPicturesTransform(content, outputPath) {
     const nodes = $parent.contents().toArray();
     for (const node of nodes) {
       // Skip the picture itself
-      if (node === $pic.get(0)) continue;
+      if (node === $pic.get(0)) {
+        continue;
+      }
+
       // Ignore empty text nodes and comments
-      if (node.type === "text" && (node.data || "").trim() === "") continue;
-      if (node.type === "comment") continue;
+      if (node.type === "text" && (node.data || "").trim() === "") {
+        continue;
+      }
+
+      if (node.type === "comment") {
+        continue;
+      }
+
       // Any other node counts as extra content
       return false;
     }

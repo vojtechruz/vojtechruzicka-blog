@@ -7,7 +7,9 @@ describe('Post tag links', () => {
 
   it('tag links use lowercase slugified hrefs with trailing slash', () => {
     for (const { frontmatter } of posts) {
-      if (!frontmatter.path || !frontmatter.tags) continue;
+      if (!frontmatter.path || !frontmatter.tags) {
+        continue;
+      }
 
       const $ = loadPage(frontmatter.path);
       const tagLinks = $('ul.post-tags a.tag-name');
@@ -21,7 +23,9 @@ describe('Post tag links', () => {
 
   it('tag links point to existing tag pages', () => {
     for (const { frontmatter } of posts) {
-      if (!frontmatter.path || !frontmatter.tags) continue;
+      if (!frontmatter.path || !frontmatter.tags) {
+        continue;
+      }
 
       const $ = loadPage(frontmatter.path);
       const tagLinks = $('ul.post-tags a.tag-name');

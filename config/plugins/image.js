@@ -18,7 +18,7 @@ export default function registerImagePlugin(eleventyConfig) {
       decoding: "async",
       sizes: "(min-width: 1024px) 800px, 100vw"
     },
-    filenameFormat: function (id, src, width, format, options) {
+    filenameFormat: function (id, src, width, format, _options) {
       // Define custom filenames for generated images
       // id: hash of the original image
       // src: original image path

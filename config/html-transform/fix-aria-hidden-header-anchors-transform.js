@@ -18,7 +18,7 @@ export function fixAriaHiddenHeaderAnchorsTransform(content, outputPath) {
 
     // --- FIX 1: Clean <a class="header-anchor"> ---
     html = html.replace(
-      /<a\b([^>]*\bclass=\"[^\"]*\bheader-anchor\b[^\"]*\"[^>]*)>/gi,
+      /<a\b([^>]*\bclass="[^"]*\bheader-anchor\b[^"]*"[^>]*)>/gi,
       (full, attrs) => {
         let newAttrs = attrs;
 

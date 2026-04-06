@@ -1,7 +1,9 @@
 // Lightweight scrollspy for the TOC with active-item visibility and safe click handling
 (() => {
   const toc = document.querySelector("nav.toc");
-  if (!toc) return;
+  if (!toc) {
+    return;
+  }
 
   // How much vertical slack space around the active item (fractions of TOC height)
   const TOC_TOP_BUFFER = 0.10;     // 10% above active item
@@ -14,13 +16,21 @@
   let scrollEl = toc;
   while (scrollEl && scrollEl !== document.body) {
     const s = getComputedStyle(scrollEl);
-    if (/(auto|scroll)/.test(s.overflowY)) break;
+
+    if (/(auto|scroll)/.test(s.overflowY)) {
+      break;
+    }
     scrollEl = scrollEl.parentElement;
   }
-  if (!scrollEl) scrollEl = toc;
+
+  if (!scrollEl) {
+    scrollEl = toc;
+  }
 
   const links = Array.from(toc.querySelectorAll(".toc-list a[href^='#']"));
-  if (!links.length) return;
+  if (!links.length) {
+    return;
+  }
 
   const idToLink = new Map();
   const headings = [];
@@ -31,7 +41,9 @@
       // Use the fragment exactly as in the DOM id (no decodeURIComponent),
       // so ids with encoded commas, parentheses, etc. still match.
       const id = href.startsWith("#") ? href.slice(1) : href;
-      if (!id) continue;
+      if (!id) {
+        continue;
+      }
 
       const h = document.getElementById(id);
       if (h) {
@@ -42,14 +54,21 @@
       // ignore malformed hrefs
     }
   }
-  if (!headings.length) return;
+  if (!headings.length) {
+    return;
+  }
 
   // Resolve CSS variable to px (supports calc(), rem, etc.)
   function getCssVarPx(name, fallback = 0) {
     try {
       const val = getComputedStyle(document.documentElement).getPropertyValue(name);
-      if (!val) return fallback;
-      if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) return parseFloat(val);
+      if (!val) {
+        return fallback;
+      }
+
+      if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) {
+        return parseFloat(val);
+      }
 
       const div = document.createElement("div");
       div.style.position = "absolute";
@@ -74,13 +93,23 @@
 
   // Keep the active TOC item within an asymmetric visible band inside the TOC
   function ensureActiveVisible() {
-    if (!activeId || !scrollEl) return;
-    if (suppressAutoSpy) return; // don't auto-scroll TOC while we are in click-mode
+    if (!activeId || !scrollEl) {
+      return;
+    }
+    if (suppressAutoSpy) {
+      // don't auto-scroll TOC while we are in click-mode
+      return;
+    }
 
     const link = idToLink.get(activeId);
-    if (!link) return;
+    if (!link) {
+      return;
+    }
 
-    if (scrollEl.scrollHeight <= scrollEl.clientHeight + 1) return; // no overflow
+    if (scrollEl.scrollHeight <= scrollEl.clientHeight + 1) {
+      // no overflow
+      return;
+    }
 
     const viewHeight = scrollEl.clientHeight;
     const scrollTop = scrollEl.scrollTop;
@@ -97,8 +126,13 @@
       let target = linkTop - viewHeight * TOC_TOP_BUFFER;
 
       const maxScroll = scrollEl.scrollHeight - viewHeight;
-      if (target < 0) target = 0;
-      if (target > maxScroll) target = maxScroll;
+      if (target < 0) {
+        target = 0;
+      }
+
+      if (target > maxScroll) {
+        target = maxScroll;
+      }
 
       scrollEl.scrollTo({
         top: target,
@@ -108,7 +142,10 @@
   }
 
   function setActive(id) {
-    if (id === activeId) return;
+    if (id === activeId) {
+      return;
+    }
+
     activeId = id;
 
     for (const a of links) {
@@ -126,8 +163,13 @@
 
   let ticking = false;
   function onScroll() {
-    if (suppressAutoSpy) return; // completely ignore scroll events while locked by click
-    if (ticking) return;
+    if (suppressAutoSpy) {
+      // completely ignore scroll events while locked by click
+      return;
+    }
+    if (ticking) {
+      return;
+    }
 
     ticking = true;
     requestAnimationFrame(() => {
@@ -136,7 +178,11 @@
       // 1) Near bottom: always highlight last heading
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
         const last = headings[headings.length - 1];
-        if (last) setActive(last.id);
+
+        if (last) {
+          setActive(last.id);
+        }
+
         return;
       }
 
@@ -162,7 +208,9 @@
         }
       }
 
-      if (current) setActive(current);
+      if (current) {
+        setActive(current);
+      }
     });
   }
 
@@ -177,7 +225,10 @@
 
   // Helper: resume scroll-spy after a real user scroll interaction
   function resumeSpyFromUserInteraction() {
-    if (!suppressAutoSpy) return;
+    if (!suppressAutoSpy) {
+      return;
+    }
+
     suppressAutoSpy = false;
     onScroll();
   }
@@ -195,11 +246,17 @@
   // Clicks in the TOC: lock scroll-spy, highlight clicked item, scroll page with correct offset
   toc.addEventListener("click", (e) => {
     const a = e.target.closest("a[href^='#']");
-    if (!a) return;
+
+    if (!a) {
+      return;
+    }
 
     const href = a.getAttribute("href") || "";
     const id = href.startsWith("#") ? href.slice(1) : href;
-    if (!id || !idToLink.has(id)) return;
+
+    if (!id || !idToLink.has(id)) {
+      return;
+    }
 
     // Take over scrolling so browser default doesn't fight with our offset logic
     e.preventDefault();

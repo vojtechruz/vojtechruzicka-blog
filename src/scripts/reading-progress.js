@@ -1,7 +1,10 @@
 // Lightweight reading progress bar for post pages
 (() => {
     const bar = document.getElementById('reading-progress');
-    if (!bar) return;
+    if (!bar) {
+        return;
+    }
+
     const barInner = bar.querySelector('.reading-progress__bar');
     const article = document.querySelector('main.post article');
     if (!article || !barInner) { bar?.setAttribute('hidden', ''); return; }
@@ -10,8 +13,14 @@
     function getCssVarPx(name, fallback = 0) {
         try {
             const val = getComputedStyle(document.documentElement).getPropertyValue(name);
-            if (!val) return fallback;
-            if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) return parseFloat(val);
+            if (!val) {
+                return fallback;
+            }
+
+            if (/^\s*\d+(\.\d+)?px\s*$/.test(val)) {
+                return parseFloat(val);
+            }
+
             const div = document.createElement('div');
             div.style.position = 'absolute';
             div.style.visibility = 'hidden';
@@ -46,7 +55,10 @@
 
     let ticking = false;
     function onScroll() {
-        if (ticking) return;
+        if (ticking) {
+            return;
+        }
+
         ticking = true;
         requestAnimationFrame(() => { ticking = false; update(); });
     }
@@ -54,7 +66,10 @@
     function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 
     function update() {
-        if (total <= 0) return;
+        if (total <= 0) {
+            return;
+        }
+
         const scrolledInside = window.scrollY - (start - headerOffset);
         const ratio = clamp(scrolledInside / total, 0, 1);
         const percent = Math.round(ratio * 100);
@@ -71,7 +86,10 @@
     // If the post contains images that load later, re-measure when they load
     const imgs = article.querySelectorAll('img');
     imgs.forEach(img => {
-        if (img.complete) return; // already loaded
+        if (img.complete) {
+            // already loaded
+            return;
+        }
         img.addEventListener('load', measure, { once: true });
         img.addEventListener('error', measure, { once: true });
     });

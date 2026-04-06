@@ -20,7 +20,7 @@
                         : '',
                     url: shareUrl
                 });
-            } catch (err) {
+            } catch {
                 // user cancelled or share failed — ignore
             }
         });
@@ -29,7 +29,10 @@
     // Copy-to-clipboard feedback
     document.addEventListener('click', (e) => {
         const btn = e.target.closest('.share-copy');
-        if (!btn) return;
+
+        if (!btn) {
+            return;
+        }
 
         const url = btn.dataset.url || location.href;
 

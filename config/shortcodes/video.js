@@ -63,13 +63,20 @@ function buildSources(input) {
     // Has extension → include it first and try the counterpart
     list.push({ src: url, type: mimeFor(ext) });
     const alt = altExt(ext);
-    if (alt) list.push({ src: `${base}${alt}`, type: mimeFor(alt) });
+
+    if (alt) {
+      list.push({ src: `${base}${alt}`, type: mimeFor(alt) });
+    }
   }
 
   // Deduplicate by src (in case input already pointed to .webm and alt makes same string)
   const seen = new Set();
   return list.filter(it => {
-    if (seen.has(it.src)) return false;
+
+    if (seen.has(it.src)) {
+      return false;
+    }
+
     seen.add(it.src);
     return true;
   });
@@ -108,17 +115,25 @@ function mimeFor(ext) {
 }
 
 function toAspectCss(aspect) {
-  if (!aspect) return "";
+  if (!aspect) {
+    return "";
+  }
+
   const a = String(aspect).trim();
   // Accept forms: "16:9", "16/9", "1.777", "4:3"
-  const colon = a.match(/^(\d+(?:\.\d+)?)[\/:](\d+(?:\.\d+)?)$/);
+  const colon = a.match(/^(\d+(?:\.\d+)?)[/:](\d+(?:\.\d+)?)$/);
   if (colon) {
     const w = Number(colon[1]) || 16;
     const h = Number(colon[2]) || 9;
-    if (w > 0 && h > 0) return `${w} / ${h}`;
+
+    if (w > 0 && h > 0) {
+      return `${w} / ${h}`;
+    }
   }
   const num = Number(a);
-  if (!Number.isNaN(num) && num > 0) return String(num);
+  if (!Number.isNaN(num) && num > 0) {
+    return String(num);
+  }
   // Fallback default
   return "16 / 9";
 }

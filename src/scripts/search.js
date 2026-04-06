@@ -23,10 +23,16 @@
     }
 
     async function initContainer(container) {
-        if (!container || container.dataset.pagefindInited === '1') return;
+        if (!container || container.dataset.pagefindInited === "1") {
+            return;
+        }
+
         // Load assets first (only once)
         await ensureAssets();
-        if (!window.PagefindUI) throw new Error('window.PagefindUI not available');
+
+        if (!window.PagefindUI) {
+            throw new Error("window.PagefindUI not available");
+        }
 
         // Clear any placeholder content
         container.innerHTML = '';
@@ -77,9 +83,15 @@
                 const open = drawer && !drawer.classList.contains('pagefind-ui__hidden');
                 document.body.classList.toggle('search-open', open);
                 backdrop.classList.toggle('is-visible', open);
-                if (open) input?.focus();
+
+                if (open) {
+                    input?.focus();
+                }
             });
-            if (drawer) mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
+
+            if (drawer) {
+                mo.observe(drawer, { attributes: true, attributeFilter: ["class"] });
+            }
 
             // ESC closes if this instance is open
             const onKey = (e) => {
@@ -118,7 +130,10 @@
             explicitOpen.addEventListener(ev, () => {
                 // prefer the first container (header) if available
                 const target = containers[0];
-                if (target) initContainer(target);
+
+                if (target) {
+                    initContainer(target);
+                }
             }, { once: true })
         );
     }
@@ -126,13 +141,19 @@
     // Keyboard shortcuts (optional): open the first available container lazily
     document.addEventListener('keydown', (e) => {
         const inField = /^(input|textarea|select)$/i.test(e.target.tagName) || e.target.isContentEditable;
-        if (inField) return;
+
+        if (inField) {
+            return;
+        }
         const slash = e.key === '/';
         const modK = (e.key.toLowerCase() === 'k') && (e.ctrlKey || e.metaKey);
         if (slash || modK) {
             e.preventDefault();
             const target = containers[0];
-            if (target) initContainer(target);
+
+            if (target) {
+                initContainer(target);
+            }
         }
     });
 })();

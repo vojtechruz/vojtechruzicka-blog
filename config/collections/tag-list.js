@@ -4,7 +4,7 @@ export default function registerTagListCollection(eleventyConfig) {
     const tagsSet = new Set();
     collectionApi.getAll().forEach((item) => {
       if ("tags" in item.data) {
-        let tags = item.data.tags;
+        const tags = item.data.tags;
         if (Array.isArray(tags)) {
           tags.forEach((tag) => tagsSet.add(tag));
         }

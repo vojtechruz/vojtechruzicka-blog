@@ -13,12 +13,22 @@ export default function youtube(input, title = "YouTube video", height = 400, st
     height = Number(title) || 400;
     title = "YouTube video";
   }
-  if (typeof height === "string" && /^\d+$/.test(height)) height = Number(height);
-  if (typeof start === "string" && /^\d+$/.test(start)) start = Number(start);
+
+  if (typeof height === "string" && /^\d+$/.test(height)) {
+    height = Number(height);
+  }
+
+  if (typeof start === "string" && /^\d+$/.test(start)) {
+    start = Number(start);
+  }
 
   const videoId = extractYouTubeId(input);
   const params = new URLSearchParams();
-  if (start && Number(start) > 0) params.set("start", String(start));
+
+  if (start && Number(start) > 0) {
+    params.set("start", String(start));
+  }
+
   params.set("rel", "0");
   params.set("modestbranding", "1");
   const src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
@@ -38,9 +48,15 @@ export default function youtube(input, title = "YouTube video", height = 400, st
 }
 
 function extractYouTubeId(input) {
-  if (!input) return "";
+  if (!input) {
+    return "";
+  }
+
   // If plain ID (no slashes and length typical), return as-is
-  if (!String(input).includes("/")) return String(input);
+  if (!String(input).includes("/")) {
+    return String(input);
+  }
+
   try {
     const url = new URL(String(input));
     // Patterns: youtu.be/<id>, youtube.com/watch?v=<id>, /embed/<id>
@@ -51,8 +67,11 @@ function extractYouTubeId(input) {
       return url.searchParams.get("v");
     }
     const m = url.pathname.match(/\/embed\/([a-zA-Z0-9_-]{6,})/);
-    if (m) return m[1];
-  } catch (e) {
+
+    if (m) {
+      return m[1];
+    }
+  } catch {
     // fallthrough
   }
   // Fallback: try to pull last path segment
