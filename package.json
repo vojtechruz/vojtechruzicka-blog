@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:html": "html-validate \"_site/**/*.html\"",
+    "validate:css": "stylelint \"src/styles/**/*.scss\"",
     "validate:js": "eslint .",
     "validate:md": "markdownlint-cli2",
     "validate:xml": "node scripts/validate-xml.mjs",
@@ -58,6 +59,8 @@
     "markdownlint-cli2": "^0.22.0",
     "pagefind": "^1.4.0",
     "shiki": "^3.14.0",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "vitest": "^4.1.2"
   }
 }

@@ -1,0 +1,44 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "alpha-value-notation": "number",
+    "color-function-alias-notation": null,
+    "color-function-notation": null,
+    "color-hex-length": null,
+    "comment-empty-line-before": null,
+    "comment-whitespace-inside": null,
+    "custom-property-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "property-no-vendor-prefix": null,
+    "selector-pseudo-element-colon-notation": null,
+    "value-keyword-case": ["lower", {
+      "ignoreFunctions": ["color-mix"],
+      "camelCaseSvgKeywords": true,
+      "ignoreKeywords": [
+        "currentColor",
+        "Inter",
+        "Roboto",
+        "SFMono-Regular",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Courier New",
+        "Liberation Mono",
+        "Segoe UI"
+      ]
+    }],
+    "selector-class-pattern": null,
+    "block-no-empty": null,
+    "property-no-deprecated": null,
+    "scss/at-if-closing-brace-newline-after": null,
+    "scss/at-if-closing-brace-space-after": null,
+    "scss/at-else-closing-brace-newline-after": null,
+    "scss/at-else-closing-brace-space-after": null,
+    "scss/at-else-empty-line-before": null,
+    "scss/double-slash-comment-empty-line-before": null,
+    "scss/double-slash-comment-whitespace-inside": null,
+    "scss/operator-no-unspaced": null
+  }
+}

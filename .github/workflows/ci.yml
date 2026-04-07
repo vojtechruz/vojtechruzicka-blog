@@ -30,6 +30,9 @@ jobs:
       - name: Lint JavaScript
         run: npm run validate:js
 
+      - name: Lint Stylesheets
+        run: npm run validate:css
+
       - name: Validate Markdown
         run: npm run validate:md
 
