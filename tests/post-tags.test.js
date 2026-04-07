@@ -3,7 +3,7 @@ import { loadPage, getAllPosts } from './helpers.js';
 import { existsSync } from 'fs';
 
 describe('Post tag links', () => {
-  const posts = getAllPosts();
+  const posts = getAllPosts().filter(post => !post.frontmatter.draftStatus);
 
   it('tag links use lowercase slugified hrefs with trailing slash', () => {
     for (const { frontmatter } of posts) {

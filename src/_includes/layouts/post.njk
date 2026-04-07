@@ -8,12 +8,34 @@
 
 {% block content %}
 <main id="content" class="post content">
+  {% if draftStatus %}
+  <div class="draft-banner draft-banner-{{ draftStatus }}" role="status">
+    <span class="draft-banner-icon" aria-hidden="true">
+      {% if draftStatus === "draft" %}
+      🟠
+      {% elif draftStatus === "review" %}
+      🔵
+      {% elif draftStatus === "ready" %}
+      🟢
+      {% endif %}
+    </span>
+    <span class="draft-banner-text">
+      {% if draftStatus === "draft" %}
+        DRAFT — Early work in progress
+      {% elif draftStatus === "review" %}
+        IN REVIEW — Awaiting final review
+      {% elif draftStatus === "ready" %}
+        READY — Ready to publish
+      {% endif %}
+    </span>
+  </div>
+  {% endif %}
   <!-- Reading progress bar -->
   <div id="reading-progress" class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0"
     aria-valuemax="100" aria-valuenow="0" hidden>
     <span class="reading-progress__bar" aria-hidden="true"></span>
   </div>
-  <article data-pagefind-body>
+  <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
       <h1>{{ title }}</h1>
 

@@ -5,7 +5,9 @@
   "main": "N/A",
   "scripts": {
     "start": "npx eleventy --serve",
+    "start:no-drafts": "npx cross-env INCLUDE_DRAFTS=none npx eleventy --serve",
     "build": "eleventy",
+    "build:with-drafts": "npx cross-env INCLUDE_DRAFTS=all eleventy",
     "postbuild": "pagefind --site _site",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -47,6 +49,7 @@
     "@lhci/cli": "^0.15.1",
     "@shikijs/markdown-it": "^3.14.0",
     "@xmldom/xmldom": "^0.9.9",
+    "cross-env": "^10.1.0",
     "esbuild": "^0.27.0",
     "eslint": "^10.2.0",
     "glob": "^13.0.6",

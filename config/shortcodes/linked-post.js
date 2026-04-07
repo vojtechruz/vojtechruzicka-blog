@@ -18,7 +18,7 @@ export default function linkedPost(permalink, maybeCollections) {
 
   // TODO - fail in this case but only in prod build
   if (!post) {
-    return `<div class="linked-post linked-post--missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
+    return `<div class="linked-post linked-post-missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
   }
 
   const data = post.data || {};
@@ -39,10 +39,21 @@ export default function linkedPost(permalink, maybeCollections) {
   const postDir = data.postDir;
   const imgUrl = (featuredImage && postDir) ? `/../${postDir}/${featuredImage}` : "";
   const excerpt = String(data.excerpt || "");
+  const draftStatus = data.draftStatus || "";
 
-  return `<div class="linked-post">
+  // Draft badge HTML
+  let draftBadge = "";
+  if (draftStatus) {
+    const icons = { draft: "🟠", review: "🔵", ready: "🟢" };
+    const labels = { draft: "Draft", review: "In Review", ready: "Ready" };
+    const icon = icons[draftStatus] || "📝";
+    const label = labels[draftStatus] || draftStatus;
+    draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}" aria-label="${escapeHtml(label)}">${icon} ${escapeHtml(label)}</span>`;
+  }
+
+  return `<div class="linked-post ${draftStatus ? ` linked-post-draft linked-post-${escapeHtml(draftStatus)}` : ''}">
   <h2 class="front-post-title">
-    <a href="${url}">${escapeHtml(title)}</a>
+    <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </h2>
   <div class="front-post-info">
     <time class="front-post-info-date" datetime="${htmlDate}">

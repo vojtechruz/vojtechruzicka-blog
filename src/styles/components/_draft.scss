@@ -1,0 +1,88 @@
+@use "../variables";
+
+// ── Draft Banner (shown on individual draft post pages) ──
+
+.draft-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-left: 4px solid;
+}
+
+.draft-banner-draft {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.draft-banner-review {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.draft-banner-ready {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.draft-banner-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+// ── Draft Badge (shown in post lists next to title) ──
+
+.draft-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.draft-badge-draft {
+  border-color: var(--color-warning-border);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+}
+
+.draft-badge-review {
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
+  color: var(--color-info);
+}
+
+.draft-badge-ready {
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+// ── Draft post card styling in lists ──
+
+.linked-post-draft {
+  position: relative;
+  border-left: 3px solid var(--color-warning);
+  padding-left: 0.75rem;
+  opacity: 0.85;
+}
+
+.linked-post-review {
+  border-left-color: var(--color-info);
+}
+
+.linked-post-ready {
+  border-left-color: var(--color-success);
+  opacity: 0.92;
+}

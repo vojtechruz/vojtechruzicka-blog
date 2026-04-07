@@ -16,8 +16,12 @@ import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-tra
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
 import registerMarkdownPlugin from "./config/plugins/markdown.js";
 import { stripPreTabindex } from "./config/html-transform/remove-code-tabindex.js";
+import registerDrafts from "./config/drafts.js";
 
 export default async function (eleventyConfig) {
+  // Draft preprocessor (must be registered before collections)
+  registerDrafts(eleventyConfig);
+
   // Passthrough copy rules
   registerPassthrough(eleventyConfig);
 
