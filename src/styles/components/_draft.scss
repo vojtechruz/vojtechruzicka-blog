@@ -73,16 +73,19 @@
 
 .linked-post-draft {
   position: relative;
-  border-left: 3px solid var(--color-warning);
+  border-left: 3px solid var(--color-warning-border);
+  background: var(--color-warning-bg);
   padding-left: 0.75rem;
   opacity: 0.85;
 }
 
 .linked-post-review {
-  border-left-color: var(--color-info);
+  border-color: var(--color-info-border);
+  background: var(--color-info-bg);
 }
 
 .linked-post-ready {
-  border-left-color: var(--color-success);
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
   opacity: 0.92;
 }
