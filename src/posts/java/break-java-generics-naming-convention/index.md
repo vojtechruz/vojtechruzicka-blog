@@ -50,9 +50,9 @@ Guide](https://google.github.io/styleguide/javaguide.html#s5.2.8-type-variable-n
 letter convention or descriptive name with T appended such as ListenerT. I personally like Type appendix more than T,
 since it is not much longer and it reads better. However, I would recommend sticking to the Google Style Guide as it is
 widely recognized convention and can be seen as a more up-to-date version of the old Sun naming convention. There are
-also [some suggestions](https://dzone.com/articles/naming-conventions) like a `$` prefix to type parameters (`$Listener`) by
-[Tim Boudreau](https://dzone.com/users/18/tim.html), but I don't find that instantly recognizable as a generic type and
-would rather choose the Google Style Guide.
+also [some suggestions](https://dzone.com/articles/naming-conventions) like a `$` prefix to type 
+parameters (like `$Listener`) by[Tim Boudreau](https://dzone.com/users/18/tim.html), but I don't find that 
+instantly recognizable as a generic type and would rather choose the Google Style Guide.
 
 ## Option 3. Same naming conventions as regular classes
 
