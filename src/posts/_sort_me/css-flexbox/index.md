@@ -45,7 +45,7 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've also added some background colors and borders, so you can better see the layout.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/ExVPBzM/" title="CodePen example - Display Flex"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/ExVPBzM/", "CodePen example - Display Flex" %}
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines that the container should lay out its children using Flexbox.
 
@@ -106,7 +106,7 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 }
 ```
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaoKONW/" title="CodePen example - Flex Direction"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/BaoKONW/", "CodePen example - Flex Direction" %}
 
 {% warning %}
 If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications.
@@ -142,7 +142,7 @@ It allows you to **align items on the main flex axis**, that is:
 - horizontally when the `flex-direction` is `row` or `row-reverse`
 - vertically when the `flex-direction` is `column` or `column-reverse`
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/YzyqOdZ/" title="CodePen example - Justify Content"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/YzyqOdZ/", "CodePen example - Justify Content" %}
 
 Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top, or bottom. Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
 
@@ -154,7 +154,7 @@ You can use these values:
 - `justify-content: space-around;`
 - `justify-content: space-evenly;`
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/wvKGYvx/" title="CodePen example - Distributing extra space"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/wvKGYvx/", "CodePen example - Distributing extra space" %}
 
 In all cases, the items are distributed, so the space between neighboring items is always the same. **The three values differ only in a way how the spacing between first and last item and the edge of the container is calculated**.
 
@@ -182,7 +182,7 @@ You can use `align-items` property on the container level to define cross-axis a
 - `stretch`: stretch the component to fill the available space on the cross axis (respects `max-width` and `max-height` of items)
 - `baseline`: items are aligned by their baselines
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/PoPzgEb/" title="CodePen example - Align Items"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/PoPzgEb/", "CodePen example - Align Items" %}
 
 This works as expected and is self-explanatory, considering what we've already learned. The `baseline` setting is a bit trickier, though. It aligns items by their [baselines](https://en.wikipedia.org/wiki/Baseline_(typography)). The following image from Wikipedia shows this nicely.
 
@@ -190,7 +190,7 @@ This works as expected and is self-explanatory, considering what we've already l
 
 Let's look at a specific example:
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/GRpqLeW/" title="CodePen example - Align items: baseline"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/GRpqLeW/", "CodePen example - Align items: baseline" %}
 
 As you can see, the baseline, in this case, is usually the bottom of the first line of text in each item. The bottom here means where most of the regular letters end. There are some letters such as `p` or `j`. that go under the baseline.
 
@@ -200,7 +200,7 @@ Note how multiline items and items with no content are handled. You can check mo
 ### Wrapping
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many items, which do not fit the size of its parent container?
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/ZEbQdev/" title="CodePen example - Overflow when container is too small"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/ZEbQdev/", "CodePen example - Overflow when container is too small" %}
 
 By default, the container tries to shrink the items if possible, but eventually, the items may overflow out of the container. Note that the container tries to shrink items when not enough space is available even though we explicitly set `width: 50px;`. This width is preserved only if there is enough space. We'll learn how to control or disable this behavior a bit later using `flex-shrink`.
 
@@ -212,7 +212,7 @@ This may be ok in some cases, but usually, you want more control over how this c
 
 The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaojgPQ/" title="CodePen example - Wrapping"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/BaojgPQ/", "CodePen example - Wrapping" %}
 
 
 ### Aligning wrapped content
@@ -245,7 +245,7 @@ The good news is that the possible values of `align-content` are very similar as
 
 The alignment just works on the other axis, but the behavior is the same.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/OJyNKXW/" title="CodePen example - Alignment of wrapped content"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/OJyNKXW/", "CodePen example - Alignment of wrapped content" %}
 
 ## Item level properties
 So far, we've covered properties, which are defined on the flex container level. Now let's look into properties, which are defined on the level of individual flex items.
@@ -264,24 +264,24 @@ All these settings apply for the whole container. It is possible to also handle 
 - `stretch`
 - `baseline`
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/vYNKqMw/" title="CodePen example - Aligning individual items"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/vYNKqMw/", "CodePen example - Aligning individual items" %}
 
 Of course, this can be combined with defining alignment on the container level using `align-items`. You can define general alignment for the items on the container level, and then override it for individual items. For example, you can define items to be aligned for the whole container using `align-items: flex-end;` and then change the alignment for individual items using `align-self`.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/yLYJmeP/" title="CodePen example - Combination of container level and individual item alignment"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/yLYJmeP/", "CodePen example - Combination of container level and individual item alignment" %}
 
 ### Ordering items
 Items in the flexbox container are not necessarily displayed in the order, in which they are declared in HTML. That is, you can reorder items by assigning them specific `order` property. This is an integer value and defaults to 0 if not specified otherwise. This property is set not on the flex container level, but at the item level, as you want to order individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/ZEbGeRO/" title="CodePen example - Custom item order"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/ZEbGeRO/", "CodePen example - Custom item order" %}
 
 Multiple items can have the same `order` value. Such items belong to the same *ordinal group*. Items within the same group are then ordered in the same order in which they are declared in HTML.
 
 For example, if you have three items with order 1, they will be placed after all the items with the lower order. All these three items with the same order value will then be placed in the same order as in HTML.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/BaoNWGg/" title="CodePen example - Multiple items with the same order"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/BaoNWGg/", "CodePen example - Multiple items with the same order" %}
 
 #### Visual, not logical order
 You have to be careful when changing the order in a flexbox container this way. This only changes the visual order of the items, not logical order. In other words, in DOM, the items are still placed in the same order as in HTML.
@@ -303,7 +303,7 @@ However, this can be changed by assigning any numeric value greater than 0. **Ne
 
 Let's say we assign `flex-grow: 1;` to all items. This means that the extra space will be assigned proportionally to each item in a way that each item gets the same amount of extra space. This is because their `flex-grow` values are the same.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/bGVwJLg/" title="CodePen example - Flex Grow"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/bGVwJLg/", "CodePen example - Flex Grow" %}
 
 So what does the value actually do?
 
@@ -320,7 +320,7 @@ Values greater than 0, but less than 1 have special behavior. **If the sum of al
 
 For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty.
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/yLYarGj/" title="CodePen example - Flex grow with values lesser than 1"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/yLYarGj/", "CodePen example - Flex grow with values lesser than 1" %}
 
 In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be occupied while the items with `0.1` will get 1/6 of space each, and the item with `0.4` will get `4/6` of distributed space.
 
@@ -331,7 +331,7 @@ This property determines how items should be reduced in size if there is not eno
 
 Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. The ratio of these values determines how much each item will shrink compared to others. The difference is that the default value is `1`. This means that the items will shrink by default (but they don't grow by default).
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/dyYpLxo/" title="CodePen example - Flex shrink"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/dyYpLxo/", "CodePen example - Flex shrink" %}
 
 We already encountered this with wrapping - items shrink only to certain degree, so they can still fit their content. After that point, these items will overflow unless you specify wrapping.
 
@@ -339,7 +339,7 @@ There is one more notable difference between `flex-grow` and `flex-shrink`. In a
 
 In other words, larger items  (which are able to shrink more) will shrink faster than smaller items (which have limited space left for shrinking).
 
-<CodePen url="https://codepen.io/vojtechruz/embed/preview/WNQGBrz/" title="CodePen example - Flex shrink - shrinking takes into consideration the original size"></CodePen>
+{% codepen "https://codepen.io/vojtechruz/embed/preview/WNQGBrz/", "CodePen example - Flex shrink - shrinking takes into consideration the original size" %}
 
 
 #### Flex-basis

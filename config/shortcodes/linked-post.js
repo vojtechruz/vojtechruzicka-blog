@@ -48,7 +48,7 @@ export default function linkedPost(permalink, maybeCollections) {
     const labels = { draft: "Draft", review: "In Review", ready: "Ready" };
     const icon = icons[draftStatus] || "📝";
     const label = labels[draftStatus] || draftStatus;
-    draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}" aria-label="${escapeHtml(label)}">${icon} ${escapeHtml(label)}</span>`;
+    draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}">${icon} ${escapeHtml(label)}</span>`;
   }
 
   return `<div class="linked-post ${draftStatus ? ` linked-post-draft linked-post-${escapeHtml(draftStatus)}` : ''}">
