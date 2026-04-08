@@ -36,7 +36,7 @@ To work with SpringFox in your project, you need to add it as a dependency first
 
 Or if you are using Gradle:
 
-```json
+```groovy
 compile "io.springfox:springfox-swagger2:2.9.2"
 ```
 
@@ -87,7 +87,7 @@ Turns out it is just a big JSON, not very human readable. But you can already ve
 
 Or if you use Gradle:
 
-```gradle
+```groovy
 compile "io.springfox:springfox-swagger-ui:2.9.2"
 ```
 
@@ -213,7 +213,7 @@ Unfortunately, JSR-303 based documentation does not work out of the box, you nee
 
 Or with Gradle:
 
-```gradle
+```groovy
 compile "io.springfox:springfox-bean-validators:2.9.2"
 ```
 
