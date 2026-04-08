@@ -30,5 +30,6 @@ export default {
   },
 
   defaultShareImage: "/images/default-share.png",//TODO
-  twitter: "@vojtechruzicka"
+  twitter: "@vojtechruzicka",
+  maxRelatedPosts: 5
 };

@@ -6,8 +6,6 @@
 //   "ready"   – ready to publish, visible in Cloudflare preview deploys + local dev
 //   falsy     – published (default)
 
-import { log } from "./logger.js";
-
 const DRAFT_STAGES = ["draft", "review", "ready"];
 
 /**
@@ -52,20 +50,28 @@ function getIncludeDrafts() {
  * @returns {boolean}
  */
 export function shouldIncludeDraft(draftStatus) {
-  log(`Checking draft status: ${draftStatus}`);
-  if (!draftStatus) return true; // not a draft → always include
+  // not a draft → always include
+  if (!draftStatus) {
+    return true;
+  }
 
   const include = getIncludeDrafts();
 
-  log(`Include drafts setting: ${include}`);
+  if (include === "all") {
+    return true;
+  }
 
-  if (include === "all") return true;
-  if (include === "none") return false;
+  if (include === "none") {
+    return false;
+  }
 
   // Include only drafts at or above the specified stage
   const thresholdIndex = DRAFT_STAGES.indexOf(include);
   const statusIndex = DRAFT_STAGES.indexOf(draftStatus);
 
-  if (statusIndex === -1) return false; // unknown stage → exclude
+  // unknown stage → exclude
+  if (statusIndex === -1) {
+    return false;
+  }
   return statusIndex >= thresholdIndex;
 }

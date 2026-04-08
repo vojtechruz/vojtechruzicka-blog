@@ -7,8 +7,14 @@ import { shouldIncludeDraft } from "./draft-utils.js";
 
 export default function registerDrafts(eleventyConfig) {
   eleventyConfig.addPreprocessor("drafts", "md", (data) => {
-    if (!data.draftStatus) return;
-    if (shouldIncludeDraft(data.draftStatus)) return;
+    if (!data.draftStatus) {
+      return;
+    }
+
+    if (shouldIncludeDraft(data.draftStatus)) {
+      return;
+    }
+
     return false; // completely ignore this file
   });
 }

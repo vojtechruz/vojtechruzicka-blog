@@ -9,6 +9,7 @@ import registerDateFilters from "./config/filters/dates.js";
 import registerUrlFilters from "./config/filters/urls.js";
 import registerSortingFilters from "./config/filters/sorting.js";
 import registerTextFilters from "./config/filters/text.js";
+import registerRelatedPostsFilter from "./config/filters/related-posts.js";
 import registerShortcodes from "./config/shortcodes.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
@@ -50,6 +51,7 @@ export default async function (eleventyConfig) {
   registerUrlFilters(eleventyConfig);
   registerSortingFilters(eleventyConfig);
   registerTextFilters(eleventyConfig);
+  registerRelatedPostsFilter(eleventyConfig);
 
   //ShortCodes
   registerShortcodes(eleventyConfig);

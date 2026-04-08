@@ -66,6 +66,24 @@
 
 
   </article>
+
+  {% if not series %}
+    {% set currentPageObj = { url: page.url, data: { tags: tags, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
+    {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
+    {% if related.length > 0 %}
+      <section class="related-posts" aria-label="Related posts">
+        <h2 class="related-posts-heading">Related Posts</h2>
+        <ul class="related-posts-list">
+          {% for relPost in related %}
+            <li>
+              <a href="{{ relPost.url }}">{{ relPost.data.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endif %}
+
   <div class="post-footer">
     {% include "components/social-share.njk" %}
     {% include "components/comments.njk" %}
