@@ -58,7 +58,7 @@ If you are using plain Spring, the setup is little different, but for Spring Boo
 
 Or this one if you are using Gradle:
 
-```gradle
+```groovy
 implementation 'javafx-weaver-spring-boot-starter:1.3.0'
 ```
 
@@ -73,7 +73,7 @@ We'll still use our `@SpringBootApplication` with a slight modification. Instead
 
 We need first to make sure that the Spring Boot app launches our JavaFX app.
 
-```java{13}
+```java {13}
 import javafx.application.Application;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -158,7 +158,7 @@ But when FX Weaver creates the controller for us, it creates it as a Spring-mana
 ## Enabling Spring for the controller
 The first thing we need to do is to annotate our existing JavaFX controller with `@Component` so it gets recognized and managed by Spring. Next, we need to add `@FxmlView` annotation, so it gets recognized by FX Weaver.
 
-```java{4-5}
+```java {4-5}
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 
@@ -195,7 +195,7 @@ Nothing special, it's a service for weather forecasting, which is not very dynam
 ### Injecting the service
 Now let's inject our new service into our existing controller. It's the usual Spring stuff, nothing special here.
 
-```java{5,7-10}
+```java {5,7-10}
 @Component
 @FxmlView("main-stage.fxml")
 public class MyController {
@@ -215,7 +215,7 @@ Now we need to load the data from our service somehow. Let's change our FMXL vie
 1. There is a button which loads the data from `WeatherService` on click
 2. The loaded data is shown in a label
 
-```xml{11-12}
+```xml {11-12}
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>

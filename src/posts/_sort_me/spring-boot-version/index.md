@@ -23,7 +23,7 @@ In any case, having build information can be handy and it is useful to know how 
 ## Build plugin configuration
 If you are using Spring Boot, your `pom.xml` should already contain [spring-boot-maven-plugin](https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/maven-plugin/). You just need to add the following configuration.
 
-```xml{4-11}
+```xml {4-11}
 <plugin>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-maven-plugin</artifactId>
@@ -42,7 +42,7 @@ It instructs the plugin to execute also [build-info](https://docs.spring.io/spri
 
 If you are using Gradle, just add the following to your `build.gradle` file:
 
-```gradle
+```groovy
 springBoot {
     buildInfo()
 }
@@ -73,7 +73,7 @@ buildProperties.getGroup();
 ## Adding custom properties
 If predefined properties are not enough, you can pass your own properties from `pom.xml` file to `BuildProperties`.
 
-```xml{9-14}
+```xml {9-14}
 <plugin>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-maven-plugin</artifactId>

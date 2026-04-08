@@ -38,7 +38,7 @@ Maven:
 
 Gradle:
 
-```gradle
+```groovy
 compile("org.springframework.boot:spring-boot-starter-actuator")
 ```
 
@@ -189,7 +189,7 @@ In the article [I referenced at the beginning of this post](https://www.vojtechr
 What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
 
 Maven `pom.xml` file:
-```xml{4-11}
+```xml {4-11}
 <plugin>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-maven-plugin</artifactId>
@@ -206,7 +206,7 @@ Maven `pom.xml` file:
 
 Gradle `build.gradle` file:
 
-```gradle
+```groovy
 springBoot {
     buildInfo()
 }
@@ -239,7 +239,7 @@ In Maven `pom.xml`:
 
 Gradle uses a [different plugin](https://github.com/n0mer/gradle-git-properties):
 
-```gradle
+```groovy
 plugins {
     id "com.gorylenko.gradle-git-properties" version "1.5.1"
 }
@@ -357,7 +357,7 @@ The good news is that if you use Spring Security, Actuator endpoints are secured
 
 Ow when using Gradle:
 
-```gradle
+```groovy
 compile 'org.springframework.boot:spring-boot-starter-security'
 ```
 

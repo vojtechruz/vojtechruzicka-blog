@@ -25,7 +25,7 @@ If you are using Maven:
 
 Alternatively, when using Gradle:
 
-```gradle
+```groovy
 configurations {
     developmentOnly
     runtimeClasspath {
@@ -119,7 +119,7 @@ In addition to local development, you can also connect to a remote application r
 ### Enabling remote connection
 Remote connection is not enabled by default. You need to explicitly enable it by modifying your pom file:
 
-```xml{7}
+```xml {7}
 <build>
     <plugins>
         <plugin>
@@ -135,7 +135,7 @@ Remote connection is not enabled by default. You need to explicitly enable it by
 
 Or with Gradle, [you need to set](https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/#packaging-executable-configuring-excluding-devtools) `excludeDevtools = false`:
 
-```gradle
+```groovy
 bootWar {
     excludeDevtools = false
 }

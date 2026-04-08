@@ -16,7 +16,7 @@ Traditional and popular approach to documenting your REST API is Swagger (aka Op
 
 It is a powerful tool, which can be useful especially when you want to generate your docs for your existing API effortlessly. It detects all the endpoints, input and output parameters automatically and generates the docs. However, if you want to provide custom descriptions of all the endpoints and fields, you'll end up with polluting your code with many annotations. The vast majority of your Controller and Model classes' code is plagued with documentation-specific annotations, which makes them hard to read. In the example below, everything except the highlighted lines is REST API documentation specific.
 
-```java{8-9,11-12}
+```java {8-9,11-12}
 @ApiOperation("Creates a new person.")
 @ApiResponses(value = {
     @ApiResponse(code = 200, message = "Success", response = Person.class),
@@ -100,14 +100,14 @@ The first thing you'll need to do is provide the Spring Rest Docs dependency. Yo
 
 Or for Gradle:
 
-```
+```groovy
 testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 ```
 
 ### Configuring your tests - Junit 4
 Let's add a specific `@Rule` for REST documentation and then use it when building the mockMvc object. Only the highlighted lines below are new. The rest is the original code sample we already saw.
 
-```java{10-12,18}
+```java {10-12,18}
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PersonControllerJunit4Test {
@@ -136,7 +136,7 @@ public class PersonControllerJunit4Test {
 ### Configuring your tests - Junit 5
 For JUnit 5, the configuration is also easy. You need to use `RestDocumentationExtension.class` extension in addition to Spring's one you would use normally. Then when constructing the mockMvc object apply the configuration. You're adding just the highlighted lines in the example below.
 
-```java{2,9,12}
+```java {2,9,12}
 @SpringBootTest
 @ExtendWith({ RestDocumentationExtension.class, SpringExtension.class})
 public class PersonControllerJunit5Test {
@@ -159,7 +159,7 @@ public class PersonControllerJunit5Test {
 ## Generating the Documentation
 Now when we have the test configuration ready, it's time to write some documentation. First, let's provide a command to generate the documentation in each test method. Just add `andDo(document("[documentation snippet's name]"))`. Then you need to replace `MockMvcRequestBuilders` with   `RestDocumentationRequestBuilders`.
 
-```java{4,8}
+```java {4,8}
     @Test
     public void getPersonByIdShouldReturnOk() throws Exception {
         mockMvc.perform(RestDocumentationRequestBuilders
@@ -274,7 +274,7 @@ The resulting file should be available under `target/generated-docs/index.html` 
 
 So far so good. Now let's tweak it a bit more. Let's add information about the author and version, the table of contents to be displayed on the left side and finally an automatic numbering of section headings. Just include the highlighted lines below the document heading.
 
-```asciidoc{2-5}
+```asciidoc {2-5}
 = Sample API Documentation
 Vojtech Ruzicka<myfakemail@gmail.com>
 1.0.0, 30/5/2018
@@ -301,7 +301,7 @@ Let's document the following endpoint more:
 
 Let's start with the PathVariable. That means that id of the person is passed in the URL as `/persons/{id}`.
 
-```java{7}
+```java {7}
 @Test
 public void getPersonByIdShouldReturnOk() throws Exception {
     this.mockMvc.perform(RestDocumentationRequestBuilders.get("/persons/{id}", 1))
@@ -338,7 +338,7 @@ Our controller's method `getPersonById()` returns a person represented as JSON.
 
 Let's document all the fields using `responseFields()` method:
 
-```java{9-15}
+```java {9-15}
 @Test
 public void getPersonByIdShouldReturnOk() throws Exception {
     this.mockMvc.perform(RestDocumentationRequestBuilders.get("/persons/{id}", 1))

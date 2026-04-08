@@ -113,7 +113,7 @@ to WAR packaging
 #### Gradle
 In Gradle, add `war` plugin to your plugins section.
 
-```yaml{4}
+```yaml {4}
 plugins {
     id 'org.springframework.boot' version '2.1.6.RELEASE'
     id 'java'

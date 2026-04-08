@@ -208,7 +208,7 @@ This stylesheet provides the default styling but takes the lowest priority compa
 ## Scene stylesheet
 In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder/):
 
-```xml{3}
+```xml {3}
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="styles.css"

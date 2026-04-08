@@ -134,7 +134,7 @@ helloWorldLabel.setAlignment(Pos.CENTER);
 
 Finally, we need to set  the scene to the stage we already have:
 
-```java{14}
+```java {14}
 @Override
 public void start(Stage primaryStage) throws Exception {
     primaryStage.setTitle("Hello world Application");

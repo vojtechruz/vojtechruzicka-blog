@@ -122,7 +122,7 @@ Of course, having a label as the root component is not very realistic. You would
 ### FX Namespace
 There is a couple of FXML elements and attributes, which are not accessible by default. You need to add an FXML namespace to make them available. This needs to be added to the root component:
 
-```xml{4-5}
+```xml {4-5}
 <?xml version="1.0" encoding="UTF-8"?>
     ...
 
@@ -174,7 +174,7 @@ You should also declare what scripting language you are using in your FXML file:
 
 Let's see the full example:
 
-```xml{2,13-17}
+```xml {2,13-17}
 <?xml version="1.0" encoding="UTF-8"?>
 <?language javascript?>
 
@@ -219,7 +219,7 @@ loader.setController(new MainSceneController());
 ### In FXML
 You can specify the class of your controller as `fx:controller` attribute, which needs to be on the root component.
 
-```xml{3}
+```xml {3}
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.vojtechruzicka.MainSceneController">
@@ -251,7 +251,7 @@ public class MainSceneController {
 
 The next step is to register this method call as a handler for `onAction` event of our button. To reference methods from our controller, we need to use `#` before the method name:
 
-```java{5}
+```java {5}
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml" fx:controller="com.vojtechruzicka.MainSceneController">
     <Label fx:id="mainTitle" text="Hello world!"/>

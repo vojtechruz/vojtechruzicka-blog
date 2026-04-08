@@ -49,7 +49,7 @@ After creating the project, the first thing we need is to add the Spring Boot Ad
 
 Note that even though the project is not created by Pivotal, you can find both the client and server modules for Spring Boot Admin in the Spring Initializr. Next, we need to enable Admin Server by annotating our main application class with `@EnableAdminServer`:
 
-```java{2}
+```java {2}
 @SpringBootApplication
 @EnableAdminServer
 public class SpringBootAdminServerApplication {

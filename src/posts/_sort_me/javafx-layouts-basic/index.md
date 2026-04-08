@@ -172,7 +172,7 @@ stackPane.setAlignment(Pos.BOTTOM_CENTER);
 ### Margin
 If you want even more fine-grained control of the positioning, you can set margin for individual items in the stack:
 
-```xml{6-8}
+```xml {6-8}
 <StackPane alignment="BOTTOM_CENTER">
     <ImageView>
         <Image url="/image.jpg"/>

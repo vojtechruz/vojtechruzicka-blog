@@ -97,7 +97,7 @@ gradle init
 ### Manual Gradle setup 
 Similar to Maven manual setup, you need to add JavaFX plugin:
 
-```gradle
+```groovy
 plugins {
   id 'application'
   id 'org.openjfx.javafxplugin' version '0.0.8'
@@ -106,7 +106,7 @@ plugins {
 
 And dependency to controls:
 
-```gradle
+```groovy
 javafx {
     version = "11.0.2"
     modules = [ 'javafx.controls' ]

@@ -44,7 +44,7 @@ When a case is matched and executed, the switch automatically continues to the n
 
 Let's look at an example. Let's pretend we forgot to include a break in the case 404:
 
-```java{4}
+```java {4}
 switch (errorCode) {
     case 404:
         System.out.println("Not found!");

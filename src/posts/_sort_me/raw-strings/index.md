@@ -117,7 +117,7 @@ public class Main {
 
 Each of the lines of the raw string contains some spaces at left as indentation, so the code is nicely formatted - 4 spaces indentation because it is inside a class and another 4 because it is inside the main method. If you run it, you will see this:
 
-```json
+```text
 This is my string
         which I want to be
         on multiple lines.
@@ -162,7 +162,7 @@ public class Main {
 
 After alignment, the output will be this:
 
-```custom
+```text
 This is my string
 which I want to be
 on multiple lines.
