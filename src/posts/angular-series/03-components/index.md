@@ -6,7 +6,7 @@ path: '/angular/03-components/'
 excerpt: "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series."
 series: 'Angular Tutorial'
 series-order: 3
-revised: false
+draftStatus: draft
 ---
 
 ## Getting started
