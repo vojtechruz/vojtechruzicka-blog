@@ -9,6 +9,8 @@ series-order: 5
 draftStatus: draft
 ---
 
+{% raw %}
+
 ## Inter-component communication
 
 We already covered that in your application, you usually use many components, and you nest them one in another. Possibly
@@ -434,3 +436,4 @@ unless specified inside the `@Output()` decorator.
 
 You can set up two-way data binding as well. Then you need both `@Input()` and `@Output()` and need to follow naming
 convention - the name of the output property should be the name of the input property + `Change` suffix.
+{% endraw %}

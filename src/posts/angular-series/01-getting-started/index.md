@@ -9,6 +9,8 @@ series-order: 1
 draftStatus: draft
 ---
 
+{% raw %}
+
 
 
 ## About this series
@@ -331,3 +333,4 @@ We also learned the basic structure of an Angular project.
 
 In the next article [Building Blocks](/angular/02-building-blocks),
 we'll learn what the basic building blocks of Angular applications are.
+{% endraw %}

@@ -18,7 +18,7 @@ Another popular and widespread tool is EditorConfig. The approach is slightly di
 
 An example file can look something like this:
 
-```editorconfig
+```ini
 # Unix-style newlines with a newline ending every file
 [*]
 end_of_line = lf
@@ -94,7 +94,7 @@ You can select standard core properties, which are supported with every EditorCo
 
 Let's try Java. Contents of the file should now contain a whole bunch of IDEA/Java-specific settings. Almost 250 new settings!
 
-```editorconfig
+```ini
 [*.java]
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = false

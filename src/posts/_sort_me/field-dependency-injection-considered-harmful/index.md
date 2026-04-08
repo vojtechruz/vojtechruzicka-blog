@@ -121,7 +121,7 @@ As of Spring 4.x, the official recommendation from [Spring documentation](http:/
 ## UPDATE: IntelliJ IDEA support
 Since this article was published, IDEA introduced some sweet support for detecting and easily fixing Field Injection. It can automatically remove the `@Autowired` annotation from the field and instead create a constructor with `@Autowired` dependency, effectively replacing field injection with constructor injection.
 
-<Video src={props.data.mdx.frontmatter.path+"idea-field-injection"} />
+{% video "/videos/field-dependency-injection-considered-harmful/idea-field-injection" %}
 
 ## Conclusion
 

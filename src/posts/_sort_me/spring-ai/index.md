@@ -5,6 +5,7 @@ tags: ['Spring', 'Java']
 path: '/spring-ai/'
 excerpt: 'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot application.'
 draftStatus: draft
+featuredImage: featured.png
 ---
 
 

@@ -27,7 +27,7 @@ Code coverage is measured under `Coverage` tab in Developer Tools. To open Dev T
 
 Then type `Show Coverage`.
 
-<Video src={props.data.mdx.frontmatter.path+"show-coverage"} />
+{% video "/videos/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools/show-coverage" %}
 
 Alternatively, you can show the `Coverage` tab from Dev Tools menu by choosing `More tools → Coverage`.
 

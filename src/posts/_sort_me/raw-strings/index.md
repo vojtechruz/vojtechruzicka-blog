@@ -201,7 +201,7 @@ The good news is that since version 2018.3, IDEA already supports Raw String Lit
 
 You can convert from good old string literals to the raw variant and vice versa. IDEA will handle escape sequence conversion and splitting to multiline for you.
 
-<Video src={props.data.mdx.frontmatter.path+"convert-to-raw"} />
+{% video "/videos/raw-strings/convert-to-raw" %}
 
 IDEA is also able to detect if you are unnecessarily using too many backticks and will be able to remove excess backticks for you.
 

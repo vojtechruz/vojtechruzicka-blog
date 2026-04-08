@@ -29,11 +29,11 @@ You can combine two anchor points, which are not in the opposite direction, to a
 
 Anchor `TOP = 10`, `RIGHT = 10` means that the component will stay in the top right corner of the layout in the distance 10 from both edges.
 
-<Video src={props.data.mdx.frontmatter.path+"anchor-pane-corners"} />
+{% video "/videos/javafx-layouts-advanced/anchor-pane-corners" %}
 
 In the example above, the size of each component stays the same on resizing. However, if you define anchor points in the opposite directions, you can make your component grow/shrink on resizing.
 
-<Video src={props.data.mdx.frontmatter.path+"anchor-pane-horizontal-resize"} />
+{% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize" %}
 
 You can have various combinations like this:
 - LEFT+RIGHT resizes horizontally
@@ -286,7 +286,7 @@ Left and right fill all the available vertical space (except what's occupied by 
 
 The center has a dynamic size and fills the rest of the space not occupied by other sections. Let's look at an example:
 
-<Video src={props.data.mdx.frontmatter.path+"borderpane-resizing"} />
+{% video "/videos/javafx-layouts-advanced/borderpane-resizing" %}
 
 ## What's next
 Now when we know how to use various layouts, we'll cover how to style JavaFX  components using CSS.

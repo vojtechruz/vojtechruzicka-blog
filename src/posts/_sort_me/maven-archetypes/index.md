@@ -30,7 +30,7 @@ In the example above, you specify just identifiers of your archetype and the com
 
 However, you can specify all these upfront, so no interaction is needed from your side. This can be useful, for example, when generating a project as a part of some automated script which should not have any user interaction.
 
-```shell{5-8}
+```shell {5-8}
 mvn archetype:generate 
 -DarchetypeGroupId=org.springframework.boot 
 -DarchetypeArtifactId=spring-boot-sample-simple-archetype 

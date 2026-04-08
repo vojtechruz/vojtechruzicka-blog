@@ -131,23 +131,23 @@ Right click → Diagrams → Show Dependencies
 
 You'll see zoomed out dependency graph, where it is not possible to see individual item names unless you zoom in. Looking for individual items manually can be a lot of pain. Fortunately, you can use `Find` as usual using <kbd>Ctrl</kbd> + <kbd>F</kbd>.
 
-<Video src={props.data.mdx.frontmatter.path+"maven-diagram-find"} />
+{% video "/videos/idea-analyzing-dependencies/maven-diagram-find" %}
 
 We are able to locate a specific dependency easily now, but still, a lot of unrelated dependencies making the graph hard to read. Let's look into how to filter the dependencies to get rid of unwanted noise.
 
 The first option is to show only direct neighbors. That is, only direct dependencies of the current item and only items that directly depend on the selected item.
 
-<Video src={props.data.mdx.frontmatter.path+"maven-diagram-neighbors"} />
+{% video "/videos/idea-analyzing-dependencies/maven-diagram-neighbors" %}
 
 Note that this works not only for single items, but you can select multiple items while holding <kbd>Shift</kbd>. 
 
 Another way to filter is to display the dependency chain leading from the root to the selected item(s).
 
-<Video src={props.data.mdx.frontmatter.path+"maven-diagram-path"} />
+{% video "/videos/idea-analyzing-dependencies/maven-diagram-path" %}
 
 IDEA does highlight conflicts for you in red. Still, it may be difficult to find if there is something wrong in a huge dependency tree. Fortunately, you can filter problematic parts only:
 
-<Video src={props.data.mdx.frontmatter.path+"maven-diagram-conflicts"} />
+{% video "/videos/idea-analyzing-dependencies/maven-diagram-conflicts" %}
 
 In the example above, you can see there is a conflict between JUnit versions. There is an explicit dependency to JUnit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
 
