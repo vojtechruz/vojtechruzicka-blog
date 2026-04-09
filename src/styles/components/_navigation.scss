@@ -112,6 +112,11 @@
     opacity: 0.75;
   }
 
+  .pagination-ellipsis {
+    color: var(--color-text-muted);
+    padding: 0 0.2rem;
+  }
+
   a {
     text-decoration: none;
   }

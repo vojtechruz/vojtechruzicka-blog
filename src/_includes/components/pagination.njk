@@ -4,12 +4,14 @@
       <a href="{{ pagination.href.previous }}" rel="prev" class="pagination-prev">« Previous</a>
     {% endif %}
 
-    {% for pageHref in pagination.hrefs %}
-      {% set pageNumber = loop.index %}
-      {% if loop.index0 == pagination.pageNumber %}
-        <span class="current" aria-current="page">{{ pageNumber }}</span>
+    {% set paginationPages = pagination | generatePagination(paginationWindowSize or 2) %}
+    {% for page in paginationPages %}
+      {% if page.ellipsis %}
+        <span class="pagination-ellipsis">…</span>
+      {% elseif page.current %}
+        <span class="current" aria-current="page">{{ page.number }}</span>
       {% else %}
-        <a href="{{ pageHref }}">{{ pageNumber }}</a>
+        <a href="{{ page.url }}">{{ page.number }}</a>
       {% endif %}
     {% endfor %}
 
