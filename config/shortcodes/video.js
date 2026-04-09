@@ -10,23 +10,43 @@
 // - Put your files under _eleventy/src/static so they are copied to the site root.
 //   Example path in repo: _eleventy/src/static/videos/my-talk.mp4 → site URL: /videos/my-talk.mp4
 import { escapeHtml, hash } from "../utils/formatting.js";
-export default function video(
+import ffprobe from "ffprobe-static";
+import { execFileSync } from "child_process";
+import path from "path";
+import fs from "fs";
+
+export default async function video(
   input,
   title = "Video",
   poster = "",
-  aspect = "16:9",
   showCaption = false
 ) {
-  //TODO check if it is not cropped due to aspect ratios
-  // TODO remove controls and display only on mouseover?
   const srcs = buildSources(String(input));
+
+  // Detect dimensions
+  let width = null;
+  let height = null;
+
+  // Try to find a local file to read metadata from
+  for (const s of srcs) {
+    const normalizedSrc = s.src.startsWith("/") ? s.src.slice(1) : s.src;
+    const localPath = path.join(process.cwd(), "src/static", normalizedSrc);
+    if (fs.existsSync(localPath)) {
+      const dims = getVideoDimensions(localPath);
+      if (dims) {
+        width = dims.width;
+        height = dims.height;
+        break;
+      }
+    }
+  }
 
   const hasCaption = Boolean(showCaption && title);
   const captionId = `vid-caption-${hash(srcs.map(s => s.src).join("|") + String(title))}`;
   const aria = hasCaption ? ` aria-labelledby="${captionId}"` : ` title="${escapeHtml(title)}"`;
 
   const posterAttr = poster ? ` poster="${escapeHtml(poster)}"` : "";
-  const aspectCss = toAspectCss(aspect);
+  const sizeAttrs = (width && height) ? ` width="${width}" height="${height}"` : "";
 
   const sourcesHtml = srcs.map(s => `    <source src="${escapeHtml(s.src)}"${s.type ? ` type="${s.type}"` : ""}>`).join("\n");
 
@@ -36,17 +56,38 @@ export default function video(
 <figure class="video-embed-figure">
   <video
     class="video-embed"
-   ${aria}
+   ${aria}${sizeAttrs}
     controls
     playsinline
     preload="metadata"${posterAttr}
-    style="width: 100%; height: auto;${aspectCss ? ` aspect-ratio: ${aspectCss};` : ""}"
   >
 ${sourcesHtml}
     Your browser does not support the video tag. You can <a href="${fallbackLink}">download the video</a>.
   </video>
   ${hasCaption ? `<figcaption id="${captionId}" class="video-caption">${escapeHtml(title)}</figcaption>` : ""}
 </figure>`;
+}
+
+function getVideoDimensions(filePath) {
+  try {
+    const result = execFileSync(ffprobe.path, [
+      "-v", "error",
+      "-select_streams", "v:0",
+      "-show_entries", "stream=width,height",
+      "-of", "json",
+      filePath
+    ], { encoding: "utf8" });
+    const data = JSON.parse(result);
+    if (data.streams && data.streams[0]) {
+      return {
+        width: data.streams[0].width,
+        height: data.streams[0].height
+      };
+    }
+  } catch (error) {
+    console.warn(`[video shortcode] Warning: Could not read metadata for ${filePath}. Error: ${error.message}`);
+  }
+  return null;
 }
 
 function buildSources(input) {
@@ -114,26 +155,3 @@ function mimeFor(ext) {
   }
 }
 
-function toAspectCss(aspect) {
-  if (!aspect) {
-    return "";
-  }
-
-  const a = String(aspect).trim();
-  // Accept forms: "16:9", "16/9", "1.777", "4:3"
-  const colon = a.match(/^(\d+(?:\.\d+)?)[/:](\d+(?:\.\d+)?)$/);
-  if (colon) {
-    const w = Number(colon[1]) || 16;
-    const h = Number(colon[2]) || 9;
-
-    if (w > 0 && h > 0) {
-      return `${w} / ${h}`;
-    }
-  }
-  const num = Number(a);
-  if (!Number.isNaN(num) && num > 0) {
-    return String(num);
-  }
-  // Fallback default
-  return "16 / 9";
-}
