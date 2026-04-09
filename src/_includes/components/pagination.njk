@@ -1,7 +1,7 @@
 {% if pagination.hrefs | length > 1 %}
   <nav class="pagination" aria-label="Pagination">
     {% if pagination.href.previous %}
-      <a href="{{ pagination.href.previous }}" rel="prev">« Previous</a>
+      <a href="{{ pagination.href.previous }}" rel="prev" class="pagination-prev">« Previous</a>
     {% endif %}
 
     {% for pageHref in pagination.hrefs %}
@@ -14,7 +14,7 @@
     {% endfor %}
 
     {% if pagination.href.next %}
-      <a href="{{ pagination.href.next }}" rel="next">Next »</a>
+      <a href="{{ pagination.href.next }}" rel="next" class="pagination-next">Next »</a>
     {% endif %}
   </nav>
 {% endif %}
