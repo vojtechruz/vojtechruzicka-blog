@@ -29,6 +29,7 @@ article {
 .post-header-divider,
 .divider {
     margin-top: var(--gap-large);
+    margin-bottom: var(--gap-large);
     height: 2px;
     background: color-mix(in srgb, var(--color-border) 80%, transparent);
     border: none;
@@ -170,10 +171,34 @@ article {
 
 .video-embed-figure {
     margin-inline: 0;
+    margin-block: var(--gap-large);
 
     .video-caption {
         font-size: 0.9rem;
         color: var(--color-text-muted);
         text-align: center;
     }
+}
+
+.post-metadata {
+    margin-block-end: var(--gap-large);
+
+    .post-metadata-primary {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--gap-medium);
+    }
+
+    .post-meta-separator {
+        opacity: 0.5;
+    }
+
+    .date-modified {
+        font-size: 0.9rem;
+    }
+}
+
+.post-header {
+    margin-block-end: var(--gap-small);
 }

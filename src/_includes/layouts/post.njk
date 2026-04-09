@@ -37,21 +37,21 @@
   </div>
   <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
-      <h1>{{ title }}</h1>
+      <h1 class="post-header">{{ title }}</h1>
 
-      <div>
-        <span class="date-published">{{date | readableDate}}</span>
-        <span class="date-modified">{{dateModified | readableDate}}</span>
-        <ul class="post-tags">
-          {% for tag in tags %}
-          <li><a class="tag-name" href="/tags/{{ tag | slugify }}/">{{tag}}</a></li>
-          {% endfor %}
-        </ul>
+      <div class="post-metadata">
+        <div class="post-metadata-primary" >
+          <span class="date-published">{{date | readableDate}}</span>
+          <ul class="post-tags">
+            {% for tag in tags %}
+            <li><a class="tag-name" href="/tags/{{ tag | slugify }}/">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {%if dateModified %}
+        <div class="date-modified">Updated: {{dateModified | readableDate }}</div>
+        {% endif %}
       </div>
-      {%if dateModified %}
-      <div>Last Updated: {{dateModified | readableDate }}</div>
-      {% endif %}
-
 
       <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
         fetchpriority="high" decoding="async">
