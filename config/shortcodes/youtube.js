@@ -37,10 +37,9 @@ export default function youtube(input, title = "YouTube video", height = 400, st
 <iframe
   class="yt-embed"
   title="${escapeHtml(title)}"
-  width="100%"
-  height="${Number(height) || 400}"
+  width="560"
+  height="315"
   src="${src}"
-  frameborder="0"
   loading="lazy"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen

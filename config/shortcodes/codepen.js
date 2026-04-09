@@ -44,13 +44,10 @@ export default function codepen(
     class="codepen-embed"
     ${aria}
     height="${Number(height) || 400}"
-    style="width: 100%"
-    scrolling="no"
     src="${src}"
-    frameborder="no"
     loading="lazy"
-    allowtransparency="true"
     allowfullscreen
+    title="${escapeHtml(title)}"
   ></iframe>
   ${hasCaption ? `<figcaption id="${captionId}" class="codepen-caption">${escapeHtml(title)}</figcaption>` : ""}
 </figure>`;

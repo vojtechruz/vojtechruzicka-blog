@@ -143,3 +143,36 @@ article {
     padding: 0;
     margin: 0;
 }
+
+/* Responsive Embeds */
+.yt-embed,
+.video-embed,
+.codepen-embed {
+    width: 100%;
+    border: 0;
+}
+
+.yt-embed {
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+.codepen-embed-figure {
+    margin-inline: 0;
+
+    .codepen-caption {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        text-align: center;
+    }
+}
+
+.video-embed-figure {
+    margin-inline: 0;
+
+    .video-caption {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        text-align: center;
+    }
+}
