@@ -4,7 +4,7 @@ pagination:
   size: 10            # items per page
   alias: posts        # variable name in template
   reverse: false
-paginationWindowSize: 2
+paginationWindowSize: 2 # number of visible pages around the current page on each side
 eleventyComputed:
   # "/" for page 1, "/pages/2/" for page 2, etc.
   permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/pages/{{ pagination.pageNumber + 1 }}/{% endif %}"
