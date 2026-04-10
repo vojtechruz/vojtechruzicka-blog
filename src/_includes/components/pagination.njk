@@ -4,8 +4,8 @@
       <a href="{{ pagination.href.previous }}" rel="prev" class="pagination-prev">« Previous</a>
     {% endif %}
 
-    {% set paginationPages = pagination | generatePagination(paginationWindowSize or 2) %}
-    {% for page in paginationPages %}
+    {% set paginationLinks = pagination | generatePaginationLinks(paginationWindowSize or 2) %}
+    {% for page in paginationLinks %}
       {% if page.ellipsis %}
         <span class="pagination-ellipsis">…</span>
       {% elseif page.current %}
