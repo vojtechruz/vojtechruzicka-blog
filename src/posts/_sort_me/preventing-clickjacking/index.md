@@ -76,7 +76,7 @@ Please note that `ALLOW-FROM` option is not widely supported in the same way as 
 
 The image bellow shows the compatibility ([see more](http://caniuse.com/#feat=x-frame-options)) of the `X-Frame-Options` header. Green represent full compatibility. Striped brown represents just `DENY` and `SAMEORIGIN`, but unsupported `ALLOW-FROM`.
 
-![x-frame-options-compatibility](./X-Frame-options-compatibility.png)
+![x-frame-options-compatibility](x-frame-options-compatibility-table.png)
 
 Based on the current stats (10/2023) just 0.7% of users will have full compatibility and the rest does not support `ALLOW-FROM`. That means you should stick only with `DENY` and `SAME-ORIGIN`, which currently has 97.34% support. Historically, the support was much higher and was 
 present also in other browsers on top of IE. Because this functionality was never properly standardized, the support was later dropped and the feature was deprecated in favor of Content-Security-Policy.
