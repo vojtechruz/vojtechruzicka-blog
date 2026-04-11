@@ -1,42 +1,17 @@
 <footer class="footer">
   <div class="footer-container">
     <nav class="footer-social" aria-label="Social links">
+      {% for item in site.social %}
       <a
-        href="https://www.vojtechruzicka.com/feed/"
+        href="{{ item.url }}"
         class="footer-icon"
-        title="Subscribe to RSS feed"
-        aria-label="Subscribe to RSS feed"
+        title="{{ item.title }}"
+        aria-label="{{ item.title }}"
+        {% if item.rel %}rel="{{ item.rel }}"{% endif %}
       >
-        {% include "icons/rss.njk" %}
+        {% include item.icon %}
       </a>
-
-      <a
-        href="https://mastodon.social/@vojtechruzicka"
-        rel="me"
-        class="footer-icon"
-        title="View my Mastodon profile"
-        aria-label="View my Mastodon profile"
-      >
-        {% include "icons/mastodon.njk" %}
-      </a>
-
-      <a
-        href="https://www.linkedin.com/in/vojtechruzicka"
-        class="footer-icon"
-        title="View my LinkedIn profile"
-        aria-label="View my LinkedIn profile"
-      >
-        {% include "icons/linkedin.njk" %}
-      </a>
-
-      <a
-        href="https://github.com/vojtechruz"
-        class="footer-icon"
-        title="View my GitHub profile"
-        aria-label="View my GitHub profile"
-      >
-        {% include "icons/github.njk" %}
-      </a>
+      {% endfor %}
     </nav>
   </div>
 </footer>

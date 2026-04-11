@@ -41,5 +41,32 @@ export default {
     theme: (process.env.ELEVENTY_RUN_MODE === "serve")
       ? "https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css"
       : "https://www.vojtechruzicka.com/styles/giscus-theme.css"
-  }
+  },
+  social: [
+    {
+      name: "RSS",
+      url: "https://www.vojtechruzicka.com/feed/",
+      icon: "icons/rss.njk",
+      title: "Subscribe to RSS feed",
+    },
+    {
+      name: "Mastodon",
+      url: "https://mastodon.social/@vojtechruzicka",
+      icon: "icons/mastodon.njk",
+      title: "View my Mastodon profile",
+      rel: "me",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/vojtechruzicka",
+      icon: "icons/linkedin.njk",
+      title: "View my LinkedIn profile",
+    },
+    {
+      name: "GitHub",
+      url: "https://github.com/vojtechruz",
+      icon: "icons/github.njk",
+      title: "View my GitHub profile",
+    },
+  ],
 };
