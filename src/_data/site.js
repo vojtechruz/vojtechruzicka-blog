@@ -31,5 +31,15 @@ export default {
 
   defaultShareImage: "/images/default-share.png",//TODO
   twitter: "@vojtechruzicka",
-  maxRelatedPosts: 5
+  maxRelatedPosts: 5,
+  lang: "en",
+  giscus: {
+    repo: "vojtechruz/vojtechruzicka-blog",
+    repoId: "MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY=",
+    category: "Gisqus Comments",
+    categoryId: "DIC_kwDOB0knwM4CZvj3",
+    theme: (process.env.ELEVENTY_RUN_MODE === "serve")
+      ? "https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css"
+      : "https://www.vojtechruzicka.com/styles/giscus-theme.css"
+  }
 };

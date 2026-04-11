@@ -85,7 +85,7 @@ present also in other browsers on top of IE. Because this functionality was neve
 
 While X-Frame-Options is widely supported (at least without `ALLOW-FROM`), it was never officially standardized. The standard, which is addressing whitelisting of frame sources, is newer Content Security Policy header. It comes in two levels - 1 and 2. It is the level 2 which adds `frame-ancestors` directive, which is supposed to replace `X-Frame-Options`. Level 2 is now finally [widely supported](https://caniuse.com/contentsecuritypolicy2) - currently 96.21% of the clients.
 
-![content-security-policy-level-2](./Content-Security-Policy-Level-2.png)
+![content-security-policy-level-2](./content-security-policy-lvl-2.png)
 
 Frame-ancestors specifies sources, from which elements frame, iframe, object, embed and applet can be loaded.
 

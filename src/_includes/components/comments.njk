@@ -1,29 +1,19 @@
-{% set giscusThemeUrl -%}
-  {% if eleventy.env.runMode == "serve" -%}
-https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css
-  {%- else -%}
-https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css
-  {%- endif %}
-{%- endset %}
-
 <section id="comments">
-  <!-- TODO externatize values to DATA -->
-  <!-- TODO Move from announcements section to Gisqus Comments category -->
-  <!--  TODO consider having comments heading-->
-  <div id="disqus_thread" class="gisqus"></div>
+  <!-- TODO consider having comments heading-->
+  <div id="disqus_thread" class="giscus"></div>
 
   <script src="https://giscus.app/client.js"
-          data-repo="vojtechruz/vojtechruzicka-blog"
-          data-repo-id="MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY="
-          data-category="Gisqus Comments"
-          data-category-id="DIC_kwDOB0knwM4CZvj3"
+          data-repo="{{ site.giscus.repo }}"
+          data-repo-id="{{ site.giscus.repoId }}"
+          data-category="{{ site.giscus.category }}"
+          data-category-id="{{ site.giscus.categoryId }}"
           data-mapping="pathname"
           data-strict="1"
           data-reactions-enabled="0"
           data-emit-metadata="0"
           data-input-position="top"
-          data-theme="{{ giscusThemeUrl }}"
-          data-lang="en"
+          data-theme="{{ site.giscus.theme }}"
+          data-lang="{{ site.lang }}"
           data-loading="lazy"
           crossorigin="anonymous"
           async>
