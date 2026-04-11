@@ -37,11 +37,13 @@ It looks cool and all but what is it good for you say? You can achieve similar r
 The feature was originally available in ReSharper, then [as a separate plugin](https://plugins.jetbrains.com/plugin/7342-postfix-completion) for IDEA and was later introduced as a core part of the IDE [in version 13.1](https://blog.jetbrains.com/idea/2014/03/postfix-completion/). It is currently (as of 2017.2.5) available for Java, Scala, JavaScript and Kotlin.
 
 ## Displaying available templates
+
 It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: <kbd>Ctrl</kbd> + <kbd>J</kbd> (or <kbd>⌘</kbd> + <kbd>J</kbd> on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to a collection. 
 
 ![show-actions-postfix-code-completion](./show-actions-postfix-code-completion.png)
 
 ## Configuration
+
 You can browse available postfix templates in Settings under:
 
 ```
@@ -53,6 +55,7 @@ You can disable individual templates or the feature as a whole.
 ![settings-postfix-code-completion](./settings-postfix-code-completion.png)
 
 ## Writing Custom postfix templates
+
 While IDEA offers quite a lot of built-in templates, it does not, unfortunately, allow you to define your own. But fear not, there is an IDE plugin just for that. It's called [Custom Postfix Templates](https://github.com/xylo/intellij-postfix-templates/).
 
 The plugin comes with a wide variety of additional templates, which you can use or edit to better suit your needs. But what's more - you can actually add your own. The plugin currently supports Java language, but according to the roadmap, more are to follow.
@@ -75,9 +78,10 @@ The plugin adds a new section in `Settings` under `Editor → Custom Postfix Tem
 ![postfix-completion-custom-templates](./postfix-completion-custom-templates.png)
 
 ## Conclusion
+
 Postfix code completion is a really powerful feature, which can boost your productivity quite a bit. Remember, the list of all the available actions in the current context is available via <kbd>Ctrl</kbd> + <kbd>J</kbd> (or <kbd>⌘</kbd> + <kbd>J</kbd> on Mac). And if the built-in actions are not enough for you, be sure to try [Custom Postfix Templates for IntelliJ IDEA plugin](https://github.com/xylo/intellij-postfix-templates/).
 
 ## More Resources
 
--   [Postfix completion for Mockito](https://plugins.jetbrains.com/plugin/8150-mockito-postfix-completion-plugin)
--   [Android postfix plugin for AndroidStudio](https://github.com/takahirom/android-postfix-plugin)
+- [Postfix completion for Mockito](https://plugins.jetbrains.com/plugin/8150-mockito-postfix-completion-plugin)
+- [Android postfix plugin for AndroidStudio](https://github.com/takahirom/android-postfix-plugin)

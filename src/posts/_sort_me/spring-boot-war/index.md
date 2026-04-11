@@ -47,14 +47,17 @@ Here you can specify all the options as in the web version but with less hassle.
 ![IDEA Spring Boot Initializr](idea-spring-boot-initializr.png) 
 
 ## Existing applications
+
 When you already have existing Spring Boot application packaged as JAR, the process is slightly more complicated, but still straightforward. You need to make some changes manually.
 
 Let's convert the app to WAR, which van be deployed to an application server such as Tomcat, while still keeping it executable.
 
 ### Embedded Tomcat dependency
+
 To make sure your embedded Tomcat dependencies are not clashing with what's already on your target Tomcat, you need to mark them as provided.
 
 #### Maven
+
 With Maven, simply add this dependency to your `pom.xml` file to the `dependencies` section.
 
 ```xml
@@ -122,11 +125,13 @@ plugins {
 ```
 
 ## Building the WAR
+
 The build process stays the same, no change here, simply run `mvn package` or `gradle build` and it will generate your WAR.
 
 Now you can deploy to an application server of your choice.
 
 ## Running the WAR
+
 What's cool with this approach is that you can still run your WAR as an executable with embedded Tomcat. This way, you can have WAR deployment without sacrificing direct executability.
 
 Simply run your archive as usual. Replace the last param with the real name of your WAR.

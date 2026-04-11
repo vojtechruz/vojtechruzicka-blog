@@ -87,6 +87,7 @@ public class PersonControllerTest {
 So far, nothing REST Docs specific, but this is the base we'll be building on.
 
 ### Adding the dependencies
+
 The first thing you'll need to do is provide the Spring Rest Docs dependency. You'll need to use a different one depending on whether you want to use Spring MVC Test, WebTestClient or RestAssured. For Spring MVC Test use the following (the latest version).
 
 ```xml
@@ -325,7 +326,7 @@ If you build again, you should see a new section about path params in your docum
 ![Path Parameters Documentation](./path-parameters.png)
 
 ## Documenting request and response payload
-Our controller's method `getPersonById()` returns a person represented as JSON. 
+Our controller's method `getPersonById()` returns a person represented as JSON.
 
 ```json
 {
@@ -409,15 +410,19 @@ Either way, documenting request params is the same:
 The resulting snippet is `request-parameters.adoc`.
 
 ## More documentation options
+
 That's of course not all you can document. [There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, hypermedia links or multipart requests. However, the pattern is still the same. Include a method in your tests, run the tests, include the generated snippet in your AsciiDoc and finally run the maven build. 
 
 ## Spring Auto Rest Docs
+
 There is an interesting alternative to vanilla Spring Rest Docs called [Spring Auto Rest Docs](https://github.com/ScaCap/spring-auto-restdocs). Its aim is to automate the process of documentation as much as possible. Instead of documenting all the JSON fields manually, it can generate the docs for them automatically by introspecting your classes, reading field names, types and the description from JavaDoc.
 
 ## Generating WireMock stubs from your API docs
+
 Even more interesting is a project offering [Spring REST Docs WireMock Integration](https://github.com/ePages-de/restdocs-wiremock). It can generate [WireMock](http://wiremock.org/) stubs from your Spring Rest Docs API Documentation. This is really powerful as it ensures both your API documentation AND your API stubs are always up to date. Pretty cool, right? You can read more in [this blog post](https://developer.epages.com/blog/tech-stories/wiremock/).
 
 ## Conclusion
+
 While Swagger and SpringFox are not a bad choice, Spring Rest Docs offers some powerful benefits you should definitely consider. The main one is having your docs always up to date, because if the documentation goes out of sync, the tests start to fail. Another one is that it motivates you to write tests of your controllers as they are required to create your API documentation.
 
 Also, with Spring Rest Docs it is much easier to write documentation not only of your API directly, but also add any other necessary info such as tables, blocks of text, images, code blocks and so on. And of course, your production code is no longer plagued by all the documentation annotations, which make it so hard to read.

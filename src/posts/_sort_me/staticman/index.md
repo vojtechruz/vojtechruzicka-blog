@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Dynamic content in static sites 
+
 Static JAMStack sites are great. If you are not familiar with them, you can check my older post on how I migrated my blog from WordPress to a static site using Gatsby.
 
 {% linkedPost "/gatsby-migration/" %}
@@ -23,6 +24,7 @@ This may be necessary for dynamic and ever-changing data such as stock prices, w
 What if you could build your static site after a user comments including their new submission? Instead of loading the comment thread dynamically after the page loads, the whole thread could be core part of your static page. This way your site would be truly static with all the advantages.
 
 ## Staticman
+
 It turns out you can achieve this easily with a tool called [Staticman](https://staticman.net/). The idea is simple.
 
 1. Provide a submission form to your static site. For example a form for submitting a new comment.
@@ -36,6 +38,7 @@ How great is that? Of course, you don't want users spamming your site, so Static
 ## Setup
 
 ### Granting GitHub access
+
 The first thing you need to do is to grant Staticman privileges to access your Github repo. Go to `Settings → Collaborators` section of your repository and add `staticmanapp` as a collaborator.
 
 ![Staticman Collaborators Setup](staticman-collaborators.jpg)
@@ -112,6 +115,7 @@ If you want to redirect the user to a specific url after submitting, you can do 
 ```
 
 ## Integrating with your static site generator
+
 Each user submission is stored as a separate file. You can define the location and format of these files in your configuration file.
 
 ![Staticman Files](staticman-files.jpg)
@@ -131,21 +135,27 @@ What you need to do is to make sure your static site generator reads this data (
 For example, if using Gatsby, you can use [gatsby-transformer-yaml](https://www.gatsbyjs.org/packages/gatsby-transformer-yaml/) to read the YAML data and then just populate your comments section based on this data as you would with any other data source.
 
 ## Moderation
+
 You can turn on moderation of user submissions by setting `moderation: true` in your config file. Staticman then creates a Pull Request for each user submission, which you can either accept or decline.
 
 ![StaticMan Moderation Pull Request](staticman-pr.jpg)
 
 ## Advanced features
+
 ### Running your own instance
+
 If using Staticman as a service does not suit your needs for any reason, you can [run your own instance](https://staticman.net/docs/api).
 
 ### Akismet
+
 Staticman offers integration with [Akismet](https://akismet.com/) spam filter. This can be great when running your own instance, but unfortunately does not work [currently](https://github.com/eduardoboucas/staticman/issues/83) on public Staticman instance as it is using shared Akismet account under the hood, which reached the maximum usage limit.
 
 ### Email notifications
+
 Staticman supports email notifications on new user submissions using [Mailgun](https://staticman.net/docs/configuration). You just need to enable the notifications in your [config file](https://staticman.net/docs/configuration) and provide your Mailgun domain and API key.
 
 ### Re-captcha
+
 Staticman supports re-captcha integration. You'll need to [create a re-captcha account](https://www.google.com/recaptcha/admin) first. You will receive a `site-key` and `secret`. Your secret is not used directly by Staticman and you need to encrypt it first.
 
 ```
@@ -190,4 +200,5 @@ The source code for a simple GatsbyJS site integrating Staticman is available on
 You can also check [a live and interactive version of the site](https://staticman-example.netlify.app/).
 
 ## Conclusion
+
 Staticman is an excellent tool if you want to have user-generated content on your site while remaining truly static. You no longer need to rely on third-party services, to manage and store your content. There is no need to load the user-generated content from third-party API at runtime. This should give you better performance, and you have direct control over your data. If you need moderation of submitted content, Staticman can create Pull Requests, so you can decide which submissions are acceptable and which not.

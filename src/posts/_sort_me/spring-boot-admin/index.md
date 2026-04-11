@@ -8,19 +8,20 @@ excerpt: 'Monitor and manage your Spring Boot apps with a nice UI on top of Spri
 draftStatus: draft
 ---
 
-
-
 ## Spring Boot Actuator
+
 Actuator is a Spring Boot module, which adds REST/JMX endpoints to your application, so you can easily monitor and manage it in production. The endpoints offer health-check, metrics monitoring, access to logs, thread dumps, heap dumps, environmental info and more. I've covered Actuator in depth in the following article:
 
 {% linkedPost "/spring-boot-actuator/" %}
 
 ## Spring Boot Admin
+
 Actuator is powerful and great and it is easy and convenient to consume the endpoints with some other application - you just make a simple REST call. It is not so great when used by a human. For humans, it is much more convenient to have a nice user interface you can use to browse all the monitoring data and manage your application. This is actually what Spring Boot Admin Does. It provides you a nice UI layer on top of actuator endpoints with a few extra features on top.
 
 Spring Boot Admin is not a core module provided by the Spring team, it was created by a company called [Codecentric](https://blog.codecentric.de/en/). Still, the code is publicly available on [Github](https://github.com/codecentric/spring-boot-admin) and it is free.
 
 ## Client And Server
+
 Unlike Actuator, Spring Boot Admin actually comes in two parts - Client and Server.
 
 The Server part contains the Admin user interface and runs independently from the monitored applications. The Client part is in the monitored application, which registers with the Admin Server part.
@@ -32,9 +33,11 @@ With Spring Boot Admin, each instance of your monitored application (Client) reg
 ![Spring Boot Admin - Multiple Applications and instances](spring-boot-admin-multi-instances.png)
 
 ## Source Code
+
 The source code with a finished application can be found in [this Github repository](https://github.com/vojtechruz/spring-boot-admin).
 
 ## Server Setup
+
 Let's first look into how to setup Spring Boot Admin Server. Let's start with a fresh Spring Boot application. You can easily create one using [Spring Initializr](https://start.spring.io/). Be sure to include the `web` module.
 
 After creating the project, the first thing we need is to add the Spring Boot Admin Server dependency:
@@ -67,6 +70,7 @@ And that's it. Now you can run your application and after opening `http://localh
 The server is running, but no clients are registered yet. Let's change that.
 
 ## Client Setup
+
 Same as with server setup, the first step is to add a proper dependency to an existing application:
 
 ```xml
@@ -84,6 +88,7 @@ spring.boot.admin.client.url=http://localhost:8080
 ```
 
 ### Adding Actuator
+
 Now you should be able to run both the client and the server. Just make sure there is not a port conflict as both apps by default use 8080. For testing purposes, you can set `server.port=0` in your `application.properties`, so your client will use a random port on startup. This way you can test launching multiple instances running on different ports.
 
 When you open Admin Server UI, you should see your application. When you click the app name, a page with application details should show up.
@@ -112,9 +117,11 @@ After exposing your Actuator endpoints, you should see much more information in 
 For a detailed tutorial on Spring Boot Actuator configuration check [this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
 
 ## Security
+
 Now when everything is running, we should make sure our Actuator endpoints and the Admin UI are not publicly available to everyone.
 
 ### Client Security
+
 If you are already using Spring Security, the above will not work for you as the Actuator endpoints are secured by default and your Admin server will not be able to access them. If you don't use Spring Security yet, you need to add a dependency first:
 
 ```xml
@@ -223,6 +230,7 @@ Other notifications need a simple configuration. It usually means just providing
 * [Microsoft Team](https://codecentric.github.io/spring-boot-admin/current/#telegram-notifications)
 
 ### Configuring Email Notifications
+
 If you want to enable email notifications, you need to add Spring email dependency to your **Server** part:
 
 ```xml
@@ -252,4 +260,5 @@ spring.boot.admin.notify.mail.cc=joe@foo.com
 ```
 
 ## Conclusion
+
 Spring Boot Admin offers a nice and useful UI layer on top of Actuator Endpoints. What's more, it allows you to centrally monitor multiple applications with multiple instances, which is invaluable when working in the cloud and with microservices. Make sure though, that you sufficiently protect both your Client and Server. For further information, please check the [official documentation](http://codecentric.github.io/spring-boot-admin/current/).

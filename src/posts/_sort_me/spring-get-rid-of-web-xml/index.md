@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## web.xml and Servlet 3.0
+
 Web.xml, also known as deployment descriptor, is traditionally used as a configuration file for Java web applications. It defines servlets, their mappings, servlet filters, lifecycle listeners and more. Originally it was the only way to provide such configuration. Over the time, once popular XML configuration lost its appeal and popularity in favor of Java-based annotation configuration. The same trend can also be observed in Spring Framework.
 
 With Servlet version 3.0, the deployment descriptor is no longer mandatory. The configuration originally provided by the file can now be provided by annotations such as [@WebServlet](https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebServlet.html), [@WebFilter](https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebFilter.html) or [@WebListener](https://docs.oracle.com/javaee/7/api/javax/servlet/annotation/WebListener.html) directly on the class level. For example, you can annotate your servlet like this to provide mapping and init params:
@@ -28,12 +29,15 @@ public class MyServlet extends HttpServlet {
 For more info about replacing web.xml with annotations see [Servlet 3.0 Tutorial: @WebListener, @WebServlet, @WebFilter and @WebInitParam](http://blog.caucho.com/2009/10/06/servlet-30-tutorial-weblistener-webservlet-webfilter-and-webinitparam/).
 
 ## web.xml and Spring MVC
+
 In Spring MVC, web.xml used to be the place, where you needed to declare and configure Dispatcher Servlet, which is a Front Controller, receiving all the requests and dispatching to all the other components such as Controllers. Fortunately, Spring offers a convenient, XML-free way of declaring Dispatcher Servlet.
 
 ## Interface WebApplicationInitializer
+
 In version 3.1, Spring introduced `WebApplicationInitializer`. It is an interface, which you can implement. If you do so, Spring will detect your class and execute its method `onStartup(ServletContext container)`, inside which you can define Configuration of your Dispatcher Servlet and do all the other config such as registering and mapping of other servlets, filters or lifecycle listeners. Most importantly, inside the method, you'll need to create your application context. This usually means having root application context and web application context. The specific class you'll need to use for your app context will depend whether you still use XML configuration or Java configuration.
 
 ### XML Config
+
 To create application context based on XML configuration files, you'll need to use `XmlWebApplicationContext`.
 
 ```java
@@ -130,7 +134,7 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
 Of course, if you need to customize how Dispatcher Servlet is created or any other details, you can override methods from the parent class.
 
 ## Updating your Maven WAR plugin
-After removing web.xml file, your Maven build may break complaining that the file is missing. This happens when you're using an older version of Maven WAR Plugin. You can set configuration flag `failOnMissingWebXml` to false to fix the error. 
+After removing web.xml file, your Maven build may break complaining that the file is missing. This happens when you're using an older version of Maven WAR Plugin. You can set configuration flag `failOnMissingWebXml` to false to fix the error.
 
 ```xml
 <build>

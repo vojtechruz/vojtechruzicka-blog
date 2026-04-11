@@ -28,6 +28,7 @@ public class MaxLengthValidator {
 You can see more details in the [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#@author) article and [JavaDoc reference guide](http://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#author).
 
 ## What is wrong with @author
+
 The tag is not actually included in generated Javadoc. At least not by default - you need to [explicitly specify](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html#author) `-author` parameter to include the information in the generated documentation. Therefore it is only visible to a person, who is viewing the source code. In that case, there is a much better source of information about authors and contributors - your version control system (such as Git or SVN). Adding this also in comments is a duplication of information and unwanted noise. You can already see who and when edited each and single line in the file.
 
 ![Authors and time of changes as shown in IntelliJ Idea 2016.1](./annotate.png)
@@ -35,6 +36,7 @@ The tag is not actually included in generated Javadoc. At least not by default -
 Better yet, unlike the @author tag, the information is always accurate and up to date. Comments tend to rot and be outdated and obsolete quickly. Developers tend to ignore updating comments when making changes. After a while and some refactorings, the original file is usually much different than when original @author created the first version. Not to mention that developers listed are often not with the company anymore or left the project years ago.
 
 ## IDE templates
+
 What is even worse is the default, non-Javadoc template stating author and creation date, which some IDEs automatically insert into each new file. Following is the default one used by IntelliJ Idea (as of 2016.1).
 
 ```java
@@ -86,4 +88,5 @@ You can check a full-fledged example of the CODEOWNERS file [here](https://githu
 Even if you are not using GitHub and will not, therefore, benefit from the automatic assignment of reviewers, it may still be handy to have one centralized file where you can look up who is responsible for which part of the project.
 
 ## Conclusion
+
 I suggest you stop using the @author tag, same as [Apache](http://www.theinquirer.net/inquirer/news/1037207/apache-enforces-the-removal-of-author-tags) or [Gradle](https://github.com/gradle/gradle/commit/a1b9612fa06f90f20b115cede557e22287501034) did. If you keep using it, at least be sure to keep the info always up to date.

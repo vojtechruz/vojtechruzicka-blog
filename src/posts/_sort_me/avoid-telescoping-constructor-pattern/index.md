@@ -11,6 +11,7 @@ draftStatus: draft
 
 
 ## Telescoping Constructor
+
 In Java, there is no support for default values for constructor parameters. As a workaround, a technique called \"Telescoping constructor\" is often used. A class has multiple constructors, where each constructor calls a more specific constructor in the hierarchy, which has more parameters than itself, providing default values for the extra parameters. The next constructor does the same until there is no left.
 
 ```java
@@ -31,9 +32,11 @@ In Java, there is no support for default values for constructor parameters. As a
 ```
 
 ## What's wrong with it?
+
 As long as there are only several attributes, everything seems to be ok. But as their number rises, problems start to begin. Such constructors are hard to read. They have many parameters - who know what the sixth one is? If the adjacent parameters have the same type, you can accidentally switch their values without compilation error and everything seems to be fine. Furthermore, you rarely know which optional parameters consumer wants to use for his scenario, which often results in constructor calls where the constructor has many parameters, but many of them are null. It is hard to read which variant of the object is being constructed without further investigation. When adding new parameters, you have to add new constructors to the chain. This pattern can therefore not scale very well - it is hard to maintain and from a certain number of parameters, constructors are insanely long and there is just too many of them.
 
 ## Alternative 1 - JavaBeans
+
 Probably the easiest and the most flexible and scalable alternative to implement is using [JavaBeans convention](http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html). In that case, you create the object using a parameter-less constructor and then you set only fields which you want using mutators (setter methods).
 
 ```java
@@ -47,15 +50,14 @@ john.setDescription("I am a huge fan on JavaBeans convention!");
 [See full source here](https://gist.github.com/vojtechruz/7491ef6d99569a55cabfe2543cbe4354)
 
 This has several advantages:
-
--   Easy to implement and change
--   Easy to read - setters are named, and you know which fields are assigned which value instantly
--   Easy to scale - Adding more and more parameters is still easy
+- Easy to implement and change
+- Easy to read - setters are named, and you know which fields are assigned which value instantly
+- Easy to scale - Adding more and more parameters is still easy
 
 However, there are also disadvantages, which may or may not concern you depending on the scenario:
 
--   JavaBeans are mutable, which means their state can be changed using setters anytime after they are constructed. Their fields cannot be declared final, unlike those of objects solely created at once in constructors. There are several advantages having immutable objects, notably being thread safe.
--   When an object construction is not an atomic operation, the object can be accessed in a state where it is not fully constructed yet.
+- JavaBeans are mutable, which means their state can be changed using setters anytime after they are constructed. Their fields cannot be declared final, unlike those of objects solely created at once in constructors. There are several advantages having immutable objects, notably being thread safe.
+- When an object construction is not an atomic operation, the object can be accessed in a state where it is not fully constructed yet.
 
 ## Alternative 2 - Named Static Factory Methods
 One of the disadvantages of having multiple constructors is reduced readability. It is hard to distinguish one from another since constructors all have the same name. That is not a limitation of static factory methods. What are they?
@@ -90,9 +92,9 @@ If the immutability is an issue, popular approach how to construct objects with 
 
 The process is similar to using StringBuilder.
 
-1.  You create an instance of your builder. Optionally, you can provide always required fields in the constructor.
-2.  One by one, you set fields, which should be part of the build. Usually, to make things more convenient, the builder returns itself, so you can chain the method calls ([fluent interface](http://martinfowler.com/bliki/FluentInterface.html)).
-3.  Once you are done, you call `build()` method and receive the constructed object. Under the hood, the builder calls the constructor of the constructed object. It is therefore constructed all at once and can be thus immutable.
+1. You create an instance of your builder. Optionally, you can provide always required fields in the constructor.
+2. One by one, you set fields, which should be part of the build. Usually, to make things more convenient, the builder returns itself, so you can chain the method calls ([fluent interface](http://martinfowler.com/bliki/FluentInterface.html)).
+3. Once you are done, you call `build()` method and receive the constructed object. Under the hood, the builder calls the constructor of the constructed object. It is therefore constructed all at once and can be thus immutable.
 
  
 
@@ -125,8 +127,8 @@ The builder is fortunately quite easy to generate. The best way is to use your f
 ## Conclusion
 The Builder is no silver bullet, which should be used every time you face a higher number of constructor parameters and telescoping constructors. The usage depends on the specific situation. Each approach has advantages and tradeoffs. Depending on your priorities, you should choose the best-suited one. The process may be similar to the following:
 
-1.  Why do I actually have that many parameters? It may be a red flag that the class has too many responsibilities. Can some of those be extracted? Are some of the fields in such a close relation, that they should be encapsulated in a specialized class (e.g. Address fields such as street, city, and country).
-2.  Is the number of fields small enough? Will I in my case benefit from immutability? Is there only a few valid combinations of optional fields and the rest can be replaced by known defaults? In such case, let's maybe keep it simple and stick with just constructors.
-3.  Too many fields, but immutability is not that important? Maybe the fields need to change too much and creating new instances every time is too much of an overhead? Maybe there is no concurrency involved? Let's stick with simple JavaBeans convention and just use setters for object construction.
-4.  Do we care about our constructed object being immutable? Thread safe? Let's stick with Builder.
-5.  Is the construction process complex? Is it likely that the process will stay the same (meaning steps involved), but it may be handy to produce different outputs (e.g. tailored to a different environment) by following the same sequence of steps? Then Gang of Four Builder Pattern may be the way to go.
+1. Why do I actually have that many parameters? It may be a red flag that the class has too many responsibilities. Can some of those be extracted? Are some of the fields in such a close relation, that they should be encapsulated in a specialized class (e.g. Address fields such as street, city, and country).
+2. Is the number of fields small enough? Will I in my case benefit from immutability? Is there only a few valid combinations of optional fields and the rest can be replaced by known defaults? In such case, let's maybe keep it simple and stick with just constructors.
+3. Too many fields, but immutability is not that important? Maybe the fields need to change too much and creating new instances every time is too much of an overhead? Maybe there is no concurrency involved? Let's stick with simple JavaBeans convention and just use setters for object construction.
+4. Do we care about our constructed object being immutable? Thread safe? Let's stick with Builder.
+5. Is the construction process complex? Is it likely that the process will stay the same (meaning steps involved), but it may be handy to produce different outputs (e.g. tailored to a different environment) by following the same sequence of steps? Then Gang of Four Builder Pattern may be the way to go.

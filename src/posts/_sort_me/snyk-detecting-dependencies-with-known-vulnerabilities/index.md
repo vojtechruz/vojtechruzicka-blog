@@ -112,10 +112,10 @@ snyk wizard
 
 This will go through all your vulnerable dependencies and offer:
 
-1.  Update the dependency to a newer version, which fixes the issue, if available
-2.  Apply a patch if available
-3.  Ignore
-4.  Skip for now
+1. Update the dependency to a newer version, which fixes the issue, if available
+2. Apply a patch if available
+3. Ignore
+4. Skip for now
 
 All your decisions will be applied - `package.json` file will be changed to include the new dependencies and a `.snyk` file will be created with all the patches and ignores. Finally, the `snyk monitor` will be run to create a snapshot of your dependencies, so you will be notified in the future if a new vulnerability or fix is added. However, currently, only NPM dependencies can be handled by the `snyk wizard`.
 
@@ -141,6 +141,7 @@ Tested 1158 dependencies for known vulnerabilities, found 11 vulnerabilities, 30
 ```
 
 ## Integrations
+
 While Snyk Command Line Interface is pretty cool, Snyk offers much more. It integrates with a wide range of external services.
 
 Currently, Snyk supports GitHub, GitHub Enterprise, GitLab and BitBucket Server as Version Control. From PaaS, there is Heroku, CloudFoundry, Pivotal Web Services and IBM Bluemix. There is even support for AWS Lambda (Google Could platform to be supported soon). Notifications about new vulnerabilities can be delivered via Slack or soon as JIRA tickets.
@@ -166,9 +167,11 @@ If your project is free of vulnerabilities, you can even include this nice badge
 ![snyk-badge](./snyk-badge.jpg)
 
 ## IDE Integration
+
 Having automatic checks for vulnerable dependencies as a part of your Continuous Integration is great. It is, however, even better to discover such vulnerabilities as early as possible. That's in your IDE still during development. When introducing a new dependency, you can check easily directly in your IDEA whether it contains security vulnerabilities with Snyk IDEA plugin.
 
 {% linkedPost "/idea-snyk-plugin/" %}
 
 ## Conclusion
+
 Making sure your dependencies are up-to-date and contain no security vulnerabilities is very important and often overlooked. Snyk is a cool tool, which can help you with that. It is in some aspects similar to OWASP Dependency-Check [described in the previous article](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). It has some nice features on top of what Dependency Check offers. Integration with a wide range of cloud services and version control systems. What\'s great is that it not only finds the vulnerabilities but directly offers means to fix them in the form of updates or patches. Hell, it can even automatically create a Pull Request for that. The downside is that many of the cool features are currently available just for node dependencies and not others like Java. We can only hope this will change soon.

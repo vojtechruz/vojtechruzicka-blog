@@ -90,9 +90,9 @@ You can note that the integer result of 5 \<\< 3 is 40. That shows that shifting
 
 There are several additional interesting aspects to this:
 
--   Even though you can use shifting of byte, short or char, they are promoted to 32-bit integer before the shifting
--   Bit-shift operators never throw an exception
--   The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \<\< 35 is equivalent to 5 \<\< 3.
+- Even though you can use shifting of byte, short or char, they are promoted to 32-bit integer before the shifting
+- Bit-shift operators never throw an exception
+- The right operand (the number of positions to shift) is reduced to modulo 32. That is 5 \<\< 35 is equivalent to 5 \<\< 3.
 
 ### Negative Integers in Java
 

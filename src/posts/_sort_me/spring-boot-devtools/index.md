@@ -196,6 +196,7 @@ spring.devtools.livereload.enabled=false
 ```
 
 ### Shutdown Hook
+
 DevTools are dependent on the [shutdown hook](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/SpringApplication.html#setRegisterShutdownHook-boolean-) of `SpringApplication`. It will not work correctly if you manually disabled the hook using:
 
 ```java
@@ -205,6 +206,7 @@ springApplication.setRegisterShutdownHook(false);
 By default, the hook is enabled, so you don't need to worry about it unless you explicitly disable it.
 
 ### Collisions with third-party libraries
+
 While DevTools should usually run properly, it may have conflicts with third party libs. In particular, there is a [known issue](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html#using-boot-devtools-known-restart-limitations) with deserialization using standard `ObjectInputStream`.
 
 In case of such conflict, you can disable the automatic restart by setting:
@@ -225,6 +227,7 @@ public static void main(String[] args) {
 Even if you don't use the automatic restart you can still benefit from the other features DevTools provide.
 
 ## Enabling lazy initialization
+
 You can mark individual beans as lazily initialized using `@Lazy` annotation. This feature is in Spring for quite some time already. Since Spring Boot 2.2, you can toggle lazy initialization for all your beans using `spring.main.lazy-initialization=true`. This can be used on its own or [combined with DevTools for even faster restart](https://spring.io/blog/2019/03/14/lazy-initialization-in-spring-boot-2-2#what-about-devtools).
 
 > DevTools enables hot restart of your application in the same JVM. A significant benefit of hot restart is that it gives the JIT more of a chance to optimise the code involved in starting your application. After a few restarts, the original time of 2500ms is reduced by almost 80% to nearer 500ms. With lazy initialization, we can do even better. Setting spring.main.lazy-initialization sees our application restart in 400ms directly in the IDE.

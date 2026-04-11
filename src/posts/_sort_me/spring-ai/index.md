@@ -204,6 +204,7 @@ public class AiController {
 Now we can start our application and test in the browser by calling [http://localhost:8080/ask-ai?prompt=how%20are%20you](http://localhost:8080/ask-ai?prompt=how%20are%20you).
 
 ### Template queries
+
 In the example above, we let our application or external users to define the whole prompt. Sometimes it's exactly what we need, however sometimes we would like to have more control over our queries. Let's say we would like to have predefined queries over which we have full control and only provide certain parameters to adjust the queries.
 
 Let's imagine our application provides useful tips on what to do on vacation. The user only provides us with the city and their interests, and we generate tips on what to do in the city.
@@ -247,6 +248,7 @@ public String cityGuide(@RequestParam("city") String city,
 ## Image generation
 
 ### Generating images
+
 For image generation, we can inject `ImageClient` through dependency injection wherever needed and utilize it to generate our images. Let's create a new service that will automatically receive `ImageClient` through constructor injection.
 
 
@@ -292,6 +294,7 @@ OpenAiImageOptions openAiImageOptions = OpenAiImageOptions.builder()
 ```
 
 ### Obtaining generated images
+
 Our new image service uses `ImageClient` provided by Spring AI and returns response of type `ImageResponse`. This response contains not only the image generated, but also various metadata and can contain multiple images if we ask for them via `withN` in `ImageOptions`. In fact, the response does not contain the images directly, but also the URL where the generated images are located.
 
 We can create a new method in our controller, which will generate our image based on user-provided prompt. It will then redirect to the URL of the generated image, so it will be displayed directly in the browser.
@@ -325,14 +328,17 @@ public class AiController {
 
 
 ## AI Provider abstraction
+
 Even though this article used OpenAI, the functionality of our application is not tightly coupled to it. We could easily switch later to a different provider just by changing our Maven dependency. This way, the impact of changing AI providers is minimized - we don't need to rewrite half of our application, risking breaking existing functionality and introducing bugs. Spring already follows this approach with many of its abstractions. When using Spring caching, you are not tied to a specific cache and can easily switch caching providers without affecting much of your code.
 
 Note that classes, which we used such as `ChatClient` or `ImageClient` are not OpenAI specific and will continue to work even after replacing OpenAI with different provider. There are some exceptions such as when providing image generation options. You can either use generic options with less functionality or OpenAI-specific options. In these cases, you need to decide if you need extra functionality given by a specific AI provider or if you are good with generic functionality. In case the generic functionality is enough, it will make migrating to different AI provider easier as no changes will be needed.
 
 ## Conclusion
+
 In this article we covered basic functionality for Spring AI using OpenAI for both image and text generation. Spring AI offers more functionality, which is beyond the scope of this article, but you can check official documentation for more details. Keep in mind that we used pre-production version of Spring AI and some features are likely to be changed, removed or added. You should not use this version for your real production applications until the final version is released.
 
 ## Further reading
+
 - [Demo application for this article](https://github.com/vojtechruz/spring-ai-demo).
 - [Spring AI Reference documentation](https://docs.spring.io/spring-ai/reference/index.html)
 - [Spring AI GitHub Repository](https://github.com/spring-projects/spring-ai)

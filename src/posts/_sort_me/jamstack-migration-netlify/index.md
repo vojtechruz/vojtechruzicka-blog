@@ -48,11 +48,13 @@ That's all the setup needed to get up and running. Now Netlify builds your code 
 If you have a custom domain, you can easily use your own domain name instead of `yoursite.netlify.app`. After this, you can also add HTTPS with just one click (see below).
 
 ### Content Delivery Network
+
 One of the weaknesses of my previous WordPress setup was performance. The problem was two-fold. First - having a PHP backend generating and serving my content is way slower than just serving a static HTML page. Static site generators such as GatsbyJs or Jekyll solve this issue. The second problem still remains. If you have just one central server distributing your static pages, the latency increases with the distance of your clients from the central server. Having someone connecting from the other end of the world causes a serious performance hit. What's more, you have a single point of failure. If your central server goes down, your content is not served.
 
 Content Delivery Network (CDN) solves this issue. CND offers many nodes distributed in various geographic locations. When you are requesting a resource from a CDN, you are served from the node which is geographically closest. Moreover, if one of the nodes goes down, the traffic is redirected to the next one. Since your static site is not changing until the next build, it is easy to scale and distribute your whole site over a CDN. Netlify does this out of the box, utilizing [multiple intelligent ultra-fast CDNs](https://www.netlify.com/blog/2016/04/15/make-your-site-faster-with-netlifys-intelligent-cdn/) based on multiple providers. That means a tremendous performance and reliability gain over the original WordPress solution. What's more, Netlify's logic layer on top of the CDN allows instant cache invalidations, rollbacks or custom redirect, rewrite or proxy rules.
 
 ### One click HTTPS
+
 {% info %}
 **UPDATE:** As of July 2018, <a href="https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/">all new sites on Netlify are HTTPS by default</a>. You no longer need to explicitly enable it.
 {% endinfo %}

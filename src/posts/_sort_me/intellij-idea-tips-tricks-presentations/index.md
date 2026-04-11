@@ -50,6 +50,7 @@ Appearance & Behavior → Appearance → Enter Zen Mode
 ```
 
 ## Presentation Assistant Plugin
+
 After you achieve a basic level of proficiency with your IDE and already know which features it offers, your next goal is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where possible. Great way to learn IntelliJ IDEA shortcuts is to use [Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/). Once you use mainly keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation friendly. Your audience can get quickly confused and lose track of the core topic you are presenting about while trying to figure out what the hell just happened.
 
 Fortunately, there is a nice tool, which helps you exactly with this issue. It is [Presentation Assistant Plugin](https://plugins.jetbrains.com/plugin/7345-presentation-assistant)  ([GitHub](https://github.com/chashnikov/IntelliJ-presentation-assistant)). Every time you trigger an action (no matter whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What's more, it shows the shortcut both for Mac and Linux/Windows. 
@@ -61,6 +62,7 @@ This is obviously very handy when having a presentation as the audience exactly 
 This is not only useful while presenting, but also when pair programming. This way your partner can keep track of your actions and maybe even learn a thing or two. Last but not least, using this plugin can help you to learn new shortcuts because it shows the shortcut info even for actions triggered by the mouse. That means that eventually, you will learn shortcuts for actions that you currently use only by mouse. However, you may consider using [Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/) for this scenario.
 
 ## Keyboard shortcuts
+
 Both the Presentation and Distraction free modes have no keyboard shortcuts associated by default. By default, they are only accessible from `View → Enter Presentation Mode` and `View → Enter Distraction Mode`. You can, however, assign custom shortcuts to these actions as usual.
 
 Alternatively, you can use Quick Switch Theme action (<kbd>Ctrl</kbd> + <kbd>\`</kbd> or <kbd>⌃</kbd> + <kbd>\`</kbd> on Mac) and Then press <kbd>4</kbd> (View Mode). From the subsequent popup menu, you can pick either Presentation or Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel or color schemes.
@@ -68,6 +70,7 @@ Alternatively, you can use Quick Switch Theme action (<kbd>Ctrl</kbd> + <kbd>\`<
 {% video "/videos/intellij-idea-tips-tricks-presentations/quick-switch-theme" %}
 
 ## Mouse wheel zoom
+
 Sometimes your editor font size is just right, but you want to temporarily zoom in for specific detail or zoom out to see the big picture. IDEA offers similar functionality to browser zoom change. You can adjust font size in the Editor by <kbd>Ctrl</kbd> + Mouse Wheel.
 
 This feature is not, however, enabled by default. You need to turn it on in Settings:
@@ -83,4 +86,5 @@ Change font size (Zoom) with Ctrl + Mouse Wheel
 ```
 
 ## Conclusion
+
 The regular Presentation mode offers a good tool for presentations with one big screen. For webinars and other situations, where each viewer has their own screen, it may be better to use Distraction Free Mode, where the font size is not changed, therefore the viewers can see more code at once, so it offers more context. This way you are always ready for these two possibilities without the need to manually alter font size in the settings before each presentation. In either case, it is really handy to use Presentation Assistant plugin, which lets your viewers clearly see all the actions and keyboard shortcuts performed.

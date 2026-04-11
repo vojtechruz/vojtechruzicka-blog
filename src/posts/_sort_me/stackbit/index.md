@@ -11,6 +11,7 @@ draftStatus: draft
 
 
 ## JAMStack
+
 JAMStack is a powerful concept of building static sites. It is an alternative to having a traditional heavyweight CMS, like WordPress, which is also responsible for dynamically creating and serving your content.
 
 While tools like WordPress are powerful, they are much slower than static sites and can be easily hacked unless you diligently keep everything up to date.
@@ -22,6 +23,7 @@ You can learn more about JAMStack and its benefits in one of my previous posts o
 {% linkedPost "/gatsby-migration/" %}
 
 ## Building Static sites
+
 While JAMStack-powered sites have many advantages, there are drawbacks as well. The main disadvantage is that it takes much more effort to build a full-fledged site including theme, Content Management System and deployment.
 
 With WordPress, you can have a running site in minutes with a little effort. Even non-developers can easily create and maintain a site. Not so much with JAMStack. You have to select and learn your [static site generator](https://www.staticgen.com/). Then choose a theme and make sure it works well with your generator. Then choose [one of many available CMSs](https://headlesscms.org/). Then figure how to set up your deployment pipeline. 
@@ -29,12 +31,15 @@ With WordPress, you can have a running site in minutes with a little effort. Eve
 It takes a lot of effort for developers, and it is nearly impossible for somebody not so tech-savvy. At least it was until now.
 
 ## Stackbit
+
 [Stackbit](https://www.stackbit.com/) is a service, which solves the biggest pain point of static sites described above. It is a wizard, which lets you build and deploy a fully functioning static site using one of the supported static generators, with a theme, CMS and a functional deployment.
 
 ## Creating a new site
+
 New sites are created with a wizard in four simple steps.
 
 ### 1. Selecting a theme
+
 The first step is to select a theme for your new site. There are currently 14 built-in themes, with 23 more marked as coming soon.
 
 ![Selecting a theme](stackbit-theme.png)
@@ -48,6 +53,7 @@ Traditionally, there was a problem of using themes with a static site generator 
 To achieve this, Stackbit defines [Uniform theme model](https://docs.stackbit.com/uniform/) and then offers a tool called [Unibit](https://docs.stackbit.com/unibit/) to convert it from this model to a theme specific for any supported generator. This means if a new generator is introduced in the future, you can use your old theme with it.
 
 ### 2. Selecting a static site generator
+
 The second step is selecting your generator. No matter which one you choose, it will work with your theme and CMS seamlessly.
 
 ![Selecting a generator](stackbit-generators.png)
@@ -61,6 +67,7 @@ Stackbit currently supports the following static site generators:
 Two more are marked as coming soon: VuePress and Hexo. They are likely to add more generators in the future.
 
 ### 3. Selecting a CMS
+
 With JAMStack, you don't have to use any Content Management System at all. Your articles are usually saved in your git repo in the form of Markdown files or a similar format. You can create and edit your content directly in your IDE.
 
 However, usually, content creators are non-technical people, so you need to integrate some kind of CMS for them, so they can easily create and edit content using a nice and simple GUI.
@@ -82,6 +89,7 @@ Stackbit currently supports:
 Prismic is marked as coming soon.
 
 ### 4. Deployment
+
 The last step is to select a deployment method. That means:
 
 1. Selecting a git repository, where your project will be created
@@ -93,28 +101,31 @@ As a deployment method, there is currently offered just Netlify. It is a great s
 
 {% linkedPost "/jamstack-migration-netlify/" %}
 
-GitHub Pages and GitLab pages are going to be supported soon, as well. 
+GitHub Pages and GitLab pages are going to be supported soon, as well.
 
 Once you authorize your GitHub and Netlify access, you're done. A git repo is created for you, and the project is automatically deployed.
 
 ## Dashboard
-When you finish creating your first project, it becomes available on your main dashboard, where you can see and manage all the projects. You have a single place from which you can edit your settings, navigate to your site, CMS, or git repository. 
+
+When you finish creating your first project, it becomes available on your main dashboard, where you can see and manage all the projects. You have a single place from which you can edit your settings, navigate to your site, CMS, or git repository.
 
 ![Dashboard](stackbit-dashboard.png)
  
- But the dashboard is not the only place you can manage your site from. If you go directly to your site and are logged in to Stackbit, you can see a special Stackbit button, where you can manage the site directly without going to your dashboard.
+But the dashboard is not the only place you can manage your site from. If you go directly to your site and are logged in to Stackbit, you can see a special Stackbit button, where you can manage the site directly without going to your dashboard.
  
- ![Stackbit Button](stackbit-button.png)
+![Stackbit Button](stackbit-button.png)
  
- ## Medium import
- A few years back, Medium got very popular as a blogging platform. These days, with the recent changes, many people are migrating back from Medium. Hosting your own static site for your blog is a viable alternative.
+## Medium import
+
+A few years back, Medium got very popular as a blogging platform. These days, with the recent changes, many people are migrating back from Medium. Hosting your own static site for your blog is a viable alternative.
  
- With Stackbit, migration from Medium is fortunately effortless. There is a [dedicated page](https://www.stackbit.com/medium/), where you can upload your Medium export archive, and it will automatically create a new Stackbit project for you with your data.
+With Stackbit, migration from Medium is fortunately effortless. There is a [dedicated page](https://www.stackbit.com/medium/), where you can upload your Medium export archive, and it will automatically create a new Stackbit project for you with your data.
+
+![Medium migration](medium-migration.png)
  
- ![Medium migration](medium-migration.png)
- 
- ## DEV.to integration
- Services such as Medium are no doubt convenient to use, and you can reach a much larger audience than on your own. There is one major drawback, though. You don't really own your content and your audience. When such service goes out of business or changes its pricing model, you lose your content and audience. It is much better to have your own site so that you can build a stable audience, and you're safe from any changes of third-party services.
+## DEV.to integration
+
+Services such as Medium are no doubt convenient to use, and you can reach a much larger audience than on your own. There is one major drawback, though. You don't really own your content and your audience. When such service goes out of business or changes its pricing model, you lose your content and audience. It is much better to have your own site so that you can build a stable audience, and you're safe from any changes of third-party services.
  
 It would be great if you could combine the advantages of both approaches. It turns out you can! With Stackbit and [DEV.TO](https://dev.to/) integration.
 
@@ -122,8 +133,10 @@ DEV.to is an excellent service, focused purely on developers, which lets you pub
 
 Now with Stackbit, it is possible also the other way around. You can [publish your existing DEV.to content to your Stackbit site](https://www.stackbit.com/blog/devto-stackbit/).
  
- ## Beta
+## Beta
+
  Stackbit is already publicly available and functional, but it is still running in open beta. Not all the features may be final, and there are many more features and supported services to be added soon. Go ahead and check [their blog](https://www.stackbit.com/blog/) periodically to stay informed about the new features.
- 
- ## Conclusion
+
+## Conclusion
+
  Stackbit is a very powerful tool, which lets you create a fully functional JAMStack site with all the bells and whistles just in minutes using a simple wizard. The main disadvantage of JAMStack - the high barrier of entry and accessibility to only technical people applies no more. Go ahead and give it a try!

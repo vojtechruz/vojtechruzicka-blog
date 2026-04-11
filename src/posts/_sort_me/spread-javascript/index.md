@@ -197,6 +197,7 @@ console.log(secondObject); // { a: 1, b: 2, c: 3, d: 4 }
 Be aware that spread takes only own (not inherited) and enumerable properties of an object, other properties are ignored.
 
 #### Shallow copy
+
 The use cases are pretty much the same as with arrays. You can also merge and clone objects. 
 
 ```javascript
@@ -206,9 +207,11 @@ let clone = {...original};
 This can be a nice alternative to cloning objects using `Object.assign()`.  Note that it is a shallow copy. A new object is created, but the cloned properties are still the original and not clones.
 
 #### Prototype lost
+
 When cloning an object using the approach above, be aware that the prototype of the original object is not preserved. It just copies properties of the source object and creates a brand new object using object literal, which has a prototype of `Object.prototype`.
 
 #### Property conflicts 
+
 What happens though when you introduce a property with the spread operator which already exists in the object? This does not result in an error. If there are multiple object properties with the same name and different values, the latest one wins.
 
 ```javascript
@@ -221,6 +224,7 @@ console.log(mergedObject); // { a: 2 }
 ```
 
 #### Updating immutable objects
+
 The behavior where the later declared property with the same name wins can be utilized when updating immutable objects. When you're working with immutable objects or don't want to directly mutate objects, you can use spread operator to create a new object as an updated variant of the original.
 
 ```javascript
@@ -237,9 +241,11 @@ Because the original object contains `someProperty` and it is then used once mor
 
 
 ## Destructuring assignment
+
 In short, the destructuring assignment is a way to assign properties of objects or values from arrays to distinct variables.
 
 ### Array destructuring
+
 Let's assume we have an array with three items and we want to assign these items into three separate variables.
 
 ```javascript
@@ -271,6 +277,7 @@ console.log(d); // [4, 5]
 ```
 
 ### Object destructuring
+
 Object destructuring is very similar to array destructuring. The name of each variable matches the name of a property from the destructured object.
 
 ```javascript
@@ -293,11 +300,13 @@ console.log(remaining); // { a: 1, c: 3 }
 ```
 
 ## Destructuring deep dive
+
 For detailed explanation of destructuring please check the following article:
 
 {% linkedPost "/destructuring-javascript/" %}
 
 ## Conclusion
+
 Three dots in JS can mean multiple things based on context. 
 
 You can use it as rest parameters in a function, so you are able to work easily with variable number of arguments. You can use a similar approach with array or object destructuring assignment, where the rest of the items are nicely packed into an array.

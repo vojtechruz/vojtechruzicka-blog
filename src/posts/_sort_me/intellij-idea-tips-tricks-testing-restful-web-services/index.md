@@ -265,6 +265,7 @@ Additionally, IDEA shows a list of all endpoint mappings in the Run/Debug tab un
 ![Spring Boot Endpoints](./spring-endpoints.png)
 
 ## Converting cURL requests
+
 Since version 2019.2, you can easily convert your existing [cURL](https://curl.haxx.se/) requests to the format supported by IntelliJ IDEA. All you need to do is to paste a cURL reuest like this to the editor of Intellij's HTTP client:
 
 ```

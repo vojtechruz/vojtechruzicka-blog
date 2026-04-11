@@ -11,8 +11,6 @@ draftStatus: draft
 
 {% raw %}
 
-
-
 ## About this series
 
 In this series, we'll learn how to use the Angular framework. This is intended for absolute beginners,
