@@ -1,4 +1,5 @@
 import { readableDateUTC, htmlDateString, slugify, escapeHtml } from "../utils/formatting.js";
+import { logError } from "../logger.js";
 // Renders a linked post card by permalink (URL)
 // Usage examples:
 // - In Nunjucks: {% linkedPost "/my-post/" %}
@@ -16,9 +17,11 @@ export default function linkedPost(permalink, maybeCollections) {
     post = all.find(p => p && (p.url === permalink || (p.page && p.page.url === permalink)));
   }
 
-  // TODO - fail in this case but only in prod build
   if (!post) {
-    return `<div class="linked-post linked-post-missing"><p>Article not found for permalink: ${escapeHtml(String(permalink ?? ""))}</p></div>`;
+    const errorMessage = `Article not found for permalink: ${permalink}`;
+    logError(errorMessage, "Shortcode:linkedPost");
+
+    throw new Error(errorMessage);
   }
 
   const data = post.data || {};
