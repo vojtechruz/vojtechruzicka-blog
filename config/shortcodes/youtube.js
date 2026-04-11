@@ -2,22 +2,18 @@
 // Usage (Nunjucks/Liquid):
 //   {% youtube "VIDEO_ID" %}
 //   {% youtube "VIDEO_ID", "A descriptive title" %}
-//   {% youtube "VIDEO_ID", 400 %}
-//   {% youtube "VIDEO_ID", "A descriptive title", 400, 30 %}  {# start at 30s #}
+//   {% youtube "VIDEO_ID", 30 %}  {# start at 30s #}
+//   {% youtube "VIDEO_ID", "A descriptive title", 30 %}  {# start at 30s #}
 // Accepts either a plain video ID or a full YouTube URL; will extract the ID.
 import { escapeHtml } from "../utils/formatting.js";
-export default function youtube(input, title = "YouTube video", height = 400, start = 0) {
-  // Normalize flexible arguments for Nunjucks friendliness
+export default function youtube(input, title = "YouTube video", start = 0) {
+  // If the second argument is a number, assume it's the start time (simplifies Nunjucks usage)
   if (typeof title === "number") {
-    start = Number(height) || 0;
-    height = Number(title) || 400;
+    start = title;
     title = "YouTube video";
   }
 
-  if (typeof height === "string" && /^\d+$/.test(height)) {
-    height = Number(height);
-  }
-
+  // Ensure start is a number if passed as a string
   if (typeof start === "string" && /^\d+$/.test(start)) {
     start = Number(start);
   }
