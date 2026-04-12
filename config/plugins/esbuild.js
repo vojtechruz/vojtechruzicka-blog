@@ -7,6 +7,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
         "src/scripts/toc-scrollspy.js",
         "src/scripts/social-share.js",
         "src/scripts/search.js",
+        "src/scripts/code-block.js",
       ];
 
         await esbuild.build({

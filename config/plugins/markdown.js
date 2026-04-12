@@ -3,6 +3,7 @@ import markdownItAnchor from "markdown-it-anchor";
 import shikiMarkdownPlugin from "@shikijs/markdown-it";
 import { transformerMetaHighlight, transformerNotationDiff } from "@shikijs/transformers";
 import { dataLanguageTransformer } from "../markdown-transform/data-language-transformer.js";
+import { codeBlockTransformer } from "../markdown-transform/code-block-transformer.js";
 
 export default async function registerMarkdownPlugin(eleventyConfig) {
   // Configure Shiki markdown-it plugin
@@ -19,6 +20,7 @@ export default async function registerMarkdownPlugin(eleventyConfig) {
       dataLanguageTransformer,
       transformerMetaHighlight(),
       transformerNotationDiff(),
+      codeBlockTransformer,
     ],
   });
 
