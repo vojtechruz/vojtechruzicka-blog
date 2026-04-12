@@ -44,7 +44,7 @@ export const codeBlockTransformer = {
           type: "element",
           tagName: "span",
           properties: { className: ["copy-status"] },
-          children: [{ type: "text", value: "Copy" }],
+          children: [{ type: "text", value: title ? "Copy" : "" }],
         },
       ],
     };

@@ -70,7 +70,7 @@ pre.shiki span {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1.1rem;
+  padding: 0.3rem 0.5rem;
   background: var(--color-surface-2);
   border-bottom: 1px solid var(--color-border);
   font-size: 0.85rem;
@@ -79,7 +79,6 @@ pre.shiki span {
 }
 
 .code-block-title {
-  font-weight: 500;
   letter-spacing: 0.025em;
 }
 
@@ -91,31 +90,39 @@ pre.shiki span {
   border: none;
   color: inherit;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding-top: 0.25rem;
+  padding-right: 0.2rem;
+  padding-left: 0.3rem;
+  padding-bottom: 0.05rem;
   border-radius: var(--radius-xs);
   transition: background 0.2s, color 0.2s;
   font-family: var(--font-body);
   font-size: 0.8rem;
+  border: 1px solid transparent;
+
 
   /* When button is directly in container (no header) */
   .code-block-container > & {
     position: absolute;
-    top: 0.6rem;
-    right: 0.6rem;
+    top: 0.25rem;
+    right: 0.15rem;
     z-index: 10;
-    background: var(--color-surface-2);
-    border: 1px solid var(--color-border);
-    opacity: 0.7;
+    //border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
 
     &:hover {
-      opacity: 1;
-      background: var(--color-bg-highlight);
+    color: var(--color-text-heading);
+        background: var(--color-surface-2);
+          background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+        border: 1px solid var(--color-border);
     }
   }
 
   &:hover {
-    background: var(--color-bg-highlight);
-    color: var(--color-text-heading);
+//     background: var(--color-bg-highlight);
+  background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+      border: 1px solid var(--color-border);
+    color: var(--color-text);
   }
 
   svg {
@@ -124,7 +131,17 @@ pre.shiki span {
   }
 
   &.copied {
-    color: var(--color-success);
+    color: var(--color-success)!important;
+  }
+
+  .copy-status:empty {
+    display: none;
+  }
+
+  .copy-status {
+     margin-top:-3px;
+     margin-right: 2px;
+     margin-bottom: 1px;
   }
 }
 
