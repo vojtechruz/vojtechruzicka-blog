@@ -59,11 +59,6 @@ class AboutPage extends React.Component {
                 {stackOverflowIcon}Stack Overflow profile
               </OutboundLink>
             </li>
-            <li>
-              <OutboundLink href="https://www.facebook.com/vojtechruzickablog">
-                {facebookIcon}Facebook page
-              </OutboundLink>
-            </li>
           </ul>
           <h2>Found any issues?</h2>
           This whole blog and its content is available on{" "}

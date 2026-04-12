@@ -214,7 +214,6 @@ export function Head({ data, pageContext }) {
         url: "https://www.vojtechruzicka.com/",
         birthPlace: "Czech Republic, Prague",
         sameAs: [
-          "https://www.facebook.com/vojtechruzickablog",
           "https://www.linkedin.com/in/vojtechruzicka",
           "https://twitter.com/vojtechruzicka",
         ],
@@ -228,7 +227,6 @@ export function Head({ data, pageContext }) {
         url: "https://www.vojtechruzicka.com/",
         birthPlace: "Czech Republic, Prague",
         sameAs: [
-          "https://www.facebook.com/vojtechruzickablog",
           "https://www.linkedin.com/in/vojtechruzicka",
           "https://twitter.com/vojtechruzicka",
         ],
