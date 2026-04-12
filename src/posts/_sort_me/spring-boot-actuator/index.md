@@ -99,7 +99,9 @@ Not very impressive so far. Of course, Actuator offers much more than this. Othe
 | integrationgraph | Graph of Spring Integration components |
 
 ## Exposing endpoints
+
 For most of the endpoints, Actuator offers two ways of connecting to them:
+
 - HTTP REST endpoint
 - JMX endpoint
 
@@ -125,6 +127,7 @@ management.endpoints.web.exposure.include=*
 ```
 
 ## Enabling / Disabling endpoints
+
 You can configure not only whether an endpoint is exposed over HTTP or JMX, but also you can turn specific endpoints on/off. All the endpoints except `shutdown` are enabled by default (although not exposed over HTTP).
 
 ```properties
@@ -194,6 +197,7 @@ In the article [I referenced at the beginning of this post](https://www.vojtechr
 What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
 
 Maven `pom.xml` file:
+
 ```xml {4-11}
 <plugin>
     <groupId>org.springframework.boot</groupId>
@@ -235,6 +239,7 @@ Info endpoint now provides build info information:
 Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate it, you'll need to add a specific plugin to your build config.
 
 In Maven `pom.xml`:
+
 ```xml
 <plugin>
     <groupId>pl.project13.maven</groupId>
@@ -278,6 +283,7 @@ Then it is returned by the `/info` endpoint.
 ```
 
 What's useful is that it shows properties from various sources, not only `application.properties`.
+
 - Environment variables
 - Command line arguments
 - Servlet Config/Context params
@@ -368,7 +374,7 @@ compile 'org.springframework.boot:spring-boot-starter-security'
 
 If you rebuild and restart your app, you'll notice that now you are required to log in if accessing the actuator endpoints. By default, the username is `user` and the password is randomly generated and printed to the console every time the application starts:
 
-```
+```text
 Using generated security password: f7b833aa-5a1c-42f4-b913-70c1abe47cb6
 ```
 

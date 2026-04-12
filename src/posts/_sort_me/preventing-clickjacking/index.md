@@ -68,6 +68,7 @@ This is the only version of a frame-busting script recommended by the [OWASP Cli
 ### X-Frame-Options
 
 A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header: `X-Frame-Options`. If the client\'s browser receives such header, it will respect it and not render the page. The possible values of the header are following:
+
 -   `DENY` - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.
 -   `SAMEORIGIN` - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.
 -   `ALLOW-FROM` - This allows you to define a trusted location from which your page can be rendered in a frame.
@@ -110,13 +111,13 @@ Content-Security-Policy: frame-ancestors [source] [someOtherSource];
 ## Server-wide protection
 The easiest and the most robust way of adding security HTTP headers is not per application, but per server. If you know that all your applications and pages on the server will use the same framing policy, you can declare it directly on the whole server level. Most of the application and HTTP servers support that out of the box. You can easily find the configuration for your favorite server. For example - for Apache, you just need to add
 
-```
+```text
 Header always append X-Frame-Options SAMEORIGIN
 ```
 
 or for nginx:
 
-```
+```text
 add_header X-Frame-Options SAMEORIGIN;
 ```
 

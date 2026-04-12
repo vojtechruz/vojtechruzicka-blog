@@ -12,7 +12,8 @@ draftStatus: draft
 
 ## Primitives versus Objects
 
-Javascript offers six primitive types: 
+Javascript offers six primitive types:
+
 - number
 - string
 - boolean
@@ -91,6 +92,7 @@ Be careful when working with NaN as this value behaves in an unexpected way - it
 something === NaN //Does not work, always false
 NaN === NaN //false
 ```
+
 You can use [isNaN or Number.IsNaN](http://adripofjavascript.com/blog/drips/the-problem-with-testing-for-nan-in-javascript.html) (ES6+) instead of direct comparison.
 
 ### Boolean

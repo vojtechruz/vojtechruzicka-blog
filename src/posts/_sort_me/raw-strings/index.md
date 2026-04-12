@@ -20,7 +20,7 @@ The similar functionality is available in Java 13 instead as a preview feature -
 Raw Strings were [dropped before the final release](http://mail.openjdk.java.net/pipermail/jdk-dev/2018-December/002402.html) of Java 12 and is now considered obsolete.
 
 > We're of course disappointed that this means it will take slightly longer for this feature to make it into the language, but we think that's the best choice.
->  
+> 
 >  While we can expect that for any language feature, there will be a nontrivial volume of "I would have preferred it differently" feedback, in reviewing the feedback we have received, I am no longer convinced that we've yet got to the right set of tradeoffs between complexity and expressiveness, or that we've explored enough of the design space to be confident that the current design is the best we can do. By withdrawing, we can continue to refine the design, explore more options, and aim for a preview that actually meets the requirements of the Preview Feature process (JEP 12).
 
 ## String Literals
@@ -83,7 +83,7 @@ On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usua
 
 In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which is currently used by Javascript or Go.
 
-```
+```text
 String rawString = `This is my string
 which I want to be
 on multiple lines.
@@ -93,7 +93,7 @@ Or even quotes "`;
 
 But unlike javascript, backticks inside the string don't need to be escaped. Instead, you can use multiple backticks to start the string and then the same number of backticks to end it:
 
-```
+```text
 `This uses single backtick`
 ``This can contain backtick `, see?``
 ```Can use any number of backticks```

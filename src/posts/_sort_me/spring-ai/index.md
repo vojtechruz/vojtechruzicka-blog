@@ -27,7 +27,7 @@ This section describes creating a new project in IntelliJ IDEA. If you are using
 
 Idea has built-in integration with Spring Initializr. You can simply go to:
 
-```
+```text
 File → New → Project → Spring Boot
 ```
 
@@ -58,6 +58,7 @@ Updating an existing project is a bit more tricky at the moment before the final
 ### Repository setup
 
 You can choose from two available repositories:
+
 - Snapshot repository: Most up-to-date version available, which will contain the newest features but may be more unstable.
 - Milestone repository: Released milestone versions are more stable, and that's what we will use in this article
 
@@ -213,7 +214,7 @@ Let's imagine our application provides useful tips on what to do on vacation. Th
 
 Instead of the user providing the whole prompt, we can prepare a template such as:
 
-```
+```text
 I am a tourist visiting the city of {city}.
 I am mostly interested in {interest}.
 Tell me tips on what to do there.

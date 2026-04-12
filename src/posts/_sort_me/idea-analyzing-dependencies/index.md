@@ -16,8 +16,6 @@ draftStatus: draft
 This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
 {% endinfo %}
 
-
-
 IDEA offers a useful tool to analyze internal dependencies in your project called the Dependency Structure Matrix. It can be used to analyze not only dependencies between packages, but also individual classes.
 
 This can be very important as tightly coupled classes, and modules or even cyclic dependencies mean that your code is very hard to refactor and reuse.
@@ -39,6 +37,7 @@ Each row and column represent the package. Each cell represents an intersection 
 As long as the dependencies are blue, it is good as they are one way only. Cyclical dependencies would be shown in red, which is not good. But we'll see that later.
 
 ### Visual aids
+
 The matrix is a powerful tool, which can show a lot of information at once. However, it may be difficult to read at first, if you're not used to working with it. Especially with the columns hidden. Fortunately, there are visual aids, which can help you to better understand the dependencies.
 
 If you hover your mouse cursor over a cell, it shows you with tooltip what is the dependency direction there.
@@ -59,6 +58,7 @@ In addition to selecting a whole package, you can also click individual cells. T
 ![DSM selected cell](./dsm-selected-cell.png)
 
 ### We need to go deeper
+
 So far we were working only on package level. This is no doubt useful, but often you need to go into more detail. Which means investigating also dependencies between single classes.
 
 In the DSM view, it is simple, you can expand your packages to see their contents. This way you can see dependencies for all the potential sub-packages or even individual classes.
@@ -66,6 +66,7 @@ In the DSM view, it is simple, you can expand your packages to see their content
 ![DSM expanded](dsm-expanded.png)
 
 ### Cyclic dependencies
+
 So far, we covered only uni-directional dependencies. But something you should be really careful about are cyclic dependencies. In the DSM view, they are marked in red:
 
 ![DSM Cyclic dependencies](dsm-cycles.png)
@@ -73,6 +74,7 @@ So far, we covered only uni-directional dependencies. But something you should b
 You can see that class `Owner` has 15 dependencies on class `Pet`, while `Pet` has 5 dependencies on `Owner`.
 
 ## Taking Action
+
 DSM view in IDEA is not only a useful tool to visualize dependencies, but you can also take many useful actions directly from the context menu when right-clicking a cell or package.
 
 You can even refactor your classes directly from the DSM view. If you click a cell with dependencies, you can call `Find usages for dependencies`. It will look for all the places in one of your classes/packages where the other class/package is used.
@@ -90,17 +92,15 @@ Now you can inspect the occurrences one by one and check whether you could impro
 This functionality is available only in IntelliJ IDEA Ultimate, not Community edition.
 {% endinfo %}
 
-
-
 So far we covered only internal dependencies in your own code. However, you can run into all sorts of trouble also with external dependencies. That is your third-party libraries. It can get messy as you don't have only direct dependencies, but your libraries have dependencies of their own (transitive dependencies). You can encounter many problems such as dependency version conflicts of the same artifact or even cyclic dependencies.  Maven offers you to generate dependency tree representation, which can help you in analyzing potential issues. You can simply call:
 
-```
+```bash
 mvn dependency:tree -Dverbose -DoutputFile=dependencies.txt
 ```
 
 It will output your dependency tree in plain text format, which can look something like this ([here is the full example](https://gist.github.com/vojtechruz/0f8394f71bb9c4ae324a8dc4518c5761#file-plain-text)):
 
-```
+```text
 --- maven-dependency-plugin:3.0.2:tree (default-cli) @ spring-boot-actuator-example ---
 com.vojtechruzicka:spring-boot-actuator-example:jar:1.0.0-SNAPSHOT
 +- org.springframework.boot:spring-boot-starter-actuator:jar:2.0.3.RELEASE:compile
@@ -125,7 +125,7 @@ Fortunately, IDEA offers a nice GUI tool to work with Maven dependency graphs. T
 
 To show the graph, go inside a `pom.xml` file and press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Alternatively:
 
-```
+```text
 Right click → Diagrams → Show Dependencies
 ```
 
@@ -152,6 +152,7 @@ IDEA does highlight conflicts for you in red. Still, it may be difficult to find
 In the example above, you can see there is a conflict between JUnit versions. There is an explicit dependency to JUnit 3.8.1 and a different version transitively taken through `spring-boot-starter-test`.
 
 ### Maven Helper plugin
+
 If the graphical dependency tree is not your thing, there is an alternative for you. It's [Maven Helper Plugin](https://plugins.jetbrains.com/plugin/7179-maven-helper) by [Vojtech Krasa](https://github.com/krasa). It uses hierarchical text representation of dependencies, similar to `mvn dependency:tree` but with a nice dependency browser.
 
 It is also a good alternative if you are using IDEA Community Edition or have an older version of IDEA, where the Maven dependency graph is way less useful.
@@ -163,15 +164,17 @@ To use the Dependency Analyzer offered by the plugin, simply open any `pom.xml` 
 In the left panel, you can browse your dependencies (viewed either as list or tree). The right panel shows how selected dependency got into your application through the dependency chain. You can easily switch the view to show just conflicts.
 
 ## Analyzing Gradle dependencies
+
 Since version `2019.2`, IDEA can finally show you dependency diagram not only for Maven, but also for Gradle. Yay! It works pretty much the same as Maven dependency diagram.
 
 Just go to your `build.gradle` file and then press <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>U</kbd> (or <kbd>⌥</kbd> + <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>U</kbd> on Mac). Or:
 
-```
+```text
 Right click → Diagrams → Show Dependencies
 ```
 
 ## Conclusion
+
 When you create an application, properly structuring your dependencies is very important as architecture with tight and tangled dependencies can be very hard to maintain, extend and modify. Fortunately, IDEA can help with a Dependency Structure Matrix, which provides a useful graphical view of your internal dependencies.
 
 In addition to that, you need to make sure your external dependencies are covered as well, which you can achieve by utilizing a dependency graph for your dependency management system, such as Maven.

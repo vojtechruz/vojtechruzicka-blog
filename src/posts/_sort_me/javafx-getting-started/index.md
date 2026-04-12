@@ -120,7 +120,7 @@ This may be useful when you are not familiar with Gradle or Maven and just for l
 
 With this option, you can generate a non-Maven/Gradle project in your IDE, which contains all the essential files. In IntelliJ IDEA, you can simply go to:
 
-```
+```text
 File → New → Project → JavaFX
 ```
 

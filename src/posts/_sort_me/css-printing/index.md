@@ -12,6 +12,7 @@ draftStatus: draft
 When printing a web page, is it important to adjust the layout and the content of your page. Many elements are not relevant for printing, it is vital to properly control page breaks and handle hyperlinks. All of this can be controlled by CSS and you can even trigger printing in Javascript or react to user print action. Let's learn how. 
 
 ## Adding print stylesheet
+
 When you want to apply certain CSS rules just when printing, you can easily add a separate stylesheet, which will be used just for printing purposes.
 
 ```html
@@ -27,7 +28,8 @@ If you add your stylesheet this way, it will be applied **in addition** to your 
 
 Having separate stylesheet just for printing can be useful, if you want to [load it dynamically](http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml), only when needed, or you prefer your print styles to be completely separated.
 
-## Media queries    
+## Media queries
+
 A more modern way of including print-specific CSS is using [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
 
 You can define that a certain set of CSS rules can be applied only when printing.
@@ -49,11 +51,13 @@ Or only when using a screen.
 This approach may be preferred to separate print stylesheet as you can easily have regular and print CSS for a page/component in the same place. This makes the maintenance easier, and it is less likely that you will forget to update printing styles when making changes to regular styles.
 
 ## Check your CSS framework
+
 If you are using external CSS styles, for example, a framework such as Bootstrap, you should first check its print support.
 
 Bootstrap, for example, provides some support out of the box - it does hide navigation bar and so on.
 
 ## Removing unnecessary content
+
 Web pages contain a lot of content, which is not really useful when printing. This can be:
 
 - Navigation bar
@@ -77,6 +81,7 @@ It is easy to hide elements by setting `display:none;`:
 Of course, you can do any adjustments necessary such as reducing size, changing fonts, simplifying graphics - pretty much anything you can do in CSS.
 
 ## Page Margins
+
 When printing, it may be useful to override the default settings for margins of your pages (for example, to provide space for writing notes).
 
 ```css
@@ -101,11 +106,12 @@ Fortunately, you can select odd and even pages by `@page:left` and `@page:right`
 
 If you want to treat the first page separately, you can use `@page:first`.
 
-
 ## Page breaks
+
 For better readability, it can be useful to control where page breaks are inserted. 
 
 ### Avoiding breaks
+
 It can be inconvenient if images or code examples get split across two pages. Fortunately, you can ensure that certain elements will never be split. Let's say we want to do that for images and code blocks:
 
 ```css
@@ -123,6 +129,7 @@ h1, h2, h3 {
 ```
 
 ### Explicit breaks
+
 Sometimes, it can be useful to explicitly insert page breaks before or after certain elements.
 
 For example, you may need each chapter to start on its own page. You can achieve it using `break-before` on your chapter heading.
@@ -135,18 +142,16 @@ h2 {
 
 You can also insert page breaks after an element using `break-after`.
 
-
 {% info %}
 There are older properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before">page-break-before</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after">page-break-after</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside">page-break-inside</a>, which are now deprecated in favor of <em>break-before</em>, <em>break-after</em> and <em>break-inside</em>.
 {% endinfo %}
 
-
-
-
 ### Paragraph splitting
+
 Fortunately, you do have fine-grained control over how paragraphs get split to the next page. We have two properties for this - `widows` and `orphans`. The naming may sound weird, but that's because it [originates from typesetting](https://en.wikipedia.org/wiki/Widows_and_orphans).
 
 #### Orphans
+
 When a paragraph gets split over two pages, `orphans` property defines how many lines at a minimum should be kept on the first page.
 
 ```css
@@ -156,6 +161,7 @@ p {
 ```
 
 #### Widows
+
 This is very similar to orphans. It is the minimal number of lines, which should be on the **second** page when a paragraph is split on two pages.
 
 ```css
@@ -172,8 +178,8 @@ Note that the browser is not 100% guaranteed to follow these rules when printing
 
 There is a [good browser support](https://caniuse.com/#feat=css-widows-orphans) (as of 4/2020) for widows and orphans, 93.76%, except for Firefox.
 
-
 ## Hyperlinks
+
 You should take extra care when handling printed hyperlinks. Many pages these days don't use underline for hyperlinks and rather differentiate links by color. This is not very convenient when printing, especially with black and white output. Marking hyperlinks with underline is a good traditional way of recognizing them even when printing.
 
 ```css
@@ -217,6 +223,7 @@ This also involves a bit of JavaScript, but it can be handy when working with a 
 ![Printing links with a legend](print-links-legend.png)
 
 ## Page Margin Boxes
+
 When printing web pages, browsers can include various information in the headers and footers of each page, such as:
 
 - Page numbers
@@ -228,10 +235,12 @@ Currently, you do not have control over this content. Fortunately, this is about
 This can be useful for adding information such as copyright, page logo, custom page counters, etc.
 
 There are 16 regions, which you can target:
+
 - 4 corners of the page
 - 3 regions at each edge (top, bottom, right, left)
 
 For example, if you want to target the bottom of the page, you can choose from
+
 - `bottom-left-corner`
 - `bottom-right-corner`
 - `bottom-left`
@@ -272,6 +281,7 @@ The specification is currently in the Editor's Draft stage (as of 4/2020) and cu
 ). The older parts of this specification are already implemented (such as setting page margins), but custom content for margin boxes is yet to come.
 
 ## Handling printing in JS
+
 With JavaScript, you don't have to rely on your users to initiate the printing of your page. You can trigger it yourself using:
 
 ```javascript
@@ -301,10 +311,13 @@ window.onafterprint = (event) => {
 It is usually preferred to do as much as possible in CSS, but sometimes using JS may be necessary.
 
 ## Dev Tools Print Preview
+
 It can be time-consuming to open print preview dialog in your browser whenever you make changes and want to check how your page looks when printing. Fortunately, in Developer Tools, you can easily emulate how the page would look like when printing without triggering he print dialog.
 
 ### Chrome
+
 In the Chrome Devtools you can [switch to print view](https://developers.google.com/web/tools/chrome-devtools/css/print-preview):
+
 1. Open your Devtools
 2. Press  or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>  (or <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd> on Mac)
 3. Search for `rendering`
@@ -318,18 +331,20 @@ A new `Rendering` window should appear.
 
 Here you can select:
 
-```
+```text
 Emulate CSS media type → print
 ```
 
 Although not related to printing, you can emulate some more interesting rendering options in this tab, such as whether the user prefers a light or dark theme or reduced motion,  you can show FPS and more.
 
 ### Firefox
+
 In Firefox, you need just to click the `Toggle print media simulation for the page` button marked in red in the following image.
 
 ![Emulater Print Rendering in Firefox](firefox-print-preview.png)
 
 ## Conclusion
+
 Printing support is often overlooked and not implemented at all. Many users still print web pages, and you should take care to design your pages to be printer-friendly. It is usually not that hard, but it can greatly enhance the user experience and usability of your site.
 
 Even if users are not printing your pages on paper, they can print them to PDF so that they can read them later offline on their tablet or ebook reader. For these cases, print stylesheets are also useful.

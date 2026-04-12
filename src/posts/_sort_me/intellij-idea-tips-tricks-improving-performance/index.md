@@ -22,7 +22,7 @@ IntelliJ IDEA is smart enough to warn you that if you are loading a previously u
 ## Excluding Files
 Unloading of modules works well when you can unload the whole module. It is not always appropriate. There are, however some files and file types, which can be safely ignored by IDEA across all the modules. An example can be - automatically generated files, minified CSS/JS, compiled files, documentation, logs and more. You can define ignored files either for all projects or on per-project basis. The two approaches can be even combined. You can add ignored files/folders by pattern in:
 
-```
+```text
 Settings → Editor → File Types → Ignore Files and Folders
 ```
 
@@ -64,7 +64,8 @@ There is an old [blog post](https://blog.jetbrains.com/idea/2006/12/boosting-int
 By default, when you switch to another application IDEA checks all the files in your project, reads them and compares the version on the disk to loaded version in memory. This can be a very HDD-intensive operation, especially with large projects and antivirus protection enabled for your project folder. It can get quite annoying when frequently switching windows - such as switching from your browser to your IDE and back. If you are modifying your files just from IDEA and not externally, you can disable this feature and greatly improve window-switching performance.
 
 There are two options related to this feature in
-```
+
+```text
 Settings → Appearance & Behavior → System Settings
 ```
 

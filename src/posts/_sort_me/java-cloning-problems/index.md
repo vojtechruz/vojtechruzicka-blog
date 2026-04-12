@@ -128,6 +128,7 @@ This approach can be used even if the classes don't implement the Serializable a
 ## Conclusion
 
 The process to make your class cloneable is the following:
+
 1.  Implement the Cloneable interface
 2.  Override the clone() method.
 3.  Call super.clone() if a shallow copy is sufficient.

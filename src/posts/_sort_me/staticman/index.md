@@ -49,13 +49,13 @@ After adding Staticman as a collaborator, you should see a pending invite:
 
 Now you need to open the following URL in your browser to make Staticman accept your invite:
 
-```
+```text
 https://api.staticman.net/v2/connect/{your GitHub username}/{your repository name}
 ```
 
 With real data it looks something like this:
 
-```
+```text
 https://api.staticman.net/v2/connect/vojtechruz/staticman-example
 ```
 
@@ -83,7 +83,7 @@ Here is a list of some of the most important configuration properties:
 
 Now all you need is to create a form, which accepts user input and submits it to Staticman. You need to define all the fields which you want to collect and submit the form to:
 
-```
+```text
 https://api.staticman.net/v2/entry/{GITHUB USERNAME}/{GITHUB REPOSITORY}/{BRANCH}/{PROPERTY}
 ```
 
@@ -160,7 +160,7 @@ Staticman supports email notifications on new user submissions using [Mailgun](h
 
 Staticman supports re-captcha integration. You'll need to [create a re-captcha account](https://www.google.com/recaptcha/admin) first. You will receive a `site-key` and `secret`. Your secret is not used directly by Staticman and you need to encrypt it first.
 
-```
+```text
 https://api.staticman.net/v2/encrypt/SECRET
 ```
 

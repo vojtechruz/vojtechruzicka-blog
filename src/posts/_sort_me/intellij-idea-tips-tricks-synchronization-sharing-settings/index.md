@@ -22,7 +22,7 @@ The first way to synchronize settings is using Settings Repositories. The way it
 
 To enable this feature just go to:
 
-```
+```text
 File → Settings Repository
 ```
 
@@ -36,7 +36,7 @@ In such case, IDEA will consider one of the repositories primary. That is the on
 
 To configure multiple repositories go to
 
-```
+```text
 Settings → Tools → Settings Repository
 ```
 

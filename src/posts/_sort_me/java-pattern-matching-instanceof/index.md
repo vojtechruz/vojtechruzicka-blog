@@ -74,6 +74,7 @@ if(animal instanceof Cat cat) {
 ```
 
 Here's what changed:
+
 1. No need to declare cat variable, it is available for us.
 2. There is no casting. We can use the cat as if it was of type `Cat`.
 3. The scope of the`cat` variable is only inside the `if` block.
@@ -81,6 +82,7 @@ Here's what changed:
 This is simpler, more concise, easier to read, and less error-prone.
 
 #### Variable scope
+
 As already mentioned, the scope of the variable is only limited to the `if` block:
 
 ```java
@@ -103,11 +105,13 @@ if(animal instanceof Cat cat && cat.isAlive()) {
 After checking `instanceof`, after `&&`, we can use the `cat` variable already typed as `Cat`, not `Animal`.
 
 ## IDEA Support
+
 The good news is that there is good support for this feature in IntelliJ IDEA, introduced in version [2020.1](https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/) (along with support for other Java 14 new features, such as [Records](https://www.vojtechruzicka.com/java-records/) or [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/))
 
 ![IDEA pattern matching instanceof](idea-patter-matching-instanceof.png)
 
 ## UPDATE: Java 15
+
 In Java 15, this feature is still present as a preview feture - [JEP 375: Pattern Matching for instanceof (Second Preview)](https://openjdk.java.net/jeps/375). Although there is a new JEP for it, [there are no changes](https://bugs.openjdk.java.net/browse/JDK-8235186) relative to the Java 14 version.
 
 ## Also new in Java 14

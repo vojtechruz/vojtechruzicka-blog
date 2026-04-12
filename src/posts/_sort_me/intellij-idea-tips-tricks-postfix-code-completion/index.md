@@ -46,7 +46,7 @@ It is not necessary to memorize all the postfix templates. Instead, you can use 
 
 You can browse available postfix templates in Settings under:
 
-```
+```text
 Editor → General → Postfix Completion
 ```
 
@@ -62,7 +62,7 @@ The plugin comes with a wide variety of additional templates, which you can use 
 
 What's really nice about the plugin is that the template syntax is really easy to read and write. Let's look at a specific example:
 
-```
+```text
 .toInt : convert to int
     java.lang.String → Integer.parseInt($expr$)
     java.lang.Number → $expr$.intValue()

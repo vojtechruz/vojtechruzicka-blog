@@ -145,6 +145,7 @@ The following example shows StackPane in FXML:
 ```
 
 The same example in Java:
+
 ```java
 StackPane stackPane = new StackPane();
 Image image = new Image(getClass().getResourceAsStream("/image.jpg"));
@@ -154,6 +155,7 @@ stackPane.getChildren().addAll(imageView, btn);
 ```
 
 ### Item alignment
+
 You can set alignment of the items in the stack to better adjust their positioning:
 
 ```xml
@@ -170,6 +172,7 @@ stackPane.setAlignment(Pos.BOTTOM_CENTER);
 ```
 
 ### Margin
+
 If you want even more fine-grained control of the positioning, you can set margin for individual items in the stack:
 
 ```xml {6-8}
@@ -196,6 +199,7 @@ StackPane.setMargin(btn, new Insets(0,0,10,0));
 ```
 
 ## FlowPane
+
 Flow Pane can work in two modes - either horizontal (the default) or vertical.
 
 In horizontal mode, the items are displayed horizontally, one after another, similar to HBox. The difference is, once there is no more horizontal space available, it wraps to the next row under the first one and continues again. This way there can be many rows, not just one as with HBox.
@@ -223,6 +227,7 @@ flowPane.getChildren().addAll(...);
 ```
 
 Example of FlowPane in FXML:
+
 ```xml
 <FlowPane hgap="10" vgap="10" orientation="VERTICAL">
   ...
@@ -230,13 +235,15 @@ Example of FlowPane in FXML:
 ```
 
 ## TilePane
+
 This layout is very similar to FlowPane. The way it displays its components is almost identical. You can still have either horizontal or vertical mode and define `vgap` and `hgap`.
 
 One crucial difference is in the sizing of the cells. FlowPane assigns only space necessary for each component. TilePane, on the other hand, makes the size of all cells the same depending on the biggest item. This way, all the controls are nicely aligned in rows/columns.
 
 ![FlowPane and TilePane comparison](flowpane-tilepane-comparison.png)
 
-In the image above, there are the same components in the same order. You can clearly see the difference. 
+In the image above, there are the same components in the same order. You can clearly see the difference.
+
 - FlowPane puts controls directly one after another, no extra spacing
 - TilePane puts controls into cells with the same size based on the biggest element
 

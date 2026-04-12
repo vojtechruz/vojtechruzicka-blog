@@ -39,7 +39,7 @@ Now we need a `.fxml` file, which will be used with our controller as a view. We
 
 For example, let's assume our controller is in package `com.vojtechruzicka.javafxweaverexample`. The `.fxml` file needs to be placed precisely here:
 
-```
+```text
 src\main\resources\com\vojtechruzicka\javafxweaverexample
 ```
 

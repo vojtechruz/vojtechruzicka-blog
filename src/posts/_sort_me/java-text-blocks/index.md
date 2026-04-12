@@ -19,6 +19,7 @@ draftStatus: draft
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.
 
 ## String literals in Java
+
 Declaring a string literal in Java is easy:
 
 ```java
@@ -44,6 +45,7 @@ String path = "Open \"C:\\Program Files\\Java\\jdk1.8.0_152\"";
 This gets especially messy in cases such as regular expressions. How to handle this issue though?
 
 ## Other JVM languages
+
 As usually, Java is late to introduce a functionality which is already common in many other languages, even those on JVM. Kotlin, Scala or Groovy already support multiline strings literals using `"""` notation instead of usual `"`. Look at the following example in Kotlin.
 
 ```kotlin
@@ -59,9 +61,10 @@ and even double-quotes "
 As you can notice, not only is it multiline, but also you don't need to escape your characters anymore. This is called Raw String literal, which means all the characters are interpreted as is and no escaping is necessary.
 
 ## Raw String literals in Java
+
 In Java 12, there was originally proposal to include [Raw String Literals (JEP-326)](http://openjdk.java.net/jeps/326). The behavior was very similar to the example in Kotlin above. But instead of using `"""` as in other JVM languages, it used backtick `` ` `` notation. The concept was slightly unusual in a way that you could use any number of backticks and the same amount of backticks at the end. This way it was not necessary to escape backticks inside a spring literal no matter how many consecutive backticks were present.
 
-```
+```text
 `This uses a single backtick`
 ``This can contain a backtick `, see?``
 ```I can use any number of backticks```
@@ -69,7 +72,7 @@ In Java 12, there was originally proposal to include [Raw String Literals (JEP-3
 
 One problem with raw string literals is usually indentation. Every character in the multiline raw string literal is interpreted as is - including indentation, which is supposed to be there just for better code readability rather than part of the literal itself. Consider the following example:
 
-```
+```text
   public static void main(String[] args) {
       String myString =
       `This is my string
@@ -81,7 +84,7 @@ One problem with raw string literals is usually indentation. Every character in 
 
 If you print it, all the lines except the first will have indentation present.
 
-```
+```text
 This is my string
         which I want to be
         on multiple lines.
@@ -106,12 +109,14 @@ This proposal was, however [dropped before the final release](http://mail.openjd
   Preview Feature process (JEP 12).
 
 ## Multiline String literals in Java
+
 After the withdrawal of the original proposal, [the discussion was restarted](https://mail.openjdk.java.net/pipermail/amber-spec-experts/2019-January/000931.html) and resulted in a brand new proposal, which will be introduced in Java 13 as a Preview Feature. Its called [JEP 355: Text Blocks (Preview)](https://openjdk.java.net/jeps/355).
 
 It is not supposed to be an implementation of Raw String Literals, but rather multiline String literals, which will still allow escapes, although you'll not be required to use all of them. On top of that, it will not be necessary to handle all the indentation issues, which was necessary with Raw String Literals.
 
 
 ## Preview Feature
+
 Text blocks will be only available as a preview feature in Java 13. What does it mean?
 
 > A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented, and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use; this may lead to it becoming permanent in a future Java SE Platform.
@@ -126,7 +131,7 @@ You'll need to download [JDK 13](https://jdk.java.net/13/). In IntelliJ, go to `
 
 When building your app manually, you need to specify that preview features should be turned on by providing  the following params to `javac`:
 
-```
+```bash
 javac --release 13 --enable-preview ...
 ```
 
@@ -137,6 +142,7 @@ java --enable-preview ...
 ```
 
 ## Text Blocks
+
 Unlike the declined Raw String Literals, Text Blocks are surrounded by three double quotes `"""`, same as in Groovy or Kotlin. It is more in sync with plain String literals and other JVM languages.
 
 ```
@@ -150,12 +156,15 @@ String myBlock =  """
 There is no runtime difference between Text Block and String literal. Both result in an instance of String. If they have the same value, they'll get interned as usual and end up as the same instance. Everywhere you can use String literal, you can also use Text Block.
 
 ## Processing
+
 Unlike regular String literals, Texts block are processed by the compiler in three steps:
+
 1. Line ends are normalized
 2. Excess whitespace is removed
 3. Escaped characters are interpreted
 
 ### Line end normalization
+
 Windows and UNIX-based operating systems have different characters to represent line endings.
 
 Windows uses Carriage Return `\r` and Line Feed `\n`, while Unix-based systems use just Line Feed. The problem is that Text Blocks use new line characters directly from the source code, instead of using `\n` such as regular string literals. That means that source code created on Unix would have Strings with different line endings when compiled on windows. The Strings would look identical to the naked eye but would have different line endings.
@@ -163,6 +172,7 @@ Windows uses Carriage Return `\r` and Line Feed `\n`, while Unix-based systems u
 To prevent this, Java compiler takes all the line endings in Text Blocks and normalizes them to Line Feed `\n`. What is important is that this is done before evaluating escaped characters. That means that if you explicitly need to include Carriage Return using `\r`, you can, as it is evaluated after line ending normalization and would not be affected.
 
 ### Indentation removal
+
 Remember the example with Raw String Literals and indentation? Raw string literals interpret all the characters including indentation. So whitespace which was supposed just to make your source code easier to read actually becomes part of your strings. In the vast majority of the cases, this is not desired behavior.
 
 Fortunately, Java compiler removes unwanted whitespace when compiling Text Blocks.
@@ -213,11 +223,12 @@ The result will be:
 Note that in this step only direct whitespace is removed. If you have whitespace in a form of escaped characters such as `\n` or `\t`, it will not be removed.
 
 ### Escaping 
+
 Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
 - New line `\n` is no longer needed as Text  Blocks are multi-line by nature. 
 - You don't need to escape `"` double quotes as they no longer mark String literal ending
 
-```
+```text
 String myBlock =  """
                   First line
                   Second Line with " quotes
@@ -229,6 +240,7 @@ Since the escaping is allowed, you technically can include `\n` and `\"`, but it
 Interpreting escaped characters as the last of the three steps is important as your escapes are not affected by line ending normalization and whitespace removal.
 
 ## UPDATE: New Escape sequences
+
 In Java 14, Text Blocks is still available as a preview feature, with slight enhancements introduced by [JEP 368: Text Blocks (Second Preview)](https://openjdk.java.net/jeps/368#New-escape-sequences).
 
 There are two new escape sequences. The first one is `\` at the end of a line, which supresses automatic insertion of a new line character.
@@ -256,6 +268,7 @@ String oneLineTextBlock =  """
 This can be useful as by default the indentation is stripped. However, escape characters are interpreted after this, so they will still be preserved.
 
 ## New String Methods
+
 As part of Text Blocks proposal, there are three new Methods of `String` class.
 
 1. `translateEscapes()` - translates escape sequences in the string escept for unicode ones.
@@ -263,6 +276,7 @@ As part of Text Blocks proposal, there are three new Methods of `String` class.
 3. `formatted(Object... args)` - Convenience method, equivalent of String.format(string, args)
 
 ## Conclusion
+
 - Text Blocks offer a convenient way of working with multi-line string literals.
 - To create a Text Block simply surround your string with `"""`. 
 - You can use Text Blocks anywhere you can use String Literals

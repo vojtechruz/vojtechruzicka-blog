@@ -25,7 +25,7 @@ You often need to call an HTTP endpoint and examine the response received. In mo
 
 This feature has been in IDEA for quite some time. You can access the REST client by going to:
 
-```
+```text
  Tools → HTTP Client → Test Restful Web Service
 ```
 
@@ -171,9 +171,11 @@ The environments and their variables are defined in a file called `rest-client.e
 In your HTTP Requests file (even scratch) you can then reference variables surrounded by double curly braces:
 
 {% raw %}
+
 ```json
 GET http://{{host}}:8090/persons/all/
 ```
+
 {% endraw %}
 
 You can run a specific configuration by clicking the run icon in the gutter: 
@@ -181,6 +183,7 @@ You can run a specific configuration by clicking the run icon in the gutter:
 ![Run Environments](./run-environments.png)
 
 ### Live templates
+
 [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html) allow you to write a short acronym in the IDEA editor and when you press <kbd>Tab</kbd> key, IDEA expands it to a code snippet. For example you can expand `sout` to `System.out.println()`. There is a number of existing templates, and you can even create your own. The good news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just change parameters such as URL or request body.
 
 {% video "/videos/intellij-idea-tips-tricks-testing-restful-web-services/idea-http-client-live-template" %}
@@ -198,6 +201,7 @@ You can run a specific configuration by clicking the run icon in the gutter:
 In addition to performing requests and checking responses, IDEA offers a simple "test framework" so you can check the response with various assertions such as expected status code.
 
 {% raw %}
+
 ```javascript
 GET https://www.vojtechruzicka.com/
 
@@ -207,6 +211,7 @@ client.test("Request executed successfully", function() {
 });
 %}
 ```
+
 {% endraw %}
 
 As you can see, you write your tests in JavaScript, to be more precise ECMAScript 5.1. You can use IDEA's bunded library, which exposes you two basic entities you can work with - [client](https://www.jetbrains.com/help/idea/http-client-reference.html) and [response](https://www.jetbrains.com/help/idea/http-response-reference.html).
@@ -214,6 +219,7 @@ As you can see, you write your tests in JavaScript, to be more precise ECMAScrip
 You can write your own JavaScript, but mostly you'll be probably testing the properties of the response such as `status`, `headers`, `body` or `contentType`.
 
 {% raw %}
+
 ```javascript
 GET https://www.vojtechruzicka.com/
 
@@ -228,14 +234,17 @@ client.test("Request executed successfully", function() {
 });
 %}
 ```
+
 {% endraw %}
 
 ### Preserving data between requests
+
 In some cases, it can be useful to save some information to be used in the subsequent requests. For example, let's assume server provides you with auth token you need to send back with your future requests. You can use scripting and the `client` object to store data in a global variable and [retrieve it later](https://www.jetbrains.com/help/idea/http-response-handling-examples.html).
 
 In short, you save a variable by `client.global.set("variableName", variableValue)` and then later you can reference it using `{variableName}`:
 
 {% raw %}
+
 ```javascript {9,14}
 GET https://www.example.com/auth
 Content-Type: application/json
@@ -251,6 +260,7 @@ client.global.set("token", response.body.json.token);
 GET https://www.example.com/foo
 Authorization: Bearer {{token}}
 ```
+
 {% endraw %}
 
 ### Spring Boot Integration
@@ -268,13 +278,13 @@ Additionally, IDEA shows a list of all endpoint mappings in the Run/Debug tab un
 
 Since version 2019.2, you can easily convert your existing [cURL](https://curl.haxx.se/) requests to the format supported by IntelliJ IDEA. All you need to do is to paste a cURL reuest like this to the editor of Intellij's HTTP client:
 
-```
+```bash
 curl -X POST http://www.example.com/login/ -d 'username=joe&password=1234'
 ```
 
 It will be automatically converted to the format supported by IDEA:
 
-```
+```text
 POST http://www.example.com/login/
 Content-Type: application/x-www-form-urlencoded
 
@@ -283,7 +293,7 @@ username=joe&password=1234
 
 Pretty cool, right? Alternatively you can go through the menu:
 
-```
+```text
 Tools → HTTP Client → Convert cURL to HTTP Request
 ```
 

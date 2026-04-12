@@ -19,7 +19,7 @@ You can even create your own archetypes and share them with others.
 ## Generating from command line
 You can generate your project from an archetype in your command line using the following command via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
 
-```
+```bash
 mvn archetype:generate 
 -DarchetypeGroupId=org.springframework.boot 
 -DarchetypeArtifactId=spring-boot-sample-simple-archetype 
@@ -44,7 +44,7 @@ mvn archetype:generate
 ## Generating from IDEA
 Generating projects in IDEA from archetypes is easy. Just go to:
 
-```
+```text
 File → New → Project... → Maven
 ```
 
@@ -64,7 +64,7 @@ Not only you can use existing archetypes, but you can also quite easily create y
 ### From an existing project
 The easiest way is to have an existing project and use the Maven Archetype Plugin to generate an archetype from it. It is actually quite easy.
 
-```
+```bash
 mvn archetype:create-from-project
 ```
 
@@ -75,7 +75,7 @@ Before you can use it, though, you need to install the archetype in your local r
 ### From scratch
 You can actually generate your own custom archetype using a Maven archetype. This way all the scaffolding is created for you.
 
-```
+```bash
 mvn archetype:generate
 -DgroupId=my.project.group.id
 -DartifactId=my-project-artifact-id
@@ -95,13 +95,13 @@ However, there is another `pom.xml` file located under `src\main\resources\arche
 #### Source code
 You can put any source files, which need to be part of the output project under
 
-```
+```text
 src/main/resources/archetype-resources/
 ```
 
 That is:
 
-```
+```text
 Java code:
 src/main/resources/archetype-resources/src/main/java
 
@@ -113,9 +113,10 @@ src/main/resources/archetype-resources/src/main/resources
 ```
 
 #### Archetype metadata
+
 Each archetype contains a special XML file with the archetype configuration, which can be found under:
 
-```
+```text
 src/main/resources/archetype-resources/META_INF/maven/maven-metadata.xml
 ```
 
@@ -151,7 +152,7 @@ There is an unofficial [Gradle Archetype Plugin](https://github.com/orctom/gradl
 
 As an alternative, you can generate your project first using Maven from an archetype and then convert it to a Gradle project by using the following command in the directory with your `pom.xml`:
 
-```
+```bash
 gradle init
 ``` 
 
@@ -163,6 +164,7 @@ It is called [Spring Initializr](https://start.spring.io/). It is a simple wizar
 ![Spring Boot Initializr](spring-boot-initializr.png)
 
 You can configure various options such as:
+
 - Language: Java, Kotlin or Groovy
 - Spring version
 - Java version
@@ -174,7 +176,7 @@ You can see there is a lot of configuration options to choose from. Also, you ca
 
 Instead of using the default web interface, there is even a more convenient way of generating your project directly in IntelliJ IDEA.
 
-```
+```text
 File → New Project → Spring Initializr
 ``` 
 

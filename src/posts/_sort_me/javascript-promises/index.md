@@ -274,11 +274,13 @@ Promise 3 resolved!
 All DONE!
 [ 1, 2, 3 ]
 ```
+
 You can see that the result is an array of the results returned by each individual promise.
 
 What's important to note is that even though promises resolve in order `2,1,3` (because of the different timeouts set), the result array is in the same order as what you put in `Promise.all()`, that is `1,2,3`. Otherwise, it would be hard to tell which result belongs to which promise.
 
 ### Parallel - first only
+
 The last scenario is when you want to call multiple similar promises, but you are interested just in whatever comes first.
 
 There are two variants:
@@ -312,7 +314,7 @@ Promise.race([
 
 The result is then:
 
-```
+```text
 Promise 2 resolved!
 All DONE!
 2
@@ -322,6 +324,7 @@ Promise 3 resolved!
 
 
 ## Compatibility
+
 Promises are well supported in all the modern browsers as you can see in the table below:
 
 ![Promises browser compatibility](./promises-compatibility.png) 
@@ -331,6 +334,7 @@ Well, except for Internet Explorer, of course. For the up to date compatibility 
 For support in IE, you need to use a [polyfill](https://ourcodeworld.com/articles/read/316/top-5-best-javascript-promises-polyfills).
 
 ## Async await
+
 While promises are easier to write, read and maintain than callbacks, they still have their issues, especially in more complex cases of promise chains. `Async-await` is an interesting alternative to plain promises, which allows you to have asynchronous code, which reads as synchronous code, is simple and concise. Check the following post for detailed explanation.
 
 {% linkedPost "/javascript-async-await/" %}

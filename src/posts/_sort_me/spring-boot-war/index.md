@@ -41,7 +41,7 @@ Generating apps with Spring Initializr is way more convenient and less error-pro
 
 Fortunately, you can use Spring Initializr directly from your IDE. In IntelliJ IDEA you can go to:
 
-```
+```text
 File → New Project → Spring Initializr
 ```
 
@@ -75,7 +75,7 @@ With Maven, simply add this dependency to your `pom.xml` file to the `dependenci
 
 With Gradle, the process is similar, just add the dependency to your `dependencies` section with provided scope.
 
-```
+```groovy
 providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 ```
 

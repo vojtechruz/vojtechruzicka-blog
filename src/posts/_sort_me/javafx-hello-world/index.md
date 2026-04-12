@@ -12,18 +12,23 @@ draftStatus: draft
 This is a second post in the JavaFX series. You can check the first post on [how to set up your environment for JavaFx development](/javafx-getting-started/).
 
 ## Application composition
+
 Each application consists of a hierarchy of some basic components. Stages, scenes, and nodes. Let's look at each of them.
 
 ### Stage
+
 Stage basically represents a window. Your application can have multiple stages, but needs at least one.
 
 ### Scene
+
 A scene represents the contents of a stage. Each stage can have multiple scenes, which you can switch. Imagine a theater stage switching multiple scenes during a play.
 
 ### Node
+
 Each scene can contain various components, which are called nodes. These can be controls like buttons or labels or even layouts, which can contain multiple nested components. Each scene can have one nested node, but it can be a layout, which can host multiple components. The nesting can be multiple levels deep - layouts can contain other layouts and regular components.
 
 ### Summary
+
 - Each application can have multiple stages - windows.
 - Each stage can switch multiple scenes.
 - Scenes contain nodes - layouts and regular components.
@@ -107,6 +112,7 @@ primaryStage.getIcons().add(image);
 You can add multiple icons. That is, multiple sizes of the same icon representing the application. Depending on the context, the best size for your application will be used.
 
 Now you can configure the Stage object's properties and behaviour such as:
+
 - Setting position using `setX()` and `setY()`
 - Setting initial size using `setWidth()` and `setHeight()`
 - Limit maximum dimensions of the window using `setMaxHeight()` and `setMaxWidth()` or disable resizing altogether using `setResizable(false)`
@@ -115,6 +121,7 @@ Now you can configure the Stage object's properties and behaviour such as:
 - [And many more](https://openjfx.io/javadoc/11/javafx.graphics/javafx/stage/Stage.html)
 
 ## Adding a Scene
+
 Now we have a window with some fancy title, but it is still empty. You already know, you cannot add components directly to a Stage (window). You need a scene first.
 
 However, the scene constructor requires already its child node. Let's create a simple label first. Then we create a scene with this label as a child.
@@ -159,4 +166,5 @@ Now our window contains a scene with a label component.
 ![Hello World Window](hello-world-window.png)
 
 ## What's Next
+
 In the next step in the series, we'll cover how to [write our GUI in XML rather in Java](/javafx-fxml-scene-builder/).

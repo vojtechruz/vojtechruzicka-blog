@@ -26,19 +26,19 @@ All right, Netlify has many nice features, let's dig a bit deeper.
 ### Simple Setup - Continuous Deployment
 What I love about Netlify is its simplicity. It can take just a minute to set up continuous deployment from your git repository.
 
-##### 1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
+#### 1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
 
-##### 2. You select which git provider (GitHub, GitLab, BitBucket) you want to use.
+#### 2. You select which git provider (GitHub, GitLab, BitBucket) you want to use.
 
  ![Select your Git Provider](./netlify-deploy-1.png)
 ___
 
-##### 3. Then you select a repository you want to deploy to Netlify.
+#### 3. Then you select a repository you want to deploy to Netlify.
 
  ![Select your Git Repository](./netlify-deploy-2.png)
 ___
 
-##### 4. You select a build command (e.g. `gatsby build`) and the default branch to build from. Netlify is usually able to prefill this for you by detecting your static code generator from your repo's code.
+#### 4. You select a build command (e.g. `gatsby build`) and the default branch to build from. Netlify is usually able to prefill this for you by detecting your static code generator from your repo's code.
 
  ![Select your deployment options](./netlify-deploy-3.png)
 ___

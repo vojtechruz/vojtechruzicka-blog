@@ -27,7 +27,9 @@ public interface MyInterface {
 Even though it is not explicitly stated, `MY_CONSTANT` field is considered a constant which is `public`, `static` and `final`. You can add these modifiers anyway, but it is redundant.
 
 ## Abstract methods
+
 The most important members of an interface are its methods. Interface methods have its differences from ordinary class methods as well:
+
 - Methods don't have bodies
 - Implementation is provided by classes implementing the interface
 - Methods are considered public abstract even if not explicitly stated
@@ -79,7 +81,7 @@ In interfaces, from Java 5, you can define type parameters and then use them ins
 
 The following interface `Box<T>` works no matter whether you use it to store Strings, Integers, Lists, Shoes, or any other type.
 
-```
+```java
 interface Box<T> {
     void insert(T item);
 }
@@ -205,16 +207,18 @@ With Java 8 and the introduction of default and static methods, interfaces could
 Usually, you would use mostly private methods for such purpose because they are implementation detail and should not be visible and usable from the outside.
 
 However, in Java 8, you cannot have private methods in interfaces. That means you could either:
+
 1. Use long, complex and hard to understand method bodies.
 2. Use helper methods which are part of the interface. This breaks encapsulation and pollutes public API of the interface and implementing classes.
 
 Fortunately, [since Java 9, you can use private methods in interfaces](http://openjdk.java.net/jeps/213). They have the following characteristics:
+
 - have method body, are not abstract
 - can be static or non-static
 - are not inherited by implementing classes and interfaces
 - can call other methods from the interface
-   - *private* can call private, abstract, default or static methods
-   - *private static* can call only static and static private methods
+  - *private* can call private, abstract, default or static methods
+  - *private static* can call only static and static private methods
 
 ```java
 public interface MyInterface {
@@ -230,20 +234,25 @@ public interface MyInterface {
 ```
 
 ## Chronological order
-Here is a chronological  list of the changes by Java version:
+
+Here is a chronological list of the changes by Java version:
 
 **Java 1.1**
+
 - Nested classes 
 - Nested interfaces 
 
 **Java 5**
+
 - Generics
 - Nested enums
 - Nested annotations
 
 **Java 8**
+
 - Default methods
 - Static methods
 
 **Java 9**
+
 - Private methods

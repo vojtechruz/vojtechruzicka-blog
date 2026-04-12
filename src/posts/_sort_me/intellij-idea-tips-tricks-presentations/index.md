@@ -17,7 +17,7 @@ Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View �
  
  The font size in Presentation Mode can be configured in Settings under:
 
-```
+```text
 Appearance & Behavior → Appearance → Presentation Mode
 ```
  
@@ -38,14 +38,14 @@ Note that Presentation and Distraction Free Mode are not mutually exclusive and 
 
 To enter this mode go to
 
-```
+```text
 Appearance & Behavior → Appearance → Enter Distraction Free Mode
 ```
 
 ## UPDATE: Zen Mode (2020.1) 
 Idea 2020.1 introduced [Zen Mode](https://blog.jetbrains.com/idea/2020/01/intellij-idea-2020-1-eap-2/#zen_mode). It is just a convenience feature, which combines Distraction Free Mode and Fullscreen as these are often used together. Previously it was quite inconvenient to toggle them both. To enter Zen Mode go to:
 
-```
+```text
 Appearance & Behavior → Appearance → Enter Zen Mode
 ```
 
@@ -75,13 +75,13 @@ Sometimes your editor font size is just right, but you want to temporarily zoom 
 
 This feature is not, however, enabled by default. You need to turn it on in Settings:
 
-```
+```text
 Settings → Editor → General
 ```
 
 Then check the following checkbox to enable the zoom functionality:
 
-```
+```text
 Change font size (Zoom) with Ctrl + Mouse Wheel
 ```
 

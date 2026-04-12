@@ -48,6 +48,7 @@ Class in CSS represents multiple similar elements. For example, buttons or check
 ```
 
 #### Built-in classes
+
 The good news is that all the built-in JavaFX components (such as Label or Button) have already a class assigned out of the box. If you want to target all the labels in your app, you don't have to add any custom classes to each of your labels. Each Label has by default `label` class.
 
 It is easy to determine the class name from the component.
@@ -62,6 +63,7 @@ Some examples:
 When using such classes as selectors, don' forget to add `.`. That means the selector for the `label` class is `.label`.
 
 #### Custom classes
+
 If build-in classes are not enough, you can add your own custom classes to your components. You can have multiple classes separated by a comma:
 
 ```xml
@@ -80,6 +82,7 @@ Adding classes this way does not remove the default class of the component (`lab
 There is one special class called `root`. It means the root component of your scene. You can use it to style everything inside your scene (such as setting a global font). It is similar to using body tag selector in HTML.
 
 ### ID
+
 Another way of selecting components in CSS is to use the component's ID. It is a unique identifier of a component. Unlike classes, which can be assigned to multiple components, ID should be unique in a scene.
 
 While classes are using `.` before the name in their selectors, IDs are marked with `#`.
@@ -114,9 +117,11 @@ label.setId("foo");
 ```
 
 ## Properties
+
 Although CSS used in JavaFX is very similar to the original web CSS, there is one big difference. The property names are different, and there is a lot of new properties specific to JavaFX. They are prefixed with `-fx-`.
 
 Here are some examples:
+
 - `-fx-background-color` - Background color
 - `-fx-text-fill` - Text color
 - `-fx-font-size` - Text size
@@ -124,6 +129,7 @@ Here are some examples:
 You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html). 
 
 ## Pseudo-classes
+
 In addition to regular classes, which mark specific components, there are so-called pseudo-classes, which mark a state of a component. This can be, for example, a class for marking that a component has the focus or there is the mouse cursor over the component.
 
 There's a whole bunch of built-in pseudo-classes. Let's take a look at Button. There are multiple pseudo-classes, you can use such as:
@@ -149,6 +155,7 @@ For example:
 - TitledPane has `expanded` and `collapsed`  
 
 ### Custom pseudo-classes 
+
 In addition to build-in pseudo-classes, you can define and use your own.
 
 Let's create our custom Label (inheriting from Label class). It will have a new boolean property called `shiny`. If it is true, we want our Label to have a `shiny` pseudo-class.
@@ -187,17 +194,19 @@ public class ShinyLabel extends Label {
 ```
 
 There are several important parts here:
+
 1. We have our boolean property `BooleanProperty` instead of regular `boolean`. This means it is observable, and we can listen to changes in its value.
 2. We register a listener to be called every time the shiny value is changed using `shiny.addListener()`
 3. When the value changes, we add/remove the shiny pseudo-class depending on the current value `pseudoClassStateChanged(PseudoClass.getPseudoClass("shiny"), shiny.get())`.
 4. We add a custom class for all the labels `shiny-label`, instead we would have just the `label` class from our parent. This way, we can select only shiny labels.
 
 ## Default stylesheet
+
 Even if you don't provide any styles yourself, each JavaFX application already has some visual styling. There is a default stylesheet, which is applied to every application. It is called modena (since JavaFX 8, previously it used to be caspian).
 
 This stylesheet can be found in:
 
-```
+```text
 jfxrt.jar\com\sun\javafx\scene\control\skin\modena\modena.css
 ```
 
@@ -206,6 +215,7 @@ Or you can check the file [directly here](./modena.css). In the same directory, 
 This stylesheet provides the default styling but takes the lowest priority compared to other types of stylesheets, so you can easily override it.
 
 ## Scene stylesheet
+
 In addition to the default stylesheet mentioned above, you can, of course, provide your own. The highest level on which you can apply styling is the whole scene. You can either provide that in your [FXML](/javafx-fxml-scene-builder/):
 
 ```xml {3}

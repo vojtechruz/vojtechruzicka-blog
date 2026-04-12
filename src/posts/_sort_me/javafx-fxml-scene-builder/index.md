@@ -35,11 +35,13 @@ public void start(Stage primaryStage) throws Exception {
 You can see that the whole UI is assembled in Java code. Now, this is a very simple example, but as your application gets more complex and you introduce multiple levels of nested layouts and many components, the resulting code can be very hard to read. However, that's not all - the same class has code, which is responsible for structure, visuals, and behavior at the same time.
 
 The class clearly does not have a single responsibility. Compare this, for example, with web front-end, where each page has neatly separated concerns:
+
 - HTML is structure
 - CSS is visuals
 - JavaScript is behavior
 
 ## Introducing FMXL
+
 All right, having all the code in one place is not a good idea. You need to structure it somehow, so it is easier to understand and more manageable.
 
 There's actually a lot of design patterns for that. Usually, you would end up with a variation of Model-View-Whatever - that is something like Model View Controller, Model View Presenter, or Model View ViewModel.
@@ -53,6 +55,7 @@ It turns out XML's hierarchical structure is a great way to describe a hierarchy
 This XML format specific to JavaFX is called FXML. Here you can define all your components and their properties and link it with a Controller, which is responsible for managing interactions.
 
 ## Loading FXML files
+
 So how can we change our startup method to work with FXML?
 
 ```java
@@ -70,6 +73,7 @@ Here `root` represents the root component of your user interface, the other comp
 The `load` method has a generic return value, so you can load a more specific type than `Parent`. Then you can access component-specific methods. However, it makes your code more fragile. When you change your root component type in your FXML, the application will fail at runtime, not compile time. That's because now there is a mismatch in type declared in your FXML and in your Java FXML Loader.
 
 ## Creating the FXML file
+
 Now we know how to load an FXML file, yet we still need to create it. It needs to have extension `.fxml`. If you have a Maven project, you can put it in the `resources` folder or the FXMLLoader can load an external URL.
 
 After we create the file, we need XML declaration on the first line:
@@ -79,6 +83,7 @@ After we create the file, we need XML declaration on the first line:
 ```
 
 ### Imports
+
 Before we can add individual components to our file, we need to make sure that they are properly recognized. That means adding import statements. This is very similar to `import` in Java classes. You can import individual classes or use wildcards as usual. Let's see an example of import section:
 
 ```xml
@@ -92,6 +97,7 @@ Before we can add individual components to our file, we need to make sure that t
 The good news is that instead of manually adding all of them, your IDE should be able to help you add imports in a similar way to adding them to Java classes.
 
 ### Adding Components
+
 Now it's time to add some components. [In the previous article](/javafx-hello-world/), we learned that each Scene could have only one child component. Let's add a simple label for now.
 
 ```xml
@@ -120,6 +126,7 @@ Of course, having a label as the root component is not very realistic. You would
 ```
 
 ### FX Namespace
+
 There is a couple of FXML elements and attributes, which are not accessible by default. You need to add an FXML namespace to make them available. This needs to be added to the root component:
 
 ```xml {4-5}
@@ -142,6 +149,7 @@ The `fx:id` attribute is a unique identifier of a component, which can be used t
 
 
 ## Scripting
+
 Our application is now static. We have some labels and a button, but it does nothing dynamic.
 
 Let's react on click on our button and change its caption from `Click me!` to `Click me again!`.
@@ -196,11 +204,13 @@ Let's see the full example:
 ```
 
 ### Should I use this?
+
 The example above showed us how to reference components using `fx:id` and how to add some basic behavior using scripting. Oddly enough, in JavaScript. However, is this something you should be actually doing?
 
 The answer is - in most cases no. There are several problems with this approach. The reason why we introduced FXML was a separation of concerns - to decouple UI structure and behavior. With this scripting, the behavior is back again together with our UI structure. What's more - since we are no longer working with Java code but rather XML, we lost all the compile-time checks and type safety. Now all the problems will occur at runtime rather than at compile time. That's very fragile and error-prone.
 
 ## Adding Controller
+
 So what can we do to have a clean separation of concerns? We can link a Controller to our FXML file. It is a Java class, which is responsible for handling all the behavior and user interaction. Now we gained back our type safety and compile-time checks. 
 
 Your controller is a POJO, it does not need to extend or implement anything nor have any special annotations.
@@ -209,6 +219,7 @@ How do we link the controller class with our FXML though? There are basically tw
 
 
 ### In Java
+
 You can instantiate your controller yourself (or use any other means of obtaining the instance such as Dependency Injection to obtain). Then simply assign it to your `FXMLLoader`.
 
 ```java
@@ -217,6 +228,7 @@ loader.setController(new MainSceneController());
 ```
 
 ### In FXML
+
 You can specify the class of your controller as `fx:controller` attribute, which needs to be on the root component.
 
 ```xml {3}
@@ -238,6 +250,7 @@ MainSceneController controller = loader.getController();
 ```
 
 ## Calling Controller methods
+
 Now, when we have our controller, we can remove our script and have our button-click logic directly in our controller.
 
 ```java
@@ -270,6 +283,7 @@ private void buttonClicked() {
 ```
 
 ## Injecting components to Controller
+
 So far we're just printing to the console. What if we want again to change the text of our button to `Click me again!`? How can we get references to components in our Controller?
 
 Fortunately, it is easy. Remember these `fx:id` attributes? 
@@ -310,6 +324,7 @@ public class MainSceneController {
 ```
 
 ## Scene Builder
+
 Writing your GUI structure in XML may be more natural than in Java (especially if you are familiar with HTML). However, it is not very convenient still. The good news is that there is an official tool called Scene Builder to help you with building your UI. In a nutshell, it is a graphical editor for your GUI.
 
 ![Scene Builder Example](scene-builder-standalone.png)
@@ -320,14 +335,17 @@ There are three main sections of the editor.
 3. On the right there is the current component inspector. You can edit various properties of the currently selected component here. Any component you select from the middle part of the hierarchy is shown in the inspector.
 
 ### Standalone
+
 Scene Builder can be [downloaded](https://gluonhq.com/products/scene-builder/) as a standalone application, which you can use to edit your FXML files.
 
 ### IntelliJ IDEA integration
+
 Alternatively, Scene builder offers IDE integrations.
 
 In IntelliJ IDEA, you can right-click any FXML file and click `Open in SceneBuilder`.
 
 Alternatively, IDEA integrates SceneBuilder directly in your IDE. If you open an FXML file in IDEA, there are two tabs at the bottom of the screen
+
 - Text
 - SceneBuilder
 
@@ -342,4 +360,5 @@ Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
 ```
 
 ## What's next
+
 In the next post in our series, we'll cover some [basic layouts we can use to organize our GUI components](/javafx-layouts-basic/).

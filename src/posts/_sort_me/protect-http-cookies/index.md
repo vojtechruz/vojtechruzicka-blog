@@ -15,7 +15,7 @@ HTTP protocol itself is stateless. That means when a server receives two request
 
 But how can you achieve this? One way is using Cookies. Whenever a server receives a request from a client, it can provide a special HTTP response header called `Set-Cookie`. It can look something like this:
 
-```
+```text
 Set-Cookie: [cookie_name]=[cookie_value]
 ```
 

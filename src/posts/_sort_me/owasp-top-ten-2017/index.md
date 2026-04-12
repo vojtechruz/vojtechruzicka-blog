@@ -18,14 +18,17 @@ OWASP Top Ten is one of the OWASP projects, probably the most famous one. It is 
 OWASP Top Ten is released periodically every few years. The most recent version was released in December 2017. The previous versions were 2013, 2010 and 2007.
 
 ## Top Ten 2017, the first attempt
+
 The [first attempt](https://www.owasp.org/images/3/3c/OWASP_Top_10_-_2017_Release_Candidate1_English.pdf) to release OWASP Top Ten 2017 was in April 2017. It was [heavily criticized](https://danielmiessler.com/blog/comments-owasp-top-10-2017-draft/) and the release was rescheduled after the first Release Candidate. What was wrong?
 
 The changes were basically:
+
 - One Item removed
 - Two similar items merged
 - Two new items added
 
 The problem was  mainly with the two new items:
+
 1. Insufficient attack protection
 2. Unprotected APIs
 
@@ -53,23 +56,23 @@ After the first attempt failed, the new and shiny version of OWASP Top Ten 2017 
 
 ## What changed
 
-#### Cross-side request forgery removed
+### Cross-side request forgery removed
 
 CSRF is a type of attack where an unsuspected authenticated user is tricked into performing restricted actions.
 
 Removing this is actually quite a big moment as CSRF was one of the evergreens in OWASP Top Ten. When it was included for the first time, basically no application was protected as the vulnerability was completely new. These days, fortunately, it is a wide-known vulnerability and many frameworks provide CSRF protection by including special CSRF tokens out of the box. Most of the applications are therefore safe even if the developers have no clue what CSRF actually is. According to the data gathered only about 5% of the apps were vulnerable.
 
-#### Unvalidated redirects and forwards removed
+### Unvalidated redirects and forwards removed
 
 This vulnerability uses redirect and forward mechanisms of trusted web applications to transfer users from trusted websites to malicious ones.
 
 This vulnerability still affects 8% of the applications, but it was edged out from the list by XXE.
 
-#### Insecure Direct Object References merged with Missing function-level access control
+### Insecure Direct Object References merged with Missing function-level access control
 
 The two items are no longer separate issues but are now merged into one item called Broken Access control.
 
-#### New Item: XML External Entities
+### New Item: XML External Entities
 
 This is the only new item which is based on actual vulnerability data gathered and not from a community survey.
 
@@ -77,7 +80,7 @@ The problem is that unlike Cross Site Scripting, Injection or Cross Site Request
 
 XXE is a type of vulnerability, which usually occurs when processing XML using outdated or misconfigured XML processors. This vulnerability can be exploited in many ways including, but not limited to, remote code execution, denial of service, port scanning or sensitive data disclosure. To mitigate the risk, you should consider using other data formats such as JSON where possible. Always use up to date version of XML parsers and processors. Where possible turn off processing of XML external entities. Unfortunately, it is usually enabled by default and needs to be explicitly disabled. Consider validating XML content server-side using a whitelist of possible values when external entities are necessary. For more details see [OWASP XXE Prevention cheat-sheet](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet).
 
-#### New Item: Insufficient Logging and Monitoring
+### New Item: Insufficient Logging and Monitoring
 
 This item was included based on community survey as one of the two items selected this way. Community-selected items were included for the first time in 2017.
 
@@ -85,7 +88,7 @@ When an attacker is trying to exploit a vulnerability to perform a successful at
 
 The bottom line is - this vulnerability makes all your other vulnerabilities much more exploitable and makes it hard to quickly respond to an attack. Make sure you don't neglect logging and all your logs are easily available. It is worth having automatic notifications in case of any not standard behavior. There is also an [OWASP guide](https://www.owasp.org/index.php/OWASP_Proactive_Controls#8:_Implement_Logging_and_Intrusion_Detection) covering this topic and of course [OWASP AppSensor](https://www.owasp.org/index.php/OWASP_AppSensor_Project), which is a conceptual framework and methodology providing guidance to implement intrusion detection and automatic response into applications.
 
-#### New Item: Insecure Deserialization
+### New Item: Insecure Deserialization
 
 This is the second item included based on the community survey. While deserialization flaws are usually quite hard to detect and exploit, the impact can be devastating as it can lead to remote code execution, which is one of the worst attacks.
 
@@ -118,6 +121,7 @@ Okay, you are now familiar with OWASP Top Ten. You've read the document back and
 First of all, you should realize, that Top Ten is just a tip of the iceberg. You shouldn't definitely stop at 10. There are many, many more vulnerabilities and risks to look for. While top ten is good at raising awareness, it is by no means \'Security Bible\'. For detailed guides and explanations, you'll have to look elsewhere. But where to start? With other OWASP projects, of course!
 
 Some of the interesting projects are:
+
 - [OWASP Developer Guide](https://www.owasp.org/index.php/OWASP_Guide_Project)
 - [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project)
 - [OWASP Cheat Sheets](https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series)

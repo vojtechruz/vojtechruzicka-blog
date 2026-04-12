@@ -150,14 +150,16 @@ A tooltip offers an explanation of what section is overriding or overridden. By 
 
 ### Settings priority
 As described above, you can have multiple `.editorconfig` files. This can be useful for having different settings for different packages or modules. Or to have different settings for production and test code. Or for different languages. To sum it up:
- - The settings from one config file are applied to all its subdirectories. 
- - If there is a different setting in a subdirectory, it takes priority over settings from parent directories
- - Topmost config file must have `root=true`
- - Editor config settings have priority over your IDE settings
- - If a setting is not found in `.editorconfig`, it is taken from your IDE settings
+- The settings from one config file are applied to all its subdirectories. 
+- If there is a different setting in a subdirectory, it takes priority over settings from parent directories
+- Topmost config file must have `root=true`
+- Editor config settings have priority over your IDE settings
+- If a setting is not found in `.editorconfig`, it is taken from your IDE settings
 
 ### Syncing plugins
+
 While extended EditorConfig support is very powerful, it is not a full-fledged replacement for good old IDE Settings synchronization, which can also sync your IDE plugins and various other IDE settings.
 
 ## Conclusion
+
 EditorConfig in IDEA just got way more powerful. It does not support only original EditorConfig options, but a whole lot of IDEA-specific options as well. This way, you can easily share unified IDE configuration among your team members with zero-setup. No more import/export of settings or tedious setup of IDE Settings Sync. Moreover, you can now have different configuration options for each directory separately.

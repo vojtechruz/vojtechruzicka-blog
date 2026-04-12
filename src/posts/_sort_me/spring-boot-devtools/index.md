@@ -165,7 +165,7 @@ As the Main class select `RemoteSpringApplication` from the DevTools module and 
 
 After you run this configuration, you should see a similar output if the connection to your remote app is successful.
 
-```
+```text
   .   ____          _                                              __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _          ___               _      \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` |        | _ \___ _ __  ___| |_ ___ \ \ \ \

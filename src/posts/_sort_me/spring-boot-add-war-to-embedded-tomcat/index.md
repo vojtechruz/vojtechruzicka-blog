@@ -124,7 +124,7 @@ For Maven, you can use:
 
 For Gradle use this instead:
 
-```
+```groovy
 compile "org.apache.tomcat.embed:tomcat-embed-jasper"
 compile "javax.servlet:jstl"
 ```

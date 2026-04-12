@@ -189,6 +189,7 @@ There is one more difference, which you cannot see from the method's signature b
 That means you should make sure calling `close()` multiple times would not cause any trouble. 
 
 ## IntelliJ IDEA integration
+
 As usual, IDEA offers a nice support for try with resources feature. When you are using a resource, which implements `AutoCloseable` interface, you can surround it with `try-with-resources`. Just press <kbd>Alt</kbd> + <kbd>Enter</kbd> to open intention actions popup:
 
 {% video "/videos/java-try-with-resources/idea-surround-with-try-with-resources" %}
@@ -200,6 +201,7 @@ Using the same keyboard shortcut, IDEA allows you to convert traditional `try-ca
 Alternatively, you can do the reverse operation using the same shortcut - convert `try-with-resources` to good old `try-catch-finally`.
 
 ## Conclusion
+
 Try with resources is a useful alternative to traditional `try-catch-finally` when working with resources, which need to be properly closed. The resource management is automatically handled for you. You can still use `catch` and `finally` blocks, as usual, they get executed after the resources are closed.
 
 If you are on Java 9 and later, you don't need to declare your resources directly in the `try` header, but you can use previously declared resources, which are final or effectively final.

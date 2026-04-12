@@ -10,9 +10,11 @@ draftStatus: draft
 
 
 ## Comparing project files
+
 Let's say there are two similar files in your project, and you need to compare them line by line. With IDEA, that's very easy. Just select both files in your project window (holding <kbd>Ctrl</kbd> for multi-selection).
 
 Now you have two options:
+
 1. Right click one of the files and select `Compare Files`
 2. Press <kbd>Ctrl</kbd> + <kbd>D</kbd>
 
@@ -21,6 +23,7 @@ Now the new window opens, which contains two panels, each with one file. This is
 ![IDEA Compare files](idea-compare-files.png)
 
 Each difference is color-coded (similar to version control diffs):
+
 - No coloring means the content is the same
 - Blue means changes on the same line
 - Green means new content

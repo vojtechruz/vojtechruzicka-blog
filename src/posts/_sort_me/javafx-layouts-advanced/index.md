@@ -36,6 +36,7 @@ In the example above, the size of each component stays the same on resizing. How
 {% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize" %}
 
 You can have various combinations like this:
+
 - LEFT+RIGHT resizes horizontally
 - TOP+BOTTOM resizes vertically
 - All 4 anchors mean both horizontal and vertical resizing
@@ -184,6 +185,7 @@ gridPane.getRowConstraints().addAll(row1, row2);
 Instead of defining percentage size, you can define preferred and minimal size. In addition to that, you can specify how the row/column should behave on resize. Columns are using `hgrow` property, and rows have `vgrow`.
 
 These properties can have three distinct values.
+
 - `NEVER`: Never grow or shrink on resizing. The default value.
 - `ALWAYS`: When resized, all the elements with this value are either stretched to fill the available space or shrank.
 - `SOMETIMES`: These elements are resized only if there are no other elements with `ALWAYS`.
@@ -229,7 +231,9 @@ gridPane.getRowConstraints().addAll(row1, row2);
 You can also specify `maxHeight` and `maxWidth` for individual rows and columns.
 
 ## BorderPane
+
 BorderPane is a layout with five sections:
+
 - Top
 - Bottom
 - Right

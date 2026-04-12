@@ -25,13 +25,13 @@ The interactive console does not require class with main and immediately shows y
 
 JShell is bundled with JDK 9+ installation. It resides in your JDK\bin folder. For example on Windows it can be here:
 
-```
+```text
 C:\Program Files\Java\jdk-9.0.4\bin\jshell.exe
 ```
 
 To run it directly from the console, make sure JDK\\bin is added to your `PATH`. Then simply run `jshell` command. For now, let's use verbose mode with `-v`, which will help us better understand what's going on under the hood. Alternatively, you can run the executable directly from the bin directory. The last option is to use your IDE integration (see below - [Support In IntelliJ IDEA](/jshell-repl/#support-in-intellij-idea)).
 
-```
+```bash
 C:\Users\vojtech> jshell -v
 | Welcome to JShell -- Version 10.0.1
 | For an introduction type: /help intro
@@ -44,7 +44,7 @@ Now you are in interactive mode and JShell evaluates anything you write. To quit
 ## Expressions
 The simplest way to start with JShell is to write a simple expression. It can be a simple mathematical expression:
 
-```
+```bash
 jshell> 7*(3+12)
 $1 ==> 105
 |  created scratch variable $1 : int
@@ -54,7 +54,7 @@ As you can see the expression is immediately evaluated and the result is printed
 
 However, expressions are not limited to simple mathematical ones like above. That would not be very useful. You can do pretty much anything you can do in Java.
 
-```
+```bash
 jshell> Math.sqrt($1)+7
 $2 ==> 17.246950765959596
 ```
@@ -64,7 +64,7 @@ First of all, notice that we were able to use $1 variable from the previous exam
 ## Variables
 Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables.
 
-```
+```bash
 jshell> int myVariable = 42
 myVariable ==> 42
 |  created variable myVariable : int
@@ -72,7 +72,7 @@ myVariable ==> 42
 
 Access modifiers and static/final are ignored for top-level variable and function declarations:
 
-```
+```bash
 jshell> final int myFinalVariable = 18
 |  Warning:
 |  Modifier 'final'  not permitted in top-level declarations, ignored
@@ -84,7 +84,7 @@ myFinalVariable ==> 18
 
 After some time you may get confused what variables you already declared and what are their values. There is a specific command precisely for this - just type `/vars`.
 
-```
+```bash
 jshell> /vars
 |    int $1 = 105
 |    double $2 = 17.246950765959596
@@ -97,7 +97,7 @@ If you are on Java 10 already, you can use [var instead of declaring the type ex
 ## Methods
 As we saw above, you can declare variables on the root level, not inside any class. You can do the same for methods. Again, you don't need to worry about any modifiers such as public, static or final. You simply start with the return type and the name of the method with possible parameters:
 
-```
+```bash
 jshell> String sayHello(String name) {
    ...> return "Hello, my name is "+name;
    ...> }
@@ -112,7 +112,7 @@ In the example above, you can see we declared a method and then called it. Pleas
 
 A common scenario is when a method uses another method or variable, which is not declared yet. It is called the forward reference and JShell allows you to do that. However, you cannot use such methods until all of its dependencies are also declared.
 
-```
+```bash
 jshell> String myMethod(String name) {
    ...> return otherMethodNotDeclared();
    ...> }
@@ -125,7 +125,7 @@ Similar to `/vars` for variables, you can list all currently declared methods wi
 ## Types
 Top-level variables and methods are useful, but often you need to declare and use regular classes, enums or interfaces. You can do it as usual, nothing JShell specific here. Just keep in mind that in this case semicolons are required. You can list all declared types by `/types`.
 
-```
+```bash
 jshell> class Person {
    ...>     private String name;
             [more code here]
@@ -140,7 +140,7 @@ For the JDK classes, you can use `import` as usual. For your convenience, many o
 
 Of course, import is useless if JShell does not have access to the classes needed.
 
-```
+```bash
 jshell> import com.vojtechruzicka.*;
 |  Error:
 |  package com.vojtechruzicka does not exist
@@ -150,19 +150,19 @@ jshell> import com.vojtechruzicka.*;
 
 Your classes need to be on the classpath. The first option is using `CLASSPATH` environmental variable. Or you can specify classpath when launching JShell:
 
-```
+```bash
 jshell --class-path foo-1.0.0.jar
 ```
 
 You can provide multiple jars separated by either `;` or `:` depending on your OS. Alternatively, you can define classpath directly from jshell:
 
-```
+```bash
 jshell> /env -class-path foo-1.0.0.jar
 ```
 
 If you are using Java 9 module system, you can specify modules to be imported when starting JShell:
 
-```
+```bash
 jshell --add-modules some.module
 ```
 
@@ -172,7 +172,7 @@ The good news is that JShell handles exceptions well. Whenever an exception occu
 ## Saving and loading your work
 When you work with JShell in more complicated use cases, it is often handy to be able to save your work and to continue later. Or to simply save your session for future reference. Fortunately JShell supports saving and loading sessions using `/save` and `/open commands`:
 
-```
+```bash
 jshell> /save myfile.jsh
 
 jshell> /open myfile.jsh
@@ -185,7 +185,7 @@ While you can write and edit everything directly in the JShell console, it is no
 
 Not very cutting edge, is it? Fortunately, you can configure your own editor to open when executing the `/edit` command. One way is to set the environmental variable `JSHELLEDITOR`. Alternatively, you can set the editor directly from JShell. Use `-retain` option to persist this setting between sessions.
 
-```
+```bash
 jshell> /set editor myEditor -retain
 |  Editor set to: myEditor
 ```
@@ -217,7 +217,7 @@ To obtain the full source code of the snippet, you can use `snippet.source()`. T
 ## Alternatives
 The first interesting alternative to plain JShell is called [Try Artifact](https://github.com/bhagatsingh/try-artifact). Instead of obtaining jar dependencies manually and adding them to the classpath, it allows you to download and use Maven artifacts directly from the console.
 
-```
+```bash
 jshell> /resolve org.apache.commons:commons-lang3:jar:3.4
 |  Path /home/kawasima/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar added to classpath
 ```

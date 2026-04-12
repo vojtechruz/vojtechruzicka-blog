@@ -107,10 +107,10 @@ It's a lot less code, right?
 
 The functionality is the same as in our previous example - we have:
 
- - an immutable class with three fields
- - Constructor assigning these fields
- - Getters
- - equals(), hashCode() and toString()
+- an immutable class with three fields
+- Constructor assigning these fields
+- Getters
+- equals(), hashCode() and toString()
 
 To illustrate this better, let's look at the decompiled version of our record.
 

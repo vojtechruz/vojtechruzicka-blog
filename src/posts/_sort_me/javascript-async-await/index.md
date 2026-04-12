@@ -10,11 +10,13 @@ draftStatus: draft
 
 
 ## Promises
+
 This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or need a quick recap, check the following article.
 
 {% linkedPost "/javascript-promises/" %}
 
 ## Async
+
 Let's assume we have a simple function returning some value
 
 ```javascript
@@ -60,6 +62,7 @@ foo().then(result => {
 ```
 
 ### Async in arrow functions and class methods
+
 Even though our example was on regular `function()`, you can, of course, use the same concept for arrow functions:
 
 ```javascript
@@ -79,6 +82,7 @@ class Foo {
 ```
 
 ## Await
+
 Await syntax is simple you just put `await` before your function returning a promise:
 
 ```javascript
@@ -99,13 +103,14 @@ async function foo() {
 
 As I already mentioned, you can use `await` only in a function which is marked as `async`. Otherwise, you get an error:
 
-```
+```text
 SyntaxError: await is only valid in async function
 ```
 
 One implication of this is that you cannot use `await` in the top-level code.
 
 ## Multiple calls
+
 Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each call depends on the value returned by the previous one. That means those calls should be executed one after another in synchronous order.
 
 ```javascript

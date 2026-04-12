@@ -88,6 +88,7 @@ switch (errorCode) {
 ```
 
 What would be much simpler is specifying multiple values per case:
+
 ```java
 case 400, 404, 405:
     System.out.println("Something is wrong with the request!");
@@ -178,7 +179,7 @@ String message = switch (errorCode) {
 
 This will result in the following error:
 
-```
+```text
 Error:(11, 26) java: the switch expression does not cover all possible
 input values
 ```
@@ -295,12 +296,14 @@ String message = switch (errorCode) {
 ```
 
 Having a break with return value was a bit confusing and hard to tell apart from regular labeled break. It was harder to visually distinguish a switch statement from switch expression. Now it is much easier to tell them apart:
- - Switch statement only uses `break` and never `yield`
- - Switch expression only uses `yield` and never `break`
+
+- Switch statement only uses `break` and never `yield`
+- Switch expression only uses `yield` and never `break`
 
 The original proposal in Java 13 was `break-with`, which would be the first hyphenated keyword in Java so far. But it was later replaced with `yield`.
 
 ## Future enhancements
+
 As part of the [JEP-325](https://openjdk.java.net/jeps/325) specification, there is also mentioned another improvement, which is not currently implemented (as of Java 13), but may be introduced in the future.
 
 > As a target of opportunity, we may expand switch to support switching on primitive types (and their box types) that have previously been disallowed, such as float, double, and long.
@@ -308,6 +311,7 @@ As part of the [JEP-325](https://openjdk.java.net/jeps/325) specification, there
 Currently, the switch allows input values only of types char, int, byte, short, their object wrappers (Character, Byte, Short, Integer) and String (since Java 7).
 
 ## Summary
+
 - In Java 13 enhanced switch is a preview feature, which needs to be explicitly enabled
 - You can now use `case` for multiple values
 - In addition to the traditional switch statement, you can use switch expression, which returns a value
