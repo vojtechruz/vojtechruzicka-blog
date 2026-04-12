@@ -80,7 +80,7 @@ One problem with raw string literals is usually indentation. Every character in 
       on multiple lines.`;
       System.out.println(myString);
   }
-```    
+```
 
 If you print it, all the lines except the first will have indentation present.
 
@@ -98,14 +98,14 @@ You can read more about original Raw String Literals proposal in the following a
 
 This proposal was, however [dropped before the final release](http://mail.openjdk.java.net/pipermail/jdk-dev/2018-December/002402.html) of Java 12 and is now considered obsolete.
 
-> While we can expect that for any language feature, there will be a 
-  nontrivial volume of "I would have preferred it differently" feedback, 
-  in reviewing the feedback we have received, I am no longer convinced 
-  that we've yet got to the right set of tradeoffs between complexity and 
-  expressiveness, or that we've explored enough of the design space to be 
-  confident that the current design is the best we can do.  By 
-  withdrawing, we can continue to refine the design, explore more options, 
-  and aim for a preview that actually meets the requirements of the 
+> While we can expect that for any language feature, there will be a
+  nontrivial volume of "I would have preferred it differently" feedback,
+  in reviewing the feedback we have received, I am no longer convinced
+  that we've yet got to the right set of tradeoffs between complexity and
+  expressiveness, or that we've explored enough of the design space to be
+  confident that the current design is the best we can do. By
+  withdrawing, we can continue to refine the design, explore more options,
+  and aim for a preview that actually meets the requirements of the
   Preview Feature process (JEP 12).
 
 ## Multiline String literals in Java
@@ -113,7 +113,6 @@ This proposal was, however [dropped before the final release](http://mail.openjd
 After the withdrawal of the original proposal, [the discussion was restarted](https://mail.openjdk.java.net/pipermail/amber-spec-experts/2019-January/000931.html) and resulted in a brand new proposal, which will be introduced in Java 13 as a Preview Feature. Its called [JEP 355: Text Blocks (Preview)](https://openjdk.java.net/jeps/355).
 
 It is not supposed to be an implementation of Raw String Literals, but rather multiline String literals, which will still allow escapes, although you'll not be required to use all of them. On top of that, it will not be necessary to handle all the indentation issues, which was necessary with Raw String Literals.
-
 
 ## Preview Feature
 

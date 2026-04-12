@@ -14,12 +14,12 @@ draftStatus: draft
 There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to reflect it.
 {% endinfo %}
 
-
-
 ## Traditional switch
+
 Good old switch is available in Java from the very beginning, and little has changed since then until now. Java's switch follows closely the design of C and C++ including the weird parts.
 
 ### Fall-through
+
 Most notably, the infamous **fall-through** behavior. What does it mean? Let's look at a simple switch first:
 
 ```java
@@ -97,9 +97,11 @@ case 400, 404, 405:
 Unfortunately, the old traditional switch does not support this.
 
 ## Enhanced Switch
+
 Java 12 brought a whole lot of improvements to the traditional switch as [Java Enhancement Proposal 325: Switch Expressions (Preview)](http://openjdk.java.net/jeps/325). It solves most of the issues of the traditional switch and is prerequisite of [pattern matching](https://openjdk.java.net/jeps/305), which is to be provided in the future.
 
 ### Multiple values in a case
+
 We already covered that one value per `case` is problematic and it limits you. Fortunately, with an enhanced switch, there is no longer such limitation. You can simply provide multiple comma-separated values:
 
 ```java
@@ -116,6 +118,7 @@ switch (errorCode) {
 Nice, concise and much easier to read than multiple cases with fall-through, right? So far, so good. Note that we still use `break` statements.
 
 ### Switch expression
+
 The traditional switch is a **statement**. In addition to that, the new switch also adds the possibility of switch **expression**.
 
 What is the difference? In a nutshell, the statement is imperative to do some logic. The expression returns some value.

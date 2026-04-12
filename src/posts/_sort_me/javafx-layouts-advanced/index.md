@@ -83,8 +83,8 @@ In Java, when adding a new component, we specify first the ColumnIndex (x) and R
     grid.add(new Label("Hello!"), columnIndex, rowIndex);
 ```
 
-
 ## Spacing
+
 By default, grid cells have no spacing. The components are directly next to each other, with no margins. Spacing can be defined separately for rows and columns - that is: horizontally and vertically.
 
 - `hgap` sets horizontal spacing (between columns)
@@ -105,6 +105,7 @@ grid.setVgap(10);
 ```
 
 ### Spanning multiple cells
+
 Components in GridPane can span multiple rows and/or columns.
 
 A component with rowspan is expanding to the bottom from its original cell. A component with colspan is expanding to the right.
@@ -134,12 +135,14 @@ GridPane.setRowSpan(component, rowSpan);
 ```
 
 ### Sizing
+
 Even though in the initial example, all the cells were the same size, it does not necessarily have to be the case. The sizing of grid cells is the following:
 
 - Height of each row is equal to the highest element in the row
 - Width of each column is equal to the widest element in the column
 
 ### Column and row constraints
+
 As mentioned, by default, the columns and rows are sized based on the components inside. Fortunately, you can have better control over how individual columns and rows are sized.
 
 There are `ColumnContstraints` and `RowConstraints` classes, which are used for this.
@@ -147,6 +150,7 @@ There are `ColumnContstraints` and `RowConstraints` classes, which are used for 
 You have basically two options. Either set percentage of available space for individual rows and columns, or you set preferred width/height. In the latter case you can also define preferred behavior when the columns and rows are resized.
 
 #### Percentage
+
 This is quite straightforward. You can set a percentage of the available space to be occupied by the given row or column. When the layout is resized, the rows and columns are resized as well to match the new size.
 
 ```xml
@@ -293,4 +297,5 @@ The center has a dynamic size and fills the rest of the space not occupied by ot
 {% video "/videos/javafx-layouts-advanced/borderpane-resizing" %}
 
 ## What's next
+
 Now when we know how to use various layouts, we'll cover how to style JavaFX  components using CSS.

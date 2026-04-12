@@ -36,8 +36,8 @@ var john = 'John Doe';
 
 It is actually consisting of two parts:
 
--   `var john` means that variable john is declared
--   `= 'John Doe';` means that previously declared variable `john` is assigned a value of string `John Doe`
+- `var john` means that variable john is declared
+- `= 'John Doe';` means that previously declared variable `john` is assigned a value of string `John Doe`
 
 It is basically one-liner for:
 
@@ -85,8 +85,8 @@ console.log(i); // 10, What? 'i' still exists outside the for block!
 
 Unlike in many other languages, variables declared using *var* keyword do not respect block scope. That means you would expect that variable 'i' from a for loop would be accessible only inside the loop. Wrong. The scope of a variable declared in Javascript depends on where you declare it.
 
--   If you declare it inside of a function body, its scope is the whole function's body. And because of hoisting, it can be accessed anywhere in the body.
--   If you declare your variable on the root level it is in the global scope. It is actually a variable of the global object (e.g. window).
+- If you declare it inside of a function body, its scope is the whole function's body. And because of hoisting, it can be accessed anywhere in the body.
+- If you declare your variable on the root level it is in the global scope. It is actually a variable of the global object (e.g. window).
 
 If we take our example with for loop, the variable *i* is actually now declared also as a property of window - that is *window.i*!
 

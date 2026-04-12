@@ -42,6 +42,7 @@ mvn archetype:generate
 ```
 
 ## Generating from IDEA
+
 Generating projects in IDEA from archetypes is easy. Just go to:
 
 ```text
@@ -154,7 +155,7 @@ As an alternative, you can generate your project first using Maven from an arche
 
 ```bash
 gradle init
-``` 
+```
 
 ### Spring Boot Initializr
 When working with Spring Boot, you can still use Maven archetypes, but there is a better, way more powerful tool offered directly by Spring.

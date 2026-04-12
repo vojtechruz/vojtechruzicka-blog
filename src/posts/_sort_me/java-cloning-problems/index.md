@@ -8,12 +8,12 @@ excerpt: Java's mechanism for copying objects is deeply flawed. What are the alt
 draftStatus: draft
 ---
 
-
-
 ## Why clone objects?
+
 There are several reasons why you may want to create a copy of an already existing object. For example - you may want to create just a slightly different version based on an existing object. The most common scenario would be probably making [defensive copies](http://www.javapractices.com/topic/TopicAction.do?Id=15) of objects. That is - if you are providing internal data of an object to other objects, you often want to make sure that instead of providing a reference to your actual internal state, you rather provide a copy. This means that no matter what the consumers do with the data, your original object is safe and is not affected.
 
 ## Cloneable
+
 Java provides a mechanism for cloning of objects. Unfortunately, this mechanism is seriously flawed. There is the `Cloneable` interface. You would expect the interface to have a `clone()` method, which would return a copy of the object. Sadly, it is not the case. Cloneable is just a marker interface. That means, it has no methods whatsoever, it just marks the class as suitable for cloning. The clone method is present on the Object class instead.
 
 The description of the Object's clone() method is the following (from the JavaDoc):
@@ -102,16 +102,16 @@ public static T clone(T object)
 
 The serialization approach has some advantages:
 
--   Simple alternative to cloning, especially when using library such as Apache Commons
--   Provides deep cloning
--   Suitable even for complex object graphs
--   Can be used on existing classes that currently provide just shallow copy
+- Simple alternative to cloning, especially when using library such as Apache Commons
+- Provides deep cloning
+- Suitable even for complex object graphs
+- Can be used on existing classes that currently provide just shallow copy
 
 This also has some limitations and disadvantages:
 
--   All the classes in the object graph needs to implement Serializable
--   Transient fields are not cloned (transient means not to be serialized)
--   Way more expensive than clone or copy constructors/factory methods
+- All the classes in the object graph needs to implement Serializable
+- Transient fields are not cloned (transient means not to be serialized)
+- Way more expensive than clone or copy constructors/factory methods
 
 In some cases, this can be used, but you don't always have the luxury of having all the objects Serializable and with no transient fields. Especially when using third-party classes. Also, the performance hit is very significant. Depending on the amount of cloning required and performance requirements, it can be easily too much. More info about performance hit and the serialization approach, in general, can be found in [Java Tip 76: An alternative to the deep copy technique](http://www.javaworld.com/article/2077578/learn-java/java-tip-76--an-alternative-to-the-deep-copy-technique.html).
 

@@ -104,10 +104,10 @@ greetingFunction(); // Hi! My name is undefined / window / global
 ## In constructor functions
 When you are using [constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constructor-functions-and-new-operator/), *this* behaves a bit differently than usual. In short, what *new* operator does is that:
 
-1.  It creates a new blank object.
-2.  It makes *this* to point to this newly created object inside the constructor function
-3.  It sets the prototype of the newly created object to the constructor function's prototype.
-4.  It makes the constructor function return the newly created object IF it is not returning anything.
+1. It creates a new blank object.
+2. It makes *this* to point to this newly created object inside the constructor function
+3. It sets the prototype of the newly created object to the constructor function's prototype.
+4. It makes the constructor function return the newly created object IF it is not returning anything.
 
 Long story short, when using the new operator, *this* inside the constructor function points to the newly created object. Keep in mind that if you forget to include *new* operator and just call the function directly, this will not point to the new object but rather to the global object.
 

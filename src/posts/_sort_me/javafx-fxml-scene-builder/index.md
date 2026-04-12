@@ -147,7 +147,6 @@ Now we can use some new elements from the fx namespace. Let's try adding unique 
 
 The `fx:id` attribute is a unique identifier of a component, which can be used to reference the component from other parts of our FXML and even our Controller.
 
-
 ## Scripting
 
 Our application is now static. We have some labels and a button, but it does nothing dynamic.

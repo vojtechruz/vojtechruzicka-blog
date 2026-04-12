@@ -150,6 +150,7 @@ Even though these methods are automatically provided for you, it is possible to 
 
 
 ## Limitations
+
 There are some restrictions and limitations of records, which you should be aware of.
 
 - Records cannot extend any class, although they can implement interfaces
@@ -158,6 +159,7 @@ There are some restrictions and limitations of records, which you should be awar
 - You can declare additional fields in the body of a record, but only if they are static
 
 ## Adding methods
+
 Even though records are mostly used just as plain data carriers, you can declare your own methods. Of course, since records are immutable, you cannot change any state, but it can still be useful. For example:
 
 ```java

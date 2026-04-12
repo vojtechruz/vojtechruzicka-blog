@@ -108,7 +108,6 @@ httpClient.get(targetUrl)
 .finally(doThisNoMatterWhatFunction);
 ```
 
-
 ## Promise state
 Each promise can be in one of the following states:
 

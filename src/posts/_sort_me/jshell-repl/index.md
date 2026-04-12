@@ -167,9 +167,11 @@ jshell --add-modules some.module
 ```
 
 ## Exceptions
+
 The good news is that JShell handles exceptions well. Whenever an exception occurs, JShell catches it, prints it and your session is not terminated. What's cool is that unlike in regular Java, it does not force you to handle checked exceptions, which removes a lot of try-catch boilerplate.
 
 ## Saving and loading your work
+
 When you work with JShell in more complicated use cases, it is often handy to be able to save your work and to continue later. Or to simply save your session for future reference. Fortunately JShell supports saving and loading sessions using `/save` and `/open commands`:
 
 ```bash
@@ -179,6 +181,7 @@ jshell> /open myfile.jsh
 ```
 
 ## Using an External Editor
+
 While you can write and edit everything directly in the JShell console, it is not always the best approach. The editing can be tedious and cumbersome. It is often better to use a dedicated external text editor. To open all the code snippets you entered so far in an external editor, type `/edit`.
 
 ![JShell Default Editor](./jshell-editor.png)

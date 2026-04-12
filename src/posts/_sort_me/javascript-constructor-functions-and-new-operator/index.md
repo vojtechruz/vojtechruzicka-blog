@@ -39,14 +39,15 @@ The *Person* is a constructor function. Its whole purpose is to create new objec
 
 Then we are creating a specific person instance called *john* with *firstName* 'John' and *lastName* 'Doe'. Notice that there is a *new* keyword before the *Person* constructor function call. It is actually an operator and it is responsible for all the magic when creating new persons. It does actually quite a lot:
 
-1.  It creates a new blank object.
-2.  It makes *this* to point to this newly created object inside the constructor function
-3.  It sets the prototype of the newly created object to the constructor function's prototype.
-4.  It makes the constructor function return the newly created object **IF** it is not returning anything.
+1. It creates a new blank object.
+2. It makes *this* to point to this newly created object inside the constructor function
+3. It sets the prototype of the newly created object to the constructor function's prototype.
+4. It makes the constructor function return the newly created object **IF** it is not returning anything.
 
 That is the reason why *John* is created even though the function *Person* does not have an explicit return statement. That's the reason why using `this.firstName=firstName;` sets the first name provided to the new object. Without the *new* keyword, *this* would point to the global object in our case and not to the newly created instance.
 
 ## What if I forget to include *new*?
+
 There are some serious problems when using the *new* operator. In languages such as Java, it is strictly limited how you can use the new keyword. It can be used only to invoke methods, which are explicitly marked as constructors. Constructors are guaranteed to return a new instance of the class, performing all the required initialization. Constructors can be invoked only using the *new* keyword and the *new* keyword can be used only to invoke constructors.
 
 In javascript, the situation is unfortunately not so strict.
@@ -81,6 +82,7 @@ The reason why is that one of the actions *new* operator does is changing *this*
 Another action that *new* operator does is that it makes the function return newly created object if the function does not return object specifically. It is the case here as you can see that the Person constructor does not explicitly call return (and yet, John is successfully created). When called without new, it is just a regular function call. And functions without explicit return statement return undefined.
 
 ## Protecting against forgetting to include *new*
+
 Alright, forgetting the new operator can have pretty nasty consequences. So what can you do to prevent such cases?
 
 ### Capital letter convention

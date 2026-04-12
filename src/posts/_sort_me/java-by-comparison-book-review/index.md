@@ -11,11 +11,13 @@ draftStatus: draft
 
 
 ## Authors
+
 The book was written by three authors: [Simon Harrer](https://twitter.com/simonharrer), [Jörg Lenhard](https://joerglenhard.wordpress.com/) and [Linus Dietz](https://lynyus.org/).
 
 The authors are teachers of Java programming courses. When they were evaluating students' assignments, they had to provide the same feedback for the same common issues over and over. A checklist with common issues and proper solutions would help a lot as they could only reference an item from this list when evaluating the assessments. That's how the idea for this book was born. It is a list of common issues and code smells in Java and what can you do to fix them.
 
 ## Concept
+
 The idea is simple. The book contains 70 independent items. Similar items are grouped into categories, such as comments, testing or exception handling.  Each item covers a specific issue, such as "Always Catch Most Specific Exception".
 
 Each item is not just a recommendation or a best practice. Instead, it starts with a problematic snippet of code, which works but has some smells. Then there is a description of what is exactly wrong and why.

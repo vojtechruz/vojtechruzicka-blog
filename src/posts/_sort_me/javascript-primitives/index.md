@@ -107,10 +107,10 @@ This is a new primitive type introduced in ES6. There is no symbol literal, so a
 
 Both `null` and `undefined` are primitive types representing the absence of value. Null is usually explicitly returned and assigned. Because of this it generally represents that the value is intentionally missing. The undefined, on the other hand, means that the value does not exist in cases, such as:
 
-1.  A variable was declared but not initialized
-2.  Return value of methods that do not return anything
-3.  Value of function parameters when caller did not provide value
-4.  Accessing a property of an object which does not exist
+1. A variable was declared but not initialized
+2. Return value of methods that do not return anything
+3. Value of function parameters when caller did not provide value
+4. Accessing a property of an object which does not exist
 
 One caveat to watch for and which is confusing is that even though null is a primitive, calling `typeof null` [returns object](https://stackoverflow.com/q/18808226/4560142). In contrast, `typeof undefined` returns `undefined`.
 

@@ -42,6 +42,7 @@ Now let's see a specific example - a real application.
 ![Application Hierarchy Example](hierarchy-window.png)
 
 ## Application Class
+
 Time to start coding. If you followed the [previous article](/javafx-getting-started/), you already have all the required dependencies in place.
 
 Each JavaFX application needs to have a main application class. That is - a class that extends `javafx.application.Application`.

@@ -8,15 +8,12 @@ excerpt: 'Coding Interviews can be hard. Knowing algorithms and data structures 
 draftStatus: draft
 ---
 
-
-
 {% info %}
 <b>UPDATE:</b> In November 2021, <a href="https://blog.tryexponent.com/pramp-joining-exponent/">Pramp was acquired</a> by <a href="https://www.tryexponent.com/">Exponent</a>. According to the statement Pramp should still be available for free, but both platforms should be more integrated in the future.
 {% endinfo %}
 
-
-
 ## Coding interviews
+
 Coding interviews are not easy. You need to prepare for them if you want to succeed. The first step is obviously to learn all the intricacies of various algorithms and data structures, and how to determine their time and space complexity. This is just the beginning though. Then you need to practice. And then practice some more. Acing the coding interview is a skill like any other. Fortunately, it can be improved by preparation and practice. There are various ways to practice. You can find numerous online services just for that.
 
 The problem is that they usually test your ability to complete the task on your own. You are provided with a problem and then you submit your solution. That's good, however not sufficient. Coding interview is much more than this. And you need to be prepared for that.
@@ -26,14 +23,17 @@ What's missing is the interaction with a real interviewer, which is crucial. Dur
 The bottom line is - you need to train with an actual person as an interviewer.
 
 ## Pramp to the rescue
+
 Fortunately, there is a service, which does exactly this. [Pramp.com](https://www.pramp.com) (it's an acronym for **PRA**ctice **M**akes **P**erfect). It lets you pair with another person to practice the interview. First, you are interviewing them, then you switch the roles.
 
 ### Registration
+
 The registration is fairly easy. You need to provide your location, which determines the time zone for your interviews. Then you provide education and years of experience. Then your areas of expertise such as frontend, backend, mobile development and such. And then programming languages. And that's it. All the data provided is used for matchmaking so Pramp can find you best match possible for your interviews.
 
 ![pramp-registration](./registration.png)
 
 ### Scheduling an Interview
+
 Once you are registered you can schedule an interview. You are provided with a number of available time slots which you can choose from:
 
 ![pramp-scheduling](./scheduling-interview.png)
@@ -43,6 +43,7 @@ Once you schedule an interview, the application will choose the best possible ma
 One disadvantage is that the number of the slots each day is currently fairly limited as you can see in the image above. Therefore you cannot interview any time of the day or all day if necessary.
 
 ### The Interview
+
 After your scheduled interview starts, you are connected to your previously selected match. Randomly, either you or your peer is assigned the role of interviewer. The other one is provided with a question. The interviewer also has some hints available to guide you in the right direction in case you are stuck. And of course, they have access to the complete answer including the time and space complexities.
 
 There is an IDE, in which you are supposed to code your solution to the given problem. You can work in a language of your choice - Java, Python, Ruby, PHP, Go, C, C++, C\#, Swift, Clojure and Haskell. The contents of the IDE are synchronized, so your interviewer can see you typing in the real-time and can also edit the contents as needed.

@@ -17,9 +17,11 @@ JavaFX was introduced as a part of the Java 8 release. However, it was later rem
 This means, if you are targeting Java 8-10, you have all the required dependencies as a part of your JDK already. Hooray! If you are using a newer version of Java - that is 11+, you need to get the dependencies separately.
 
 ## Maven
+
 Obtaining and managing dependencies manually is quite inconvenient, and in a real application, you would rarely do so. It is much better to use a dependency management system such as Maven or Gradle. This way, you can just declare what dependencies you are using and what versions and it takes care of the rest.
 
 ### Maven archetype
+
 Of course, you can set up your Maven project by hand, from scratch. However, you may prefer a more convenient way of generating the base project structure and contents for you by Maven.
 
 Maven has a concept of archetypes, which basically means you can generate different types of projects from a template. There are numerous archetypes for various types of projects, and fortunately, there is a couple for JavaFX. The archetype you can choose depends on which version of Java are you using.
@@ -29,6 +31,7 @@ You can read more about Maven archetypes in the following post:
 {% linkedPost "/maven-archetypes/" %}
 
 #### Java 8 archetype
+
 You can use [com.zenjava:javafx-basic-archetype](https://mvnrepository.com/artifact/com.zenjava/javafx-basic-archetype), or you can look for more archetypes yourself if this one does not suit you.
 
 You can easily generate a project from your command line with Maven using the archetype above:
@@ -84,17 +87,19 @@ The second part is adding a dependency for [JavaFX controls](https://mvnreposito
 ```
 
 ## Gradle
+
 Gradle currently [does not support generating projects from archetypes directly](https://github.com/gradle/gradle/issues/3840).
 
 You can use an unofficial [Gradle Archetype Plugin](https://github.com/orctom/gradle-archetype-plugin/) and use Maven archetypes mentioned above.
 
 Alternatively, you can generate your project using Maven from an archetype and then convert it to a Gradle project by using the following command in the directory containing your `pom.xml`:
 
-```
+```bash
 gradle init
 ``` 
 
-### Manual Gradle setup 
+### Manual Gradle setup
+
 Similar to Maven manual setup, you need to add JavaFX plugin:
 
 ```groovy

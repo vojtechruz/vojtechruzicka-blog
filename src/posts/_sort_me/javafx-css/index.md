@@ -10,6 +10,7 @@ draftStatus: draft
 ---
 
 ## Separating visuals
+
 In the previous [article about FXML](/javafx-fxml-scene-builder/), we learned how JavaFX achieves clean separation of concerns by dividing the user interface code into two parts. Components and their properties are declared in an FXML file, while the interaction logic is neatly separated in a controller.
 
 Now there is a third part on top of this. FXML manages only what components are in your app, their properties, and how they are nested. It does not define the visuals of the component, though. That is - fonts, colors, backgrounds, paddings. To be honest, you can achieve it in FXML, but you shouldn't. Instead, visuals should be clearly separated in CSS stylesheets.
@@ -17,6 +18,7 @@ Now there is a third part on top of this. FXML manages only what components are 
 This way, your styling is independent and can be easily replaced or changed without affecting the rest of the application. You can easily even have multiple themes, which you can switch on demand.
 
 ## CSS
+
 You probably know CSS (Cascading Style Sheets) from the web, where it is used to style HTML pages. In JavaFX, this is very similar, although JavaFX uses a set of its own custom properties.
 
 Let's see an example:
@@ -150,6 +152,7 @@ The pseudo-classes start with `:` (e.g. `:hover`) in the CSS selectors. You need
 Unlike in CSS, which has just basic pseudo-classes for states like focus and hover, JavaFX has component-specific pseudo-classes, which relate to different states or properties of components.
 
 For example:
+
 - Scrollbars have `horizontal` and `vertical` pseudo-classes
 - Cells have `odd` and `even`
 - TitledPane has `expanded` and `collapsed`  
@@ -277,11 +280,13 @@ label.setStyle("-fx-background-color: blue; -fx-text-fill: white");
 Styling on component level takes precedence over both scene and parent (layout) styling.
 
 ### Why to avoid them
+
 Styling on component level may be convenient, but it is a quick and dirty solution. You give up the main advantage of CSS, which is separating styling from the styled components. You hardcode your visuals directly to the components now. You can no longer easily switch your stylesheets when needed, you cannot change themes.
 
 Moreover, you no longer have a single central place where your styling is defined. When you need to change something across a set of similar components, you need to modify each of the components individually instead of editing just one place in your external stylesheet. Inline styling components should be therefore avoided.
 
 ## Stylesheet priorities
+
 You can provide styling on multiple levels - scene, parent, inline styles, and there is a default modena stylesheet. If you change that same property of the same component on multiple levels, JavaFX has a priority setting, which resolves what styles should be used. The list of priorities is - from highest to lowest:
 
 1. Inline styles
@@ -292,4 +297,5 @@ You can provide styling on multiple levels - scene, parent, inline styles, and t
 That means if you set the background color of a specific label both inline and on the scene level, JavaFX will use the value set in inline styles as it has higher priority.
 
 ## Further reading
+
 There are numerous CSS properties in JavaFX, and describing them is beyond the scope of this post, for a detailed list, please see the official [JavaFX CSS Reference Guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).
