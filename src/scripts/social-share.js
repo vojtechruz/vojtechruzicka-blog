@@ -45,13 +45,23 @@
                     return;
                 }
 
-                const prev = btn.getAttribute('aria-label') || 'Copy link to clipboard';
+                // Capture original state only if not already showing copied status
+                if (!btn.classList.contains('copied')) {
+                    btn.dataset.originalAriaLabel = btn.getAttribute('aria-label') || 'Copy link to clipboard';
+                }
+
                 btn.classList.add('copied');
                 btn.setAttribute('aria-label', 'Link copied');
 
-                setTimeout(() => {
+                // Clear existing timeout if any to prevent overlapping resets
+                if (btn._copyTimeout) {
+                    clearTimeout(btn._copyTimeout);
+                }
+
+                btn._copyTimeout = setTimeout(() => {
                     btn.classList.remove('copied');
-                    btn.setAttribute('aria-label', prev);
+                    btn.setAttribute('aria-label', btn.dataset.originalAriaLabel);
+                    delete btn._copyTimeout;
                 }, 2000);
             } catch {
                 window.prompt('Copy this URL:', url);

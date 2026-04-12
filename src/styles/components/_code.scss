@@ -107,21 +107,19 @@ pre.shiki span {
     top: 0.25rem;
     right: 0.15rem;
     z-index: 10;
-    //border: 1px solid var(--color-border);
-        color: var(--color-text-muted);
+    color: var(--color-text-muted);
 
     &:hover {
-    color: var(--color-text-heading);
-        background: var(--color-surface-2);
-          background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
-        border: 1px solid var(--color-border);
+      color: var(--color-text-heading);
+      background: var(--color-surface-2);
+      background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+      border: 1px solid var(--color-border);
     }
   }
 
   &:hover {
-//     background: var(--color-bg-highlight);
-  background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
-      border: 1px solid var(--color-border);
+    background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+    border: 1px solid var(--color-border);
     color: var(--color-text);
   }
 

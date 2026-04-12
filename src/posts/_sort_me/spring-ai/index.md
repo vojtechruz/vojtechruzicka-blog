@@ -64,7 +64,7 @@ You can choose from two available repositories:
 For Maven, update your `pom.xml` with the following:
 
 ```xml
-<repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories><repositories>
+<repositories>
     <repository>
       <id>spring-milestones</id>
       <name>Spring Milestones</name>
@@ -78,7 +78,7 @@ For Maven, update your `pom.xml` with the following:
 
 For Gradle, use the following:
 
-```groovy title="Gradle Repository Configuration"
+```groovy
 repositories {
   mavenCentral()
   maven { url 'https://repo.spring.io/milestone' }

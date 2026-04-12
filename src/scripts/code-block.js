@@ -28,8 +28,12 @@
 
       // Visual and accessibility feedback
       const status = button.querySelector('.copy-status');
-      const originalText = status ? status.innerText : 'Copy';
-      const originalAriaLabel = button.getAttribute('aria-label');
+
+      // Capture original state only if not already showing copied status
+      if (!button.classList.contains('copied')) {
+        button.dataset.originalText = status ? status.innerText : 'Copy';
+        button.dataset.originalAriaLabel = button.getAttribute('aria-label') || '';
+      }
 
       button.classList.add('copied');
       if (status) {
@@ -37,16 +41,21 @@
       }
       button.setAttribute('aria-label', 'Copied!');
 
-      setTimeout(() => {
+      // Clear existing timeout if any to prevent overlapping resets
+      if (button._copyTimeout) {
+        clearTimeout(button._copyTimeout);
+      }
+
+      button._copyTimeout = setTimeout(() => {
         button.classList.remove('copied');
         if (status) {
-          status.innerText = originalText;
+          status.innerText = button.dataset.originalText;
         }
-        button.setAttribute('aria-label', originalAriaLabel);
+        button.setAttribute('aria-label', button.dataset.originalAriaLabel);
+        delete button._copyTimeout;
       }, 2000);
     } catch (err) {
       console.error('Failed to copy code: ', err);
-      // Optional: show error state in UI
     }
   });
 })();
