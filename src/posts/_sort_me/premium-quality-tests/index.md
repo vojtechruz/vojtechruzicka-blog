@@ -11,14 +11,17 @@ draftStatus: draft
 
 
 ## Relaxed rules for tests
+
 On one of my previous projects, we introduced SonarQube static code analysis checks to detect bad practices and code smells automatically. Before that, our codebase started to rot slowly and this was supposed to be the solution for that. It worked. Everybody was eager to keep the code clean. We were zealously purging all the remaining issues and then we were vigorously keeping zero items. Everybody was happy. We did, however, make one huge mistake. We decided the exclude all the tests from the checks. Even in code reviews, we did not insist on keeping the quality up to the level of the production code. Tests were allowed to be a mess as long as they were actually testing well the production code.
 
 ## Short term
+
 At first, it all makes sense. You need to deliver the new features. The business does not care about the tests at all. They just want their business functionality delivered as soon as possible. It was hard enough to convince them that we actually need to dedicate some time to write tests. Now you want me to go to them again and justify that we actually need to spend even more?
 
 And the developers? It is hard enough now to make them write tests already. Many of them consider tests necessary evil anyway and write just bare minimum so their changes don\'t get rejected in the code review. They will not be happy to spend more time and effort on tests. They won\'t be glad that their test code gets questioned in the same way as the production one.
 
 ## Long Term
+
 In the long term it, however, starts to be obvious that having low-quality tests leads to many problems. Below are some of the main disadvantages of such approach.
 
 ### Maintainability
@@ -38,4 +41,5 @@ The value of tests is not only in actually making sure the code does not contain
 You should not write clean code just sometimes. It should be a habit for you. Natural way you write and structure your code. It is much harder to develop and keep such habits when you apply the good coding practices just to a portion of your code. You should write proper code no matter what.
 
 ## Conclusion
+
 Tests are as important as your production code and should be treated as such. Excluding them from the quality checks is short-sighted and never a good idea. It makes writing tests easier at first, but in the long run, it leads to disaster. The time invested in writing proper tests at the beginning will greatly pay off over time.

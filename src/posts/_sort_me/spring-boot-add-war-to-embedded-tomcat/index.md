@@ -68,13 +68,13 @@ If you want to deploy your war to `/`, you need to use an empty string as contex
 
 
 ### Using dependencies from your fat jar
+
 If you want to avoid duplicate dependencies, which are used by both of your artifacts, you can specify that your external war should use classloader of your fat jar.
 
 ```java
 Context context = tomcat.addWebapp("context-path", "path-to-your-war.war");
 context.setParentClassLoader(getClass().getClassLoader());
 ```
- 
 
 ## Spring Boot 1.x
 Spring Boot 2.x came with a lot of refactoring, and you need to use a different class to deploy your war when running Spring Boot 1.x. Notice also the `try-catch` block, which is necessary to catch a checked exception thrown by the method.

@@ -54,13 +54,13 @@ Once you are finished, you can swap the roles. The interview usually takes an ho
 ### Evaluation
 
 After the interview is done, both you and your peer are given a form, where you provide feedback for each other. You get to rate your peer with up to 7 stars in:
--   Coding skills
--   Problem solving
--   Communication
+- Coding skills
+- Problem solving
+- Communication
 
 Then there is free-text feedback for
--   Things they did well
--   Things they should work on
+- Things they did well
+- Things they should work on
 
 Finally, you rate your peer as an interviewer with up to 5 stars and a free-text comment on their performance as an interviewer.
 

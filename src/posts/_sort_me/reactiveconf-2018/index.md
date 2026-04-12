@@ -11,6 +11,7 @@ draftStatus: draft
 
 
 ## Reactive Conf 2018
+
 [Reactive Conf](https://reactiveconf.com/) is a three-day conference focused on modern frontend and mobile development. I attended the last year for the first time and was impressed, so going this year again was a no-brainer, especially as it moved from Bratislava to Prague, my home city.
 
 There were two stages with parallel talks. In addition to the main stage, there was also Discovery Stage, which was focused not only on presentations, but also on Ask Me Anything sessions with many of the speakers. This was a nice opportunity to ask questions, which in many cases, in my opinion, was even more interesting than the original talks. The questions were managed by [sli.do](https://www.sli.do/) - everyone could submit a question. Then people could vote for their favorite one. Questions with the most votes were then asked.
@@ -65,6 +66,7 @@ My duty for the last day of volunteering was moderating questions from attendees
 After the talks and the final panel discussions with some of the speakers, there was an afterparty, still in the Microsoft building.
 
 ## Impressions
+
 Overall my impression of the conference was very good. Everything was professional and well organized. The event felt world-class, very international, which is not always the case in the Czech Republic. Compared to my last year's experience as a volunteer, everything was even smoother.
 
 The selection of speakers was impressive with interesting and well-known presenters. Except for one questionable talk about "How I met Elon Musk", there was nothing bad.
@@ -80,13 +82,16 @@ It was nice that there was a lot to do after the talks - Czech delicacies tastin
 Overall my experience was very positive, I'm sure I'll visit also the next year. 
 
 ## Talks
+
 If you are interested in talks, which were at Reactive Conf, you can [watch them all online](https://www.youtube.com/playlist?list=PLa2ZZ09WYepPQAIo1h98LaPkQUYwaSbWO&mc_cid=09db7b9adc&mc_eid=6613f6258f).
 
 ## Photos
+
 You can check all the [photos](https://photos.google.com/share/AF1QipPMSR7JQ_w4QR-QuubLp5hAxjATZibHpRHwFRQLRjcP3WGef3k0qr7e9f3doDAz8A?key=TEkzSUw2aDBXQ284bXFWd0ZVemNRTTAtaktiSS1R) from the event or just watch the following 40-second video for a brief overview.
 
 {% youtube "h6Z76xJP2h4", "Reactive Conf 2018 short video with highlights from the conference" %}
 
 
 ## Conclusion
-I had a great time volunteering at Reactive Conf 2018. It was really interesting to see a conference from the organizer's perspective and a great opportunity to meet many interesting people from all over the world - the organizers, the volunteers and the speakers. I definitely recommend this as an interesting alternative to just attending a conference. 
+
+I had a great time volunteering at Reactive Conf 2018. It was really interesting to see a conference from the organizer's perspective and a great opportunity to meet many interesting people from all over the world - the organizers, the volunteers and the speakers. I definitely recommend this as an interesting alternative to just attending a conference.

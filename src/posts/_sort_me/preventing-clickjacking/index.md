@@ -16,16 +16,16 @@ Clickjacking is a type of attack, where the attacker tricks the victim into perf
 
 The attack scenario can be for example the following:
 
-1.  The malicious page contains a button, which is the victim supposed to click.
-2.  On top of this visible page, there is loaded another page in an iframe and it is styled as transparent.
-3.  Because the victim is already authenticated with the attacked page in their current browser session, the page is successfully loaded in the frame and the user is fully authenticated.
-4.  The attacked page is positioned in a way that clicking on the visible button underneath actually triggers some desired action on the attacked page.
+1. The malicious page contains a button, which is the victim supposed to click.
+2. On top of this visible page, there is loaded another page in an iframe and it is styled as transparent.
+3. Because the victim is already authenticated with the attacked page in their current browser session, the page is successfully loaded in the frame and the user is fully authenticated.
+4. The attacked page is positioned in a way that clicking on the visible button underneath actually triggers some desired action on the attacked page.
 
 A more specific example can be the following:
 
-1.  Create a web page "You just won an iPad. Claim your prize HERE"
-2.  Load my Twitter profile page in a transparent iframe on top of it
-3.  Position the twitter frame in the way that when a victim means to click the "Claim Prize" button, they actually click the "Follow" button on my Twitter profile.
+1. Create a web page "You just won an iPad. Claim your prize HERE"
+2. Load my Twitter profile page in a transparent iframe on top of it
+3. Position the twitter frame in the way that when a victim means to click the "Claim Prize" button, they actually click the "Follow" button on my Twitter profile.
 
 ## Prevention
 
@@ -78,7 +78,7 @@ The image bellow shows the compatibility ([see more](http://caniuse.com/#feat=x-
 
 ![x-frame-options-compatibility](x-frame-options-compatibility-table.png)
 
-Based on the current stats (10/2023) just 0.7% of users will have full compatibility and the rest does not support `ALLOW-FROM`. That means you should stick only with `DENY` and `SAME-ORIGIN`, which currently has 97.34% support. Historically, the support was much higher and was 
+Based on the current stats (10/2023) just 0.7% of users will have full compatibility and the rest does not support `ALLOW-FROM`. That means you should stick only with `DENY` and `SAME-ORIGIN`, which currently has 97.34% support. Historically, the support was much higher and was
 present also in other browsers on top of IE. Because this functionality was never properly standardized, the support was later dropped and the feature was deprecated in favor of Content-Security-Policy.
 
 ### Content-Security-Policy

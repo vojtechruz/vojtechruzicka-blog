@@ -14,6 +14,7 @@ This post covers obtaining simple build-related information without adding any a
 {% linkedPost "/spring-boot-actuator/" %}
 
 ## Obtaining build information
+
 It can often be useful to obtain information about artifact, version, build time and other at runtime. Sure, most of this information is already in your `pom.xml` file, but it can be tricky to retrieve these when the application is running.
 
 Having such information at runtime can be useful. For example, imagine a scenario, where you expose a REST endpoint, which can tell the client what your current version of the application is, when was it built and so on. It can be useful because you can quickly determine what version of the app is currently deployed. This can be especially important in non-production environments, where the app is frequently deployed or even with continuous deployment in production. In such cases, it is vital to know what build exactly is currently running when testing and submitting bug reports. Maybe the issue reported is already fixed in a newer version or maybe the bug still occurs because the new version is implemented, but not deployed yet.
@@ -21,6 +22,7 @@ Having such information at runtime can be useful. For example, imagine a scenari
 In any case, having build information can be handy and it is useful to know how to obtain it at runtime. In Spring Boot, it is fortunately quite easy.
 
 ## Build plugin configuration
+
 If you are using Spring Boot, your `pom.xml` should already contain [spring-boot-maven-plugin](https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/maven-plugin/). You just need to add the following configuration.
 
 ```xml {4-11}

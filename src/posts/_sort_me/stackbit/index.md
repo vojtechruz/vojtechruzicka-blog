@@ -26,7 +26,7 @@ You can learn more about JAMStack and its benefits in one of my previous posts o
 
 While JAMStack-powered sites have many advantages, there are drawbacks as well. The main disadvantage is that it takes much more effort to build a full-fledged site including theme, Content Management System and deployment.
 
-With WordPress, you can have a running site in minutes with a little effort. Even non-developers can easily create and maintain a site. Not so much with JAMStack. You have to select and learn your [static site generator](https://www.staticgen.com/). Then choose a theme and make sure it works well with your generator. Then choose [one of many available CMSs](https://headlesscms.org/). Then figure how to set up your deployment pipeline. 
+With WordPress, you can have a running site in minutes with a little effort. Even non-developers can easily create and maintain a site. Not so much with JAMStack. You have to select and learn your [static site generator](https://www.staticgen.com/). Then choose a theme and make sure it works well with your generator. Then choose [one of many available CMSs](https://headlesscms.org/). Then figure how to set up your deployment pipeline.
 
 It takes a lot of effort for developers, and it is nearly impossible for somebody not so tech-savvy. At least it was until now.
 
@@ -110,29 +110,29 @@ Once you authorize your GitHub and Netlify access, you're done. A git repo is cr
 When you finish creating your first project, it becomes available on your main dashboard, where you can see and manage all the projects. You have a single place from which you can edit your settings, navigate to your site, CMS, or git repository.
 
 ![Dashboard](stackbit-dashboard.png)
- 
+
 But the dashboard is not the only place you can manage your site from. If you go directly to your site and are logged in to Stackbit, you can see a special Stackbit button, where you can manage the site directly without going to your dashboard.
- 
+
 ![Stackbit Button](stackbit-button.png)
- 
+
 ## Medium import
 
 A few years back, Medium got very popular as a blogging platform. These days, with the recent changes, many people are migrating back from Medium. Hosting your own static site for your blog is a viable alternative.
- 
+
 With Stackbit, migration from Medium is fortunately effortless. There is a [dedicated page](https://www.stackbit.com/medium/), where you can upload your Medium export archive, and it will automatically create a new Stackbit project for you with your data.
 
 ![Medium migration](medium-migration.png)
- 
+
 ## DEV.to integration
 
 Services such as Medium are no doubt convenient to use, and you can reach a much larger audience than on your own. There is one major drawback, though. You don't really own your content and your audience. When such service goes out of business or changes its pricing model, you lose your content and audience. It is much better to have your own site so that you can build a stable audience, and you're safe from any changes of third-party services.
- 
+
 It would be great if you could combine the advantages of both approaches. It turns out you can! With Stackbit and [DEV.TO](https://dev.to/) integration.
 
 DEV.to is an excellent service, focused purely on developers, which lets you publish your content to reach a wider audience. It already offers you a possibility to automatically publish to DEV.to using your RSS feed. So you still have your content hosted on your site, and it adds a canonical URL to your original site, so you do not cannibalize your SEO.
 
 Now with Stackbit, it is possible also the other way around. You can [publish your existing DEV.to content to your Stackbit site](https://www.stackbit.com/blog/devto-stackbit/).
- 
+
 ## Beta
 
  Stackbit is already publicly available and functional, but it is still running in open beta. Not all the features may be final, and there are many more features and supported services to be added soon. Go ahead and check [their blog](https://www.stackbit.com/blog/) periodically to stay informed about the new features.

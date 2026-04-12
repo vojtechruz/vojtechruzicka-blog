@@ -104,6 +104,7 @@ You can decide to [ignore](https://snyk.io/docs/using-snyk#ignore) a known vulne
 This may be handy in case there is currently no update or patch. Snyk will notify you via email when a fix is available later. It is a good idea always to provide a reason for ignoring (using `--reason`) and the duration short enough (using `--expiry`) so the issue is not buried permanently. By default, ignore will expire after 30 days. Ignored issues are stored in the `.snyk` file.
 
 ## Snyk Wizard
+
 Running snyk test will find all the security vulnerabilities for you. It will not, however, fix them for you. Snyk Wizard comes to the rescue. You can run it with:
 
 ```java
@@ -121,7 +122,7 @@ All your decisions will be applied - `package.json` file will be changed to incl
 
 Wizard\'s console output can look like this:
 
-```
+```text
 C:\projects\snyk-example>snyk wizard
 Snyk's wizard will:
   * Enumerate your local dependencies and query Snyk's servers for vulnerabilities

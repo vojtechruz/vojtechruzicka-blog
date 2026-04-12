@@ -10,11 +10,13 @@ draftStatus: draft
 
 
 ## WAR vs JAR
+
 By default, Spring Boot applications are packaged as executable JAR files with embedded Tomcat. You can run them directly by `java -jar` command. Traditional Java web applications need a servlet container (application server) to run. You need to have such container installed, configured, and then deploy your applications to it. And you need to have it prepared for each environment. With Spring Boot, this approach is inverted as the application server is directly in your JAR. This has many advantages, but sometimes you may need to have your Spring Boot app as a traditional WAR instead. For example, if you are tied by your company policies and need to deploy to a provided app server.
 
 In this post, we'll examine how to package Spring Boot app as WAR, without sacrificing direct executability.
 
 ## New applications
+
 When you are creating a new app, the process is fortunately very easy. Instead of creating the application yourself, you can generate it with all the required settings and dependencies. There is an official tool called [Spring Initializr](https://start.spring.io/).
 
 By default, all the advanced options are hidden. You can set just the basics such as Spring version, language, or build tool. And of course all the dependencies.
@@ -34,6 +36,7 @@ What's great is such WAR is still executable on its own, which is useful. For ex
 After you're done with the setup, you can click `Generate project` and a zip file with your app will be downloaded.
 
 ### IDEA integration
+
 Generating apps with Spring Initializr is way more convenient and less error-prone than creating them manually. There is still a bit of inconvenience as you need to go to an external web page, download a zip file and unpack it.
 
 Fortunately, you can use Spring Initializr directly from your IDE. In IntelliJ IDEA you can go to:
@@ -69,6 +72,7 @@ With Maven, simply add this dependency to your `pom.xml` file to the `dependenci
 ```
 
 #### Gradle
+
 With Gradle, the process is similar, just add the dependency to your `dependencies` section with provided scope.
 
 ```
@@ -76,6 +80,7 @@ providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 ```
 
 ### SpringBootServletInitializer
+
 Now you need to make sure the app properly runs as WAR. It is as simple as adding the following class to your app.
 
 ```java
@@ -98,9 +103,11 @@ public class ServletInitializer extends SpringBootServletInitializer {
 If you prefer, instead of a separate class, you can just make your `@SpringBootApplication` class extend `SpringBootServletInitializer` class and include the same `configure` method as above. 
 
 ### Change packaging
+
 Now the last step is to make sure your app is properly packaged as WAR instead of JAR.
 
 #### Maven
+
 Simply update the packaging section in your `pom.xml` file from 
 
 ```xml
@@ -114,6 +121,7 @@ to WAR packaging
 ```
 
 #### Gradle
+
 In Gradle, add `war` plugin to your plugins section.
 
 ```yaml {4}
@@ -136,6 +144,6 @@ What's cool with this approach is that you can still run your WAR as an executab
 
 Simply run your archive as usual. Replace the last param with the real name of your WAR.
 
-```
+```bash
 java -jar demo-1.0.0-SNAPSHOT.war
 ``` 

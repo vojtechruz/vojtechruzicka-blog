@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Variable number of parameters
+
 Usually, when working with functions in JavaScript, there is a fixed number of parameters your function uses and supports. If you want to calculate the square root of a number using `Math.sqrt(x)` you always need just one parameter for input. Some functions may require more parameters. Others have more parameters, but you can safely omit last few optional ones. In any of these cases, all the parameters are declared as a part of the function signature:
 
 ```javascript
@@ -31,6 +32,7 @@ Math.Min(1,2,3,4,3,1,5,7,9,0,-9,18,37,81); // -9
 How would you write such a function?
 
 ## Arguments - traditional approach
+
 When you need to work with a variable number of parameters in a function, traditionally your only option would be `arguments` object.
 
 Inside the body of each function, there is `arguments` object available, which is array-like structure, which contains all the arguments passed into the function. You can access each passed-in argument with a zero-based index and you can check the length of the parameters as you would with any array.
@@ -47,14 +49,16 @@ doSomething("A","B","C");
 ```
 
 ### Arguments limitations
+
 Note that the `arguments` object is array-like, not a full-fledged array. That means that useful methods, which arrays have are not available. You cannot use methods such as `arguments.sort()`, `arguments.map()` or `arguments.filter()`. The only property you have is `length`.
 
 Another limitation is that fat-arrow functions don't have `arguments` object available. In case you would use arguments in arrow function, it would refer to the arguments of the enclosing function (if there is one).
 
 ## Rest Parameters
-Fortunately, since ES6, the `arguments` object is no longer the only way how to handle variable parameters count. ES6 introduced a concept called `rest parameters`. 
 
-What it means is that you can put `...` before the last parameter in the function. 
+Fortunately, since ES6, the `arguments` object is no longer the only way how to handle variable parameters count. ES6 introduced a concept called `rest parameters`.
+
+What it means is that you can put `...` before the last parameter in the function.
 
 ```javascript
 function doSomething(first, second, ...rest) {
@@ -109,9 +113,11 @@ function doSomething(first, ...second, third) {
 ``` 
 
 ## Spread operator
+
 What's a little bit confusing is that the same three dots `...` used in JavaScript for the rest parameters are also used for an additional purpose. It is called `spread operator`. Its usage is almost the opposite of rest parameters. Instead of collecting multiple values in one array, it lets you expand one existing array (or other iterable) into multiple values. Let's look at various use cases.
 
 ### Function calls
+
 Let's assume we have an array with three items and a function, which requires three input parameters.
 
 ```javascript
@@ -158,6 +164,7 @@ doSomething(2, ...myArray, ...otherArray, 3, 7);
 ```
 
 ### Array literals
+
 The spread operator can also be used when creating an array using an array literal. This way you can insert elements from other arrays (or iterables such as strings) at a specific location. 
 
 ```javascript
@@ -169,6 +176,7 @@ let secondArray = ["X", ...firstArray, "Y", "Z"];
 By using spread operator in an array literal, we say: the second array should have `X` as the first element, then all the elements from the `firstArray`, no matter what is their number. And then the last two elements will be `Y` and `Z`.
 
 #### Merging arrays
+
 Of course, you can use spread operator in an array literal multiple times. This can be useful for example for merging several existing arrays, which would be more difficult using traditional imperative approach:
 
 ```javascript
@@ -176,6 +184,7 @@ let mergedArray = [...firstArray, ...secondArray, ...thirdArray];
 ```
 
 #### Copying arrays
+
 Sometimes it is also useful to create a copy of the existing array with the same items as the original. It is easy with the spread operator.
 
 ```javascript
@@ -184,6 +193,7 @@ var copy = [...original];
 ```
 
 ### Object literals
+
 Very similar to array literals is the usage of the spread operator in object creation with object literals. You can take properties of another object and include them in a new object created by an object literal. This feature is available since ES2018.
 
 ```javascript
@@ -198,7 +208,7 @@ Be aware that spread takes only own (not inherited) and enumerable properties of
 
 #### Shallow copy
 
-The use cases are pretty much the same as with arrays. You can also merge and clone objects. 
+The use cases are pretty much the same as with arrays. You can also merge and clone objects.
 
 ```javascript
 let clone = {...original};
@@ -210,7 +220,7 @@ This can be a nice alternative to cloning objects using `Object.assign()`.  Note
 
 When cloning an object using the approach above, be aware that the prototype of the original object is not preserved. It just copies properties of the source object and creates a brand new object using object literal, which has a prototype of `Object.prototype`.
 
-#### Property conflicts 
+#### Property conflicts
 
 What happens though when you introduce a property with the spread operator which already exists in the object? This does not result in an error. If there are multiple object properties with the same name and different values, the latest one wins.
 
@@ -238,7 +248,6 @@ let updated = {...original, someProperty: "newValue"};
 ```
 
 Because the original object contains `someProperty` and it is then used once more, the last usage wins and the new value is used. Original object is not changed in any way and a new object is created.
-
 
 ## Destructuring assignment
 

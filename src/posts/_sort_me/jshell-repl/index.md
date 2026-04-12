@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## REPL
+
 REPL stands for Read-Eval-Print-Loop. It may sound a bit cryptic, but it is just a fancy name for an interactive shell for a programming language. Many languages these days already have a REPL available. Even on JVM Groovy, Kotlin, Scala, and Clojure already have it. Java starting with version 9 finally has its very own REPL called JShell ([based on Java Enhancement Proposal 222](http://openjdk.java.net/jeps/222)).
 
 Alright, so Java finally has its new shiny REPL. But what is it good for? Well, in a nutshell, it allows you to write independent snippets of Java code to the console (READ), immediately execute them (EVAL), then see the results (PRINT) and continue remembering what you already wrote (LOOP). It is a perfect tool if you want to try a piece of code quickly, draft an algorithm, check how some method behaves for unusual input, create and test a code snippet for your blog post etc. You just quickly try some throwaway code and immediately see the results. The best part is - it does not require most of the Java boilerplate.
@@ -21,6 +22,7 @@ The interactive console does not require class with main and immediately shows y
 > Immediate feedback is important when learning a programming language and its APIs. The number one reason schools cite for moving away from Java as a teaching language is that other languages have a \"REPL\" and have far lower bars to an initial "Hello, world!" program.
 
 ## Running JShell
+
 JShell is bundled with JDK 9+ installation. It resides in your JDK\bin folder. For example on Windows it can be here:
 
 ```
@@ -60,7 +62,7 @@ $2 ==> 17.246950765959596
 First of all, notice that we were able to use $1 variable from the previous example. The state is preserved between commands. Another noteworthy feature is that, as you can see, semicolons are optional in most cases.
 
 ## Variables
-Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables. 
+Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables.
 
 ```
 jshell> int myVariable = 42
@@ -134,7 +136,7 @@ jshell> class Person {
 ## Using external code
 Defining all your classes as in the example above is a tedious task. What's more, often you want to use already existing classes from JDK or even your own.
 
-For the JDK classes, you can use `import` as usual. For your convenience, many of the common classes are already imported by default. Not only usual `java.lang`, but also `java.io`, `java.math`, `java.util` or `java.nio.file`. You can list all the current imports by `/import`. 
+For the JDK classes, you can use `import` as usual. For your convenience, many of the common classes are already imported by default. Not only usual `java.lang`, but also `java.io`, `java.math`, `java.util` or `java.nio.file`. You can list all the current imports by `/import`.
 
 Of course, import is useless if JShell does not have access to the classes needed.
 
@@ -191,6 +193,7 @@ jshell> /set editor myEditor -retain
 If your editor is not on `PATH`, you'll need to provide the full path to the executable.
 
 ## Using JShell programmatically
+
 A very interesting option is to integrate your Java applications with JShell. You can create a JShell instance programmatically and then use it in your app. All the required classes are under `jdk.jshell`. First, you need to create a JShell instance and then you can use it to evaluate code snippets.
 
 ```java

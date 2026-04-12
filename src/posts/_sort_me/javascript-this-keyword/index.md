@@ -212,7 +212,7 @@ boundGreetFunction(); // Hi! My name is John
 ## Conclusion
 Understanding how *this* works in Javascript under various circumstances is crucial and prevents a lot of confusion and headache. Keep in mind that this depends not on the function itself but rather on how the function is called. Since functions are first-class citizens in Javascript, they can be passed around and *this* will change accordingly. It is, therefore, useful to remember to prevent possible errors with actions such as:
 
--   Using strict mode to prevent accidental mutation of the global object
--   Binding this when passing methods around
--   Using arrow functions
--   Using classes instead of constructor functions to prevent accidental omission of the new operator
+- Using strict mode to prevent accidental mutation of the global object
+- Binding this when passing methods around
+- Using arrow functions
+- Using classes instead of constructor functions to prevent accidental omission of the new operator

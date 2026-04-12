@@ -61,6 +61,7 @@ public class XmlWebAppInitializer implements WebApplicationInitializer {
 ```
 
 ### Java Config
+
 If you are already using Java Configuration files in favor of XML or you want to migrate, you'll need application context which will load the configuration from annotation-based Java classes. You'll need to use `AnnotationConfigWebApplicationContext` instead of `XmlWebApplicationContext`.
 
 ```java
@@ -84,6 +85,7 @@ public class AnnotationWebAppInitializer implements WebApplicationInitializer {
 ```
 
 ## More servlets, filters and listeners
+
 So far so good, our Dispatcher Servlet is configured. But `web.xml` is not used only for the dispatcher, but for all the servlets, their filters, listeners and more. How to configure these? Just call a corresponding method on the `ServletContext` object, which is an input parameter of the method:
 
 ```java
@@ -107,7 +109,8 @@ public void onStartup(ServletContext container) throws ServletException {
 ```
 
 ## WebApplicationInitializer implementations
-Like in the examples above, you can implement `WebApplicationInitializer` interface all by yourself and you have complete freedom. However, Spring already provides several implementations you can build on. They are usually abstract classes implementing the interface. They take opinionated approach providing most of the configuration for you letting you specify the details. They basically act as templates forcing you to implement necessary details and allowing you to override the rest if necessary. 
+
+Like in the examples above, you can implement `WebApplicationInitializer` interface all by yourself and you have complete freedom. However, Spring already provides several implementations you can build on. They are usually abstract classes implementing the interface. They take opinionated approach providing most of the configuration for you letting you specify the details. They basically act as templates forcing you to implement necessary details and allowing you to override the rest if necessary.
 
 For example, there is `SpringBootServletInitializer` for Spring Boot applications. For regular Spring web apps, there is `AbstractAnnotationConfigDispatcherServletInitializer`. It will create and register Dispatcher Servlet and root and web application context based on Java classes with annotations. You provide configuration classes and URLs to which Dispatcher Servlet should be mapped to:
 
@@ -134,6 +137,7 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
 Of course, if you need to customize how Dispatcher Servlet is created or any other details, you can override methods from the parent class.
 
 ## Updating your Maven WAR plugin
+
 After removing web.xml file, your Maven build may break complaining that the file is missing. This happens when you're using an older version of Maven WAR Plugin. You can set configuration flag `failOnMissingWebXml` to false to fix the error.
 
 ```xml
@@ -153,6 +157,7 @@ After removing web.xml file, your Maven build may break complaining that the fil
 Or better yet, if you upgrade your plugin version to 3+, the default value of `failOnMissingWebXml` is now set to false and does not need to be explicitly specified anymore.
 
 ## Conclusion
+
 If you have a legacy Spring MVC application, which still uses web.xml, you can remove the file if you're on Servlet 3.0+. One option is to implement `WebApplicationInitializer` directly. This gives you the most flexibility, but all the work is on you. Another option is to use any of the abstract classes provided by Spring, which implement the interface. In most cases, it is the preferred solution as it leaves you with less manual configuration and it uses reasonable opinionated defaults.
 
 Either way, Java configuration is in many cases preferable as it gives you more flexibility and unlike in XML, you can use conditional logic based on current circumstances.

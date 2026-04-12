@@ -42,6 +42,7 @@ In the second section, let's add dependency to `OpenAI`. That's all that's neede
 Our project is now generated, you can skip to [API Key](#api-key) section below.
 
 ### Spring Initializr Web
+
 Creating a project from IntelliJ IDEA is the simplest approach, but if you have a different IDE, which does not integrate Spring Initializr, you can [generate the project from the web](https://start.spring.io/). It is very similar to generating from IDE, but you'll need to do a couple of extra steps - download and extract the generated project and then import it to your IDE.
 
 Fill in whatever configuration you prefer (such as Java version or build tool) and add a dependency on OpenAI. While not required, let's also add Spring Web so we can easily expose our new AI functionality as REST endpoints.
@@ -51,9 +52,11 @@ Fill in whatever configuration you prefer (such as Java version or build tool) a
 Our project is now generated, you can skip to [API Key](#api-key) section below.
 
 ## Existing project
+
 Updating an existing project is a bit more tricky at the moment before the final version is released. This is mostly because the artifact has not yet been released to the regular Spring repository, so you need to set up an alternative repository for pre-release artifacts manually.
 
 ### Repository setup
+
 You can choose from two available repositories:
 - Snapshot repository: Most up-to-date version available, which will contain the newest features but may be more unstable.
 - Milestone repository: Released milestone versions are more stable, and that's what we will use in this article
@@ -87,8 +90,6 @@ repositories {
 {% info %}
 At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the <a href="https://docs.spring.io/spring-ai/docs/">Spring AI site</a> and use it instead.
 {% endinfo %}
-
-
 
 While you can add your dependencies with a version directly specified, it is usually not the preferred way in Spring Boot applications. Typically, you don't specify any versions directly except for the parent pom, which defines all the versions of individual dependencies. When you add a new dependency, you don't need to worry about specifying the version as it is then inherited from the parent pom. This has the advantage that you don't need to worry about determining the exact version of your components, and your dependencies will work well together.
 
@@ -142,6 +143,7 @@ dependencies {
 Note that we didn't have to specify the version as it is taken from the spring AI BOM, which we configured earlier.
 
 ## API Key
+
 Now that we have all the required dependencies in place, we need to configure the connection to the OpenAI API. The good news is that the only configuration parameter we need to provide is the API key, which will be used for authentication with the API.
 
 To obtain the API Key, we first need to [create an OpenAI account](https://platform.openai.com/signup). After that, go to [API Keys](https://platform.openai.com/api-keys) page and generate a new key. After the key is created, copy it, so we can use it later. You may also need to purchase some credit to your OpenAI account otherwise you may get quota exceeded exceptions.
@@ -250,7 +252,6 @@ public String cityGuide(@RequestParam("city") String city,
 ### Generating images
 
 For image generation, we can inject `ImageClient` through dependency injection wherever needed and utilize it to generate our images. Let's create a new service that will automatically receive `ImageClient` through constructor injection.
-
 
 ```java
 @Service

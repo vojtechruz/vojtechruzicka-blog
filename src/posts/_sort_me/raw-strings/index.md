@@ -64,6 +64,7 @@ String myPath = "Open \"C:\\Program Files\\Java\\jdk1.8.0_151\"";
 It gets especially bad with regular expressions, which can be using a lot of backslashes and are then hard to read because of escaping.
 
 ## Raw Strings
+
 Turns out, that other JVM  languages already solved the problem with multiline strings and readability of escaped sequences. They are called Raw Strings. They can span multiple lines without concatenation and they don't use escaped sequences. You can use backslashes or double quotes directly. For example, in Kotlin, in addition to regular string literals, you can use Raw Strings with three double quotes `"""` instead of just one.
 
 ```kotlin
@@ -79,6 +80,7 @@ Or even double-quotes "
 On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usually late to the party (similar to introducing [JShell REPL](https://www.vojtechruzicka.com/jshell-repl/)) and only now, in version 12, introduces what is already common both in other JVM and non-JVM languages.
 
 ## Raw String Literals in Java
+
 In Java 12, one of the new features will be [JEP 326: Raw String Literals](http://openjdk.java.net/jeps/326). Unlike Kotlin, Groovy or Python, which use `"""` Java decided to use backtick `` ` `` notation, which is currently used by Javascript or Go.
 
 ```
@@ -100,6 +102,7 @@ But unlike javascript, backticks inside the string don't need to be escaped. Ins
 No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
 
 ## Formatting
+
 One problem with multiline raw strings is that they interpret all the characters on each line as part of the string. Imagine the following code.
 
 ```typescript

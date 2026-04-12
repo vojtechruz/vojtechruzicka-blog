@@ -7,9 +7,8 @@ excerpt: 'Test driven REST API documentation as an alternative to traditional Sw
 draftStatus: draft
 ---
 
-
-
 ## SpringFox And Swagger
+
 Traditional and popular approach to documenting your REST API is Swagger (aka OpenAPI), which I covered in detail in one of my previous articles.
 
 {% linkedPost "/documenting-spring-boot-rest-api-swagger-springfox/" %}
@@ -33,21 +32,25 @@ public Person createPerson(
 ```
 
 ## Spring REST Docs
+
 Spring REST Docs take a different approach. Instead of infesting your controller and model classes with documentation annotations, it moves all this information elsewhere. To your tests. To be precise - to the tests of your Controllers. It is convenient because for many people tests are the best place to look at when trying to understand how some functionality works. Because unlike comments and documentation, tests are always up to date. When your tests are out of date and no longer in sync with your implementation, they start to fail.
 
 This is important because if your documentation is outdated, people no longer trust it and it becomes useless. Having outdated documentation is worse than having no documentation at all. That brings us to what's so cool about Spring Rest Docs. It is tightly integrated with your tests. So when your documentation gets different from your implementation, your tests start to fail. For example, if you add a field, which is not documented, your test no longer passes. If you remove a field and it is still in your documentation, the test also fails.
 
 ## Spring Test MVC
+
 For the behavior described above to work, Spring Rest Docs need to be integrated with your test framework, which you use to test your REST API. There are various options in Spring, but Rest Docs currently support Spring MVC Test, Spring Webflux's WebTestClient and RestAssured. In this tutorial, I'll cover Spring MVC Test, but you can use any of them.
 
 ## Setting Up Spring Rest docs
 
 ### Starting repository
+
 To follow this tutorial, you can use any Spring/Spring Boot application with REST controllers. You can either use your own or build on top of a sample [starter repository](https://github.com/vojtechruz/rest-docs-starter) I prepared for this purpose.
 
 The final source code for this tutorial is available in [this repository](https://github.com/vojtechruz/spring-rest-docs-example).
 
 ### Creating Spring MVC Tests
+
 First, before diving deep into Spring Rest Docs specifics, you'll need some regular tests of your controllers. Let's create a simple one, which calls a controller's method and checks whether HTTP response code is 200 OK and the content type of the response is JSON. Of course, you can test much more, such as the response data, HTTP headers, cookies and so on.
 
 ```java
@@ -106,6 +109,7 @@ testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 ```
 
 ### Configuring your tests - Junit 4
+
 Let's add a specific `@Rule` for REST documentation and then use it when building the mockMvc object. Only the highlighted lines below are new. The rest is the original code sample we already saw.
 
 ```java {10-12,18}
@@ -135,6 +139,7 @@ public class PersonControllerJunit4Test {
 ```
 
 ### Configuring your tests - Junit 5
+
 For JUnit 5, the configuration is also easy. You need to use `RestDocumentationExtension.class` extension in addition to Spring's one you would use normally. Then when constructing the mockMvc object apply the configuration. You're adding just the highlighted lines in the example below.
 
 ```java {2,9,12}
@@ -158,6 +163,7 @@ public class PersonControllerJunit5Test {
 ```
 
 ## Generating the Documentation
+
 Now when we have the test configuration ready, it's time to write some documentation. First, let's provide a command to generate the documentation in each test method. Just add `andDo(document("[documentation snippet's name]"))`. Then you need to replace `MockMvcRequestBuilders` with   `RestDocumentationRequestBuilders`.
 
 ```java {4,8}
@@ -181,13 +187,14 @@ If you don't want to provide snippet's name explicitly, you can provide placehol
 andDo(document("{ClassName}/{methodName}")
 ```
 
-### AsciiDoc vs. Markdown 
+### AsciiDoc vs. Markdown
+
 The files inside are fragments of your documentation. They contain information such as HTTP request and response or curl commands to call your endpoints.
 
 The resulting API documentation should be, of course, HTML. However, as you can see, it is in a different format now. It's called AsciiDoc and it
 is very similar to [MarkDown](https://www.markdownguide.org/getting-started). That means it's a simple markup language for text formatting written in plain text. MarkDown is widespread, well-known language, so why to introduce another one? Why not stick with MarkDown?
 
-[Why You Shouldn’t Use Markdown for Documentation](http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/#why-you-shouldn-t-use-markdown-for-documentation) sums the reasons pretty well. 
+[Why You Shouldn’t Use Markdown for Documentation](http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/#why-you-shouldn-t-use-markdown-for-documentation) sums the reasons pretty well.
 
 >Because the original Markdown is so limited, every popular tool built on top of Markdown implements what is called a [“flavor”](https://github.com/commonmark/CommonMark/wiki/Markdown-Flavors) of Markdown. This sounds great, except that every tool implements a different flavor. Even tools that do similar things with the language use different syntax for it!
 ...
@@ -196,6 +203,7 @@ In the last few years, [Commonmark](http://commonmark.org/) was developed as a s
 You can read more about the differences in [this comparison](https://asciidoctor.org/docs/asciidoc-vs-markdown/).
 
 ### Converting AsciiDoc
+
 Since AsciiDoc cannot be directly rendered by a browser, we need a way to convert the documentation from AsciiDoc to HTML. There's a tool called AsciiDoctor, which is also [available as a Maven plugin](https://github.com/asciidoctor/asciidoctor-maven-plugin) ([there's also one for Gradle](https://asciidoctor.org/docs/asciidoctor-gradle-plugin/)). Just include the following in your `pom.xml` file.
 
 ```xml
@@ -233,6 +241,7 @@ Since AsciiDoc cannot be directly rendered by a browser, we need a way to conver
 By default, this plugin does not run in any of the Maven lifecycle phases. So you need to bind it to one. Prepare-package is convenient if you want your generated documentation to be included in the resulting package and for example being served by Spring Boot as static resources.
 
 ### Putting the snippets together
+
 Having `.adoc` snippets and AsciiDoctor Maven plugin is still not enough. You need to provide more AsciiDoc files, which will 'glue' together your generated snippets. In these files you can put any additional documentation and description needed by your users and you can choose which snippets to include and which not.
 
 This is one of the advantages over the good old Swagger. It is not just documentation of your API endpoints, but you can include huge chunks of additional documentation or even whole pages. This means you can combine traditional documentation with API docs.
@@ -288,6 +297,7 @@ Vojtech Ruzicka<myfakemail@gmail.com>
 To learn more about writing AsciiDoc, check the [user's manual](https://asciidoctor.org/docs/user-manual/).
 
 ## Documenting path params
+
 We generated some documentation already, but so far it contains just a sample request and response and not much more. There's still much to be documented though.
 
 Let's document the following endpoint more:
@@ -326,6 +336,7 @@ If you build again, you should see a new section about path params in your docum
 ![Path Parameters Documentation](./path-parameters.png)
 
 ## Documenting request and response payload
+
 Our controller's method `getPersonById()` returns a person represented as JSON.
 
 ```json
@@ -411,7 +422,7 @@ The resulting snippet is `request-parameters.adoc`.
 
 ## More documentation options
 
-That's of course not all you can document. [There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, hypermedia links or multipart requests. However, the pattern is still the same. Include a method in your tests, run the tests, include the generated snippet in your AsciiDoc and finally run the maven build. 
+That's of course not all you can document. [There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, hypermedia links or multipart requests. However, the pattern is still the same. Include a method in your tests, run the tests, include the generated snippet in your AsciiDoc and finally run the maven build.
 
 ## Spring Auto Rest Docs
 

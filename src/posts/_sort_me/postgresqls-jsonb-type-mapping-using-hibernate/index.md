@@ -46,15 +46,15 @@ spring.jpa.properties.hibernate.dialect=com.vojtechruzicka.CustomPostgreSqlDiale
 ### Creating custom UserType for JSONB
 To convert from and to JSONB, you need to implement `org.hibernate.usertype.UserType` interface, which provides various methods for custom type mapping.
 
--   **int\[\] sqlTypes()** - This provides mapping to `java.sql.Types`, you should provide `Types.JAVA_OBJECT` here.
--   **Class returnedClass()** - Java Class which is the result of mapping from JSOB, return type of `nullSafeGet()`.
--   **Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)** - Create a new instance of the mapped class from JDBC ResultSet. JSON/Object mapping library required.
--   **void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)** - Write an instance of the mapped class to a Prepared Statement. JSON/Object mapping library required.
--   **boolean isMutable()** - This determines whether mapped classes are mutable or not.
--   **boolean equals(Object x, Object y), int hashCode(Object x)** - Nothing special here.
--   **Serializable disassemble(Object value), Object assemble(Serializable cached, Object owner)** - These methods are for converting object from/to its cacheable representation
--   **Object replace(Object original, Object target, Object owner)** - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.
--   **Object deepCopy(Object value)** - Returns a deep copy of provided object. You can, for example, use Apache `SerializationUtils.clone()` to make deep copy using serialization/deserialization.
+- **int\[\] sqlTypes()** - This provides mapping to `java.sql.Types`, you should provide `Types.JAVA_OBJECT` here.
+- **Class returnedClass()** - Java Class which is the result of mapping from JSOB, return type of `nullSafeGet()`.
+- **Object nullSafeGet(ResultSet rs, String[] names, SessionImplementor session, Object owner)** - Create a new instance of the mapped class from JDBC ResultSet. JSON/Object mapping library required.
+- **void nullSafeSet(PreparedStatement st, Object value, int index, SessionImplementor session)** - Write an instance of the mapped class to a Prepared Statement. JSON/Object mapping library required.
+- **boolean isMutable()** - This determines whether mapped classes are mutable or not.
+- **boolean equals(Object x, Object y), int hashCode(Object x)** - Nothing special here.
+- **Serializable disassemble(Object value), Object assemble(Serializable cached, Object owner)** - These methods are for converting object from/to its cacheable representation
+- **Object replace(Object original, Object target, Object owner)** - Is called during merging from a detached entity. For mutable object and immutable object without composite component, it is safe to return a copy of the original object.
+- **Object deepCopy(Object value)** - Returns a deep copy of provided object. You can, for example, use Apache `SerializationUtils.clone()` to make deep copy using serialization/deserialization.
 
 The two primary methods for converting from/to JSON are `nullSafeGet` and `nullSafeSet`. You will need some library for transforming a JSON string to an object representation and vice versa. You can use for example GSON or Jackson.
 

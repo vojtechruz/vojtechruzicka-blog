@@ -26,9 +26,11 @@ Cookie:=[cookie_name]=[cookie_value]; [other_cookie_name]=[other_cookie_value]
 ```
 
 ## Securing the cookies
+
 Okay, so cookies can be used to store information on the client and then sent to a server with each request. Information such as the unique identifier of a logged in user. And it is sent in the form of HTTP header. Now imagine someone gets their dirty hands on your precious cookie. Since your session cookie represents your identity, the attacker can use it to impersonate you. To perform restricted actions as if they were you. Transfer money, steal sensitive information, delete important data, this kind of stuff. This means you need to make sure your cookies are as protected as possible. So what are the ways you can mitigate the risk of someone stealing your cookies?
 
 ## Preventing Cross Site Scripting with HttpOnly attribute
+
 Cookies can be directly accessed from javascript. It is very easy:
 
 ```javascript
@@ -65,8 +67,8 @@ When a browser reads a page, there are usually some resources from other domains
 
 Fortunately, when setting a cookie, you can specify that browser should send it to you only if the request is originating from the same origin (is not cross-domain). This cookie parameter is called `SameSite`. It has two possible values:
 
-1.  strict
-2.  lax
+1. strict
+2. lax
 
 `Strict` option prevents sending cookies from different origin altogether. While this is safe, it can be really painful for the users. For example, if you click a link to a social media or GitHub, you would be redirected there without being logged in and you would need to authenticate again.
 

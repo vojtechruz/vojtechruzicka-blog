@@ -24,15 +24,19 @@ Another resource worth checking is the [Glassdoor](https://www.glassdoor.com/ind
 Since the interview is over the phone, you can have a summary of your research prepared with you including the list of questions you want to ask. In addition to company-specific questions, it is useful to have a list of general questions to ask. Because these do not change with the company, you can reuse them for all the companies you interview with.
 
 ### Practicing
+
 Interviewing is a skill like any other, which can (and should) be practiced. Practice makes perfect. The more you practice the better are your chances of making a good impression. You can ask a friend to do a mock interview with you. It is a good idea to search for some common interview questions and give them to your interviewer. Be sure to record the whole interview, so you can later study it and analyze what areas you should improve. It is not only about giving the right answer, but also about the way you communicate. From the recording, you may find, that you have trouble getting to the point or fill your speech with many 'uhhs' end 'eemmmms'. You should also ask your interviewer for feedback afterward. Once you are comfortable with mock interviews, the best way to further improve is to attend real interviews. You can think of every interview invite as an opportunity to further practice and hone your skills. You will get a better idea about the real interviews, their structure and the questions asked. It is better to have already some interviews under your belt when you are applying for your dream job, so you are more confident and already know what to expect. After each interview, be sure to ask for feedback, so you can perform better the next time.
 
 ### Scheduling the interview
+
 Scheduling the interview can also be a significant factor. If you are caught by surprise and offered the screening immediately, it is always good to politely decline. Say that the timing is not convenient and reschedule. This way you can prepare, do your research and increase the chances of success. If you are offered to choose the time, it is a good idea to have the interview in the morning, when both you and your interviewer are fresh. This way you are more likely to have a good performance rather than after a busy and tiresome workday. Of course, it is a good idea to schedule on a day, when you have enough time to rest the day before rather than after a party or some similar evening activity. If you are living in the same area as the company, you may consider offering face to face interview instead as you may have a better chance of making a better impression and making a better connection with your interviewer.
 
 ### Preparing the environment
+
 Before the interview begins, you need to make sure the environment is as suitable as possible. Make sure your phone is charged, and you are in a place with reliable signal reception. Otherwise, it may be better to use a landline if available. It is a good idea to keep a pen and paper at hand to take notes. It is useful to write everything down, so you remember all the details - it may be hard otherwise when having many interviews in the same period. You should also update your list of questions based on the information you receive during the call. If you have children or pets, make sure they will not interfere with the call.
 
 ### Cheatsheet
+
 Since the interview is over the phone, you can have all the resources required directly in front of you, and you should definitely take advantage of it. It is a good idea to have a copy of your resume, the job description, results of your research about the company and the list of questions you would like to ask. It is also handy to have prepared answers to the most common non-technical questions such as your strengths, weaknesses or most significant achievements. The ideal structure is bullet points as they can be quickly navigated. And of course, make sure you have prepared the answer to the question about expected salary.
 
 ![Phone screening interview cheatsheet](./phone-screening-inteview-cheatsheet.jpg)
@@ -40,13 +44,17 @@ Since the interview is over the phone, you can have all the resources required d
 ## During the Interview
 
 ### Communication
+
 Your communication skills are one of the main areas which are tested during the phone screening interview. You want to sound professional, interested in the position and confident, yet rather humble than arrogant. You should avoid fluff such as "ummmm", which makes you sound not quite confident about your answers. On the other hand, you should also avoid silence. The best you can do is to express your thoughts out loud when you are solving a problem or answering a question which you are still figuring out. It will show you have a structured approach to problem-solving, and it will prevent the awkward moments of silence. If you don't know an answer and there is no way to figure it out, it is better to admit it rather than trying to avoid the answer. Never interrupt your interviewer and make sure you are polite.
 
 ### Asking Questions
+
 It is essential to ask questions during the interview. One of the worst things you can do is to say that you don't have any questions when you are asked. You should always have some questions prepared. And the questions need to be relevant, based on your research and on the information you were provided during the interview. Asking questions will show that you are proactive, interested in the job, the company and that you did your research. Carefully choosing the topics of the questions can also demonstrate your technical and domain knowledge. It is always good to ask about learning opportunities as it shows your interest in continually improving your skills. And you want to be in a company where you can grow and learn. It is not a good idea to start with benefits and salary as it will make you look interested only in money. Don't worry, the interviewer will mention it for sure.
 
 ## After the Interview
+
 There are some steps to be taken after the interview which are also very important. Write down the questions you were asked. Especially those you were struggling with. Interview questions tend to repeat or be very similar. There is a good chance that you will encounter them when interviewing for a different company. If you didn't know the answer, be sure to look it up. It is useful to keep the answers you found for a future reference, so you can better prepare for the next interviews. Several hours after the interview, send a thank you note to the interviewer. Also, ask for feedback, so you know what your weaknesses are, and you can focus on them the next time.
 
 ## Conclusion
+
 The phone screening interview is your ticket to the later stages of the interviewing process and ultimately to your desired job. It requires careful preparation if you want to maximize your chances. If you follow the steps in this article, you should have no problems making a good impression. Good luck with your interviews and remember - practice makes perfect.

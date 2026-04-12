@@ -9,7 +9,7 @@ draftStatus: draft
 
 
 
-## Dynamic content in static sites 
+## Dynamic content in static sites
 
 Static JAMStack sites are great. If you are not familiar with them, you can check my older post on how I migrated my blog from WordPress to a static site using Gatsby.
 
@@ -80,6 +80,7 @@ Here is a list of some of the most important configuration properties:
 | requiredFields | Array of required fields. If some of them are missing, the entry will be rejected.                                             |
 
 ### Creating a form
+
 Now all you need is to create a form, which accepts user input and submits it to Staticman. You need to define all the fields which you want to collect and submit the form to:
 
 ```
@@ -87,6 +88,7 @@ https://api.staticman.net/v2/entry/{GITHUB USERNAME}/{GITHUB REPOSITORY}/{BRANCH
 ```
 
 An example of such form:
+
 ```html
 <form method="POST" action="https://api.staticman.net/v2/entry/vojtechruz/staticman-example/master/comments">
   <label><input name="fields[name]" type="text" />Name</label>

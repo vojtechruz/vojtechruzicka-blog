@@ -22,9 +22,9 @@ The reason for its popularity is probably its simplicity. Just one class, nothin
 
 The basic implementation of Singleton in Java is very simple:
 
-1.  Make the constructor private, so there is no way to instantiate the class from the outside.
-2.  Store the instance in a private static field.
-3.  Provide accessor method to the instance field.
+1. Make the constructor private, so there is no way to instantiate the class from the outside.
+2. Store the instance in a private static field.
+3. Provide accessor method to the instance field.
 
 ```java
 public class Singleton {
@@ -50,10 +50,10 @@ The class having too many responsibilities and too many reasons to change is muc
 
 One of the main disadvantages of singletons is that they make unit testing very hard. They introduce global state to the application. The problem is that you cannot completely isolate classes dependent on singletons. When you are trying to test such a class, you inevitably test the Singleton as well. When unit testing, you want the class to be as loosely coupled with other classes as possible and all the dependencies of the class should be ideally provided externally (either by constructor or setters), so they can be easily mocked. Unfortunately, that is not possible with singletons as they introduce tight coupling and the class retrieves the instance on its own. But it gets even worse. The global state of stateful singletons is preserved between test cases. That has several serious implications:
 
--   Order of the tests now matters
--   Tests can have unwanted side effects caused by singleton
--   You cannot run multiple tests in parallel
--   Multiple invocations of the same test case can result in different results
+- Order of the tests now matters
+- Tests can have unwanted side effects caused by singleton
+- You cannot run multiple tests in parallel
+- Multiple invocations of the same test case can result in different results
 
 I recommend watching the [The Clean Code Talks - "Global State and Singletons"](https://www.youtube.com/watch?v=-FRm3VPhseI) for further information about the topic.
 
@@ -97,9 +97,9 @@ public static Singleton getInstance() {
 
 If the implementation above is used, it is possible that multiple instances are created when multiple threads are accessing the singleton's `getInstance()` method.
 
-1.  The first thread enters the `getInstance()` method, while instance is still not initialized
-2.  The second thread takes over before the first thread could create the singleton instance and creates it
-3.  The first thread continues and creates its own instance
+1. The first thread enters the `getInstance()` method, while instance is still not initialized
+2. The second thread takes over before the first thread could create the singleton instance and creates it
+3. The first thread continues and creates its own instance
 
 A common fix to that is to declare `getInstance()` method as synchronized, which prevents this issue. The problem is that then lazy initialization saves unnecessary instance creation at startup, but instead every access to the instance is more expensive due to the synchronization cost. It can be a problem if the instance is frequently accessed. But the only case when the method needs to be synchronized is when the `getInstance()` is called for the first time.
 

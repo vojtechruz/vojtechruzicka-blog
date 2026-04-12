@@ -49,6 +49,7 @@ compile("org.springframework.boot:spring-boot-starter-actuator")
 As usual, once this dependency is on the classpath, Spring Boot is able to detect this and auto-configures Actuator for you. Just rebuild and start your application.
 
 ## Up and Running
+
 Now if you run your application, you can check all the available endpoints by accessing `/actuator`. That means, if you are running locally on port 8080, you'll need to open `http://localhost:8080/actuator`. You should see something similar to this:
 
 ```json
@@ -188,7 +189,7 @@ management.endpoint.health.roles=ADMIN
 When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do better. Let's examine various ways we can display more info.
 
 ## Build Properties
-In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information. 
+In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
 
 What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
 
@@ -419,4 +420,4 @@ Actuator endpoints are great, but monitoring and managing your application just 
 
 ## Conclusion
 
-Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator Endpoints. However, bear in mind that having public endpoints which allow you to tinker with your app and expose sensitive data is not a good idea. Always be sure to secure your endpoints. 
+Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator Endpoints. However, bear in mind that having public endpoints which allow you to tinker with your app and expose sensitive data is not a good idea. Always be sure to secure your endpoints.

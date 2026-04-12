@@ -17,10 +17,10 @@ This feature was added in Google [Chrome 59](https://developers.google.com/web/u
 ## Enabling Code Coverage
 
 Code coverage is measured under `Coverage` tab in Developer Tools. To open Dev Tools press:
- - Windows, Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>
- - Mac: <kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd>
+- Windows, Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>
+- Mac: <kbd>⌘</kbd>+<kbd>⌥</kbd>+<kbd>I</kbd>
 
- After this, you can access the Coverage from the Command Menu:
+After this, you can access the Coverage from the Command Menu:
 
 - Windows, Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 - Mac: <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>P</kbd>

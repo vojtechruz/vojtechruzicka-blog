@@ -8,9 +8,8 @@ excerpt: Are you still using @author Javadoc tag? Maybe it's time to reconsider.
 draftStatus: draft
 ---
 
-
-
 ## Javadoc @author tag
+
 In Javadoc, there is an `@author` tag, which is supposed to indicate the original author of the file and possibly all contributors, who made significant changes to the file.
 
 ```java
@@ -50,9 +49,11 @@ public class BrandNewClass {
 It has all the disadvantages of @author Javadoc and some more. Unlike Javadoc, it is not displayed by IDE when requesting documentation pop-ups or in auto-complete. If you want to include author, use the @author tag and not those templates.
 
 ## Still want to keep it?
+
 Still not convinced? Maybe there is a company policy that requires the inclusion of the @author tag or perhaps you just love it. In that case, I suggest using it for marking a contact person, who is currently responsible for the given file. It is especially useful on large, long-running projects with many developers. While working with such a huge and old codebase, it is much more important to know who to contact regarding specific file or module rather than to know who was the major contributor years ago. Just be sure to keep the tags updated. However, with so many files to keep up to date, it may be better to include the [author information on package level](http://bit.ly/1s9pTQG) of whole modules rather than individual files.
 
 ## CODEOWNERS
+
 Some time ago, [GitHub introduced](https://github.blog/2017-07-06-introducing-code-owners/) a new concept of [CODEOWNERS file](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners).
 
 In a nutshell, it is a file, where you can define teams or individual users responsible for various parts of the project. Note that it is not authors, but rather people who are responsible now. That is much more useful as the original author is likely to be long gone. Also, as you can define the owner on a team level, you don't have to change this all the time if there are people coming and leaving.
@@ -61,7 +62,7 @@ For GitHub, this file is used to automatically add reviewers for new pull reques
 
 The file uses similar patterns such as `.gitignore` and you can assign responsible people to each of these patterns.
 
-```
+```text
 # This is a comment.
 # Each line is a file pattern followed by one or more owners.
 
@@ -83,7 +84,7 @@ The file uses similar patterns such as `.gitignore` and you can assign responsib
 *.go docs@example.com
 ```
 
-You can check a full-fledged example of the CODEOWNERS file [here](https://github.com/dotnet/samples/blob/master/.github/CODEOWNERS).
+You can check a [full-fledged example of the CODEOWNERS file](https://github.com/dotnet/samples/blob/master/.github/CODEOWNERS).
 
 Even if you are not using GitHub and will not, therefore, benefit from the automatic assignment of reviewers, it may still be handy to have one centralized file where you can look up who is responsible for which part of the project.
 
