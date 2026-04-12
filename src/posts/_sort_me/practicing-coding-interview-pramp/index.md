@@ -72,14 +72,17 @@ They do the same for you. The result may look something like this:
 ![pramp-review](./performance-review-feedback.png)
 
 ### Aftermath
+
 Once you finish your interview and the feedback is recorded, the interview is saved and available on your dashboard. You can see detailed feedback on your performance. But most importantly, you can get back to your task and the task of your peer. You can see the task, but also the suggested answer and hints, so you can get back to the problem, check for a better solution or just try to solve it again, in a better way.
 
 ![pramp-dashboard](./pramp-dashboard.png)
 
 ## Additional Resources
+
 There is a free Udacity video course by Pramp covering a [Technical interview](https://in.udacity.com/course/technical-interview--ud513), basic algorithms and data structures. This can be a good place to start before practicing actual interviews. Then, of course, there is the [Cracking the Coding Interview](http://www.crackingthecodinginterview.com/) book, which is also really helpful. There are of course many other resources. I'll be glad if you share your favorites in the comments below.
 
 ## Conclusion
+
 Pramp is a great service to practice your skills as an interviewee (and as an interviewer for that matter). And it's free. I highly recommend it. The number of available slots is somewhat limited though, so you may want to add other services to the mix too.
 
 {% info %}

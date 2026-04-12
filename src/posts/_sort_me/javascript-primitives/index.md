@@ -132,10 +132,10 @@ typeof 'John' //string
 
 Turns out that for certain primitives (number, boolean, string) JavaScript offers Wrapper objects, which can be used when an object is needed and provide some extra convenience methods. So what happens in the example above:
 
-1.  Javascript detects that you are trying to access a property of a string primitive.
-2.  It creates a wrapper object String to wrap the original string primitive.
-3.  It accesses the `length` and `toUpperCase` on the wrapper object instead of the original primitive.
-4.  It discards the wrapper object, frees the memory and continues.
+1. Javascript detects that you are trying to access a property of a string primitive.
+2. It creates a wrapper object String to wrap the original string primitive.
+3. It accesses the `length` and `toUpperCase` on the wrapper object instead of the original primitive.
+4. It discards the wrapper object, frees the memory and continues.
 
 This way you can use all the helpful methods on strings to make a substring, convert it to lowercase, split it and so on. Note that primitives are immutable so all these methods just return a new instance of the string and don't modify the original.
 
@@ -190,8 +190,8 @@ typeof Number('42') //number, safe
 
 When you are working with objects, there are some cases when you would rather need a primitive representation of the object. Actually, javascript offers two methods for it which each object inherits:
 
--   `valueOf()` returns primitive representation of the object
--   `toString()` returns string representation of the object
+- `valueOf()` returns primitive representation of the object
+- `toString()` returns string representation of the object
 
 A good example can be Date. `toString()` returns a human-readable description of the date, while `valueOf()` returns a number representing the date as the number of passed milliseconds since `1 January 1970 00:00:00 UTC` and the date.
 

@@ -67,11 +67,12 @@ public class Main extends Application {
 Of course, we still need to implement the start method.
 
 ## Main method
+
 JavaFx does not necessarily need the `main()` method to start. You can package an executable jar using [JavaFX Packager Tool](https://docs.oracle.com/javafx/2/deployment/packager.htm). However, it is much more convenient to actually have the main method.
 
 Not only is the application easier to start, but you can also pass command-line parameters to your application as usual.
 
-Inside the `main()` method, we can launch our application using `Application.launch()`. 
+Inside the `main()` method, we can launch our application using `Application.launch()`.
 
 ```java
 public static void main(String[] args) {

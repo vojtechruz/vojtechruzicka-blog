@@ -17,7 +17,7 @@ A few months ago I finally managed to migrate my blog from WordPress to a static
 
 I was very impressed with the results of the migration, especially performance-wise. I was able to migrate all the functionality, except site-wide search.
 
-With server generating your pages, searching is easy. WordPress offers search option out of the box. With static sites, which have no dynamic backend, this gets trickier. 
+With server generating your pages, searching is easy. WordPress offers search option out of the box. With static sites, which have no dynamic backend, this gets trickier.
 
 ## Client-side search
 
@@ -133,7 +133,7 @@ Algolia does not crawl your content automatically as DocSearch does. You need to
 
 While this may be useful for traditional applications, it is not of much use for static sites. In this case, you need to build your JSON objects as a part of building your static site and then upload them using their REST API.
 
-Of course, you can do it manually and it will work. With some static site generators, it is your only option. Fortunately, some of the generators provide plugins for Algolia, which make the process much easier. For example there is a plugin for [Jekyll](https://github.com/algolia/jekyll-algolia) or [GatsbyJs](https://github.com/algolia/gatsby-plugin-algolia) (as of 6/2018 in beta). 
+Of course, you can do it manually and it will work. With some static site generators, it is your only option. Fortunately, some of the generators provide plugins for Algolia, which make the process much easier. For example there is a plugin for [Jekyll](https://github.com/algolia/jekyll-algolia) or [GatsbyJs](https://github.com/algolia/gatsby-plugin-algolia) (as of 6/2018 in beta).
 
 ## Search your videos
 

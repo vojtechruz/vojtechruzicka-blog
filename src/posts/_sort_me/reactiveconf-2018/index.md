@@ -29,17 +29,19 @@ However, the best part about participating as a volunteer is not about saving mo
 ![Reactive Conf 2018 Volunteers and Organizers](./reactive-conf-2.jpg)
 
 ## Day 1
+
 The beginning of the conference was the busiest period for us volunteers. We had to register more than 1000 visitors. I spent most of the time providing various goodies to the attendees in exchange for their "Reactive Gift" vouchers.
 
 After the talks finished, there was still a lot more to do. You could stay for a "Discover Czech" event, which was basically a party with a selection of classic Czech delicacies such as nakládaný hermelín (pickled cheese), utopenec (pickled sausages), various Czech pies or traditional plum spirit slivovice. Alternatively, you could join separate parties held by the conference's sponsors in their offices - STRV, MEWS, Kiwi or Socialbakers. For those not interested in partying, there was an opportunity to join a sightseeing tour of Prague.
 
-
 ## Day 2
+
 My duties changed on the second day. Now it was mostly about the Discovery Stage - showing the way, letting people in and so on. Then some basic cleanup after the conference.
 
 After the talks, there was a closing ceremony. Then you could choose from a bunch of "Hangouts" with various companies such as Aragon, HackPrague or Green Fox Academy. Alternatively, you could continue in discovering Prague like the day before, which would end with a tasting of local wines, beers and spirits.
 
 ## Day 3
+
 The last day of the conference was different from the first two days. So-called "Festival day" was not at the same venue. Instead, it was hosted in the Prague Microsoft building. Unlike the first two days, this one was focused mainly on various workshops with limited capacity. It was necessary to register and pay a fee of 20 € in addition to the conference ticket. There were 14 workshops available in total ranging from 2 to 6 hours. Here is the list:
 
 - Introduction to Elm
@@ -79,7 +81,7 @@ I really appreciated that there was a public live-stream and videos published af
 
 It was nice that there was a lot to do after the talks - Czech delicacies tasting, after-parties with various companies, discovering the city or Czech traditional live music.
 
-Overall my experience was very positive, I'm sure I'll visit also the next year. 
+Overall my experience was very positive, I'm sure I'll visit also the next year.
 
 ## Talks
 

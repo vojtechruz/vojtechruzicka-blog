@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Traditional try-catch-finally
+
 With traditional `try-catch`, you can execute a block of code and handle any exceptions which may occur:
 
 ```java
@@ -44,6 +45,7 @@ Most importantly, you need to remember to actually close all the resources and i
 Fortunately, since Java 7, there is an easier way to manage resources automatically with `try-with-resources`, which will close all the resources properly for you in the right order.
 
 ## Try with resources
+
 Using `try-with-resources` is easy. Instead of just plain:
 
 ```java
@@ -110,7 +112,8 @@ try {
 It is an interesting example of how `try-with-resources` works under the hood. You can check the [official specs](https://docs.oracle.com/javase/specs/jls/se7/html/jls-14.html#jls-14.20.3) for more detail.
 
 ## Multiple resources
-Inside the head of `try-with-resources`, you can declare more than one resource. 
+
+Inside the head of `try-with-resources`, you can declare more than one resource.
 
 ```java
 try (FileReader fileReader = new FileReader("C:\\foo.txt");
@@ -141,6 +144,7 @@ However, they are closed in the reverse order:
 3. resource1
 
 ## Java 9 improvements
+
 Try with resources was introduced in Java 7. Until Java 9 you were forced to declare the resources and assign them a value in the parentheses right after `try`. This is a lot of text and noise, which makes `try-with-resources` hard to read, especially when using multiple resources.
 
 ```java

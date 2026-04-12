@@ -62,7 +62,7 @@ switch (errorCode) {
 
 When we pass `404` to the switch, the first case is a match and the block inside is executed. Because there is no break, the execution continues to the `case 418:` block even though the input is clearly not 418. In this block, there is `break`, so the switch finally ends. The output is, however, the following:
 
-```
+```text
 Not found!
 I am a teapot!
 ```
@@ -70,6 +70,7 @@ I am a teapot!
 Not what we intended, right? While fall-through behavior can be useful sometimes, more often than not, it is just a result of accidentally missed break. Switch statements are therefore error-prone. In more complicated scenarios, when there is a missing break, you may be in doubt whether it is an error or it was intentional. It can be useful in low-level code, which is performance-sensitive, but in the high-level code, it can be dangerous.
 
 ## Single value cases
+
 One of the unfortunate limitations of the switch is that in each case, there can be just a single value. This forces you to rely on fall-through if you want to have the same behavior for multiple values.
 
 ```java
@@ -160,9 +161,8 @@ Notice a few differences to the regular switch statement. First of all, it needs
 The yield statement is targeted to be introduced in Java 13. For Java 12, you should use break instead. See <a href="#history">History</a> section below.
 {% endinfo %}
 
-
-
 ### Null Pointer Exception Safety
+
 There is another significant difference. Unlike with regular switch, the switch expression needs to cover all the possible input values.
 
 Let's look at the previous example. The `errorCode` input is an integer. It has, of course, many possible values. Two first cases cover 404 and 500, the rest of the values is covered with the `default` branch.
@@ -192,6 +192,7 @@ So with switch expression, you have to cover all the possible inputs. Either by 
 This has some nice implications. The regular switch is error-prone when you forget to include one of the values, for example when using enums. Or when you later add another enum item but forget to update your switch statements. This cannot happen with switch expression as you would get compile error. Also, you cannot get null pointer exception as a result of the switch expression.
 
 ### Switch with arrows
+
 So far we've seen some nice improvements to the good old switch. One of the major nuisances was not covered though. Even with multi-value `case` blocks, we still had to make sure we included `break` properly otherwise we could face some nasty fall-through bugs.
 
 Fortunately, the new switch can prevent this. There is a new type of syntax available using `->`.
@@ -253,6 +254,7 @@ switch (errorCode) {
 With switch using `->` there is no confusion with scoping. On the right side of `->` there can be either a single statement/expression, `throw` statement or a `{}` block. As a consequence of this, any local variables you want to declare and then use needs to be enclosed in a `{}` block, which has its own scope, so no more variable clashing.
 
 ## IntelliJ IDEA support
+
 The good news is that IDEA already has nice support for the extended switch.
 
 In the example below, you can see a quick-fix for replacing the traditional switch with a switch expression. Note that IDEA also automatically adds a default branch, so all the possible inputs are covered.
@@ -268,7 +270,7 @@ If idea detects you have multiple `case` branches with the same behavior, it wil
 {% video "/videos/java-enhanced-switch/idea-merge-branches" %}
 
 ## History
-The enhanced switch was originally introduced with Java 12 as [JEP-325](https://openjdk.java.net/jeps/325) - a preview feature, which needs to be explicitly enabled. This was to gather feedback and gain more time for potential further refinement. 
+The enhanced switch was originally introduced with Java 12 as [JEP-325](https://openjdk.java.net/jeps/325) - a preview feature, which needs to be explicitly enabled. This was to gather feedback and gain more time for potential further refinement.
 
 For Java 13, there was another proposal introduced - [JEP-354](https://openjdk.java.net/jeps/354), which changed the syntax of returning value from a switch expression.
 

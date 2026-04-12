@@ -7,9 +7,8 @@ excerpt: Session fixation is a type of attack, where the attacker can hijack use
 draftStatus: draft
 ---
 
-
-
 ## Introduction
+
 Session Fixation is a type of vulnerability, where the attacker can trick a victim into authenticating in the application using Session Identifier provided by the attacker. Unlike Session Hijacking, this does not rely on stealing Session ID of an already authenticated user. Instead, the attacker makes the victim use SID, which he already knows and which can he later use to make requests using victim's authenticated session.
 
 The basic execution of the attack is the following:
@@ -30,6 +29,7 @@ The most basic example is where the server accepts not only SIDs, which it gener
 When the server is configured to accept only SIDs it actually generated, it is slightly less vulnerable. The difference is that the attacker has to send a request to the server and obtain a new valid SID provided by the server. Then it needs to make the victim to use the very same Session Id to authenticate. Once the victim authenticates, the attacker can use the same SID to act as an authenticated user. This attack vector is more difficult as each session has time-out interval and is terminated when the user is inactive for that period of time. Therefore, the attacker needs to make sure the victim authenticates before the session expires or they need to keep prolonging the session. Server-generated SIDs are not preventing session fixation attacks, but make it harder, so it is still recommended to have it enabled.
 
 ## Passing SID to the victim
+
 Once the attacker has the Session Id obtained, they need to make sure the victim uses the same SID to authenticate. There are several ways to do this.
 
 ### URL Parameter
@@ -76,7 +76,6 @@ Starting with Servlet 3.0, you can declare in web.xml that all session cookies s
 You can read more about how to properly protect and handle your cookies in the following article:
 
 {% linkedPost "/protect-http-cookies/" %}
-
 
 ### Setting cookie via meta tag
 
@@ -149,6 +148,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 
 ## Conclusion
+
 There are various ways to mitigate session fixation and other session-related vulnerabilities:
 
 1. If it is not necessary, do not create sessions for unauthenticated users. In some cases, it is required (such as keeping track of user's shopping cart even when not logged in) and it cannot be avoided.

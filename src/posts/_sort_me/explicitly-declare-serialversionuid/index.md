@@ -72,9 +72,11 @@ Actually, there are two types of changes (as defined by the [Serialization Speci
 For further details, see the [Java Object Serialization Specification](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#6754).
 
 ## Making sure nothing breaks
+
 When you use explicit version number you need to make sure you properly update it when necessary or make sure the class is backward compatible. The best approach would be to build a habit of always checking whether the class you are just changing is serializable and to manage the version number appropriately. As a safeguard, it is handy to have serialization unit tests when aiming for backward compatibility. Keep serialized objects of the previous versions of the class (with the same version id), which are supposed to be compatible with the current implementation. Then in the unit tests make sure that you can still deserialize those without problems and that the state of such objects is as expected. It is well worth the effort as it allows you to reveal serialization problems before it is too late.
 
 ## UPDATE: Sonar Rule
+
 Originally Sonar contained a rule for handling serialVersionUID: ["Serializable" classes should have a "serialVersionUID"](https://rules.sonarsource.com/java/RSPEC-2057). If you're not a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring it. 
 
 Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/serializable-classes-should-use-auto-generated-version-ids/1217), there is a new rule which enforces **omitting** serialVersionUID in Serializable classes, so it is always auto-generated: ["serialVersionUID" should not be declared blindly](https://rules.sonarsource.com/java/type/Code%20Smell/RSPEC-4926).
@@ -82,9 +84,11 @@ Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/seria
 So no matter what your preference is regarding serialVersionUID, you now have a Sonar rule to support it. Alternatively, if you prefer, you can even configure both rules to be active at the same time, each for a different part of your app, if it makes sense in your situation.
 
 ## Further reading
+
 In the post [WHY NOT: serialVersionUID](https://github.com/rzwitserloot/lombok/wiki/WHY-NOT:-serialVersionUID) Reinier Zwitserloot explains why the Java code generator Lombok does not, cannot and should not support serialVersionUID, despite nearly every other IDE and linting tool out there seems to suggest specifying it.
 
 ## Conclusion
+
 Serialization has many pitfalls including maintaining backward compatibility. The first consideration should be whether you should be using serialization at all. You should consider whether for your specific scenario it is not better to use a different approach. Maybe something JVM independent, so it is easier to integrate with other non-JVM systems. You may consider using XML or JSON and OXM or JSON-object mapping (such as GSON) instead of serialization.
 
 If you decide to use serialization, it is generally recommended to declare serialVersionUID. However, you need to be very careful. Every time you make a change to a serializable class, you need to make sure you make the changes backward-compatible or update the version number.

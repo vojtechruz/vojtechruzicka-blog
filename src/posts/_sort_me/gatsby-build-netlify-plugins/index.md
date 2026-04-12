@@ -14,12 +14,12 @@ draftStatus: draft
 <b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>. Gatsby plugin described in this article is now used by default and does not need to be explicitly enabled.
 {% endinfo %}
 
-
-
 ## Netlify build plugins
+
 Netlify build plugins allow you to run custom plugins as a part of your Netlify build process. This allows you to alter your build and run some additional actions.
 
 ## Enabling plugins
+
 Netlify build plugins are not enabled by default. This feature is still in beta (as of 5/2020). You can, however, explicitly enable beta build plugin support. Just click on the link `Build Plugins` in the main navigation.
 
 ![Netlify build plugins link](netlify-enabling-build-plugins.png)

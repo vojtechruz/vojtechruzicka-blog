@@ -216,7 +216,6 @@ Your controller is a POJO, it does not need to extend or implement anything nor 
 
 How do we link the controller class with our FXML though? There are basically two options.
 
-
 ### In Java
 
 You can instantiate your controller yourself (or use any other means of obtaining the instance such as Dependency Injection to obtain). Then simply assign it to your `FXMLLoader`.
@@ -272,7 +271,7 @@ The next step is to register this method call as a handler for `onAction` event 
 </VBox>
 ```
 
-When we click our button, it will call `MainSceneController.buttonClicked()`. Keep in mind that this reference works only if the method is `public`. If the access modifier is stricter, you need to annotate the method with `@FXML` annotation. 
+When we click our button, it will call `MainSceneController.buttonClicked()`. Keep in mind that this reference works only if the method is `public`. If the access modifier is stricter, you need to annotate the method with `@FXML` annotation.
 
 ```java
 @FXML
@@ -285,7 +284,7 @@ private void buttonClicked() {
 
 So far we're just printing to the console. What if we want again to change the text of our button to `Click me again!`? How can we get references to components in our Controller?
 
-Fortunately, it is easy. Remember these `fx:id` attributes? 
+Fortunately, it is easy. Remember these `fx:id` attributes?
 
 ```xml
 <Button fx:id="mainButton" text="Click me!" onAction="#buttonClicked"/>

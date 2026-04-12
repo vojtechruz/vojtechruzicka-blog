@@ -186,6 +186,7 @@ gridPane.getRowConstraints().addAll(row1, row2);
 ```
 
 #### Absolute size
+
 Instead of defining percentage size, you can define preferred and minimal size. In addition to that, you can specify how the row/column should behave on resize. Columns are using `hgrow` property, and rows have `vgrow`.
 
 These properties can have three distinct values.
@@ -286,6 +287,7 @@ borderPane.setCenter(center);
 ```
 
 ### Sizing
+
 All the regions except the center have a fixed size. The center then fills the rest of the space.
 
 Top and Bottom regions are stretched across all the available horizontal space. Their height is based on the height of the component inside.

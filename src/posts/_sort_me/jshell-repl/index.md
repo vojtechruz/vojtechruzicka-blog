@@ -42,6 +42,7 @@ jshell>
 Now you are in interactive mode and JShell evaluates anything you write. To quit JShell just type `/exit`.
 
 ## Expressions
+
 The simplest way to start with JShell is to write a simple expression. It can be a simple mathematical expression:
 
 ```bash
@@ -62,6 +63,7 @@ $2 ==> 17.246950765959596
 First of all, notice that we were able to use $1 variable from the previous example. The state is preserved between commands. Another noteworthy feature is that, as you can see, semicolons are optional in most cases.
 
 ## Variables
+
 Even though JShell declares variables for us when the return value is not assigned to any variable, it is usually better to declare your own variables. If only for the sake of descriptive naming. You can declare them as you would local variables.
 
 ```bash

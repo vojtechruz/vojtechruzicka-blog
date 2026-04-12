@@ -11,6 +11,7 @@ draftStatus: draft
 
 
 ## Setup
+
 As usually with Spring Boot, the setup is really simple. All you need to do is to add the right dependency, and you are good to go. Spring Boot detects this and auto-configures DevTools accordingly.
 
 If you are using Maven:
@@ -40,12 +41,13 @@ dependencies {
 Note that the dependency is declared as optional. This is important. This prevents DevTools dependency being transitively applied to other modules that depend on your project.
 
 ## Automatic Restart
+
 Whenever there is a change in files on your classpath, DevTools automatically restart your running application with the new changes applied. When developing locally, this can be valuable as you don't need to redeploy your application manually.
 
 On its own, it wouldn't be so useful as restarts can still take a lot of time. Fortunately, these restarts are way faster than regular restarts because of a clever trick, which DevTools use.
 
 You see, when developing an application, you usually change a class or a few and want to check results in your running application for feedback. You change a tiny fraction of your application as the majority of loaded classes are from frameworks and third party libs.
- 
+
 Under the hood, Spring DevTools use two classloaders - *base* and *restart*. Classes which do not change are loaded by the *base* classloader. Classes you are working with are loaded by *restart* classloader. Whenever a restart is triggered, *restart* classloader is discarded and recreated. This way restarting your application is much faster than usual and can be a viable alternative to dynamic class reloading with tools such as JRebel.
 
 ### Triggering a restart in an IDE
@@ -98,7 +100,7 @@ Spring DevTools automatically launch a local instance of LiveReload server, whic
 
 When developing your application locally, you usually have different configuration needs than when running in production. One example can be caching. When in production, it is crucial to depend on various caches (such as templating engine's caches, caching headers for static resources and so on). In development, it can make you miserable by serving old data and not reflecting your latest changes. Another example may be enhanced logging, which can be useful in development but too detailed for production.
 
-It is unnecessarily complicated to manage dual sets of configuration by yourself. The good news is that Spring Boot DevTools configure many properties for your local development out of the box. 
+It is unnecessarily complicated to manage dual sets of configuration by yourself. The good news is that Spring Boot DevTools configure many properties for your local development out of the box.
 
 ```properties
 spring.thymeleaf.cache=false
@@ -187,12 +189,15 @@ After you run this configuration, you should see a similar output if the connect
 Once you connect to a remote app, DevTools monitors classpath changes same as it does for local development. However, instead of a local restart, it pushes the changes to the remote server and triggers restart there. This can be a lot faster than building the app and deploying to the remote machine.
 
 ## Global configuration
+
 You can configure DevTools using configuration properties as you would in any other Spring application. That usually means editing `application.properties` of your project. This configuration is separate for each application.
 
 However, in some scenarios, it may be handy to have global configuration for ALL the applications running on the same machine. You can create a property file called `.spring-boot-devtools.properties` located in your `$HOME` directory. Config declared in this file is applied to all the applications running DevTools.
 
 ## Limitations
+
 ### Live Reload
+
 Spring app using DevTools automatically launches a LiveReload server. Unfortunately, only one instance of this server can be running at the same time. To be more precise, just the first one will work. That applies not only to multiple instances of Spring apps with DevTools but to any other apps, which are also using LiverReload under the hood, such as [Gatsby](https://www.vojtechruzicka.com/gatsby-migration/) in development mode.
 
 If you want to configure your Spring app not to launch a LiveReload server, you can do it in your `application.properties`:

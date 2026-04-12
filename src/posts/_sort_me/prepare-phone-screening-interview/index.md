@@ -7,14 +7,14 @@ excerpt: Phone screening interview is the first step in a hiring process. If you
 draftStatus: draft
 ---
 
-
-
 ## Phone screening interview
+
 In most cases, the hiring process starts with a phone screening interview. The point of it is usually a quick pre-screening of candidates. That is eliminating unsuitable candidates early on in the interview process. If you fail, you will not get a chance to continue to the next round of the process. The questions usually cover your background, experience, skillset and some basic technical competency. The technical questions are often not as hard as in a proper technical interview, which follows later on. That is if you pass the phone screening. It is vital to be prepared for the phone screen as without passing it you'll never be able to continue to the later rounds.
 
 ## Before the Interview
 
 ### Research
+
 The research about the company is one of the key aspects of the interview preparation. First of all, it is essential to know the important details about the company to be sure the job is a right match for you. If you do your research even before the screening call, you will be able to decide whether to invest your time with this company. You can save a lot of time by deciding not to continue the hiring process when the company is not a good fit. It is also important for preparing your questions about the company and the project. And, of course, if the recruiter realizes you didn't bother to do your research, it will make you look passive and not interested in the position. If you do your research properly (and show it by asking relevant questions), you will be perceived as proactive and diligent.
 
 The most obvious resource is the company's website. You can usually find a lot of relevant information there. Then the job description you received. In addition to the information about the company and the project, it also contains details about the role requirements and responsibilities. Now it is a good time to consider how you can frame your current skills and achievements, so they are well aligned with the company's needs. From the job description, you can tell what you can focus on during the call to show that your profile is a perfect match for the position. That does not mean you should lie (never do that), but you can focus on skills most relevant to the job and tailor your introduction and answers to reflect this.

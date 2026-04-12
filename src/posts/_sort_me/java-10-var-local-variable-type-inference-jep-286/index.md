@@ -169,7 +169,6 @@ See [JEP 323: Local-Variable Syntax for Lambda Parameters](http://openjdk.java.n
 ## Style guide
 Check out this useful guide for `var` best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
 
-
 ## Conclusion
 
 The Local Variable Inference is a nice feature, which reduces boilerplate and increases readability. As always, var on its own is no silver bullet. You need to make sure that you use descriptive variable names and in case type information is not apparent you can still use good old explicit type declaration.

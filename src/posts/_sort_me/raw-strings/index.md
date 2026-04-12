@@ -8,8 +8,6 @@ excerpt: "Java finally brings support for raw strings. They can span multiple li
 draftStatus: draft
 ---
 
-
-
 {% warning %}
 Raw string literals <a href="https://www.infoq.com/news/2018/12/jdk-12-new-features">didn't make it to the Java 12</a>.
 The similar functionality is available in Java 13 instead as a preview feature - Text Blocks. For more details see the post below.
@@ -24,6 +22,7 @@ Raw Strings were [dropped before the final release](http://mail.openjdk.java.net
 >  While we can expect that for any language feature, there will be a nontrivial volume of "I would have preferred it differently" feedback, in reviewing the feedback we have received, I am no longer convinced that we've yet got to the right set of tradeoffs between complexity and expressiveness, or that we've explored enough of the design space to be confident that the current design is the best we can do. By withdrawing, we can continue to refine the design, explore more options, and aim for a preview that actually meets the requirements of the Preview Feature process (JEP 12).
 
 ## String Literals
+
 Currently (pre-Java 12), string literals in Java are in many cases unnecessarily hard to deal with and have some limitations.
 
 First of all, Java does not support multi-line strings. If you want your string to span multiple lines, you have to concatenate multiple strings:
@@ -97,7 +96,7 @@ But unlike javascript, backticks inside the string don't need to be escaped. Ins
 `This uses single backtick`
 ``This can contain backtick `, see?``
 ```Can use any number of backticks```
-``` 
+```
 
 No matter how many backticks you use or whether you use raw or original string literals, the resulting `.class` file will be the same and both literals will produce `java.lang.String`.
 
@@ -144,7 +143,7 @@ on multiple lines.`;
 
 There are actually several new methods in the `String` class, which are useful for handling indentation.
 
-The method `align()` trims horizontal and vertical indentation of the string and keeps just relative indentation of the lines. 
+The method `align()` trims horizontal and vertical indentation of the string and keeps just relative indentation of the lines.
 
 ```typescript
 public class Main {
@@ -187,9 +186,10 @@ As a shorthand, if you call `align()` with an integer parameter instead of with 
 ```java
 // Align and then increase existing indentation of each line by 2
 myString.align(2);
-``` 
+```
 
 ## String Interpolation
+
 Other languages, which currently support Raw String literals usually also support string interpolation. It is basically a fancy name for substituting variable placeholders in the string with values, such as:
 
 ```kotlin
@@ -200,6 +200,7 @@ println("Hi, my name is ${name}.")
 Unfortunately, this is still not possible in Java, not even Java 12. JEP 326 even explicitly states that this is not intended to be part of this proposal. However, it may be introduced by some other proposal in the future.
 
 ## IntelliJ IDEA support
+
 The good news is that since version 2018.3, IDEA already supports Raw String Literals.
 
 You can convert from good old string literals to the raw variant and vice versa. IDEA will handle escape sequence conversion and splitting to multiline for you.
@@ -213,4 +214,5 @@ IDEA is also able to detect if you are unnecessarily using too many backticks an
 In addition to this, it now supports actions such as spell-checking or regular expressions detection in Raw String Literals. You can read more in [Preview Raw String Literals in IntelliJ IDEA 2018.3](https://blog.jetbrains.com/idea/2018/10/preview-raw-string-literals-in-intellij-idea-2018-3/).
 
 ## Try it yourself
+
 As of 11/2018 Java 12 is not out yet, but you can already download early access build of [JDK 12]( https://jdk.java.net/12/) and try Raw Strings for yourself.

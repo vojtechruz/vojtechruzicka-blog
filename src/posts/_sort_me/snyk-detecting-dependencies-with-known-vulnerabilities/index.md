@@ -19,6 +19,7 @@ Unlike Dependency check, which uses [National Vulnerability Database](https://nv
 Similar to Dependency Check, you can easily integrate Snyk with your Build and CI tools, so you can break the build when new security vulnerabilities are introduced.
 
 ## Installation and Setup
+
 Before you can use Snyk, you need to install it using NPM. Make sure you have Node.js installed to do so. Then you can simply run:
 
 ```java
@@ -48,6 +49,7 @@ pip install -r requirements.txt
 ```
 
 ## Running Test
+
 Once you have your environment set up, you can run your tests. Let\'s start with:
 
 ```xml
@@ -73,6 +75,7 @@ Tested 5 dependencies for known vulnerabilities, found 3 vulnerabilities, 3 vuln
 ```
 
 ## Monitoring for new vulnerabilities
+
 When running `snyk test`, you are only notified about the currently known vulnerabilities, which are already part of the Snyk vulnerability DB. New vulnerabilities are, however, discovered all the time. Dependencies previously considered safe can contain high severity issues in the blink of an eye.
 
 Snyk allows you to monitor your application's dependencies continuously for newly discovered issues. You need to run `snyk monitor` command:
@@ -86,9 +89,11 @@ Snyk creates a snapshot of your dependencies and stores it. It then sends you an
 ## Addressing Issues
 
 ### Update
+
 If the vulnerability is not brand new, there is a good chance it was already fixed in a later version of your dependency. Updating dependency version is the easiest fix, but may not always be available. Snyk DB provides all the required information, so you can tell whether upgrading version will actually fix the vulnerability.
 
 ### Patch
+
 Sometimes, unfortunately, official fix in the form of a new version for the vulnerability is not available. Maybe the dependency is no longer actively developed or it is just too early after the discovery. Fortunately, nothing is lost and there is a good chance you will be able to still resolve your issue.
 
 Snyk patches are one of the cool features, which makes Snyk better than other similar services. For some dependencies, the Snyk team actually provides their own fix in the form of patch - a minimal set of changes required to fix the security vulnerability. This feature is unfortunately currently available only for NPM dependencies.
@@ -107,7 +112,7 @@ This may be handy in case there is currently no update or patch. Snyk will notif
 
 Running snyk test will find all the security vulnerabilities for you. It will not, however, fix them for you. Snyk Wizard comes to the rescue. You can run it with:
 
-```java
+```bash
 snyk wizard
 ```
 

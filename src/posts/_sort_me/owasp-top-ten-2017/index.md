@@ -7,12 +7,12 @@ excerpt: 'OWASP released 2017 version of top 10 Web Application Security Vulnera
 draftStatus: draft
 ---
 
-
-
 ## What is OWASP?
+
 OWASP stands for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It is a non-profit organization dedicated to improving the security of software, raising awareness of security issues and providing tools and resources to mitigate security risks. It consists of [numerous projects](https://www.owasp.org/index.php/Category:OWASP_Project) with various focuses. Examples of such projects are OWASP [Application Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project), [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project) or [OWASP Dependency-Check](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/).
 
 ## OWASP Top Ten
+
 OWASP Top Ten is one of the OWASP projects, probably the most famous one. It is a list of Top 10 most critical web application security risks. It is not an exhaustive guide (there are other OWASP projects for that), but a rather short document, where each vulnerability is described on just one page. The intent is, therefore, to raise awareness about security vulnerabilities rather than provide a comprehensive description. This makes it a good starting point when you want to start taking your application's security more seriously and also a nice \'executive summary\' material when you need to convince the management, that you need to allocate some of your resources to security reinforcement.
 
 OWASP Top Ten is released periodically every few years. The most recent version was released in December 2017. The previous versions were 2013, 2010 and 2007.
@@ -35,6 +35,7 @@ The problem was  mainly with the two new items:
 First of all, the two items were not added based on the actual data gathered. They were not a result of a process and methodology applied to the other eight items. They were chosen just based on the judgment of the authors. This gives you a weird mix of items, where some of them are added based on a methodology and data and some not. With no clear indication of which is which. Moreover, the independence of the project [was questioned](https://medium.com/@JoshCGrossman/behind-the-the-owasp-top-10-2017-rc1-df43236f79ff) as one of the items was added based on a suggestion of a commercial company (and only on a suggestion of that company), which by coincidence offers a product addressing the issue. What\'s more, it was specifically mentioned in the OWASP Top Ten Document. The two new items were also rather general and not a specific exploitable vulnerability on the same level such as XSS or CSRF. The type and granularity of the ten items were therefore not consistent.
 
 ## Top Ten 2017, take two
+
 After the widespread criticism of the first version, OWASP took the feedback seriously and made a lot of changes. First of all, there was a change in the leadership. Then the methodology. Everything is now available on [GitHub](https://github.com/OWASP/Top10) - The document, issues, feedback, and even the [data gathered](https://github.com/OWASP/Top10/tree/master/2017/datacall) based on which the top ten issues are chosen. What a refreshing change compared to mailing lists.
 
 Only 8 of 10 items are now chosen based on vulnerability data gathered from companies. The other two items are chosen based on a community survey. This way OWASP Top Ten contains both vulnerabilities based on current hard data as well as forward-looking items based on expert opinion of the community. The order of the items in the list is now determined by the risk factor rather than any other means.
@@ -96,9 +97,9 @@ An application is vulnerable when accepting serialized objects (note that this d
 
 The only robust protection is to use serialization solutions, where only primitive data types are allowed. If that is not possible, there are some ways to mitigate the risk such as
 
--   Logging all unexpected serialization inputs with automatic notifications to have early warning.
--   Deserialization modules should run with the least privileges possible.
--   Integrity checks of serialized objects to prevent data tampering
+- Logging all unexpected serialization inputs with automatic notifications to have early warning.
+- Deserialization modules should run with the least privileges possible.
+- Integrity checks of serialized objects to prevent data tampering
 
 | 2013                                                          | 2017                                                        |
 |---------------------------------------------------------------|-------------------------------------------------------------|

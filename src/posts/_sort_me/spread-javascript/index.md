@@ -102,7 +102,7 @@ Rest parameters take all the remaining arguments of a function and package them 
 // This is not valid, multiple rest parameters
 function doSomething(first, ...second, ...third) {
 }
-``` 
+```
 
 And you can use rest parameters only as a last parameter of a function:
 
@@ -110,7 +110,7 @@ And you can use rest parameters only as a last parameter of a function:
 // This is not valid, rest parameters not last
 function doSomething(first, ...second, third) {
 }
-``` 
+```
 
 ## Spread operator
 
@@ -316,7 +316,7 @@ For detailed explanation of destructuring please check the following article:
 
 ## Conclusion
 
-Three dots in JS can mean multiple things based on context. 
+Three dots in JS can mean multiple things based on context.
 
 You can use it as rest parameters in a function, so you are able to work easily with variable number of arguments. You can use a similar approach with array or object destructuring assignment, where the rest of the items are nicely packed into an array.
 

@@ -8,21 +8,20 @@ draftStatus: draft
 featuredImage: featured.png
 ---
 
-
-
 {% info %}
 At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already use Spring AI for many use cases, but the API and usage may change in the future.
 {% endinfo %}
 
-
-
 ## Source code
+
 Source code of the final application with all the functionality described in this article can be found on [Github](https://github.com/vojtechruz/spring-ai-demo).
 
 ## New project
+
 The easiest way to set up Spring AI is to create a new application using Spring Initializr. This way, you'll avoid a couple of manual configuration steps and the creation will be much faster. If you need to update an existing application with AI capabilities, you can skip to the [Existing project](#existing-project) section below.
 
 ### IntelliJ Idea
+
 This section describes creating a new project in IntelliJ IDEA. If you are using different IDE, you can continue directly to [Spring Initializr Web](#spring-initializr-web)
 
 Idea has built-in integration with Spring Initializr. You can simply go to:
@@ -120,8 +119,8 @@ dependencies {
 }
 ```
 
-
 ### Adding dependencies
+
 Now it's time to add dependency on Spring AI and a specific AI platform. Let's use OpenAI for now.
 
 For Maven, add the following dependency to your `pom.xml` file in the `<dependencies>` section:
@@ -158,8 +157,6 @@ spring.ai.openai.api-key=<YOUR_API_KEY>
 {% info %}
 While this will work for our simple hello world application, it is usually not a good idea to have your secret credentials stored with the application itself and available to all in git. You can instead set environmental variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when launching the application.
 {% endinfo %}
-
-
 
 ## Text generation
 
@@ -327,7 +324,6 @@ public class AiController {
 
 }
 ```
-
 
 ## AI Provider abstraction
 

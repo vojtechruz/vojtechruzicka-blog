@@ -8,9 +8,8 @@ excerpt: 'Protecting your sensitive cookies is very important as stolen session 
 draftStatus: draft
 ---
 
-
-
 ## What are Cookies
+
 HTTP protocol itself is stateless. That means when a server receives two requests it cannot tell whether they originate from the same user. There is no conversation context preserved between requests. While it has many advantages such as good scalability, often you want to identify a user you already interacted with and keep state. For example, a user should usually be able to log-in and after that, all their requests should be considered as those of an authenticated user. In other words, you want to recognize such user when they send their next request.
 
 But how can you achieve this? One way is using Cookies. Whenever a server receives a request from a client, it can provide a special HTTP response header called `Set-Cookie`. It can look something like this:
@@ -63,6 +62,7 @@ Set-Cookie: [cookie_name]=[cookie_value]; Secure
 ```
 
 ## Prevent Cross-Site Request Forgery with SameSite attribute
+
 When a browser reads a page, there are usually some resources from other domains, which are loaded as well such as images, scripts or social media buttons. The default browser behavior is that it sends cookies which browser has for the external site with the request. Since cookies are sent with cross-domain requests, this can be exploited to trick a previously authenticated user into performing some restricted action on the external site. This type of attack is called [Cross-Site Request Forgery](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)) (or CSRF).
 
 Fortunately, when setting a cookie, you can specify that browser should send it to you only if the request is originating from the same origin (is not cross-domain). This cookie parameter is called `SameSite`. It has two possible values:
@@ -77,8 +77,6 @@ The second option, `lax`, is more forgiving. It will allow sending the cookie cr
 Fortunately, as of 11/2023 the [browser support](https://caniuse.com/#search=samesite) is now very good.
 
 ![Same Site browser support](./browser-support.png)
-
-
 
 ### UPDATE: New SameSite behavior
 
@@ -139,6 +137,7 @@ You can specify cookie expiration or lifespan using `Max-Age` and `Expires` [att
 For sensitive cookies use the shortest sufficient lifespan possible. Using these parameters you can set cookie lifespan to infinity, which is obviously not a good idea. It is also worth mentioning that to further limit the lifespan of your session cookies, you should limit session duration server side and provide your users with a means of manually terminating their session (logout).
 
 ## Conclusion
+
 It is extremely important to protect your sensitive cookies, such as these containing session identifiers. If such a cookie is lost, an attacker can assume your identity and do everything you have permissions to do. You should protect your cookies against Cross Site Scripting with HttpOnly attribute so they are not available from javascript.
 
 Cookies are also vulnerable during transport, so you should apply HTTPS and make sure your sensitive cookies are not transmitted using plain HTTP by specifying *Secured* cookie attribute.

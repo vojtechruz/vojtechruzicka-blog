@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Synchronous execution
+
 Traditionally, the javascript code is executed synchronously. The code is executed from top to bottom, line by line. The execution flow continues to the next line only when the execution of the previous line is fully finished.
 
 ```javascript
@@ -20,6 +21,7 @@ console.log("Third");
 ```
 
 ## Callbacks
+
 However, the model above is not suitable in all cases. Imagine you have a page loaded and need to fetch some data from the backend. If you did this synchronously, all the execution would be suspended until you receive your data. And this could take quite some time. In the meantime, the page would be unresponsive.
 
 In this case, it would be much more convenient to call the server, but continue the execution and react to the result asynchronously whenever the response from your server arrives.
@@ -57,11 +59,13 @@ setTimeout(function() {
 Another common use case would be reacting to certain events such as button click, document loaded and so on. You don't know or care when they happen. You just want to be notified by your callback function when the event occurs.
 
 ## Callbacks and this
+
 Be careful when using `this` keyword with callbacks. If you are using a function, which is a property of an object, `this` will refer to the parent object. But when you provide it as a callback, it will no longer point to its object, which can lead to unexpected behavior. To learn in detail about issues with `this`, check the following article:
 
 {% linkedPost "/javascript-this-keyword/" %}
 
 ## Promises
+
 Promises offer an alternative approach to callbacks when working with asynchronous calls.
 
 A function can return promise object, which wraps the async call an can be used to define what should be done when the promise is finally successfully resolved. The promise object contains the `then` method, which can be used to define a function, which should be called once the promise successfully finishes. Let's look at the previous example using promises:
@@ -152,6 +156,7 @@ function myFunctionUsingPromises(input) {
 ```
 
 ## Automatic rejection
+
 In the example above, the promise is rejected explicitly by calling `reject()`. However, this is not the only case where promise can be rejected. When there is an error while running the promise code, the exception is automatically caught and `reject()` is called for you.
 
 ```javascript
@@ -167,9 +172,11 @@ new Promise(function(resolve, reject) {
 As you can see, the error is properly caught and can be handled inside the `catch()` clause. So if you don't need special error handling logic directly inside the promise, you don't necessarily need to include `try-catch` in it.
 
 ## Multiple promises
+
 So far we worked only with single promises. In some cases, it is just enough. However, often you need to work with more promises which are somehow related to each other. Let's look at specific examples.
 
 ### Serial
+
 The most common use case is probably a scenario where you need to run multiple promises one after each other. And each of them is dependent on the last one. That is, you cannot run the second promise until the first one is resolved.
 
 Let's say you need to fetch some data from the server and only after you receive the data, you can execute a second server call, which uses the data previously obtained.
@@ -266,7 +273,7 @@ Promise.all([
 
 If you run the code above, you'll get the following output:
 
-```
+```text
 Promise 2 resolved!
 Promise 1 resolved!
 Promise 3 resolved!
@@ -326,7 +333,7 @@ Promise 3 resolved!
 
 Promises are well supported in all the modern browsers as you can see in the table below:
 
-![Promises browser compatibility](./promises-compatibility.png) 
+![Promises browser compatibility](./promises-compatibility.png)
 
 Well, except for Internet Explorer, of course. For the up to date compatibility list see [this table on Can I Use](https://caniuse.com/#feat=promises).
 

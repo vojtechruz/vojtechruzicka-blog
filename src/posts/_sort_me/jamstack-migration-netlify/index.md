@@ -11,7 +11,7 @@ draftStatus: draft
 
 
 ## JAM Stack Migration - Part 2
-Recently I managed to finally get rid of WordPress and migrate my blog to JAM Stack, built with a static site generator called GatsbyJS. I described what JAM Stack is, how I migrated and how great Gatsby is in my previous post - [Migration to GatsbyJS and JAM stack from WordPress](https://www.vojtechruzicka.com/gatsby-migration/). 
+Recently I managed to finally get rid of WordPress and migrate my blog to JAM Stack, built with a static site generator called GatsbyJS. I described what JAM Stack is, how I migrated and how great Gatsby is in my previous post - [Migration to GatsbyJS and JAM stack from WordPress](https://www.vojtechruzicka.com/gatsby-migration/).
 
 This second post describes build and deployment process and how much it is better than the original WordPress setup or traditional GitHub Pages.
 
@@ -59,8 +59,6 @@ Content Delivery Network (CDN) solves this issue. CND offers many nodes distribu
 **UPDATE:** As of July 2018, <a href="https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/">all new sites on Netlify are HTTPS by default</a>. You no longer need to explicitly enable it.
 {% endinfo %}
 
-
-
 Having a secure HTTPS connection enabled on a site like a blog, where no sensitive data is transferred, may seem a bit pointless. However, there are several good reasons to use HTTPS anyway. 
 
 First of all, sites using HTTPS get a [ranking boost](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) in search results on Google. That means your site is displayed above the similar sites not using HTTPS, which can bring much traffic. Moreover, Google Chrome is going to show "Not Secure" on all the pages not using HTTPS [soon enough](https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html), which can scare off your visitors. When running over HTTP, you also risk public networks injecting content and advertisements into your pages, which can ruin user experience and lead to loss of users.
@@ -69,11 +67,13 @@ If you want to use [HTTP/2](https://developers.google.com/web/fundamentals/perfo
 
 
 ### Deploy preview per branch
+
 By default, Netlify deploys only changes in one configured branch. However, you can configure it to extend this behavior to multiple branches or even to all of them. In such case, whenever you make changes in such branch, Netlify builds and deploys your pages, but not to your primary domain. Instead, it creates a custom domain just for your branch, where you can check how your site works before going public. You can share it with others to gather feedback on your new version, perform testing and so on. It is handy as you can test your site in a production-like environment before actually publishing it. No more "It works on my machine" excuses.
 
 ![Branch Deploys](./netlify-branch-deploys.png)
 
 ### A/B testing and private betas
+
 [Split Testing](https://www.netlify.com/docs/split-testing) is one of the cool features, which are so simple to set up on Netlify but hard otherwise. You can configure multiple branches in your repository and set that certain percentage of users is redirected to builds of specific branches.
 
 ![Split Testing](./netlify-split-testing.png)
@@ -81,6 +81,7 @@ By default, Netlify deploys only changes in one configured branch. However, you 
 It can be very useful. You can use analytics to perform A/B testing and determine which version of your site is more effective. You can roll new changes just to a fraction of your users, make sure everything is ok and only then publish the new version globally. You can even do [private betas](https://www.netlify.com/blog/2018/03/02/how-to-use-split-tests-to-give-users-access-to-private-features).
 
 ### Integration with a CMS
+
 WordPress does not only serve your content, but it is also a Content Management System, of course. It may sound like a good idea, but it comes at a price, which is mainly a performance hit. Switching to a static site means much better performance, but you no longer have a nice integrated CMS.
 
 Fortunately, [there is plenty of them](https://headlesscms.org/), which you can use for your JAM Stack static site. Moreover, having decoupled creation and serving of content is very powerful. Also, because you are using git for your site, you can easily utilize its power to achieve scenarios such as editorial workflow, where articles are created as drafts and then need to be approved before publishing. So all is version controlled with all its advantages.
@@ -88,11 +89,13 @@ Fortunately, [there is plenty of them](https://headlesscms.org/), which you can 
 You can use any CMS you want, but if you want to stick with Netlify, you can utilize its [Netlify CMS](https://www.netlifycms.org/), which is also available as a [GatsbyJs Plugin](https://www.gatsbyjs.org/docs/netlify-cms/).
 
 ### UPDATE: Netlify Analytics
+
 One of the new features recently introduced is Netlify Analytics. All the data is captured on the server, so there is no performance hit from downloading and executing client-side analytics, no extra requests. It works even with adblockers and disabled Javascript. You can read a full review in the following post:
 
 {% linkedPost "/netlify-analytics/" %}
 
 ### And much more
+
 Features above make Netlify such a great and powerful tool, yet easy to use. Netlify, however, offers much more. These more advanced, features are not needed for my simple use case of a personal blog, but they can be valuable in other cases.
 
 Netlify provides support for effortless form submission integration without the need to provide your own backend. Another cool feature is identity management. Netlify provides you with easy integration of processes such as registration, login or account recovery. You can even enable an authenticated user to call third-party services.
@@ -102,4 +105,5 @@ You can define redirects, which can be useful when migrating from an existing so
 The last but not least is a powerful integration of AWS Lambda functions. Everything is managed through Netlify, so you are shielded from coordinating the deployment of your app and server-side functions. No need to worry about service discovery or API gateway configuration. How cool is that?
 
 ## Conclusion
+
 Migrating to a static site generator such as GatsbyJs is a first (and essential) step. Then, however, you need to figure out how and where to build and deploy your site. Netlify is very easy to use, yet powerful solution offering great performance and user experience. Moreover, for most scenarios (such as my blog) it's completely free.

@@ -68,7 +68,7 @@ In Java 12, there was originally proposal to include [Raw String Literals (JEP-3
 `This uses a single backtick`
 ``This can contain a backtick `, see?``
 ```I can use any number of backticks```
-``` 
+```
 
 One problem with raw string literals is usually indentation. Every character in the multiline raw string literal is interpreted as is - including indentation, which is supposed to be there just for better code readability rather than part of the literal itself. Consider the following example:
 
@@ -144,7 +144,7 @@ java --enable-preview ...
 
 Unlike the declined Raw String Literals, Text Blocks are surrounded by three double quotes `"""`, same as in Groovy or Kotlin. It is more in sync with plain String literals and other JVM languages.
 
-```
+```text
 String myBlock =  """
                   line 1
                   line 2
@@ -221,7 +221,7 @@ The result will be:
 
 Note that in this step only direct whitespace is removed. If you have whitespace in a form of escaped characters such as `\n` or `\t`, it will not be removed.
 
-### Escaping 
+### Escaping
 
 Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
 - New line `\n` is no longer needed as Text  Blocks are multi-line by nature. 

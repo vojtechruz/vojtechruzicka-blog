@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Creating objects
+
 In your applications, most of the time you don't work with [primitives](https://www.vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create objects with object literal like this:
 
 ```javascript
@@ -162,7 +163,9 @@ let jane = Person('Jane', 'Doe'); // TypeError: Class constructor Person cannot 
 What is unfortunate is that with classes and their syntax javascript gives a false impression that it uses class-based inheritance. Developers coming from other languages like Java are especially vulnerable to this. Instead, Javascript still uses prototype-based inheritance and classes are just syntactic sugar on top of good old constructor functions.
 
 ## Object creation alternatives
+
 In Javascript, there are many ways to create a new object. We already covered object literal, constructor functions and a brief mention of classes. There are more ways, which can be used as an alternative to new and constructor functions. For example, Douglas Crockford used to be a zealous advocate of not using new at all and using [*Object.create*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create) instead. However, later on, [he changed his mind](https://youtu.be/PSGEjv3Tqo0?t=6m48s) and stopped using even *Object.create*. Another example may be using factories instead, which have [many advantages](https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e), such as more flexibility or decoupling from a specific object type. And of course, many frameworks offer convenient ways of creating objects. There is no silver bullet so it is good to be aware of different approaches and their tradeoffs.
 
 ## Conclusion
+
 When using constructor functions, make sure you don't forget the *new* operator. Otherwise, weird things will happen. Stick to the naming conventions. The strict mode is your friend and should protect you against accidental omission. And of course, if you can use ES6, classes are a foolproof way to replace constructor function. Don't get fooled though. Even though it does sound like class-based inheritance, it is just syntactic sugar and Javascript has still prototype-based inheritance.

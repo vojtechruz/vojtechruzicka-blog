@@ -51,6 +51,7 @@ springBoot {
 ```
 
 ## Accessing Build Properties
+
 After configuring your `spring-boot-maven-plugin` and building your application, you can access information about your application's build through `BuildProperties` object. Let the Spring inject it for you:
 
 ```java

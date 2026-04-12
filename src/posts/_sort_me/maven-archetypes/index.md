@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Archetypes
+
 When starting a new project, it can be tedious and time-consuming to set up everything from scratch. Fortunately, Maven has built-in functionality which allows you to generate a project from a template. This template is called archetype.
 
 There is a number of archetypes available which allow you to create various types of projects.
@@ -17,6 +18,7 @@ There is a number of archetypes available which allow you to create various type
 You can even create your own archetypes and share them with others.
 
 ## Generating from command line
+
 You can generate your project from an archetype in your command line using the following command via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
 
 ```bash
@@ -60,9 +62,11 @@ However, the amount of archetypes listed is fairly limited. Fortunately, you can
 Now you can continue with creating your Maven project as usual.
 
 ## Creating your own archetype
+
 Not only you can use existing archetypes, but you can also quite easily create your own.
 
 ### From an existing project
+
 The easiest way is to have an existing project and use the Maven Archetype Plugin to generate an archetype from it. It is actually quite easy.
 
 ```bash
@@ -144,9 +148,11 @@ Here you can configure the archetype itself - for example, files which should be
 You can check configuration details in the [official documentation](https://maven.apache.org/guides/mini/guide-creating-archetypes.html).
 
 ## Alternatives
+
 Maven archetypes are a great built-in way of generating project scaffolding. However, there are more alternatives worth exploring, which may be better suited in some cases.
 
 ### Gradle
+
 If you prefer Gradle over Maven, working with archetypes gets a little trickier because Gradle currently [does not support generating projects from archetypes directly](https://github.com/gradle/gradle/issues/3840).
 
 There is an unofficial [Gradle Archetype Plugin](https://github.com/orctom/gradle-archetype-plugin/), which you can use to work with Maven archetypes.
@@ -158,6 +164,7 @@ gradle init
 ```
 
 ### Spring Boot Initializr
+
 When working with Spring Boot, you can still use Maven archetypes, but there is a better, way more powerful tool offered directly by Spring.
 
 It is called [Spring Initializr](https://start.spring.io/). It is a simple wizard, where you can define many options for your application, and then it generates your project based on your choices.
@@ -182,6 +189,7 @@ File → New Project → Spring Initializr
 ``` 
 
 ### Yeoman
+
 [Yeoman](https://yeoman.io/) is an interesting tool, which allows you to generate a project using one of their many [generators](https://yeoman.io/generators/).
 
 What's interesting is that unlike Maven, it is not focused solely on the JVM ecosystem. You can generate a project for pretty much any language or framework and their combinations.
@@ -189,6 +197,7 @@ What's interesting is that unlike Maven, it is not focused solely on the JVM eco
 That means you can have a generator for an application with Java backend, React frontend and Docker integration. Or anything else you can think of as there are many generators available.
 
 ### JHipster
+
 [JHipster](https://www.jhipster.tech/) is actually a Yeoman generator under a hood. It allows you to generate Spring Boot projects with Frontend in Either React, Angular or Vue.
 
 There is much more, though. It optionally supports microservices and cloud deployment. It integrates sass, webpack, bootstrap, various databases, ELK, caching, Docker, WebSockets, and much more.
@@ -196,4 +205,5 @@ There is much more, though. It optionally supports microservices and cloud deplo
 It is definitely worth checking if you want to easily generate your whole application front to back with a standardized opinionated stack.
 
 ## Conclusion
+
 Maven archetypes offer you an easy way to generate basic project scaffolding for various project types without the hassle of a manual approach. Still, there are some alternatives mentioned above which may be better in some cases such as Spring Boot Initializr or JHipster.

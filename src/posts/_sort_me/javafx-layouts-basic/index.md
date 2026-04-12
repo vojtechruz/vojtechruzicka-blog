@@ -12,9 +12,11 @@ draftStatus: draft
 This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
 
 ## Layouts
+
 Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole no matter what is inside. Moreover, each scene can only hold one component, so you need a layout as a root for your scene, so you can fit all the components you need. Of course, one layout is usually not enough. Fortunately, you can nest your layouts -it is possible to put one layout inside another, even multiple levels deep.
 
 In addition to that, layouts also organize and position your components inside. Based on the layout used, child components can be positioned in a different way. For example:
+
 - One after another horizontally
 - One after another vertically
 - One on top of each other as a stack
@@ -23,6 +25,7 @@ In addition to that, layouts also organize and position your components inside. 
 There are many more options. What's important is that a layout automatically updates the position of its children when it is resized. This way, you can have a consistent layout, even if your user resizes the application window.
 
 ## HBox
+
 This is one of the most straightforward layouts available. It just puts all the items inside horizontally in a row, one after another, from left to right.
 
 ![Horizontal Box](hbox.png)
@@ -50,6 +53,7 @@ hbox.getChildren().addAll(btn1, btn2, btn3, btn4);
 ```
 
 ### Spacing
+
 Our elements are now neatly laid out horizontally in a row, one after another:
 
 ![HBox without spacing](hbox-no-spacing.png)
@@ -70,6 +74,7 @@ hbox.setSpacing(10);
 ```
 
 ### Padding
+
 The elements are now spaced properly, however, there is still no padding between elements and the HBox itself. It can be useful to add padding to our HBox:
 
 ![HBox with padding and spacing](hbox-padding-spacing.png)

@@ -170,14 +170,16 @@ const results = await Promise.all([promise1, promise2, promise3]);
 ```
 
 ## Compatibility
+
 The async-await functionality is well supported in all the major modern browsers. Of course, you'll be in trouble with Internet Explorer. It does not support async await at all, but you [can work around this](https://medium.com/@zwacky/add-es7-async-await-support-into-your-non-bleeding-edge-build-process-ad0dded0d002).
 
 ![Async compatibility](async-compatibility.png)
 
 ## Conclusion
+
 Async-await offers an easy way to write asynchronous code as if it was synchronous. It is easier to read and write.
 
-Await can be used before an asynchronous call returning a promise. The execution of the function will wait until the call is resolved and only then continue to the next line. 
+Await can be used before an asynchronous call returning a promise. The execution of the function will wait until the call is resolved and only then continue to the next line.
 
 Since `await` replaces `then().catch()` chains, you cannot use the same error handling like with promises. Instead, you should use the good old `try-catch-finally`.
 

@@ -64,6 +64,7 @@ If all goes well, you should receive response `OK!`. Now, in the collaborators s
 ![Staticman Collaboraters Invite Accepted](staticman-collaborators-3.jpg)
 
 ### Adding a configuration file
+
 Staticman loads its configuration from a yaml file called `staticman.yml`. A sample file can be found [here](https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml). A detailed explanation of all the available configuration options can be found in the [official documentation](https://staticman.net/docs/configuration).
 
 Here is a list of some of the most important configuration properties:

@@ -38,9 +38,11 @@ Each property has a specific value. In our example, we have a property `-fx-font
 To sum it up - we created a rule which says - all the buttons everywhere should have their text of size 15px.
 
 ## Selectors
+
 Now let's take a closer look at how selectors work in JavaFX. It pretty much the same as in regular CSS.
 
 ### Class
+
 Class in CSS represents multiple similar elements. For example, buttons or checkboxes. A selector, which should apply to all of the elements of the same class starts with a dot `.` followed directly by the class name. The convention is to separate individual words with a comma `-`. The following selector applies to all the elements with class `label`.
 
 ```css
@@ -54,11 +56,13 @@ Class in CSS represents multiple similar elements. For example, buttons or check
 The good news is that all the built-in JavaFX components (such as Label or Button) have already a class assigned out of the box. If you want to target all the labels in your app, you don't have to add any custom classes to each of your labels. Each Label has by default `label` class.
 
 It is easy to determine the class name from the component.
+
 - Take the name of the Java class of the component - eg. Label
 - Make the name lower-case
 - If it consists of multiple words, separate them by `-`
 
 Some examples:
+
 - Label → label
 - CheckBox → check-box
 
@@ -241,6 +245,7 @@ scene.getStylesheets().add(stylesheet);
 Note the `toExternalForm()` call. Scene expects stylesheet contents as a string, not the file, so we need to provide the contents of our stylesheet instead.
 
 ## Parent stylesheet
+
 In addition to having a stylesheet for a whole scene, sometimes it may be useful to have styling on layout level. That is - for an individual container such as VBox, HBox, or GridPane. The common parent of all layouts is `Parent` class, which defines methods for handling stylesheets on layout level. These styles apply only for the components in the given layout, not for the whole scene. Layout level styling takes precedence over scene level styling.
 
 ```xml
@@ -258,6 +263,7 @@ box.getStylesheets().add(stylesheet);
 ```
 
 ## Inline styles
+
 So far, we've covered only cases of assigning an external stylesheet to a whole scene or layout. But it is possible to set individual style properties on the component level.
 
 Here you don't have to bother with a selector as all the properties are set to a specific component.

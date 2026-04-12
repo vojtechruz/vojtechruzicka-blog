@@ -142,7 +142,7 @@ public void start(Stage stage) {
 }
 ```
 
-This is where Fx Weaver comes into play. We need to obtain its bean from the application context and then use it to load our FXML. 
+This is where Fx Weaver comes into play. We need to obtain its bean from the application context and then use it to load our FXML.
 
 ## Spring-managed controllers
 
@@ -179,11 +179,13 @@ public class MyController {
 Note the parameter  of `@FxmlView("main-stage.fxml")`. It specifies the name of your `.fxml` file, which should be matched with the controller. It is optional. If you don't specify it, Fx Weaver will use the name of the controller class as the file name with `.fxml` extension. **The FXML file needs to be in the same package as the controller, but in the resources folder**.
 
 ## Making sure everything works
+
 Now let's make sure everything works and integrates nicely. Let's run our `@SpringBootApplication` with its `main` method. You should see a simple window with a label, nothing fancy.
 
 Ok, that means that the application runs, but we didn't really do anything Spring-specific in our controller. No dependency injection or anything. Let's try that now.
 
 ### Adding a Service
+
 To make sure Spring integration works properly, let's create a new Spring-managed service. Later, we'll inject it in our controller and use it there.
 
 ```java
@@ -201,6 +203,7 @@ public class WeatherService {
 Nothing special, it's a service for weather forecasting, which is not very dynamic right now, but it will be enough for our example.
 
 ### Injecting the service
+
 Now let's inject our new service into our existing controller. It's the usual Spring stuff, nothing special here.
 
 ```java {5,7-10}
@@ -263,13 +266,14 @@ public void loadWeatherForecast(ActionEvent actionEvent) {
 }
 ```
 
-In this method, we take the weather forecast from the service and set it to our label, which we defined before. 
+In this method, we take the weather forecast from the service and set it to our label, which we defined before.
 
 If you run the app now, after you click the button, it should load the current weather forecast.
 
 ![Weather app is running!](weather-app.png)
 
 ## Accessing components from view
+
 Same as in plain JavaFX, you can declare components from view to be injected to your controller, so you can interact with them.
 
 ```java

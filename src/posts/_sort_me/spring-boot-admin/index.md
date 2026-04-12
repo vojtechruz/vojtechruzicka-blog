@@ -146,6 +146,7 @@ spring.security.user.password=my-secret-password
 ```
 
 ### Server Security
+
 Same as with the client, we need to add Spring Security dependency:
 
 ```xml
@@ -209,9 +210,11 @@ Now after a restart, you should see a nice login screen protecting your Admin Se
 ![Admin Server login](admin-server-login.png)
 
 ## Cloud Discovery
+
 Spring Boot Admin client is not the only way to register your applications with the server. Admin Server also supports Spring Cloud Service Discovery. You can read more in the [offical documentation](http://codecentric.github.io/spring-boot-admin/current/#spring-cloud-discovery-support) or in the [Spring Cloud Discovery with Spring Boot Admin](https://zoltanaltfatter.com/2018/05/15/spring-cloud-discovery-with-spring-boot-admin/) article.
 
 ## Notifications
+
 Once you have monitoring in place, you want to get notified when something goes wrong. The good news is that Spring Admin provides a wide variety of notification options.  
 
 If you visit the Admin Server page for the first time, it asks you for permission to display push notifications on your computer. Whenever there is an issue, you'll get a popup message.

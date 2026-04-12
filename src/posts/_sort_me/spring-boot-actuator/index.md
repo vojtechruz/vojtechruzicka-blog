@@ -77,9 +77,10 @@ This is the list of all the available Actuator endpoints. As you can see, there 
 {"status":"UP"}
 ```
 
-And now `/info`. It looks like it is returning just an empty json: `{}`. 
+And now `/info`. It looks like it is returning just an empty json: `{}`.
 
 ## More endpoints
+
 Not very impressive so far. Of course, Actuator offers much more than this. Otherwise, it wouldn't be very useful. There are some examples of available endpoints, with the full list available in the [official docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints).
 
 | Endpoint         | Description                            |
@@ -189,9 +190,11 @@ management.endpoint.health.roles=ADMIN
 ```
 
 ## /info
+
 When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do better. Let's examine various ways we can display more info.
 
 ## Build Properties
+
 In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
 
 What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
@@ -236,6 +239,7 @@ Info endpoint now provides build info information:
 ```
 
 ## Git Properties
+
 Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate it, you'll need to add a specific plugin to your build config.
 
 In Maven `pom.xml`:
@@ -270,6 +274,7 @@ After rebuilding and restarting the `/info` endpoint displays some git info.
 ```
 
 ## Environment properties
+
 Finally, Actuator automatically detects all the environmental properties, which start with `info.`. You can try it by adding a new property to your `application.properties`, which starts with `info.`.
 
 ```properties
@@ -290,6 +295,7 @@ What's useful is that it shows properties from various sources, not only `applic
 - And [many more](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
 
 ## /metrics
+
 This endpoint exposes information about various metrics. By calling `/metrics` you get names of all which are available.
 
 ```json
@@ -355,6 +361,7 @@ Metrics were completely reworked in version 2. Version 1 uses its own proprietar
 So in addition to dimensional focus, you now have a nice facade to integrate various popular existing solutions such as Prometheus, Atlas, CloudWatch, Ganglia or New Relic. You can read more details in [Micrometer: Spring Boot 2's new application metrics collector](https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector)
 
 ## Securing Actuator endpoints
+
 Leaving your actuator endpoints exposed for anybody to access is not a good idea. That's why the vast majority of them are not exposed by default. Once you do expose them, you should make sure they are adequately protected.
 
 The good news is that if you use Spring Security, Actuator endpoints are secured by default. If you're not using Spring Security, you can add this dependency for Maven:

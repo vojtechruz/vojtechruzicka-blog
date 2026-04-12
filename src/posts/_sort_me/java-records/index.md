@@ -95,6 +95,7 @@ The rest is just boilerplate, which is predictable and can be automatically gene
 In Java, you often use classes, which just hold data, like our Cat. The implementation is always pretty much the same - a bunch of fields, getters, `equals()`, `hashCode()` and `toString()`. Often it is useful to have them immutable, if possible, which has many benefits. But to write and read such classes is a lot of work as there is a lot of code involved. And it is error-prone. Who knows whether your `hashCode()` and `equals()` code is actually correct?
 
 ## Records
+
 [Java 14](https://openjdk.java.net/projects/jdk/14/) tries to solve this issue by introducing a new type called `Record`, it is described by [JEP 359: Records (Preview)](https://openjdk.java.net/jeps/359)
 
 The same 50 lines long class from the example above could be written as a record like this:
@@ -175,6 +176,7 @@ public record Cat(String name, int numberOfLives, String color) {
 You can also add static methods.
 
 ## Custom constructors
+
 By default, new records contain only a constructor, which requires all the fields of the record as parameters. For example, our cat, which has three fields, needs to be constructed like this:
 
 ```java

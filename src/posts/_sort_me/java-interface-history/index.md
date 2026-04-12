@@ -162,7 +162,7 @@ Java, traditionally, takes backward compatibility very seriously. Default method
 
 ### Conflicts
 
-Let's assume we have one class implementing two interfaces. These interfaces have each a default method with the same name and signature. 
+Let's assume we have one class implementing two interfaces. These interfaces have each a default method with the same name and signature.
 
 ```java
 interface A {
@@ -249,8 +249,8 @@ Here is a chronological list of the changes by Java version:
 
 **Java 1.1**
 
-- Nested classes 
-- Nested interfaces 
+- Nested classes
+- Nested interfaces
 
 **Java 5**
 

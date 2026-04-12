@@ -47,7 +47,7 @@ File → New Project → Spring Initializr
 
 Here you can specify all the options as in the web version but with less hassle.
 
-![IDEA Spring Boot Initializr](idea-spring-boot-initializr.png) 
+![IDEA Spring Boot Initializr](idea-spring-boot-initializr.png)
 
 ## Existing applications
 
@@ -99,7 +99,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 `BootWarApplication.class` is the class in your app annotated with `@SpringBootApplication`.
 
-
 If you prefer, instead of a separate class, you can just make your `@SpringBootApplication` class extend `SpringBootServletInitializer` class and include the same `configure` method as above. 
 
 ### Change packaging
@@ -146,4 +145,4 @@ Simply run your archive as usual. Replace the last param with the real name of y
 
 ```bash
 java -jar demo-1.0.0-SNAPSHOT.war
-``` 
+```

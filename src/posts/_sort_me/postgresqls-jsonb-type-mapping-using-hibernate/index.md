@@ -10,19 +10,22 @@ draftStatus: draft
 
 
 ## JSONB
+
 In PostgreSQL 9.4 new JSONB type was introduced. It allows storing of JSON data and enforces that they are represented in valid JSON format. It allows to query individual items in the JSON object and provides various JSON related [functions](https://www.postgresql.org/docs/9.5/static/functions-json.html).
 
 ## Implementing Custom Mapping
 
 ### Overview
+
 To implement Hibernate mapping for a JSONB type you need to do the following:
 
-1.  Create a custom Hibernate Dialect and define that JSONB DB type will be represented as a Java object.
-2.  Register your custom dialect in Spring Boot's application properties.
-3.  Create a custom class that implements a UserType interface. This will contain all the logic of converting from and to JSON.
-4.  Register your new UserType class using `@TypeDef` annotation. This will link your class to the type name from the DB.
+1. Create a custom Hibernate Dialect and define that JSONB DB type will be represented as a Java object.
+2. Register your custom dialect in Spring Boot's application properties.
+3. Create a custom class that implements a UserType interface. This will contain all the logic of converting from and to JSON.
+4. Register your new UserType class using `@TypeDef` annotation. This will link your class to the type name from the DB.
 
 ### Creating custom Hibernate Dialect
+
 Hibernate's `PostgreSQL94Dialect` does not support JSONB Type. Because of that, you need to create your own custom dialect. There you need to register a new column type for JSONB. The good news is that you can directly extend `PostgreSQL94Dialect` and add just the column registration you need on top of the existing functionality.
 
 ```java
@@ -44,6 +47,7 @@ spring.jpa.properties.hibernate.dialect=com.vojtechruzicka.CustomPostgreSqlDiale
 ```
 
 ### Creating custom UserType for JSONB
+
 To convert from and to JSONB, you need to implement `org.hibernate.usertype.UserType` interface, which provides various methods for custom type mapping.
 
 - **int\[\] sqlTypes()** - This provides mapping to `java.sql.Types`, you should provide `Types.JAVA_OBJECT` here.
@@ -212,9 +216,11 @@ Alternatively, you can create `package-info.java` file and annotate the package 
 ```
 
 ## Source Code
+
 You can check an example of the full [Spring Boot Application with implemented JOSNB mapping](https://github.com/vojtechruz/jsonb-hibernate-example).
 
 ## Disadvantages
+
 While PostgreSQL JSONB type provides flexibility, it should be used just when appropriate. The only check being performed is that stored data is actually in a valid JSON format. You cannot impose any other constraints as with regular columns - such as not null or enforce a particular Data Type (Integer, VarChar, Date). Therefore, it is best suited for providing an additional optional set of data to an entity, where you cannot be sure before which data is would contain. And such data would differ a lot among each of the rows. Such example can be a user-provided set of additional data. You should always carefully consider which data is better suited as regular columns and which should be stored as JSON.
 
 Furthermore, keep in mind that JSONB type is PostgreSQL specific and will not be available in other DBs. This may be a problem when you decide to later migrate to other RDS. Also, you will not be able to use in-memory DB in your integration tests at none of them supported by Spring currently supports the JSONB type. It is worth considering that using JSON types will have direct impact on performance  - for more details see [When to avoid JSONB in PostgreSQL schema](https://blog.heapanalytics.com/when-to-avoid-jsonb-in-a-postgresql-schema/).

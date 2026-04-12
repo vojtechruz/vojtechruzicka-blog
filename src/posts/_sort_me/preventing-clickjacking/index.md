@@ -35,14 +35,14 @@ The oldest protection against clickjacking is using javascript to detect whether
 
 You can find various versions of frame-busting scripts, but many of them can be easily avoided. The usual implementation relies on the following:
 
-1.  Detect that the page is running in a frame.
-2.  If so, assign the page to its parent.
+1. Detect that the page is running in a frame.
+2. If so, assign the page to its parent.
 
 This, of course, has several disadvantages:
 
--   If the client has javascript disabled, it does not work.
--   If you wrap the page in multiple nested frames, it does not work.
--   When declaring a frame, the attacker can disable the javascript inside (by declaring `sandbox` attribute in chrome or `security="restricted"` in IE) and the frame-busting script is not executed at all.
+- If the client has javascript disabled, it does not work.
+- If you wrap the page in multiple nested frames, it does not work.
+- When declaring a frame, the attacker can disable the javascript inside (by declaring `sandbox` attribute in chrome or `security="restricted"` in IE) and the frame-busting script is not executed at all.
 
 The solution is to flip the protection principle. In the header of the HTML page declare a style which hides the entire body:
 
@@ -69,9 +69,9 @@ This is the only version of a frame-busting script recommended by the [OWASP Cli
 
 A website can state that it should not be rendered inside a frame or iframe by providing a special HTTP response header: `X-Frame-Options`. If the client\'s browser receives such header, it will respect it and not render the page. The possible values of the header are following:
 
--   `DENY` - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.
--   `SAMEORIGIN` - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.
--   `ALLOW-FROM` - This allows you to define a trusted location from which your page can be rendered in a frame.
+- `DENY` - Will prohibit the page from loading into a frame. Recommended option unless you actually need to use frames on your page.
+- `SAMEORIGIN` - This will allow the page to be displayed only in the frame of the same origin as the page itself. If you need frames you should stick with this one.
+- `ALLOW-FROM` - This allows you to define a trusted location from which your page can be rendered in a frame.
 
 Please note that `ALLOW-FROM` option is not widely supported in the same way as `DENY` and `SAMEORIGIN` are. In case the client\'s browser is not compatible, it just ignores the header, and you are left with no clickjacking protection whatsoever.
 
@@ -150,7 +150,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 
 ## Online testing
+
 You can easily check whether your site is vulnerable to clickjacking by using one of the [clickjacking online testing tools](https://clickjacker.io/). Since some of the frameworks and providers add security headers preventing clickjacking automatically, it is possible that your site is already safe.
 
 ## Conclusion
+
 You should make sure you apply clickjacking protection to your site. If you do not use frames, the safest measure is to provide X-Frame-Options `DENY` HTTP header. If you use frames, but just from your origin, you should use X-Frame-Options `SAMEORIGIN`. If you need to allow frames from a trusted host, the situation is a bit trickier. Due to browser compatibility issues, you need to provide both X-Frame-Options `ALLOW-FROM` and Content Security Policy frame-ancestors directive to make sure you cover as many client browsers as possible. Of course, legacy browsers do not support either of the HTTP headers, and you will need to deploy Framebuster javascript to reduce the risk.

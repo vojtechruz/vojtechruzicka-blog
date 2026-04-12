@@ -391,6 +391,7 @@ You can see Spring also inferred data type of the fields without us specifying i
 Documenting the request payload is pretty much same. Just use `requestFields()` method and `request-fields.adoc` fragment.
 
 ## Documenting request parameters
+
 Request parameters can be passed in two ways. First, you can add them after question mark at the end of an URL:
 
 ```java

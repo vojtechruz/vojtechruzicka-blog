@@ -11,6 +11,7 @@ draftStatus: draft
 
 
 ## instanceof
+
 To better understand this new feature, let's look into how `instanceof` operator works. If you are already familiar with it, feel free to skip to the [next section](#pattern-matching-for-instanceof).
 
 In short, it tests whether the given object is of the given type. Based on this, it returns either `true` or `false`.
@@ -58,6 +59,7 @@ The code does its job, but it is unnecessarily verbose. We usually want to do al
 Fortunately, Java 14 introduced a new feature called *Pattern matching for instanceof* described in [JEP 305](https://openjdk.java.net/jeps/305). It is currently a preview feature, so it  may change in a future release.
 
 ### The better way
+
 In Java 14, the example above can be simplified.
 
 ```java

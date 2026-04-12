@@ -65,12 +65,12 @@ The annotation used to have `replacement` parameter, which was supposed to provi
 
 Another feature, which was not included is the reason for deprecation. Originally, this was supposed to be an enum with the following options:
 
--   UNSPECIFIED
--   DANGEROUS
--   OBSOLETE
--   SUPERSEDED
--   UNIMPLEMENTED
--   EXPERIMENTAL
+- UNSPECIFIED
+- DANGEROUS
+- OBSOLETE
+- SUPERSEDED
+- UNIMPLEMENTED
+- EXPERIMENTAL
 
 This information is not extensible, is subjective and there is still no plain text explanation included. The specific details would still be included in JavaDoc, so it is now preferred to use JavaDoc for this purpose instead. You can read more details about criticism of this feature in [JEP 277 "Enhanced Deprecation" is Nice. But Here's a Much Better Alternative.](https://blog.jooq.org/2015/12/22/jep-277-enhanced-deprecation-is-nice-but-heres-a-much-better-alternative/)
 

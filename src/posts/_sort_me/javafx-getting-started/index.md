@@ -53,6 +53,7 @@ mvn archetype:generate -DarchetypeGroupId=org.openjfx -DarchetypeArtifactId=java
 ```
 
 ### Manual Maven setup
+
 If you want more control, you can, of course, set up your Maven project manually instead of generating it from an archetype.
 
 To get started, you need two components. The first one is [Maven Plugin for Java FX](https://github.com/openjfx/javafx-maven-plugin).
@@ -96,7 +97,7 @@ Alternatively, you can generate your project using Maven from an archetype and t
 
 ```bash
 gradle init
-``` 
+```
 
 ### Manual Gradle setup
 
@@ -119,6 +120,7 @@ javafx {
 ```
 
 ## JavaFX SDK
+
 There is yet another option to use JavaFX locally. You can download [JavaFX SDK](https://gluonhq.com/products/javafx/). It contains all the required libraries, which you can then link to your project in your IDE or add to classpath.
 
 This may be useful when you are not familiar with Gradle or Maven and just for local development. When distributing your app, it gets inconvenient as you need to make sure you include all the required dependencies.
@@ -130,6 +132,7 @@ File → New → Project → JavaFX
 ```
 
 ## Further Reading
+
 - [Hello World JavaFX application source code - Gradle](https://github.com/openjfx/samples/tree/master/HelloFX/Gradle)
 - [Hello World JavaFX application source code - Maven](https://github.com/openjfx/samples/tree/master/HelloFX/Maven)
 - [JavaFX 13 and IntelliJ](https://openjfx.io/openjfx-docs/#IDE-Intellij)
@@ -137,4 +140,5 @@ File → New → Project → JavaFX
 - [JavaFX 13 and Eclipse](https://openjfx.io/openjfx-docs/#IDE-Eclipse)
 
 ## What's next
+
 This article is the first one in the JavaFX Series. In the next one, we'll cover [how to create and run your very first JavaFX application](/javafx-hello-world/).

@@ -37,6 +37,7 @@ Even though the items are technically independent, some code examples are furthe
 Since each item needs to fit to exactly two pages, the writing style is concise and to the point, while still being easy to understand.
 
 ## Audience
+
 This book can be very useful to developers with various skill levels for different reasons.
 
 If you are just starting with programming and Java and you're still struggling with basic concepts and syntax, this book may not be for you yet. In fact, at the beginning of the book there is a FizzBuzz test, which is supposed to determine whether you are ready for this book or not. If you are still in very early stages of learning Java and programming, you may want to wait a bit with this book until you grasp basic concepts. Only after learning some basics, you can understand how to write code which not only works, but is also clean and elegant.
@@ -50,6 +51,7 @@ As a senior developer, you may not learn much yourself, but the book is a great 
 The book works with Java 8, so it does not really matter if you're not familiar with all the newer versions of Java.
 
 ## Contents
+
 The book consists of 70 items divided into 9 chapters.
 
 The first two chapters cover basic Java constructs such as iteration, conditions, enums, constants and more. Generally how to write cleaner code, which is less error-prone and easier to understand.
@@ -69,11 +71,13 @@ Lambda expressions and streams are the topics of the eight chapter. It is a nice
 The last chapter breaks the usual format and offers a taste of other development areas, which you will encounter in the real world. There is static code analysis, continuous integration, team collaboration, logging, concurrency and more. If you already have some work experience, it may not be anything new. However, it offers a nice intro to the real world development if you are still preparing for your first job.
 
 ## Conclusion
+
 I really enjoyed this book and I wish I had a book like this when I was starting with Java. It can be a great resource early in your career. It is easy to read, short, easy to understand and can be a good book to read before more heavy-weight titles such as [Effective Java](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997/) or [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882), which can be intimidating and harder to grasp when you are just starting.
 
 In your early days, it can also be useful as an introduction (although very brief) to some related real-world topics such as testing, continuous integration or static code analysis. Overall I do recommend this book especially for junior developers, who will benefit from it the most.
 
 ## Free Samples
+
 To help you decide whether this book is worth getting and reading, there are several free content examples available for free for you to check:
 
 - [Welcome!](http://media.pragprog.com/titles/javacomp/preface.pdf)
@@ -82,6 +86,7 @@ To help you decide whether this book is worth getting and reading, there are sev
 - [Split Method with Boolean Parameters](http://media.pragprog.com/titles/javacomp/split.pdf)
 
 ## Useful Links
+
 - [The Offical page](https://java.by-comparison.com/)
 - [Buy from Pragmatic Bookshelf](https://pragprog.com/book/javacomp/java-by-comparison)
 - [Buy from Amazon](https://www.amazon.com/Java-Comparison-Become-Craftsman-Examples/dp/1680502875/)
