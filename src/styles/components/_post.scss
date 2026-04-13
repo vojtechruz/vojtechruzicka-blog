@@ -211,3 +211,9 @@ article {
 .post-header {
   margin-block-end: var(--gap-small);
 }
+
+hr {
+  margin-block: var(--gap-large);
+  color: transparent;
+  border: 1px solid var(--color-border);
+}

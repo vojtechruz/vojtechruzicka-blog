@@ -54,7 +54,7 @@ Let's try to turn the `flexbox-container` to Flexbox. All we have to do is to ad
 Now the layout will be different. All the items are now displayed horizontally, from left to right. I've also added some
 background colors and borders, so you can better see the layout.
 
-{% codepen "ExVPBzM", "CodePen example - Display Flex" %}
+{% codepen "ExVPBzM", "Display Flex" %}
 
 The `display: flex;` property is always applied on the container level, not the item level. It defines that the
 container should lay out its children using Flexbox.
@@ -122,7 +122,7 @@ the other direction, you can use `row-reverse`. For vertical, you can use either
 }
 ```
 
-{% codepen "BaoKONW", "CodePen example - Flex Direction" %}
+{% codepen "BaoKONW", "Flex Direction" %}
 
 {% warning %} If you use _row-reverse_ or _column-reverse_, be aware that this has some usability and accessibility
 implications. This only changes the visual order of the elements, not their logical order. Screen readers will still
@@ -167,7 +167,7 @@ It allows you to **align items on the main flex axis**, that is:
 - horizontally when the `flex-direction` is `row` or `row-reverse`
 - vertically when the `flex-direction` is `column` or `column-reverse`
 
-{% codepen "YzyqOdZ", "CodePen example - Justify Content" %}
+{% codepen "YzyqOdZ", "Justify Content" %}
 
 Because you can have either normal or reversed flex order, you can't specify alignment as left, right, top, or bottom.
 Instead, you work with `flex-start` and `flex-end`, which depends on whether you are in normal or reverse mode.
@@ -183,7 +183,7 @@ You can use these values:
 - `justify-content: space-around;`
 - `justify-content: space-evenly;`
 
-{% codepen "wvKGYvx", "CodePen example - Distributing extra space" %}
+{% codepen "wvKGYvx", "Distributing extra space" %}
 
 In all cases, the items are distributed, so the space between neighboring items is always the same. **The three values
 differ only in a way how the spacing between first and last item and the edge of the container is calculated**.
@@ -215,7 +215,7 @@ you can choose from:
   of items)
 - `baseline`: items are aligned by their baselines
 
-{% codepen "PoPzgEb", "CodePen example - Align Items" %}
+{% codepen "PoPzgEb", "Align Items" %}
 
 This works as expected and is self-explanatory, considering what we've already learned. The `baseline` setting is a bit
 trickier, though. It aligns items by their [baselines](<https://en.wikipedia.org/wiki/Baseline_(typography)>). The
@@ -225,7 +225,7 @@ following image from Wikipedia shows this nicely.
 
 Let's look at a specific example:
 
-{% codepen "GRpqLeW", "CodePen example - Align items: baseline" %}
+{% codepen "GRpqLeW", "Align items: baseline" %}
 
 As you can see, the baseline, in this case, is usually the bottom of the first line of text in each item. The bottom
 here means where most of the regular letters end. There are some letters such as `p` or `j`. that go under the baseline.
@@ -238,7 +238,7 @@ Note how multiline items and items with no content are handled. You can check mo
 So far, our flex container was big enough to fit all of its content properly. But what happens if there are too many
 items, which do not fit the size of its parent container?
 
-{% codepen "ZEbQdev", "CodePen example - Overflow when container is too small" %}
+{% codepen "ZEbQdev", "Overflow when container is too small" %}
 
 By default, the container tries to shrink the items if possible, but eventually, the items may overflow out of the
 container. Note that the container tries to shrink items when not enough space is available even though we explicitly
@@ -255,7 +255,7 @@ possible values:
 
 The difference between `wrap` and `wrap-reverse` may be confusing, let's better look at an example.
 
-{% codepen "BaojgPQ", "CodePen example - Wrapping" %}
+{% codepen "BaojgPQ", "Wrapping" %}
 
 ### Aligning wrapped content
 
@@ -287,7 +287,7 @@ The good news is that the possible values of `align-content` are very similar as
 
 The alignment just works on the other axis, but the behavior is the same.
 
-{% codepen "OJyNKXW", "CodePen example - Alignment of wrapped content" %}
+{% codepen "OJyNKXW", "Alignment of wrapped content" %}
 
 ## Item level properties
 
@@ -312,14 +312,14 @@ the following values:
 - `stretch`
 - `baseline`
 
-{% codepen "vYNKqMw", "CodePen example - Aligning individual items" %}
+{% codepen "vYNKqMw", "Aligning individual items" %}
 
 Of course, this can be combined with defining alignment on the container level using `align-items`. You can define
 general alignment for the items on the container level, and then override it for individual items. For example, you can
 define items to be aligned for the whole container using `align-items: flex-end;` and then change the alignment for
 individual items using `align-self`.
 
-{% codepen "yLYJmeP", "CodePen example - Combination of container level and individual item alignment" %}
+{% codepen "yLYJmeP", "Combination of container level and individual item alignment" %}
 
 ### Ordering items
 
@@ -330,7 +330,7 @@ individual items.
 
 If you want to put items before those, which don't have order specified, you can use negative values.
 
-{% codepen "ZEbGeRO", "CodePen example - Custom item order" %}
+{% codepen "ZEbGeRO", "Custom item order" %}
 
 Multiple items can have the same `order` value. Such items belong to the same _ordinal group_. Items within the same
 group are then ordered in the same order in which they are declared in HTML.
@@ -338,7 +338,7 @@ group are then ordered in the same order in which they are declared in HTML.
 For example, if you have three items with order 1, they will be placed after all the items with the lower order. All
 these three items with the same order value will then be placed in the same order as in HTML.
 
-{% codepen "BaoNWGg", "CodePen example - Multiple items with the same order" %}
+{% codepen "BaoNWGg", "Multiple items with the same order" %}
 
 #### Visual, not logical order
 
@@ -373,7 +373,7 @@ Let's say we assign `flex-grow: 1;` to all items. This means that the extra spac
 each item in a way that each item gets the same amount of extra space. This is because their `flex-grow` values are the
 same.
 
-{% codepen "bGVwJLg", "CodePen example - Flex Grow" %}
+{% codepen "bGVwJLg", "Flex Grow" %}
 
 So what does the value actually do?
 
@@ -398,7 +398,7 @@ is less than 1, items will still grow, but will not fill the entire container.**
 For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will
 grow, but only occupy 75% of the available space, the rest will be empty.
 
-{% codepen "yLYarGj", "CodePen example - Flex grow with values lesser than 1" %}
+{% codepen "yLYarGj", "Flex grow with values lesser than 1" %}
 
 In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60%
 of extra space will be occupied while the items with `0.1` will get 1/6 of space each, and the item with `0.4` will get
@@ -415,7 +415,7 @@ Again, it is a **non-negative** numeric value, where 0 means no shrinking at all
 how much each item will shrink compared to others. The difference is that the default value is `1`. This means that the
 items will shrink by default (but they don't grow by default).
 
-{% codepen "dyYpLxo", "CodePen example - Flex shrink" %}
+{% codepen "dyYpLxo", "Flex shrink" %}
 
 We already encountered this with wrapping - items shrink only to certain degree, so they can still fit their content.
 After that point, these items will overflow unless you specify wrapping.
@@ -427,7 +427,7 @@ if the `flex-shrink` value is the same, bigger items will shrink more than small
 In other words, larger items (which are able to shrink more) will shrink faster than smaller items (which have limited
 space left for shrinking).
 
-{% codepen "WNQGBrz", "CodePen example - Flex shrink - shrinking takes into consideration the original size" %}
+{% codepen "WNQGBrz", "Flex shrink - shrinking takes into consideration the original size" %}
 
 #### Flex-basis
 

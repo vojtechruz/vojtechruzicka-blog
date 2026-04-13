@@ -133,7 +133,7 @@ Text blocks will be only available as a preview feature in Java 13. What does it
 > A preview language or VM feature is a new feature of the Java SE Platform that is fully specified, fully implemented,
 > and yet impermanent. It is available in a JDK feature release to provoke developer feedback based on real-world use;
 > this may lead to it becoming permanent in a future Java SE Platform.
-
+>
 > Before the next JDK feature release, the feature's "real world" strengths and weaknesses will be evaluated to decide
 > if the feature has a long-term role in the Java SE Platform and, if so, whether it needs refinement. Consequently, the
 > feature may be granted final and permanent status (with or without refinements), or undergo a further preview period

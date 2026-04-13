@@ -86,10 +86,10 @@ The time can vary as it depends on the size of your site and the changes that yo
 The official docs also
 [provide examples of time reduction](https://github.com/jlengstorf/netlify-plugin-gatsby-cache#how-much-of-a-difference-does-this-plugin-make-in-build-times):
 
-| Site Size                                                                          | No Cache | Cache   | Savings |
-| ---------------------------------------------------------------------------------- | -------- | ------- | ------- |
-| <ul><li>231 GraphQL queries</li><li>1,871 images</li><li>224 pages</li></ul>       | 293207ms | 72835ms | 75%     |
-| <ul><li>5 GraphQL queries</li><li> No image processing</li><li> 32 pages</li></ul> | 22072ms  | 15543ms | 30%     |
+|         GraphQL | Images | Pages |  No Cache |    Cache | Savings |
+|----------------:|-------:|------:|----------:|---------:|--------:|
+|     231 queries |  1,871 |   224 | 293207 ms | 72835 ms |     75% |
+|       5 queries |   None |    32 |  22072 ms | 15543 ms |     30% |
 
 ## More plugins
 

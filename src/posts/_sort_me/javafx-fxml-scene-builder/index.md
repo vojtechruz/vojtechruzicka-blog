@@ -400,7 +400,7 @@ For each such file, you can easily switch between editing your FXML file directl
 
 You can configure the location of SceneBuilder executable in:
 
-```
+```text
 Settings → Languages & Frameworks → JavaFX → Path to SceneBuilder
 ```
 

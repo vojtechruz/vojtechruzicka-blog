@@ -286,18 +286,18 @@ public interface MyInterface {
 
 Here is a chronological list of the changes by Java version:
 
-**Java 1.1**
+### Java 1.1
 
 - Nested classes
 - Nested interfaces
 
-**Java 5**
+### Java 5
 
 - Generics
 - Nested enums
 - Nested annotations
 
-**Java 8**
+### Java 8
 
 - Default methods
 - Static methods
