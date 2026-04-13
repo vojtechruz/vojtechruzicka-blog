@@ -11,7 +11,7 @@ draftStatus: draft
 
 
 {% info %}
-<b>UPDATE:</b> Build plugins are no longer in beta and are <a href="https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/">officially available</a>. Gatsby plugin described in this article is now used by default and does not need to be explicitly enabled.
+**UPDATE:** Build plugins are no longer in beta and are [officially available](https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/). Gatsby plugin described in this article is now used by default and does not need to be explicitly enabled.
 {% endinfo %}
 
 ## Netlify build plugins

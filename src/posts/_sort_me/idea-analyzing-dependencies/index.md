@@ -139,7 +139,7 @@ The first option is to show only direct neighbors. That is, only direct dependen
 
 {% video "/videos/idea-analyzing-dependencies/maven-diagram-neighbors" %}
 
-Note that this works not only for single items, but you can select multiple items while holding <kbd>Shift</kbd>. 
+Note that this works not only for single items, but you can select multiple items while holding <kbd>Shift</kbd>.
 
 Another way to filter is to display the dependency chain leading from the root to the selected item(s).
 

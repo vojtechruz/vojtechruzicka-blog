@@ -1,42 +1,6 @@
-import markdownIt from "markdown-it";
-import markdownItAnchor from "markdown-it-anchor";
-import shikiMarkdownPlugin from "@shikijs/markdown-it";
-import { transformerMetaHighlight, transformerNotationDiff } from "@shikijs/transformers";
-import { dataLanguageTransformer } from "../markdown-transform/data-language-transformer.js";
-import { codeBlockTransformer } from "../markdown-transform/code-block-transformer.js";
+import { getMarkdownParser } from "../utils/markdown-parser.js";
 
 export default async function registerMarkdownPlugin(eleventyConfig) {
-  // Configure Shiki markdown-it plugin
-  const shikiPlugin = await shikiMarkdownPlugin({
-    themes: {
-      light: "github-dark-dimmed",
-      dark: "github-dark-dimmed",
-    },
-    cssVariablePrefix: "--shiki-",
-    inlineStyle: false,
-    defaultBackground: false,
-    defaultColor: false,
-    transformers: [
-      dataLanguageTransformer,
-      transformerMetaHighlight(),
-      transformerNotationDiff(),
-      codeBlockTransformer,
-    ],
-  });
-
-  // Markdown library with heading anchors
-  const md = markdownIt({
-    html: true,
-  })
-    .use(markdownItAnchor, {
-      // Auto-generate permalinks for headings
-      permalink: markdownItAnchor.permalink.ariaHidden({
-        placement: "before",
-        class: "header-anchor",
-        symbol: "",
-      }),
-    })
-    .use(shikiPlugin);
-
+  const md = await getMarkdownParser();
   eleventyConfig.setLibrary("md", md);
 }

@@ -7,6 +7,14 @@
   padding: var(--gap-medium);
   margin: var(--gap-medium) 0;
   border-radius: var(--radius-sm);
+
+  p {
+    margin: 0;
+  }
+
+  p, ul:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .msg-warn {

@@ -143,7 +143,7 @@ h2 {
 You can also insert page breaks after an element using `break-after`.
 
 {% info %}
-There are older properties <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before">page-break-before</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after">page-break-after</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside">page-break-inside</a>, which are now deprecated in favor of <em>break-before</em>, <em>break-after</em> and <em>break-inside</em>.
+There are older properties [page-break-before](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-before), [page-break-after](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-after) and [page-break-inside](https://developer.mozilla.org/en-US/docs/Web/CSS/page-break-inside), which are now deprecated in favor of *break-before*, *break-after* and *break-inside*.
 {% endinfo %}
 
 ### Paragraph splitting

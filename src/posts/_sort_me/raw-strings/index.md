@@ -9,7 +9,7 @@ draftStatus: draft
 ---
 
 {% warning %}
-Raw string literals <a href="https://www.infoq.com/news/2018/12/jdk-12-new-features">didn't make it to the Java 12</a>.
+Raw string literals [didn't make it to the Java 12](https://www.infoq.com/news/2018/12/jdk-12-new-features).
 The similar functionality is available in Java 13 instead as a preview feature - Text Blocks. For more details see the post below.
 {% endwarning %}
 

@@ -65,7 +65,8 @@ ${sourcesHtml}
     Your browser does not support the video tag. You can <a href="${fallbackLink}">download the video</a>.
   </video>
   ${hasCaption ? `<figcaption id="${captionId}" class="video-caption">${escapeHtml(title)}</figcaption>` : ""}
-</figure>`;
+</figure>
+`;
 }
 
 function getVideoDimensions(filePath) {

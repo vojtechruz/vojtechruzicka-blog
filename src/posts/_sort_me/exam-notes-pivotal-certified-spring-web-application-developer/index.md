@@ -13,7 +13,7 @@ draftStatus: draft
 ## Certification voucher
 
 {% info %}
-<b>UPDATE:</b> Certification can now be purchased separately for $200, <a href="https://spring.io/blog/2017/05/10/pivotal-announces-spring-curriculum-certification-changes">you no longer need</a> to purchase the four days training to receive the voucher. However, if you do so, you will still receive the free voucher. The voucher expiration period is no longer specifically stated in the study guide, but you should receive expiration date with your order.
+**UPDATE:** Certification can now be purchased separately for $200, [you no longer need](https://spring.io/blog/2017/05/10/pivotal-announces-spring-curriculum-certification-changes) to purchase the four days training to receive the voucher. However, if you do so, you will still receive the free voucher. The voucher expiration period is no longer specifically stated in the study guide, but you should receive expiration date with your order.
 {% endinfo %}
 
 

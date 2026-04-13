@@ -59,21 +59,19 @@ When we defined `display: flex;` we saw that it affected how the children are di
 
 {% info %}
 
-<strong>Block elements:</strong>
-<ul>
-  <li>Span the whole width available</li>
-  <li>Are positioned one under another</li>
-  <li>Can have properties such as width and height</li>
-  <li>Examples: div, h1, ul</li>
-</ul>
-<strong>Inline elements:</strong>
-<ul>
-  <li>Are positioned on a line next to each other, from left to right</li>
-  <li>Take only as much space as required by their contents</li>
-  <li>Ignore properties such as width and height</li>
-  <li>Inline-block elements behave as inline elements, but you can also specify properties such as width and height</li>
-  <li>Inline elements example: span, b, i, label </li>
-</ul>
+**Block elements:**
+- Span the whole width available
+- Are positioned one under another
+- Can have properties such as width and height
+- Examples: div, h1, ul
+
+**Inline elements:**
+- Are positioned on a line next to each other, from left to right
+- Take only as much space as required by their contents
+- Ignore properties such as width and height
+- Inline-block elements behave as inline elements, but you can also specify properties such as width and height
+- Inline elements example: span, b, i, label
+
 
 {% endinfo %}
 
@@ -111,9 +109,9 @@ When we did not specify `flex-direction`, it used the default value, which is `r
 {% codepen "https://codepen.io/vojtechruz/embed/preview/BaoKONW/", "CodePen example - Flex Direction" %}
 
 {% warning %}
-If you use <i>row-reverse</i> or <i>column-reverse</i>, be aware that this has some usability and accessibility implications.
+If you use *row-reverse* or *column-reverse*, be aware that this has some usability and accessibility implications.
 This only changes the visual order of the elements, not their logical order. Screen readers will still process the items in the order they are declared in your HTML.
-The same applies for navigation using <i>Tab</i> key.
+The same applies for navigation using *Tab* key.
 {% endwarning %}
 
 We said that `row` means horizontally, left to right. It is not entirely true, though. It applies in languages, which have [writing order](https://www.w3.org/TR/css-writing-modes-4/#writing-mode) from left to right. In languages, which use the opposite order (right to left), the Flexbox `row` setting would follow that direction. This means that in languages, such as Arabic, `flex-direction: row;` would actually order items from right to left instead of left to right.
@@ -237,7 +235,7 @@ Do not confuse this with `align-items` and `justify-content`.
   - used to align multiple wrapped lines; for regular cross axis aligning, we can use `align-items`
 
 {% info %}
-This property has no effect unless you have either <em>flex-wrap: wrap;</em> or <em>flex-wrap: wrap-reverse;</em>.
+This property has no effect unless you have either *flex-wrap: wrap;* or *flex-wrap: wrap-reverse;*.
 {% endinfo %}
 
 The good news is that the possible values of `align-content` are very similar as with `justify-content`:
@@ -339,7 +337,7 @@ For example, if we have three items, each with `flex-grow: 0.25;` their sum is `
 
 In the example above, we have two items with value `0.1` and one with `0.4`. The sum is `0.6`. That means that only 60% of extra space will be occupied while the items with `0.1` will get 1/6 of space each, and the item with `0.4` will get `4/6` of distributed space.
 
-In other words, 20% of extra space will get two items with `0.1` (each 10%), 40% will be added to item with `0.4,` and the rest of 40% will stay unoccupied.
+In other words, 20% of extra space will get two items with `0.1` (each 10%), 40% will be added to item with `0.4`, and the rest of 40% will stay unoccupied.
 
 #### Flex-shrink
 

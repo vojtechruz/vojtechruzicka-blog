@@ -58,7 +58,7 @@ Content Delivery Network (CDN) solves this issue. CND offers many nodes distribu
 ### One click HTTPS
 
 {% info %}
-**UPDATE:** As of July 2018, <a href="https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/">all new sites on Netlify are HTTPS by default</a>. You no longer need to explicitly enable it.
+**UPDATE:** As of July 2018, [all new sites on Netlify are HTTPS by default](https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/). You no longer need to explicitly enable it.
 {% endinfo %}
 
 Having a secure HTTPS connection enabled on a site like a blog, where no sensitive data is transferred, may seem a bit pointless. However, there are several good reasons to use HTTPS anyway.

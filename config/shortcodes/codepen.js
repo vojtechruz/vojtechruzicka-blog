@@ -50,7 +50,8 @@ export default function codepen(
     title="${escapeHtml(title)}"
   ></iframe>
   ${hasCaption ? `<figcaption id="${captionId}" class="codepen-caption">${escapeHtml(title)}</figcaption>` : ""}
-</figure>`;
+</figure>
+`;
 }
 
 function toEmbedUrl(input) {

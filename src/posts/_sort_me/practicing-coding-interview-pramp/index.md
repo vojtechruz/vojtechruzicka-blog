@@ -9,7 +9,7 @@ draftStatus: draft
 ---
 
 {% info %}
-<b>UPDATE:</b> In November 2021, <a href="https://blog.tryexponent.com/pramp-joining-exponent/">Pramp was acquired</a> by <a href="https://www.tryexponent.com/">Exponent</a>. According to the statement Pramp should still be available for free, but both platforms should be more integrated in the future.
+**UPDATE:** In November 2021, [Pramp was acquired](https://blog.tryexponent.com/pramp-joining-exponent/) by [Exponent](https://www.tryexponent.com/). According to the statement Pramp should still be available for free, but both platforms should be more integrated in the future.
 {% endinfo %}
 
 ## Coding interviews

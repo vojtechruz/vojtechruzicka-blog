@@ -39,7 +39,8 @@ export default function youtube(input, title = "YouTube video", start = 0) {
   loading="lazy"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
-></iframe>`;
+></iframe>
+`;
 }
 
 function extractYouTubeId(input) {

@@ -1,7 +1,3 @@
-export default (text) => {
-  return `
-<div class="msg msg-info">
-  ${text}
-</div>
-`;
-};
+import createMarkdownShortcode from "./markdown-paired-shortcode.js";
+
+export default createMarkdownShortcode("msg-info");

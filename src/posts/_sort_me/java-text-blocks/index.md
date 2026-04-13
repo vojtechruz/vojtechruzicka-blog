@@ -9,7 +9,7 @@ draftStatus: draft
 ---
 
 {% info %}
-<strong>UPDATE:</strong> After several preview versions, this functionality is finally scheduled to be released in Java 15 - see <a href="https://openjdk.java.net/jeps/378">JEP 378: Text Blocks</a>.
+**UPDATE:** After several preview versions, this functionality is finally scheduled to be released in Java 15 - see [JEP 378: Text Blocks](https://openjdk.java.net/jeps/378).
 {% endinfo %}
 
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.

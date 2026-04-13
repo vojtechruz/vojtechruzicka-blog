@@ -74,7 +74,8 @@ export default function linkedPost(permalink, maybeCollections) {
       ${escapeHtml(excerpt)}
     </p>
   </div>
-</div>`;
+</div>
+`;
 }
 
 

@@ -10,7 +10,7 @@ draftStatus: draft
 ---
 
 {% info %}
-There is <a href="https://github.com/vojtechruz/javafx-weaver-example">an example repository</a> for this blog post, where you can check the final project.
+There is [an example repository](https://github.com/vojtechruz/javafx-weaver-example) for this blog post, where you can check the final project.
 {% endinfo %}
 
 ## JavaFX & Spring

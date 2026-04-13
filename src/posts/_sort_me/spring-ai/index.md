@@ -88,7 +88,7 @@ repositories {
 ### Dependency Management
 
 {% info %}
-At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the <a href="https://docs.spring.io/spring-ai/docs/">Spring AI site</a> and use it instead.
+At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the [Spring AI site](https://docs.spring.io/spring-ai/docs/) and use it instead.
 {% endinfo %}
 
 While you can add your dependencies with a version directly specified, it is usually not the preferred way in Spring Boot applications. Typically, you don't specify any versions directly except for the parent pom, which defines all the versions of individual dependencies. When you add a new dependency, you don't need to worry about specifying the version as it is then inherited from the parent pom. This has the advantage that you don't need to worry about determining the exact version of your components, and your dependencies will work well together.
