@@ -1,6 +1,6 @@
 ---
 title: 'Angular Tutorial 2: Building Blocks'
-date:  "2020-07-21"
+date: '2020-07-21'
 tags: ['Angular']
 path: '/angular/02-building-blocks/'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
@@ -9,8 +9,8 @@ series-order: 2
 draftStatus: draft
 ---
 
-This is the second article in the Angular Tutorial series. You can check the first one - [Angular Tutorial 1: Getting
-Started](https://www.vojtechruzicka.com/angular/01-getting-started/)
+This is the second article in the Angular Tutorial series. You can check the first one -
+[Angular Tutorial 1: Getting Started](https://www.vojtechruzicka.com/angular/01-getting-started/)
 
 ## Building blocks
 
@@ -26,11 +26,11 @@ inputs, which it accepts and output events that can occur inside.
 Each component consists of:
 
 - HTML template (`foo.component.html`) - this is HTML structure of each component. It can contain other components or
-regular HTML tags.
+  regular HTML tags.
 - Logic written in Typescript (`foo.component.ts`) - This is the logic of the component, inputs, output events, and its
-state.
+  state.
 - Styling (`foo.component.scss`) - These are styles that define how the component looks. By default, these apply only to
-the given component, so you don't have to worry about CSS conflicts.
+  the given component, so you don't have to worry about CSS conflicts.
 - Test file (`foo.component.spec.ts`) - A set of unit tests to test the component in isolation.
 
 For additional functionality, components can use other building blocks inside (which are described below), such as
@@ -107,16 +107,16 @@ In the previous post, we already covered that `index.html` file is the file serv
 ```html
 <!doctype html>
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>HelloAngular</title>
-      <base href="/">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-      <app-root></app-root>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>HelloAngular</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>
 ```
 
@@ -129,7 +129,7 @@ Let's look at the `app.component.ts`:
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'My first Angular App';
@@ -139,7 +139,7 @@ export class AppComponent {
 The important part here is `selector: 'app-root'`, which matches the tag name we used:
 
 | index.html              | app.component.ts       |
-|-------------------------|------------------------|
+| ----------------------- | ---------------------- |
 | `<app-root></app-root>` | `selector: 'app-root'` |
 
 That's how Angular knows which component to display instead of the tag `<app-root>`.
@@ -161,29 +161,27 @@ It turns out that Angular CLI, as a part of the build compiles all your typescri
 your libraries. Then it includes the resulting scripts in your `index.html` file. You can easily check that by
 inspecting the source code of your app in the browser using `Right click → View page source`.
 
-{% info %}
-Be careful that just inspecting the page contents in Dev Tools won't work as it does not show the original source code
-but rather the actual contents of the DOM, which is manipulated by Angular at runtime
-{% endinfo %}
+{% info %} Be careful that just inspecting the page contents in Dev Tools won't work as it does not show the original
+source code but rather the actual contents of the DOM, which is manipulated by Angular at runtime {% endinfo %}
 
 ```html {12-16}
 <!doctype html>
 <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>HelloAngular</title>
-      <base href="/">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-        <app-root></app-root>
-        <script src="runtime.js" type="module"></script>
-        <script src="polyfills.js" type="module"></script>
-        <script src="styles.js" type="module"></script>
-        <script src="vendor.js" type="module"></script>
-        <script src="main.js" type="module"></script>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <title>HelloAngular</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <script src="runtime.js" type="module"></script>
+    <script src="polyfills.js" type="module"></script>
+    <script src="styles.js" type="module"></script>
+    <script src="vendor.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+  </body>
 </html>
 ```
 
@@ -198,7 +196,7 @@ if (environment.production) {
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .catch((err) => console.error(err));
 ```
 
 Notice the highlighted line. It specifies, which module should be started. In our case, it is `AppModule`, which is
@@ -206,16 +204,12 @@ described in `app.module.ts`.
 
 ```typescript {3,9}
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 Note the following section, which is important when starting the application `bootstrap: [AppComponent]`. It defines
@@ -229,7 +223,7 @@ We covered basic building blocks of Angular applications:
 
 - **Components** - reusable fragments of User Interface.
 - **Services** - provide business logic, which can be used by your components. Are injected using the Dependency
-injection framework.
+  injection framework.
 - **Pipes** - allow you to transform data.
 - **Directives** - add custom logic to your components or HTML tags.
 - **Modules** - organize your app by encapsulating related functionality into modules.
@@ -237,10 +231,10 @@ injection framework.
 We also learned how Angular applications are started:
 
 - `index.html` is the main HTML file downloaded by the browser. Here you use your root component. All the scripts are
-included here.
+  included here.
 - `main.ts` is the main entry point for Angular, which defines the starting module.
 - The starting module (here `app.module.ts`) defines our root component in the `bootstrap` section, so Angular
-recognizes it in the `index.html`.
+  recognizes it in the `index.html`.
 
 ## What's Next
 

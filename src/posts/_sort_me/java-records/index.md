@@ -1,15 +1,14 @@
 ---
 title: 'Java Records (JEP 359)'
-date:  "2020-02-03"
-tags: ["Java"]
+date: '2020-02-03'
+tags: ['Java']
 path: '/java-records/'
 excerpt: 'Records are new type in Java 14, which allow you to declare simple data classes without all the boilerplate.'
 draftStatus: draft
 ---
 
-
-
 ## The problem
+
 One of the issues with Java is its verbosity and the amount of boilerplate code needed. That's nothing new.
 
 Let's consider a simple `Cat` class in Java. We want each cat to have:
@@ -18,12 +17,13 @@ Let's consider a simple `Cat` class in Java. We want each cat to have:
 - Number of lives
 - Color
 
-Quite simple, right? Now let's look at the code in Java. For simplicity, let's make our class immutable - no setters, we'll set up everything in our constructor.
+Quite simple, right? Now let's look at the code in Java. For simplicity, let's make our class immutable - no setters,
+we'll set up everything in our constructor.
 
 ```java
 
 public final class Cat {
-    
+
     private final String name;
     private final int numberOfLives;
     private final String color;
@@ -48,7 +48,8 @@ public final class Cat {
 }
 ```
 
-It's already quite long, isn't it? It gets worse. We'll also want to have some basic implementation of `equals()` and `hashCode()`.
+It's already quite long, isn't it? It gets worse. We'll also want to have some basic implementation of `equals()` and
+`hashCode()`.
 
 ```java
 @Override
@@ -80,7 +81,9 @@ public String toString() {
 }
 ```
 
-And we're finally done. It's about fifty lines of code! It's quite painful to write (although your IDE can help here) and difficult to read. What's worse, it's hard to find some extra functionality (such as new methods) in all the boilerplate.
+And we're finally done. It's about fifty lines of code! It's quite painful to write (although your IDE can help here)
+and difficult to read. What's worse, it's hard to find some extra functionality (such as new methods) in all the
+boilerplate.
 
 In these fifty lines, there are only three lines that are actually interesting and bear some information:
 
@@ -90,13 +93,19 @@ private final int numberOfLives;
 private final String color;
 ```
 
-The rest is just boilerplate, which is predictable and can be automatically generated based on these three lines. Your IDE can do that, and there are tools such as [Lombok](https://projectlombok.org/features/Data), which can do this for you as well.
+The rest is just boilerplate, which is predictable and can be automatically generated based on these three lines. Your
+IDE can do that, and there are tools such as [Lombok](https://projectlombok.org/features/Data), which can do this for
+you as well.
 
-In Java, you often use classes, which just hold data, like our Cat. The implementation is always pretty much the same - a bunch of fields, getters, `equals()`, `hashCode()` and `toString()`. Often it is useful to have them immutable, if possible, which has many benefits. But to write and read such classes is a lot of work as there is a lot of code involved. And it is error-prone. Who knows whether your `hashCode()` and `equals()` code is actually correct?
+In Java, you often use classes, which just hold data, like our Cat. The implementation is always pretty much the same -
+a bunch of fields, getters, `equals()`, `hashCode()` and `toString()`. Often it is useful to have them immutable, if
+possible, which has many benefits. But to write and read such classes is a lot of work as there is a lot of code
+involved. And it is error-prone. Who knows whether your `hashCode()` and `equals()` code is actually correct?
 
 ## Records
 
-[Java 14](https://openjdk.java.net/projects/jdk/14/) tries to solve this issue by introducing a new type called `Record`, it is described by [JEP 359: Records (Preview)](https://openjdk.java.net/jeps/359)
+[Java 14](https://openjdk.java.net/projects/jdk/14/) tries to solve this issue by introducing a new type called
+`Record`, it is described by [JEP 359: Records (Preview)](https://openjdk.java.net/jeps/359)
 
 The same 50 lines long class from the example above could be written as a record like this:
 
@@ -137,18 +146,20 @@ public final class Cat extends java.lang.Record {
 }
 ```
 
-You can see that the code is pretty much the same as our old `Cat`. One notable exception is that getters for the fields generated are not named as usual - instead of `getColor()`, there is just `color()`.
+You can see that the code is pretty much the same as our old `Cat`. One notable exception is that getters for the fields
+generated are not named as usual - instead of `getColor()`, there is just `color()`.
 
-Also, the class extends [java.lang.Record](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/Record.html).
+Also, the class extends
+[java.lang.Record](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/lang/Record.html).
 
-The `equals()` implementation considers two records to be equal if they are the same Type and have the same values. The `toString()` implementation prints our record like this:
+The `equals()` implementation considers two records to be equal if they are the same Type and have the same values. The
+`toString()` implementation prints our record like this:
 
 ```java
 Cat[name=Fluffy, numberOfLives=9, color=White]
 ```
 
 Even though these methods are automatically provided for you, it is possible to override them if necessary.
-
 
 ## Limitations
 
@@ -161,11 +172,12 @@ There are some restrictions and limitations of records, which you should be awar
 
 ## Adding methods
 
-Even though records are mostly used just as plain data carriers, you can declare your own methods. Of course, since records are immutable, you cannot change any state, but it can still be useful. For example:
+Even though records are mostly used just as plain data carriers, you can declare your own methods. Of course, since
+records are immutable, you cannot change any state, but it can still be useful. For example:
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
- 
+
     public boolean isAlive() {
         return numberOfLives >= 0;
     }
@@ -177,7 +189,8 @@ You can also add static methods.
 
 ## Custom constructors
 
-By default, new records contain only a constructor, which requires all the fields of the record as parameters. For example, our cat, which has three fields, needs to be constructed like this:
+By default, new records contain only a constructor, which requires all the fields of the record as parameters. For
+example, our cat, which has three fields, needs to be constructed like this:
 
 ```java
 Cat cat = new Cat("Fluffy", 9, "White");
@@ -185,7 +198,9 @@ Cat cat = new Cat("Fluffy", 9, "White");
 
 What if some parameters can be optional - if we don't provide them, we can use some default value.
 
-In our case, the number of lives for new cats is likely to be always 9. We can create an additional constructor, which accepts only name and color, and the number of lives can be set to 9 as a default value. Of course, the constructor with all three fields still exists and is available.
+In our case, the number of lives for new cats is likely to be always 9. We can create an additional constructor, which
+accepts only name and color, and the number of lives can be set to 9 as a default value. Of course, the constructor with
+all three fields still exists and is available.
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -196,7 +211,8 @@ public record Cat(String name, int numberOfLives, String color) {
 }
 ```
 
-The all-fields constructor is automatically generated for us. But sometimes you need to perform some custom logic there. Such as input validation. You can declare the all-fields constructor by yourself if you need to:
+The all-fields constructor is automatically generated for us. But sometimes you need to perform some custom logic there.
+Such as input validation. You can declare the all-fields constructor by yourself if you need to:
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -217,7 +233,8 @@ public record Cat(String name, int numberOfLives, String color) {
 }
 ```
 
-If you are overriding the constructor with all the fields which record specifies (canonical constructor), you can use a declaration without writing the parameters. They are still available for use, but the code is shorter.
+If you are overriding the constructor with all the fields which record specifies (canonical constructor), you can use a
+declaration without writing the parameters. They are still available for use, but the code is shorter.
 
 ```java
 public record Cat(String name, int numberOfLives, String color) {
@@ -242,7 +259,9 @@ if(cat.getClass().isRecord()) {
 }
 ```
 
-The other one is `getRecordComponents()`. You would call it in the same way as in the example above. It returns a list of `java.lang.reflect.RecordComponent`. It is basically a list of all the fields, which are in the record with information such as:
+The other one is `getRecordComponents()`. You would call it in the same way as in the example above. It returns a list
+of `java.lang.reflect.RecordComponent`. It is basically a list of all the fields, which are in the record with
+information such as:
 
 - Name
 - Type

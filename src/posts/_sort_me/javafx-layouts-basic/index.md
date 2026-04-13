@@ -1,7 +1,7 @@
 ---
 title: 'JavaFX Tutorial: Basic layouts'
-date:  "2019-10-01"
-tags: ["Java", "JavaFX"]
+date: '2019-10-01'
+tags: ['Java', 'JavaFX']
 path: '/javafx-layouts-basic/'
 excerpt: 'How to organize and layout your GUI components in JavaFX application.'
 series-order: 4
@@ -9,24 +9,31 @@ series: JavaFX
 draftStatus: draft
 ---
 
-This is the fourth article in the JavaFX series. In the previous article, I described [how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
+This is the fourth article in the JavaFX series. In the previous article, I described
+[how to use FXML and SceneBuilder](/javafx-fxml-scene-builder/) to create your user interface. Now we'll cover layouts.
 
 ## Layouts
 
-Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole no matter what is inside. Moreover, each scene can only hold one component, so you need a layout as a root for your scene, so you can fit all the components you need. Of course, one layout is usually not enough. Fortunately, you can nest your layouts -it is possible to put one layout inside another, even multiple levels deep.
+Layouts, in a nutshell, are containers for components. This is useful as you can then position this container as a whole
+no matter what is inside. Moreover, each scene can only hold one component, so you need a layout as a root for your
+scene, so you can fit all the components you need. Of course, one layout is usually not enough. Fortunately, you can
+nest your layouts -it is possible to put one layout inside another, even multiple levels deep.
 
-In addition to that, layouts also organize and position your components inside. Based on the layout used, child components can be positioned in a different way. For example:
+In addition to that, layouts also organize and position your components inside. Based on the layout used, child
+components can be positioned in a different way. For example:
 
 - One after another horizontally
 - One after another vertically
 - One on top of each other as a stack
 - In grid
 
-There are many more options. What's important is that a layout automatically updates the position of its children when it is resized. This way, you can have a consistent layout, even if your user resizes the application window.
+There are many more options. What's important is that a layout automatically updates the position of its children when
+it is resized. This way, you can have a consistent layout, even if your user resizes the application window.
 
 ## HBox
 
-This is one of the most straightforward layouts available. It just puts all the items inside horizontally in a row, one after another, from left to right.
+This is one of the most straightforward layouts available. It just puts all the items inside horizontally in a row, one
+after another, from left to right.
 
 ![Horizontal Box](hbox.png)
 
@@ -58,7 +65,8 @@ Our elements are now neatly laid out horizontally in a row, one after another:
 
 ![HBox without spacing](hbox-no-spacing.png)
 
-However, it does not look very good as they are right after each other with no spacing. Fortunately, we can define the spacing between components using `spacing` property of the HBox:
+However, it does not look very good as they are right after each other with no spacing. Fortunately, we can define the
+spacing between components using `spacing` property of the HBox:
 
 ```xml
 <HBox spacing="10">
@@ -75,7 +83,8 @@ hbox.setSpacing(10);
 
 ### Padding
 
-The elements are now spaced properly, however, there is still no padding between elements and the HBox itself. It can be useful to add padding to our HBox:
+The elements are now spaced properly, however, there is still no padding between elements and the HBox itself. It can be
+useful to add padding to our HBox:
 
 ![HBox with padding and spacing](hbox-padding-spacing.png)
 
@@ -99,7 +108,8 @@ hbox.setPadding(new Insets(10, 10, 10, 10));
 
 ## VBox
 
-VBox is very similar to HBox, but instead of displaying the components inside horizontally in a row, it displays them vertically in a column:
+VBox is very similar to HBox, but instead of displaying the components inside horizontally in a row, it displays them
+vertically in a column:
 
 ![VBox](vbox.png)
 
@@ -134,7 +144,8 @@ vbox.getChildren().addAll(btn1, btn2, btn3, btn4);
 
 ## StackPane
 
-This layout is useful for stacking its components one on top of each other. The order of insertion determines the order of the items. That means the first item is in back, the next is on top of it and so on.
+This layout is useful for stacking its components one on top of each other. The order of insertion determines the order
+of the items. That means the first item is in back, the next is on top of it and so on.
 
 This can be useful, for example, for having an image and then having some text or button on top of it.
 
@@ -209,9 +220,12 @@ StackPane.setMargin(btn, new Insets(0,0,10,0));
 
 Flow Pane can work in two modes - either horizontal (the default) or vertical.
 
-In horizontal mode, the items are displayed horizontally, one after another, similar to HBox. The difference is, once there is no more horizontal space available, it wraps to the next row under the first one and continues again. This way there can be many rows, not just one as with HBox.
+In horizontal mode, the items are displayed horizontally, one after another, similar to HBox. The difference is, once
+there is no more horizontal space available, it wraps to the next row under the first one and continues again. This way
+there can be many rows, not just one as with HBox.
 
-The vertical mode is very similar, but (like VBox) it displays items vertically, from top to bottom. Once there is no more space, it adds another column and continues.
+The vertical mode is very similar, but (like VBox) it displays items vertically, from top to bottom. Once there is no
+more space, it adds another column and continues.
 
 The following image illustrates these two modes:
 
@@ -223,7 +237,9 @@ Note how the position of the components is recalculated if you change the size o
 
 {% video "/videos/javafx-layouts-basic/flowpane-resizing" %}
 
-You can set the internal padding of this layout in the same way as for HBox and VBox. Spacing is a little bit different though. Instead of just one property for spacing, you need to have separate horizontal and vertical spacing as the items can be rendered in multiple rows/columns. For horizontal spacing use `hgap`, for vertical spacing use `vgap` instead.
+You can set the internal padding of this layout in the same way as for HBox and VBox. Spacing is a little bit different
+though. Instead of just one property for spacing, you need to have separate horizontal and vertical spacing as the items
+can be rendered in multiple rows/columns. For horizontal spacing use `hgap`, for vertical spacing use `vgap` instead.
 
 ```java
 FlowPane flowPane = new FlowPane();
@@ -243,9 +259,12 @@ Example of FlowPane in FXML:
 
 ## TilePane
 
-This layout is very similar to FlowPane. The way it displays its components is almost identical. You can still have either horizontal or vertical mode and define `vgap` and `hgap`.
+This layout is very similar to FlowPane. The way it displays its components is almost identical. You can still have
+either horizontal or vertical mode and define `vgap` and `hgap`.
 
-One crucial difference is in the sizing of the cells. FlowPane assigns only space necessary for each component. TilePane, on the other hand, makes the size of all cells the same depending on the biggest item. This way, all the controls are nicely aligned in rows/columns.
+One crucial difference is in the sizing of the cells. FlowPane assigns only space necessary for each component.
+TilePane, on the other hand, makes the size of all cells the same depending on the biggest item. This way, all the
+controls are nicely aligned in rows/columns.
 
 ![FlowPane and TilePane comparison](flowpane-tilepane-comparison.png)
 
@@ -273,4 +292,5 @@ tilePane.setOrientation(Orientation.VERTICAL);
 
 ## What's next
 
-In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced/).
+In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts
+to choose from. We'll cover these in the [next article](/javafx-layouts-advanced/).

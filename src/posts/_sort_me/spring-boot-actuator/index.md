@@ -1,31 +1,37 @@
 ---
 title: 'Actuator: Spring Boot Production Monitoring and Management'
-date:  "2018-09-03"
+date: '2018-09-03'
 tags: ['Spring', 'Java']
 path: '/spring-boot-actuator/'
-excerpt: 'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health easily.'
+excerpt:
+  'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health
+  easily.'
 draftStatus: draft
 ---
 
-
-
 ## Basic build information
 
-In one of my previous articles, I described how to obtain some basic information about the current build of your application at runtime in Spring Boot.
+In one of my previous articles, I described how to obtain some basic information about the current build of your
+application at runtime in Spring Boot.
 
 {% linkedPost "/spring-boot-version/" %}
 
-While this can be handy, it is usually not sufficient. There is a lot more you are usually interested in. And most importantly, it does not involve just the information known at build time, but rather what is the application's current status at runtime. In these situations, you should use Spring Boot Actuator.
+While this can be handy, it is usually not sufficient. There is a lot more you are usually interested in. And most
+importantly, it does not involve just the information known at build time, but rather what is the application's current
+status at runtime. In these situations, you should use Spring Boot Actuator.
 
 ## Spring Boot Actuator
 
-In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds monitoring and management support for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
+In short, Spring Boot Actuator is one of the sub-projects od Spring Boot, which adds monitoring and management support
+for your applications running in production. It exposes various HTTP or JMX endpoints you can interact with.
 
-This post covers Actuator 2.x. If you're using Spring Boot 1.x, be aware that there were many changes in the version 2 and you should look for version 1.x specific configuration instead.
+This post covers Actuator 2.x. If you're using Spring Boot 1.x, be aware that there were many changes in the version 2
+and you should look for version 1.x specific configuration instead.
 
 ## Source code
 
-The source code of example application using Spring Boot Actuator can be found [here](https://github.com/vojtechruz/spring-boot-actuator-example).
+The source code of example application using Spring Boot Actuator can be found
+[here](https://github.com/vojtechruz/spring-boot-actuator-example).
 
 ## Adding Dependencies
 
@@ -46,11 +52,14 @@ Gradle:
 compile("org.springframework.boot:spring-boot-starter-actuator")
 ```
 
-As usual, once this dependency is on the classpath, Spring Boot is able to detect this and auto-configures Actuator for you. Just rebuild and start your application.
+As usual, once this dependency is on the classpath, Spring Boot is able to detect this and auto-configures Actuator for
+you. Just rebuild and start your application.
 
 ## Up and Running
 
-Now if you run your application, you can check all the available endpoints by accessing `/actuator`. That means, if you are running locally on port 8080, you'll need to open `http://localhost:8080/actuator`. You should see something similar to this:
+Now if you run your application, you can check all the available endpoints by accessing `/actuator`. That means, if you
+are running locally on port 8080, you'll need to open `http://localhost:8080/actuator`. You should see something similar
+to this:
 
 ```json
 {
@@ -71,20 +80,23 @@ Now if you run your application, you can check all the available endpoints by ac
 }
 ```
 
-This is the list of all the available Actuator endpoints. As you can see, there is just two of them: health and info. Let's try `/health` first.
+This is the list of all the available Actuator endpoints. As you can see, there is just two of them: health and info.
+Let's try `/health` first.
 
 ```json
-{"status":"UP"}
+{ "status": "UP" }
 ```
 
 And now `/info`. It looks like it is returning just an empty json: `{}`.
 
 ## More endpoints
 
-Not very impressive so far. Of course, Actuator offers much more than this. Otherwise, it wouldn't be very useful. There are some examples of available endpoints, with the full list available in the [official docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints).
+Not very impressive so far. Of course, Actuator offers much more than this. Otherwise, it wouldn't be very useful. There
+are some examples of available endpoints, with the full list available in the
+[official docs](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html#production-ready-endpoints).
 
 | Endpoint         | Description                            |
-|------------------|----------------------------------------|
+| ---------------- | -------------------------------------- |
 | health           | Application health info                |
 | info             | Info about the application             |
 | env              | Properties from environment            |
@@ -106,7 +118,8 @@ For most of the endpoints, Actuator offers two ways of connecting to them:
 - HTTP REST endpoint
 - JMX endpoint
 
-By default, as we already saw, only *health* and *info* endpoints are exposed over HTTP. However, all of them are exposed over JMX (where applicable) by default.
+By default, as we already saw, only _health_ and _info_ endpoints are exposed over HTTP. However, all of them are
+exposed over JMX (where applicable) by default.
 
 You can configure in your `application.properties` which endpoints should be exposed:
 
@@ -119,9 +132,11 @@ management.endpoints.web.exposure.exclude=
 management.endpoints.web.exposure.include=health,info,metrics
 ```
 
-As you can see, you can define endpoints by name or use `*` to represent all endpoints. You can combine include and exclude filters.
+As you can see, you can define endpoints by name or use `*` to represent all endpoints. You can combine include and
+exclude filters.
 
-If you change your configuration to expose all the endpoints over HTTP and restart your app, your `/actuator` endpoint will now show many more URLs.
+If you change your configuration to expose all the endpoints over HTTP and restart your app, your `/actuator` endpoint
+will now show many more URLs.
 
 ```properties
 management.endpoints.web.exposure.include=*
@@ -129,7 +144,8 @@ management.endpoints.web.exposure.include=*
 
 ## Enabling / Disabling endpoints
 
-You can configure not only whether an endpoint is exposed over HTTP or JMX, but also you can turn specific endpoints on/off. All the endpoints except `shutdown` are enabled by default (although not exposed over HTTP).
+You can configure not only whether an endpoint is exposed over HTTP or JMX, but also you can turn specific endpoints
+on/off. All the endpoints except `shutdown` are enabled by default (although not exposed over HTTP).
 
 ```properties
 # Disable an endpoint
@@ -148,7 +164,7 @@ management.endpoints.enabled-by-default=false
 As we already saw, the information provided by `/health` endpoint is rather unimpressive.
 
 ```json
-{"status":"UP"}
+{ "status": "UP" }
 ```
 
 Fortunately, this is just the default state and we can show much more details.
@@ -157,7 +173,8 @@ Fortunately, this is just the default state and we can show much more details.
 management.endpoint.health.show-details=always
 ```
 
-Now the information available is much richer. The exact details vary based on your specific dependencies. For example, whether you use a data source and which one.
+Now the information available is much richer. The exact details vary based on your specific dependencies. For example,
+whether you use a data source and which one.
 
 ```json
 {
@@ -182,7 +199,9 @@ Now the information available is much richer. The exact details vary based on yo
 }
 ```
 
-Of course, it may not be a good idea to show such information to everyone publicly. Fortunately, you can restrict access, so the details are available to users with specific roles only. Instead of `always`, you rather use `when-authorized` and then you can specify the allowed roles.
+Of course, it may not be a good idea to show such information to everyone publicly. Fortunately, you can restrict
+access, so the details are available to users with specific roles only. Instead of `always`, you rather use
+`when-authorized` and then you can specify the allowed roles.
 
 ```properties
 management.endpoint.health.show-details=when-authorized
@@ -191,13 +210,18 @@ management.endpoint.health.roles=ADMIN
 
 ## /info
 
-When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do better. Let's examine various ways we can display more info.
+When we tried to call `/info` endpoint before, all we've got was just an empty response `{}`. Of course, we can do
+better. Let's examine various ways we can display more info.
 
 ## Build Properties
 
-In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I  describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
+In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I
+describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring
+Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
 
-What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle Plugin.
+What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its
+contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle
+Plugin.
 
 Maven `pom.xml` file:
 
@@ -240,7 +264,8 @@ Info endpoint now provides build info information:
 
 ## Git Properties
 
-Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To generate it, you'll need to add a specific plugin to your build config.
+Actuator automatically detects `git.properties` file, which contains useful information about your git repository. To
+generate it, you'll need to add a specific plugin to your build config.
 
 In Maven `pom.xml`:
 
@@ -275,7 +300,8 @@ After rebuilding and restarting the `/info` endpoint displays some git info.
 
 ## Environment properties
 
-Finally, Actuator automatically detects all the environmental properties, which start with `info.`. You can try it by adding a new property to your `application.properties`, which starts with `info.`.
+Finally, Actuator automatically detects all the environmental properties, which start with `info.`. You can try it by
+adding a new property to your `application.properties`, which starts with `info.`.
 
 ```properties
 info.my-custom-property=What a nice property!
@@ -284,7 +310,7 @@ info.my-custom-property=What a nice property!
 Then it is returned by the `/info` endpoint.
 
 ```json
-{"my-custom-property":"What a nice property!"}
+{ "my-custom-property": "What a nice property!" }
 ```
 
 What's useful is that it shows properties from various sources, not only `application.properties`.
@@ -320,7 +346,8 @@ This endpoint exposes information about various metrics. By calling `/metrics` y
 }
 ```
 
-If you want to display data for a specific metric, instead of calling `/metrics` you call `/metrics/{metric-name}`. For example, calling `/metrics/jvm.memory.used` will return response similar to this:
+If you want to display data for a specific metric, instead of calling `/metrics` you call `/metrics/{metric-name}`. For
+example, calling `/metrics/jvm.memory.used` will return response similar to this:
 
 ```json
 {
@@ -328,16 +355,13 @@ If you want to display data for a specific metric, instead of calling `/metrics`
   "measurements": [
     {
       "statistic": "VALUE",
-      "value": 2.44780736E8
+      "value": 2.44780736e8
     }
   ],
   "availableTags": [
     {
       "tag": "area",
-      "values": [
-        "heap",
-        "nonheap"
-      ]
+      "values": ["heap", "nonheap"]
     },
     {
       "tag": "id",
@@ -354,17 +378,24 @@ If you want to display data for a specific metric, instead of calling `/metrics`
 }
 ```
 
-Metrics were completely reworked in version 2. Version 1 uses its own proprietary metric system, which is hierarchical. This does not work very well in the cloud with many application instances. Actuator version 2 uses an entirely new system for managing metrics. It is dimensional in nature and it utilizes [Micrometer](https://micrometer.io/).
+Metrics were completely reworked in version 2. Version 1 uses its own proprietary metric system, which is hierarchical.
+This does not work very well in the cloud with many application instances. Actuator version 2 uses an entirely new
+system for managing metrics. It is dimensional in nature and it utilizes [Micrometer](https://micrometer.io/).
 
-> Micrometer provides a simple facade over the instrumentation clients for the most popular monitoring systems, allowing you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for metrics.
+> Micrometer provides a simple facade over the instrumentation clients for the most popular monitoring systems, allowing
+> you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for metrics.
 
-So in addition to dimensional focus, you now have a nice facade to integrate various popular existing solutions such as Prometheus, Atlas, CloudWatch, Ganglia or New Relic. You can read more details in [Micrometer: Spring Boot 2's new application metrics collector](https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector)
+So in addition to dimensional focus, you now have a nice facade to integrate various popular existing solutions such as
+Prometheus, Atlas, CloudWatch, Ganglia or New Relic. You can read more details in
+[Micrometer: Spring Boot 2's new application metrics collector](https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector)
 
 ## Securing Actuator endpoints
 
-Leaving your actuator endpoints exposed for anybody to access is not a good idea. That's why the vast majority of them are not exposed by default. Once you do expose them, you should make sure they are adequately protected.
+Leaving your actuator endpoints exposed for anybody to access is not a good idea. That's why the vast majority of them
+are not exposed by default. Once you do expose them, you should make sure they are adequately protected.
 
-The good news is that if you use Spring Security, Actuator endpoints are secured by default. If you're not using Spring Security, you can add this dependency for Maven:
+The good news is that if you use Spring Security, Actuator endpoints are secured by default. If you're not using Spring
+Security, you can add this dependency for Maven:
 
 ```xml
 <dependency>
@@ -379,13 +410,17 @@ Ow when using Gradle:
 compile 'org.springframework.boot:spring-boot-starter-security'
 ```
 
-If you rebuild and restart your app, you'll notice that now you are required to log in if accessing the actuator endpoints. By default, the username is `user` and the password is randomly generated and printed to the console every time the application starts:
+If you rebuild and restart your app, you'll notice that now you are required to log in if accessing the actuator
+endpoints. By default, the username is `user` and the password is randomly generated and printed to the console every
+time the application starts:
 
 ```text
 Using generated security password: f7b833aa-5a1c-42f4-b913-70c1abe47cb6
 ```
 
-Protecting all the endpoints like this may be sufficient in many cases, you'll just usually change how user's credentials are validated. If you need more fine-grained control, you should create a configuration class extending `WebSecurityConfigurerAdapter` and override the `configure` method:
+Protecting all the endpoints like this may be sufficient in many cases, you'll just usually change how user's
+credentials are validated. If you need more fine-grained control, you should create a configuration class extending
+`WebSecurityConfigurerAdapter` and override the `configure` method:
 
 ```java
 @Configuration
@@ -407,30 +442,49 @@ public class ActuatorSecurityConfiguration extends
 }
 ```
 
-In the example above, the `/shutdown` endpoint is accessible only for an authenticated user with role ADMIN. Endpoints `/health` and `/info` are accessible for anybody. All the other endpoints are accessible only for fully authenticated users.
+In the example above, the `/shutdown` endpoint is accessible only for an authenticated user with role ADMIN. Endpoints
+`/health` and `/info` are accessible for anybody. All the other endpoints are accessible only for fully authenticated
+users.
 
-Notice that we are not matching by URL of the endpoints but rather by class, so we are not tightly coupled to the URL to which an endpoint is mapped to. If URLs are reconfigured, we don't need to change our security config.
+Notice that we are not matching by URL of the endpoints but rather by class, so we are not tightly coupled to the URL to
+which an endpoint is mapped to. If URLs are reconfigured, we don't need to change our security config.
 
 ## Actuator 1.x vs 2.x
 
 Many of the changes brought with Spring Boot 2.0 are in fact in the Actuator module.
 
-Actuator endpoints are now technology independent. Before, they relied on Spring MVC. Now it does not matter whether you use MVC, Jersey or the new Spring WebFlux.
+Actuator endpoints are now technology independent. Before, they relied on Spring MVC. Now it does not matter whether you
+use MVC, Jersey or the new Spring WebFlux.
 
-In version 1.x there was a special security configuration just for Actuator endpoints. This was dropped, and you now use Spring Security directly as you would for any other endpoint. It is much simpler and more consistent.
+In version 1.x there was a special security configuration just for Actuator endpoints. This was dropped, and you now use
+Spring Security directly as you would for any other endpoint. It is much simpler and more consistent.
 
-The old version of Actuator used to have proprietary metrics, but 2.x uses [Micrometer](https://micrometer.io/). This was later [backported](https://micrometer.io/docs/ref/spring/1.5) even to 1.x.
+The old version of Actuator used to have proprietary metrics, but 2.x uses [Micrometer](https://micrometer.io/). This
+was later [backported](https://micrometer.io/docs/ref/spring/1.5) even to 1.x.
 
-There were some new endpoints introduced, some were renamed to more descriptive names. The configuration properties were also reworked and are now neatly grouped together by common prefix.
+There were some new endpoints introduced, some were renamed to more descriptive names. The configuration properties were
+also reworked and are now neatly grouped together by common prefix.
 
-More detailed description of the changes can be found in [Spring Boot 2.0 actuator change analysis](https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/). If you are migrating from version 1.x [this guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator) may come in handy.
+More detailed description of the changes can be found in
+[Spring Boot 2.0 actuator change analysis](https://blog.frankel.ch/spring-boot-2-actuator-change-analysis/). If you are
+migrating from version 1.x
+[this guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#spring-boot-actuator)
+may come in handy.
 
 ## Adding Graphical User Interface
 
-Actuator endpoints are great, but monitoring and managing your application just through JMX and HTTP endpoints may be too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application. That's really useful in the cloud environment with many dynamic instances of your app.
+Actuator endpoints are great, but monitoring and managing your application just through JMX and HTTP endpoints may be
+too low-level and cumbersome for many. If you prefer a nice GUI instead of interacting with endpoints directly, there's
+a great tool just for this. It is called [Spring Boot Admin](https://github.com/codecentric/spring-boot-admin). It is a
+third-party open-source project, which gives you a nice UI to manage and monitor your applications. What's more, a
+single instance of Spring Boot Admin can monitor multiple applications and/or multiple instances of each application.
+That's really useful in the cloud environment with many dynamic instances of your app.
 
 {% linkedPost "/spring-boot-admin/" %}
 
 ## Conclusion
 
-Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator Endpoints. However, bear in mind that having public endpoints which allow you to tinker with your app and expose sensitive data is not a good idea. Always be sure to secure your endpoints.
+Spring Boot Actuator offers a powerful solution for monitoring and managing your application in production. It offers
+interaction either over JMX or HTTP endpoints. If you prefer GUI instead try Spring Boot Admin on top of Actuator
+Endpoints. However, bear in mind that having public endpoints which allow you to tinker with your app and expose
+sensitive data is not a good idea. Always be sure to secure your endpoints.

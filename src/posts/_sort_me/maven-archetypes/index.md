@@ -1,17 +1,16 @@
 ---
 title: 'Maven archetypes tutorial'
-date:  "2019-09-19"
-tags: ["Maven"]
+date: '2019-09-19'
+tags: ['Maven']
 path: '/maven-archetypes/'
 excerpt: 'How to generate new projects from Maven archetypes, create your own and some alternative tools.'
 draftStatus: draft
 ---
 
-
-
 ## Archetypes
 
-When starting a new project, it can be tedious and time-consuming to set up everything from scratch. Fortunately, Maven has built-in functionality which allows you to generate a project from a template. This template is called archetype.
+When starting a new project, it can be tedious and time-consuming to set up everything from scratch. Fortunately, Maven
+has built-in functionality which allows you to generate a project from a template. This template is called archetype.
 
 There is a number of archetypes available which allow you to create various types of projects.
 
@@ -19,27 +18,31 @@ You can even create your own archetypes and share them with others.
 
 ## Generating from command line
 
-You can generate your project from an archetype in your command line using the following command via [Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
+You can generate your project from an archetype in your command line using the following command via
+[Maven Archetype Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/):
 
 ```bash
-mvn archetype:generate 
--DarchetypeGroupId=org.springframework.boot 
--DarchetypeArtifactId=spring-boot-sample-simple-archetype 
+mvn archetype:generate
+-DarchetypeGroupId=org.springframework.boot
+-DarchetypeArtifactId=spring-boot-sample-simple-archetype
 -DarchetypeVersion=1.0.2.RELEASE
 ```
 
-In the example above, you specify just identifiers of your archetype and the command starts in the interactive mode and asks you for all the required information such as groupId, artifactId and version of your new project. You enter these in your terminal, and the project is generated for you.
+In the example above, you specify just identifiers of your archetype and the command starts in the interactive mode and
+asks you for all the required information such as groupId, artifactId and version of your new project. You enter these
+in your terminal, and the project is generated for you.
 
-However, you can specify all these upfront, so no interaction is needed from your side. This can be useful, for example, when generating a project as a part of some automated script which should not have any user interaction.
+However, you can specify all these upfront, so no interaction is needed from your side. This can be useful, for example,
+when generating a project as a part of some automated script which should not have any user interaction.
 
 ```shell {5-8}
-mvn archetype:generate 
--DarchetypeGroupId=org.springframework.boot 
--DarchetypeArtifactId=spring-boot-sample-simple-archetype 
--DarchetypeVersion=1.0.2.RELEASE 
--DartifactId=my-app 
--DgroupId=com.example 
--Dversion=1.0-SNAPSHOT 
+mvn archetype:generate
+-DarchetypeGroupId=org.springframework.boot
+-DarchetypeArtifactId=spring-boot-sample-simple-archetype
+-DarchetypeVersion=1.0.2.RELEASE
+-DartifactId=my-app
+-DgroupId=com.example
+-Dversion=1.0-SNAPSHOT
 -DinteractiveMode=false
 ```
 
@@ -55,7 +58,8 @@ File → New → Project... → Maven
 
 Here all you need to do is check `Create from archetype` and select your desired one.
 
-However, the amount of archetypes listed is fairly limited. Fortunately, you can add any available archetype by clicking `Add archetype`.
+However, the amount of archetypes listed is fairly limited. Fortunately, you can add any available archetype by clicking
+`Add archetype`.
 
 ![IDEA add archetype](idea-add-archetype.png)
 
@@ -67,7 +71,8 @@ Not only you can use existing archetypes, but you can also quite easily create y
 
 ### From an existing project
 
-The easiest way is to have an existing project and use the Maven Archetype Plugin to generate an archetype from it. It is actually quite easy.
+The easiest way is to have an existing project and use the Maven Archetype Plugin to generate an archetype from it. It
+is actually quite easy.
 
 ```bash
 mvn archetype:create-from-project
@@ -75,11 +80,13 @@ mvn archetype:create-from-project
 
 The resulting archetype is generated in `target/generated-sources/archetype`.
 
-Before you can use it, though, you need to install the archetype in your local repository. Just go to the directory `target/generated-sources/archetype` and run `mvn install`.
+Before you can use it, though, you need to install the archetype in your local repository. Just go to the directory
+`target/generated-sources/archetype` and run `mvn install`.
 
 ### From scratch
 
-You can actually generate your own custom archetype using a Maven archetype. This way all the scaffolding is created for you.
+You can actually generate your own custom archetype using a Maven archetype. This way all the scaffolding is created for
+you.
 
 ```bash
 mvn archetype:generate
@@ -89,15 +96,18 @@ mvn archetype:generate
 -DarchetypeArtifactId=maven-archetype-archetype
 ```
 
- Now all you need to do is to copy over the files which should be part of your generated project. The target location of your files is described below.
+Now all you need to do is to copy over the files which should be part of your generated project. The target location of
+your files is described below.
 
 ### Archetype configuration
 
 #### POM file
 
-In the artifact's root directory, there is a `pom.xml` file of the archetype. You can see the packaging `maven-archetype`. You can customize build of your archetype here as with any other pom.
+In the artifact's root directory, there is a `pom.xml` file of the archetype. You can see the packaging
+`maven-archetype`. You can customize build of your archetype here as with any other pom.
 
-However, there is another `pom.xml` file located under `src\main\resources\archetype-resources` which is the pom file of the generated project. Here you can make any changes, which should be presented in the resulting project's pom.
+However, there is another `pom.xml` file located under `src\main\resources\archetype-resources` which is the pom file of
+the generated project. Here you can make any changes, which should be presented in the resulting project's pom.
 
 #### Source code
 
@@ -128,7 +138,8 @@ Each archetype contains a special XML file with the archetype configuration, whi
 src/main/resources/archetype-resources/META_INF/maven/maven-metadata.xml
 ```
 
-Here you can configure the archetype itself - for example, files which should be included, properties needed, and so on. A simple version can look something like this:
+Here you can configure the archetype itself - for example, files which should be included, properties needed, and so on.
+A simple version can look something like this:
 
 ```xml
 <archetype-descriptor
@@ -148,19 +159,24 @@ Here you can configure the archetype itself - for example, files which should be
 </archetype-descriptor>
 ```
 
-You can check configuration details in the [official documentation](https://maven.apache.org/guides/mini/guide-creating-archetypes.html).
+You can check configuration details in the
+[official documentation](https://maven.apache.org/guides/mini/guide-creating-archetypes.html).
 
 ## Alternatives
 
-Maven archetypes are a great built-in way of generating project scaffolding. However, there are more alternatives worth exploring, which may be better suited in some cases.
+Maven archetypes are a great built-in way of generating project scaffolding. However, there are more alternatives worth
+exploring, which may be better suited in some cases.
 
 ### Gradle
 
-If you prefer Gradle over Maven, working with archetypes gets a little trickier because Gradle currently [does not support generating projects from archetypes directly](https://github.com/gradle/gradle/issues/3840).
+If you prefer Gradle over Maven, working with archetypes gets a little trickier because Gradle currently
+[does not support generating projects from archetypes directly](https://github.com/gradle/gradle/issues/3840).
 
-There is an unofficial [Gradle Archetype Plugin](https://github.com/orctom/gradle-archetype-plugin/), which you can use to work with Maven archetypes.
+There is an unofficial [Gradle Archetype Plugin](https://github.com/orctom/gradle-archetype-plugin/), which you can use
+to work with Maven archetypes.
 
-As an alternative, you can generate your project first using Maven from an archetype and then convert it to a Gradle project by using the following command in the directory with your `pom.xml`:
+As an alternative, you can generate your project first using Maven from an archetype and then convert it to a Gradle
+project by using the following command in the directory with your `pom.xml`:
 
 ```bash
 gradle init
@@ -168,9 +184,11 @@ gradle init
 
 ### Spring Boot Initializr
 
-When working with Spring Boot, you can still use Maven archetypes, but there is a better, way more powerful tool offered directly by Spring.
+When working with Spring Boot, you can still use Maven archetypes, but there is a better, way more powerful tool offered
+directly by Spring.
 
-It is called [Spring Initializr](https://start.spring.io/). It is a simple wizard, where you can define many options for your application, and then it generates your project based on your choices.
+It is called [Spring Initializr](https://start.spring.io/). It is a simple wizard, where you can define many options for
+your application, and then it generates your project based on your choices.
 
 ![Spring Boot Initializr](spring-boot-initializr.png)
 
@@ -183,9 +201,11 @@ You can configure various options such as:
 - Jar/War packaging
 - Dependencies such as DB, Security, Web, [Actuator](https://www.vojtechruzicka.com/spring-boot-actuator/) and many more
 
-You can see there is a lot of configuration options to choose from. Also, you can see that unlike with Maven archetypes, you can generate your project even when using Gradle.
+You can see there is a lot of configuration options to choose from. Also, you can see that unlike with Maven archetypes,
+you can generate your project even when using Gradle.
 
-Instead of using the default web interface, there is even a more convenient way of generating your project directly in IntelliJ IDEA.
+Instead of using the default web interface, there is even a more convenient way of generating your project directly in
+IntelliJ IDEA.
 
 ```text
 File → New Project → Spring Initializr
@@ -193,20 +213,28 @@ File → New Project → Spring Initializr
 
 ### Yeoman
 
-[Yeoman](https://yeoman.io/) is an interesting tool, which allows you to generate a project using one of their many [generators](https://yeoman.io/generators/).
+[Yeoman](https://yeoman.io/) is an interesting tool, which allows you to generate a project using one of their many
+[generators](https://yeoman.io/generators/).
 
-What's interesting is that unlike Maven, it is not focused solely on the JVM ecosystem. You can generate a project for pretty much any language or framework and their combinations.
+What's interesting is that unlike Maven, it is not focused solely on the JVM ecosystem. You can generate a project for
+pretty much any language or framework and their combinations.
 
-That means you can have a generator for an application with Java backend, React frontend and Docker integration. Or anything else you can think of as there are many generators available.
+That means you can have a generator for an application with Java backend, React frontend and Docker integration. Or
+anything else you can think of as there are many generators available.
 
 ### JHipster
 
-[JHipster](https://www.jhipster.tech/) is actually a Yeoman generator under a hood. It allows you to generate Spring Boot projects with Frontend in Either React, Angular or Vue.
+[JHipster](https://www.jhipster.tech/) is actually a Yeoman generator under a hood. It allows you to generate Spring
+Boot projects with Frontend in Either React, Angular or Vue.
 
-There is much more, though. It optionally supports microservices and cloud deployment. It integrates sass, webpack, bootstrap, various databases, ELK, caching, Docker, WebSockets, and much more.
+There is much more, though. It optionally supports microservices and cloud deployment. It integrates sass, webpack,
+bootstrap, various databases, ELK, caching, Docker, WebSockets, and much more.
 
-It is definitely worth checking if you want to easily generate your whole application front to back with a standardized opinionated stack.
+It is definitely worth checking if you want to easily generate your whole application front to back with a standardized
+opinionated stack.
 
 ## Conclusion
 
-Maven archetypes offer you an easy way to generate basic project scaffolding for various project types without the hassle of a manual approach. Still, there are some alternatives mentioned above which may be better in some cases such as Spring Boot Initializr or JHipster.
+Maven archetypes offer you an easy way to generate basic project scaffolding for various project types without the
+hassle of a manual approach. Still, there are some alternatives mentioned above which may be better in some cases such
+as Spring Boot Initializr or JHipster.

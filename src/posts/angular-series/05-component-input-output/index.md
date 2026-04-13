@@ -1,6 +1,6 @@
 ---
 title: 'Angular Tutorial 5: Component input and output'
-date:  "2020-07-24"
+date: '2020-07-24'
 tags: ['Angular']
 path: '/angular/05-component-input-output/'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
@@ -28,7 +28,7 @@ changes, the component gets new data. So far, we covered only data binding to si
 quick reminder:
 
 ```html
-<button [disabled]='isSubmitButtonDisabled'>Submit!</button>
+<button [disabled]="isSubmitButtonDisabled">Submit!</button>
 ```
 
 This way, the `disabled` property of the button would be updated whenever `isSubmitButtonDisabled` changes. With a
@@ -39,9 +39,7 @@ Let's assume we have a Step Count component, which displays the number your dail
 ```typescript
 @Component({
   selector: 'app-step-count',
-  template: `
-    Your daily step count is: {{steps}}
-    `
+  template: ` Your daily step count is: {{ steps }} `,
 })
 export class StepCountComponent {
   steps = 0;
@@ -64,7 +62,7 @@ If you try this, it will not work because by default `steps` property of our com
 for data-binding. We need to specifically mark it as such.
 
 ```typescript {4}
-import {Component, Input} from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 export class StepCountComponent {
   @Input()
@@ -79,11 +77,11 @@ The name of our property `steps` matches the name of the property, which will be
 
 ```typescript {3,7}
 export class StepCountComponent {
-  @Input()  
+  @Input()
   steps = 0
 }
 
-<app-step-count 
+<app-step-count
 [steps]="dailySteps"
 ></app-step-count>
 ```
@@ -92,11 +90,11 @@ This is the default behavior, but it can be changed by passing a string value to
 
 ```typescript {2,7}
 export class StepCountComponent {
-  @Input('numberOfSteps')  
+  @Input('numberOfSteps')
   steps = 0
 }
 
-<app-step-count 
+<app-step-count
 [numberOfSteps]="dailySteps"
 ></app-step-count>
 ```
@@ -114,7 +112,7 @@ Remember how we were able to listen to some events of DOM elements such as click
 logic?
 
 ```html
-<button (click)='buttonClicked()'>Click me!</button>
+<button (click)="buttonClicked()">Click me!</button>
 ```
 
 Here we use regular brackets around the event name `(click)`. After the equals, we defined a method call
@@ -128,18 +126,17 @@ component of what happened. The parent component can then decide what the approp
 just a "dumb" component. It can show the disclaimer and collect the answer, but let the parent component take the
 responsibility for deciding what to do based on the answer.
 
- ```typescript
- @Component({
-   selector: 'app-cookies-info',
-   template: `
-     <p>This site uses cookies to shamelessly track you. </p>
-     <button>Accept</button>
-     <button>Decline</button>
-   `
- })
- export class CookiesInfoComponent {
- }
- ```
+```typescript
+@Component({
+  selector: 'app-cookies-info',
+  template: `
+    <p>This site uses cookies to shamelessly track you.</p>
+    <button>Accept</button>
+    <button>Decline</button>
+  `,
+})
+export class CookiesInfoComponent {}
+```
 
 We have two buttons, but they don't do anything on click. Let's change that.
 
@@ -147,13 +144,12 @@ We have two buttons, but they don't do anything on click. Let's change that.
 @Component({
   selector: 'app-cookies-info',
   template: `
-    <p>This site uses cookies to shamelessly track you. </p>
+    <p>This site uses cookies to shamelessly track you.</p>
     <button (click)="onAcceptBtnClick()">Accept</button>
     <button (click)="onDeclineBtnClick()">Decline</button>
-`
+  `,
 })
 export class CookiesInfoComponent {
-
   onAcceptBtnClick() {
     // Here notify listeners - cookies accepted
   }
@@ -179,13 +175,12 @@ we can use one of our emitters to `.emit()` an event that cookies were either ac
 @Component({
   selector: 'app-cookies-info',
   template: `
-    <p>This site uses cookies to shamelessly track you. </p>
+    <p>This site uses cookies to shamelessly track you.</p>
     <button (click)="onAcceptBtnClick()">Accept</button>
     <button (click)="onDeclineBtnClick()">Decline</button>
-  `
+  `,
 })
 export class CookiesInfoComponent {
-
   acceptCookies = new EventEmitter();
   declineCookies = new EventEmitter();
 
@@ -204,29 +199,28 @@ The last step is to mark our events as available for data binding. Remember that
 outside of the component, we need to use `@Output()`.
 
 ```typescript {11,13}
- @Component({
-   selector: 'app-cookies-info',
-   template: `
-     <p>This site uses cookies to shamelessly track you. </p>
-     <button (click)="onAcceptBtnClick()">Accept</button>
-     <button (click)="onDeclineBtnClick()">Decline</button>
-   `
- })
- export class CookiesInfoComponent {
- 
-   @Output()
-   acceptCookies = new EventEmitter();
-   @Output()
-   declineCookies = new EventEmitter();
- 
-   onAcceptBtnClick() {
-     this.acceptCookies.emit();
-   }
- 
-   onDeclineBtnClick() {
-     this.declineCookies.emit();
-   }
- }
+@Component({
+  selector: 'app-cookies-info',
+  template: `
+    <p>This site uses cookies to shamelessly track you.</p>
+    <button (click)="onAcceptBtnClick()">Accept</button>
+    <button (click)="onDeclineBtnClick()">Decline</button>
+  `,
+})
+export class CookiesInfoComponent {
+  @Output()
+  acceptCookies = new EventEmitter();
+  @Output()
+  declineCookies = new EventEmitter();
+
+  onAcceptBtnClick() {
+    this.acceptCookies.emit();
+  }
+
+  onDeclineBtnClick() {
+    this.declineCookies.emit();
+  }
+}
 ```
 
 Now we're good to go, we can use our `app-cookies-info` inside another component and react to its `acceptCookies` and
@@ -265,13 +259,12 @@ event inside the `emit()` function - e.g. `emit(false)`.
 @Component({
   selector: 'app-cookies-info',
   template: `
-    <p>This site uses cookies to shamelessly track you. </p>
+    <p>This site uses cookies to shamelessly track you.</p>
     <button (click)="onAcceptBtnClick()">Accept</button>
     <button (click)="onDeclineBtnClick()">Decline</button>
-  `
+  `,
 })
 export class CookiesInfoComponent {
-
   @Output()
   cookiesAnswer = new EventEmitter<boolean>();
 
@@ -288,9 +281,9 @@ export class CookiesInfoComponent {
 Notice how the way we constructed our event emitter changed - `new EventEmitter<boolean>();`. Between angle brackets,
 you can define what type of data should be used for this event to ensure type safety. If you define
 `EventEmitter<boolean>`, you would not be able to later call `emit('Foo!')` as it is a string and not boolean. If you
-are not familiar with this concept, you can read more about [generics in
-Typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any value could be
-rewritten as `EventEmitter<void>` for better type safety.
+are not familiar with this concept, you can read more about
+[generics in Typescript](https://www.typescriptlang.org/docs/handbook/generics.html). Our first example without any
+value could be rewritten as `EventEmitter<void>` for better type safety.
 
 With passing a value with our events, the way how we handle binding also changes a bit. We need to be able to access the
 payload (event data). This data can be accessed using `$event` variable. This way, we can pass the event payload to
@@ -298,13 +291,10 @@ other functions or use it in expressions.
 
 ```html
 BEFORE:
-<app-cookies-info (acceptCookies)="onCookiesAccepted()"
-                  (declineCookies)="onCookiesDeclined()">
-</app-cookies-info>
+<app-cookies-info (acceptCookies)="onCookiesAccepted()" (declineCookies)="onCookiesDeclined()"> </app-cookies-info>
 
 NOW:
-<app-cookies-info (cookiesAnswer)="onCookiesAnswer($event)">
-</app-cookies-info>
+<app-cookies-info (cookiesAnswer)="onCookiesAnswer($event)"> </app-cookies-info>
 ```
 
 Now whenever `cookiesAnswer` event is triggered, we call our method `onCookiesAnswer`, which accepts a boolean. The
@@ -319,14 +309,14 @@ two-way data binding as well.
 Let's revisit our step count example and add a button, which resets the counter.
 
 ```typescript {7,14,15,16}
-import {Component, Input} from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-step-count',
   template: `
-    Your daily step count is: {{steps}}
+    Your daily step count is: {{ steps }}
     <button (click)="resetSteps()">Reset Steps</button>
-    `
+  `,
 })
 export class StepCountComponent {
   @Input()
@@ -338,7 +328,7 @@ export class StepCountComponent {
 }
 ```
 
-When you click the button, the number is set to 0. You'll see *Your daily step count is: 0*.
+When you click the button, the number is set to 0. You'll see _Your daily step count is: 0_.
 
 There is one problem, though. Since we are using one-way data binding with `@Input()`, only our local field `steps` gets
 changed. The change is not propagated to our parent component, which binds to our input. It still thinks we have some
@@ -347,14 +337,14 @@ steps. We need two-way binding for this.
 One solution could be to provide an `Output()` event, which notifies the parent component that the count was reset.
 
 ```typescript {13,14,17,18}
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-step-count',
   template: `
-    Your daily step count is: {{steps}}
+    Your daily step count is: {{ steps }}
     <button (click)="resetSteps()">Reset Steps</button>
-    `
+  `,
 })
 export class StepCountComponent {
   @Input()
@@ -367,27 +357,20 @@ export class StepCountComponent {
     this.stepsUpdated.emit(this.steps);
   }
 }
-
 ```
 
 Now, after changing the value to 0, we notify the parent component, that the steps were reset and let it handle updating
 its step data.
 
 ```html {3}
-<app-step-count 
-    [steps]="steps" 
-    (stepsUpdated)="updateSteps($event)">
-</app-step-count>
-
+<app-step-count [steps]="steps" (stepsUpdated)="updateSteps($event)"> </app-step-count>
 ```
 
 This will work, but there is, fortunately, an easier way. Remember the 'banana in a box' - `[()]`? We can use it here
 for two-way binding.
 
 ```html {2}
-<app-step-count 
-[(steps)]="steps">
-</app-step-count>
+<app-step-count [(steps)]="steps"> </app-step-count>
 ```
 
 The changes will now be propagated both from our child `StepCount` component to its parent and vice versa. We just need
@@ -397,14 +380,14 @@ It needs to be the name of the `@Input()` field (here it is `steps`) with a `Cha
 So if we have `steps` input, our output needs to be `stepsChange`:
 
 ```typescript {12,14}
-import {Component, EventEmitter, Input, Output} from "@angular/core";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-step-count',
   template: `
-    Your daily step count is: {{steps}}
+    Your daily step count is: {{ steps }}
     <button (click)="resetSteps()">Reset Steps</button>
-    `
+  `,
 })
 export class StepCountComponent {
   @Input()
@@ -435,5 +418,4 @@ the child component to the parent. The name of the event is the same as the name
 unless specified inside the `@Output()` decorator.
 
 You can set up two-way data binding as well. Then you need both `@Input()` and `@Output()` and need to follow naming
-convention - the name of the output property should be the name of the input property + `Change` suffix.
-{% endraw %}
+convention - the name of the output property should be the name of the input property + `Change` suffix. {% endraw %}

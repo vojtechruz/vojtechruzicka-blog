@@ -1,7 +1,7 @@
 ---
 title: 'JavaFX Tutorial: Advanced layouts'
-date:  "2019-10-04"
-tags: ["Java", "JavaFX"]
+date: '2019-10-04'
+tags: ['Java', 'JavaFX']
 path: '/javafx-layouts-advanced/'
 excerpt: 'How to organize and position your GUI components in JavaFX application using advanced layouts.'
 series-order: 5
@@ -9,11 +9,13 @@ series: JavaFX
 draftStatus: draft
 ---
 
-In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the rest of the available layouts.
+In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the
+rest of the available layouts.
 
 ## AnchorPane
 
-AnchorPane is an interesting and powerful layout. It allows you to define anchor points to the components inside. There are 4 types of anchors:
+AnchorPane is an interesting and powerful layout. It allows you to define anchor points to the components inside. There
+are 4 types of anchors:
 
 - top
 - bottom
@@ -22,17 +24,21 @@ AnchorPane is an interesting and powerful layout. It allows you to define anchor
 
 Each component can have any combination of anchors. From zero up to all four. Anchor point also defines a distance.
 
-Anchoring means that the component keeps the defined distance from a particular edge of the layout (e.g., TOP). This distance is preserved even on resize of the layout.
+Anchoring means that the component keeps the defined distance from a particular edge of the layout (e.g., TOP). This
+distance is preserved even on resize of the layout.
 
 For example: `anchorRight=10` means that the component will keep distance 10 from the right edge of the layout.
 
-You can combine two anchor points, which are not in the opposite direction, to anchor your component to a specific corner of the layout.
+You can combine two anchor points, which are not in the opposite direction, to anchor your component to a specific
+corner of the layout.
 
-Anchor `TOP = 10`, `RIGHT = 10` means that the component will stay in the top right corner of the layout in the distance 10 from both edges.
+Anchor `TOP = 10`, `RIGHT = 10` means that the component will stay in the top right corner of the layout in the distance
+10 from both edges.
 
 {% video "/videos/javafx-layouts-advanced/anchor-pane-corners" %}
 
-In the example above, the size of each component stays the same on resizing. However, if you define anchor points in the opposite directions, you can make your component grow/shrink on resizing.
+In the example above, the size of each component stays the same on resizing. However, if you define anchor points in the
+opposite directions, you can make your component grow/shrink on resizing.
 
 {% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize" %}
 
@@ -42,7 +48,8 @@ You can have various combinations like this:
 - TOP+BOTTOM resizes vertically
 - All 4 anchors mean both horizontal and vertical resizing
 
-Defining anchor points in FXML is easy. In the following example, there are all four, but you can include none or only these which you want.
+Defining anchor points in FXML is easy. In the following example, there are all four, but you can include none or only
+these which you want.
 
 ```xml
 <AnchorPane>
@@ -66,7 +73,10 @@ anchorPane.getChildren().add(button);
 ```
 
 ## GridPane
-GridPane is a layout that allows you to organize your components into a grid. Unlike [TilePane](/javafx-layouts-basic/#tilepane), which is adding components one after another, here you need to specify the coordinates of the target location in your grid when adding a new component.
+
+GridPane is a layout that allows you to organize your components into a grid. Unlike
+[TilePane](/javafx-layouts-basic/#tilepane), which is adding components one after another, here you need to specify the
+coordinates of the target location in your grid when adding a new component.
 
 ![GridPane](grid-pane.png)
 
@@ -86,7 +96,8 @@ In Java, when adding a new component, we specify first the ColumnIndex (x) and R
 
 ## Spacing
 
-By default, grid cells have no spacing. The components are directly next to each other, with no margins. Spacing can be defined separately for rows and columns - that is: horizontally and vertically.
+By default, grid cells have no spacing. The components are directly next to each other, with no margins. Spacing can be
+defined separately for rows and columns - that is: horizontally and vertically.
 
 - `hgap` sets horizontal spacing (between columns)
 - `vgap` sets vertical spacing (between rows)
@@ -109,20 +120,22 @@ grid.setVgap(10);
 
 Components in GridPane can span multiple rows and/or columns.
 
-A component with rowspan is expanding to the bottom from its original cell. A component with colspan is expanding to the right.
+A component with rowspan is expanding to the bottom from its original cell. A component with colspan is expanding to the
+right.
 
 ```xml {2-4}
 <GridPane>
     <Label GridPane.columnSpan="2"
            GridPane.rowSpan="2"
-           GridPane.rowIndex="0" 
+           GridPane.rowIndex="0"
            GridPane.columnIndex="0">        Foo!
     </Label>
 </GridPane>
 
 ```
 
-In Java, there are two ways of setting row and column span. You can either set it directly when adding a component to the grid:
+In Java, there are two ways of setting row and column span. You can either set it directly when adding a component to
+the grid:
 
 ```java
 grid.add(component, columnIndex, rowIndex, columnSpan, rowSpan);
@@ -137,22 +150,26 @@ GridPane.setRowSpan(component, rowSpan);
 
 ### Sizing
 
-Even though in the initial example, all the cells were the same size, it does not necessarily have to be the case. The sizing of grid cells is the following:
+Even though in the initial example, all the cells were the same size, it does not necessarily have to be the case. The
+sizing of grid cells is the following:
 
 - Height of each row is equal to the highest element in the row
 - Width of each column is equal to the widest element in the column
 
 ### Column and row constraints
 
-As mentioned, by default, the columns and rows are sized based on the components inside. Fortunately, you can have better control over how individual columns and rows are sized.
+As mentioned, by default, the columns and rows are sized based on the components inside. Fortunately, you can have
+better control over how individual columns and rows are sized.
 
 There are `ColumnContstraints` and `RowConstraints` classes, which are used for this.
 
-You have basically two options. Either set percentage of available space for individual rows and columns, or you set preferred width/height. In the latter case you can also define preferred behavior when the columns and rows are resized.
+You have basically two options. Either set percentage of available space for individual rows and columns, or you set
+preferred width/height. In the latter case you can also define preferred behavior when the columns and rows are resized.
 
 #### Percentage
 
-This is quite straightforward. You can set a percentage of the available space to be occupied by the given row or column. When the layout is resized, the rows and columns are resized as well to match the new size.
+This is quite straightforward. You can set a percentage of the available space to be occupied by the given row or
+column. When the layout is resized, the rows and columns are resized as well to match the new size.
 
 ```xml
 <GridPane>
@@ -188,7 +205,8 @@ gridPane.getRowConstraints().addAll(row1, row2);
 
 #### Absolute size
 
-Instead of defining percentage size, you can define preferred and minimal size. In addition to that, you can specify how the row/column should behave on resize. Columns are using `hgrow` property, and rows have `vgrow`.
+Instead of defining percentage size, you can define preferred and minimal size. In addition to that, you can specify how
+the row/column should behave on resize. Columns are using `hgrow` property, and rows have `vgrow`.
 
 These properties can have three distinct values.
 
@@ -291,9 +309,11 @@ borderPane.setCenter(center);
 
 All the regions except the center have a fixed size. The center then fills the rest of the space.
 
-Top and Bottom regions are stretched across all the available horizontal space. Their height is based on the height of the component inside.
+Top and Bottom regions are stretched across all the available horizontal space. Their height is based on the height of
+the component inside.
 
-Left and right fill all the available vertical space (except what's occupied by top and bottom). Their width is dependent on the width of the component inside.
+Left and right fill all the available vertical space (except what's occupied by top and bottom). Their width is
+dependent on the width of the component inside.
 
 The center has a dynamic size and fills the rest of the space not occupied by other sections. Let's look at an example:
 
@@ -301,4 +321,4 @@ The center has a dynamic size and fills the rest of the space not occupied by ot
 
 ## What's next
 
-Now when we know how to use various layouts, we'll cover how to style JavaFX  components using CSS.
+Now when we know how to use various layouts, we'll cover how to style JavaFX components using CSS.

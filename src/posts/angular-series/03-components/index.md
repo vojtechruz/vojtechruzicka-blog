@@ -1,9 +1,11 @@
 ---
 title: 'Angular Tutorial 3: Creating Components'
-date:  "2020-07-22"
+date: '2020-07-22'
 tags: ['Angular']
 path: '/angular/03-components/'
-excerpt: "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part of the series."
+excerpt:
+  "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part
+  of the series."
 series: 'Angular Tutorial'
 series-order: 3
 draftStatus: draft
@@ -11,8 +13,8 @@ draftStatus: draft
 
 ## Getting started
 
-Let's start with a fresh application to recap the usage of Angular CLI. We need to generate a new project using `ng
-new`. Then navigate inside its directory and run `ng serve` to launch the local development server on
+Let's start with a fresh application to recap the usage of Angular CLI. We need to generate a new project using
+`ng new`. Then navigate inside its directory and run `ng serve` to launch the local development server on
 `http://localhost:4200/`.
 
 If all goes well, you should be able to see something similar to this:
@@ -34,9 +36,7 @@ by creating `main.component.ts` in the `src/app` directory.
 Each component is a Typescript class:
 
 ```typescript
-export class MainComponent {
-
-}
+export class MainComponent {}
 ```
 
 ### @Component decorator
@@ -45,12 +45,10 @@ Now we need to provide additional metadata to the component, so Angular knows ho
 `@Component` decorator on the class level. Since this is not recognized by Typescript by default, we need to import it.
 
 ```typescript
-import {Component} from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component()
-export class MainComponent {
-
-}
+export class MainComponent {}
 ```
 
 ### Selector
@@ -59,14 +57,12 @@ Much better, but still not enough. We need to pass some metadata to the `@Compon
 object with various properties. Let's start with the `selector`.
 
 ```typescript {4}
-import {Component} from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-main'
+  selector: 'app-main',
 })
-export class MainComponent {
-
-}
+export class MainComponent {}
 ```
 
 A quick recap - selector is the name of the HTML tag, which represents our component. In this case we can use
@@ -78,11 +74,11 @@ Let's go there and replace `<app-root></app-root>` (the main component we previo
 ```html {10}
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>HelloAngular</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
     <app-main></app-main>
@@ -101,15 +97,13 @@ prefix in each module.
 We have a component, but there is no HTML associated, which should be used for rendering it. Let's change that.
 
 ```typescript {5}
-import {Component} from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  template: '<h1>Hello Angular!</h1>'
+  template: '<h1>Hello Angular!</h1>',
 })
-export class MainComponent {
-
-}
+export class MainComponent {}
 ```
 
 As you can see, `template` is used to specify a string, which represents HTML used to render our component. For now, we
@@ -130,16 +124,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 We need to change all occurences of `AppComponent` to `MainComponent`, including the import. The new content should be
@@ -149,28 +139,22 @@ the following:
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {MainComponent} from "./main.component";
+import { MainComponent } from './main.component';
 
 @NgModule({
-  declarations: [
-    MainComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [MainComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 Note that our component here is referred to as `MainComponent`. This name corresponds to the Typescript class we used at
 the beginning:
 
 ```typescript
-export class MainComponent {
-
-}
+export class MainComponent {}
 ```
 
 Now if you save your files and go to `http://localhost:4200/`, you should see the following page:
@@ -268,8 +252,7 @@ This command creates a new directory with the name of your component and inside 
 - Stylesheet file
 - Unit test file (`.component.spec.ts`)
 
-All the files are already linked together. What's more, your new component gets automatically added to the
-`app.module`.
+All the files are already linked together. What's more, your new component gets automatically added to the `app.module`.
 
 ## Nesting components
 
@@ -318,10 +301,8 @@ The HTML template of our new component, has already some content generated in `f
 to something more meaningful:
 
 ```html
-<hr>
-<div class="footer">
-  Author: John Doe, © 2020
-</div>
+<hr />
+<div class="footer">Author: John Doe, © 2020</div>
 ```
 
 We can also add some styling to `footer.component.scss`:

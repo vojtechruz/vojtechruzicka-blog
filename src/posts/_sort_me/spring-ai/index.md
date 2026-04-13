@@ -1,28 +1,33 @@
 ---
 title: 'Spring AI: Getting Started'
-date:  "2024-04-24"
+date: '2024-04-24'
 tags: ['Spring', 'Java']
 path: '/spring-ai/'
-excerpt: 'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot application.'
+excerpt:
+  'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot
+  application.'
 draftStatus: draft
 featuredImage: featured.png
 ---
 
-{% info %}
-At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already use Spring AI for many use cases, but the API and usage may change in the future.
-{% endinfo %}
+{% info %} At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already
+use Spring AI for many use cases, but the API and usage may change in the future. {% endinfo %}
 
 ## Source code
 
-Source code of the final application with all the functionality described in this article can be found on [Github](https://github.com/vojtechruz/spring-ai-demo).
+Source code of the final application with all the functionality described in this article can be found on
+[Github](https://github.com/vojtechruz/spring-ai-demo).
 
 ## New project
 
-The easiest way to set up Spring AI is to create a new application using Spring Initializr. This way, you'll avoid a couple of manual configuration steps and the creation will be much faster. If you need to update an existing application with AI capabilities, you can skip to the [Existing project](#existing-project) section below.
+The easiest way to set up Spring AI is to create a new application using Spring Initializr. This way, you'll avoid a
+couple of manual configuration steps and the creation will be much faster. If you need to update an existing application
+with AI capabilities, you can skip to the [Existing project](#existing-project) section below.
 
 ### IntelliJ Idea
 
-This section describes creating a new project in IntelliJ IDEA. If you are using different IDE, you can continue directly to [Spring Initializr Web](#spring-initializr-web)
+This section describes creating a new project in IntelliJ IDEA. If you are using different IDE, you can continue
+directly to [Spring Initializr Web](#spring-initializr-web)
 
 Idea has built-in integration with Spring Initializr. You can simply go to:
 
@@ -34,7 +39,8 @@ In the first section, fill in your desired settings as usual. Nothing is AI-spec
 
 ![Spring Initializr](spring-initializr-idea-1.png)
 
-In the second section, let's add dependency to `OpenAI`. That's all that's needed, but let's also add `Spring Web` so we can expose our AI functionality as REST endpoints.
+In the second section, let's add dependency to `OpenAI`. That's all that's needed, but let's also add `Spring Web` so we
+can expose our AI functionality as REST endpoints.
 
 ![Spring Initializr](spring-initializr-idea-2.png)
 
@@ -42,9 +48,13 @@ Our project is now generated, you can skip to [API Key](#api-key) section below.
 
 ### Spring Initializr Web
 
-Creating a project from IntelliJ IDEA is the simplest approach, but if you have a different IDE, which does not integrate Spring Initializr, you can [generate the project from the web](https://start.spring.io/). It is very similar to generating from IDE, but you'll need to do a couple of extra steps - download and extract the generated project and then import it to your IDE.
+Creating a project from IntelliJ IDEA is the simplest approach, but if you have a different IDE, which does not
+integrate Spring Initializr, you can [generate the project from the web](https://start.spring.io/). It is very similar
+to generating from IDE, but you'll need to do a couple of extra steps - download and extract the generated project and
+then import it to your IDE.
 
-Fill in whatever configuration you prefer (such as Java version or build tool) and add a dependency on OpenAI. While not required, let's also add Spring Web so we can easily expose our new AI functionality as REST endpoints.
+Fill in whatever configuration you prefer (such as Java version or build tool) and add a dependency on OpenAI. While not
+required, let's also add Spring Web so we can easily expose our new AI functionality as REST endpoints.
 
 ![Spring Initializr](spring-initializr-web.png)
 
@@ -52,13 +62,16 @@ Our project is now generated, you can skip to [API Key](#api-key) section below.
 
 ## Existing project
 
-Updating an existing project is a bit more tricky at the moment before the final version is released. This is mostly because the artifact has not yet been released to the regular Spring repository, so you need to set up an alternative repository for pre-release artifacts manually.
+Updating an existing project is a bit more tricky at the moment before the final version is released. This is mostly
+because the artifact has not yet been released to the regular Spring repository, so you need to set up an alternative
+repository for pre-release artifacts manually.
 
 ### Repository setup
 
 You can choose from two available repositories:
 
-- Snapshot repository: Most up-to-date version available, which will contain the newest features but may be more unstable.
+- Snapshot repository: Most up-to-date version available, which will contain the newest features but may be more
+  unstable.
 - Milestone repository: Released milestone versions are more stable, and that's what we will use in this article
 
 For Maven, update your `pom.xml` with the following:
@@ -87,13 +100,17 @@ repositories {
 
 ### Dependency Management
 
-{% info %}
-At the time when this article was written, the latest version was 0.8.1. You can check the current latest version on the [Spring AI site](https://docs.spring.io/spring-ai/docs/) and use it instead.
-{% endinfo %}
+{% info %} At the time when this article was written, the latest version was 0.8.1. You can check the current latest
+version on the [Spring AI site](https://docs.spring.io/spring-ai/docs/) and use it instead. {% endinfo %}
 
-While you can add your dependencies with a version directly specified, it is usually not the preferred way in Spring Boot applications. Typically, you don't specify any versions directly except for the parent pom, which defines all the versions of individual dependencies. When you add a new dependency, you don't need to worry about specifying the version as it is then inherited from the parent pom. This has the advantage that you don't need to worry about determining the exact version of your components, and your dependencies will work well together.
+While you can add your dependencies with a version directly specified, it is usually not the preferred way in Spring
+Boot applications. Typically, you don't specify any versions directly except for the parent pom, which defines all the
+versions of individual dependencies. When you add a new dependency, you don't need to worry about specifying the version
+as it is then inherited from the parent pom. This has the advantage that you don't need to worry about determining the
+exact version of your components, and your dependencies will work well together.
 
-In the final release of Spring AI, all the dependency versions will be most likely specified as usually in the parent pom, but until then, you can import Spring AI BOM, which will achieve the same.
+In the final release of Spring AI, all the dependency versions will be most likely specified as usually in the parent
+pom, but until then, you can import Spring AI BOM, which will achieve the same.
 
 For Maven add this to you pom file:
 
@@ -144,25 +161,34 @@ Note that we didn't have to specify the version as it is taken from the spring A
 
 ## API Key
 
-Now that we have all the required dependencies in place, we need to configure the connection to the OpenAI API. The good news is that the only configuration parameter we need to provide is the API key, which will be used for authentication with the API.
+Now that we have all the required dependencies in place, we need to configure the connection to the OpenAI API. The good
+news is that the only configuration parameter we need to provide is the API key, which will be used for authentication
+with the API.
 
-To obtain the API Key, we first need to [create an OpenAI account](https://platform.openai.com/signup). After that, go to [API Keys](https://platform.openai.com/api-keys) page and generate a new key. After the key is created, copy it, so we can use it later. You may also need to purchase some credit to your OpenAI account otherwise you may get quota exceeded exceptions.
+To obtain the API Key, we first need to [create an OpenAI account](https://platform.openai.com/signup). After that, go
+to [API Keys](https://platform.openai.com/api-keys) page and generate a new key. After the key is created, copy it, so
+we can use it later. You may also need to purchase some credit to your OpenAI account otherwise you may get quota
+exceeded exceptions.
 
-Now, we need to provide our application with the new API Key so it can connect to the OpenAI platform. The easiest way is to put it in your `application.properties` (or `application.yml`).
+Now, we need to provide our application with the new API Key so it can connect to the OpenAI platform. The easiest way
+is to put it in your `application.properties` (or `application.yml`).
 
 ```properties
 spring.ai.openai.api-key=<YOUR_API_KEY>
 ```
 
-{% info %}
-While this will work for our simple hello world application, it is usually not a good idea to have your secret credentials stored with the application itself and available to all in git. You can instead set environmental variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when launching the application.
-{% endinfo %}
+{% info %} While this will work for our simple hello world application, it is usually not a good idea to have your
+secret credentials stored with the application itself and available to all in git. You can instead set environmental
+variable `SPRING_AI_OPENAI_API_KEY` with your API key or pass the `spring.ai.openai.api-key` as command line param when
+launching the application. {% endinfo %}
 
 ## Text generation
 
 ### Simple queries
 
-Basic prompt-based text generation is quite simple. We need to inject `ChatClient` as a dependency to a class where we want to use that and the call `chatClient.call(prompt)` method passing in String query. As a result, we will receive a generated response.
+Basic prompt-based text generation is quite simple. We need to inject `ChatClient` as a dependency to a class where we
+want to use that and the call `chatClient.call(prompt)` method passing in String query. As a result, we will receive a
+generated response.
 
 ```java
 @Service
@@ -201,13 +227,17 @@ public class AiController {
 }
 ```
 
-Now we can start our application and test in the browser by calling [http://localhost:8080/ask-ai?prompt=how%20are%20you](http://localhost:8080/ask-ai?prompt=how%20are%20you).
+Now we can start our application and test in the browser by calling
+[http://localhost:8080/ask-ai?prompt=how%20are%20you](http://localhost:8080/ask-ai?prompt=how%20are%20you).
 
 ### Template queries
 
-In the example above, we let our application or external users to define the whole prompt. Sometimes it's exactly what we need, however sometimes we would like to have more control over our queries. Let's say we would like to have predefined queries over which we have full control and only provide certain parameters to adjust the queries.
+In the example above, we let our application or external users to define the whole prompt. Sometimes it's exactly what
+we need, however sometimes we would like to have more control over our queries. Let's say we would like to have
+predefined queries over which we have full control and only provide certain parameters to adjust the queries.
 
-Let's imagine our application provides useful tips on what to do on vacation. The user only provides us with the city and their interests, and we generate tips on what to do in the city.
+Let's imagine our application provides useful tips on what to do on vacation. The user only provides us with the city
+and their interests, and we generate tips on what to do in the city.
 
 Instead of the user providing the whole prompt, we can prepare a template such as:
 
@@ -217,7 +247,8 @@ I am mostly interested in {interest}.
 Tell me tips on what to do there.
 ```
 
-And then only fill in user-provided details instead of the placeholders. In Spring AI we can do this with `PromptTemplate`. Let's update our `ChatService`.
+And then only fill in user-provided details instead of the placeholders. In Spring AI we can do this with
+`PromptTemplate`. Let's update our `ChatService`.
 
 ```java
 public String getCityGuide(String city, String interest) {
@@ -249,7 +280,9 @@ public String cityGuide(@RequestParam("city") String city,
 
 ### Generating images
 
-For image generation, we can inject `ImageClient` through dependency injection wherever needed and utilize it to generate our images. Let's create a new service that will automatically receive `ImageClient` through constructor injection.
+For image generation, we can inject `ImageClient` through dependency injection wherever needed and utilize it to
+generate our images. Let's create a new service that will automatically receive `ImageClient` through constructor
+injection.
 
 ```java
 @Service
@@ -277,9 +310,16 @@ Now we can create a method, which will generate images based on text prompt:
     }
 ```
 
-Note that in addition to text prompt, which specifies what should our image be about (such as 'Bunch of cute cats playing on sofa.') we also need to provide `ImageOptions` object, which we generated with a provided builder. Image options specify additional parameters for generation such as dimensions, number of images to be generated, format etc.
+Note that in addition to text prompt, which specifies what should our image be about (such as 'Bunch of cute cats
+playing on sofa.') we also need to provide `ImageOptions` object, which we generated with a provided builder. Image
+options specify additional parameters for generation such as dimensions, number of images to be generated, format etc.
 
-In the example above, we used  generic `ImageOptions`. It is an abstraction, which can be used no matter which model (such as OpenAI) we have. Instead, it is possible to use a class for a specific model, where we can provide more options specific to that particular model. This gives us more parameters to work with and greater flexibility, but it ties our implementation to one model. Changing the model later would mean updating the code and migrating to options specific to the new model. This means more work, and not all options may be supported by the new AI platform. You need to decide whether you prefer more options or would like to rather abstract from individual models.
+In the example above, we used generic `ImageOptions`. It is an abstraction, which can be used no matter which model
+(such as OpenAI) we have. Instead, it is possible to use a class for a specific model, where we can provide more options
+specific to that particular model. This gives us more parameters to work with and greater flexibility, but it ties our
+implementation to one model. Changing the model later would mean updating the code and migrating to options specific to
+the new model. This means more work, and not all options may be supported by the new AI platform. You need to decide
+whether you prefer more options or would like to rather abstract from individual models.
 
 Here is an example with OpenAI-specific options:
 
@@ -294,9 +334,13 @@ OpenAiImageOptions openAiImageOptions = OpenAiImageOptions.builder()
 
 ### Obtaining generated images
 
-Our new image service uses `ImageClient` provided by Spring AI and returns response of type `ImageResponse`. This response contains not only the image generated, but also various metadata and can contain multiple images if we ask for them via `withN` in `ImageOptions`. In fact, the response does not contain the images directly, but also the URL where the generated images are located.
+Our new image service uses `ImageClient` provided by Spring AI and returns response of type `ImageResponse`. This
+response contains not only the image generated, but also various metadata and can contain multiple images if we ask for
+them via `withN` in `ImageOptions`. In fact, the response does not contain the images directly, but also the URL where
+the generated images are located.
 
-We can create a new method in our controller, which will generate our image based on user-provided prompt. It will then redirect to the URL of the generated image, so it will be displayed directly in the browser.
+We can create a new method in our controller, which will generate our image based on user-provided prompt. It will then
+redirect to the URL of the generated image, so it will be displayed directly in the browser.
 
 ```java
 @RestController
@@ -327,13 +371,26 @@ public class AiController {
 
 ## AI Provider abstraction
 
-Even though this article used OpenAI, the functionality of our application is not tightly coupled to it. We could easily switch later to a different provider just by changing our Maven dependency. This way, the impact of changing AI providers is minimized - we don't need to rewrite half of our application, risking breaking existing functionality and introducing bugs. Spring already follows this approach with many of its abstractions. When using Spring caching, you are not tied to a specific cache and can easily switch caching providers without affecting much of your code.
+Even though this article used OpenAI, the functionality of our application is not tightly coupled to it. We could easily
+switch later to a different provider just by changing our Maven dependency. This way, the impact of changing AI
+providers is minimized - we don't need to rewrite half of our application, risking breaking existing functionality and
+introducing bugs. Spring already follows this approach with many of its abstractions. When using Spring caching, you are
+not tied to a specific cache and can easily switch caching providers without affecting much of your code.
 
-Note that classes, which we used such as `ChatClient` or `ImageClient` are not OpenAI specific and will continue to work even after replacing OpenAI with different provider. There are some exceptions such as when providing image generation options. You can either use generic options with less functionality or OpenAI-specific options. In these cases, you need to decide if you need extra functionality given by a specific AI provider or if you are good with generic functionality. In case the generic functionality is enough, it will make migrating to different AI provider easier as no changes will be needed.
+Note that classes, which we used such as `ChatClient` or `ImageClient` are not OpenAI specific and will continue to work
+even after replacing OpenAI with different provider. There are some exceptions such as when providing image generation
+options. You can either use generic options with less functionality or OpenAI-specific options. In these cases, you need
+to decide if you need extra functionality given by a specific AI provider or if you are good with generic functionality.
+In case the generic functionality is enough, it will make migrating to different AI provider easier as no changes will
+be needed.
 
 ## Conclusion
 
-In this article we covered basic functionality for Spring AI using OpenAI for both image and text generation. Spring AI offers more functionality, which is beyond the scope of this article, but you can check official documentation for more details. Keep in mind that we used pre-production version of Spring AI and some features are likely to be changed, removed or added. You should not use this version for your real production applications until the final version is released.
+In this article we covered basic functionality for Spring AI using OpenAI for both image and text generation. Spring AI
+offers more functionality, which is beyond the scope of this article, but you can check official documentation for more
+details. Keep in mind that we used pre-production version of Spring AI and some features are likely to be changed,
+removed or added. You should not use this version for your real production applications until the final version is
+released.
 
 ## Further reading
 

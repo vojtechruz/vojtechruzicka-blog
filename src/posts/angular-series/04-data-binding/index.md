@@ -1,13 +1,15 @@
 ---
 title: 'Angular Tutorial 4: Data binding'
-date:  '2020-07-23'
+date: '2020-07-23'
 tags: ['Angular']
 path: '/angular/04-data-binding/'
-excerpt: 'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
+excerpt:
+  'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
 series: 'Angular Tutorial'
 series-order: 4
 draftStatus: draft
 ---
+
 {% raw %}
 
 ## Data binding
@@ -29,10 +31,10 @@ expression is resolved to string based on fields and methods in your typescript 
 ```typescript {3,6}
 @Component({
   selector: 'app-main',
-  template: '<h1>{{title}}</h1>'
+  template: '<h1>{{title}}</h1>',
 })
 export class MainComponent {
-  title = 'Hello world!'
+  title = 'Hello world!';
 }
 ```
 
@@ -47,7 +49,7 @@ Properties are often good enough, but sometimes you need something more dynamic.
   template: '<h1>{{getTitle()}}</h1>'
 })
 export class MainComponent {
-  
+
   getTitle() {
     ...
   }
@@ -141,10 +143,9 @@ full example.
 ```typescript {3,7}
 @Component({
   selector: 'app-main',
-  template: '<button (click)="buttonClicked()">Click me!</button>'
+  template: '<button (click)="buttonClicked()">Click me!</button>',
 })
 export class MainComponent {
-
   buttonClicked() {
     console.log('The button was clicked!');
   }
@@ -171,10 +172,10 @@ a form with some fields. Whenever the user changes some of these fields, your da
 But also, when you change that data in your class, the user should see the new data in their form.
 
 Two-way data binding uses a combination of event binding `()` and property binding `[]` together `[()]`. It can be
-difficult to remember the order of brackets here, so you can instead remember that the brackets  `[()]` look like
-*banana in a box*. The logic behind this bracket combination is that `()` defines one-way binding from template to the
-class. Square brackets `[]` define one-way binding the other way around. Two-way binding is just a combination of these
-two concepts.
+difficult to remember the order of brackets here, so you can instead remember that the brackets `[()]` look like _banana
+in a box_. The logic behind this bracket combination is that `()` defines one-way binding from template to the class.
+Square brackets `[]` define one-way binding the other way around. Two-way binding is just a combination of these two
+concepts.
 
 Now let's look at a specific example.
 
@@ -183,8 +184,8 @@ Now let's look at a specific example.
   selector: 'app-main',
   template: `
     Enter your name:
-    <input [(ngModel)]="name">
-  `
+    <input [(ngModel)]="name" />
+  `,
 })
 export class MainComponent {
   name = '';
@@ -204,12 +205,11 @@ also the value of our input.
   selector: 'app-main',
   template: `
     Enter your name:
-    <input [(ngModel)]="name">
+    <input [(ngModel)]="name" />
     <button (click)="clearName()">Clear name</button>
-  `
+  `,
 })
 export class MainComponent {
-
   name = '';
 
   clearName() {
@@ -221,9 +221,8 @@ export class MainComponent {
 Nothing special here, we utilized event binding, which we already know how to use. Whenever the button is clicked, we
 call our new `clearName()` method.
 
-{% info %}
-When using two-way data binding with ngModel, you need to import FormsModule to your module (in the imports section).
-{% endinfo %}
+{% info %} When using two-way data binding with ngModel, you need to import FormsModule to your module (in the imports
+section). {% endinfo %}
 
 ## What we've learned
 
@@ -233,7 +232,7 @@ of data and events between your component's class and template.
 We have four kinds of data binding:
 
 | Name             | Syntax | Direction        | Description                                                                    |
-|------------------|--------|------------------|--------------------------------------------------------------------------------|
+| ---------------- | ------ | ---------------- | ------------------------------------------------------------------------------ |
 | Interpolation    | `{{}}` | Class → Template | Resolves expression to string.                                                 |
 | Property binding | `[]`   | Class → Template | Binds an expression result to a property of DOM node or component input.       |
 | Event binding    | `()`   | Template → Class | Executes expression when an event on a DOM node or component is triggered.     |
@@ -241,5 +240,4 @@ We have four kinds of data binding:
 
 Be aware of certain limitations when using expressions in data binding. You cannot use certain features such as bitwise
 operators or assignment with interpolation. Your expressions should be simple and fast to resolve. With interpolation
-and property binding, there should be no side effects.
-{% endraw %}
+and property binding, there should be no side effects. {% endraw %}

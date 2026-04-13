@@ -1,17 +1,16 @@
 ---
 title: 'Javascript async await tutorial'
-date:  "2019-03-31"
-tags: ["Javascript"]
+date: '2019-03-31'
+tags: ['Javascript']
 path: '/javascript-async-await/'
 excerpt: 'Async await allows you to work with asynchronous code in a cleaner and more convenient way.'
 draftStatus: draft
 ---
 
-
-
 ## Promises
 
-This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or need a quick recap, check the following article.
+This article builds on the understanding of the concept of promises in Javascript. If you are not familiar with them or
+need a quick recap, check the following article.
 
 {% linkedPost "/javascript-promises/" %}
 
@@ -21,7 +20,7 @@ Let's assume we have a simple function returning some value
 
 ```javascript
 function foo() {
-    return 42;
+  return 42;
 }
 ```
 
@@ -29,36 +28,40 @@ Changing it to `async` function is pretty simple. You just add `async` at the be
 
 ```javascript
 async function foo() {
-    return 42;
+  return 42;
 }
 ```
 
 Pretty easy right? What did actually change though?
 
-The async function now returns a promise. Instead of returning just 42 as in the previous example, it returns `Promise { 42 }`, which is fulfilled.
+The async function now returns a promise. Instead of returning just 42 as in the previous example, it returns
+`Promise { 42 }`, which is fulfilled.
 
 ```javascript
 async function foo() {
-    return 42;
+  return 42;
 }
 
-foo().then(result => {
-    console.log(result); //42
-})
+foo().then((result) => {
+  console.log(result); //42
+});
 ```
 
-In case that there is an unhandled error in the `async` function, it returns rejected promise with that error. You can handle it as usual with `catch()` clause.
+In case that there is an unhandled error in the `async` function, it returns rejected promise with that error. You can
+handle it as usual with `catch()` clause.
 
 ```javascript
 async function foo() {
-    throw new Error("Oh dear! It's broken!");
+  throw new Error("Oh dear! It's broken!");
 }
 
-foo().then(result => {
+foo()
+  .then((result) => {
     console.log(result); // This is not called because of the error
-}).catch(error => {
+  })
+  .catch((error) => {
     console.log(error); // Error: Oh dear! It's broken!
-});
+  });
 ```
 
 ### Async in arrow functions and class methods
@@ -89,15 +92,17 @@ Await syntax is simple you just put `await` before your function returning a pro
 await myFunctionReturningPromise();
 ```
 
-What it does is that it waits for the promise to resolve and if successful it returns the value. The execution of the program does not continue to the next line until the promise is settled. You can use `await` only inside `async` function.
+What it does is that it waits for the promise to resolve and if successful it returns the value. The execution of the
+program does not continue to the next line until the promise is settled. You can use `await` only inside `async`
+function.
 
 ```javascript
 const myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Completed"), 1000)
+  setTimeout(() => resolve('Completed'), 1000);
 });
 
 async function foo() {
-    const result = await myPromise; // Wait here until the promise settles
+  const result = await myPromise; // Wait here until the promise settles
 }
 ```
 
@@ -111,54 +116,64 @@ One implication of this is that you cannot use `await` in the top-level code.
 
 ## Multiple calls
 
-Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where each call depends on the value returned by the previous one. That means those calls should be executed one after another in synchronous order.
+Of course, the example above is rather simple. Where `await` really shines is multiple subsequent async calls, where
+each call depends on the value returned by the previous one. That means those calls should be executed one after another
+in synchronous order.
 
 ```javascript
 const first = await firstCall();
 const second = await secondCall(first);
-const third = await  thidrCall(second);
+const third = await thidrCall(second);
 ```
 
-It is a concise, easy to read way to represent multiple async calls executed one after another. With promises, it would be not so nice chain of `then()` clauses, which is much harder to read. Of course, still much better than chained callbacks.
+It is a concise, easy to read way to represent multiple async calls executed one after another. With promises, it would
+be not so nice chain of `then()` clauses, which is much harder to read. Of course, still much better than chained
+callbacks.
 
 ## Error handling
-When working with promises, you can provide `then()` clause, which handles the case where the promise is fulfilled successfully and `catch()` clause to handle any errors when the promise is rejected. There is even `finally()` clause which executes no matter whether the promise was fulfilled or rejected.
+
+When working with promises, you can provide `then()` clause, which handles the case where the promise is fulfilled
+successfully and `catch()` clause to handle any errors when the promise is rejected. There is even `finally()` clause
+which executes no matter whether the promise was fulfilled or rejected.
 
 ```javascript
-foo()
-.then(successFunction)
-.catch(failureFunction)
-.finally(doThisNoMatterWhatFunction);
+foo().then(successFunction).catch(failureFunction).finally(doThisNoMatterWhatFunction);
 ```
 
-How can you do the same with `await` though? It just covers the case of `then()` where the promise is fulfilled. How do you do error handling and possibly `finally()` functionality?
+How can you do the same with `await` though? It just covers the case of `then()` where the promise is fulfilled. How do
+you do error handling and possibly `finally()` functionality?
 
 The good news is that you can use the good old `try-catch-finally`:
 
 ```javascript
 async function foo() {
-    try {
-        const result = await myPromise;
-    } catch (error) {
-        // Error handling
-    } finally {
-        // After try/catch is done,
-        // do this whether there was error or not
-    }
+  try {
+    const result = await myPromise;
+  } catch (error) {
+    // Error handling
+  } finally {
+    // After try/catch is done,
+    // do this whether there was error or not
+  }
 }
 ```
 
-That means - `try` block executes first. When there is an error, the execution of `try` block terminates and it jumps to the `catch` block. No matter whether there was an error or not, in the end, the `finally` block executes.
+That means - `try` block executes first. When there is an error, the execution of `try` block terminates and it jumps to
+the `catch` block. No matter whether there was an error or not, in the end, the `finally` block executes.
 
 Traditional `try-catch-finally` has some advantages over chained promises with `then()-catch()-finally()`.
 
-It is arguably easier to read. More importantly, it is a plain old traditional JavaScript construct, which everybody knows. You no longer need to use one error handling concept for promises and a different one for non-promise code. Your error handling is unified and cleaner.  In one `try` block you can have mixed async and non-async code.
+It is arguably easier to read. More importantly, it is a plain old traditional JavaScript construct, which everybody
+knows. You no longer need to use one error handling concept for promises and a different one for non-promise code. Your
+error handling is unified and cleaner. In one `try` block you can have mixed async and non-async code.
 
 ## Waiting for multiple parallel promises
 
-Sometimes instead of resolving async functions one after another, it is useful to execute them in parallel and await until all of them are finished.
+Sometimes instead of resolving async functions one after another, it is useful to execute them in parallel and await
+until all of them are finished.
 
-With promises, you can use `Promise.all()`. As input, you provide an array of promises. It returns a single promise, which resolves once all the passed in promises are fulfilled.
+With promises, you can use `Promise.all()`. As input, you provide an array of promises. It returns a single promise,
+which resolves once all the passed in promises are fulfilled.
 
 ```javascript
 Promise.all([promise1, promise2, promise3]).then(doSomething);
@@ -172,7 +187,9 @@ const results = await Promise.all([promise1, promise2, promise3]);
 
 ## Compatibility
 
-The async-await functionality is well supported in all the major modern browsers. Of course, you'll be in trouble with Internet Explorer. It does not support async await at all, but you [can work around this](https://medium.com/@zwacky/add-es7-async-await-support-into-your-non-bleeding-edge-build-process-ad0dded0d002).
+The async-await functionality is well supported in all the major modern browsers. Of course, you'll be in trouble with
+Internet Explorer. It does not support async await at all, but you
+[can work around this](https://medium.com/@zwacky/add-es7-async-await-support-into-your-non-bleeding-edge-build-process-ad0dded0d002).
 
 ![Async compatibility](async-compatibility.png)
 
@@ -180,8 +197,11 @@ The async-await functionality is well supported in all the major modern browsers
 
 Async-await offers an easy way to write asynchronous code as if it was synchronous. It is easier to read and write.
 
-Await can be used before an asynchronous call returning a promise. The execution of the function will wait until the call is resolved and only then continue to the next line.
+Await can be used before an asynchronous call returning a promise. The execution of the function will wait until the
+call is resolved and only then continue to the next line.
 
-Since `await` replaces `then().catch()` chains, you cannot use the same error handling like with promises. Instead, you should use the good old `try-catch-finally`.
+Since `await` replaces `then().catch()` chains, you cannot use the same error handling like with promises. Instead, you
+should use the good old `try-catch-finally`.
 
-`Await` can be only used in functions marked as `async`. Marking function as `async` makes it also return a promise. This is done automatically for you, so you don't need to return a promise explicitly.
+`Await` can be only used in functions marked as `async`. Marking function as `async` makes it also return a promise.
+This is done automatically for you, so you don't need to return a promise explicitly.

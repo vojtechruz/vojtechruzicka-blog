@@ -1,9 +1,11 @@
 ---
 title: Break the Java Generics Naming Convention?
-date: "2016-04-30"
+date: '2016-04-30'
 tags: ['Java']
 path: '/break-java-generics-naming-convention/'
-excerpt: 'Descriptive names improve readability and reduce confusion. Yet official Java conventions restrict generic type names to a single letter — should you stick to it?'
+excerpt:
+  'Descriptive names improve readability and reduce confusion. Yet official Java conventions restrict generic type names
+  to a single letter — should you stick to it?'
 ---
 
 ## Java Generics Naming Convention
@@ -12,9 +14,9 @@ The official Sun/Oracle Java [naming convention](https://docs.oracle.com/javase/
 generic type parameters is:
 
 > By convention, type parameter names are single, uppercase letters. This stands in sharp contrast to the variable
-naming conventions that you already know about, and with good reason: Without this convention, it would be difficult to
-tell the difference between a type variable and an ordinary class or interface name. The most commonly used type
-parameter names are:
+> naming conventions that you already know about, and with good reason: Without this convention, it would be difficult
+> to tell the difference between a type variable and an ordinary class or interface name. The most commonly used type
+> parameter names are:
 >
 > - E - Element (used extensively by the Java Collections Framework)
 > - K - Key
@@ -45,23 +47,23 @@ read. Also, a big number of those parameters might be a sign of Single Responsib
 
 If you prefer more descriptive names, but still want to be able to instantly recognize generic types, this option is for
 you. After choosing a nice descriptive name, certain suffix (or prefix) is added to that name. So instead of K, V you
-have KeyT and ValueT. Or KeyType and ValueType. In the recent [Google Java Style
-Guide](https://google.github.io/styleguide/javaguide.html#s5.2.8-type-variable-names), it is possible to use either only
-letter convention or descriptive name with T appended such as ListenerT. I personally like Type appendix more than T,
-since it is not much longer and it reads better. However, I would recommend sticking to the Google Style Guide as it is
-widely recognized convention and can be seen as a more up-to-date version of the old Sun naming convention. There are
-also [some suggestions](https://dzone.com/articles/naming-conventions) like a `$` prefix to type
-parameters (like `$Listener`) by[Tim Boudreau](https://dzone.com/users/18/tim.html), but I don't find that
-instantly recognizable as a generic type and would rather choose the Google Style Guide.
+have KeyT and ValueT. Or KeyType and ValueType. In the recent
+[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html#s5.2.8-type-variable-names), it is possible
+to use either only letter convention or descriptive name with T appended such as ListenerT. I personally like Type
+appendix more than T, since it is not much longer and it reads better. However, I would recommend sticking to the Google
+Style Guide as it is widely recognized convention and can be seen as a more up-to-date version of the old Sun naming
+convention. There are also [some suggestions](https://dzone.com/articles/naming-conventions) like a `$` prefix to type
+parameters (like `$Listener`) by[Tim Boudreau](https://dzone.com/users/18/tim.html), but I don't find that instantly
+recognizable as a generic type and would rather choose the Google Style Guide.
 
 ## Option 3. Same naming conventions as regular classes
 
 If the sole reason for having special convention for generic types is to be able to tell them apart from regular types,
-I think that reason is now no longer valid. If you are using a modern IDE such as [IntelliJ
-Idea](https://www.jetbrains.com/idea/), the generic types should be marked with a different color. It is easy to
-recognize them and you can follow the usual class naming conventions - eg. use Key and Value instead of K and V. I think
-this approach is the best, because it uses descriptive names with known convention without adding any extra unnecessary
-garbage as appending Type suffix.
+I think that reason is now no longer valid. If you are using a modern IDE such as
+[IntelliJ Idea](https://www.jetbrains.com/idea/), the generic types should be marked with a different color. It is easy
+to recognize them and you can follow the usual class naming conventions - eg. use Key and Value instead of K and V. I
+think this approach is the best, because it uses descriptive names with known convention without adding any extra
+unnecessary garbage as appending Type suffix.
 
 ![IntelliJ Idea - type parameter has a different color](idea-type-color.png)
 

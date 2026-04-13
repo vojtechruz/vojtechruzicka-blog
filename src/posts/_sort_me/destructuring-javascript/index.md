@@ -1,37 +1,38 @@
 ---
 title: 'Destructuring objects and arrays in JavaScript'
-date:  "2019-02-03"
+date: '2019-02-03'
 tags: ['Javascript']
 path: '/destructuring-javascript/'
 excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
 draftStatus: draft
 ---
 
-
-
 ## Destructuring assignment
 
-The destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's look into more detail how this works.
+The destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's
+look into more detail how this works.
 
 ## Array destructuring
 
-Let's assume we have an array, and we want to assign its contents into separate variables. Without destructuring, you would need to do something like this:
+Let's assume we have an array, and we want to assign its contents into separate variables. Without destructuring, you
+would need to do something like this:
 
 ```javascript
-let myArray = [1, 2, 3]; 
+let myArray = [1, 2, 3];
 let a = myArray[0];
 let b = myArray[1];
 let c = myArray[2];
-````
+```
 
 With array destructuring assignment, it is much easier:
 
 ```javascript
 let myArray = [1, 2, 3];
 let [a, b, c] = myArray; // a=1, b=2, c=3
-````
+```
 
-Much better, right? The first item from array gets assigned to the first variable, the second item in the array to the second variable and so on.
+Much better, right? The first item from array gets assigned to the first variable, the second item in the array to the
+second variable and so on.
 
 In the example above, we declared new variables and assigned to them, but you can use existing ones.
 
@@ -40,25 +41,28 @@ Of course you don't need to use all the items from the source array:
 ```javascript
 let myArray = [1, 2, 3];
 let [a, b] = myArray; // a=1, b=2
-````
+```
 
 ### Default values
 
-On the other hand, if there are not enough items in the array, only some of the variables get assigned. The rest remains undefined as if you would declare a variable and not assign it.
+On the other hand, if there are not enough items in the array, only some of the variables get assigned. The rest remains
+undefined as if you would declare a variable and not assign it.
 
 ```javascript
 let myArray = [1];
 let [a, b, c] = myArray; // a=1, b=undefined, c=undefined
-````
+```
 
-You can provide default values to the variables in case there is not enough items, so they have some value as a fallback:
+You can provide default values to the variables in case there is not enough items, so they have some value as a
+fallback:
 
 ```javascript
 let myArray = [1];
-let [a=2, b=4, c=6] = myArray; // a=1, b=4, c=6
-````
+let [a = 2, b = 4, c = 6] = myArray; // a=1, b=4, c=6
+```
 
-Because it is called destructuring, you might think that items are actually removed from the source array. This is, however, not the case, the source array remains unchanged. The same also applies to destructuring objects.
+Because it is called destructuring, you might think that items are actually removed from the source array. This is,
+however, not the case, the source array remains unchanged. The same also applies to destructuring objects.
 
 ### Ignoring items
 
@@ -67,7 +71,7 @@ If you want to skip certain items, you can do it like this:
 ```javascript
 let myArray = [1, 2, 3];
 let [a, , b] = myArray; // a=1, b=3
-````
+```
 
 ### Swapping variables
 
@@ -83,7 +87,7 @@ With destructuring, variable value swap is as easy as this:
 
 ```javascript
 [x, y] = [y, x];
-````
+```
 
 ### Assigning the rest of the items
 
@@ -100,7 +104,8 @@ The `...` syntax with its various uses is described in detail in the following a
 
 ## Nested arrays destructuring
 
-When you have an array, which contains other arrays, you can still use destructuring to get to the items in the nested array:
+When you have an array, which contains other arrays, you can still use destructuring to get to the items in the nested
+array:
 
 ```javascript
 let myArray = [1, 2, [3, 4], 5];
@@ -110,10 +115,11 @@ let [first, second, [third, fourth], fifth] = myArray;
 
 ### Destructuring iterables
 
-All the examples above used arrays as a source for destructuring. Actually, this is just a special case as you can use any iterable such as string. In that case each character gets assigned to a single variable:
+All the examples above used arrays as a source for destructuring. Actually, this is just a special case as you can use
+any iterable such as string. In that case each character gets assigned to a single variable:
 
 ```javascript
-const person = "John Doe";
+const person = 'John Doe';
 let [first, second] = person; // first = "J", second = "o"
 ```
 
@@ -121,7 +127,7 @@ Or you can even use regular expression matches:
 
 ```javascript
 let pattern = /(\w+)/g; // Match whole words
-let string = "The quick brown fox jumps over a lazy dog.";
+let string = 'The quick brown fox jumps over a lazy dog.';
 let results = string.match(pattern);
 // results = ["The", "quick", "brown", "fox", "jumps", "over", "a", "lazy", "dog"]
 let [first, second] = results; // first = "The", second = "quick"
@@ -133,35 +139,38 @@ Object destructuring works in a similar way to array destructuring with a few di
 
 ```javascript
 // Simple assignment
-let john = {name: "John Doe", age: 42, gender: "Male"};
-let {name, age} = john;
+let john = { name: 'John Doe', age: 42, gender: 'Male' };
+let { name, age } = john;
 
 // Default values
-let {name, age, favoriteColor = "Black" } = john; 
+let { name, age, favoriteColor = 'Black' } = john;
 
 // Other unused properties assigned to a new object
-let {name, age, ...others} = john;
+let { name, age, ...others } = john;
 ```
 
 ### Changing variable names
 
-Unlike arrays, where the assignment is determined by order, here it is by variable name matching object's property name. That means that is assigning to a variable called `name` it will use value of a property `name` from the source object.
+Unlike arrays, where the assignment is determined by order, here it is by variable name matching object's property name.
+That means that is assigning to a variable called `name` it will use value of a property `name` from the source object.
 
 However, you can make the name different if you want:
 
 ```javascript
-let john = {name: "John Doe", age: 42};
-let {name: newName, age: newAge} = john;
+let john = { name: 'John Doe', age: 42 };
+let { name: newName, age: newAge } = john;
 // newName ="John Doe", newAge = 42
 ```
 
-That can be particularly useful when working with object property names, which are not valid variable names. For example, this is a valid object:
+That can be particularly useful when working with object property names, which are not valid variable names. For
+example, this is a valid object:
 
 ```javascript
 {"my-property": 42}
 ```
 
-But `my-property` is not a valid variable name. Fortunately, we can assign different variable name, which is valid using the approach above:
+But `my-property` is not a valid variable name. Fortunately, we can assign different variable name, which is valid using
+the approach above:
 
 ```javascript
 // Not valid syntax: my-property is not valid variable name
@@ -175,16 +184,17 @@ let {"my-property": myProperty} = {"my-property": 42};
 
 ### Dynamic property names
 
-When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]`. What's more interesting, you can also use a variable in place of property name - `person[myVariable]`:
+When working with plain objects, you can access their properties by property name like `person.name` or
+`person["name"]`. What's more interesting, you can also use a variable in place of property name - `person[myVariable]`:
 
 ```javascript
-let person = {name: "John", age: 42, hobby: "Javascript"};
+let person = { name: 'John', age: 42, hobby: 'Javascript' };
 
 let propertyKey;
-if(something) {
-    propertyKey = "age";
+if (something) {
+  propertyKey = 'age';
 } else {
-    propertyKey = "name";
+  propertyKey = 'name';
 }
 
 let foo = person[propertyKey]; // foo = 42 or "John"
@@ -193,37 +203,43 @@ let foo = person[propertyKey]; // foo = 42 or "John"
 You can use similar approach when destructuring:
 
 ```javascript
-let person = {name: "John", age: 42, hobby: "Javascript"};
+let person = { name: 'John', age: 42, hobby: 'Javascript' };
 
 let propertyKey;
-if(something) {
-    propertyKey = "age";
+if (something) {
+  propertyKey = 'age';
 } else {
-    propertyKey = "name";
+  propertyKey = 'name';
 }
 
-let {[propertyKey]: foo} = person; // foo = 42 or "John"
+let { [propertyKey]: foo } = person; // foo = 42 or "John"
 ```
 
 ### Usage in iteration
 
-Destructuring can be useful when iterating over multiple objects. You can easily extract just the properties you are interested in:
+Destructuring can be useful when iterating over multiple objects. You can easily extract just the properties you are
+interested in:
 
 ```javascript
-let persons = [{name: "John", age: 42, hobby: "Javascript"}, {name: "Jane", age: 24}];
+let persons = [
+  { name: 'John', age: 42, hobby: 'Javascript' },
+  { name: 'Jane', age: 24 },
+];
 
-for(let {name, age, hobby = "Unknown"} of persons) {
-    console.log(name);
-    console.log(age);
-    console.log(hobby);
+for (let { name, age, hobby = 'Unknown' } of persons) {
+  console.log(name);
+  console.log(age);
+  console.log(hobby);
 }
 ```
 
-It is not only concise when accessing the current object's properties, but also it allows you to define default values of missing properties easily.
+It is not only concise when accessing the current object's properties, but also it allows you to define default values
+of missing properties easily.
 
 ### Assignment to existing variables
 
-When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or whether you assign to previously declared variables:
+When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or
+whether you assign to previously declared variables:
 
 ```javascript
 // Declaration and assignment
@@ -245,10 +261,11 @@ let foo, bar;
 {foo, bar} = {foo: 1, bar: 2};
 ```
 
-What happened here? Curly braces in `{a, b}` get interpreted as a declaration of a block rather than object destructuring assignment. Fortunately, you can wrap the assignment in regular braces to make it work:
+What happened here? Curly braces in `{a, b}` get interpreted as a declaration of a block rather than object
+destructuring assignment. Fortunately, you can wrap the assignment in regular braces to make it work:
 
 ```javascript
-({foo, bar} = {foo: 1, bar: 2});
+({ foo, bar } = { foo: 1, bar: 2 });
 ```
 
 ### Nested object destructuring
@@ -257,35 +274,45 @@ Similar to nested array destructuring, you can destructure even items in the nes
 
 ```javascript
 let john = {
-        name: "John Doe",
-        age: 42,
-        skills: {
-            cooking:9,
-            javascript: 1
-        }
+  name: 'John Doe',
+  age: 42,
+  skills: {
+    cooking: 9,
+    javascript: 1,
+  },
 };
 
-let {age, name, skills: {cooking, javascript}} = john;
+let {
+  age,
+  name,
+  skills: { cooking, javascript },
+} = john;
 // name = "John Doe", age = 42, cooking = 9, javascript = 1
 ```
 
-Of course, when your object contains arrays as property values, you can destructure them as well. You can combine object and array destructuring:
+Of course, when your object contains arrays as property values, you can destructure them as well. You can combine object
+and array destructuring:
 
 ```javascript
 let john = {
-    name: "John Doe",
-    age: 42,
-    skills: {
-        cooking:9,
-        javascript: 1
-    },
-    hobbies: ["Soap operas", "Internet trolling"]
+  name: 'John Doe',
+  age: 42,
+  skills: {
+    cooking: 9,
+    javascript: 1,
+  },
+  hobbies: ['Soap operas', 'Internet trolling'],
 };
 
-let {age, name, skills: {cooking, javascript}, hobbies: [hobby1, hobby2]} = john;
+let {
+  age,
+  name,
+  skills: { cooking, javascript },
+  hobbies: [hobby1, hobby2],
+} = john;
 // name = "John Doe", age = 42, cooking = 9, javascript -=1
 // hobby1 = Soap operas, hobby2 = Internet trolling
-````
+```
 
 ## Destructuring function parameters
 
@@ -293,44 +320,50 @@ Imagine you have a function, which instead of various individual parameters acce
 
 ```javascript
 const myImage = {
-    x: 100,
-    y: 200,
-    source: "http://example.com/image.png",
-    grayscale: false
+  x: 100,
+  y: 200,
+  source: 'http://example.com/image.png',
+  grayscale: false,
 };
 
 function drawImage(imageConfig) {
-    console.log("Drawing image:");
-    console.log("Position: " + imageConfig.x + "," + imageConfig.y);
-    console.log("Source image location: " + imageConfig.source);
-    console.log("Grayscale: " + imageConfig.grayscale);
+  console.log('Drawing image:');
+  console.log('Position: ' + imageConfig.x + ',' + imageConfig.y);
+  console.log('Source image location: ' + imageConfig.source);
+  console.log('Grayscale: ' + imageConfig.grayscale);
 }
 
 drawImage(myImage);
 ```
 
-This is often useful, especially if you have many configuration properties and some of them are optional. However, it has some disadvantages. You need to access all the properties through the source object like this: `imageConfig.grayscale`. Alternatively, you need to declare variables and assign properties to them. With optional properties, it is even worse as you need to handle manually default values if a property is not present. Fortunately, you can use object destructuring to create variables from the input object:
+This is often useful, especially if you have many configuration properties and some of them are optional. However, it
+has some disadvantages. You need to access all the properties through the source object like this:
+`imageConfig.grayscale`. Alternatively, you need to declare variables and assign properties to them. With optional
+properties, it is even worse as you need to handle manually default values if a property is not present. Fortunately,
+you can use object destructuring to create variables from the input object:
 
 ```javascript
-function drawImage({x, y, source, grayscale}) {
-    console.log("Drawing image:");
-    console.log("Position: " + x + "," + y);
-    console.log("Source image location: " + source);
-    console.log("Grayscale: " + grayscale);
+function drawImage({ x, y, source, grayscale }) {
+  console.log('Drawing image:');
+  console.log('Position: ' + x + ',' + y);
+  console.log('Source image location: ' + source);
+  console.log('Grayscale: ' + grayscale);
 }
 ```
 
 But of course, it is even more useful with default values:
 
 ```javascript
-function drawImage({x = 0, y = 0, source, grayscale = false}) {
-    console.log("Drawing image:");
-    console.log("Position: " + x + "x" + y);
-    console.log("Source image location: " + source);
-    console.log("Grayscale: " + grayscale);
+function drawImage({ x = 0, y = 0, source, grayscale = false }) {
+  console.log('Drawing image:');
+  console.log('Position: ' + x + 'x' + y);
+  console.log('Source image location: ' + source);
+  console.log('Grayscale: ' + grayscale);
 }
 ```
 
 ## Conclusion
 
-Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple parts. The syntax is much more concise than the traditional approach, especially when handling situations such as default values.
+Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple
+parts. The syntax is much more concise than the traditional approach, especially when handling situations such as
+default values.
