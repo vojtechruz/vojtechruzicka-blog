@@ -68,7 +68,7 @@ words, it will be placed 20 pixels from the top edge of its original position.
 In the example below, gray squares mark the original position of each element before it was moved using
 `position: relative;`.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/mdJamVb/", "CodePen example - Position relative" %}
+{% codepen "mdJamVb", "CodePen example - Position relative" %}
 
 As you can see, the **space required for the original location of the element is still allocated**.
 
@@ -86,13 +86,13 @@ the first parent** in the element hierarchy, which has `position` set to anythin
 
 **If there is no such parent, it is set relative to the whole page.**
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/vYObeJw/", "CodePen example - Position absolute" %}
+{% codepen "vYObeJw", "CodePen example - Position absolute" %}
 
 Each orange box is positioned relative to the gray container box. This is possible because the container has `position`
 set to `relative`. If the container's position was `static`, the orange boxes **would be positioned relative to the
 whole page**.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/YzXBrLo/", "CodePen example - Position absolute - if parent is not relative, items are positioned based on whole page, not parent" %}
+{% codepen "YzXBrLo", "CodePen example - Position absolute - if parent is not relative, items are positioned based on whole page, not parent" %}
 
 Another important behavior to notice is that we explicitly set the height of the gray container to `200 px`. That's
 because, unlike with `relative` position, **absolutely positioned elements are removed from the normal document flow and
@@ -101,7 +101,7 @@ don't occupy any space when calculating the size of the parent container**.
 When we don't specify the height of the gray container box, it will collapse to zero as it does not contain any
 elements, which are used to determine its size.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/JjdxrBw/", "CodePen example - Position absolute - elements are removed from document flow and dont reserve space" %}
+{% codepen "JjdxrBw", "CodePen example - Position absolute - elements are removed from document flow and dont reserve space" %}
 
 ### fixed
 
@@ -112,7 +112,7 @@ The position is determined relative to the viewport. This means that even if you
 original location on the page. This can be useful, for example, if you want to have a navigation bar, which is always
 visible on the top, no matter where you are on the page. Or a cookie info bar on the bottom.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/xxGMweV/", "CodePen example - Position fixed" %}
+{% codepen "xxGMweV", "CodePen example - Position fixed" %}
 
 Although this can be tempting, be careful with its usage. On a mobile device with a small screen, it can be a big deal
 if a large portion of your screen is always covered with a navigation bar or something similar. It dramatically reduces
@@ -126,7 +126,7 @@ The sticky position is the latest addition to the list of `position` properties.
 The element is normally positioned on the page, but when you reach its position when scrolling, its position becomes
 fixed. It sticks to its location and stays there when you scroll further.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/vYObLja/", "CodePen example - Position sticky" %}
+{% codepen "vYObLja", "CodePen example - Position sticky" %}
 
 #### Browser Support
 
@@ -163,7 +163,7 @@ z-index: 1;
 
 The elements with higher `z-index` are displayed in front of elements with lower `z-index`.
 
-{% codepen "https://codepen.io/vojtechruz/embed/preview/abOPmwy/", "CodePen example - How z index affects order of elements" %}
+{% codepen "abOPmwy", "CodePen example - How z index affects order of elements" %}
 
 In the example, you can see that you can also specify negative numbers, which places these elements behind those with no
 `z-index` or index with value 0.

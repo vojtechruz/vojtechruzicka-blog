@@ -1,32 +1,32 @@
 // CodePen embed shortcode with optional visible caption
 // Usage:
-//   {% codepen "https://codepen.io/user/pen/slug" %}
-//   {% codepen "user/pen/slug", "Optional title" %}
-//   {% codepen "user/pen/slug", 500 %}
-//   {% codepen "user/pen/slug", "Optional title", 500, "result+css" %}
-//   {% codepen "user/pen/slug", "Visible caption below", 500, "result+css", true %}
-// Accepts a full URL or a partial path (user/pen/slug or user/embed/slug). Ensures embed URL.
-import { escapeHtml, hash } from "../utils/formatting.js";
+//   {% CodePenID "slug" %}
+//   {% CodePenID "slug", "Optional title" %}
+//   {% CodePenID "slug", 500 %}
+//   {% CodePenID "slug", "Optional title", 500, "result+css" %}
+//   {% CodePenID "slug", "Visible caption below", 500, "result+css", true %}
+// Accepts only a CodePenID. Always uses the default user 'vojtechruz'.
+import { escapeHtml, hash } from '../utils/formatting.js';
 export default function codepen(
-  input,
-  title = "CodePen embed",
+  id,
+  title = 'CodePen example',
   height = 400,
-  defaultTab = "result",
-  showCaption = true
+  defaultTab = 'result',
+  showCaption = true,
 ) {
-  if (typeof height === "string" && /^\d+$/.test(height)) {
+  if (typeof height === 'string' && /^\d+$/.test(height)) {
     height = Number(height);
   }
 
-  const embedUrl = toEmbedUrl(String(input));
+  const embedUrl = `https://codepen.io/vojtechruz/embed/${id}`;
   const params = new URLSearchParams();
 
   if (defaultTab) {
-    params.set("default-tab", String(defaultTab));
+    params.set('default-tab', String(defaultTab));
   }
 
   if (height) {
-    params.set("height", String(height));
+    params.set('height', String(height));
   }
 
   const src = `${embedUrl}?${params.toString()}`;
@@ -34,9 +34,7 @@ export default function codepen(
   // If a visible caption is requested, wrap in <figure> and link via aria-labelledby
   const captionId = `cp-caption-${hash(embedUrl + String(title))}`;
   const hasCaption = Boolean(showCaption && title);
-  const aria = hasCaption
-    ? ` aria-labelledby="${captionId}"`
-    : ` title="${escapeHtml(title)}"`;
+  const aria = hasCaption ? ` aria-labelledby="${captionId}"` : ` title="${escapeHtml(title)}"`;
 
   return `
 <figure class="codepen-embed-figure">
@@ -49,28 +47,7 @@ export default function codepen(
     allowfullscreen
     title="${escapeHtml(title)}"
   ></iframe>
-  ${hasCaption ? `<figcaption id="${captionId}" class="codepen-caption">${escapeHtml(title)}</figcaption>` : ""}
+  ${hasCaption ? `<figcaption id="${captionId}" class="codepen-caption">${escapeHtml(title)}</figcaption>` : ''}
 </figure>
 `;
-}
-
-function toEmbedUrl(input) {
-  try {
-    const u = new URL(input);
-    // Normalize to /embed/ path and strip preview variant
-    u.pathname = u.pathname
-      .replace(/\/details\//, "/pen/")
-      .replace(/\/embed\/preview\//, "/embed/")
-      .replace(/\/(pen|details)\//, "/embed/")
-      .replace(/\/embed\//, "/embed/");
-    return u.toString().replace(/#.*$/, "");
-  } catch {
-    // Not a full URL: accept patterns like user/pen/slug or user/embed/slug
-    const path = String(input).replace(/^\/+|\/+$/g, "");
-    const parts = path.split("/");
-    if (parts.length >= 3) {
-      return `https://codepen.io/${parts[0]}/embed/${parts[2]}`;
-    }
-    return `https://codepen.io/${path}/embed`;
-  }
 }
