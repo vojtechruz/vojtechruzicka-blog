@@ -178,7 +178,7 @@ two concepts.
 
 Now let's look at a specific example.
 
-```typescript {5,8}
+```typescript {5,9}
 @Component({
   selector: 'app-main',
   template: `
@@ -199,7 +199,7 @@ But this is not really two-way binding yet, right? Let's add a way to change the
 which clears the `name` whenever clicked. Because it is two-way binding, it does not only clear the `name` field, but
 also the value of our input.
 
-```typescript {5,6,10,12,13,14}
+```typescript {5,6,11,13,14,15}
 @Component({
   selector: 'app-main',
   template: `
