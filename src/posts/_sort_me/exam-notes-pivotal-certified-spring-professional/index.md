@@ -21,7 +21,8 @@ on when studying.
 
 ### Notes
 
-[Here](https://github.com/vojtechruz/spring-core-cert-notes-4.2) are available my personal study notes. They cover all
+My [personal study notes for the certification](https://github.com/vojtechruz/spring-core-cert-notes-4.2)
+are available on GitHub. They cover all
 the topics required to know for the certification. As they are available on GitHub, feel free to add more info or
 correct anything and create a pull request. Note that code listings provided are usually more for illustration purposes
 and do not need to be memorized. During the exam, you are not required to write code snippets or exactly know all the
@@ -30,8 +31,9 @@ API and details.
 ### Flashcards
 
 I have created set of flashcards using [Anki software](http://ankisrs.net/). The contents are basically derived from my
-study notes. Anki provides desktop client as well as mobile applications to study on the go. The deck can be downloaded
-[here](https://github.com/vojtechruz/spring-core-cert-notes-4.2/raw/master/Spring%20Core%20Certification.apkg). The
+study notes. Anki provides desktop client as well as mobile applications to study on the go. The
+[Spring Core Certification flashcards deck](https://github.com/vojtechruz/spring-core-cert-notes-4.2/raw/master/Spring%20Core%20Certification.apkg)
+can be downloaded from GitHub. The
 downloaded deck file can be imported into Anki using `File → Import`.
 
 ### The Book

@@ -79,8 +79,9 @@ pending invite.
 
 ### Adding a configuration file
 
-Staticman loads its configuration from a yaml file called `staticman.yml`. A sample file can be found
-[here](https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml). A detailed explanation of all the
+Staticman loads its configuration from a yaml file called `staticman.yml`. A
+[sample configuration file](https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml)
+can be found on GitHub. A detailed explanation of all the
 available configuration options can be found in the [official documentation](https://staticman.net/docs/configuration).
 
 Here is a list of some of the most important configuration properties:
@@ -227,7 +228,7 @@ Finally you need to include these hidden fields in your Staticman form:
 <input type="hidden" name="options[reCaptcha][secret]" value="ENCRYPTED-SECRET" />
 ```
 
-You can find detailed info about re-captcha integration [here](https://github.com/eduardoboucas/staticman-recaptcha).
+You can find [detailed info about re-captcha integration](https://github.com/eduardoboucas/staticman-recaptcha) on GitHub.
 
 ## Example
 

@@ -28,8 +28,8 @@ application. How cool is that? Most importantly, whenever you make changes they'
 
 ## Starting project
 
-To start, you'll need a Spring Boot application with some Rest Controllers, I've prepared a simple one
-[here](https://github.com/vojtechruz/rest-docs-starter).
+To start, you'll need a Spring Boot application with some Rest Controllers, I've prepared a
+[simple starter project](https://github.com/vojtechruz/rest-docs-starter) for you.
 
 For this article, I used SpringFox 2.9.2 and Spring Boot 1.5.10.RELEASE. It uses version 2 of the Swagger specification.
 Version 3 is already out, but it is not yet (as of 2/2018) supported by SpringFox. The support should be available in

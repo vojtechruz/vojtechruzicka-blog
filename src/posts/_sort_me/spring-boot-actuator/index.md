@@ -30,8 +30,8 @@ and you should look for version 1.x specific configuration instead.
 
 ## Source code
 
-The source code of example application using Spring Boot Actuator can be found
-[here](https://github.com/vojtechruz/spring-boot-actuator-example).
+The [source code of an example application using Spring Boot Actuator](https://github.com/vojtechruz/spring-boot-actuator-example)
+can be found on GitHub.
 
 ## Adding Dependencies
 

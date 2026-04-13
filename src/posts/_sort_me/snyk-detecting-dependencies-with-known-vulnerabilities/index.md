@@ -206,7 +206,7 @@ check all the pull requests to be sure that they do not introduce any new vulner
 What's even cooler, after testing your project Snyk will check its database whether there are any solutions for the
 issues found. That is - if it can find any new versions fixing the vulnerabilities found. Or at least, if there are any
 patches. If there is something, what can be done, it creates automatically a Pull Request, which introduces the fix. How
-cool is that? You can see example PR [here](https://github.com/vojtechruz/snyk-example/pull/2):
+cool is that? You can see an [example Pull Request on GitHub](https://github.com/vojtechruz/snyk-example/pull/2):
 
 ![snyk-pull-request-github](./snyk-pull-request-github.jpg)
 
