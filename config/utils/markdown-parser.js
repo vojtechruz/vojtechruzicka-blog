@@ -40,6 +40,32 @@ export async function getMarkdownParser() {
       }),
     })
     .use(shikiPlugin);
+  
+  // Custom renderer for code blocks to avoid double wrapping with <pre><code>
+  // since Shiki and our code-block-transformer already provide the necessary wrapping.
+  const defaultFence = md.renderer.rules.fence;
+  md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+    const token = tokens[idx];
+    const info = token.info ? md.utils.unescapeAll(token.info).trim() : "";
+    const content = token.content;
+
+    if (options.highlight) {
+      const infoParts = info.split(/\s+/);
+      const langName = infoParts[0];
+      const langAttrs = infoParts.slice(1).join(" ");
+      
+      const highlighted = options.highlight(content, langName, langAttrs);
+      if (highlighted && highlighted !== content) {
+        // If the highlighted content already contains a <pre> or <div> tag at the start,
+        // we assume it's already fully wrapped and return it as is.
+        if (highlighted.startsWith("<pre") || highlighted.startsWith("<div")) {
+          return highlighted + "\n";
+        }
+      }
+    }
+
+    return defaultFence(tokens, idx, options, env, self);
+  };
 
   return md;
 }

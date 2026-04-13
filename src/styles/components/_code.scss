@@ -89,10 +89,7 @@ pre.shiki span {
   background: transparent;
   color: inherit;
   cursor: pointer;
-  padding-top: 0.25rem;
-  padding-right: 0.2rem;
-  padding-left: 0.3rem;
-  padding-bottom: 0.05rem;
+  padding: 0.25rem 0.2rem 0.05rem 0.3rem;
   border-radius: var(--radius-xs);
   transition: background 0.2s, color 0.2s;
   font-family: var(--font-body);
