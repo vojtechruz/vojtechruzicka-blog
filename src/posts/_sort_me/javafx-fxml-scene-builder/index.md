@@ -10,6 +10,7 @@ draftStatus: draft
 ---
 
 ## The traditional way
+
 In the previous article, [we created a simple Hello World application](/javafx-hello-world/). Just a quick refresher - the code looked like this.
 
 ```java
@@ -210,7 +211,7 @@ The answer is - in most cases no. There are several problems with this approach.
 
 ## Adding Controller
 
-So what can we do to have a clean separation of concerns? We can link a Controller to our FXML file. It is a Java class, which is responsible for handling all the behavior and user interaction. Now we gained back our type safety and compile-time checks. 
+So what can we do to have a clean separation of concerns? We can link a Controller to our FXML file. It is a Java class, which is responsible for handling all the behavior and user interaction. Now we gained back our type safety and compile-time checks.
 
 Your controller is a POJO, it does not need to extend or implement anything nor have any special annotations.
 
@@ -327,7 +328,8 @@ Writing your GUI structure in XML may be more natural than in Java (especially i
 
 ![Scene Builder Example](scene-builder-standalone.png)
 
-There are three main sections of the editor. 
+There are three main sections of the editor.
+
 1. The left part shows available components, which you can drag and drop to the middle part. It also contains the hierarchy of all the components in your UI, so you can easily navigate it.
 2. The middle part is your application rendered based on your FXML file.
 3. On the right there is the current component inspector. You can edit various properties of the currently selected component here. Any component you select from the middle part of the hierarchy is shown in the inspector.

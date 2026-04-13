@@ -54,9 +54,9 @@ Overall I think it is a good book, especially for the price of the electronic ve
 
 ## Additional Resources
 
--   [Buy the book on Amazon](https://www.amazon.com/Complete-Software-Developers-Career-Guide/dp/0999081411/ref=pd_zg_rss_nr_b_4011_9)
--   [Audiobook version on Audible, narrated by the author](https://www.audible.com.au/pd/Business/The-Complete-Software-Developers-Career-Guide-Audiobook/B078J7FZ8C)
--   [Goodreads reviews](https://www.goodreads.com/book/show/35674293-the-complete-software-developer-s-career-guide)
--   [Product page on Simple Programmer](https://simpleprogrammer.com/products/careerguide/)
+- [Buy the book on Amazon](https://www.amazon.com/Complete-Software-Developers-Career-Guide/dp/0999081411/ref=pd_zg_rss_nr_b_4011_9)
+- [Audiobook version on Audible, narrated by the author](https://www.audible.com.au/pd/Business/The-Complete-Software-Developers-Career-Guide-Audiobook/B078J7FZ8C)
+- [Goodreads reviews](https://www.goodreads.com/book/show/35674293-the-complete-software-developer-s-career-guide)
+- [Product page on Simple Programmer](https://simpleprogrammer.com/products/careerguide/)
 
 In addition to the links above, the chapters of the book were published as blog posts on Simple Programmer. The best way to check the quality and content of the book is, therefore, to check the posts [there](https://simpleprogrammer.com/?s=career+guide).

@@ -119,6 +119,7 @@ As of Spring 4.x, the official recommendation from [Spring documentation](http:/
 > Setter injection should primarily only be used for optional dependencies that can be assigned reasonable default values within the class. Otherwise, not-null checks must be performed everywhere the code uses the dependency. One benefit of setter injection is that setter methods make objects of that class amenable to reconfiguration or re-injection later.
 
 ## UPDATE: IntelliJ IDEA support
+
 Since this article was published, IDEA introduced some sweet support for detecting and easily fixing Field Injection. It can automatically remove the `@Autowired` annotation from the field and instead create a constructor with `@Autowired` dependency, effectively replacing field injection with constructor injection.
 
 {% video "/videos/field-dependency-injection-considered-harmful/idea-field-injection" %}

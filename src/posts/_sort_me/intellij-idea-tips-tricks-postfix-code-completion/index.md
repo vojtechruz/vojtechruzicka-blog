@@ -25,12 +25,12 @@ You can see it is able to properly determine type of the exception from the meth
 
 There are many more templates available, such as (for Java):
 
--   **fori** - for iterating with an index over a collection
--   **forr** - iterates with index in reverse order
--   **switch** - produces switch statement with the expression
--   **sout** - Prints the expression using `System.out.println`
--   **null** - check if an expression is null
--   **notnull** - checks if an expression is not null
+- **fori** - for iterating with an index over a collection
+- **forr** - iterates with index in reverse order
+- **switch** - produces switch statement with the expression
+- **sout** - Prints the expression using `System.out.println`
+- **null** - check if an expression is null
+- **notnull** - checks if an expression is not null
 
 It looks cool and all but what is it good for you say? You can achieve similar results using the regular live templates in most cases anyway. Often you realize later, that you need to do something with the expression you have already written (maybe add not null check just to be sure?) and it saves you backward caret movement. Also, for many people, it is more natural to think in order of - subject and THEN action which needs to be performed with it. In a given context, there are usually very few subjects to choose from (keep your methods short, remember?), but many actions available. It is easier, when you are offered just the relevant actions when triggering postfix completion.
 
@@ -38,7 +38,7 @@ The feature was originally available in ReSharper, then [as a separate plugin](h
 
 ## Displaying available templates
 
-It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: <kbd>Ctrl</kbd> + <kbd>J</kbd> (or <kbd>⌘</kbd> + <kbd>J</kbd> on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to a collection. 
+It is not necessary to memorize all the postfix templates. Instead, you can use a handy shortcut to show the available postfixes: <kbd>Ctrl</kbd> + <kbd>J</kbd> (or <kbd>⌘</kbd> + <kbd>J</kbd> on Mac). It will open a popup, which only shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor is next to a collection type, it will only show postfixes applicable to a collection.
 
 ![show-actions-postfix-code-completion](./show-actions-postfix-code-completion.png)
 

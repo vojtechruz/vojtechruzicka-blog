@@ -10,6 +10,7 @@ draftStatus: draft
 ---
 
 ## Getting Java
+
 JavaFX, of course, requires you to have JDK installed. Obtaining the required dependencies, however, varies based on which version of Java you have.
 
 JavaFX was introduced as a part of the Java 8 release. However, it was later removed from JDK and moved to a separate module in Java 11.

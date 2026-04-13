@@ -89,6 +89,7 @@ A lesser known fact is that on the client's side you can set cookies not only us
 This works even when the JavaScript is disabled. The most common way to exploit this vulnerability would be in a situation where the page displays content provided by the users. If it's not properly sanitized, the meta tag can be injected into the code of the page. Although the meta tags belong to the header part of the HTML page, the attack is likely to succeed even if injected into the body, depending on the browser used, [as it often gets interpreted](http://stackoverflow.com/q/1447842/4560142).
 
 ## Changing Session Id - Servlets
+
 A good countermeasure against the session fixation attack is to change Session ID every time user authenticates. The way it can be changed differs depending on Servlet version.
 
 ### Servlet 3.0 and lower
@@ -113,6 +114,7 @@ Additionally, Servlets 3.1 provides new [HttpSessionIdListener](https://docs.ora
 Please note - while servlet specification does not provide any session fixation protection out of the box, some of the application servers provide their own solution, [like Tomcat](http://www.tomcatexpert.com/blog/2011/04/25/session-fixation-protection).
 
 ## Spring Security
+
 The good news is that Spring Security provides [session fixation protection](http://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#ns-session-fixation) out of the box and it is enabled by default. If necessary, the mechanism can be changed or completely disabled. The default mechanism depends on the version of Servlet container used:
 
 - For Servlets 3.0 and older, `migrateSession` will be used - a new session is created and all the attributes of the old session are copied to the new one.

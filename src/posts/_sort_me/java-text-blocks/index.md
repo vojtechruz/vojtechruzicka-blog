@@ -8,13 +8,9 @@ excerpt: 'Java 13 finally brings support for multi-line string literals after dr
 draftStatus: draft
 ---
 
-
-
 {% info %}
 <strong>UPDATE:</strong> After several preview versions, this functionality is finally scheduled to be released in Java 15 - see <a href="https://openjdk.java.net/jeps/378">JEP 378: Text Blocks</a>.
 {% endinfo %}
-
-
 
 Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.
 
@@ -136,7 +132,7 @@ javac --release 13 --enable-preview ...
 
 That is for compile-time. At run-time, you just provide `--enable-preview`
 
-```
+```bash
 java --enable-preview ...
 ```
 
@@ -177,7 +173,7 @@ Remember the example with Raw String Literals and indentation? Raw string litera
 Fortunately, Java compiler removes unwanted whitespace when compiling Text Blocks.
 
 - All the trailing whitespace is removed from the end of the lines.
-- Leading common whitespace is removed from the start of each line. 
+- Leading common whitespace is removed from the start of each line.
 
 What does this mean exactly? Let's look at the following code:
 
@@ -224,6 +220,7 @@ Note that in this step only direct whitespace is removed. If you have whitespace
 ### Escaping
 
 Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
+
 - New line `\n` is no longer needed as Text  Blocks are multi-line by nature. 
 - You don't need to escape `"` double quotes as they no longer mark String literal ending
 

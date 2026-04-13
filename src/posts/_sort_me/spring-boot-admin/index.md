@@ -204,7 +204,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 What it does, is that it restricts the admin UI only to authenticated users using HTTP basic authentication and form login. The login page itself and static UI resources (javascript, HTML, CSS) are public. Otherwise, you could not log in. Then there is a cookie-based Cross-Site Request Forgery protection. You can see that some paths are ignored in CSRF protection - it's because the Admin Server currently [lacks proper support](http://codecentric.github.io/spring-boot-admin/current/#_csrf_on_actuator_endpoints).
 
-
 Now after a restart, you should see a nice login screen protecting your Admin Server:
 
 ![Admin Server login](admin-server-login.png)

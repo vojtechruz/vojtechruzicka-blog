@@ -51,6 +51,7 @@ Set-Cookie: [cookie_name]=[cookie_value]; HttpOnly
 ```
 
 ## Protect Cookies during transport with Secure attribute
+
 Alright, we've mitigated the risk that the attacker will steal or change our cookies from javascript. But there are more ways to steal our cookies. One of them is in-transit. That means someone can read the request on its way to the server and they will be able to see the cookie as it is just an HTTP header. How do we prevent this?
 
 You should use HTTPS of course, so your data is secure even in-transit. This way man-in-the-middle cannot read your cookies. Unless... Well, there are ways a client can access your HTTPS site using regular HTTP. Maybe they manually type http://. Maybe you have mixed content. Maybe you do use HTTP Strict Transport Security to enforce HTTPS, but the client's browser does not support it yet. Either way, you risk your precious cookies transmitted over an unsecured channel.

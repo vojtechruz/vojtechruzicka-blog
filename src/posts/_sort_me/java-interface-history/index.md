@@ -14,6 +14,7 @@ Interfaces in Java 1.0 were pretty simple compared to what they are now. They co
 ### Constant fields
 
 Interfaces can contain fields, same as regular classes with a few distinctions:
+
 - Fields must be assigned a value
 - Fields are considered public static final
 - Public static and final modifiers don't need to be explicitly stated

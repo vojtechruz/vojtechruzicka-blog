@@ -29,7 +29,7 @@ The source code of example application using Spring Boot Actuator can be found [
 
 ## Adding Dependencies
 
-The basic setup is really simple. You just need to add one dependency to your project - `spring-boot-starter-actuator`. 
+The basic setup is really simple. You just need to add one dependency to your project - `spring-boot-starter-actuator`.
 
 Maven:
 

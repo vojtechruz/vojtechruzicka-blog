@@ -73,6 +73,7 @@ It is actually pretty simple. You can use all the resources, which implement [Cl
 Note that in the example above, we used a simple case of `try-with-resources` using just `try` block. Of course, you can include both `catch` and `finally` blocks as well. In such case, the `catch` and `finally` blocks are executed **after** all the resource have been closed.
 
 ## Decompiled example
+
 Let's look at a simple example using `try-with-resources`, which uses two resources and has just one operation:
 
 ```java

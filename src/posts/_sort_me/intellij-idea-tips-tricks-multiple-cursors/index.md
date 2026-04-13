@@ -20,7 +20,7 @@ You can then move the cursor, as usual, using the arrow keys and even commands l
 
 This feature can be toggled using `Edit → Column` selection. The shortcut is:
 
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Ins</kbd> on Linux or Windows 
+- <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Ins</kbd> on Linux or Windows
 - <kbd>⇧</kbd> + <kbd>⌘</kbd> + <kbd>8</kbd> on Mac.
 
 You can exit column selection mode by using <kbd>Esc</kbd> key.
@@ -51,7 +51,7 @@ As of IntelliJ IDEA 14.1, you can not only insert multiple carets, but you can a
 
 This selection can be achieved by holding:
 
-- <kbd>Alt</kbd> + <kbd>Shift</kbd> on Windows or Linux 
+- <kbd>Alt</kbd> + <kbd>Shift</kbd> on Windows or Linux
 - <kbd>⌥</kbd> + <kbd>⇧</kbd> on Mac
  
 Then select the blocks by the mouse as usual. 
@@ -81,7 +81,6 @@ The shortcut is:
 - <kbd>Alt</kbd> + <kbd>J</kbd> On Linux or Windows
 - <kbd>⌃</kbd> + <kbd>G</kbd> on Mac.
 
-
 ## Remove occurrence
 
 Removing the last occurrence from your selection is the same shortcut with <kbd>Shift</kbd> added:
@@ -93,4 +92,4 @@ Removing the last occurrence from your selection is the same shortcut with <kbd>
 
 ## Presentation assistant
 
-In case you're wondering how I am displaying keyboard shortcuts of the invoked commands on the screen on my gifs - it uses [Presentation Assistant Plugin](https://www.vojtechruzicka.com/intellij-idea-tips-tricks-presentations/), which is very useful during presentations and webinars.    
+In case you're wondering how I am displaying keyboard shortcuts of the invoked commands on the screen on my gifs - it uses [Presentation Assistant Plugin](https://www.vojtechruzicka.com/intellij-idea-tips-tricks-presentations/), which is very useful during presentations and webinars.

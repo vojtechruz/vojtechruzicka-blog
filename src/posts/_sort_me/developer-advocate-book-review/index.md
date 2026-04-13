@@ -52,12 +52,10 @@ Also, the book is quite long, with nearly 800 pages and as I mentioned, a lot of
 Overall, I think it is an interesting book worth reading, which can greatly motivate you, especially if you intend to get involved more.
 
 ## Additional Resources
+
 - [Buy the book from Packt](https://www.packtpub.com/business-other/developer-advocate)
 - [Buy the book from Amazon](https://www.amazon.com/Developer-Advocate-Conversations-turning-passion/dp/1789138744)
 - [Amazon user reviews](https://www.amazon.com/Developer-Advocate-Conversations-turning-passion/dp/1789138744#customerReviews)
 - [Goodreads book reviews](https://www.goodreads.com/book/show/48574066-developer-advocate)
 - [Interview with the author on InfoQ](https://www.infoq.com/articles/developer-advocate/)
 - [Bootiful podcast about the book](https://spring.io/blog/2019/10/04/a-bootiful-podcast-oracle-s-geertjan-wielenga-on-his-new-book-developer-advocate)
-
-
-

@@ -8,9 +8,8 @@ excerpt: 'Effortless creation and management of git hooks for your Node/NPM proj
 draftStatus: draft
 ---
 
-
-
 ## Git Hooks
+
 Simply put, git hooks are custom scripts, which can be run automatically when specific events occur. There are client-side hooks which are triggered on actions such as committing or merging. Server-side hooks run in situations such as receiving push data from the client.
 
 The hooks can perform any custom logic and most importantly reject the action performed if something is not in order. For example, you can abort commit if its message does not contain issue tracker's issue ID. Or, you can reject it if static code analysis fails. It can be pretty useful if you want to make sure your codebase stays clean or you want to enforce certain quality policies.
@@ -24,6 +23,7 @@ Each of them is a script, which is executed once a specific event occurs. The na
 As you can see, all the files have extension `.sample`. Git ignores these files unless you rename them - you need to remove the `.sample` extension to enable these hooks. Inside the sample files, you can find some description and sample implementation, which you can use as a starting point when implementing your own hooks.
 
 ## What is it good for?
+
 Now, let's look at some specific examples of what can be achieved with git hooks. Since they're just scripts, you can do pretty much anything. Usually, that means making various quality checks. 
 
 You can make sure user has their name and email filled. You can check the commit message is properly formatted. You can try to build your app and reject the commit if the build fails. You can run tests to make sure they are passing before commit.
@@ -32,8 +32,8 @@ Typical usage is also static code analysis or linting. That means checking your 
 
 {% linkedPost "/snyk-detecting-dependencies-with-known-vulnerabilities/" %}
 
-
 ## Distribution to team members
+
 With server-side hooks the distribution is easy. You usually have just one primary server repository. This means all the team members usually push their changes to one central place. You set up your hooks there and you're done.
 
 With client-side hooks, this gets more complicated. When you clone a repository, the hooks are not transferred to the client. That means a freshly cloned repo does not have any hooks at all no matter what hooks you have server-side. If you want your team members to have unified set of git hooks, you need to distribute them somehow and make sure they are included in their git hooks sub-directory.
@@ -49,7 +49,9 @@ git config core.hooksPath YOUR_DIRECTORY
 These solutions make the distribution easier, but don't solve the core issues.
 
 ## Husky
+
 ### Installation
+
 You can install [Husky](https://github.com/typicode/husky) simply by running:
 
 ```bash
@@ -67,6 +69,7 @@ There is currently a known issue with node 12.0, please use 12.1+.
 {% endwarning %}
 
 ### Adding hooks
+
 Adding hooks with Husky is easy. You just need to edit your `package.json`. There you define which scripts should be run on which git event.
 
 ```json
@@ -97,6 +100,7 @@ If you don't want to include Husky configuration in your `package.json` file, yo
 This can be useful, for example, when you want to have Husky just for yourself and not everyone using your project. You can add `.huskyrc` to `.gitignore`. Otherwise, you would need to keep local changes in your `package.json` and keep them uncommitted. When somebody else would update the file, you would need to resolve the conflict every time.
 
 ### Autofix issues before commit
+
 It is useful to break the build if something is not right, but it is even more useful to auto-correct issues before committing. For example, you can prettify your code using [Prettier](https://prettier.io/) before commit or you can auto-fix lint issues, which can be resolved automatically. It is much easier this way.
 
 Fortunately, there is a tool exactly for this. It is called [lint-staged](https://github.com/okonet/lint-staged). You can install it by:
@@ -138,9 +142,11 @@ When you try to commit now, lint-staged can change your files before the commit 
 ~~Of course, this is just workaround until the issue is fixed. JetBrains's issue tracker contains voting functionality, so be sure to vote for this issue to be resolved if it causes you trouble.~~
 
 ### Continuous integration
+
 One thing to note is that Husky installs the hooks only when not running on a Continuous Integration server. Husky [can detect](https://github.com/watson/is-ci) it is running as a part of CI job and will not install any hooks. 
 
 ## Ignoring
+
 Client-side hooks can be useful, but you cannot rely on them too much. They are just the first level of defense. You cannot be 100% sure that they get executed. They can be ignored on demand by adding a command-line option:
 
 ```bash
@@ -150,7 +156,9 @@ git commit --no-verify
 To make things even easier, the hooks can be disabled using certain environmental variables. Because of this, it is still useful to enforce the same functionality on the server. 
     
 ## Performance
+
 While client-side hooks such as pre-commit can be very useful, you need to keep in mind that they take some time to execute. Commits, which are usually very fast as they happen only on the client, can suddenly take very long time. You may be tempted to run all the tests, static code analysis, prettification and more before each commit. When a commit takes ages, your developers will not be happy and may be tempted to ignore the hooks when performing their git commands. So you should find the right balance between what needs to be performed on the client and what can be a server-side hook.
-     
-## Conclusion      
-Husky is a useful tool, which allows effortless creation and management of git hooks on the client. You no longer need to distribute your hooks manually. As with everything, keep the number of your client-side hooks in moderation to avoid long execution times.    
+
+## Conclusion
+
+Husky is a useful tool, which allows effortless creation and management of git hooks on the client. You no longer need to distribute your hooks manually. As with everything, keep the number of your client-side hooks in moderation to avoid long execution times.

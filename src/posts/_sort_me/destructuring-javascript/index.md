@@ -119,7 +119,6 @@ let results = string.match(pattern);
 let [first, second] = results; // first = "The", second = "quick"
 ```
 
-
 ## Object destructuring
 Object destructuring works in a similar way to array destructuring with a few distinctions.
 
@@ -240,6 +239,7 @@ What happened here? Curly braces in `{a, b}` get interpreted as a declaration of
 ```
 
 ### Nested object destructuring
+
 Similar to nested array destructuring, you can destructure even items in the nested objects of the source object:
 
 ```javascript
@@ -275,6 +275,7 @@ let {age, name, skills: {cooking, javascript}, hobbies: [hobby1, hobby2]} = john
 ````
 
 ## Destructuring function parameters
+
 Imagine you have a function, which instead of various individual parameters accepts an object with multiple properties:
 
 ```javascript
@@ -318,4 +319,5 @@ function drawImage({x = 0, y = 0, source, grayscale = false}) {
 ```
 
 ## Conclusion
+
 Destructuring is a useful tool which allows you to break down complex structures such as arrays and objects to simple parts. The syntax is much more concise than the traditional approach, especially when handling situations such as default values.

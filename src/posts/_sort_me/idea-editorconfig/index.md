@@ -68,9 +68,10 @@ IDEA supports EditorConfig out of the box for quite some time. However, since ve
 This way, you can have both zero-setup configuration per folder and sharing of IDEA specific settings. How does it work?
 
 ### Creating .editorconfig file
+
 First, you need to create a `.editorconfig` file inside your project. You can do it in the same way as with any other file. Just right-click your desired directory and select:
 
-```
+```text
 New → EditorConfig File
 ```
 
@@ -79,6 +80,7 @@ Before the file is created, IDEA shows the following dialog where you can custom
 ![IDEA new EditorConfigFile](new-editorconfig-file.png)
 
 ### Root file
+
 The first checkbox `root=true` allows you to mark your config file as a root file. What does it mean?
 
 You can have multiple config files in your project, each in a different directory. Whenever you open a file in your IDE, it checks whether there is also `.editorconfig` file located in the same directory. If not, it goes up through the directory structure to search for one. It does not stop until it finds a `.editorconfig` file, which contains `root=true`. Your topmost config file should always contain `root=true`.
@@ -86,6 +88,7 @@ You can have multiple config files in your project, each in a different director
 This means it can locate and load multiple config files during its search. Config from all the files found is applied. Files deeper in the hierarchy take priority over these higher in the hierarchy. This means a deeper file can extend and override whatever is in the files above.
 
 ## Property sets
+
 Now it is time to select what configuration properties should be included in your new file.
 
 ![Editor config property sets](editor-config-property-sets.png)
@@ -122,11 +125,13 @@ ij_java_array_initializer_new_line_after_left_brace = false
 And many more. Notice that each of these lines has a prefix of `ij_`. This way, you can easily distinguish regular settings from IDEA-specific ones.
 
 ### Insert as comments
-IDEA supports a lot of different configuration options, nearly 250 just for Java. Instead of inserting all you may prefer hand-picking just some of them. 
+
+IDEA supports a lot of different configuration options, nearly 250 just for Java. Instead of inserting all you may prefer hand-picking just some of them.
 
 You can select `Add properties as comments`. This way, all the supported properties are inserted commented-out. You still can see all the supported options, but you can uncomment just the ones you want to be applied.
 
 ### Preview Mode
+
 When tinkering with various configuration options, it is useful to check how are these reflected in a real code file. Fortunately, this is easy.
 
 Next to each configuration section such as `[Java]` or `[*]`, you can see a small eye icon.
@@ -140,6 +145,7 @@ When you click it, you can select a file, which will be used to preview your cha
 Note that all these changes are preview-only and will not change the contents of your file.
 
 ### Overrides visualization
+
 In each `.editorconfig`, declared properties are evaluated from top to bottom. Which means that if you declare some property below the same property, which is already declared above, it will take priority.
 
 For example, you can have settings for all files `[*]` on the top of your config file and then section for Java files only `[*.java]`, which overrides some of the general config properties. In such case, IDEA offers you a nice visualization with icons in the gutter area. Similar to the case when you override methods from a parent class.
@@ -149,7 +155,9 @@ For example, you can have settings for all files `[*]` on the top of your config
 A tooltip offers an explanation of what section is overriding or overridden. By clicking the icon, you can navigate to that section. This works both inside one file as well as across the whole hierarchy.
 
 ### Settings priority
+
 As described above, you can have multiple `.editorconfig` files. This can be useful for having different settings for different packages or modules. Or to have different settings for production and test code. Or for different languages. To sum it up:
+
 - The settings from one config file are applied to all its subdirectories. 
 - If there is a different setting in a subdirectory, it takes priority over settings from parent directories
 - Topmost config file must have `root=true`

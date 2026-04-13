@@ -40,7 +40,7 @@ If you are using Spring Boot, your `pom.xml` should already contain [spring-boot
 </plugin>
 ```
 
-It instructs the plugin to execute also [build-info](https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/maven-plugin/build-info-mojo.html) goal, which is not run by default. This generates build meta-data about your application, which includes artifact version, build time and more. 
+It instructs the plugin to execute also [build-info](https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/maven-plugin/build-info-mojo.html) goal, which is not run by default. This generates build meta-data about your application, which includes artifact version, build time and more.
 
 If you are using Gradle, just add the following to your `build.gradle` file:
 

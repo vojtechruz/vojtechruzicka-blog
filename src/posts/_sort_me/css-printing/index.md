@@ -9,7 +9,7 @@ draftStatus: draft
 
 
 
-When printing a web page, is it important to adjust the layout and the content of your page. Many elements are not relevant for printing, it is vital to properly control page breaks and handle hyperlinks. All of this can be controlled by CSS and you can even trigger printing in Javascript or react to user print action. Let's learn how. 
+When printing a web page, is it important to adjust the layout and the content of your page. Many elements are not relevant for printing, it is vital to properly control page breaks and handle hyperlinks. All of this can be controlled by CSS and you can even trigger printing in Javascript or react to user print action. Let's learn how.
 
 ## Adding print stylesheet
 
@@ -230,7 +230,7 @@ When printing web pages, browsers can include various information in the headers
 - Page title
 - Origin URL
 
-Currently, you do not have control over this content. Fortunately, this is about to change. There is a specification [CSS Paged Media Module Level 3](https://drafts.csswg.org/css-page-3/#margin-boxes), which addresses this issue. 
+Currently, you do not have control over this content. Fortunately, this is about to change. There is a specification [CSS Paged Media Module Level 3](https://drafts.csswg.org/css-page-3/#margin-boxes), which addresses this issue.
 
 This can be useful for adding information such as copyright, page logo, custom page counters, etc.
 

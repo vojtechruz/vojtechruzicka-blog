@@ -86,7 +86,7 @@ The feature set of Netlify Analytics is so far very limited; it's just one scree
 - Top pages by pageviews
 - Top resources not found by the number of requests
 - Top sources of traffic by pageviews
-- Bandwidth used over the last 30 days: chart 
+- Bandwidth used over the last 30 days: chart
 
 If it is good enough for your case, that's great. However, it's likely you need more. There's not drill down per page, region, or device. No bounce rate, time spent on-page, or session flow. No demographics about users. Not to mention custom metrics.
 

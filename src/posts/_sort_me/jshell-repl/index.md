@@ -97,6 +97,7 @@ jshell> /vars
 If you are on Java 10 already, you can use [var instead of declaring the type explicitly](https://www.vojtechruzicka.com/java-10-var-local-variable-type-inference-jep-286/).
 
 ## Methods
+
 As we saw above, you can declare variables on the root level, not inside any class. You can do the same for methods. Again, you don't need to worry about any modifiers such as public, static or final. You simply start with the return type and the name of the method with possible parameters:
 
 ```bash
@@ -125,6 +126,7 @@ jshell> String myMethod(String name) {
 Similar to `/vars` for variables, you can list all currently declared methods with `/methods`.
 
 ## Types
+
 Top-level variables and methods are useful, but often you need to declare and use regular classes, enums or interfaces. You can do it as usual, nothing JShell specific here. Just keep in mind that in this case semicolons are required. You can list all declared types by `/types`.
 
 ```bash
@@ -136,6 +138,7 @@ jshell> class Person {
 ```
 
 ## Using external code
+
 Defining all your classes as in the example above is a tedious task. What's more, often you want to use already existing classes from JDK or even your own.
 
 For the JDK classes, you can use `import` as usual. For your convenience, many of the common classes are already imported by default. Not only usual `java.lang`, but also `java.io`, `java.math`, `java.util` or `java.nio.file`. You can list all the current imports by `/import`.
@@ -220,6 +223,7 @@ String source = snippet.source();
 To obtain the full source code of the snippet, you can use `snippet.source()`. To determine the type of the snippet (variable declaration, imports, method declaration, ...) you can use `snippet.kind()`.
 
 ## Alternatives
+
 The first interesting alternative to plain JShell is called [Try Artifact](https://github.com/bhagatsingh/try-artifact). Instead of obtaining jar dependencies manually and adding them to the classpath, it allows you to download and use Maven artifacts directly from the console.
 
 ```bash
@@ -230,6 +234,7 @@ jshell> /resolve org.apache.commons:commons-lang3:jar:3.4
 Another useful alternative is using a REPL directly in the browser. You can try either [repl.it](https://repl.it) or ~~javarepl.com~~. **UPDATE**: Looks like javarepl is no longer available.
 
 ## Support In IntelliJ IDEA
+
 The good news is that if you use IntelliJ IDEA, you don't need to worry about having JShell on the classpath, as IDEA offers excellent integration with JShell out of the box directly in the IDE. You get all the useful features such as code completion, syntax highlighting, error detection and more.
 
 To access JShell from IDEA,  go to `Tools → JShell Console...`.
@@ -241,4 +246,5 @@ What's also useful is that you can prepare all the code in advance and then just
 Unlike when running directly from the console, IDEA automatically adds your current project to the classpath so you can work with your custom classes out of the box with no setup needed.
 
 ## Conclusion
+
 Finally, even Java has its own REPL called JShell. It is a useful tool for quick prototyping, teaching or demonstration purposes. It is easy to use as it removes the need of much of the boilerplate Java normally requires. And if you use an IDE, which integrates JShell, the whole process gets even easier.

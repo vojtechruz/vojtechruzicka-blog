@@ -25,6 +25,7 @@ This is sometimes good enough, but in many cases, you want to work with many obj
 Alright, so how do you create objects which have the same methods and properties? Using constructor functions and the *new* operator.
 
 ## The *new* operator
+
 Let's consider the following example:
 
 ```javascript
@@ -53,8 +54,8 @@ There are some serious problems when using the *new* operator. In languages such
 
 In javascript, the situation is unfortunately not so strict.
 
--   You can use new operator on **ANY** function
--   You can call function intended as constructor **WITH** **or WITHOUT** the new keyword
+- You can use new operator on **ANY** function
+- You can call function intended as constructor **WITH** **or WITHOUT** the new keyword
 
 So, calling function not designed as constructor will not result in an error. What's more, you'll get different behavior based on whether you call the constructor with or without the *new* keyword. And it is really easy to forget to include new. After all, there is no compile-time check as in Java. Let's look at an example.
 

@@ -206,7 +206,7 @@ switch (errorCode) {
 
 This syntax can be used for both switch statement and switch expression. In the example above we are using a simple switch statement. In the case of `->` switch you don't need to include `break` and it does not have fall-through behavior. And you can still use multiple values per one `case`.
 
-It's more concise, easier to read and fool-proof — no more nasty errors. 
+It's more concise, easier to read and fool-proof — no more nasty errors.
 
 Now you have two options: if you want to use fall-through behavior, you use the switch with `case:`, otherwise, you can use the switch with `case ->`. Whatever approach you use, you need to stick with it for all the `case` branches in one switch. This results in an error:
 
@@ -219,6 +219,7 @@ switch (errorCode) {
 ```
 
 ### Scope
+
 One of the issues with the traditional switch is its scope. The whole switch statement is a single scope. That means if you declare a variable in one of the `case` branches, it exists in all the subsequent branches until the end of the switch.
 
 ```java
@@ -270,6 +271,7 @@ If idea detects you have multiple `case` branches with the same behavior, it wil
 {% video "/videos/java-enhanced-switch/idea-merge-branches" %}
 
 ## History
+
 The enhanced switch was originally introduced with Java 12 as [JEP-325](https://openjdk.java.net/jeps/325) - a preview feature, which needs to be explicitly enabled. This was to gather feedback and gain more time for potential further refinement.
 
 For Java 13, there was another proposal introduced - [JEP-354](https://openjdk.java.net/jeps/354), which changed the syntax of returning value from a switch expression.

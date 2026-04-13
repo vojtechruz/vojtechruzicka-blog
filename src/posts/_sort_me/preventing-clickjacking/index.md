@@ -109,6 +109,7 @@ Content-Security-Policy: frame-ancestors [source] [someOtherSource];
 ```
 
 ## Server-wide protection
+
 The easiest and the most robust way of adding security HTTP headers is not per application, but per server. If you know that all your applications and pages on the server will use the same framing policy, you can declare it directly on the whole server level. Most of the application and HTTP servers support that out of the box. You can easily find the configuration for your favorite server. For example - for Apache, you just need to add
 
 ```text

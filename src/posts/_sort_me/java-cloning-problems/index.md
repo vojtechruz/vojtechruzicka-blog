@@ -25,7 +25,7 @@ The description of the Object's clone() method is the following (from the JavaDo
 The implementation of Object's `clone()` method is - first check whether the current class actually implements Cloneable. If yes, proceed with the cloning execution. If not, throw `CloneNotSupportedException` checked exception.
 
 The problem with the Object's `clone()` method is that it is protected. That is a serious issue. By implementing Cloneable, the class does not actually provide cloning functionality. You cannot be sure that a class implementing Cloneable actually overrides the clone method. What's worse, you cannot accept objects of type Cloneable in your method and call clone(). You need to know the exact type (e.g., Person) to be able to call clone(). The use of `Cloneable` interface is highly inconsistent with the regular use of interfaces. Instead of committing to be able to provide some functionality to the callers, implementing `Cloneable` instead modifies the behavior of a protected method in a whole different class.
- 
+
 ### Implementation
 
 The first thing you need to do for your class to support cloning is to implement `Cloneable` interface. Even if you don't want to write any custom cloning logic and you want to use the shallow cloning provided by Object, you cannot. You are unable to use clone method inherited from the Object as it is protected and would not be directly accessible. You need to override it and make it public. To utilize default cloning implementation provided by Object, you then need to call `super.clone()`.

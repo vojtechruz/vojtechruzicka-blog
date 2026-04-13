@@ -165,7 +165,7 @@ doSomething(2, ...myArray, ...otherArray, 3, 7);
 
 ### Array literals
 
-The spread operator can also be used when creating an array using an array literal. This way you can insert elements from other arrays (or iterables such as strings) at a specific location. 
+The spread operator can also be used when creating an array using an array literal. This way you can insert elements from other arrays (or iterables such as strings) at a specific location.
 
 ```javascript
 let firstArray = ["A", "B", "C"];

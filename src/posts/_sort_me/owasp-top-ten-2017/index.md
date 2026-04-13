@@ -114,7 +114,6 @@ The only robust protection is to use serialization solutions, where only primiti
 | 9\. Using Components with Known Vulnerabilities               | 9\. Using Components with Known Vulnerabilities             |
 | 10\. Unvalidated Redirects and Forwards **(Removed)**         | 10\. Insufficient Logging & Monitoring **(NEW, Community)** |
 
-
 ## More From OWASP
 
 Okay, you are now familiar with OWASP Top Ten. You've read the document back and forth. You are now zealously making sure your apps are as safe as possible. What's next?

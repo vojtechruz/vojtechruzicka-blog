@@ -132,7 +132,7 @@ Here are some examples:
 - `-fx-text-fill` - Text color
 - `-fx-font-size` - Text size
 
-You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html). 
+You can check the list of all the properties in the [official styling guide](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html).
 
 ## Pseudo-classes
 
@@ -161,7 +161,7 @@ For example:
 - Cells have `odd` and `even`
 - TitledPane has `expanded` and `collapsed`  
 
-### Custom pseudo-classes 
+### Custom pseudo-classes
 
 In addition to build-in pseudo-classes, you can define and use your own.
 

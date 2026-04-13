@@ -105,6 +105,7 @@ greetingFunction(); // Hi! My name is undefined / window / global
 ```
 
 ## In constructor functions
+
 When you are using [constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constructor-functions-and-new-operator/), *this* behaves a bit differently than usual. In short, what *new* operator does is that:
 
 1. It creates a new blank object.
@@ -124,6 +125,7 @@ let john = new Person('John', 'Doe');
 ```
 
 ## In classes
+
 When using *this* inside of methods of an ES6 class, it points to the current object. That's nice.
 
 ```javascript
@@ -174,6 +176,7 @@ john.greet(['Jane', 'James', 'Jill']); // Hi Jane. My name is John ...
 ```
 
 ## Setting this directly - apply, call, bind
+
 Sometimes it is handy to be able to directly set the value of *this* when calling a function. Fortunately, there are three methods in javascript exactly for that. All of them are available to all the functions as they are on the function's prototype. They are: *apply*, *call* and *bind*.
 
 *Apply* and *call* are very similar to each other. They allow you to invoke their function with a value of this specified as a parameter and by providing arguments to be passed to the function call. The value returned is the value returned by the function called. The only way in which they differ is that one expects the function arguments as an array and the other one as direct arguments. Let's compare.

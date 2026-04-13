@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Before
+
 When I started my blog back in 2016, I wanted to focus as much as possible on creating content rather than
 creating the blog infrastructure. Of course, there was a siren's call to build everything from scratch or spend weeks
 researching all the possible platforms. It would be, no doubt, a lot of fun. But I resisted as I wanted to start writing as soon as possible. 
@@ -50,10 +51,12 @@ Alright, JAM Stack is a way to go, no doubt about that. Which of the static site
 There are many factors to consider. Maturity is important as it means a big community, lot of resources, plugins and stable bug-free product. On the other hand, it is often a trade-off between maturity and new features and technologies. Then, of course, there is the language used. If you need to customize the generator and tinker with it, you'll want to use one written in a language you're familiar with. After briefly checking top 5 generators, I declined Jekyll and Hugo as Go and Ruby were not languages I am proficient with. From the remaining generators, Gatsby immediately caught my attention because of its features and modern technologies.
 
 ### Modern technologies
+
 Gatsby is built with a lot of interesting technologies. If you are a front-end developer, you'll probably be familiar with most of these, so adoption should be quick. If not, it gives you chance to learn a lot of interesting stuff. Gatsby is powered by React. You'll be able to nicely structure your project to components and use all the existing React components there not specifically developed for Gatsby. For styling, you can attach plain old CSS stylesheet, but Gatsby offers many more choices like SASS, Glamor, Styled Components, Stylus, LESS or Styled JSX. Gatsby is built on top of Webpack. And it can generate offline-ready Progressive Web App and uses GraphQL for querying data.
 
 
 ### Data sources and GraphQL
+
 One of the disadvantages of WordPress is that is tightly couples creation and management of content and serving of the content. While for many users WP may be a nice way to create and manage their content, it is far from efficient for serving it compared to static sites. In contrast, this is one of the areas where Gatsby really shines. 
 
 From your React components and templates, you access data (such as blog posts, site title and other metadata) using GraphQL. Unlike other Static Site Generators, the data is not limited to Markdown or some templating language. Gatsby supports many sources. It can handle files in formats such as Markdown, YAML, CSV or XML. What's awesome is that it can connect to sources like Medium or WordPress and load data from there! And because of Gatsby's extensibility and plugin system, it is easy to add more sources. What's great is that from the perspective of your templates it is just a GraphQL query. That means it is easy to switch data sources while your components and templates remain intact. For example, when migrating from WordPress, you can keep your articles in WP, keep creating and updating them there and just use Gatsby to transform your WP site to static one. Then, later you can convert to markdown if you feel like it.
@@ -61,23 +64,28 @@ From your React components and templates, you access data (such as blog posts, s
 What's really powerful is using GraphQL as the query language. Because when querying structured data, you define what fields are you interested in, you can define order or limit the number of the results. But everything is defined on the side of the client executing the query. You can change your queries and data obtained without modifying the data source. It also means you can query the same source in different ways depending on context.
 
 ### Performance
+
 One of the Gatsby's greatest advantages is performance. I mean - performance on top of what you get by switching to a static site generator. Since Gatsby uses Webpack, it allows code splitting by route. That means when accessing a page on your site, the client will download only code and resources necessary for the current sub-page and not the whole bundle. When navigating to another route, it will just fetch what's new. Gatsby also sticks to the Progressive Web App standard. That means your site can behave as a native-like app on mobile and work with a poor connection or even offline. What's more, Gatsby utilizes PWA's [PRPL Pattern](https://developers.google.com/web/fundamentals/performance/prpl-pattern/). That means first push critical resources over HTTP/2 to the client, which is faster than waiting for the browser to download HTML first, parse it and then request additional stylesheets, scripts and resources linked in the HTML. Gatsby first renders static HTML version of the initial route to minimize time-to-interactive. Then in the background, it loads the bundle and initializes Single-Page App. It starts to pre-fetch resources for the routes linked to the initial page so additional navigation within your site is blazing fast and without reload.
 
 Gatsby also works great with images, which are usually a big hit to site's performance. Based on the screen size and resolution of the client device, it will serve appropriate image size. It supports WebP and can convert your jpegs to progressive jpegs. While the images are loading, it will reserve the space required by the image, so the content of the page is not 'hopping' after image loads. It also replaces the image with a blurred version or monochromatic SVG until it loads - similar to what Medium uses.
-        
+
 ## Pitfalls
+
 I think Gatsby is great. I had a lot of fun using it so far, and I've learned much in the process. It offers you freedom and flexibility. However, it is not as mature as some of the competitors. This is improving quickly as it is under rapid development. Still, I did encounter some bugs complicating my development. On the other hand, the community was really helpful and supportive. Some of the features, which I would consider standard were not yet available or sufficient such as tags and categories support, pagination or Open Graph metadata. I would also like to see AsciiDoc support instead of just plain Markdown. One of the biggest problems was probably the lack of visual themes. For a long time, there was not any official themes directory. In Feb 2018 [Gatsby Manor was launched](https://www.gatsbyjs.org/blog/2018-02-09-announcing-gatsby-manor-themes-for-gatsbyjs/) and now it contains just SIX themes, which are all only ports of [HTML5 UP themes](https://html5up.net/). However, with the current development rate, I am sure more and more plugins will be available out of the box shortly.
-    
-## Results    
+
+## Results
+
 Overall I am really happy with Gatsby and the migration from WordPress. I no longer fear my WordPress will get compromised. Everything is now on GitHub and under version control. It's much more transparent. No longer need of database backups and rollbacks are now easy in case of something goes wrong. Not to mention the possibility of developing new features safely in branches and deploying and testing them separately from the 'production' environment. And no more fees for hosted WordPress. And writing in markdown is also more convenient for me as I don't focus on HTML or visuals when writing but rather on the content.
 
 My blog is now deployed on Netlify CDN, which means the user will be served fast no matter what their geographic location is. The performance gain of switching to static is huge. That means not only fewer visitors leaving the blog because of the slow loading times, but also better page ranking on Google as it favors faster sites. It also favors sites served over HTTPS, which my site now supports thanks to Netlify's [one click setup](https://www.netlify.com/docs/ssl/) and [Let's Encrypt](https://letsencrypt.org/). Now let's go back to the Lighthouse audit score and compare new Gatsby site to my good old WordPress.
 
 ### Before
+
 ![before](./chrome-audit-score-before.jpg)
 ![before-details](./chrome-audit-performance-metrics.jpg)
 
 ### After
+
 ![after](./results.png)
 
 Quite a difference, right? Long story short - Gatsby is great. You should give it a try, especially if you are a front-end developer. And keep watching its development as I am sure we can look forward to even more awesomeness in the future. If Gatsby is not your cup of the, you should still consider switching to a static site generator as the advantages are too good to ignore.
@@ -85,6 +93,7 @@ Quite a difference, right? Long story short - Gatsby is great. You should give i
 To learn more about Gatsby check out [this curated list](https://github.com/prayasht/awesome-gatsby) of Gatsby-related resources.
 
 ## Deployment
+
 This article covers GatsbyJS part of the migration. But that's not all you need to do, you also need to set up a build and deployment process for yor site.
 
 I decided to use Netlify to set up a continuous deployment of my site, you can learn more here:

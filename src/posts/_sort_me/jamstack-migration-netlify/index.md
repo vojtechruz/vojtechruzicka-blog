@@ -8,22 +8,24 @@ excerpt: 'How and Why I migrated from WordPress to static JAM Stack site deploye
 draftStatus: draft
 ---
 
-
-
 ## JAM Stack Migration - Part 2
+
 Recently I managed to finally get rid of WordPress and migrate my blog to JAM Stack, built with a static site generator called GatsbyJS. I described what JAM Stack is, how I migrated and how great Gatsby is in my previous post - [Migration to GatsbyJS and JAM stack from WordPress](https://www.vojtechruzicka.com/gatsby-migration/).
 
 This second post describes build and deployment process and how much it is better than the original WordPress setup or traditional GitHub Pages.
 
 ## GitHub Pages?
+
 Leaving managed WordPress saved me some expenses, but the next question was where to deploy instead. The first obvious option was [GitHub Pages](https://pages.github.com/). It is a free service provided by Github, which nicely integrates with your GitHub repository. If you are using Jekyll as a static site generator, it offers good integration out of the box. 
 
-While GitHub pages are good and will do the job, there is one service, which is in my opinion much better. It offers much more while keeping the simplicity. It's called Netlify. [This blog post](https://www.netlify.com/github-pages-vs-netlify/) provides a useful comparison of GitHub Pages and Netlify. 
+While GitHub pages are good and will do the job, there is one service, which is in my opinion much better. It offers much more while keeping the simplicity. It's called Netlify. [This blog post](https://www.netlify.com/github-pages-vs-netlify/) provides a useful comparison of GitHub Pages and Netlify.
 
 ## Netlify to the rescue
+
 All right, Netlify has many nice features, let's dig a bit deeper.
 
 ### Simple Setup - Continuous Deployment
+
 What I love about Netlify is its simplicity. It can take just a minute to set up continuous deployment from your git repository.
 
 #### 1. You create a Netlify account by authenticating using you GitHub, GitLab or BitBucket accounts.
@@ -59,12 +61,11 @@ Content Delivery Network (CDN) solves this issue. CND offers many nodes distribu
 **UPDATE:** As of July 2018, <a href="https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/">all new sites on Netlify are HTTPS by default</a>. You no longer need to explicitly enable it.
 {% endinfo %}
 
-Having a secure HTTPS connection enabled on a site like a blog, where no sensitive data is transferred, may seem a bit pointless. However, there are several good reasons to use HTTPS anyway. 
+Having a secure HTTPS connection enabled on a site like a blog, where no sensitive data is transferred, may seem a bit pointless. However, there are several good reasons to use HTTPS anyway.
 
 First of all, sites using HTTPS get a [ranking boost](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) in search results on Google. That means your site is displayed above the similar sites not using HTTPS, which can bring much traffic. Moreover, Google Chrome is going to show "Not Secure" on all the pages not using HTTPS [soon enough](https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html), which can scare off your visitors. When running over HTTP, you also risk public networks injecting content and advertisements into your pages, which can ruin user experience and lead to loss of users.
 
 If you want to use [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/) and enjoy its benefits such as increased performance, you need to migrate to HTTPS.  Netlify utilizes [Let's Encrypt](https://letsencrypt.org/) - a free, automated, and open Certificate Authority.
-
 
 ### Deploy preview per branch
 

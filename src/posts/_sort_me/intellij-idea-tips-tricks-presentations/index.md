@@ -11,19 +11,21 @@ draftStatus: draft
 
 
 ## Presentation Mode
+
 Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View → Enter Presentation Mode`. The IDE switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is better readable from a distance.
 
 ![intellij-idea-presentation-mode](./intellij-idea-presentation-mode.png)
  
- The font size in Presentation Mode can be configured in Settings under:
+The font size in Presentation Mode can be configured in Settings under:
 
 ```text
 Appearance & Behavior → Appearance → Presentation Mode
 ```
- 
+
  ![intellij-idea-presentation-mode-font-size](./intellij-idea-presentation-mode-font-size.png)
 
 ## Distraction Free Mode
+
 Distraction Free mode is another view mode you can use. It is similar to Presentation Mode at first glance but has several important distinctions.
 
 It hides everything except the Editor window and centers it. All the toolbars and panels are gone. Unlike Presentation Mode, it does not increase the font size, but it rather keeps it unchanged. Additionally, it does not enter full screen, so you can use it even in a small window. That may be useful when having code editor on half of the screen and something else (like a browser window or terminal) in the other half.
@@ -42,7 +44,8 @@ To enter this mode go to
 Appearance & Behavior → Appearance → Enter Distraction Free Mode
 ```
 
-## UPDATE: Zen Mode (2020.1) 
+## UPDATE: Zen Mode (2020.1)
+
 Idea 2020.1 introduced [Zen Mode](https://blog.jetbrains.com/idea/2020/01/intellij-idea-2020-1-eap-2/#zen_mode). It is just a convenience feature, which combines Distraction Free Mode and Fullscreen as these are often used together. Previously it was quite inconvenient to toggle them both. To enter Zen Mode go to:
 
 ```text
@@ -53,7 +56,7 @@ Appearance & Behavior → Appearance → Enter Zen Mode
 
 After you achieve a basic level of proficiency with your IDE and already know which features it offers, your next goal is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where possible. Great way to learn IntelliJ IDEA shortcuts is to use [Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/). Once you use mainly keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation friendly. Your audience can get quickly confused and lose track of the core topic you are presenting about while trying to figure out what the hell just happened.
 
-Fortunately, there is a nice tool, which helps you exactly with this issue. It is [Presentation Assistant Plugin](https://plugins.jetbrains.com/plugin/7345-presentation-assistant)  ([GitHub](https://github.com/chashnikov/IntelliJ-presentation-assistant)). Every time you trigger an action (no matter whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What's more, it shows the shortcut both for Mac and Linux/Windows. 
+Fortunately, there is a nice tool, which helps you exactly with this issue. It is [Presentation Assistant Plugin](https://plugins.jetbrains.com/plugin/7345-presentation-assistant)  ([GitHub](https://github.com/chashnikov/IntelliJ-presentation-assistant)). Every time you trigger an action (no matter whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What's more, it shows the shortcut both for Mac and Linux/Windows.
 
 ![intellij-idea-presentation-assistant](./presentation-assistant.png)
 

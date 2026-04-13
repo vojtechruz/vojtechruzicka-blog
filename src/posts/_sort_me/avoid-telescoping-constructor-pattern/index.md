@@ -50,6 +50,7 @@ john.setDescription("I am a huge fan on JavaBeans convention!");
 [See full source here](https://gist.github.com/vojtechruz/7491ef6d99569a55cabfe2543cbe4354)
 
 This has several advantages:
+
 - Easy to implement and change
 - Easy to read - setters are named, and you know which fields are assigned which value instantly
 - Easy to scale - Adding more and more parameters is still easy
@@ -60,6 +61,7 @@ However, there are also disadvantages, which may or may not concern you dependin
 - When an object construction is not an atomic operation, the object can be accessed in a state where it is not fully constructed yet.
 
 ## Alternative 2 - Named Static Factory Methods
+
 One of the disadvantages of having multiple constructors is reduced readability. It is hard to distinguish one from another since constructors all have the same name. That is not a limitation of static factory methods. What are they?
 
 ```java
@@ -79,13 +81,14 @@ One of the disadvantages of having multiple constructors is reduced readability.
 
 As you can see those are static methods, which return an instance of the enclosing class. There are some advantages over constructors, most notably:
 
--   Each can have a different descriptive name, unlike constructors, revealing the intent of that method.
--   Is not required to return a brand-new instance every single time - can be used for instance caching, pooling etc.
--   You can return instance of a subclass, or proxy/decorator and even choose specific implementation based on some conditions.
+- Each can have a different descriptive name, unlike constructors, revealing the intent of that method.
+Is not required to return a brand-new instance every single time - can be used for instance caching, pooling etc.
+- You can return instance of a subclass, or proxy/decorator and even choose specific implementation based on some conditions.
 
 Unlike JavaBeans, static factory methods can return immutable instances, when delegating to appropriate constructor. However, like constructors, they do not scale well and are not suitable when there is a lot of different parameters, which can be used in any combination.
 
 ## Alternative 3 - Builder
+
 If the immutability is an issue, popular approach how to construct objects with many parameters is a Builder as described by [Joshua Bloch](https://twitter.com/joshbloch) in his [Effective Java](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997/) (*Item 2: Consider a builder when faced with many constructor parameters*). Do not confuse with [Gang of Four](http://c2.com/cgi/wiki?GangOfFour) Builder pattern, which focuses more on separating process of construction and an actual builder, which performs that construction. That means, keeping the build process, consisting of the same steps every time, while being able to switch builders involved. [See more about Builder Pattern here](http://www.oodesign.com/builder-pattern.html).
 
 ### How does it work?
@@ -95,8 +98,6 @@ The process is similar to using StringBuilder.
 1. You create an instance of your builder. Optionally, you can provide always required fields in the constructor.
 2. One by one, you set fields, which should be part of the build. Usually, to make things more convenient, the builder returns itself, so you can chain the method calls ([fluent interface](http://martinfowler.com/bliki/FluentInterface.html)).
 3. Once you are done, you call `build()` method and receive the constructed object. Under the hood, the builder calls the constructor of the constructed object. It is therefore constructed all at once and can be thus immutable.
-
- 
 
 ```java
 PersonBuilder builder = new PersonBuilder();

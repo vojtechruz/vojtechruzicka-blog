@@ -107,14 +107,14 @@ Now the last step is to make sure your app is properly packaged as WAR instead o
 
 #### Maven
 
-Simply update the packaging section in your `pom.xml` file from 
+Simply update the packaging section in your `pom.xml` file from
 
 ```xml
 <packaging>jar</packaging>
 ```
 
 to WAR packaging
- 
+
  ```xml
  <packaging>war</packaging>
 ```

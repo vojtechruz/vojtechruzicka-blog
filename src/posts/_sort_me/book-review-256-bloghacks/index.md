@@ -71,8 +71,8 @@ Despite some negatives mentioned above, I consider the book to be very helpful f
 
 ## Additional Resources
 
--   [Buy the book on Amazon](https://www.amazon.com/256-Bloghacks-Yegor-Bugayenko/dp/1537688669)
--   [Amazon Reviews](https://www.amazon.com/256-Bloghacks-Yegor-Bugayenko/product-reviews/1537688669/ref=cm_cr_arp_d_show_all?ie=UTF8&reviewerType=all_reviews&pageNumber=1)
--   [Goodreads Reviews](https://www.goodreads.com/book/show/32885804-256-bloghacks)
--   [Book review by Wojciech Adam Koszek](https://www.koszek.com/books/2017/01/07/book-blog-hacks-256/)
--   [Author's page about the book](http://www.yegor256.com/256-bloghacks.html)
+- [Buy the book on Amazon](https://www.amazon.com/256-Bloghacks-Yegor-Bugayenko/dp/1537688669)
+- [Amazon Reviews](https://www.amazon.com/256-Bloghacks-Yegor-Bugayenko/product-reviews/1537688669/ref=cm_cr_arp_d_show_all?ie=UTF8&reviewerType=all_reviews&pageNumber=1)
+- [Goodreads Reviews](https://www.goodreads.com/book/show/32885804-256-bloghacks)
+- [Book review by Wojciech Adam Koszek](https://www.koszek.com/books/2017/01/07/book-blog-hacks-256/)
+- [Author's page about the book](http://www.yegor256.com/256-bloghacks.html)

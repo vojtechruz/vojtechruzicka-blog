@@ -185,7 +185,6 @@ After you run this configuration, you should see a similar output if the connect
 
 ```
 
-
 Once you connect to a remote app, DevTools monitors classpath changes same as it does for local development. However, instead of a local restart, it pushes the changes to the remote server and triggers restart there. This can be a lot faster than building the app and deploying to the remote machine.
 
 ## Global configuration

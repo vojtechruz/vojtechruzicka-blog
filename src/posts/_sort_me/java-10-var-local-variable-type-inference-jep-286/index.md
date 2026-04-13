@@ -167,6 +167,7 @@ There are some limitations though. If you use `var`, you need to use it for all 
 See [JEP 323: Local-Variable Syntax for Lambda Parameters](http://openjdk.java.net/jeps/323) for more details.
 
 ## Style guide
+
 Check out this useful guide for `var` best practices - [Style Guidelines for Local Variable Type Inference in Java](http://openjdk.java.net/projects/amber/LVTIstyle.html).
 
 ## Conclusion

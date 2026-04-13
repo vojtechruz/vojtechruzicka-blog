@@ -48,26 +48,26 @@ Actually, there are two types of changes (as defined by the [Serialization Speci
 
 **Incompatible changes**
 
--   Deleting fields
--   Moving classes up or down the hierarchy
--   Changing a nonstatic field to static or a non-transient field to transient
--   Changing the declared type of primitive field
--   Changing the writeObject or readObject method so that it no longer writes or reads the default field data or changing it so that it attempts to write it or read it when the previous version did not.
--   Changing a class from Serializable to Externalizable or vice versa
--   Changing a class from a non-enum type to an enum type or vice versa
--   Removing either Serializable or Externalizable
--   Adding the writeReplace or readResolve method
+- Deleting fields
+- Moving classes up or down the hierarchy
+- Changing a nonstatic field to static or a non-transient field to transient
+- Changing the declared type of primitive field
+- Changing the writeObject or readObject method so that it no longer writes or reads the default field data or changing it so that it attempts to write it or read it when the previous version did not.
+- Changing a class from Serializable to Externalizable or vice versa
+- Changing a class from a non-enum type to an enum type or vice versa
+- Removing either Serializable or Externalizable
+- Adding the writeReplace or readResolve method
 
 **Compatible changes**
 
--   Adding fields
--   Adding classes
--   Removing classes
--   Adding writeObject/readObject methods
--   Removing writeObject/readObject methods
--   Adding java.io.Serializable
--   Changing the access to a field
--   Changing a field from static to nonstatic or transient to nontransient
+- Adding fields
+- Adding classes
+- Removing classes
+- Adding writeObject/readObject methods
+- Removing writeObject/readObject methods
+- Adding java.io.Serializable
+- Changing the access to a field
+- Changing a field from static to nonstatic or transient to nontransient
 
 For further details, see the [Java Object Serialization Specification](https://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#6754).
 

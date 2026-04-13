@@ -103,6 +103,7 @@ httpClient.get(targetUrl).then(successFunction).catch(failureFunction);
 In case the promise is resolved successfully as expected, the function in `then()` will be called, otherwise, when there is an error, function in `catch()` will be called.
 
 ### Finally
+
 In addition to `then()` and `catch()` there is a useful clause called `finally()`. It is run after the promise is settled, no matter whether it was successful or not. It is handy to prevent duplicated code, which would be otherwise both in `catch()` and `then()`. If you have code which should be executed after the promise finishes no matter what, it belongs to `finally()`.
 
 ```typescript {4}
@@ -113,6 +114,7 @@ httpClient.get(targetUrl)
 ```
 
 ## Promise state
+
 Each promise can be in one of the following states:
 
 - **settled**: Promise is finished, either fulfilled or rejected
@@ -121,6 +123,7 @@ Each promise can be in one of the following states:
 - **pending**: The promise is not finished, still in progress.
 
 ## Creating promises
+
 You can easily create a promise object by calling `new Promise()` and supplying a single function as an input parameter. That function should have two parameters - resolve and reject.
 
 ```javascript
@@ -237,6 +240,7 @@ promise.then((result) => {
 Any guess what will happen? Instead of running promises one after another, you just provide multiple handlers to the same promise. Each of them will be executed independently after the promise resolves. The total result will still be 42.
 
 ### Parallel - all
+
 Another scenario is when you have multiple promises, and you need to run them all. Only after ALL are done, you want to do something. However, the promises are not dependent and can run in parallel with each other.
 
 ```javascript
@@ -327,7 +331,6 @@ All DONE!
 Promise 1 resolved!
 Promise 3 resolved!
 ```
-
 
 ## Compatibility
 

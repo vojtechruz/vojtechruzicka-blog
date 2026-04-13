@@ -281,9 +281,10 @@ Same as in plain JavaFX, you can declare components from view to be injected to 
 private Label weatherLabel;
 ```
 
-We already saw this works well. You just need to be careful about timing. Our controller is annotated by `@Component`, so it is a regular Spring-managed bean. It means it is instantiated by Spring when the application context starts and all the dependencies are injected. However, the weaving by FX Weaver happens later. And during this weaving, the component references are injected. 
+We already saw this works well. You just need to be careful about timing. Our controller is annotated by `@Component`, so it is a regular Spring-managed bean. It means it is instantiated by Spring when the application context starts and all the dependencies are injected. However, the weaving by FX Weaver happens later. And during this weaving, the component references are injected.
 
 This has one implication. In your constructor and `@PostConstruct` you can already work with Spring injected dependencies as usual. However, be aware that during this time, references to components from the view are not yet available and are therefore null.
 
 ## Conclusion
+
 JavaFX Weaver provides a nice and easy way to integrate Spring with JavaFX applications. It is otherwise not so straightforward as JavaFX manages its own lifecycle and lifecycle of its controllers. JavaFX Weaver makes the integration possible and quite straightforward, so you can finally use all the cool features of Spring even with JavaFX.

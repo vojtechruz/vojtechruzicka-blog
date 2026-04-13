@@ -100,7 +100,6 @@ Current IDEs already offer nice support for warning you when you are using some 
 
 ![IDEA Enhanced deprecation](./enhanced-deprecation-idea.png)
 
-
 ## Conclusion
 
 The new enhanced deprecation annotation provides two more attributes - since which version was the deprecation introduced and whether it is supposed to be removed. The `forRemoval` parameter provides a unified way of declaring that the API is not safe for use and will be removed in a future version. It can be automatically checked by IDEs and static code analysis tools, which provides a safer detection of discontinued APIs, which are a subject for removal. The `@depreacted` JavaDoc tag should still be used along with the annotation to provide additional details about the reason of deprecation and the alternatives, which should be used instead. Be careful when using deprecated JDK APIs as they will be removed directly in the next major version of Java.

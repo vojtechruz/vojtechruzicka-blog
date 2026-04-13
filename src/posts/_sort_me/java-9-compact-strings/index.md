@@ -48,5 +48,5 @@ Java 9 introduces a new feature, which does greatly reduce the memory footprint 
 
 ## Further Reading
 
--   [Aleksey Shipilëv on Compact Strings](https://www.youtube.com/watch?v=wIyeOaitmWM)
--   [JEP 254: Compact Strings](http://openjdk.java.net/jeps/254)
+- [Aleksey Shipilëv on Compact Strings](https://www.youtube.com/watch?v=wIyeOaitmWM)
+- [JEP 254: Compact Strings](http://openjdk.java.net/jeps/254)

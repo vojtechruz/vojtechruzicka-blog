@@ -37,11 +37,11 @@ or
 
 For example, let's use \~42:
 
-1.  The binary representation of 42 is 101010.
-2.  Because 42 is int, it is represented as a 32-bit value, that is 32x ones or zeros.
-3.  So all the positions to the left of 101010 are actually filled with zeros up to 32 bits total.
-4.  That is 00000000 00000000 00000000 00101010
-5.  Flipped value of the number above would then be 11111111 11111111 11111111 11010101
+1. The binary representation of 42 is 101010.
+2. Because 42 is int, it is represented as a 32-bit value, that is 32x ones or zeros.
+3. So all the positions to the left of 101010 are actually filled with zeros up to 32 bits total.
+4. That is 00000000 00000000 00000000 00101010
+5. Flipped value of the number above would then be 11111111 11111111 11111111 11010101
 
 ### Bitwise AND \[&\]
 

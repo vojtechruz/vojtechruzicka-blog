@@ -79,6 +79,7 @@ Fortunately, Lighthouse is available as a [Command Line utility](https://github.
 If you want Lighthouse integration even simpler, there is a tool called [Treo](https://medium.com/@alekseykulikov/treo-lighthouse-as-a-service-55cb9b72e8c3). It basically is Lighthouse as a Service. It offers a nice GitHub integration as well as means of breaking the build in case the expectations are not met.
 
 ### web.dev
+
 [Web.dev](https://web.dev) is a new site launched by Google. It allows you to test your site directly from the browser (not using Developer Tools). This can have several advantages over using integrated Lighthouse. First of all, it uses the latest and greatest version, unlike Dev Tools (currently 4.0.0 vs 3.2.0). Then, it does not depend anymore on your current machine's CPU and network as it uses Google's servers. This may be useful when you have a slower or unstable network. If you log in, you can see graphs how your score evolves over time.
 
 But what's nice about web.dev is that in addition to measuring with Lighthouse, it hosts [many tutorials and articles](https://web.dev/learn) grouped into several sections. They are directly related to issues which Lighthouse monitors and include security, SEO, accessibility, performance and more. This way you can learn about modern web development and how to improve your page's score in Lighthouse.

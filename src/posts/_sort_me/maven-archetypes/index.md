@@ -28,7 +28,7 @@ mvn archetype:generate
 -DarchetypeVersion=1.0.2.RELEASE
 ```
 
-In the example above, you specify just identifiers of your archetype and the command starts in the interactive mode and asks you for all the required information such as groupId, artifactId and version of your new project. You enter these in your terminal, and the project is generated for you. 
+In the example above, you specify just identifiers of your archetype and the command starts in the interactive mode and asks you for all the required information such as groupId, artifactId and version of your new project. You enter these in your terminal, and the project is generated for you.
 
 However, you can specify all these upfront, so no interaction is needed from your side. This can be useful, for example, when generating a project as a part of some automated script which should not have any user interaction.
 
@@ -78,6 +78,7 @@ The resulting archetype is generated in `target/generated-sources/archetype`.
 Before you can use it, though, you need to install the archetype in your local repository. Just go to the directory `target/generated-sources/archetype` and run `mvn install`.
 
 ### From scratch
+
 You can actually generate your own custom archetype using a Maven archetype. This way all the scaffolding is created for you.
 
 ```bash
@@ -93,11 +94,13 @@ mvn archetype:generate
 ### Archetype configuration
 
 #### POM file
+
 In the artifact's root directory, there is a `pom.xml` file of the archetype. You can see the packaging `maven-archetype`. You can customize build of your archetype here as with any other pom.
 
 However, there is another `pom.xml` file located under `src\main\resources\archetype-resources` which is the pom file of the generated project. Here you can make any changes, which should be presented in the resulting project's pom.
 
 #### Source code
+
 You can put any source files, which need to be part of the output project under
 
 ```text
@@ -186,7 +189,7 @@ Instead of using the default web interface, there is even a more convenient way 
 
 ```text
 File → New Project → Spring Initializr
-``` 
+```
 
 ### Yeoman
 

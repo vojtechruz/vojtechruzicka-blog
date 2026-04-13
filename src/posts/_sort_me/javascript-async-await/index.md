@@ -155,6 +155,7 @@ Traditional `try-catch-finally` has some advantages over chained promises with `
 It is arguably easier to read. More importantly, it is a plain old traditional JavaScript construct, which everybody knows. You no longer need to use one error handling concept for promises and a different one for non-promise code. Your error handling is unified and cleaner.  In one `try` block you can have mixed async and non-async code.
 
 ## Waiting for multiple parallel promises
+
 Sometimes instead of resolving async functions one after another, it is useful to execute them in parallel and await until all of them are finished.
 
 With promises, you can use `Promise.all()`. As input, you provide an array of promises. It returns a single promise, which resolves once all the passed in promises are fulfilled.

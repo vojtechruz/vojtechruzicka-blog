@@ -230,6 +230,7 @@ public record Cat(String name, int numberOfLives, String color) {
 ```
 
 ## Runtime introspection
+
 There are two new methods added to `java.lang.Class`, which have records-related functionality.
 
 The first one is called `isRecord()`. It is pretty straightforward, you can just check if something is a record or not:
@@ -245,7 +246,7 @@ The other one is `getRecordComponents()`. You would call it in the same way as i
 
 - Name
 - Type
-- Accessor 
+- Accessor
 - Annotations
 
 ## Also new in Java 14

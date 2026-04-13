@@ -25,6 +25,7 @@ There are various conventions. One example can be [Conventional Commits](https:/
 Conventions can be very useful, but only as long as you can make sure everybody follows them. You can rely on your developers' discipline, but it is risky. Especially with external contributors to your codebase who may not be familiar enough with your convention. What's much better is having an automated tool to check your commits for you and reject them if they don't follow your conventions.
 
 ## Githooks & Husky
+
 Fortunately, Git already allows you to perform some actions when specific events are triggered. It is called git hooks. You can react in many phases of the git workflow, such as:
 
 - pre-commit
@@ -41,11 +42,13 @@ Fortunately, there is a tool called Husky for Node/NPM projects, which solves th
 While Husky can be used to enforce your commit conventions, it can do much more. You can run your static code analysis, tests, automatic code formatting, and much more when committing.
 
 ## Commitlint
+
 Commitlint is an automated tool that can check your commit conventions for you and reject the commit if it does not follow your rules. These rules, of course, can be configured. Under the hood, Commitlint uses Husky git hooks.
 
 ## Local setup
 
 ### Husky
+
 Since Commitlint utilizes Husky, we need to install it first. Husky is provided as dev-dependency, so it is used only locally and not bundled with your production code.
 
 ```bash
@@ -75,6 +78,7 @@ Alternatively, you can use a dedicated `.huskyrc` file, which contains only Husk
 ```
 
 ### Commitlint
+
 Now when We have Husky, we need to install Commitlint CLI, which will be executed by Husky hook to validate commit messages. Again, it is just a dev dependency, which is not included in your production bundle.
 
 ```bash
@@ -82,6 +86,7 @@ npm install --save-dev @commitlint/cli
 ```
 
 ### Convention configuration
+
 Commitlint is just a tool for checking if your messages follow your conventions. It does not force you to use a specific convention, you can use whatever you want, it is fully configurable. It offers some configurations out of the box. Currently supported configurations are:
 
 - [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional)
@@ -105,6 +110,7 @@ module.exports = {
 ```
 
 ### Verifying the setup
+
 Now we're good to go. Let's just make sure everything works. Let's make sure our commit messages are tested against the [Conventional Commits](https://www.conventionalcommits.org/) specification. Let's try an ordinary, not structured commit message first.
 
 ```bash
@@ -139,9 +145,11 @@ The full structure of conventional commits is the following:
 ```
 
 ## Continous Integration
+
 Local setup, as described above, is necessary and useful as the first line of defense. However, it is not bulletproof. Developers can tinker with the local setup or suppress git hooks. You cannot rely purely on the local Husky setup. As another line of defense, it is viable to integrate Commitlint with your CI / remote repository. You can reject invalid commits on the server even if developers manage to sneak them in locally.
 
 ### Travis
+
 Commitlint supports integration with [Travis CI](https://travis-ci.org/). First, let's create a `.travis.yml` file in your root directory. We need to configure that it should run the Commitlint script.
 
 ```yaml
@@ -163,6 +171,7 @@ Now Travis can watch your Pull Requests and check whether new commits are compli
 ![Travis integration](travis.png)
 
 ### Commitlint GitHub action
+
 Even simpler alternative to Travis is adding a [GitHub Action](https://github.com/features/actions). [There is an action for Commitlint available](https://github.com/z0al/commitlint-bot).
 
 The setup is super-easy. You just need to click `Install`, then select whether this action should apply for all your repos or just selected ones. And that's it. Now, whenever you create a Pull Request, it will be automatically checked by Commitlint.
@@ -176,9 +185,11 @@ And you will get a comment explaining all the failures:
 ![Github checks comment](commitlint-github-action-comment.png)
 
 ## Commit message wizard
+
 Conventions are useful, but what's even more useful is to have some tool, which can help you compose valid commit messages. Especially when your convention is new, there are new joiners or external contributors. Fortunately, there are tools available that help you with crafting compliant commit messages.
 
 ### Prompt CLI
+
 Commitlint offers a tool, basically a command-line wizard, which lets you create your commit messages based on a series of questions. It is called [@commitlint/prompt-cli](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/prompt-cli). You can easily install it:
 
 ```bash
@@ -212,19 +223,23 @@ Please enter a type: [required] [tab-completion] [header]
 What's cool is that this wizard automatically loads your configuration from your `commitlint.config.js` and behaves based on that config.
 
 ### Commitizen
+
 Another option instead of `prompt-cli` is a third-party solution called [Commitizen](http://commitizen.github.io/cz-cli/).
 
 It is also a wizard, which lets you easily create specification-compliant commit messages.
 
 ## Custom configuration
+
 If you're not happy with any settings of the predefined conventions, you can override them and provide some more configuration options for linting. This can be done in the `commitlint.config.js` file, which we already created.
 
 The detailed configuration is beyond the scope of this article, but you can check [the official configuration documentation](https://commitlint.js.org/#/reference-configuration) and the list of [all available rules](https://commitlint.js.org/#/reference-rules).
 
 ## Example repo
+
 You can find an example repository I created with fully set up Commitlint [here](https://github.com/vojtechruz/commitlint-example/). It also includes Travis integration and `prompt-cli` with examples of rejected PRs.
 
 ## Conclusion
+
 Having convention for commit messages has many benefits, and you can use many automated tools to utilize that. Automatic generation of changelogs and version bumps are no longer a problem. Not to mention much better readability. Commitlint helps you with that both locally and on your Continous Integration server.
 
 Husky, used by Commit lint, is a powerful tool for managing git hooks and can be used not only for commit messages but also for a wide variety of other quality checks.

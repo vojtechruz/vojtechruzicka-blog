@@ -97,8 +97,8 @@ HBox hbox = new HBox();
 hbox.setPadding(new Insets(10, 10, 10, 10));
 ```
 
-
 ## VBox
+
 VBox is very similar to HBox, but instead of displaying the components inside horizontally in a row, it displays them vertically in a column:
 
 ![VBox](vbox.png)
@@ -133,6 +133,7 @@ vbox.getChildren().addAll(btn1, btn2, btn3, btn4);
 ```
 
 ## StackPane
+
 This layout is useful for stacking its components one on top of each other. The order of insertion determines the order of the items. That means the first item is in back, the next is on top of it and so on.
 
 This can be useful, for example, for having an image and then having some text or button on top of it.
@@ -140,6 +141,7 @@ This can be useful, for example, for having an image and then having some text o
 ![Stack Pane](stack-pane.png)
 
 The following example shows StackPane in FXML:
+
 ```xml
 <StackPane>
     <ImageView>
@@ -270,4 +272,5 @@ tilePane.setOrientation(Orientation.VERTICAL);
 ```
 
 ## What's next
+
 In this article, we learned how to use several of the basic layout components in JavaFX. Still, there are more layouts to choose from. We'll cover these in the [next article](/javafx-layouts-advanced/).

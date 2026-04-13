@@ -53,6 +53,7 @@ This replaces the old `Share through VCS` option. For backward compatibility wit
 You can check [an example of stored run configuration file](./Config.run.xml).
 
 ## Importing configuration
+
 When creating a new project, IDEA can usually pick up your configurations easily when stored inside `.idea/runConfigurations`. When using a different location, it can have trouble. You can still add these configurations manually, fortunately.
 
 Just go to `Add configuration...` (Or `Edit Configurations...`) and you should see your stored configs in the list. From there, you can easily add them as usual.
@@ -60,4 +61,5 @@ Just go to `Add configuration...` (Or `Edit Configurations...`) and you should s
 ![Manually adding IDEA run configurations](idea-import-configuration.png)
 
 ## Summary
+
 Sharing run configurations can greatly simplify your project setup and ensure consistency among your team members. For even better results, consider combining it with general IDEA settings sharing.

@@ -65,7 +65,6 @@ public TomcatServletWebServerFactory
 
 If you want to deploy your war to `/`, you need to use an empty string as context root. To avoid conflicts with your Spring Boot application, you can change its context root in your `application.properties` by setting `server.servlet.context-path`.
 
-
 ### Using dependencies from your fat jar
 
 If you want to avoid duplicate dependencies, which are used by both of your artifacts, you can specify that your external war should use classloader of your fat jar.
@@ -107,7 +106,7 @@ If you want to change context path of your Spring Boot application, the process 
 
 ## Adding support for JSPs
 
-If your external non-Spring Boot war contains JSPs, you need to make sure you provide proper dependencies for them as the embedded Tomcat does not contain them by default. 
+If your external non-Spring Boot war contains JSPs, you need to make sure you provide proper dependencies for them as the embedded Tomcat does not contain them by default.
 
 For Maven, you can use:
 

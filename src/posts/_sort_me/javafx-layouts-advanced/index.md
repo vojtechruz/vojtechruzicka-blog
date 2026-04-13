@@ -12,6 +12,7 @@ draftStatus: draft
 In the previous article [we covered some basic JavaFX layouts](/javafx-layouts-basic/). Now it's time to go through the rest of the available layouts.
 
 ## AnchorPane
+
 AnchorPane is an interesting and powerful layout. It allows you to define anchor points to the components inside. There are 4 types of anchors:
 
 - top
@@ -19,7 +20,7 @@ AnchorPane is an interesting and powerful layout. It allows you to define anchor
 - left
 - right
 
-Each component can have any combination of anchors. From zero up to all four. Anchor point also defines a distance. 
+Each component can have any combination of anchors. From zero up to all four. Anchor point also defines a distance.
 
 Anchoring means that the component keeps the defined distance from a particular edge of the layout (e.g., TOP). This distance is preserved even on resize of the layout.
 

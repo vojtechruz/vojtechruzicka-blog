@@ -41,8 +41,6 @@ If you don't care about the downsides much, this can be very easy and quick way 
 <b>UPDATE:</b> The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is version 3<a href="https://docsearch.algolia.com/docs/DocSearch-v3"> available </a>. One major change is that you can now apply not only with technical documentation site, but also a technical blog. It now also offers react components out of the box. The configuration and code examples are no longer up to date, please refer to the official documentation instead.
 {% endinfo %}
 
-
-
 [Algolia DocSearch](https://community.algolia.com/docsearch/) is similar to Google Custom Search in a way that you don't need to download the whole search index to the client and that the search is provided by third-party service.
 
 There are some advantages over Google Search though. First of all, no ads. Also, everything integrates with the look and feel of your site nicely as you just mark a text input on your page as a search box to be handled by DocSearch. It then attaches autocomplete functionality to this search box. Whenever you start typing you get results from DocSearch. Directly in your page with possibility to easily override default styles. So the setup is really easy and your pages are indexed for you automatically.
@@ -59,7 +57,7 @@ If your request gets approved, you're good to go. They will configure the crawle
 
 But your request may get rejected (as in my case) because DocSearch is primarily intended as a solution for searching documentation pages of open source projects.
 
-However, after the initial rejection, I did ask nicely whether they can provide the service for my blog. They were really kind to me and allowed me to register. 
+However, after the initial rejection, I did ask nicely whether they can provide the service for my blog. They were really kind to me and allowed me to register.
 
 > DocSearch focuses on documentation content that helps the community. It looks like your content is helpful this why we will provide you DocSearch.
 
@@ -141,11 +139,11 @@ If you also work with videos, Algolia offers another exciting service. It is cal
 
 ![Algolia TalkSearch](./taks-search.png)
 
-It is intended primarily for conferences and meetups, but again, they may be kind enough to make an exception for you. 
+It is intended primarily for conferences and meetups, but again, they may be kind enough to make an exception for you.
 
 ## Conclusion
 
-When adding search to static sites, you need a different approach than in traditional apps where your backend can handle the search for you. Adding Google Search can be quick and painless, but the customization is limited and it does not feel like a nice integrated solution. 
+When adding search to static sites, you need a different approach than in traditional apps where your backend can handle the search for you. Adding Google Search can be quick and painless, but the customization is limited and it does not feel like a nice integrated solution.
 
 Having client-side search offers a fast solution, which can be good if you want your app to work offline as a Progressive Web App. Of course, you need to download the whole search index to the client, which can be too much once you have a lot of content.
 

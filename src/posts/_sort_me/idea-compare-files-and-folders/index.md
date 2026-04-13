@@ -34,6 +34,7 @@ You can click the arrow icons `»` and `«` to apply a particular change from on
 This comparison works for images, too, although you cannot see and apply individual differences.
 
 ## Comparing with non-project file
+
 Another case is when you need to compare a file from your project with another file outside of it.
 
 The process is again very similar. Select a single file in your project window and:
@@ -44,18 +45,21 @@ The process is again very similar. Select a single file in your project window a
 The last step is to browse for an external file to compare with. Now the comparison is the same as in the example above.
 
 ## Comparing with the clipboard
+
 Maybe you have a file in your project, and you need to compare it with some external content, which is not saved as a file on your machine. Maybe it is a code snippet from the web, for example, from stack overflow.
 
 First, you need to open the file from your project in your editor. Then copy to clipboard the snipped you want to compare (<kbd>Ctrl</kbd>+<kbd>C</kbd>).
 
-Now you have two options. Either compare the whole file against the clipboard or just a selection. If you want the whole file to be compared, just right-click anywhere in the editor and select `Compare with Clipboard` from the context menu. If you want just a selection instead, select some fragment of the file first and then right-click as before. 
+Now you have two options. Either compare the whole file against the clipboard or just a selection. If you want the whole file to be compared, just right-click anywhere in the editor and select `Compare with Clipboard` from the context menu. If you want just a selection instead, select some fragment of the file first and then right-click as before.
 
 ## Custom comparison
+
 What about the case when you want to compare two non-file code snippets from external sources? You can do this too! Just run `Find Action` via <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> and then search for `Open Blank Diff Window`.
 
 This opens a brand-new diff window with both panels blank, so you can copy and paste both snippets to be compared.
 
 ## Comparing with the previous local version of the file
+
 Even if you're not using any Version Control system, IDEA stores historical versions of your local files. You can right-click in your editor and select `Local history → Show history`.
 
 ![Local History](idea-local-history.png)
@@ -63,6 +67,7 @@ Even if you're not using any Version Control system, IDEA stores historical vers
 Here you can browse older versions of your current file and see the difference between the old and the current version and apply any changes if required.
 
 ## Compare with VCS
+
 If you're using a Version Control System, you have several more comparison options. For example, if you're using Git, you can go to `VCS → Git` or right-click your editor and select `Git`. Now you can:
 
 - **Compare with the same repository version**: Compares the current local file with the version in your remote repository 

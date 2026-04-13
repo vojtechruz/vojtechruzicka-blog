@@ -105,7 +105,7 @@ The element is normally positioned on the page, but when you reach its position 
 
 #### Browser Support
 
-The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky). 
+The `sticky` value is [not universally supported](https://caniuse.com/#feat=css-sticky).
 
 ![Sticky browser support](sticky-support.png)
 

@@ -88,5 +88,3 @@ Pramp is a great service to practice your skills as an interviewee (and as an in
 {% info %}
 Note: I am not affiliated with Pramp in any way, I just like the service and find it very useful.
 {% endinfo %}
-
-

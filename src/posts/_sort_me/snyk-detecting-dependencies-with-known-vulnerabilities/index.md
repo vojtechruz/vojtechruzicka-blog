@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## Introduction
+
 Earlier, I published post [Detecting dependencies with known vulnerabilities](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/), where I was describing how important is to make sure your third-party dependencies contain no security vulnerabilities. And how to achieve it with OWASP Dependency-Check. This post describes another tool, which can be used to eliminate vulnerable dependencies - Snyk.
 
 Unlike OWASP Dependency-Check, Snyk started as a tool for managing NPM dependencies. It is actively developed and new features are often introduced. Currently (as of November 2017), Snyk supports not only NPM but also Java (Maven and Gradle), Ruby, Scala, Python and Go. However, the support for NPM is still the strongest, so many nice features are not available for other languages.
@@ -22,7 +23,7 @@ Similar to Dependency Check, you can easily integrate Snyk with your Build and C
 
 Before you can use Snyk, you need to install it using NPM. Make sure you have Node.js installed to do so. Then you can simply run:
 
-```java
+```bash
 npm install –g snyk
 ```
 
@@ -168,7 +169,7 @@ What's even cooler, after testing your project Snyk will check its database whet
 
 As with the Wizard, this is unfortunately only available for NPM projects though. Hopefully, other types will also be supported soon.
 
-If your project is free of vulnerabilities, you can even include this nice badge: 
+If your project is free of vulnerabilities, you can even include this nice badge:
 
 ![snyk-badge](./snyk-badge.jpg)
 

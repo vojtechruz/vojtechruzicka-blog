@@ -12,12 +12,15 @@ draftStatus: draft
 
 
 ## Getting started
+
 ### Installation
+
 If you already have IntelliJ IDEA installed, all you need to do is to install [EduTools plugin](https://plugins.jetbrains.com/plugin/10081-edutools). Just go to `File → Settings → Plugins → Marketplace` and search for EduTools. Then click `Install` and restart your IDE when finished. The plugin is available both for Ultimate and Community edition.
 
 Alternatively, you can download [IntelliJ IDEA EDU](https://www.jetbrains.com/education/download/#section=idea), which is basically the Community Edition bundled with the EduTools plugin. If you are using Python, JetBrains also offers [Pycharm EDU](https://www.jetbrains.com/pycharm-edu/).
 
 ### Starting a course
+
 Now, after the plugin is installed, it is time to start using it. All the interactions with the plugin are handled through
 
 ```text
@@ -64,7 +67,7 @@ That means that you can study either in IDEA or Stepik web editor and your progr
 
 You can access Stepik courses in IDEA from:
 
-```
+```text
 File → Learn and Teach → Start Stepik Course
 ```
 
@@ -76,10 +79,10 @@ File → Learn and Teach → Start Stepik Course
 
 To open a Hyperskill project, go to:
 
- ```
- File → Learn and Teach → Start Hyperskill Project
- ```
- 
+```text
+File → Learn and Teach → Start Hyperskill Project
+```
+
 ### Coursera
 
 [Coursera](https://www.coursera.org/) integration is a bit sporadic right now. There's just "Kotlin for Java Developers" by JetBrains, where you can solve your weekly assignments in IDEA. You can access Coursera assignments in: `File → Learn and Teach → Start Coursera Assignment`.
@@ -142,7 +145,7 @@ That means you mark specific sections of the code as hidden to the students and 
 
 ![Content Placeholder](content-placeholder.png)
 
-Finally, you need to provide a way for the students to verify their solutions. This is done via one or more unit tests, which you can provide. As long as they pass, the students can move on to the next task. 
+Finally, you need to provide a way for the students to verify their solutions. This is done via one or more unit tests, which you can provide. As long as they pass, the students can move on to the next task.
 
 ### Gradle
 
@@ -150,7 +153,7 @@ For Java, Kotlin and Scala each course uses Gradle under the hood and you can ac
 
 ### Sharing your course
 
-Once you are finished creating the course, it is time to share it with your students. You have basically two options. 
+Once you are finished creating the course, it is time to share it with your students. You have basically two options.
 
 You can export your course as an archive, which can be later imported to IDEA by your students.
 

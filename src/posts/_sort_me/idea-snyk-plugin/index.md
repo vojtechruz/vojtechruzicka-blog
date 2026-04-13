@@ -44,9 +44,6 @@ Fortunately, Snyk recently released also IntelliJ IDEA plugin, which monitors yo
 The plugin is available for free for both the Community and Ultimate editions.
 {% endinfo %}
 
-
-
-
 The [Snyk Plugin](https://plugins.jetbrains.com/plugin/10972-snyk-vulnerability-scanning) is available directly from the plugin marketplace. You can access it using `Settings → Plugins`.
 
 ![IDEA Plugin marketplace](./snyk-marketplace.png)
@@ -76,7 +73,7 @@ Since 7/2019 there is an IDE plugin not only for IntelliJ IDEA, but [also for Ec
 ## UPDATE 4/2022: Bundled Checkmarx plugin
 
 Starting with IDEA Ultimate version 2022.1, [Package Checker](https://plugins.jetbrains.com/plugin/18337-package-checker) plugin [is bundled with the installation](https://blog.jetbrains.com/idea/2022/04/ensure-greater-software-security-with-package-analysis-by-checkmarx-in-intellij-idea/). It allows you to also check for vulnerable dependencies both in Maven and Gradle projects.
-The plugin checks your dependencies against the [NIST National Vulnerability Database](https://nvd.nist.gov/) and [Checkmarx](https://checkmarx.com/) database. It is able to detect both direct and indirect (transitive) vulnerable dependencies. 
+The plugin checks your dependencies against the [NIST National Vulnerability Database](https://nvd.nist.gov/) and [Checkmarx](https://checkmarx.com/) database. It is able to detect both direct and indirect (transitive) vulnerable dependencies.
 
 The plugin will automatically scan your dependency definitions and show you any problematic dependencies:
 
@@ -96,7 +93,6 @@ This allows you to browse your dependencies in a new `Dependency Checker` tab.
 Currently, vulnerability scanning is only available for IntelliJ IDEA Ultimate. With the Community Edition, you can still use the Snyk plugin.
 {% endinfo %}
 
-
-
 ## Conclusion
+
 Snyk IDEA plugin offers a simple, yet powerful way to detect security vulnerabilities in your dependencies directly in your IDE. This way, you can discover vulnerable libraries early in the development process without the need to wait for Continuous Integration check. This, however, does not mean you should depend only on the plugin. You should still have CI check in place as a safeguard and continuous monitoring, which Snyk offers, to make sure you discover new vulnerabilities and their fixes once they are available.

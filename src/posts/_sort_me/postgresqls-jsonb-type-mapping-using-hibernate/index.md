@@ -40,6 +40,7 @@ public class CustomPostgreSqlDialect extends PostgreSQL94Dialect {
 ```
 
 ### Registering Custom Dialect in Spring Boot app
+
 This step is rather simple. All you need to do is to register your newly created Hibernate Dialect in `application.properties` of your Spring Boot app. Just add the following line (be sure to change package name depending on where your class is located):
 
 ```properties

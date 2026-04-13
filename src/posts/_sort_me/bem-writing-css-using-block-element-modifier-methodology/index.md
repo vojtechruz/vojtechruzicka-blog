@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## What is BEM?
+
 Block Element Modifier is not a framework, it is a methodology. It was originally introduced by Yandex. The Core of this methodology is a simple naming convention - the structure of the page is divided into three types of building blocks - blocks, elements and modifiers. These days people usually use just the HTML/CSS naming convention, but originally the methodology was much broader. It covers Javascript, project file structure and generation of HTML from BEM tree templates. This article focuses just on the HTML/CSS part.
 
 ### Block
@@ -31,6 +32,7 @@ A Modifier is a flag, which is used on blocks and elements. It represents a stat
 In the image above, blocks are marked by green, elements by red and modifiers by blue. You can see that elements are only inside blocks, not standalone. Both main navigation items and follow buttons make sense only within their respective blocks. Blocks, such as links, can be used on their own. You can see, that blocks can be nested - "post-preview" block contains several "link" blocks. Both of these block types can be used on their own. Modifiers add additional variants such as that some links are bigger (preview post heading), navigation item of current section is highlighted or social follow buttons are blue on mouse over.
 
 ## Naming
+
 All the HTML elements are marked just by class. In CSS, you can reference just class, no HTML tags, no IDs.
 
 Blocks are named as usual by CSS class. For example - `main-navigation`.
@@ -96,9 +98,11 @@ While this approach helps you to have better-structured CSS code, it has some di
 Alternatively, you can check [BEM-SASS library](https://github.com/jsng/bem-sass), which provides some mixins to make SASS integration easier.
 
 ## Alternatives
+
 BEM is not the only CSS methodology out there. Examples of some other very popular ones are [Scalable and Modular Architecture for CSS (SMACSS)](https://smacss.com/) or [Object Oriented CSS](https://github.com/stubbornella/oocss/wiki).
 
 ## Further Reading
+
 -   [Official BEM Site](http://getbem.com/)
 -   [A New Front-End Methodology: BEM](http://A%20New%20Front-End%20Methodology:%20BEM)
 -   [The Evolution Of The BEM Methodology](https://www.smashingmagazine.com/2013/02/the-history-of-the-bem-methodology/)
