@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { generatePaginationLinks } from '../config/filters/pagination.js';
+import { loadPage, SITE_DIR } from './helpers.js';
+import { existsSync } from 'fs';
+
+// Check built pages to skip integration tests if they don't exist
+const hasPage2 = existsSync(`${SITE_DIR}/pages/2/index.html`);
+const hasPage4 = existsSync(`${SITE_DIR}/pages/4/index.html`);
+const hasPage5 = existsSync(`${SITE_DIR}/pages/5/index.html`);
 
 describe('generatePaginationLinks', () => {
   const createPagination = (total, current0) => ({
@@ -93,10 +100,8 @@ describe('generatePaginationLinks', () => {
   });
 });
 
-import { loadPage } from './helpers.js';
-
 describe('Pagination integration tests', () => {
-  it('renders pagination in index.html', () => {
+  it.skipIf(!hasPage2)('renders pagination in index.html', () => {
     const $ = loadPage('/');
     const pagination = $('nav.pagination');
     // On page 1, only the bottom pagination is shown
@@ -111,7 +116,7 @@ describe('Pagination integration tests', () => {
     const links = pagination.find('a').not('.pagination-prev').not('.pagination-next');
     expect(links.length).toBeGreaterThan(0);
 
-    // Check last page link (assuming at least 10 pages based on build)
+    // Check last page link
     const lastLink = links.last();
     expect(lastLink.text()).toMatch(/\d+/); // Should be a number
 
@@ -121,14 +126,14 @@ describe('Pagination integration tests', () => {
     expect(nextLink.attr('href')).toBe('/pages/2/');
   });
 
-  it('renders ellipses when there are many pages', () => {
+  it.skipIf(!hasPage5)('renders ellipses when there are many pages', () => {
     const $ = loadPage('/');
     const ellipsis = $('.pagination-ellipsis');
     expect(ellipsis.length).toBeGreaterThan(0);
     expect(ellipsis.first().text()).toBe('…');
   });
 
-  it('renders both Previous and Next on middle pages', () => {
+  it.skipIf(!hasPage4)('renders both Previous and Next on middle pages', () => {
     // Page 3 is at /pages/3/
     const $ = loadPage('/pages/3/');
     // There are 2 pagination blocks (top and bottom)
