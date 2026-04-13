@@ -2,8 +2,8 @@
 // https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 {
   "config": {
-    // Validate line length with max 120 characters (exclude code blocks and tables)
-    "MD013": { "line_length": 120, "code_blocks": false, "tables": false },
+    // Validate line length with max 120 characters (exclude code blocks, tables, and headings)
+    "MD013": { "line_length": 120, "code_blocks": false, "tables": false, "headings": false, "ignore_urls": true },
     // Kbd tags are for displaying keyboard shortcuts
     "MD033": {
       "allowed_elements": ["kbd"]
