@@ -40,5 +40,5 @@ Knowing all the useful shortcuts is no doubt handy and a big time-saver. It does
 ![Find Action Popup](./find-action-popup.png)
 
  And of course, if everything else fails, there is always the almighty *Search everywhere* feature using double <kbd>Shift</kbd>, which also lists actions.
- 
+
  ![Search Everywhere Popup](./search-everywhere-popup.png)

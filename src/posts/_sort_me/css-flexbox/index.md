@@ -330,6 +330,7 @@ If one item has `flex-grow: 3` and the other one `flex-grow: 1`, the ratio of th
 The common misconception is that ratio, let's say 2:1, means that the first component will end up being twice as big as the second one. But remember, it is about how the extra space is distributed, not the final size. **The ratio of `flex-grow` values determines the percentage of the extra space each item will get, not their final sizes**.
 
 #### Values between 0 and 1
+
 Values greater than 0, but less than 1 have special behavior. **If the sum of all the `flex-grow` values in a container is less than 1, items will still grow, but will not fill the entire container.**
 
 For example, if we have three items, each with `flex-grow: 0.25;` their sum is `0.75`. This means that the items will grow, but only occupy 75% of the available space, the rest will be empty.
@@ -341,6 +342,7 @@ In the example above, we have two items with value `0.1` and one with `0.4`. The
 In other words, 20% of extra space will get two items with `0.1` (each 10%), 40% will be added to item with `0.4,` and the rest of 40% will stay unoccupied.
 
 #### Flex-shrink
+
 This property determines how items should be reduced in size if there is not enough space available in the container.
 
 Again, it is a **non-negative** numeric value, where 0 means no shrinking at all. The ratio of these values determines how much each item will shrink compared to others. The difference is that the default value is `1`. This means that the items will shrink by default (but they don't grow by default).
@@ -355,7 +357,6 @@ In other words, larger items  (which are able to shrink more) will shrink faster
 
 {% codepen "https://codepen.io/vojtechruz/embed/preview/WNQGBrz/", "CodePen example - Flex shrink - shrinking takes into consideration the original size" %}
 
-
 #### Flex-basis
 
 When calculating shrinking and growing in a Flexbox, it is important to know the size of each item on the main axis. For example, to calculate the space available for growth, you need to take the size of the flex container minus sizes of all the items. How are the sizes of individual items calculated, though?
@@ -366,6 +367,7 @@ When calculating shrinking and growing in a Flexbox, it is important to know the
 You can also specify `flex-basis` property, which is used for sizing. It can use the same values as `width` or `height`. You can see, that `width` and `height` are two properties for horizontal and vertical sizing. But there is only one `flex-basis`. That's because it controls sizing on the **main axis**. This means if you are in row mode, it controls width. In column mode, it controls the height. So even if you switch between rows and columns dynamically, you can still use the same `flex-basis` property.
 
 The behavior of `flex-basis` is the following:
+
 - it defaults to `auto`
 - `auto` uses either specified `width` or `height`. If these are not specified, it uses sizing based on contents of the item
 - it overrides any `width` or `height`
@@ -396,7 +398,9 @@ flex-wrap: wrap-reverse;
 ```
 
 ### Flex
+
 This property allows you to combine the following individual properties together:
+
 - `flex-grow`
 - `flex-shrink`
 - `flex-basis`
@@ -422,7 +426,9 @@ flex-basis: 100px;
 There are also several options to specify less than three values.
 
 #### One value
+
 With one value, you can use:
+
 - `flex: auto;` - equivalent to `flex: 1 1 auto;`
 - `flex: none;` - equivalent to `flex: 0 0 auto`
 - `flex: [positive number]` - defines just `flex-grow`, the rest uses default values; equivalent to `flex: [positive number] 1 0px;`

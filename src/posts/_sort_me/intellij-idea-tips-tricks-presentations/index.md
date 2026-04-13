@@ -15,7 +15,7 @@ draftStatus: draft
 Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View → Enter Presentation Mode`. The IDE switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is better readable from a distance.
 
 ![intellij-idea-presentation-mode](./intellij-idea-presentation-mode.png)
- 
+
 The font size in Presentation Mode can be configured in Settings under:
 
 ```text

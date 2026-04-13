@@ -11,14 +11,17 @@ draftStatus: draft
 
 
 ## About the author
+
 [Geertjan Wielenga](https://twitter.com/GeertjanW) is a product manager and developer advocate for open source projects in Oracle, such as Oracle JET and Apache NetBeans.
 
 You can check his [Oracle blog](https://blogs.oracle.com/author/geertjan-wielenga), [GitHub](https://github.com/GeertjanWielenga) and [YouTube channel](https://www.youtube.com/user/GeertjanWielenga1/videos). The list of his other books is available [here](https://www.amazon.com/s?i=stripbooks&rh=p_27%3AGeertjan+Wielenga&s=relevancerank&text=Geertjan+Wielenga&ref=dp_byline_sr_book_1).
 
 ## The concept
+
 The concept of the book is simple. In a nutshell, each chapter is an interview with a well known developer advocate. After a brief introduction of the person, there is a series of questions. While some of the questions are specific to each person, many of them tend to repeat. Such as how did they become developer advocates, what advice would they give to people who want to become advocates themselves. How to deal with burnout and frequent traveling, technical problems or difficult questions.
 
 ## The advocates
+
 The book contains interviews with 32 developer advocates in total. Here are some examples.
 
 - [Scott Hanselman](https://www.hanselman.com/)
@@ -30,8 +33,7 @@ The book contains interviews with 32 developer advocates in total. Here are some
 - [Kirk Pepperdine](https://twitter.com/javaperftuning)
 - [Venkat Subramaniam](https://twitter.com/venkat_s)
 
-You can check [the full list](https://gist.github.com/vojtechruz/db120f75b463adb390e06a17b4999a33) of developer advocates interviewed in the book. 
-
+You can check [the full list](https://gist.github.com/vojtechruz/db120f75b463adb390e06a17b4999a33) of developer advocates interviewed in the book.
 
 ## Verdict
 The book is definitely a very interesting insight into the life and role of a developer advocate. Considering there are 32 advocates interviewed, you can read a lot of different stories and backgrounds. It is interesting to get to know more people from the community. Since the advocates have different backgrounds, it allows you to learn about interesting people, which are not inside of your usual "bubble" defined by your technology stack.
@@ -40,7 +42,8 @@ If you want to get involved more in the community, this book is definitely a gre
 
 Since every chapter is independent, you don't have to read it from cover to cover - you can pick people you are interested in or continue later as there is no connection between individual chapters.
 
-One thing I didn't like that much is that a lot of questions tend to repeat. In some cases, it makes sense. In others, not so much. It can be tedious to read over and over the same questions with very similar answers, such as: 
+One thing I didn't like that much is that a lot of questions tend to repeat. In some cases, it makes sense. In others, not so much. It can be tedious to read over and over the same questions with very similar answers, such as:
+
 - What is the difference between developer evangelist and developer advocate
 - What do you do if you don't know an answer to a question
 - What do you do if your equipment does not work properly

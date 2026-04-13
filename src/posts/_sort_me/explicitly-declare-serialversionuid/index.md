@@ -77,7 +77,7 @@ When you use explicit version number you need to make sure you properly update i
 
 ## UPDATE: Sonar Rule
 
-Originally Sonar contained a rule for handling serialVersionUID: ["Serializable" classes should have a "serialVersionUID"](https://rules.sonarsource.com/java/RSPEC-2057). If you're not a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring it. 
+Originally Sonar contained a rule for handling serialVersionUID: ["Serializable" classes should have a "serialVersionUID"](https://rules.sonarsource.com/java/RSPEC-2057). If you're not a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring it.
 
 Fortunately, thanks to [Jens Bannmann](https://community.sonarsource.com/t/serializable-classes-should-use-auto-generated-version-ids/1217), there is a new rule which enforces **omitting** serialVersionUID in Serializable classes, so it is always auto-generated: ["serialVersionUID" should not be declared blindly](https://rules.sonarsource.com/java/type/Code%20Smell/RSPEC-4926).
 

@@ -108,7 +108,7 @@ If you want to treat the first page separately, you can use `@page:first`.
 
 ## Page breaks
 
-For better readability, it can be useful to control where page breaks are inserted. 
+For better readability, it can be useful to control where page breaks are inserted.
 
 ### Avoiding breaks
 
@@ -296,7 +296,6 @@ For such cases, where you need to perform some custom logic before (or even afte
 
 - [beforeprint](https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeprint_event)
 - [afterprint](https://developer.mozilla.org/en-US/docs/Web/API/Window/afterprint_event)
-
 
 As the name suggests, the first one is fired before you enter the print dialog, so you can do whatever is necessary. The second one is triggered after the printing finishes, and you can use it for reverting to the original state.
 

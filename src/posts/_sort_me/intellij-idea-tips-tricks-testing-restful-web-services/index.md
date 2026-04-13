@@ -173,7 +173,7 @@ GET http://{{host}}:8090/persons/all/
 
 {% endraw %}
 
-You can run a specific configuration by clicking the run icon in the gutter: 
+You can run a specific configuration by clicking the run icon in the gutter:
 
 ![Run Environments](./run-environments.png)
 

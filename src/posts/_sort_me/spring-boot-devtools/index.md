@@ -243,7 +243,7 @@ You can mark individual beans as lazily initialized using `@Lazy` annotation. Th
 > DevTools enables hot restart of your application in the same JVM. A significant benefit of hot restart is that it gives the JIT more of a chance to optimise the code involved in starting your application. After a few restarts, the original time of 2500ms is reduced by almost 80% to nearer 500ms. With lazy initialization, we can do even better. Setting spring.main.lazy-initialization sees our application restart in 400ms directly in the IDE.
 
 Using lazy initialization for all your beans in a production application is questionable. It gives you excellent performance boost for start-up at the expense of longer first requests for individual beans. More importantly, your application does not fail fast anymore. Instead of crashing right when starting the app, it would fail only after directly requesting a misconfigured bean. This can be very dangerous as you would not discover many bugs until it is too late. Still, mass lazy initialization can be useful for speeding up development time as when working on a certain feature you usually work only on a fraction of your application and don't use the rest. An ideal compromise would be enabling mass lazy initialization for local development only (let's say using a spring profile) and disable it for deployed higher environments.
-     
+
 ## Conclusion
 
 DevTools make your development of Spring Boot applications faster and easier by providing automatic restart and LiveReload functionality.

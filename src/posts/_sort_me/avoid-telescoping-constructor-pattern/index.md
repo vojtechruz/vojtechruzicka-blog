@@ -114,8 +114,8 @@ One more advantage of the Builder if when working with variable number of input 
 
 There are two basic builder approaches.
 
--   Builder as a separate class. [(See the source code)](https://gist.github.com/vojtechruz/3162a7e5525d242e50935e93149208a1)
--   Builder as a static inner class. Static here means that it can be instantiated separately independently on the enclosing class instance. The advantage here is that unlike separate class, it has access to private members of enclosing class. It means that you can declare constructor private, effectively prohibiting direct instantiation. Only the builder can now be used to instantiate the class. [(See the source code)](https://gist.github.com/vojtechruz/1ea4f51a016002bbdd0d493b049140dc)
+- Builder as a separate class. [(See the source code)](https://gist.github.com/vojtechruz/3162a7e5525d242e50935e93149208a1)
+- Builder as a static inner class. Static here means that it can be instantiated separately independently on the enclosing class instance. The advantage here is that unlike separate class, it has access to private members of enclosing class. It means that you can declare constructor private, effectively prohibiting direct instantiation. Only the builder can now be used to instantiate the class. [(See the source code)](https://gist.github.com/vojtechruz/1ea4f51a016002bbdd0d493b049140dc)
 
 The choice is mostly a matter of preference. Many people consider convenient having the builder as an inner class, bundled all together. Also having private constructor is quite common. Personally I generally avoid inner classes and as such, I like to have my Builders separate (although in the same package). I like having separate construction of the class from the class itself, I consider it two different responsibilities according to Single Responsibility Principle. I also rarely prohibit direct instantiation, unless there is a special need for it. If necessary, having the constructor package private means you can still have a separate builder in the same package while preventing instantiation from the outside.
 
@@ -126,6 +126,7 @@ The builder is fortunately quite easy to generate. The best way is to use your f
 ![inner-builder-generator](inner-builder-generator.png)
 
 ## Conclusion
+
 The Builder is no silver bullet, which should be used every time you face a higher number of constructor parameters and telescoping constructors. The usage depends on the specific situation. Each approach has advantages and tradeoffs. Depending on your priorities, you should choose the best-suited one. The process may be similar to the following:
 
 1. Why do I actually have that many parameters? It may be a red flag that the class has too many responsibilities. Can some of those be extracted? Are some of the fields in such a close relation, that they should be encapsulated in a specialized class (e.g. Address fields such as street, city, and country).

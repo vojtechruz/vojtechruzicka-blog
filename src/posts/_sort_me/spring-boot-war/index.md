@@ -99,7 +99,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 `BootWarApplication.class` is the class in your app annotated with `@SpringBootApplication`.
 
-If you prefer, instead of a separate class, you can just make your `@SpringBootApplication` class extend `SpringBootServletInitializer` class and include the same `configure` method as above. 
+If you prefer, instead of a separate class, you can just make your `@SpringBootApplication` class extend `SpringBootServletInitializer` class and include the same `configure` method as above.
 
 ### Change packaging
 

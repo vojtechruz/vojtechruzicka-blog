@@ -13,7 +13,7 @@ draftStatus: draft
 
 When I started my blog back in 2016, I wanted to focus as much as possible on creating content rather than
 creating the blog infrastructure. Of course, there was a siren's call to build everything from scratch or spend weeks
-researching all the possible platforms. It would be, no doubt, a lot of fun. But I resisted as I wanted to start writing as soon as possible. 
+researching all the possible platforms. It would be, no doubt, a lot of fun. But I resisted as I wanted to start writing as soon as possible.
  I had wanted to start my blog for a few years already, so I wanted to reduce the barrier of entry as much as possible.
 I knew the most critical part is to build a habit of writing regularly, and then I can polish my blog tech stack later.
 
@@ -24,7 +24,7 @@ The results of a [Lighthouse audit](https://www.vojtechruzicka.com/chrome-audit-
 
 Especially the performance. With such long page load times, many users just leave before the page fully loads. Especially when on mobile and low-quality connections. Another issue is security. With a significant part of web powered by WordPress, it is a target of automated attacks all the time. That means constant fear of losing your precious blog. And it's internal database storing all the content was pretty much a black box for me. And of course, there's cost involved. As I didn't want to manage my installation, keep it updated and in good shape, I paid for hosted solution. Last but not least, Wordpress is built with PHP, which I am not familiar with and it is something I am not eager to learn. That means that any customizations or tweaks are out of the question for me.
 
-Long story short, I decided to get rid of my WordPress and replace it with a much more lightweight solution. There was a brief moment where I considered using Medium instead, but I decided I value control of my own content more. After listening to a very inspiring lightning talk by [Ladislav Prskavec](https://twitter.com/abtris/) about JAM Stack, I decided its time to give it a try. 
+Long story short, I decided to get rid of my WordPress and replace it with a much more lightweight solution. There was a brief moment where I considered using Medium instead, but I decided I value control of my own content more. After listening to a very inspiring lightning talk by [Ladislav Prskavec](https://twitter.com/abtris/) about JAM Stack, I decided its time to give it a try.
 
 ## JAM Stack
 JAM is an acronym for **J**avascript **A**PI **M**arkup. What does it mean though? It is not a framework or a specific technology. It is more of an architectural approach. A modern way web content is built, managed and distributed.
@@ -57,7 +57,7 @@ Gatsby is built with a lot of interesting technologies. If you are a front-end d
 
 ### Data sources and GraphQL
 
-One of the disadvantages of WordPress is that is tightly couples creation and management of content and serving of the content. While for many users WP may be a nice way to create and manage their content, it is far from efficient for serving it compared to static sites. In contrast, this is one of the areas where Gatsby really shines. 
+One of the disadvantages of WordPress is that is tightly couples creation and management of content and serving of the content. While for many users WP may be a nice way to create and manage their content, it is far from efficient for serving it compared to static sites. In contrast, this is one of the areas where Gatsby really shines.
 
 From your React components and templates, you access data (such as blog posts, site title and other metadata) using GraphQL. Unlike other Static Site Generators, the data is not limited to Markdown or some templating language. Gatsby supports many sources. It can handle files in formats such as Markdown, YAML, CSV or XML. What's awesome is that it can connect to sources like Medium or WordPress and load data from there! And because of Gatsby's extensibility and plugin system, it is easy to add more sources. What's great is that from the perspective of your templates it is just a GraphQL query. That means it is easy to switch data sources while your components and templates remain intact. For example, when migrating from WordPress, you can keep your articles in WP, keep creating and updating them there and just use Gatsby to transform your WP site to static one. Then, later you can convert to markdown if you feel like it.
 

@@ -191,7 +191,7 @@ Note that when implementing an interface you can change the method signature in 
 
 There is one more difference, which you cannot see from the method's signature but from JavaDoc only. `Closeable` is required to be [idempotent](https://en.wikipedia.org/wiki/Idempotence), `AutoCloseable` not (although it is highly recommended).
 
-That means you should make sure calling `close()` multiple times would not cause any trouble. 
+That means you should make sure calling `close()` multiple times would not cause any trouble.
 
 ## IntelliJ IDEA integration
 

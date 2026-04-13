@@ -53,8 +53,8 @@ This selection can be achieved by holding:
 
 - <kbd>Alt</kbd> + <kbd>Shift</kbd> on Windows or Linux
 - <kbd>⌥</kbd> + <kbd>⇧</kbd> on Mac
- 
-Then select the blocks by the mouse as usual. 
+
+Then select the blocks by the mouse as usual.
 
 ## Select All occurrences
 
@@ -66,7 +66,6 @@ This command can be triggered by
 
 - <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>J</kbd> on Linux or Windows
 - <kbd>⌃</kbd> + <kbd>⌘</kbd> + <kbd>G</kbd> on Mac.
-
 
 ## Add occurrence
 

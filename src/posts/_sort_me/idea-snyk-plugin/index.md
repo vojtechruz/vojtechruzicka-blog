@@ -64,7 +64,7 @@ Finally, you can click the `details` link of each vulnerability, which navigates
 
 ## Maven only
 
-Unfortunately, currently (as of 6/2019), the plugin supports only Maven and not Gradle. If you are using Gradle, you can stick With CLI or CI check, which does support it. However, according to Snyk, Gradle support is planned. Hopefully, it will be available soon. 
+Unfortunately, currently (as of 6/2019), the plugin supports only Maven and not Gradle. If you are using Gradle, you can stick With CLI or CI check, which does support it. However, according to Snyk, Gradle support is planned. Hopefully, it will be available soon.
 
 ## UPDATE 7/2019: Eclipse support
 

@@ -70,11 +70,12 @@ Here you can browse older versions of your current file and see the difference b
 
 If you're using a Version Control System, you have several more comparison options. For example, if you're using Git, you can go to `VCS → Git` or right-click your editor and select `Git`. Now you can:
 
-- **Compare with the same repository version**: Compares the current local file with the version in your remote repository 
+- **Compare with the same repository version**: Compares the current local file with the version in your remote repository
 - **Compare with branch**: Compares the local file with the same file in a different branch
 - **Show history**: Compares the local file with its previous versions
 
 ## Comparing Folders
+
 The comparison works not only for individual files but also for whole directories. The process is the same as for files - just select two folders in your Project window and press <kbd>Ctrl</kbd> + <kbd>D</kbd> or right click and `Compare Directories`.
 
 ![Compare directories](idea-compare-directories.png)
@@ -82,6 +83,7 @@ The comparison works not only for individual files but also for whole directorie
 Here you can see a list of all the files present in both or in either one of the directories. You can easily spot which files are present in just one folder and which in both. These in both, you can compare as usual.
 
 ### Synchronizing folders
+
 The directory diff tool is useful not only for spotting differences in both directories, but also for synchronizing changes. You can apply changes for individual sections of each file as usual. But you can also mark files present only in one of the directories to be either kept or synchronized to the other directory. You can change the desired action for each file in the `*` column. Once you are satisfied, you can hit either `Synchronize selected` or `Synchronize all`.
 
 ![Synchronize Folders](idea-synchronize-directories.png)

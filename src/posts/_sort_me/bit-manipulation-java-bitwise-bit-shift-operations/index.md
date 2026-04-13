@@ -15,11 +15,11 @@ You are no doubt familiar with arithmetic operators such as + - \* / or %. You a
 
 These operators can be performed on integer types and its variants - that is
 
--   byte (8 bit)
--   short (16 bit)
--   int (32 bit)
--   long (64 bit)
--   and even char (16 bit)
+- byte (8 bit)
+- short (16 bit)
+- int (32 bit)
+- long (64 bit)
+- and even char (16 bit)
 
 ### Unary bitwise complement operator \[\~\]
 
@@ -111,6 +111,7 @@ Signed right shift moves all the bits by given number of positions to the right.
 Unlike the signed shift, the unsigned one does not take sign bits into consideration, it just shifts all the bits to the right and pads the result with zeros from the left. That means that for negative numbers, the result is always positive. Signed and unsigned right shifts have the same result for positive numbers.
 
 ### Compound Assignment Operators
+
 Java offers a shorter syntax for assigning results of arithmetic or bitwise operations. So instead of writing this:
 
 ```java
@@ -137,4 +138,5 @@ You are probably familiar with compound assignment operators for arithmetic oper
 Note that there is no compound assignment operator for Unary bitwise complement operator `~`.
 
 ## Conclusion
+
 Bit manipulation can be very handy in some cases and is really efficient. Increased performance, however, comes at its cost. The readability suffers a lot at it can be really puzzling for somebody who is not familiar with the bit manipulation concept. If the scenario you are using is not performance-critical, you may want to consider, whether the tradeoff of performance for readability is really worth it and maybe rewrite your solution in a more readable way. Don't use bit manipulation everywhere possible just because you learned a cool new concept.

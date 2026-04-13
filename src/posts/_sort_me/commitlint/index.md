@@ -11,12 +11,13 @@ draftStatus: draft
 
 
 ## Commit conventions
+
 Although you can put pretty much anything in your commit messages, it is beneficial to have a more standardized and structured approach. It is better to stick to a convention, so all your commit messages follow the same structure. This has many advantages:
 
 - Your commit history is more readable and easier to navigate
 - You can automatically generate changelogs
-- Based on the type of changes, you can properly bump your version when using [semantic versioning](https://semver.org/): 
-  - major: when introducing breaking changes 
+- Based on the type of changes, you can properly bump your version when using [semantic versioning](https://semver.org/):
+  - major: when introducing breaking changes
   - minor: when adding a feature
   - fix: when adding a fix
 
@@ -136,7 +137,7 @@ Now the commit was accepted. We added the type of the commit `feat` and the part
 
 The full structure of conventional commits is the following:
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
@@ -208,7 +209,7 @@ Now you can register `commit` command in your `package.json`.
 
 Now instead of `git commit`, you can run `npm run commit`. It launches an interactive wizard in your console, which will ask you for all the parts of a commit message such as type, subject, and so on.
 
-```
+```text
 Please enter a type: [required] [tab-completion] [header]
 <type> holds information about the goal of a change.
 

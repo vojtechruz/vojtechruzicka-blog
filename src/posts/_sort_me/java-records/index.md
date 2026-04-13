@@ -10,7 +10,7 @@ draftStatus: draft
 
 
 ## The problem
-One of the issues with Java is its verbosity and the amount of boilerplate code needed. That's nothing new. 
+One of the issues with Java is its verbosity and the amount of boilerplate code needed. That's nothing new.
 
 Let's consider a simple `Cat` class in Java. We want each cat to have:
 

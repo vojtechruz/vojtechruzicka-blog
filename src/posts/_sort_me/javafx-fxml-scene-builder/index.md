@@ -70,7 +70,7 @@ primaryStage.show();
 ```
 
 Here `root` represents the root component of your user interface, the other components are nested inside.
- 
+
 The `load` method has a generic return value, so you can load a more specific type than `Parent`. Then you can access component-specific methods. However, it makes your code more fragile. When you change your root component type in your FXML, the application will fail at runtime, not compile time. That's because now there is a mismatch in type declared in your FXML and in your Java FXML Loader.
 
 ## Creating the FXML file

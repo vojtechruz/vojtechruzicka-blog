@@ -16,7 +16,7 @@ This second post describes build and deployment process and how much it is bette
 
 ## GitHub Pages?
 
-Leaving managed WordPress saved me some expenses, but the next question was where to deploy instead. The first obvious option was [GitHub Pages](https://pages.github.com/). It is a free service provided by Github, which nicely integrates with your GitHub repository. If you are using Jekyll as a static site generator, it offers good integration out of the box. 
+Leaving managed WordPress saved me some expenses, but the next question was where to deploy instead. The first obvious option was [GitHub Pages](https://pages.github.com/). It is a free service provided by Github, which nicely integrates with your GitHub repository. If you are using Jekyll as a static site generator, it offers good integration out of the box.
 
 While GitHub pages are good and will do the job, there is one service, which is in my opinion much better. It offers much more while keeping the simplicity. It's called Netlify. [This blog post](https://www.netlify.com/github-pages-vs-netlify/) provides a useful comparison of GitHub Pages and Netlify.
 

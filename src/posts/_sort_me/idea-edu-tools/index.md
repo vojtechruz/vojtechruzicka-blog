@@ -133,7 +133,7 @@ Currently, you can select one of the supported languages (more are to come):
 
 ### Creating tasks
 
-Now when the course is created it's time to make individual tasks. It's pretty simple. Each task consists of three parts. 
+Now when the course is created it's time to make individual tasks. It's pretty simple. Each task consists of three parts.
 
 ![New Task](new-task.png)
 

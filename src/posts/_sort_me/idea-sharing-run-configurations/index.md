@@ -10,11 +10,13 @@ draftStatus: draft
 
 
 ## IDEA settings sharing
+
 When developing in a team, it is vital to stick to a common set of practices to keep consistency in the development process. Having your IDE configured in the similar way can greatly help you with this. Fortunately, IDEA offers several ways of settings sharing, which can be very useful in such situations. It can be also beneficial for individuals when working with multiple machines. You can read more about it in the following article:
 
 {% linkedPost "/intellij-idea-tips-tricks-synchronization-sharing-settings/" %}
 
 ## Run configuration sharing
+
 You can see your Run Configurations of top of the IDE window next to `Run` and `Debug` buttons.
 
 ![IDEA Run Configurations location](./run-consfigurations.png)
@@ -25,13 +27,14 @@ In the case of these more complicated configs, it is vital to be able to share t
 
 To edit individual configurations, you can hit double <kbd>Shift</kbd> and then search for `Edit Configurations...`.
 
-
 ### Default behavior
+
 The default behavior of IDEA run configurations is not very sharing-friendly. All your run configs are shared in `.idea/workspace.xml`.
 
 This is problematic as the file also contains a lot of user-specific information, so it is not really suitable for sharing among team members. As a result the whole `.idea` folder usually ends up in `.gitignore` file.
 
 ### Share through VCS
+
 As a result, IDEA later introduced the concept of sharing your run configuration through VCS.
 
 This is configured per each configuration so that you can have both your personal and shared configurations at the same time.

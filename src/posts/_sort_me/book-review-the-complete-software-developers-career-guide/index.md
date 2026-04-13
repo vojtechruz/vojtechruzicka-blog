@@ -10,6 +10,7 @@ draftStatus: draft
 
 
 ## About the author
+
 [John Sonmez](https://twitter.com/jsonmez) is a creator of site [Simple Programmer](https://simpleprogrammer.com/) blog, which covers various topics about software development, soft skills and developing your career as a programmer. In addition to his blog, he produces a lot of [YouTube Videos](https://www.youtube.com/user/jsonmez) and some [Podcasts](https://simpleprogrammer.com/podcasts/). This is his second book in addition to [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397).
 
 ## Contents
@@ -39,11 +40,13 @@ This part is a mixed bag of various topics. There are several chapters on how to
 This is probably the most interesting part. It's about growing as a software developer. About constantly honing your skills. How to approach training and certifications. But most importantly, about building your personal brand. That is, building your network of contacts, creating a blog or becoming a speaker at conferences and similar events. This section is crucial and in my opinion, it alone makes this book worth your time and money.
 
 ## Value
+
 The value you get for your money will differ a lot based on your current experience in the software development world. If you are a complete junior a student or someone considering switching career paths to software development, this book is great and you will benefit from pretty much every chapter. If you have already several years of work experience, not so much. In such case, you can pretty much ignore the sections \"Getting started as a software developer\" and \"What you need to know about software development\". And many of the chapters from other sections as well such as \"Internships\" or \"Getting a job without experience\".
 
 In spite of this, the value is still pretty good considering that the Kindle version of the book costs just \$9.99. For a short period of time after the launch, it was even available just for \$0.99.
 
 ## Conclusion
+
 If you are just starting your career this book is great. It gives you a good high-level picture of the software development in general. And it teaches you some important habits, which will benefit you much, especially if you embrace them early on. However, despite the name, it cannot be used as a Definitive guide - the range of topics covered is so wide that each topic is covered not in much depth. Given the number of topics, it wouldn't even be possible as you could write whole books about each of the topics. That does not mean it is not useful, you just need to have realistic expectations. Instead of targeting audience of developers of all skill levels, the book could have been divided into two or more books, which would go into more detail.
 
 The style of the writing is fresh and the book reads easily. The chapters are not dependent on each other, so you can choose just the parts you are interested in, which is good. The style is succinct, however, as I already mention shallow in some cases.

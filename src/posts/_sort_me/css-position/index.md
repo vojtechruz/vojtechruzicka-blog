@@ -138,10 +138,9 @@ The elements with higher `z-index` are displayed in front of elements with lower
 
 In the example, you can see that you can also specify negative numbers, which places these elements behind those with no `z-index` or index with value 0.
 
-
 ## Summary
 
-Let's sum it up. The `position` property allows you to determine how elements should be placed on the page. 
+Let's sum it up. The `position` property allows you to determine how elements should be placed on the page.
 
 You can define the exact location using `top`, `bottom`, `right` and `left` properties.
 

@@ -83,8 +83,8 @@ One of the core ideas of the DI frameworks is that the managed class should have
 
 However, when injecting directly into fields, you provide no direct way of instantiating the class with all its required dependencies. That means:
 
--   There is a way (by calling the default constructor) to create an object using `new` in a state when it lacks some of its mandatory collaborators and usage will result in the `NullPointerException`.
--   Such a class cannot be reused outside DI containers (tests, other modules) as there is no way except reflection to provide it with its required dependencies.
+- There is a way (by calling the default constructor) to create an object using `new` in a state when it lacks some of its mandatory collaborators and usage will result in the `NullPointerException`.
+- Such a class cannot be reused outside DI containers (tests, other modules) as there is no way except reflection to provide it with its required dependencies.
 
 ### Immutability
 

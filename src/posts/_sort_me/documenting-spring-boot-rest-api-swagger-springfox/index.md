@@ -17,6 +17,7 @@ One of the most popular API documentation specifications is OpenApi, formerly kn
 It is however not realistic to write such documentation by hand and keep it updated whenever your code changes. This is where SpringFox comes into play. It is a Swagger integration for Spring Framework. It can automatically inspect your classes, detect Controllers, their methods, model classes they use and URLs to which they are mapped. Without any handwritten documentation, it can generate a lot of information about your API just by inspecting classes in your application. How cool is that? Most importantly, whenever you make changes they'll be reflected in the documentation.
 
 ## Starting project
+
 To start, you'll need a Spring Boot application with some Rest Controllers, I've prepared a simple one [here](https://github.com/vojtechruz/rest-docs-starter).
 
 For this article, I used SpringFox 2.9.2 and Spring Boot 1.5.10.RELEASE. It uses version 2 of the Swagger specification. Version 3 is already out, but it is not yet (as of 2/2018) supported by SpringFox. The support should be available in the [next version](https://github.com/springfox/springfox/releases).
@@ -24,6 +25,7 @@ For this article, I used SpringFox 2.9.2 and Spring Boot 1.5.10.RELEASE. It uses
 The source code of the final project built with all the features described in this blog post is available on [GitHub](https://github.com/vojtechruz/springfox-example).
 
 ## Adding Dependencies
+
 To work with SpringFox in your project, you need to add it as a dependency first. If you are using Maven, you can use the following (you can check whether a newer version is available).
 
 ```xml
@@ -60,13 +62,14 @@ public class SpringFoxConfig {
 
 Of course, you can provide many more configuration settings as we'll see later, but this is a minimalistic configuration, which does the following:
 
--   `@EnableSwagger2` enables SpringFox support for Swagger 2.
--   `DocumentationType.SWAGGER_2` tells the Docket bean that we are using version 2 of Swagger specification.
--   `select()` creates a builder, which is used to define which controllers and which of their methods should be included in the generated documentation.
--   `apis()` defines the classes (controller and model classes) to be included. Here we are including all of them, but you can limit them by a base package, class annotations and more.
--   `paths()` allow you to define which controller's methods should be included based on their path mappings. We are now including all of them but you can limit it using regex and more.
+- `@EnableSwagger2` enables SpringFox support for Swagger 2.
+- `DocumentationType.SWAGGER_2` tells the Docket bean that we are using version 2 of Swagger specification.
+- `select()` creates a builder, which is used to define which controllers and which of their methods should be included in the generated documentation.
+- `apis()` defines the classes (controller and model classes) to be included. Here we are including all of them, but you can limit them by a base package, class annotations and more.
+- `paths()` allow you to define which controller's methods should be included based on their path mappings. We are now including all of them but you can limit it using regex and more.
 
 ## Adding UI
+
 If you deploy your application now, swagger metadata describing your API is already being generated! You can check it out:
 
 ```java
@@ -100,6 +103,7 @@ http://localhost:8080/swagger-ui.html
 ![swagger-ui](swagger-ui.png)
 
 ## Adding ApiInfo
+
 By default, the header part of our documentation does look pretty generic:
 
 ![swagger-header](swagger-header.png)
@@ -136,6 +140,7 @@ Now our documentation header should look much better:
 ![swagger-header-updated](swagger-header-updated.png)
 
 ## Narrowing down processed APIs
+
 So far so good. But when you take a closer look at the generated documentation, you'll see that in addition to our Model and Controller classes which we use, there are also some spring specific classes such as `BasicErrorController` in the Controllers' sections and also `View` and `ModelAndView` under Models section.
 
 Sometimes it is useful to narrow down classes which will SpringFox detect as sources for documentation generation. Both Controller and Model classes. You can easily configure this in the Docket configuration. Remember like we used `.apis(RequestHandlerSelectors.any()` to include all the classes? Let's narrow it down just to our base package:
@@ -256,11 +261,12 @@ public class Person {
 On the class level, you use `@ApiModel` annotation and on field level `@ApiModelProperty`. You can, of course, mix and match with JSR-303 annotations. `@ApiModelProperty`'s example is useful for providing example values, which is good not only for the guidance of users but also it is used to prefill a request payload when using Swagger UI as a REST client to test your services. Position attribute is handy to specify the order in which attributes will be displayed in the documentation. It is useful to provide important or required attributes first or group attributes which belong together. Otherwise, the attributes will be listed alphabetically.
 
 ## Adding Swagger Core annotations to your controller classes
+
 Same as you could annotate your model classes with Swagger core annotations to provide additional metadata, you can annotate your controllers and their methods and method parameters.
 
--   `@Api` describes the whole controller
--   `@ApiOperation` is used for description on a methods level
--   `@ApiParam` is used for method parameters
+- `@Api` describes the whole controller
+- `@ApiOperation` is used for description on a methods level
+- `@ApiParam` is used for method parameters
 
 ```java
 @RestController

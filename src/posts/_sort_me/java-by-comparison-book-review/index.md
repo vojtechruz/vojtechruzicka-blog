@@ -46,7 +46,7 @@ You'll get most of this book as a junior Java developer or a person who is switc
 
 For intermediate devs, this still is useful. You can use the book as a refresher for what you already know and there should still be much to learn from it. Moreover, since the items are independent, you can just skip some items.
 
-As a senior developer, you may not learn much yourself, but the book is a great resource when mentoring others or when doing code review. You can just point them to a specific item when reviewing their code. 
+As a senior developer, you may not learn much yourself, but the book is a great resource when mentoring others or when doing code review. You can just point them to a specific item when reviewing their code.
 
 The book works with Java 8, so it does not really matter if you're not familiar with all the newer versions of Java.
 

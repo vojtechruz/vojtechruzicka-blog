@@ -135,7 +135,7 @@ Of course, you can do it manually and it will work. With some static site genera
 
 ## Search your videos
 
-If you also work with videos, Algolia offers another exciting service. It is called [Algolia TalkSeach](https://community.algolia.com/talksearch/). It allows you to add search to your youtube videos. It fetches transcript for the video and makes it searchable, so you can easily navigate to the part of the video you are interested in. 
+If you also work with videos, Algolia offers another exciting service. It is called [Algolia TalkSeach](https://community.algolia.com/talksearch/). It allows you to add search to your youtube videos. It fetches transcript for the video and makes it searchable, so you can easily navigate to the part of the video you are interested in.
 
 ![Algolia TalkSearch](./taks-search.png)
 

@@ -158,7 +158,7 @@ A tooltip offers an explanation of what section is overriding or overridden. By 
 
 As described above, you can have multiple `.editorconfig` files. This can be useful for having different settings for different packages or modules. Or to have different settings for production and test code. Or for different languages. To sum it up:
 
-- The settings from one config file are applied to all its subdirectories. 
+- The settings from one config file are applied to all its subdirectories.
 - If there is a different setting in a subdirectory, it takes priority over settings from parent directories
 - Topmost config file must have `root=true`
 - Editor config settings have priority over your IDE settings

@@ -37,16 +37,13 @@ By the OOP principles, an object should contain both data and a behavior perform
 
 These days, it is more about convenience. First of all, it is much easier to use Util Classes than regular ones, because there is no need to instantiate them, so it is just less code and overall simpler. The second of all, Util Classes are a convenient stash of methods which do not belong anywhere else. When adding some new functionality, it is much easier to put it in some generic Util Class, which already contains various methods barely having anything in common than to actually think about proper OO design.
 
-
 ## The Downside
 
 The main problem is that a class depending on a static method from a Utility Class has tight coupling. You are using a specific external dependency, not an abstraction. There is no way to switch that dependency under various circumstances. Usually, you would be able to provide a subclass of that dependency instead or another dependency implementing the interface. You lose that flexibility completely.
 
-
 ### Testing
 
 Since you have a hard dependency on the Util Class, you cannot easily provide a mock implementation. That makes testing rather difficult. You cannot isolate dependencies on Utility Classes and test just your class in isolation. Therefore you are testing all your static dependencies as well. [Miško Hevery](http://misko.hevery.com/about/) has a nice article about that - [Static Methods are Death to Testability](http://misko.hevery.com/2008/12/15/static-methods-are-death-to-testability/).
-
 
 ### Inversion of Control
 
@@ -54,16 +51,13 @@ Ideally, a class should not be responsible for obtaining its dependencies. They 
 
 When all the dependencies are provided externally, the class does not suffer from \"dependency hiding\". From the class\'s public interface it is obvious, which dependencies it requires to proper function. It is still not a violation of encapsulation as the class just clearly states its collaborators, but does not reveal the way of using them to perform its core purpose.
 
-
 ### Proxying
 
 Many frameworks depend on dynamic proxies for adding additional functionality to class instances. Consumers are provided with a proxy instead of a regular instance. It has the required type but provides some other behavior on top of that. For example, you can add method-level security restricting access to methods unless the user has a specific role. Another example can be adding AOP logging to method calls (which is not a core responsibility of the class but rather cross-cutting concern and should be managed externally). Such behavior cannot be added to classes using dynamic proxies.
 
-
 ### Single Responsibility
 
 As already mentioned, a class using Utility Class is responsible not only for its original role, but also for obtaining its dependencies. Another problem is that existing Utility Classes have tendencies to rot. Usually, such classes are created from a code, which has no better or proper place to be. Over time, if you are not very strict, these classes tend to accumulate more and more code, which may be not so related to the original methods. The class would lose its original single responsibility and become a jack-of-all-trades.
-
 
 ## Alternatives
 

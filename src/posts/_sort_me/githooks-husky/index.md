@@ -24,7 +24,7 @@ As you can see, all the files have extension `.sample`. Git ignores these files 
 
 ## What is it good for?
 
-Now, let's look at some specific examples of what can be achieved with git hooks. Since they're just scripts, you can do pretty much anything. Usually, that means making various quality checks. 
+Now, let's look at some specific examples of what can be achieved with git hooks. Since they're just scripts, you can do pretty much anything. Usually, that means making various quality checks.
 
 You can make sure user has their name and email filled. You can check the commit message is properly formatted. You can try to build your app and reject the commit if the build fails. You can run tests to make sure they are passing before commit.
 
@@ -95,7 +95,7 @@ If you don't want to include Husky configuration in your `package.json` file, yo
     "pre-push": "npm test"
   }
 }
-``` 
+```
 
 This can be useful, for example, when you want to have Husky just for yourself and not everyone using your project. You can add `.huskyrc` to `.gitignore`. Otherwise, you would need to keep local changes in your `package.json` and keep them uncommitted. When somebody else would update the file, you would need to resolve the conflict every time.
 
@@ -143,7 +143,7 @@ When you try to commit now, lint-staged can change your files before the commit 
 
 ### Continuous integration
 
-One thing to note is that Husky installs the hooks only when not running on a Continuous Integration server. Husky [can detect](https://github.com/watson/is-ci) it is running as a part of CI job and will not install any hooks. 
+One thing to note is that Husky installs the hooks only when not running on a Continuous Integration server. Husky [can detect](https://github.com/watson/is-ci) it is running as a part of CI job and will not install any hooks.
 
 ## Ignoring
 
@@ -153,8 +153,8 @@ Client-side hooks can be useful, but you cannot rely on them too much. They are 
 git commit --no-verify
 ```
 
-To make things even easier, the hooks can be disabled using certain environmental variables. Because of this, it is still useful to enforce the same functionality on the server. 
-    
+To make things even easier, the hooks can be disabled using certain environmental variables. Because of this, it is still useful to enforce the same functionality on the server.
+
 ## Performance
 
 While client-side hooks such as pre-commit can be very useful, you need to keep in mind that they take some time to execute. Commits, which are usually very fast as they happen only on the client, can suddenly take very long time. You may be tempted to run all the tests, static code analysis, prettification and more before each commit. When a commit takes ages, your developers will not be happy and may be tempted to ignore the hooks when performing their git commands. So you should find the right balance between what needs to be performed on the client and what can be a server-side hook.

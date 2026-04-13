@@ -10,9 +10,11 @@ draftStatus: draft
 
 
 ## Destructuring assignment
+
 The destructuring assignment allows you to assign items of arrays or properties of objects to separate variables. Let's look into more detail how this works.
 
 ## Array destructuring
+
 Let's assume we have an array, and we want to assign its contents into separate variables. Without destructuring, you would need to do something like this:
 
 ```javascript
@@ -41,6 +43,7 @@ let [a, b] = myArray; // a=1, b=2
 ````
 
 ### Default values
+
 On the other hand, if there are not enough items in the array, only some of the variables get assigned. The rest remains undefined as if you would declare a variable and not assign it.
 
 ```javascript
@@ -58,6 +61,7 @@ let [a=2, b=4, c=6] = myArray; // a=1, b=4, c=6
 Because it is called destructuring, you might think that items are actually removed from the source array. This is, however, not the case, the source array remains unchanged. The same also applies to destructuring objects.
 
 ### Ignoring items
+
 If you want to skip certain items, you can do it like this:
 
 ```javascript
@@ -66,6 +70,7 @@ let [a, , b] = myArray; // a=1, b=3
 ````
 
 ### Swapping variables
+
 The traditional approach to swapping variables involves using a third temporary variable:
 
 ```javascript
@@ -81,6 +86,7 @@ With destructuring, variable value swap is as easy as this:
 ````
 
 ### Assigning the rest of the items
+
 You can assign just a first few items from the source array and put all the unassigned items in a new array:
 
 ```javascript
@@ -93,6 +99,7 @@ The `...` syntax with its various uses is described in detail in the following a
 {% linkedPost "/spread-javascript/" %}
 
 ## Nested arrays destructuring
+
 When you have an array, which contains other arrays, you can still use destructuring to get to the items in the nested array:
 
 ```javascript
@@ -102,6 +109,7 @@ let [first, second, [third, fourth], fifth] = myArray;
 ```
 
 ### Destructuring iterables
+
 All the examples above used arrays as a source for destructuring. Actually, this is just a special case as you can use any iterable such as string. In that case each character gets assigned to a single variable:
 
 ```javascript
@@ -120,6 +128,7 @@ let [first, second] = results; // first = "The", second = "quick"
 ```
 
 ## Object destructuring
+
 Object destructuring works in a similar way to array destructuring with a few distinctions.
 
 ```javascript
@@ -135,6 +144,7 @@ let {name, age, ...others} = john;
 ```
 
 ### Changing variable names
+
 Unlike arrays, where the assignment is determined by order, here it is by variable name matching object's property name. That means that is assigning to a variable called `name` it will use value of a property `name` from the source object.
 
 However, you can make the name different if you want:
@@ -164,6 +174,7 @@ let {"my-property": myProperty} = {"my-property": 42};
 ```
 
 ### Dynamic property names
+
 When working with plain objects, you can access their properties by property name like `person.name` or `person["name"]`. What's more interesting, you can also use a variable in place of property name - `person[myVariable]`:
 
 ```javascript
@@ -195,6 +206,7 @@ let {[propertyKey]: foo} = person; // foo = 42 or "John"
 ```
 
 ### Usage in iteration
+
 Destructuring can be useful when iterating over multiple objects. You can easily extract just the properties you are interested in:
 
 ```javascript
@@ -210,6 +222,7 @@ for(let {name, age, hobby = "Unknown"} of persons) {
 It is not only concise when accessing the current object's properties, but also it allows you to define default values of missing properties easily.
 
 ### Assignment to existing variables
+
 When destructuring arrays, it is not different whether you declare your variables and immediately assign to them or whether you assign to previously declared variables:
 
 ```javascript

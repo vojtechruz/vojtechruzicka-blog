@@ -12,7 +12,7 @@ draftStatus: draft
 
 ## [Key promoter X](https://plugins.jetbrains.com/plugin/9792-key-promoter-x/)
 
-Using keyboard shortcuts instead of your mouse can greatly increase your productivity. With so many features IDEA offers, it can be intimidating and difficult to learn all the shortcuts. Fortunately, there is a plugin called [Key Promoter X](/learning-intellij-idea-keyboard-shortcuts/), which can help you. 
+Using keyboard shortcuts instead of your mouse can greatly increase your productivity. With so many features IDEA offers, it can be intimidating and difficult to learn all the shortcuts. Fortunately, there is a plugin called [Key Promoter X](/learning-intellij-idea-keyboard-shortcuts/), which can help you.
 
 The idea is simple: whenever you use your mouse to invoke a command in your IDE, a popup is shown, which tells you what the keyboard shortcut for this action is.
 
@@ -53,7 +53,6 @@ This is basically an icon pack, which provides new icons for special files such 
 This can be very useful as you can immediately recognize these special files, and your project is, therefore, much easier to navigate. For example, `package.json` is a json file, but it is much more useful to have a special icon for it as it is an important file for npm projects.
 
 ![Extra Icons](icons.png)
-
 
 ## [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
 
@@ -99,11 +98,12 @@ This plugin is similar to Rainbow brackets, but it does not color your brackets,
 
 ![Indent Rainbow IntelliJ IDEA Plugin](rainbow-indent.png)
 
-Again, this is much less visible in the light theme, so Darcula may be a better choice. 
+Again, this is much less visible in the light theme, so Darcula may be a better choice.
 
 ## [String Manipulation](https://plugins.jetbrains.com/plugin/2162-string-manipulation/)
 
 This is a handy plugin, which allows you to perform various actions with your strings such as:
+
 - Escaping/un-escaping for various contexts (Java, HTML, XML, SQL, ...)
 - Case switching (lower, upper, kebab, pascal, camel, ...)
 - Sorting
@@ -114,7 +114,7 @@ This is a handy plugin, which allows you to perform various actions with your st
 
 Although git support in IntelliJ is already pretty good, this plugin still offers some useful features on top of that.
 
-You can easily see how many commits is your branch ahead/behind. You can configure automatic fetch with configurable frequency. You can automatically see inline blame information on your current line. 
+You can easily see how many commits is your branch ahead/behind. You can configure automatic fetch with configurable frequency. You can automatically see inline blame information on your current line.
 
 ![Git Toolbox](git-toolbox.png)
 

@@ -221,7 +221,7 @@ Note that in this step only direct whitespace is removed. If you have whitespace
 
 Text Blocks are not raw strings and you can still use escapes. However, you don't need to bother with the most common ones.
 
-- New line `\n` is no longer needed as Text  Blocks are multi-line by nature. 
+- New line `\n` is no longer needed as Text  Blocks are multi-line by nature.
 - You don't need to escape `"` double quotes as they no longer mark String literal ending
 
 ```text
@@ -274,7 +274,7 @@ As part of Text Blocks proposal, there are three new Methods of `String` class.
 ## Conclusion
 
 - Text Blocks offer a convenient way of working with multi-line string literals.
-- To create a Text Block simply surround your string with `"""`. 
+- To create a Text Block simply surround your string with `"""`.
 - You can use Text Blocks anywhere you can use String Literals
 - Line endings are normalized to LF
 - Extra whitespace is stripped from the beginning and the end of each line. Only relative indentation is preserved.
