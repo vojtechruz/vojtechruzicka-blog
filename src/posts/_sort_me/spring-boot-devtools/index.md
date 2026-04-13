@@ -242,7 +242,7 @@ Config declared in this file is applied to all the applications running DevTools
 
 ## Limitations
 
-### Live Reload
+### Live Reload limitations
 
 Spring app using DevTools automatically launches a LiveReload server. Unfortunately, only one instance of this server
 can be running at the same time. To be more precise, just the first one will work. That applies not only to multiple

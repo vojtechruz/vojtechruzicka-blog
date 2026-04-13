@@ -148,7 +148,7 @@ GridPane.setColumnSpan(component, columnSpan);
 GridPane.setRowSpan(component, rowSpan);
 ```
 
-### Sizing
+### GridPane Sizing
 
 Even though in the initial example, all the cells were the same size, it does not necessarily have to be the case. The
 sizing of grid cells is the following:
@@ -305,7 +305,7 @@ borderPane.setRight(right);
 borderPane.setCenter(center);
 ```
 
-### Sizing
+### BorderPane Sizing
 
 All the regions except the center have a fixed size. The center then fills the rest of the space.
 

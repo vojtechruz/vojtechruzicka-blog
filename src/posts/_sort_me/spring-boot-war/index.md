@@ -74,7 +74,7 @@ executable.
 To make sure your embedded Tomcat dependencies are not clashing with what's already on your target Tomcat, you need to
 mark them as provided.
 
-#### Maven
+#### Maven dependency
 
 With Maven, simply add this dependency to your `pom.xml` file to the `dependencies` section.
 
@@ -86,7 +86,7 @@ With Maven, simply add this dependency to your `pom.xml` file to the `dependenci
 </dependency>
 ```
 
-#### Gradle
+#### Gradle dependency
 
 With Gradle, the process is similar, just add the dependency to your `dependencies` section with provided scope.
 
@@ -121,7 +121,7 @@ If you prefer, instead of a separate class, you can just make your `@SpringBootA
 
 Now the last step is to make sure your app is properly packaged as WAR instead of JAR.
 
-#### Maven
+#### Maven packaging
 
 Simply update the packaging section in your `pom.xml` file from
 
@@ -135,7 +135,7 @@ to WAR packaging
 <packaging>war</packaging>
 ```
 
-#### Gradle
+#### Gradle packaging
 
 In Gradle, add `war` plugin to your plugins section.
 

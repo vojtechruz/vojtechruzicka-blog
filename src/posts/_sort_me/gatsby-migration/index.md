@@ -7,7 +7,7 @@ excerpt: 'How and why I migrated from WordPress to static JAM Stack site built w
 draftStatus: draft
 ---
 
-## Before
+## Life with WordPress before migration
 
 When I started my blog back in 2016, I wanted to focus as much as possible on creating content rather than creating the
 blog infrastructure. Of course, there was a siren's call to build everything from scratch or spend weeks researching all
@@ -178,11 +178,11 @@ sites served over HTTPS, which my site now supports thanks to Netlify's
 [one click setup](https://www.netlify.com/docs/ssl/) and [Let's Encrypt](https://letsencrypt.org/). Now let's go back to
 the Lighthouse audit score and compare new Gatsby site to my good old WordPress.
 
-### Before
+### Audit score before migration
 
 ![before](./chrome-audit-score-before.jpg) ![before-details](./chrome-audit-performance-metrics.jpg)
 
-### After
+### Audit score after migration
 
 ![after](./results.png)
 

@@ -141,7 +141,7 @@ MyInterface.staticMethod();
 This behavior is very useful for preventing multiple inheritance issues. Imagine you have a class implementing two
 interfaces. Each of the interfaces has a static method with the same name and signature. Which one should take priority?
 
-### Why is it useful
+### Why static methods are useful
 
 Imagine you have an interface and a whole bunch of helper methods which operate with classes implementing this
 interface.
@@ -176,7 +176,7 @@ There is one exception, though. You cannot have default methods in your interfac
 the decision -
 [Allow default methods to override Object's methods](http://mail.openjdk.java.net/pipermail/lambda-dev/2013-March/008435.html).
 
-### Why is it useful
+### Why default methods are useful
 
 Implementation directly in interfaces. It doesn't look quite right. So why was this functionality introduced in the
 first place?

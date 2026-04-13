@@ -91,7 +91,7 @@ Alternatively, you can use a dedicated `.huskyrc` file, which contains only Husk
 }
 ```
 
-### Commitlint
+### Install Commitlint
 
 Now when We have Husky, we need to install Commitlint CLI, which will be executed by Husky hook to validate commit
 messages. Again, it is just a dev dependency, which is not included in your production bundle.

@@ -30,7 +30,7 @@ means you cannot use JSDoc nor ngdoc. You need a new tool. Turns out, that for T
 JSDoc called [TypeDoc](http://typedoc.org/). It is, however, angular-agnostic, so you cannot use any framework-specific
 goodies.
 
-### Getting started
+### Getting started with TypeDoc
 
 To install TypeDoc locally for your current project, just run:
 
@@ -67,7 +67,7 @@ means no Angular specific documentation. But there is a whole lot to be document
 [Compodoc](https://compodoc.github.io/website/) solves this, it is focused on Angular apps specifically giving you a
 much more tailored solution.
 
-### Getting started
+### Getting started with CompoDoc
 
 To install compodoc, simply run
 
