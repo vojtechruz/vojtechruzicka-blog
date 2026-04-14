@@ -1,6 +1,14 @@
-{% if not isLocalDevelopment and isPreview %}
+{% if not isLocalDevelopment %}
 <!-- Plausible Analytics -->
-<script async src="https://plausible.io/js/pa-8BjKElQFX2XyqZAcaSGoy.js"></script>
+
+{% if isPreview %}
+  <!-- Preview -->
+  <script async src="https://plausible.io/js/pa-8BjKElQFX2XyqZAcaSGoy.js"></script>
+{% else %}
+  <!-- Production -->
+  <script async src="https://plausible.io/js/pa-xtcFmLVm-99urf6LDF4kZ.js"></script>
+{% endif %}
+
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
