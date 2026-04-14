@@ -76,9 +76,8 @@ right?
 
 The first thing you need to do is to make sure you have a
 [JetBrains account](https://sales.jetbrains.com/hc/en-gb/articles/208459005-What-is-JetBrains-Account-). If you don't
-have one, you can [create a JetBrains account](https://account.jetbrains.com/login) on their website.
-Once you have your JetBrains account, you'll
-need to Log in to IDEA using it. Just head to `Help → Register`. Then you just need to select
+have one, you can [create a JetBrains account](https://account.jetbrains.com/login) on their website. Once you have your
+JetBrains account, you'll need to Log in to IDEA using it. Just head to `Help → Register`. Then you just need to select
 `Activate new License with JetBrains Account` and enter your credentials. Then click `Activate`.
 
 ![idea-registration](./idea-registration.png)

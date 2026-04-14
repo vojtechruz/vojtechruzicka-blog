@@ -16,8 +16,9 @@ draftStatus: draft
 in Oracle, such as Oracle JET and Apache NetBeans.
 
 You can check his [Oracle blog](https://blogs.oracle.com/author/geertjan-wielenga),
-[GitHub](https://github.com/GeertjanWielenga) and [YouTube channel](https://www.youtube.com/user/GeertjanWielenga1/videos).
-The [list of his other books](https://www.amazon.com/s?i=stripbooks&rh=p_27%3AGeertjan+Wielenga&s=relevancerank&text=Geertjan+Wielenga&ref=dp_byline_sr_book_1)
+[GitHub](https://github.com/GeertjanWielenga) and
+[YouTube channel](https://www.youtube.com/user/GeertjanWielenga1/videos). The
+[list of his other books](https://www.amazon.com/s?i=stripbooks&rh=p_27%3AGeertjan+Wielenga&s=relevancerank&text=Geertjan+Wielenga&ref=dp_byline_sr_book_1)
 is available on Amazon.
 
 ## The concept

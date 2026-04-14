@@ -137,7 +137,8 @@ _jdeprscan_, which can be found under `JDK_HOME\bin`. Currently, it supports sca
 planned to support also external classes. For dynamic scanning of deprecated APIs, an introduction of a special tool
 _jdeprdetect_ is considered, but it will not be part of Java 9.
 
-More info can be found in the [official jdeprscan documentation](https://docs.oracle.com/javase/9/tools/jdeprscan.htm#JSWOR-GUID-2B7588B0-92DB-4A88-88D4-24D183660A62).
+More info can be found in the
+[official jdeprscan documentation](https://docs.oracle.com/javase/9/tools/jdeprscan.htm#JSWOR-GUID-2B7588B0-92DB-4A88-88D4-24D183660A62).
 
 ## IDE Support
 

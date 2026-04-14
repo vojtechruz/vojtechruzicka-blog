@@ -56,19 +56,19 @@ There were no tricky questions in the Spring exam.
 
 ### Notes
 
-My [personal study notes for the Spring Web certification](https://github.com/vojtechruz/spring-web-cert-notes-4.2)
-are available on GitHub. They cover all
-the topics required to know for the certification. As they are available on GitHub, feel free to add more info or
-correct anything and create a pull request. Note that code listings provided are usually more for illustration purposes
-and do not need to be memorized. During the exam, you are not required to write code snippets or exactly know all the
-API and details.
+My [personal study notes for the Spring Web certification](https://github.com/vojtechruz/spring-web-cert-notes-4.2) are
+available on GitHub. They cover all the topics required to know for the certification. As they are available on GitHub,
+feel free to add more info or correct anything and create a pull request. Note that code listings provided are usually
+more for illustration purposes and do not need to be memorized. During the exam, you are not required to write code
+snippets or exactly know all the API and details.
 
 ### Flashcards
 
 I have created set of flashcards using [Anki software](http://ankisrs.net/). The contents are basically derived from my
 study notes. Anki provides desktop client as well as mobile applications to study on the go.
 
-The deck contains 200 questions and can be [downloaded from GitHub](https://github.com/vojtechruz/spring-web-cert-notes-4.2/raw/master/Spring%20Web%20Certification.apkg).
+The deck contains 200 questions and can be
+[downloaded from GitHub](https://github.com/vojtechruz/spring-web-cert-notes-4.2/raw/master/Spring%20Web%20Certification.apkg).
 
 The downloaded deck file can be imported into Anki using `File → Import`.
 

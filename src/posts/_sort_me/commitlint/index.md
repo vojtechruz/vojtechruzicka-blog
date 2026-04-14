@@ -276,9 +276,8 @@ The detailed configuration is beyond the scope of this article, but you can chec
 
 ## Example repo
 
-You can find an [example repository with Commitlint fully set up](https://github.com/vojtechruz/commitlint-example/)
-on GitHub. It also includes Travis integration and `prompt-cli` with
-examples of rejected PRs.
+You can find an [example repository with Commitlint fully set up](https://github.com/vojtechruz/commitlint-example/) on
+GitHub. It also includes Travis integration and `prompt-cli` with examples of rejected PRs.
 
 ## Conclusion
 
