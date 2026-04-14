@@ -1,29 +1,28 @@
-@use "../variables";
+@use '../variables';
 
 @media print {
+  // This will print link target url after each anchor tag
+  #post p a:after {
+    content: ' (' attr(href) ') ';
+    font-size: 80%;
+  }
 
-    // This will print link target url after each anchor tag
-    #post p a:after {
-        content: " (" attr(href) ") ";
-        font-size: 80%;
-    }
+  img,
+  pre {
+    break-inside: avoid-page;
+  }
 
-    img,
-    pre {
-        break-inside: avoid-page;
-    }
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid-page;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-        break-after: avoid-page;
-    }
+  .footer,
+  .post-header-featured-image {
+    display: none;
+  }
 
-    .footer,
-    .post-header-featured-image {
-        display: none;
-    }
-
-    //  TODO HIDE ELEMENTS NOT SUITABLE FOR PRINT
+  //  TODO HIDE ELEMENTS NOT SUITABLE FOR PRINT
 }

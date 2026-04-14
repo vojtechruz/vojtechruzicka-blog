@@ -10,44 +10,41 @@
  */
 export function fixAriaHiddenHeaderAnchorsTransform(content, outputPath) {
   try {
-    if (!outputPath || !outputPath.endsWith(".html") || typeof content !== "string") {
+    if (!outputPath || !outputPath.endsWith('.html') || typeof content !== 'string') {
       return content;
     }
 
     let html = content;
 
     // --- FIX 1: Clean <a class="header-anchor"> ---
-    html = html.replace(
-      /<a\b([^>]*\bclass="[^"]*\bheader-anchor\b[^"]*"[^>]*)>/gi,
-      (full, attrs) => {
-        let newAttrs = attrs;
+    html = html.replace(/<a\b([^>]*\bclass="[^"]*\bheader-anchor\b[^"]*"[^>]*)>/gi, (full, attrs) => {
+      let newAttrs = attrs;
 
-        // Remove aria-hidden entirely
-        newAttrs = newAttrs.replace(/\s*aria-hidden\s*=\s*"[^"]*"/gi, "");
+      // Remove aria-hidden entirely
+      newAttrs = newAttrs.replace(/\s*aria-hidden\s*=\s*"[^"]*"/gi, '');
 
-        // Ensure aria-label exists
-        if (!/\baria-label\b/i.test(newAttrs)) {
-          newAttrs += ' aria-label="Permalink to this section"';
-        }
-
-        // Ensure tabindex="-1"
-        if (/\btabindex\b/i.test(newAttrs)) {
-          newAttrs = newAttrs.replace(/\btabindex\s*=\s*"[^"]*"/i, 'tabindex="-1"');
-        } else {
-          newAttrs += ' tabindex="-1"';
-        }
-
-        // Helpful title for copy/link affordance
-        newAttrs += ' title="Copy link to this section"';
-
-        return '<a' + newAttrs + '>';
+      // Ensure aria-label exists
+      if (!/\baria-label\b/i.test(newAttrs)) {
+        newAttrs += ' aria-label="Permalink to this section"';
       }
-    );
+
+      // Ensure tabindex="-1"
+      if (/\btabindex\b/i.test(newAttrs)) {
+        newAttrs = newAttrs.replace(/\btabindex\s*=\s*"[^"]*"/i, 'tabindex="-1"');
+      } else {
+        newAttrs += ' tabindex="-1"';
+      }
+
+      // Helpful title for copy/link affordance
+      newAttrs += ' title="Copy link to this section"';
+
+      return '<a' + newAttrs + '>';
+    });
 
     // --- FIX 2: Remove tabindex from headings <h1>-<h6> ---
     html = html.replace(
       /<(h[1-6])([^>]*?)\s+tabindex="-1"([^>]*)>/gi,
-      (_, tag, before, after) => `<${tag}${before}${after}>`
+      (_, tag, before, after) => `<${tag}${before}${after}>`,
     );
 
     return html;

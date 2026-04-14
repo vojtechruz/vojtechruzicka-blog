@@ -1,3 +1,3 @@
-import createMarkdownShortcode from "./markdown-paired-shortcode.js";
+import createMarkdownShortcode from './markdown-paired-shortcode.js';
 
-export default createMarkdownShortcode("msg-warn");
+export default createMarkdownShortcode('msg-warn');

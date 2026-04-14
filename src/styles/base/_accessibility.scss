@@ -1,6 +1,5 @@
-@use "../variables";
-@use "../utilities";
-
+@use '../variables';
+@use '../utilities';
 
 // Focus outline
 :where(a, button, input, textarea, select, [tabindex]) :focus-visible,
@@ -32,7 +31,7 @@ a:focus-visible {
   &:focus {
     left: 0;
     top: 0;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     background: var(--color-skiplink-bg); // High contrast requirement
     color: var(--color-skiplink-text); // High contrast requirement
     z-index: var(--z-overlay);

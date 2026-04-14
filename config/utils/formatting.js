@@ -46,7 +46,7 @@ export function toDateUtcMidnightIfDateOnly(value) {
   const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(str);
   if (isDateOnly) {
     // Explicitly construct as UTC midnight to avoid TZ shifts
-    const [y, m, d] = str.split("-").map((n) => parseInt(n, 10));
+    const [y, m, d] = str.split('-').map((n) => parseInt(n, 10));
     // Date.UTC uses month 0-11
     return new Date(Date.UTC(y, m - 1, d, 0, 0, 0));
   }
@@ -56,7 +56,7 @@ export function toDateUtcMidnightIfDateOnly(value) {
 
 export function readableDateUTC(value) {
   if (!value) {
-    return "";
+    return '';
   }
 
   const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
@@ -66,7 +66,7 @@ export function readableDateUTC(value) {
   }
 
   const day = date.getUTCDate();
-  const month = date.toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
+  const month = date.toLocaleDateString('en-US', { month: 'long', timeZone: 'UTC' });
   const year = date.getUTCFullYear();
 
   return `${month} ${day}, ${year}`;
@@ -74,35 +74,35 @@ export function readableDateUTC(value) {
 
 export function htmlDateString(value) {
   if (!value) {
-    return "";
+    return '';
   }
 
   const date = toDateUtcMidnightIfDateOnly(value) || new Date(value);
 
   if (isNaN(date.getTime())) {
-    return "";
+    return '';
   }
 
-  return date.toISOString().split("T")[0];
+  return date.toISOString().split('T')[0];
 }
 
 export function slugify(value) {
   return String(value)
     .trim()
     .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 export function escapeHtml(str) {
   return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 // Deterministic non-cryptographic string hash (for DOM ids, etc.)

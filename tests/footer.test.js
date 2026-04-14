@@ -66,10 +66,12 @@ describe('Footer', () => {
   });
 
   it('all svg icons inside footer links are hidden from assistive tech', () => {
-    getSocialLinks($).find('svg').each((_, el) => {
-      expect($(el).attr('aria-hidden')).toBe('true');
-      expect($(el).attr('focusable')).toBe('false');
-    });
+    getSocialLinks($)
+      .find('svg')
+      .each((_, el) => {
+        expect($(el).attr('aria-hidden')).toBe('true');
+        expect($(el).attr('focusable')).toBe('false');
+      });
   });
 
   it('contains expected social/profile links', () => {

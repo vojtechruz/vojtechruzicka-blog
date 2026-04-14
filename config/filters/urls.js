@@ -1,8 +1,8 @@
-import site from "../../src/_data/site.js";
+import site from '../../src/_data/site.js';
 
 export default function registerUrlFilters(eleventyConfig) {
   // Absolute URL
-  eleventyConfig.addFilter("absoluteUrl", (path, base = site.url) => {
+  eleventyConfig.addFilter('absoluteUrl', (path, base = site.url) => {
     if (!path) {
       return base;
     }
@@ -11,18 +11,18 @@ export default function registerUrlFilters(eleventyConfig) {
       return path;
     }
 
-    return base.replace(/\/+$/, "") + "/" + String(path).replace(/^\/+/, "");
+    return base.replace(/\/+$/, '') + '/' + String(path).replace(/^\/+/, '');
   });
 
   // Naive HTML absolutizer for href/src beginning with "/" (good enough for feed)
-  eleventyConfig.addFilter("htmlToAbsoluteUrls", (html, base = site.url) => {
-
+  eleventyConfig.addFilter('htmlToAbsoluteUrls', (html, base = site.url) => {
     if (!html) {
-      return "";
+      return '';
     }
 
-    return String(html).replace(/(href|src)=["']\/([^"']*)["']/g, (_m, attr, p) =>
-      `${attr}="${base.replace(/\/+$/, "")}/${p}`
+    return String(html).replace(
+      /(href|src)=["']\/([^"']*)["']/g,
+      (_m, attr, p) => `${attr}="${base.replace(/\/+$/, '')}/${p}`,
     );
   });
 }

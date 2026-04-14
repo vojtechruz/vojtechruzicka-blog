@@ -14,19 +14,16 @@
 export function stripPreTabindex(content, outputPath) {
   try {
     // Only process final HTML output
-    if (!outputPath || !outputPath.endsWith(".html") || typeof content !== "string") {
+    if (!outputPath || !outputPath.endsWith('.html') || typeof content !== 'string') {
       return content;
     }
 
     // Remove any tabindex="..." from <pre> elements
-    const sanitized = content.replace(
-      /(<pre\b[^>]*?)\s+tabindex="[^"]*"/g,
-      "$1"
-    );
+    const sanitized = content.replace(/(<pre\b[^>]*?)\s+tabindex="[^"]*"/g, '$1');
 
     return sanitized;
   } catch (error) {
-    console.error("stripPreTabindex transform failed:", error);
+    console.error('stripPreTabindex transform failed:', error);
     return content;
   }
 }

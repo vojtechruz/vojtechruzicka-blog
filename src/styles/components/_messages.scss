@@ -1,5 +1,4 @@
-@use "../variables";
-
+@use '../variables';
 
 .msg {
   border-width: 1px;
@@ -12,7 +11,8 @@
     margin: 0;
   }
 
-  p, ul:last-of-type {
+  p,
+  ul:last-of-type {
     margin-bottom: 0;
   }
 }

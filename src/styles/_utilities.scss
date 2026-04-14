@@ -1,4 +1,4 @@
-@use "variables";
+@use 'variables';
 
 // Small, reusable mixins and helpers
 
@@ -41,21 +41,15 @@
     @media (max-width: variables.$breakpoint-small) {
       @content;
     }
-  }
-
-  @else if $breakpoint ==medium {
+  } @else if $breakpoint ==medium {
     @media (max-width: variables.$breakpoint-medium) {
       @content;
     }
-  }
-
-  @else if $breakpoint ==large {
+  } @else if $breakpoint ==large {
     @media (max-width: variables.$breakpoint-large) {
       @content;
     }
-  }
-
-  @else if $breakpoint ==xlarge {
+  } @else if $breakpoint ==xlarge {
     @media (max-width: variables.$breakpoint-xlarge) {
       @content;
     }

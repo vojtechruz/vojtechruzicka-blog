@@ -14,10 +14,10 @@
  *   pre[data-language="js"]::before { content: "JavaScript"; }
  */
 export const dataLanguageTransformer = {
-  name: "data-language",
+  name: 'data-language',
   pre() {
     // this.options.lang is the detected fence language (e.g., 'js', 'java')
     this.pre.properties ??= {};
-    this.pre.properties["data-language"] = this.options.lang || "text";
-  }
+    this.pre.properties['data-language'] = this.options.lang || 'text';
+  },
 };

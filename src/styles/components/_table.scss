@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 table {
   width: 100%;
@@ -13,7 +13,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   padding: 0.7rem 1rem;
   vertical-align: top;
   line-height: 1.35;
@@ -30,7 +31,6 @@ thead th {
 }
 
 td code {
-
 }
 
 tr:hover {

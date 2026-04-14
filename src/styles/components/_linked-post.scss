@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 .linked-post {
   padding: var(--gap-medium);
@@ -32,10 +32,10 @@
 .linked-post .front-post-info {
   display: flex;
   flex-wrap: wrap;
-  font-size: .875rem;
+  font-size: 0.875rem;
   color: var(--color-text-muted);
   align-items: center;
-  margin-bottom: calc(var(--gap-small)*2);
+  margin-bottom: calc(var(--gap-small) * 2);
 }
 
 .front-post-info-date {
@@ -43,7 +43,7 @@
 }
 
 /* Layout: image + text block */
-.linked-post>div {
+.linked-post > div {
   display: flex;
   gap: var(--gap-medium);
   align-items: flex-start;
@@ -94,7 +94,8 @@
 }
 
 @include utilities.respond(small) {
-  .front-post-image, .front-post-image .image-wrapper {
+  .front-post-image,
+  .front-post-image .image-wrapper {
     display: none;
   }
 }

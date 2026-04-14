@@ -1,10 +1,10 @@
 export function registerLayouts(eleventyConfig) {
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+  eleventyConfig.addLayoutAlias('post', 'layouts/post.njk');
 }
 
 export function registerPassthrough(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
-    "./src/static/": "/" // Copy static files to the output directory
+    './src/static/': '/', // Copy static files to the output directory
   });
 }
 

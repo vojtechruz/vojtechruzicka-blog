@@ -1,20 +1,19 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 .post .post-tags {
   margin-top: var(--gap-small);
   margin-bottom: var(--gap-small);
 }
 
-
 .post-tags {
   @include utilities.reset-list;
   display: flex;
   flex-wrap: wrap;
-  gap: calc(var(--gap-small)*1.5);
+  gap: calc(var(--gap-small) * 1.5);
 
   .tag-name::before {
-    content: "#";
+    content: '#';
   }
 
   a {

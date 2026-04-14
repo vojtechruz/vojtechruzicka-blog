@@ -1,6 +1,6 @@
 export default function registerSortingFilters(eleventyConfig) {
   // Sort tags by count desc, then name asc (for tie-breakers)
-  eleventyConfig.addFilter("sortByCountThenName", (arr) => {
+  eleventyConfig.addFilter('sortByCountThenName', (arr) => {
     if (!Array.isArray(arr)) {
       return [];
     }
@@ -12,9 +12,9 @@ export default function registerSortingFilters(eleventyConfig) {
         return countDiff;
       }
 
-      const aName = (a.name ?? "").toString();
-      const bName = (b.name ?? "").toString();
-      return aName.localeCompare(bName, undefined, { sensitivity: "base" });
+      const aName = (a.name ?? '').toString();
+      const bName = (b.name ?? '').toString();
+      return aName.localeCompare(bName, undefined, { sensitivity: 'base' });
     });
   });
 }

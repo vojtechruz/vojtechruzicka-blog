@@ -25,10 +25,7 @@ describe('Draft posts exclusion (production build)', () => {
   it.skipIf(draftPosts.length === 0)('draft posts should not have built HTML output', () => {
     for (const { frontmatter, filePath } of draftPosts) {
       const htmlPath = `${SITE_DIR}${frontmatter.path}index.html`;
-      expect(
-        existsSync(htmlPath),
-        `Draft post should not be built: ${filePath} → ${htmlPath}`
-      ).toBe(false);
+      expect(existsSync(htmlPath), `Draft post should not be built: ${filePath} → ${htmlPath}`).toBe(false);
     }
   });
 
@@ -37,13 +34,10 @@ describe('Draft posts exclusion (production build)', () => {
       if (!frontmatter.path) {
         continue;
       }
-      
+
       // Use frontmatter path (permalink) to find the built HTML
       const htmlPath = `${SITE_DIR}${frontmatter.path}index.html`;
-      expect(
-        existsSync(htmlPath),
-        `Published post should be built: ${filePath} → ${htmlPath}`
-      ).toBe(true);
+      expect(existsSync(htmlPath), `Published post should be built: ${filePath} → ${htmlPath}`).toBe(true);
     }
   });
 });
@@ -58,25 +52,19 @@ describe('Draft posts excluded from sitemap', () => {
   it.skipIf(draftPosts.length === 0)('sitemap should not contain draft post URLs', () => {
     const sitemap = readFileSync(sitemapPath, 'utf-8');
     for (const { frontmatter } of draftPosts) {
-      expect(
-        sitemap,
-        `Sitemap should not contain draft URL: ${frontmatter.path}`
-      ).not.toContain(frontmatter.path);
+      expect(sitemap, `Sitemap should not contain draft URL: ${frontmatter.path}`).not.toContain(frontmatter.path);
     }
   });
 
   it('sitemap should contain published post URLs', () => {
     const sitemap = readFileSync(sitemapPath, 'utf-8');
-    for (const { frontmatter} of publishedPosts) {
+    for (const { frontmatter } of publishedPosts) {
       if (!frontmatter.path) {
         continue;
       }
       // Use frontmatter path (permalink) as the actual URL
       const urlPath = frontmatter.path;
-      expect(
-        sitemap,
-        `Sitemap should contain published URL: ${urlPath}`
-      ).toContain(urlPath);
+      expect(sitemap, `Sitemap should contain published URL: ${urlPath}`).toContain(urlPath);
     }
   });
 });
@@ -91,10 +79,7 @@ describe('Draft posts excluded from RSS feed', () => {
   it.skipIf(draftPosts.length === 0)('RSS feed should not contain draft post URLs', () => {
     const feed = readFileSync(feedPath, 'utf-8');
     for (const { frontmatter } of draftPosts) {
-      expect(
-        feed,
-        `RSS feed should not contain draft URL: ${frontmatter.path}`
-      ).not.toContain(frontmatter.path);
+      expect(feed, `RSS feed should not contain draft URL: ${frontmatter.path}`).not.toContain(frontmatter.path);
     }
   });
 });
@@ -109,10 +94,7 @@ describe('Draft posts excluded from Atom feed', () => {
   it.skipIf(draftPosts.length === 0)('Atom feed should not contain draft post URLs', () => {
     const feed = readFileSync(atomPath, 'utf-8');
     for (const { frontmatter } of draftPosts) {
-      expect(
-        feed,
-        `Atom feed should not contain draft URL: ${frontmatter.path}`
-      ).not.toContain(frontmatter.path);
+      expect(feed, `Atom feed should not contain draft URL: ${frontmatter.path}`).not.toContain(frontmatter.path);
     }
   });
 });
@@ -121,10 +103,9 @@ describe('Draft maturity stages', () => {
   it.skipIf(draftPosts.length === 0)('all draft posts should have a valid draftStatus value', () => {
     const validStatuses = ['draft', 'review', 'ready'];
     for (const { frontmatter, filePath } of draftPosts) {
-      expect(
-        validStatuses,
-        `Invalid draftStatus "${frontmatter.draftStatus}" in ${filePath}`
-      ).toContain(frontmatter.draftStatus);
+      expect(validStatuses, `Invalid draftStatus "${frontmatter.draftStatus}" in ${filePath}`).toContain(
+        frontmatter.draftStatus,
+      );
     }
   });
 });

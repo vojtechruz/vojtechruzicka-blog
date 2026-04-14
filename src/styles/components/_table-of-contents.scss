@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 $toc-indent-step: 1.25rem;
 
@@ -68,7 +68,9 @@ $toc-indent-step: 1.25rem;
     max-width: 100%;
     display: block;
     border-radius: var(--radius-xxs);
-    transition: background-color .15s ease, color .15s ease;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
     padding-inline: var(--gap-small);
     padding-block-end: 3px;
   }
@@ -94,17 +96,19 @@ $toc-indent-step: 1.25rem;
   color: var(--color-text-muted);
   opacity: 0.9;
 
-  transition: background-color .15s ease, color .15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .toc-list a:hover {
   color: var(--color-text);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .toc-list a.is-active,
-.toc-list a[aria-current="true"] {
-  color: var(--color-accent-subtle)!important;
+.toc-list a[aria-current='true'] {
+  color: var(--color-accent-subtle) !important;
   font-weight: 600;
   opacity: 1;
 }

@@ -1,8 +1,8 @@
 // Collection of pairs - tag name and number of posts with that tag (excluding drafts)
-import { shouldIncludeDraft } from "../draft-utils.js";
+import { shouldIncludeDraft } from '../draft-utils.js';
 
 export default function registerTagStatsCollection(eleventyConfig) {
-  eleventyConfig.addCollection("tagStats", (api) => {
+  eleventyConfig.addCollection('tagStats', (api) => {
     const counts = new Map();
 
     for (const item of api.getAll()) {

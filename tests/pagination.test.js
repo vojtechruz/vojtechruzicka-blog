@@ -11,7 +11,7 @@ const hasPage5 = existsSync(`${SITE_DIR}/pages/5/index.html`);
 describe('generatePaginationLinks', () => {
   const createPagination = (total, current0) => ({
     hrefs: Array.from({ length: total }, (_, i) => `/page/${i + 1}/`),
-    pageNumber: current0
+    pageNumber: current0,
   });
 
   it('shows all pages when total is small', () => {
@@ -20,7 +20,7 @@ describe('generatePaginationLinks', () => {
     expect(result).toEqual([
       { number: 1, url: '/page/1/', current: false },
       { number: 2, url: '/page/2/', current: true },
-      { number: 3, url: '/page/3/', current: false }
+      { number: 3, url: '/page/3/', current: false },
     ]);
   });
 
@@ -33,7 +33,7 @@ describe('generatePaginationLinks', () => {
       { number: 2, url: '/page/2/', current: false },
       { number: 3, url: '/page/3/', current: false },
       { ellipsis: true },
-      { number: 10, url: '/page/10/', current: false }
+      { number: 10, url: '/page/10/', current: false },
     ]);
   });
 
@@ -46,7 +46,7 @@ describe('generatePaginationLinks', () => {
       { ellipsis: true },
       { number: 8, url: '/page/8/', current: false },
       { number: 9, url: '/page/9/', current: false },
-      { number: 10, url: '/page/10/', current: true }
+      { number: 10, url: '/page/10/', current: true },
     ]);
   });
 
@@ -61,7 +61,7 @@ describe('generatePaginationLinks', () => {
       { number: 5, url: '/page/5/', current: true },
       { number: 6, url: '/page/6/', current: false },
       { ellipsis: true },
-      { number: 10, url: '/page/10/', current: false }
+      { number: 10, url: '/page/10/', current: false },
     ]);
   });
 
@@ -78,16 +78,14 @@ describe('generatePaginationLinks', () => {
       { number: 6, url: '/page/6/', current: false },
       { number: 7, url: '/page/7/', current: false },
       { ellipsis: true },
-      { number: 10, url: '/page/10/', current: false }
+      { number: 10, url: '/page/10/', current: false },
     ]);
   });
 
   it('handles edge case: 1 page', () => {
     const pagination = createPagination(1, 0);
     const result = generatePaginationLinks(pagination, 2);
-    expect(result).toEqual([
-      { number: 1, url: '/page/1/', current: true }
-    ]);
+    expect(result).toEqual([{ number: 1, url: '/page/1/', current: true }]);
   });
 
   it('handles edge case: 2 pages', () => {
@@ -95,7 +93,7 @@ describe('generatePaginationLinks', () => {
     const result = generatePaginationLinks(pagination, 2);
     expect(result).toEqual([
       { number: 1, url: '/page/1/', current: true },
-      { number: 2, url: '/page/2/', current: false }
+      { number: 2, url: '/page/2/', current: false },
     ]);
   });
 });

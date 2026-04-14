@@ -1,5 +1,5 @@
-import { readableDateUTC, htmlDateString, slugify, escapeHtml } from "../utils/formatting.js";
-import { logError } from "../logger.js";
+import { readableDateUTC, htmlDateString, slugify, escapeHtml } from '../utils/formatting.js';
+import { logError } from '../logger.js';
 // Renders a linked post card by permalink (URL)
 // Usage examples:
 // - In Nunjucks: {% linkedPost "/my-post/" %}
@@ -7,49 +7,51 @@ import { logError } from "../logger.js";
 // - In Nunjucks loops: {% linkedPost post.url %}
 export default function linkedPost(permalink, maybeCollections) {
   // Resolve collections from passed argument or context
-  const ctx = (this && (this.ctx || this)) ? (this.ctx || this) : {};
+  const ctx = this && (this.ctx || this) ? this.ctx || this : {};
   const collections = maybeCollections || ctx.collections || (ctx.page && ctx.page.collections) || {};
   const posts = collections.posts || [];
 
-  let post = posts.find(p => p && (p.url === permalink || (p.page && p.page.url === permalink)));
+  let post = posts.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
   if (!post) {
     const all = collections.all || [];
-    post = all.find(p => p && (p.url === permalink || (p.page && p.page.url === permalink)));
+    post = all.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
   }
 
   if (!post) {
     const errorMessage = `Article not found for permalink: ${permalink}`;
-    logError(errorMessage, "Shortcode:linkedPost");
+    logError(errorMessage, 'Shortcode:linkedPost');
 
     throw new Error(errorMessage);
   }
 
   const data = post.data || {};
-  const url = post.url || (post.page && post.page.url) || String(permalink || "");
-  const title = String(data.title || "");
+  const url = post.url || (post.page && post.page.url) || String(permalink || '');
+  const title = String(data.title || '');
 
   const readableDate = readableDateUTC(post.date);
   const htmlDate = htmlDateString(post.date);
 
   const tags = Array.isArray(data.tags) ? data.tags : [];
-  const tagLinks = tags.map(tag => {
-    const name = String(tag);
-    const slug = slugify(name);
-    return `<li><a href="/tags/${slug}/"><span class="tag-name">${escapeHtml(name)}</span></a></li>`;
-  }).join("");
+  const tagLinks = tags
+    .map((tag) => {
+      const name = String(tag);
+      const slug = slugify(name);
+      return `<li><a href="/tags/${slug}/"><span class="tag-name">${escapeHtml(name)}</span></a></li>`;
+    })
+    .join('');
 
   const featuredImage = data.featuredImage;
   const postDir = data.postDir;
-  const imgUrl = (featuredImage && postDir) ? `/../${postDir}/${featuredImage}` : "";
-  const excerpt = String(data.excerpt || "");
-  const draftStatus = data.draftStatus || "";
+  const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
+  const excerpt = String(data.excerpt || '');
+  const draftStatus = data.draftStatus || '';
 
   // Draft badge HTML
-  let draftBadge = "";
+  let draftBadge = '';
   if (draftStatus) {
-    const icons = { draft: "🟠", review: "🔵", ready: "🟢" };
-    const labels = { draft: "Draft", review: "In Review", ready: "Ready" };
-    const icon = icons[draftStatus] || "📝";
+    const icons = { draft: '🟠', review: '🔵', ready: '🟢' };
+    const labels = { draft: 'Draft', review: 'In Review', ready: 'Ready' };
+    const icon = icons[draftStatus] || '📝';
     const label = labels[draftStatus] || draftStatus;
     draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}">${icon} ${escapeHtml(label)}</span>`;
   }
@@ -68,7 +70,7 @@ export default function linkedPost(permalink, maybeCollections) {
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
-      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ""}
+      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
     </a>
     <p class="front-post-excerpt">
       ${escapeHtml(excerpt)}
@@ -77,6 +79,3 @@ export default function linkedPost(permalink, maybeCollections) {
 </div>
 `;
 }
-
-
-

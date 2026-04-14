@@ -6,7 +6,7 @@
 //   "ready"   – ready to publish, visible in Cloudflare preview deploys + local dev
 //   falsy     – published (default)
 
-const DRAFT_STAGES = ["draft", "review", "ready"];
+const DRAFT_STAGES = ['draft', 'review', 'ready'];
 
 /**
  * Determine whether drafts should be included in the current build.
@@ -19,29 +19,29 @@ const DRAFT_STAGES = ["draft", "review", "ready"];
 function getIncludeDrafts() {
   const envVal = process.env.INCLUDE_DRAFTS;
 
-  if (envVal === "true" || envVal === "all") {
-    return "all";
+  if (envVal === 'true' || envVal === 'all') {
+    return 'all';
   }
-  if (envVal === "false" || envVal === "none") {
-    return "none";
+  if (envVal === 'false' || envVal === 'none') {
+    return 'none';
   }
   if (envVal && DRAFT_STAGES.includes(envVal)) {
     return envVal;
   }
 
   // Local dev server → show all drafts
-  if (process.env.ELEVENTY_RUN_MODE === "serve") {
-    return "all";
+  if (process.env.ELEVENTY_RUN_MODE === 'serve') {
+    return 'all';
   }
 
   // Cloudflare Pages preview deploy (non-production branch)
   const cfBranch = process.env.CF_PAGES_BRANCH;
-  if (cfBranch && cfBranch !== "master" && cfBranch !== "main") {
-    return "ready";
+  if (cfBranch && cfBranch !== 'master' && cfBranch !== 'main') {
+    return 'ready';
   }
 
   // Production build → no drafts
-  return "none";
+  return 'none';
 }
 
 /**
@@ -57,11 +57,11 @@ export function shouldIncludeDraft(draftStatus) {
 
   const include = getIncludeDrafts();
 
-  if (include === "all") {
+  if (include === 'all') {
     return true;
   }
 
-  if (include === "none") {
+  if (include === 'none') {
     return false;
   }
 

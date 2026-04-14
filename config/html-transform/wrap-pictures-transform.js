@@ -1,6 +1,6 @@
 // config/htm-transform/wrapPicturesTransform.js
 // ESM module
-import { load } from "cheerio";
+import { load } from 'cheerio';
 
 /**
  * Eleventy HTML transform that wraps every <picture> element
@@ -11,7 +11,7 @@ import { load } from "cheerio";
  * - Skips wrapping if the immediate parent is already a div.image-wrapper
  */
 export async function wrapPicturesTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith(".html")) {
+  if (!outputPath || !outputPath.endsWith('.html')) {
     return content;
   }
 
@@ -26,11 +26,11 @@ export async function wrapPicturesTransform(content, outputPath) {
       }
 
       // Ignore empty text nodes and comments
-      if (node.type === "text" && (node.data || "").trim() === "") {
+      if (node.type === 'text' && (node.data || '').trim() === '') {
         continue;
       }
 
-      if (node.type === "comment") {
+      if (node.type === 'comment') {
         continue;
       }
 
@@ -40,16 +40,16 @@ export async function wrapPicturesTransform(content, outputPath) {
     return true;
   }
 
-  $("picture").each((_, el) => {
+  $('picture').each((_, el) => {
     const $pic = $(el);
     const $parent = $pic.parent();
 
-    if ($parent && $parent.is("div.image-wrapper")) {
+    if ($parent && $parent.is('div.image-wrapper')) {
       return; // already wrapped
     }
 
     // If inside a paragraph, avoid placing a block-level div inside <p>
-    if ($parent && $parent.is("p")) {
+    if ($parent && $parent.is('p')) {
       const onlyPic = parentHasOnlyPicture($parent, $pic);
       if (onlyPic) {
         // Replace <p> with the wrapper containing the picture

@@ -31,24 +31,24 @@ describe('getRelatedPosts – unit tests', () => {
 
   it('excludes the current post from results', () => {
     const results = getRelatedPosts(postA, pool, 10);
-    expect(results.find(p => p.url === postA.url)).toBeUndefined();
+    expect(results.find((p) => p.url === postA.url)).toBeUndefined();
   });
 
   it('excludes posts that belong to a series', () => {
     const seriesPost = makePost('/s/', ['Java'], { series: 'My Series' });
     const results = getRelatedPosts(postA, [...pool, seriesPost], 10);
-    expect(results.find(p => p.url === '/s/')).toBeUndefined();
+    expect(results.find((p) => p.url === '/s/')).toBeUndefined();
   });
 
   it('excludes draft posts', () => {
     const draftPost = makePost('/draft/', ['Java'], { draftStatus: 'draft' });
     const results = getRelatedPosts(postA, [...pool, draftPost], 10);
-    expect(results.find(p => p.url === '/draft/')).toBeUndefined();
+    expect(results.find((p) => p.url === '/draft/')).toBeUndefined();
   });
 
   it('requires at least one shared tag', () => {
     const results = getRelatedPosts(postA, pool, 10);
-    expect(results.find(p => p.url === postD.url)).toBeUndefined();
+    expect(results.find((p) => p.url === postD.url)).toBeUndefined();
   });
 
   it('ranks by number of shared tags (most shared first)', () => {
@@ -87,19 +87,19 @@ describe('getRelatedPosts – unit tests', () => {
     // Let's use postB as explicit, then tag matches fill the rest
     const current = makePost('/me/', ['Java', 'Spring'], { relatedPosts: ['/b/'] });
     const results = getRelatedPosts(current, pool, 3);
-    expect(results[0].url).toBe('/b/');               // explicit first
-    expect(results.length).toBe(3);                     // filled by tag matches
-    expect(results.find(p => p.url === '/b/')).toBeDefined();
+    expect(results[0].url).toBe('/b/'); // explicit first
+    expect(results.length).toBe(3); // filled by tag matches
+    expect(results.find((p) => p.url === '/b/')).toBeDefined();
     // postB should not appear twice
-    const urls = results.map(r => r.url);
+    const urls = results.map((r) => r.url);
     expect(new Set(urls).size).toBe(urls.length);
   });
 
   it('does not duplicate explicit posts in tag-based results', () => {
     const current = makePost('/me/', ['Java', 'Spring'], { relatedPosts: ['/e/'] });
     const results = getRelatedPosts(current, pool, 10);
-    const urls = results.map(r => r.url);
-    expect(urls.filter(u => u === '/e/').length).toBe(1);
+    const urls = results.map((r) => r.url);
+    expect(urls.filter((u) => u === '/e/').length).toBe(1);
   });
 
   it('returns empty when current post has no tags and no explicit related', () => {
@@ -118,7 +118,7 @@ describe('getRelatedPosts – unit tests', () => {
     const seriesPost = makePost('/s/', ['Java'], { series: 'Tutorial' });
     const current = makePost('/me/', ['Java'], { relatedPosts: ['/s/'] });
     const results = getRelatedPosts(current, [...pool, seriesPost], 10);
-    expect(results.find(p => p.url === '/s/')).toBeUndefined();
+    expect(results.find((p) => p.url === '/s/')).toBeUndefined();
   });
 });
 
@@ -127,19 +127,16 @@ describe('getRelatedPosts – unit tests', () => {
 // ---------------------------------------------------------------------------
 
 describe('Related posts in built output', () => {
-  const posts = getAllPosts().filter(p => !p.frontmatter.draftStatus);
+  const posts = getAllPosts().filter((p) => !p.frontmatter.draftStatus);
   // Non-series, non-draft posts that should potentially have related posts
-  const nonSeriesPosts = posts.filter(p => !p.frontmatter.series && p.frontmatter.path);
+  const nonSeriesPosts = posts.filter((p) => !p.frontmatter.series && p.frontmatter.path);
 
   it('series posts should NOT have a related-posts section', () => {
-    const seriesPosts = posts.filter(p => p.frontmatter.series && p.frontmatter.path);
+    const seriesPosts = posts.filter((p) => p.frontmatter.series && p.frontmatter.path);
     for (const { frontmatter } of seriesPosts) {
       const $ = loadPage(frontmatter.path);
       const section = $('section.related-posts');
-      expect(
-        section.length,
-        `Series post ${frontmatter.path} should not have related posts`
-      ).toBe(0);
+      expect(section.length, `Series post ${frontmatter.path} should not have related posts`).toBe(0);
     }
   });
 
@@ -166,19 +163,14 @@ describe('Related posts in built output', () => {
   });
 
   it('related posts should not include any series posts', () => {
-    const seriesPaths = posts
-      .filter(p => p.frontmatter.series)
-      .map(p => p.frontmatter.path);
+    const seriesPaths = posts.filter((p) => p.frontmatter.series).map((p) => p.frontmatter.path);
 
     for (const { frontmatter } of nonSeriesPosts) {
       const $ = loadPage(frontmatter.path);
       const links = $('section.related-posts a');
       links.each((_, el) => {
         const href = $(el).attr('href');
-        expect(
-          seriesPaths,
-          `Related post on ${frontmatter.path} links to series post ${href}`
-        ).not.toContain(href);
+        expect(seriesPaths, `Related post on ${frontmatter.path} links to series post ${href}`).not.toContain(href);
       });
     }
   });

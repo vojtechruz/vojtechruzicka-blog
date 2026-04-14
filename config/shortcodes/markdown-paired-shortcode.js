@@ -1,4 +1,4 @@
-import { getMarkdownParser } from "../utils/markdown-parser.js";
+import { getMarkdownParser } from '../utils/markdown-parser.js';
 
 export default (className) => {
   return async (content) => {

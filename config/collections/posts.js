@@ -1,10 +1,10 @@
-import { shouldIncludeDraft } from "../draft-utils.js";
+import { shouldIncludeDraft } from '../draft-utils.js';
 
 export default function registerPostsCollection(eleventyConfig) {
-  eleventyConfig.addCollection("posts", (api) =>
+  eleventyConfig.addCollection('posts', (api) =>
     api
-      .getFilteredByGlob("src/posts/**/*.md")
+      .getFilteredByGlob('src/posts/**/*.md')
       .filter((post) => shouldIncludeDraft(post.data.draftStatus))
-      .sort((a, b) => b.date - a.date)
+      .sort((a, b) => b.date - a.date),
   );
 }

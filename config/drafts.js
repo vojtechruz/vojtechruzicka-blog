@@ -3,10 +3,10 @@
 // Returning false from a preprocessor tells Eleventy to skip the file entirely
 // (no output, no collections, no sitemap — as if the file doesn't exist).
 
-import { shouldIncludeDraft } from "./draft-utils.js";
+import { shouldIncludeDraft } from './draft-utils.js';
 
 export default function registerDrafts(eleventyConfig) {
-  eleventyConfig.addPreprocessor("drafts", "md", (data) => {
+  eleventyConfig.addPreprocessor('drafts', 'md', (data) => {
     if (!data.draftStatus) {
       return;
     }

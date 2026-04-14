@@ -26,7 +26,7 @@ export function getRelatedPosts(currentPost, allPosts, maxCount) {
     return [];
   }
 
-  const currentUrl = currentPost.url || "";
+  const currentUrl = currentPost.url || '';
   const currentTags = new Set(currentPost.data?.tags || []);
 
   // Build the eligible pool: exclude self, series posts, and drafts
@@ -88,7 +88,7 @@ export function getRelatedPosts(currentPost, allPosts, maxCount) {
 }
 
 export default function registerRelatedPostsFilter(eleventyConfig) {
-  eleventyConfig.addFilter("relatedPosts", function (currentPost, allPosts, maxCount) {
+  eleventyConfig.addFilter('relatedPosts', function (currentPost, allPosts, maxCount) {
     return getRelatedPosts(currentPost, allPosts, maxCount);
   });
 }

@@ -1,28 +1,28 @@
 :root {
   color-scheme: dark;
 
-  --radius-xxs: .15rem;
-  --radius-xs: .2rem;
-  --radius-sm: .375rem;
-  --radius-md: .5rem;
-  --radius-lg: .75rem;
+  --radius-xxs: 0.15rem;
+  --radius-xs: 0.2rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
   --radius-full: 999rem; /* Fully rounded pills/circles */
 
   /* ===== SURFACE LAYERS (Dark theme) =====*/
 
-  --color-surface-0: #0b1220;   /* Base background */
+  --color-surface-0: #0b1220; /* Base background */
   --color-surface-1: #111827; /* Default content surface */
-  --color-surface-2: #0f172a;/* Slightly elevated surface */
+  --color-surface-2: #0f172a; /* Slightly elevated surface */
 
   /* Highlight & active states
      (used for selected menu items, hover list rows, etc.) */
-  --color-bg-highlight: #475569;    /* Mild highlight background */
+  --color-bg-highlight: #475569; /* Mild highlight background */
 
   /* ===== TEXT COLORS ===== */
-  --color-text-heading: #e5e7eb;        /* Default high-contrast foreground text */
-  --color-text: #c7d2da;        /* Default high-contrast foreground text */
-  --color-text-muted: #94a3b8;  /* Secondary text (metadata, timestamps) */
-  --color-text-inverse: #0b1220;/* Text on light foreground surfaces (e.g., badges) */
+  --color-text-heading: #e5e7eb; /* Default high-contrast foreground text */
+  --color-text: #c7d2da; /* Default high-contrast foreground text */
+  --color-text-muted: #94a3b8; /* Secondary text (metadata, timestamps) */
+  --color-text-inverse: #0b1220; /* Text on light foreground surfaces (e.g., badges) */
 
   /* ===== LINKS & INTERACTIVE ===== */
   --color-link: #60a5fa;
@@ -34,7 +34,7 @@
   /* ===== BORDERS & DIVIDERS ===== */
   --color-border: #2a3a54; /* Subtle, but still visible on dark backgrounds */
   --color-border-muted: #233046; /* Subtle, but still visible on dark backgrounds */
-  --hr-color: #233046;          /* Divider lines inside content */
+  --hr-color: #233046; /* Divider lines inside content */
 
   /* ===== ELEVATION (Shadows) ===== */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -43,34 +43,34 @@
   /* ===== SEMANTIC STATES =====
      Use these for callouts, alerts, notifications, badges, etc. */
   /* INFO */
-  --color-info:        #38bdf8;
-  --color-info-bg:     rgba(56, 189, 248, 0.14);
+  --color-info: #38bdf8;
+  --color-info-bg: rgba(56, 189, 248, 0.14);
   --color-info-border: rgba(56, 189, 248, 0.36);
 
   /* SUCCESS */
-  --color-success:        #34d399;
-  --color-success-bg:     rgba(52, 211, 153, 0.14);
+  --color-success: #34d399;
+  --color-success-bg: rgba(52, 211, 153, 0.14);
   --color-success-border: rgba(52, 211, 153, 0.36);
 
   /* WARNING */
-  --color-warning:        #fbbf24;
-  --color-warning-bg:     rgba(251, 191, 36, 0.16);
+  --color-warning: #fbbf24;
+  --color-warning-bg: rgba(251, 191, 36, 0.16);
   --color-warning-border: rgba(251, 191, 36, 0.38);
 
   /* ERROR */
-  --color-error:          #f87171;
-  --color-error-bg:       rgba(248, 113, 113, 0.16);
-  --color-error-border:   rgba(248, 113, 113, 0.38);
+  --color-error: #f87171;
+  --color-error-bg: rgba(248, 113, 113, 0.16);
+  --color-error-border: rgba(248, 113, 113, 0.38);
 
   /* ===== ACCESSIBILITY & INTERACTION ===== */
-  --color-focus-ring: #93c5fd;     /* High-visibility keyboard focus outline */
-  --color-selection-bg: #1d4ed8;   /* Text highlight selection background */
+  --color-focus-ring: #93c5fd; /* High-visibility keyboard focus outline */
+  --color-selection-bg: #1d4ed8; /* Text highlight selection background */
   --color-selection-text: #ffffff; /* Text color when selected */
 
   /* ===== TYPOGRAPHY ===== */
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-heading: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 
   /* ===== SPACING SCALE ===== */
   --gap-xlarge: 3rem;
@@ -79,19 +79,19 @@
   --gap-small: 0.35rem;
 
   /* ===== LAYOUT SIZES ===== */
-  --container-max-content: 70ch;  /* Main content width */
-  --container-max-sidebar: 50ch;  /* Sidebar max width */
-  --container-max-nav: 100ch;     /* Navigation inner max width */
+  --container-max-content: 70ch; /* Main content width */
+  --container-max-sidebar: 50ch; /* Sidebar max width */
+  --container-max-nav: 100ch; /* Navigation inner max width */
 
   /* ===== OFFSETS (sticky, anchors) ===== */
-  --offset-sidebar: 3.5rem;       /* TOC sticky top offset */
-  --offset-anchor: 7rem;          /* Global heading anchor scroll offset */
-  --offset-anchor-post: 6rem;     /* Post page heading anchor scroll offset */
+  --offset-sidebar: 3.5rem; /* TOC sticky top offset */
+  --offset-anchor: 7rem; /* Global heading anchor scroll offset */
+  --offset-anchor-post: 6rem; /* Post page heading anchor scroll offset */
 
   /* ===== Z-INDEX LAYERS ===== */
-  --z-backdrop: 30;               /* Modal/search backdrops */
-  --z-nav: 50;                    /* Sticky navigation */
-  --z-overlay: 1000;              /* Overlays, drawers, skip-links */
+  --z-backdrop: 30; /* Modal/search backdrops */
+  --z-nav: 50; /* Sticky navigation */
+  --z-overlay: 1000; /* Overlays, drawers, skip-links */
 
   /* ===== ACCESSIBILITY HIGH CONTRAST ELEMENTS ===== */
   --color-skiplink-bg: #000000;
@@ -103,4 +103,3 @@ $breakpoint-small: 480px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1280px;
-

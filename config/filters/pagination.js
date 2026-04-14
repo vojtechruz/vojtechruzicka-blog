@@ -21,7 +21,7 @@ export function generatePaginationLinks(pagination, windowSize = 2) {
   pages.push({
     number: 1,
     url: pagination.hrefs[0],
-    current: currentPage === 1
+    current: currentPage === 1,
   });
 
   // Calculate the start and end of the middle "window" around the current page.
@@ -40,7 +40,7 @@ export function generatePaginationLinks(pagination, windowSize = 2) {
     pages.push({
       number: i,
       url: pagination.hrefs[i - 1],
-      current: currentPage === i
+      current: currentPage === i,
     });
   }
 
@@ -54,7 +54,7 @@ export function generatePaginationLinks(pagination, windowSize = 2) {
     pages.push({
       number: totalPages,
       url: pagination.hrefs[totalPages - 1],
-      current: currentPage === totalPages
+      current: currentPage === totalPages,
     });
   }
 
@@ -62,7 +62,7 @@ export function generatePaginationLinks(pagination, windowSize = 2) {
 }
 
 export default function registerPaginationFilters(eleventyConfig) {
-  eleventyConfig.addFilter("generatePaginationLinks", (pagination, windowSize = 2) => {
+  eleventyConfig.addFilter('generatePaginationLinks', (pagination, windowSize = 2) => {
     return generatePaginationLinks(pagination, windowSize);
   });
 }

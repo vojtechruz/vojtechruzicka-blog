@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 .reading-progress {
   position: fixed;
@@ -23,7 +23,7 @@
     transform: scaleX(0);
     background: linear-gradient(90deg, var(--color-accent-subtle), var(--color-accent-subtle));
     will-change: transform;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .15) inset;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
   }
 }
 

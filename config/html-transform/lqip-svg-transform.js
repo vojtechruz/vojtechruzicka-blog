@@ -1,15 +1,15 @@
 // config/htm-transform/lqipSvgTransform.js
 // ESM module
 
-import path from "node:path";
-import fs from "node:fs/promises";
-import sharp from "sharp";
-import { load } from "cheerio";
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import sharp from 'sharp';
+import { load } from 'cheerio';
 
 /**
  * --- Configuration ---
  */
-const OUTPUT_DIR = process.env.ELEVENTY_OUTPUT_DIR || "_site";
+const OUTPUT_DIR = process.env.ELEVENTY_OUTPUT_DIR || '_site';
 const PROJECT_ROOT = process.cwd();
 
 /**
@@ -26,7 +26,7 @@ const MIN_SIDE_CELLS = 8;
 
 /** Convert 0–255 to two-digit hex */
 function to2(v) {
-  return v.toString(16).padStart(2, "0");
+  return v.toString(16).padStart(2, '0');
 }
 
 /**
@@ -40,21 +40,21 @@ function to2(v) {
  *   Uses real static files in the output directory (_site/…)
  */
 async function getBufferForSmallestPath(smallestUrl) {
-  if (smallestUrl.startsWith("/.11ty/image/")) {
-    const q = smallestUrl.split("?")[1] || "";
+  if (smallestUrl.startsWith('/.11ty/image/')) {
+    const q = smallestUrl.split('?')[1] || '';
     const params = new URLSearchParams(q);
-    const srcParam = params.get("src");
+    const srcParam = params.get('src');
 
     if (!srcParam) {
-      throw new Error("Missing src param in /.11ty/image URL");
+      throw new Error('Missing src param in /.11ty/image URL');
     }
 
     const decoded = decodeURIComponent(srcParam);
-    const abs = path.join(PROJECT_ROOT, decoded.replace(/^[\\/]/, ""));
+    const abs = path.join(PROJECT_ROOT, decoded.replace(/^[\\/]/, ''));
     return fs.readFile(abs);
   }
   // build mode: file already exists in _site/
-  const absOut = path.join(OUTPUT_DIR, smallestUrl.replace(/^\//, ""));
+  const absOut = path.join(OUTPUT_DIR, smallestUrl.replace(/^\//, ''));
   return fs.readFile(absOut);
 }
 
@@ -63,16 +63,16 @@ async function getBufferForSmallestPath(smallestUrl) {
  * - Prefer first <source srcset>, then <img srcset>, then <img src>.
  */
 function pickSmallestUrl($pic, $img) {
-  const $firstSource = $pic.find("source").first();
-  const srcset = $firstSource.attr("srcset") || $img.attr("srcset");
+  const $firstSource = $pic.find('source').first();
+  const srcset = $firstSource.attr('srcset') || $img.attr('srcset');
   if (srcset) {
-    const candidate = srcset.split(",")[0].trim().split(" ")[0];
+    const candidate = srcset.split(',')[0].trim().split(' ')[0];
 
     if (candidate) {
       return candidate;
     }
   }
-  return $img.attr("src") || "";
+  return $img.attr('src') || '';
 }
 
 /**
@@ -109,7 +109,7 @@ function computeGrid(aspect) {
  * to avoid stretching.
  */
 function buildSvgFromRaw({ data, width, height, channels }) {
-  let rects = "";
+  let rects = '';
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const i = (y * width + x) * channels;
@@ -135,16 +135,16 @@ function buildSvgFromRaw({ data, width, height, channels }) {
  * and injects it as background-image on the <img>.
  */
 export async function lqipSvgTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith(".html")) {
+  if (!outputPath || !outputPath.endsWith('.html')) {
     return content;
   }
 
   const $ = load(content);
   const jobs = [];
 
-  $("picture").each((_, pic) => {
+  $('picture').each((_, pic) => {
     const $pic = $(pic);
-    const $img = $pic.find("img").first();
+    const $img = $pic.find('img').first();
 
     if (!$img.length) {
       return;
@@ -156,58 +156,59 @@ export async function lqipSvgTransform(content, outputPath) {
       return;
     }
 
-    jobs.push((async () => {
-      try {
-        // Determine aspect ratio from width/height attributes if present
-        const wAttr = parseInt($img.attr("width") || "", 10);
-        const hAttr = parseInt($img.attr("height") || "", 10);
-        const aspect = wAttr && hAttr ? (wAttr / hAttr) : (16 / 9);
+    jobs.push(
+      (async () => {
+        try {
+          // Determine aspect ratio from width/height attributes if present
+          const wAttr = parseInt($img.attr('width') || '', 10);
+          const hAttr = parseInt($img.attr('height') || '', 10);
+          const aspect = wAttr && hAttr ? wAttr / hAttr : 16 / 9;
 
-        // Compute adaptive grid size
-        const { gridW, gridH } = computeGrid(aspect);
+          // Compute adaptive grid size
+          const { gridW, gridH } = computeGrid(aspect);
 
-        // Load image buffer (origin in serve mode, built file otherwise)
-        const buf = await getBufferForSmallestPath(smallest);
+          // Load image buffer (origin in serve mode, built file otherwise)
+          const buf = await getBufferForSmallestPath(smallest);
 
-        // Downsample and extract raw RGB data
-        const { data, info } = await sharp(buf)
-          .toColorspace("srgb")
-          .resize(gridW, gridH, { fit: "cover" })
-          .raw({ depth: "uchar" })
-          .toBuffer({ resolveWithObject: true });
+          // Downsample and extract raw RGB data
+          const { data, info } = await sharp(buf)
+            .toColorspace('srgb')
+            .resize(gridW, gridH, { fit: 'cover' })
+            .raw({ depth: 'uchar' })
+            .toBuffer({ resolveWithObject: true });
 
-        // Build SVG mosaic
-        const svg = buildSvgFromRaw({
-          data,
-          width: info.width,
-          height: info.height,
-          channels: info.channels,
-        });
+          // Build SVG mosaic
+          const svg = buildSvgFromRaw({
+            data,
+            width: info.width,
+            height: info.height,
+            channels: info.channels,
+          });
 
-        // Base64-encode to avoid escaping issues
-        const svgUrl = `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
+          // Base64-encode to avoid escaping issues
+          const svgUrl = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 
-        // Apply background LQIP to <img>
-        const prevImgStyle = $img.attr("style") || "";
-        $img.attr(
-          "style",
-          `display:block;` +
-          `background-image:url('${svgUrl}');` +
-          `background-size:cover;` +
-          `background-position:center;` +
-          `background-repeat:no-repeat;` +
-          prevImgStyle
-        );
+          // Apply background LQIP to <img>
+          const prevImgStyle = $img.attr('style') || '';
+          $img.attr(
+            'style',
+            `display:block;` +
+              `background-image:url('${svgUrl}');` +
+              `background-size:cover;` +
+              `background-position:center;` +
+              `background-repeat:no-repeat;` +
+              prevImgStyle,
+          );
 
-        // Optional fade-in hook: add CSS class + data-loaded flag
-        const existingOnload = $img.attr("onload") || "";
-        $img.attr("onload", existingOnload + "this.dataset.loaded=1;");
-        $img.addClass("lqip");
-
-      } catch (e) {
-        console.error("LQIP error for", smallest, e);
-      }
-    })());
+          // Optional fade-in hook: add CSS class + data-loaded flag
+          const existingOnload = $img.attr('onload') || '';
+          $img.attr('onload', existingOnload + 'this.dataset.loaded=1;');
+          $img.addClass('lqip');
+        } catch (e) {
+          console.error('LQIP error for', smallest, e);
+        }
+      })(),
+    );
   });
 
   await Promise.all(jobs);

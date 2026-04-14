@@ -1,13 +1,13 @@
 // Lightweight scrollspy for the TOC with active-item visibility and safe click handling
 (() => {
-  const toc = document.querySelector("nav.toc");
+  const toc = document.querySelector('nav.toc');
   if (!toc) {
     return;
   }
 
   // How much vertical slack space around the active item (fractions of TOC height)
-  const TOC_TOP_BUFFER = 0.10;     // 10% above active item
-  const TOC_BOTTOM_BUFFER = 0.25;  // 25% below active item
+  const TOC_TOP_BUFFER = 0.1; // 10% above active item
+  const TOC_BOTTOM_BUFFER = 0.25; // 25% below active item
 
   // When true, scroll-spy logic is suspended (e.g. during TOC-click initiated scrolling)
   let suppressAutoSpy = false;
@@ -37,10 +37,10 @@
 
   for (const a of links) {
     try {
-      const href = a.getAttribute("href") || "";
+      const href = a.getAttribute('href') || '';
       // Use the fragment exactly as in the DOM id (no decodeURIComponent),
       // so ids with encoded commas, parentheses, etc. still match.
-      const id = href.startsWith("#") ? href.slice(1) : href;
+      const id = href.startsWith('#') ? href.slice(1) : href;
       if (!id) {
         continue;
       }
@@ -70,9 +70,9 @@
         return parseFloat(val);
       }
 
-      const div = document.createElement("div");
-      div.style.position = "absolute";
-      div.style.visibility = "hidden";
+      const div = document.createElement('div');
+      div.style.position = 'absolute';
+      div.style.visibility = 'hidden';
       div.style.height = `var(${name})`;
       document.body.appendChild(div);
       const px = div.offsetHeight;
@@ -85,7 +85,7 @@
 
   let offset = 0;
   function updateOffset() {
-    offset = getCssVarPx("--offset-anchor-post", getCssVarPx("--offset-anchor", 0));
+    offset = getCssVarPx('--offset-anchor-post', getCssVarPx('--offset-anchor', 0));
   }
   updateOffset();
 
@@ -136,7 +136,7 @@
 
       scrollEl.scrollTo({
         top: target,
-        behavior: "auto"
+        behavior: 'auto',
       });
     }
   }
@@ -149,12 +149,12 @@
     activeId = id;
 
     for (const a of links) {
-      const isActive = a.hash === "#" + id;
-      a.classList.toggle("is-active", isActive);
+      const isActive = a.hash === '#' + id;
+      a.classList.toggle('is-active', isActive);
       if (isActive) {
-        a.setAttribute("aria-current", "true");
+        a.setAttribute('aria-current', 'true');
       } else {
-        a.removeAttribute("aria-current");
+        a.removeAttribute('aria-current');
       }
     }
 
@@ -217,8 +217,8 @@
   // Initial highlight
   onScroll();
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => {
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
     updateOffset();
     onScroll();
   });
@@ -234,25 +234,25 @@
   }
 
   // Mouse wheel, touch scroll, and keyboard navigation all re-enable scroll-spy
-  window.addEventListener("wheel", resumeSpyFromUserInteraction, { passive: true });
-  window.addEventListener("touchstart", resumeSpyFromUserInteraction, { passive: true });
-  window.addEventListener("keydown", (e) => {
-    const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " ", "Spacebar"];
+  window.addEventListener('wheel', resumeSpyFromUserInteraction, { passive: true });
+  window.addEventListener('touchstart', resumeSpyFromUserInteraction, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    const keys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ', 'Spacebar'];
     if (keys.includes(e.key)) {
       resumeSpyFromUserInteraction();
     }
   });
 
   // Clicks in the TOC: lock scroll-spy, highlight clicked item, scroll page with correct offset
-  toc.addEventListener("click", (e) => {
+  toc.addEventListener('click', (e) => {
     const a = e.target.closest("a[href^='#']");
 
     if (!a) {
       return;
     }
 
-    const href = a.getAttribute("href") || "";
-    const id = href.startsWith("#") ? href.slice(1) : href;
+    const href = a.getAttribute('href') || '';
+    const id = href.startsWith('#') ? href.slice(1) : href;
 
     if (!id || !idToLink.has(id)) {
       return;
@@ -271,7 +271,7 @@
 
       window.scrollTo({
         top: absoluteY,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     }
     // scroll-spy will be re-enabled only when user scrolls (wheel/touch/keys),

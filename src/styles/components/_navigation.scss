@@ -1,5 +1,5 @@
-@use "../variables";
-@use "../utilities";
+@use '../variables';
+@use '../utilities';
 
 .main-navigation {
   position: sticky;
@@ -12,7 +12,7 @@
   .navigation {
     max-width: var(--container-max-nav);
     margin: 0 auto;
-    padding: .8rem 1rem;
+    padding: 0.8rem 1rem;
     display: grid;
     grid-template-columns: 1fr auto auto;
     gap: var(--gap-medium);
@@ -21,14 +21,14 @@
 
   .blog-name {
     font-weight: 600;
-    letter-spacing: .2px;
+    letter-spacing: 0.2px;
     white-space: nowrap;
   }
 
   .menu-items {
     @include utilities.reset-list;
     display: flex;
-    gap: calc(var(--gap-medium)*0.9);
+    gap: calc(var(--gap-medium) * 0.9);
     margin-inline-end: var(--gap-medium);
     align-items: center;
 
@@ -36,11 +36,13 @@
       display: inline-flex;
       align-items: center;
       gap: var(--gap-small);
-      padding: .4rem .6rem;
+      padding: 0.4rem 0.6rem;
       border-radius: var(--radius-sm);
       color: var(--color-text);
       text-decoration: none;
-      transition: color .2s ease, color .2s ease;
+      transition:
+        color 0.2s ease,
+        color 0.2s ease;
 
       &.active {
         color: var(--color-accent);
@@ -61,9 +63,7 @@
 }
 
 @include utilities.respond(medium) {
-
   .main-navigation .navigation {
-
     display: flex;
     flex-direction: column;
     gap: var(--gap-small);
