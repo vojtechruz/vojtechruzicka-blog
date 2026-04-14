@@ -6,14 +6,16 @@
 //   "ready"   – ready to publish, visible in Cloudflare preview deploys + local dev
 //   falsy     – published (default)
 
+import { isLocalDevelopment, isPreview } from './env-utils.js';
+
 const DRAFT_STAGES = ['draft', 'review', 'ready'];
 
 /**
  * Determine whether drafts should be included in the current build.
  * Priority:
  *   1. INCLUDE_DRAFTS env var ("true" / "false" / stage name)
- *   2. ELEVENTY_RUN_MODE === "serve" → include all drafts (local dev)
- *   3. CF_PAGES_BRANCH exists and is not "master"/"main" → include "ready" drafts (Cloudflare preview)
+ *   2. isLocalDevelopment → include all drafts (local dev)
+ *   3. isPreview → include "ready" drafts (Preview environment)
  *   4. Otherwise → exclude all drafts (production)
  */
 function getIncludeDrafts() {
@@ -30,13 +32,12 @@ function getIncludeDrafts() {
   }
 
   // Local dev server → show all drafts
-  if (process.env.ELEVENTY_RUN_MODE === 'serve') {
+  if (isLocalDevelopment()) {
     return 'all';
   }
 
-  // Cloudflare Pages preview deploy (non-production branch)
-  const cfBranch = process.env.CF_PAGES_BRANCH;
-  if (cfBranch && cfBranch !== 'master' && cfBranch !== 'main') {
+  // Preview deploy (non-production branch)
+  if (isPreview()) {
     return 'ready';
   }
 

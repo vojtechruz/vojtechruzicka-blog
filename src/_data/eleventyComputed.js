@@ -1,6 +1,8 @@
 // _data/eleventyComputed.js
 // Centralized SEO + structure helpers. Works with "type": "module" in package.json.
 
+import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
+
 const AVOID = new Set(['blog', 'post', 'misc', 'general']);
 
 /** Pick first non-generic tag, else first tag */
@@ -136,6 +138,6 @@ export default {
   // For <title>
   metaTitle: (d) => (d.title ? `${d.title} | ${d.site.title}` : d.site.title),
 
-  isLocalDevelopment: process.env.ELEVENTY_RUN_MODE === 'serve',
-  isCloudflarePreview: process.env.CF_PAGES_BRANCH !== 'main',
+  isLocalDevelopment,
+  isPreview,
 };

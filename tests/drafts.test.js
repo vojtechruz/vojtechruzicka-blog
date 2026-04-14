@@ -239,6 +239,26 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
     expect(shouldIncludeDraft('ready')).toBe(false);
   });
 
+  it('GitHub Actions preview deploy includes only ready drafts', () => {
+    resetEnv();
+    delete process.env.INCLUDE_DRAFTS;
+    delete process.env.ELEVENTY_RUN_MODE;
+    process.env.GITHUB_REF_NAME = 'feature/my-branch';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(true);
+  });
+
+  it('GitHub Actions production deploy (main) excludes all drafts', () => {
+    resetEnv();
+    delete process.env.INCLUDE_DRAFTS;
+    delete process.env.ELEVENTY_RUN_MODE;
+    process.env.GITHUB_REF_NAME = 'main';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(false);
+  });
+
   it('INCLUDE_DRAFTS env var takes priority over ELEVENTY_RUN_MODE', () => {
     resetEnv();
     process.env.INCLUDE_DRAFTS = 'none';

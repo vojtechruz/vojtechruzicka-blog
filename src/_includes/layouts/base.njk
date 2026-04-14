@@ -9,8 +9,7 @@
 
   {% if isLocalDevelopment %}
   <link rel="icon" href="/favicon-local.svg" type="image/svg+xml">
-  {% else %}
-  {% if isLocalDevelopment %}
+  {% elif isPreview %}
   <link rel="icon" href="/favicon-preview.svg" type="image/svg+xml">
   {% else %}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

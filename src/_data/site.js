@@ -1,3 +1,5 @@
+import { isLocalDevelopment } from '../../config/env-utils.js';
+
 export default {
   title: "Vojtech Ruzicka's Programming Blog",
   description:
@@ -42,10 +44,9 @@ export default {
     repoId: 'MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY=',
     category: 'Gisqus Comments',
     categoryId: 'DIC_kwDOB0knwM4CZvj3',
-    theme:
-      process.env.ELEVENTY_RUN_MODE === 'serve'
-        ? 'https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css'
-        : 'https://www.vojtechruzicka.com/styles/giscus-theme.css',
+    theme: isLocalDevelopment()
+      ? 'https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css'
+      : 'https://www.vojtechruzicka.com/styles/giscus-theme.css',
   },
   social: [
     {
