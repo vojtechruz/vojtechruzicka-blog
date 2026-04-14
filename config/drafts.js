@@ -7,6 +7,11 @@ import { shouldIncludeDraft } from './draft-utils.js';
 
 export default function registerDrafts(eleventyConfig) {
   eleventyConfig.addPreprocessor('drafts', 'md', (data) => {
+    // Exclude review files TODO temporary
+    if (data.page.inputPath.endsWith('review.md') || data.page.inputPath.endsWith('master-review.md')) {
+      return false;
+    }
+
     if (!data.draftStatus) {
       return;
     }

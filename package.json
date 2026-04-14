@@ -63,6 +63,7 @@
     "globals": "^17.4.0",
     "gray-matter": "^4.0.3",
     "html-validate": "^10.11.3",
+    "jsdom": "^29.0.2",
     "linkinator": "^7.6.1",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^8.6.7",

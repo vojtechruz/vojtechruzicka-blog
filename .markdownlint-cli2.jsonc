@@ -10,7 +10,9 @@
     },
     // Emphasis used instead of a heading - on some places used as miniheadings which would otherwise be h3
     // or similiar and part of TOC
-    "MD036": false
+    "MD036": false,
+    //todo temporary for review files
+    "MD041": false
   },
   "globs": ["src/posts/**/*.md"]
 }

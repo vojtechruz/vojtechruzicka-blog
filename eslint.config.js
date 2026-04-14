@@ -37,6 +37,7 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.node,
+        ...globals.browser, // Allow browser globals in tests for JSDOM
       },
     },
   },
