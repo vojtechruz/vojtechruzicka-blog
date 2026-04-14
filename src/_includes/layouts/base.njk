@@ -10,6 +10,9 @@
   {% if isLocalDevelopment %}
   <link rel="icon" href="/favicon-local.svg" type="image/svg+xml">
   {% else %}
+  {% if isLocalDevelopment %}
+  <link rel="icon" href="/favicon-preview.svg" type="image/svg+xml">
+  {% else %}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
   <link rel="shortcut icon" href="/favicon.ico" />

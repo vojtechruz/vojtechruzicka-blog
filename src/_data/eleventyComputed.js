@@ -137,5 +137,5 @@ export default {
   metaTitle: (d) => (d.title ? `${d.title} | ${d.site.title}` : d.site.title),
 
   isLocalDevelopment: process.env.ELEVENTY_RUN_MODE === 'serve',
-  isCloudflarePreview: process.env.CF_PAGES_ENVIRONMENT === 'preview',
+  isCloudflarePreview: process.env.CF_PAGES_BRANCH !== 'main',
 };
