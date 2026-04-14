@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-    <circle cx="32" cy="32" r="31.2" fill="#0073aa" stroke="#0073aa" stroke-width="1"/>
-    <text
+    <circle cx="32" cy="32" r="31.2" fill="#2563eb" stroke="#1e40af" stroke-width="2"/>    <text
             x="6"
             y="46"
             font-family="sans-serif"
