@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
 
@@ -118,26 +118,36 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   const originalEnv = { ...process.env };
 
   function resetEnv() {
-    // Restore only the keys we modify
     delete process.env.INCLUDE_DRAFTS;
     delete process.env.ELEVENTY_RUN_MODE;
     delete process.env.CF_PAGES_BRANCH;
-    Object.assign(process.env, originalEnv);
+    delete process.env.GITHUB_REF_NAME;
   }
 
   // We need a fresh import each time since the function reads env at call time
   // The function is already stateless (reads env on each call), so direct import works.
   let shouldIncludeDraft;
 
-  // Import once — the function reads process.env dynamically
-  it('setup: import shouldIncludeDraft', async () => {
+  beforeAll(async () => {
     const mod = await import('../config/draft-utils.js');
     shouldIncludeDraft = mod.shouldIncludeDraft;
+  });
+
+  beforeEach(() => {
+    resetEnv();
+  });
+
+  afterAll(() => {
+    resetEnv();
+    Object.assign(process.env, originalEnv);
+  });
+
+  // Import once — the function reads process.env dynamically
+  it('setup: import shouldIncludeDraft', async () => {
     expect(shouldIncludeDraft).toBeDefined();
   });
 
   it('published posts (no draftStatus) are always included', () => {
-    resetEnv();
     expect(shouldIncludeDraft(undefined)).toBe(true);
     expect(shouldIncludeDraft(null)).toBe(true);
     expect(shouldIncludeDraft('')).toBe(true);
@@ -145,17 +155,12 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('production build excludes all drafts', () => {
-    resetEnv();
-    delete process.env.INCLUDE_DRAFTS;
-    delete process.env.ELEVENTY_RUN_MODE;
-    delete process.env.CF_PAGES_BRANCH;
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
     expect(shouldIncludeDraft('ready')).toBe(false);
   });
 
   it('INCLUDE_DRAFTS=all includes all drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'all';
     expect(shouldIncludeDraft('draft')).toBe(true);
     expect(shouldIncludeDraft('review')).toBe(true);
@@ -163,7 +168,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=true includes all drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'true';
     expect(shouldIncludeDraft('draft')).toBe(true);
     expect(shouldIncludeDraft('review')).toBe(true);
@@ -171,7 +175,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=none excludes all drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'none';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -179,7 +182,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=false excludes all drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'false';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -187,7 +189,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=ready includes only ready drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'ready';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -195,7 +196,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=review includes review and ready drafts', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'review';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(true);
@@ -203,7 +203,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS=draft includes all draft stages', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'draft';
     expect(shouldIncludeDraft('draft')).toBe(true);
     expect(shouldIncludeDraft('review')).toBe(true);
@@ -211,7 +210,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('local dev server (ELEVENTY_RUN_MODE=serve) includes all drafts', () => {
-    resetEnv();
     delete process.env.INCLUDE_DRAFTS;
     process.env.ELEVENTY_RUN_MODE = 'serve';
     expect(shouldIncludeDraft('draft')).toBe(true);
@@ -220,9 +218,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('Cloudflare preview deploy includes only ready drafts', () => {
-    resetEnv();
-    delete process.env.INCLUDE_DRAFTS;
-    delete process.env.ELEVENTY_RUN_MODE;
     process.env.CF_PAGES_BRANCH = 'feature/my-branch';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -230,9 +225,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('Cloudflare production deploy (master) excludes all drafts', () => {
-    resetEnv();
-    delete process.env.INCLUDE_DRAFTS;
-    delete process.env.ELEVENTY_RUN_MODE;
     process.env.CF_PAGES_BRANCH = 'master';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -240,9 +232,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('GitHub Actions preview deploy includes only ready drafts', () => {
-    resetEnv();
-    delete process.env.INCLUDE_DRAFTS;
-    delete process.env.ELEVENTY_RUN_MODE;
     process.env.GITHUB_REF_NAME = 'feature/my-branch';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -250,9 +239,6 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('GitHub Actions production deploy (main) excludes all drafts', () => {
-    resetEnv();
-    delete process.env.INCLUDE_DRAFTS;
-    delete process.env.ELEVENTY_RUN_MODE;
     process.env.GITHUB_REF_NAME = 'main';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
@@ -260,15 +246,9 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
   });
 
   it('INCLUDE_DRAFTS env var takes priority over ELEVENTY_RUN_MODE', () => {
-    resetEnv();
     process.env.INCLUDE_DRAFTS = 'none';
     process.env.ELEVENTY_RUN_MODE = 'serve';
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('ready')).toBe(false);
-  });
-
-  // Cleanup
-  it('cleanup: restore env', () => {
-    resetEnv();
   });
 });
