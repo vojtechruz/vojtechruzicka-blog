@@ -78,4 +78,27 @@ window.trackAnalyticsEvent = trackAnalyticsEvent;
       return;
     }
   });
+
+  // 7. Video Playback Tracking
+  const trackVideoEvent = (video, type) => {
+    const title = video.dataset.videoTitle || video.getAttribute('title') || 'Untitled Video';
+    const src = video.currentSrc || video.querySelector('source')?.getAttribute('src') || 'Unknown Source';
+
+    trackAnalyticsEvent('Video Playback', {
+      type,
+      title,
+      src,
+      url: location.pathname,
+    });
+  };
+
+  document.addEventListener(
+    'play',
+    (e) => {
+      if (e.target.tagName === 'VIDEO') {
+        trackVideoEvent(e.target, 'Play');
+      }
+    },
+    { capture: true },
+  );
 })();

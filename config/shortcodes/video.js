@@ -42,6 +42,7 @@ export default async function video(input, title = 'Video', poster = '', showCap
 
   const posterAttr = poster ? ` poster="${escapeHtml(poster)}"` : '';
   const sizeAttrs = width && height ? ` width="${width}" height="${height}"` : '';
+  const videoTitleAttr = title ? ` data-video-title="${escapeHtml(title)}"` : '';
 
   const sourcesHtml = srcs
     .map((s) => `    <source src="${escapeHtml(s.src)}"${s.type ? ` type="${s.type}"` : ''}>`)
@@ -53,7 +54,7 @@ export default async function video(input, title = 'Video', poster = '', showCap
 <figure class="video-embed-figure">
   <video
     class="video-embed"
-   ${aria}${sizeAttrs}
+   ${aria}${sizeAttrs}${videoTitleAttr}
     controls
     playsinline
     preload="metadata"${posterAttr}
