@@ -7,7 +7,7 @@
       window.plausible('Social Link Click', {
         props: {
           name: socialLink.dataset.socialName,
-          url: socialLink.getAttribute('href'),
+          socialLinkUrl: socialLink.getAttribute('href'),
         },
       });
       return; // Avoid double tracking as outbound link
@@ -16,20 +16,20 @@
     // 2. Share Buttons
     const shareCopyBtn = e.target.closest('.share-copy');
     if (shareCopyBtn) {
-      window.plausible('Share Click', { props: { type: 'Copy Post Link' } });
+      window.plausible('Share Click', { props: { type: 'Copy Post Link', shareCopyUrl: location.pathname } });
       return;
     }
 
     const nativeShareBtn = e.target.closest('#native-share-button');
     if (nativeShareBtn) {
-      window.plausible('Share Post Click', { props: { type: 'Native Share' } });
+      window.plausible('Share Post Click', { props: { type: 'Native Share', shareCopyUrl: location.pathname } });
       return;
     }
 
     // 3. Code Block Copy
     const codeCopyBtn = e.target.closest('.copy-code-button');
     if (codeCopyBtn) {
-      window.plausible('Code Block Copy Click');
+      window.plausible('Code Block Copy Click', { props: { codeBlockUrl: location.pathname } });
       return;
     }
 
