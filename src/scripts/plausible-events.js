@@ -16,20 +16,20 @@
     // 2. Share Buttons
     const shareCopyBtn = e.target.closest('.share-copy');
     if (shareCopyBtn) {
-      window.plausible('Share Click', { props: { type: 'Copy Link' } });
+      window.plausible('Share Click', { props: { type: 'Copy Post Link' } });
       return;
     }
 
     const nativeShareBtn = e.target.closest('#native-share-button');
     if (nativeShareBtn) {
-      window.plausible('Share Click', { props: { type: 'Native' } });
+      window.plausible('Share Post Click', { props: { type: 'Native Share' } });
       return;
     }
 
     // 3. Code Block Copy
     const codeCopyBtn = e.target.closest('.copy-code-button');
     if (codeCopyBtn) {
-      window.plausible('Code Copy Click');
+      window.plausible('Code Block Copy Click');
       return;
     }
 

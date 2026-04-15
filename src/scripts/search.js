@@ -110,14 +110,21 @@
       input?.focus({ preventScroll: true });
 
       // Plausible search tracking
-      let searchTimeout;
-      input?.addEventListener('input', (e) => {
+      input?.addEventListener('blur', (e) => {
         const query = e.target.value.trim();
         if (query.length > 3) {
-          clearTimeout(searchTimeout);
-          searchTimeout = setTimeout(() => {
-            window.plausible('Search', { props: { query } });
-          }, 1000);
+          window.plausible('Search Query', { props: { searchQuery: query } });
+        }
+      });
+
+      // Track click on search result
+      container.addEventListener('click', (e) => {
+        const resultLink = e.target.closest('.pagefind-ui__result-link');
+        if (resultLink) {
+          const url = resultLink.getAttribute('href');
+          window.plausible('Search Result Click', {
+            props: { searchResultUrl: url, searchResultQuery: input?.value.trim() },
+          });
         }
       });
     });
