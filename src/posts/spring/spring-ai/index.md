@@ -228,7 +228,10 @@ public class AiController {
 ```
 
 Now we can start our application and test in the browser by calling
-[http://localhost:8080/ask-ai?prompt=how%20are%20you](http://localhost:8080/ask-ai?prompt=how%20are%20you).
+
+```text
+http://localhost:8080/ask-ai?prompt=how%20are%20you
+```
 
 ### Template queries
 
