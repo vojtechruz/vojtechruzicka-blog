@@ -1,4 +1,20 @@
-import { isLocalDevelopment } from '../../config/env-utils.js';
+import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
+
+const getGiscusTheme = () => {
+  if (isLocalDevelopment()) {
+    return 'https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css';
+  }
+  if (isPreview()) {
+    // Return absolute URL for previews too, as Giscus might require it
+    // CF_PAGES_URL is provided by Cloudflare Pages
+    const baseUrl = process.env.CF_PAGES_URL || '';
+    if (baseUrl) {
+      return `${baseUrl}/styles/giscus-theme.css`;
+    }
+    return '/styles/giscus-theme.css';
+  }
+  return 'https://www.vojtechruzicka.com/styles/giscus-theme.css';
+};
 
 export default {
   title: "Vojtech Ruzicka's Programming Blog",
@@ -44,9 +60,7 @@ export default {
     repoId: 'MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY=',
     category: 'Gisqus Comments',
     categoryId: 'DIC_kwDOB0knwM4CZvj3',
-    theme: isLocalDevelopment()
-      ? 'https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css'
-      : 'https://www.vojtechruzicka.com/styles/giscus-theme.css',
+    theme: getGiscusTheme(),
   },
   social: [
     {

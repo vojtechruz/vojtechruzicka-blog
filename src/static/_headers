@@ -24,6 +24,9 @@
     frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app;
     media-src 'self'
 
+/styles/giscus-theme.css
+  Access-Control-Allow-Origin: https://giscus.app
+
   # --- Allow performance monitoring tools too see detailed metrics ---
   Timing-Allow-Origin: *
 
