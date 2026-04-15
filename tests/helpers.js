@@ -13,7 +13,7 @@ export const SITE_DIR = '_site';
  * @returns {cheerio.CheerioAPI}
  */
 export function loadPage(urlPath) {
-  const filePath = `${SITE_DIR}${urlPath}index.html`;
+  const filePath = urlPath.endsWith('.html') ? `${SITE_DIR}${urlPath}` : `${SITE_DIR}${urlPath}index.html`;
   if (!existsSync(filePath)) {
     throw new Error(`Built HTML not found: ${filePath}. Run "npm run build" first.`);
   }
