@@ -45,6 +45,7 @@ export default function linkedPost(permalink, maybeCollections) {
   const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
   const excerpt = String(data.excerpt || '');
   const draftStatus = data.draftStatus || '';
+  const needsReview = data.needsReview === true;
 
   // Draft badge HTML
   let draftBadge = '';
@@ -56,7 +57,7 @@ export default function linkedPost(permalink, maybeCollections) {
     draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}">${icon} ${escapeHtml(label)}</span>`;
   }
 
-  return `<div class="linked-post ${draftStatus ? ` linked-post-draft linked-post-${escapeHtml(draftStatus)}` : ''}">
+  return `<div class="linked-post ${draftStatus ? ` linked-post-draft linked-post-${escapeHtml(draftStatus)}` : ''}${needsReview ? ' linked-post-needs-review' : ''}">
   <h2 class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </h2>
