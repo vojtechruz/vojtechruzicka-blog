@@ -66,7 +66,6 @@ modifiedDate, breadcrumbs, isAbout #}
   "@type": "Person",
   "image": {{ person.image | dump | safe }},
   "jobTitle": {{ person.jobTitle | dump | safe }},
-  "worksFor": { "@type": "Organization", "name": {{ person.worksFor | dump | safe }} },
   "email": {{ person.email | dump | safe }},
   "url": {{ person.url | dump | safe }},
   "sameAs": [

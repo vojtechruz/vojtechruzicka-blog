@@ -33,7 +33,7 @@ export default {
   person: {
     name: 'Vojtech Ruzicka',
     birthDate: '1986.07.27',
-    image: '/images/vojtech.jpg', // TODO
+    image: '/vojtech.jpg',
     url: 'https://www.vojtechruzicka.com/about/',
     jobTitle: 'Full-Stack Software Developer',
     sameAs: [
