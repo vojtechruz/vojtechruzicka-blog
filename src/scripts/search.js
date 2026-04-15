@@ -113,7 +113,7 @@
       input?.addEventListener('blur', (e) => {
         const query = e.target.value.trim();
         if (query.length > 3) {
-          window.plausible('Search Query', { props: { searchQuery: query } });
+          window.trackAnalyticsEvent('Search Query', { searchQuery: query });
         }
       });
 
@@ -122,8 +122,9 @@
         const resultLink = e.target.closest('.pagefind-ui__result-link');
         if (resultLink) {
           const url = resultLink.getAttribute('href');
-          window.plausible('Search Result Click', {
-            props: { searchResultUrl: url, searchResultQuery: input?.value.trim() },
+          window.trackAnalyticsEvent('Search Result Click', {
+            searchResultUrl: url,
+            searchResultQuery: input?.value.trim(),
           });
         }
       });

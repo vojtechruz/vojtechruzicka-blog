@@ -1,14 +1,30 @@
+/**
+ * Plausible Analytics wrapper for easy local debugging and safe execution.
+ * @param {string} event - event name
+ * @param {object} props - event properties
+ */
+function trackAnalyticsEvent(event, props = {}) {
+  if (typeof window.plausible === 'function') {
+    window.plausible(event, { props });
+  } else {
+    // only in dev mode
+    if (location.hostname === 'localhost') {
+      console.info('[analytics]', event, props);
+    }
+  }
+}
+
+window.trackAnalyticsEvent = trackAnalyticsEvent;
+
 (() => {
   // Global click listener for multiple trackers
   document.addEventListener('click', (e) => {
     // 1. Social Footer Links
     const socialLink = e.target.closest('.footer-social [data-social-name]');
     if (socialLink) {
-      window.plausible('Social Link Click', {
-        props: {
-          name: socialLink.dataset.socialName,
-          socialLinkUrl: socialLink.getAttribute('href'),
-        },
+      trackAnalyticsEvent('Social Link Click', {
+        name: socialLink.dataset.socialName,
+        socialLinkUrl: socialLink.getAttribute('href'),
       });
       return; // Avoid double tracking as outbound link
     }
@@ -16,20 +32,20 @@
     // 2. Share Buttons
     const shareCopyBtn = e.target.closest('.share-copy');
     if (shareCopyBtn) {
-      window.plausible('Share Click', { props: { type: 'Copy Post Link', shareCopyUrl: location.pathname } });
+      trackAnalyticsEvent('Share Click', { type: 'Copy Post Link', shareCopyUrl: location.pathname });
       return;
     }
 
     const nativeShareBtn = e.target.closest('#native-share-button');
     if (nativeShareBtn) {
-      window.plausible('Share Post Click', { props: { type: 'Native Share', shareCopyUrl: location.pathname } });
+      trackAnalyticsEvent('Share Post Click', { type: 'Native Share', shareCopyUrl: location.pathname });
       return;
     }
 
     // 3. Code Block Copy
     const codeCopyBtn = e.target.closest('.copy-code-button');
     if (codeCopyBtn) {
-      window.plausible('Code Block Copy Click', { props: { codeBlockUrl: location.pathname } });
+      trackAnalyticsEvent('Code Block Copy Click', { codeBlockUrl: location.pathname });
       return;
     }
 
@@ -39,7 +55,7 @@
       // Ignore internal links (some links might be relative or full URLs to the same site)
       // and anchor links on the same page
       if (!link.href.startsWith('mailto:') && !link.href.startsWith('tel:')) {
-        window.plausible('Outbound Link Click', { props: { url: link.href } });
+        trackAnalyticsEvent('Outbound Link Click', { url: link.href });
       }
       return;
     }
@@ -47,7 +63,7 @@
     // 5. Tag Clicks
     const tagLink = e.target.closest('.tag-name');
     if (tagLink) {
-      window.plausible('Tag Click', { props: { tag: tagLink.innerText.trim() } });
+      trackAnalyticsEvent('Tag Click', { tag: tagLink.innerText.trim() });
       return;
     }
   });

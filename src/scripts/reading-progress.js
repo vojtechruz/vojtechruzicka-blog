@@ -88,8 +88,7 @@
 
     // Track when user has read most of the post
     if (percent >= 90 && !window._postReadTracked) {
-      console.log(location.pathname);
-      window.plausible('Post Read', { props: { readPostUrl: location.pathname } });
+      window.trackAnalyticsEvent('Post Read', { readPostUrl: location.pathname });
       window._postReadTracked = true;
     }
 
