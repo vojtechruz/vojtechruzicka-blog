@@ -19,12 +19,13 @@ window.trackAnalyticsEvent = trackAnalyticsEvent;
 (() => {
   // Global click listener for multiple trackers
   document.addEventListener('click', (e) => {
-    // 1. Social Footer Links
-    const socialLink = e.target.closest('.footer-social [data-social-name]');
+    // 1. Social Links (Unified)
+    const socialLink = e.target.closest('[data-social-name]');
     if (socialLink) {
       trackAnalyticsEvent('Social Link Click', {
         name: socialLink.dataset.socialName,
-        socialLinkUrl: socialLink.getAttribute('href'),
+        url: socialLink.getAttribute('href'),
+        location: socialLink.dataset.location || 'Unknown',
       });
       return; // Avoid double tracking as outbound link
     }
@@ -46,6 +47,16 @@ window.trackAnalyticsEvent = trackAnalyticsEvent;
     const codeCopyBtn = e.target.closest('.copy-code-button');
     if (codeCopyBtn) {
       trackAnalyticsEvent('Code Block Copy Click', { codeBlockUrl: location.pathname });
+      return;
+    }
+
+    // 6. About Page Links
+    const aboutLink = e.target.closest('[data-about-name]');
+    if (aboutLink) {
+      trackAnalyticsEvent('About Link Click', {
+        name: aboutLink.dataset.aboutName,
+        url: aboutLink.getAttribute('href'),
+      });
       return;
     }
 
