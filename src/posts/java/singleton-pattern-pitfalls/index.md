@@ -7,7 +7,7 @@ path: '/singleton-pattern-pitfalls/'
 excerpt:
   'Singleton, one of the most popular design patterns has a lot of serious drawbacks and some even consider it an
   anti-pattern. What are the pitfalls of the famous pattern?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## What is Singleton?

@@ -7,7 +7,7 @@ path: '/field-dependency-injection-considered-harmful/'
 excerpt:
   'Field injection is a very popular practice in Dependency Injection frameworks, such as Spring. It has, however,
   several serious trade-offs and should generally be avoided.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Injection Types

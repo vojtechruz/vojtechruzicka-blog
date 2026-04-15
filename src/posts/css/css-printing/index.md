@@ -4,7 +4,7 @@ date: '2020-04-10'
 tags: ['CSS']
 path: '/css-printing/'
 excerpt: 'How to adjust your pages with CSS to be printer-friendly.'
-draftStatus: draft
+needsReview: true
 ---
 
 When printing a web page, is it important to adjust the layout and the content of your page. Many elements are not

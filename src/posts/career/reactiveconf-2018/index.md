@@ -5,7 +5,7 @@ dateModified: '2018-12-21'
 tags: ['Javascript']
 path: '/reactiveconf-2018/'
 excerpt: 'My experience as a volunteer at Reactive Conf Prague 2018.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Reactive Conf 2018

@@ -8,7 +8,7 @@ featuredImage: './intellij-idea-icon.png'
 excerpt:
   'It is often useful to be able to send HTTP requests directly from your IDE. IntelliJ Idea offers full-fledged HTTP
   client which you can use without the need of a dedicated external client.'
-draftStatus: draft
+needsReview: true
 ---
 
 {% info %} This functionality is available only in IntelliJ IDEA Ultimate, not Community edition. {% endinfo %}

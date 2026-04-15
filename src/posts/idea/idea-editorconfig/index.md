@@ -4,7 +4,7 @@ date: '2019-07-09'
 tags: ['IDEA']
 path: '/idea-editorconfig/'
 excerpt: How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.
-draftStatus: draft
+needsReview: true
 ---
 
 ## EditorConfig

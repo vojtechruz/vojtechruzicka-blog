@@ -7,7 +7,7 @@ path: '/avoid-telescoping-constructor-pattern/'
 excerpt:
   'Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the
   alternative approaches and when should you use them?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Telescoping Constructor

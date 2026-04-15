@@ -7,7 +7,7 @@ path: '/java-cloning-problems/'
 excerpt:
   Java's mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide
   to use Java cloning anyway?
-draftStatus: draft
+needsReview: true
 ---
 
 ## Why clone objects?

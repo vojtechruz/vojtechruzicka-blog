@@ -8,7 +8,7 @@ excerpt:
   of the series."
 series: 'Angular Tutorial'
 series-order: 3
-draftStatus: draft
+needsReview: true
 ---
 
 ## Getting started

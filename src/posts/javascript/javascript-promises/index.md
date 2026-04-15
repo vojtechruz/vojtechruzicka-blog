@@ -5,7 +5,7 @@ tags: ['Javascript']
 path: '/javascript-promises/'
 excerpt:
   'Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Synchronous execution

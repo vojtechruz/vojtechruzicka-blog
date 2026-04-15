@@ -7,7 +7,7 @@ featuredImage: './premium.png'
 excerpt:
   'Test quality is just as important as that of production code. Tests should not be excluded from quality checks and
   the same quality rules should be applied.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Relaxed rules for tests

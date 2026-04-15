@@ -6,7 +6,7 @@ path: '/java-9-enhanced-deprecation/'
 excerpt:
   '@Deprecated annotation, introduced in Java 5, received several enhancements in Java 9, which makes easier to document
   deprecated API.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Java 8 Deprecation

@@ -6,7 +6,7 @@ path: '/javafx-layouts-basic/'
 excerpt: 'How to organize and layout your GUI components in JavaFX application.'
 series-order: 4
 series: JavaFX
-draftStatus: draft
+needsReview: true
 ---
 
 This is the fourth article in the JavaFX series. In the previous article, I described

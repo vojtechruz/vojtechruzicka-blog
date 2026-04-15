@@ -6,7 +6,7 @@ path: '/learning-intellij-idea-keyboard-shortcuts/'
 excerpt:
   'Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to
   learn IntelliJ IDEA shortcuts quicker than just by memorizing them one by one.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Key promoter plugin

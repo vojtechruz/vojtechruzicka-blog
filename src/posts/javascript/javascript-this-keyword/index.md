@@ -6,7 +6,7 @@ path: '/javascript-this-keyword/'
 excerpt:
   '"This" is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much
   anything depending on the context.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## What the hell is _this_?

@@ -7,7 +7,7 @@ path: '/protect-http-cookies/'
 excerpt:
   'Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity
   and wreak havoc.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## What are Cookies

@@ -4,7 +4,7 @@ date: '2018-08-25'
 tags: ['JAMStack']
 path: '/staticman/'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Dynamic content in static sites

@@ -7,7 +7,7 @@ path: '/raw-strings/'
 excerpt:
   "Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special
   characters. Especially useful for regular expressions."
-draftStatus: draft
+needsReview: true
 ---
 
 {% warning %} Raw string literals

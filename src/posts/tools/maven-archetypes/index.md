@@ -4,7 +4,7 @@ date: '2019-09-19'
 tags: ['Maven']
 path: '/maven-archetypes/'
 excerpt: 'How to generate new projects from Maven archetypes, create your own and some alternative tools.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Archetypes

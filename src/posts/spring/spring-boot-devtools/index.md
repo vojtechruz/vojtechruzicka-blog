@@ -6,7 +6,7 @@ tags: ['Spring', 'Java']
 path: '/spring-boot-devtools/'
 excerpt:
   'How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Setup

@@ -5,7 +5,7 @@ dateModified: '2021-11-20'
 tags: ['IDEA']
 path: '/idea-best-plugins/'
 excerpt: 'A collection of useful plugins to enhance your IntelliJ IDEA experience.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## [Key promoter X](https://plugins.jetbrains.com/plugin/9792-key-promoter-x/)

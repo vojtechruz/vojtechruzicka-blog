@@ -5,7 +5,7 @@ dateModified: '2018-12-31'
 tags: ['Java']
 path: '/explicitly-declare-serialversionuid/'
 excerpt: 'Should you explicitly declare serialVersionUID or leave it to be automatically generated?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## What is serialVersionUID?

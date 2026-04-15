@@ -7,7 +7,7 @@ path: '/javascript-primitives/'
 excerpt:
   'What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use
   them?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Primitives versus Objects

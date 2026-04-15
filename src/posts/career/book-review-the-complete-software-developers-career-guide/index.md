@@ -6,7 +6,7 @@ path: '/book-review-the-complete-software-developers-career-guide/'
 excerpt:
   'Review of the new Book by John Sonmez. Is it a book, which every software developer should have on their bookshelf?
   Can it actually help in advancing your career?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## About the author

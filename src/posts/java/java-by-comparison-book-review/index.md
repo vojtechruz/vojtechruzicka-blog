@@ -7,7 +7,7 @@ path: '/java-by-comparison-book-review/'
 excerpt:
   'This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics
   with before and after comparison in a concise, easy to read and understand way.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Authors

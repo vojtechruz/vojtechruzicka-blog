@@ -6,7 +6,7 @@ path: '/angular/02-building-blocks/'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
 series: 'Angular Tutorial'
 series-order: 2
-draftStatus: draft
+needsReview: true
 ---
 
 This is the second article in the Angular Tutorial series. You can check the first one -

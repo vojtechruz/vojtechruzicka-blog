@@ -6,7 +6,7 @@ path: '/jshell-repl/'
 excerpt:
   'From version 9, Java now has its own interactive REPL console, which is useful for quick checks, prototyping and
   educational purposes.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## REPL

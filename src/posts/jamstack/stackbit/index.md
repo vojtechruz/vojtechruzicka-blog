@@ -7,7 +7,7 @@ featuredImage: './stackbit.png'
 excerpt:
   'How to easily create full-blown JAMStack sites with a theme, CMS, and deployment using various static site
   generators.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## JAMStack

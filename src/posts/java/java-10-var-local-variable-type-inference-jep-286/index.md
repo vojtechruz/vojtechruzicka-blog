@@ -7,7 +7,7 @@ path: '/java-10-var-local-variable-type-inference-jep-286/'
 excerpt:
   'In Java 10, you no longer need to explicitly declare a type of local variables, which significantly reduces
   boilerplate and increases readability.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Type inference in Java 7 - The Diamond operator

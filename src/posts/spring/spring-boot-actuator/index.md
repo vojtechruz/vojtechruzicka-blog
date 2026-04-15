@@ -6,7 +6,7 @@ path: '/spring-boot-actuator/'
 excerpt:
   'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health
   easily.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Basic build information

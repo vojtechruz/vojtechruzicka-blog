@@ -6,7 +6,7 @@ path: '/idea-compare-files-and-folders/'
 excerpt:
   'IntelliJ IDEA offers numerous ways of comparing files, folders and code snippets and even synchronizing folder
   contents.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Comparing project files

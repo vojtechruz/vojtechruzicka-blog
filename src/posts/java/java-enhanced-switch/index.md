@@ -5,7 +5,7 @@ dateModified: '2019-08-17'
 tags: ['Java']
 path: '/java-enhanced-switch/'
 excerpt: 'Java 12 introduced a whole lot of useful improvements to the good old switch, which makes it way more useful.'
-draftStatus: draft
+needsReview: true
 ---
 
 {% info %} There will be syntax changes in Java 13, introducing the new yield statement. This article was updated to

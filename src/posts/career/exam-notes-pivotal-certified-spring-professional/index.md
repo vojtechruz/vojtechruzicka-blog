@@ -7,7 +7,7 @@ path: '/exam-notes-pivotal-certified-spring-professional/'
 excerpt:
   'Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study
   notes.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Resources

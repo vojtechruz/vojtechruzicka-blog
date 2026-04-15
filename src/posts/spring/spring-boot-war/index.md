@@ -6,7 +6,7 @@ path: '/spring-boot-war/'
 excerpt:
   'How to change your JAR Spring Boot app to be packaged and deployed as WAR without sacrificing direct execution
   capabilities of embedded app server.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## WAR vs JAR

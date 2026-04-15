@@ -6,7 +6,7 @@ path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/'
 excerpt:
   There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what
   is the most suitable in your case.
-draftStatus: draft
+needsReview: true
 ---
 
 ## Documentation in AngularJS

@@ -7,7 +7,7 @@ path: '/intellij-idea-tips-tricks-presentations/'
 excerpt:
   How to make the most of the IntelliJ IDEA's view modes to make the best presentations possible including visualization
   of the keyboard input?
-draftStatus: draft
+needsReview: true
 ---
 
 ## Presentation Mode

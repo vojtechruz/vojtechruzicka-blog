@@ -7,7 +7,7 @@ featuredImage: './developer-advocate-book-review.png'
 excerpt:
   'Book review of Developer, Advocate! by Geertjan Wielenga. A collection of conversations with developer advocates
   about their work, tech communities and the road to becoming a developer advocate.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## About the author

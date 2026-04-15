@@ -7,7 +7,7 @@ path: '/preventing-clickjacking/'
 excerpt:
   'Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly
   harmless element. How to prevent it?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Clickjacking

@@ -7,7 +7,7 @@ path: '/pivotal-certified-spring-web-application-developer-notes/'
 excerpt:
   'Study materials and an exam review for Pivotal Certified Spring Web Application Developer Exam 4.2, with flash-cards
   and study notes.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Certification voucher

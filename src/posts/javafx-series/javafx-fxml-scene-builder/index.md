@@ -6,7 +6,7 @@ path: '/javafx-fxml-scene-builder/'
 excerpt: 'How to build GUI with JavaFX using FXML markup and SceneBuilder.'
 series: JavaFX
 series-order: 3
-draftStatus: draft
+needsReview: true
 ---
 
 ## The traditional way

@@ -4,7 +4,7 @@ date: '2017-11-22'
 tags: ['Security']
 path: '/snyk-detecting-dependencies-with-known-vulnerabilities/'
 excerpt: 'How to detect and fix security vulnerabilities in your dependencies using Snyk?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Introduction

@@ -7,7 +7,7 @@ path: '/css-flexbox/'
 featuredImage: 'css-flexbox.png'
 excerpt:
   'Flexbox is a powerful layout tool, which allows you to automatically arrange and size items inside a container.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Flexbox

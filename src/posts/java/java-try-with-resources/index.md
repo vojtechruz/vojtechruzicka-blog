@@ -6,7 +6,7 @@ path: '/java-try-with-resources/'
 excerpt:
   'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages
   closing automatically instead of explicitly using "try-finally".'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Traditional try-catch-finally

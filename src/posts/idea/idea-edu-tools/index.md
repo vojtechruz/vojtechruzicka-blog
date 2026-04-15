@@ -7,7 +7,7 @@ path: '/idea-edu-tools/'
 excerpt:
   'With IntelliJ IDEA Edu Tools plugin you can study various programming courses directly in your IDE and work on all
   the assignments. Alternatively, you can create courses yourself to share with others.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Getting started

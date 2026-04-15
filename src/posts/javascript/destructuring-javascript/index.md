@@ -4,7 +4,7 @@ date: '2019-02-03'
 tags: ['Javascript']
 path: '/destructuring-javascript/'
 excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Destructuring assignment

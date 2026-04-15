@@ -6,7 +6,7 @@ path: '/javafx-hello-world/'
 excerpt: 'Tutorial on how to build your first JavaFX application.'
 series: JavaFX
 series-order: 2
-draftStatus: draft
+needsReview: true
 ---
 
 This is a second post in the JavaFX series. You can check the first post on

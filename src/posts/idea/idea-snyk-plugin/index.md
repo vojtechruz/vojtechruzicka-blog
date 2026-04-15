@@ -5,7 +5,7 @@ dateModified: '2022-05-22'
 tags: ['Security', 'IDEA']
 path: '/idea-snyk-plugin/'
 excerpt: 'How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Dependencies with security vulnerabilities

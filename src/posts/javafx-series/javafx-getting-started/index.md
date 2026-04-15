@@ -6,7 +6,7 @@ path: '/javafx-getting-started/'
 excerpt: 'How to setup and start working with JavaFX using Maven, Gradle or JavaFX SDK.'
 series: JavaFX
 series-order: 1
-draftStatus: draft
+needsReview: true
 ---
 
 ## Getting Java

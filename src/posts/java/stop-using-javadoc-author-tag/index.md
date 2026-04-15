@@ -7,7 +7,7 @@ path: '/stop-using-javadoc-author-tag/'
 excerpt:
   Are you still using @author Javadoc tag? Maybe it's time to reconsider. Let's discuss why the tag may be actually
   harmful and why you should stop using it.
-draftStatus: draft
+needsReview: true
 ---
 
 ## Javadoc @author tag

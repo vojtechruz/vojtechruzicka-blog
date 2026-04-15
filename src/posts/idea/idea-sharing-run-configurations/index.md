@@ -6,7 +6,7 @@ path: '/idea-sharing-run-configurations/'
 excerpt:
   'Finally, with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version
   control.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## IDEA settings sharing

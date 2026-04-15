@@ -6,7 +6,7 @@ path: '/javafx-css/'
 excerpt: 'How to style JavaFX components using good old CSS.'
 series-order: 6
 series: JavaFX
-draftStatus: draft
+needsReview: true
 ---
 
 ## Separating visuals

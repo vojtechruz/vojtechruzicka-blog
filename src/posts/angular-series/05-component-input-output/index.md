@@ -6,7 +6,7 @@ path: '/angular/05-component-input-output/'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
 series: 'Angular Tutorial'
 series-order: 5
-draftStatus: draft
+needsReview: true
 ---
 
 {% raw %}

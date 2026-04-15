@@ -4,7 +4,7 @@ date: '2017-10-09'
 tags: ['Books', 'Blogging']
 path: '/book-review-256-bloghacks/'
 excerpt: 'A detailed review of a guide to blogging by Yegor Bugayenko.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## About the author

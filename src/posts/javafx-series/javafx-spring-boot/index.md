@@ -6,7 +6,7 @@ path: '/javafx-spring-boot/'
 excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
 series-order: 7
 series: JavaFX
-draftStatus: draft
+needsReview: true
 ---
 
 {% info %} There is [an example repository](https://github.com/vojtechruz/javafx-weaver-example) for this blog post,

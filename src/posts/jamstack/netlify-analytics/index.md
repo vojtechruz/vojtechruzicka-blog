@@ -4,7 +4,7 @@ date: '2019-10-11'
 tags: ['JAMStack']
 path: '/netlify-analytics/'
 excerpt: 'Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Netlify Analytics

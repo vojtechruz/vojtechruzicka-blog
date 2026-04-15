@@ -8,7 +8,7 @@ featuredImage: './dc-large.png'
 excerpt:
   'How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI
   and track vulnerable dependencies over time?'
-draftStatus: draft
+needsReview: true
 ---
 
 ## Vulnerable Dependencies

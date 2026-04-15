@@ -8,7 +8,7 @@ excerpt:
   'Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to
   practice. A lot. Solving problems on your own is a good start, but practicing online with a real person as an
   interviewer is much better.'
-draftStatus: draft
+needsReview: true
 ---
 
 {% info %} **UPDATE:** In November 2021, [Pramp was acquired](https://blog.tryexponent.com/pramp-joining-exponent/) by
