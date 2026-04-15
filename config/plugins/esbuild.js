@@ -6,6 +6,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/reading-progress.js',
       'src/scripts/toc-scrollspy.js',
       'src/scripts/social-share.js',
+      'src/scripts/plausible-events.js',
       'src/scripts/search.js',
       'src/scripts/code-block.js',
     ];

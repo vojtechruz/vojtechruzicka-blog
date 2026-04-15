@@ -108,6 +108,18 @@
 
       // Initial focus
       input?.focus({ preventScroll: true });
+
+      // Plausible search tracking
+      let searchTimeout;
+      input?.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        if (query.length > 3) {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(() => {
+            window.plausible('Search', { props: { query } });
+          }, 1000);
+        }
+      });
     });
 
     container.dataset.pagefindInited = '1';

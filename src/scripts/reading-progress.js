@@ -85,6 +85,13 @@
     const scrolledInside = window.scrollY - (start - headerOffset);
     const ratio = clamp(scrolledInside / total, 0, 1);
     const percent = Math.round(ratio * 100);
+
+    // Track when user has read most of the post
+    if (percent >= 90 && !window._postReadTracked) {
+      window.plausible('Post Read');
+      window._postReadTracked = true;
+    }
+
     bar.style.transform = 'translateZ(0)';
     barInner.style.transform = `scaleX(${ratio})`;
     bar.setAttribute('aria-valuenow', String(percent));
