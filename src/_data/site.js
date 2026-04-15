@@ -58,7 +58,7 @@ export default {
   giscus: {
     repo: 'vojtechruz/vojtechruzicka-blog',
     repoId: 'MDEwOlJlcG9zaXRvcnkxMjIyMzQ4MTY=',
-    category: 'Gisqus Comments',
+    category: 'Giscus Comments',
     categoryId: 'DIC_kwDOB0knwM4CZvj3',
     theme: getGiscusTheme(),
   },
