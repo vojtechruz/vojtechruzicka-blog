@@ -51,7 +51,7 @@ export default {
     scriptUrl: 'https://plausible.io/js/script.js',
   },
 
-  defaultShareImage: '/images/default-share.png', //TODO
+  defaultShareImage: '/default-share.jpg',
   twitter: '@vojtechruzicka',
   maxRelatedPosts: 5,
   lang: 'en',

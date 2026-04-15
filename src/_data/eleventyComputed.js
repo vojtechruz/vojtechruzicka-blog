@@ -18,7 +18,7 @@ function pickPrimaryTag(tags = []) {
 /** Share image absolute URL (supports http, /root, ./relative next to page url) */
 function shareImageUrl({ featuredImage, page, site }) {
   if (!featuredImage) {
-    return `${site.url}${site.defaultShareImage || '/images/default-share.png'}`;
+    return `${site.url}${site.defaultShareImage || '/default-share.jpg'}`;
   }
 
   if (featuredImage.startsWith('http')) {
