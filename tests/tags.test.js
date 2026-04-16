@@ -34,24 +34,32 @@ describe('Tags functionality', () => {
       // Home page contains the linked post cards
       const $ = loadPage('/');
 
-      // Find the card for our test post by its link
-      // We use a recent post that is guaranteed to be on the home page (first 10 posts)
-      const recentPostPath = '/spring-ai/';
-      const recentPostTagName = 'Spring';
-      const recentPostTagSlug = 'spring';
+      // Find the first post card on the home page to test dynamically
+      const firstPostCard = $('.linked-post').first();
+      expect(firstPostCard.length).toBeGreaterThan(0);
 
-      // Shortcode renders: <div class="linked-post ..."> ... <a href="${url}">${title}</a> ... </div>
-      const postCard = $(`.linked-post:has(a[href="${recentPostPath}"])`);
-      expect(postCard.length).toBeGreaterThan(0);
+      const postLink = firstPostCard.find('h2.front-post-title a');
+      const postPath = postLink.attr('href');
+      expect(postPath).toBeDefined();
+
+      // Get metadata for this post to know which tags to expect
+      const allPosts = getAllPosts();
+      const postMetadata = allPosts.find((p) => p.frontmatter.path === postPath);
+      expect(postMetadata).toBeDefined();
+      expect(postMetadata.frontmatter.tags).toBeDefined();
+      expect(postMetadata.frontmatter.tags.length).toBeGreaterThan(0);
+
+      const expectedTagName = postMetadata.frontmatter.tags[0];
+      const expectedTagSlug = expectedTagName.toLowerCase().replace(/\s+/g, '-');
 
       // Shortcode renders tags as: <li><a href="/tags/${slug}/"><span class="tag-name">${name}</span></a></li>
-      const tagLinks = postCard.find('.post-tags .tag-name');
+      const tagLinks = firstPostCard.find('.post-tags .tag-name');
       expect(tagLinks.length).toBeGreaterThan(0);
 
       const tagTexts = tagLinks.map((i, el) => $(el).text()).get();
-      expect(tagTexts).toContain(recentPostTagName);
+      expect(tagTexts).toContain(expectedTagName);
 
-      const tagLink = postCard.find(`.post-tags a[href="/tags/${recentPostTagSlug}/"]`);
+      const tagLink = firstPostCard.find(`.post-tags a[href="/tags/${expectedTagSlug}/"]`);
       expect(tagLink.length).toBe(1);
     });
   });
