@@ -1,5 +1,7 @@
 import { readableDateUTC, htmlDateString, slugify, escapeHtml } from '../utils/formatting.js';
 import { logError } from '../logger.js';
+import { isLocalDevelopment, isPreview } from '../env-utils.js';
+
 // Renders a linked post card by permalink (URL)
 // Usage examples:
 // - In Nunjucks: {% linkedPost "/my-post/" %}
@@ -45,7 +47,7 @@ export default function linkedPost(permalink, maybeCollections) {
   const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
   const excerpt = String(data.excerpt || '');
   const draftStatus = data.draftStatus || '';
-  const needsReview = data.needsReview === true;
+  const needsReview = data.needsReview === true && (isLocalDevelopment || isPreview);
 
   // Draft badge HTML
   let draftBadge = '';
