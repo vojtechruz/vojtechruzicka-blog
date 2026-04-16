@@ -47,7 +47,7 @@ export default function linkedPost(permalink, maybeCollections) {
   const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
   const excerpt = String(data.excerpt || '');
   const draftStatus = data.draftStatus || '';
-  const needsReview = data.needsReview === true && (isLocalDevelopment || isPreview);
+  const needsReview = data.needsReview === true && (isLocalDevelopment() || isPreview());
 
   // Draft badge HTML
   let draftBadge = '';
