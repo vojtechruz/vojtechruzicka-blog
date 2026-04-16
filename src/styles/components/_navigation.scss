@@ -1,0 +1,126 @@
+@use '../variables';
+@use '../utilities';
+
+.main-navigation {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  margin-bottom: var(--gap-large);
+  background-color: var(--color-surface-1);
+  border-bottom: 1px solid var(--color-border);
+
+  .navigation {
+    max-width: var(--container-max-nav);
+    margin: 0 auto;
+    padding: 0.8rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--gap-medium);
+    align-items: center;
+  }
+
+  .blog-name {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .menu-items {
+    @include utilities.reset-list;
+    display: flex;
+    gap: calc(var(--gap-medium) * 0.9);
+    margin-inline-end: var(--gap-medium);
+    align-items: center;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--gap-small);
+      padding: 0.4rem 0.6rem;
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      text-decoration: none;
+      transition:
+        color 0.2s ease,
+        color 0.2s ease;
+
+      &.active {
+        color: var(--color-accent);
+        font-weight: 600;
+      }
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  .menu-container {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-medium);
+  }
+}
+
+@include utilities.respond(medium) {
+  .main-navigation .navigation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+    flex-basis: 100%;
+
+    .menu-items {
+      gap: 0;
+    }
+  }
+}
+
+@include utilities.respond(small) {
+  .menu-container {
+    flex-direction: column;
+  }
+
+  // On mobile main nav will not be sticky
+  .main-navigation {
+    position: relative;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-small);
+  margin-block: var(--gap-large);
+
+  .current {
+    font-weight: 600;
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-heading);
+    border-radius: 999px;
+    padding: 0 0.6rem;
+  }
+
+  .pagination-prev {
+    margin-right: var(--gap-medium);
+    opacity: 0.75;
+  }
+
+  .pagination-next {
+    margin-left: var(--gap-medium);
+    opacity: 0.75;
+  }
+
+  .pagination-ellipsis {
+    color: var(--color-text-muted);
+    padding: 0 0.2rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

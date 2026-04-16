@@ -1,0 +1,110 @@
+{% extends "layouts/base.njk" %}
+
+
+{% block content %}
+<main id="content" class="post content">
+  {% if draftStatus %}
+  <div class="draft-banner draft-banner-{{ draftStatus }}" role="status">
+    <span class="draft-banner-icon" aria-hidden="true">
+      {% if draftStatus === "draft" %}
+      🟠
+      {% elif draftStatus === "review" %}
+      🔵
+      {% elif draftStatus === "ready" %}
+      🟢
+      {% endif %}
+    </span>
+    <span class="draft-banner-text">
+      {% if draftStatus === "draft" %}
+        DRAFT — Early work in progress
+      {% elif draftStatus === "review" %}
+        IN REVIEW — Awaiting final review
+      {% elif draftStatus === "ready" %}
+        READY — Ready to publish
+      {% endif %}
+    </span>
+  </div>
+  {% endif %}
+  <!-- Reading progress bar -->
+  <div id="reading-progress" class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0"
+    aria-valuemax="100" aria-valuenow="0" hidden>
+    <span class="reading-progress__bar" aria-hidden="true"></span>
+  </div>
+  <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
+    <header>
+      <h1 class="post-header">{{ title }}</h1>
+
+      <div class="post-metadata">
+        <div class="post-metadata-primary" >
+          <span class="date-published">{{date | readableDate}}</span>
+          <ul class="post-tags">
+            {% for tag in tags %}
+            <li><a class="tag-name" href="/tags/{{ tag | slugify }}/">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {%if dateModified %}
+        <div class="date-modified">Updated: {{dateModified | readableDate }}</div>
+        {% endif %}
+      </div>
+
+      <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
+        fetchpriority="high" decoding="async">
+      <div class="post-header-excerpt">{{excerpt}}</div>
+    </header>
+
+    <hr class="post-header-divider" />
+
+    {{ content | safe }}
+
+    <hr class="divider">
+
+
+  </article>
+
+  {% if not series %}
+    {% set currentPageObj = { url: page.url, data: { tags: tags, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
+    {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
+    {% if related.length > 0 %}
+      <section class="related-posts" aria-label="Related posts">
+        <h2 class="related-posts-heading">Related Posts</h2>
+        <ul class="related-posts-list">
+          {% for relPost in related %}
+            <li>
+              <a href="{{ relPost.url }}">{{ relPost.data.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endif %}
+
+  <div class="post-footer">
+    {% include "components/social-share.njk" %}
+    {% include "components/comments.njk" %}
+  </div>
+
+  <script src="/scripts/reading-progress.js" defer></script>
+
+</main>
+{% endblock %}
+
+{% block sidebar %}
+{% include "components/series-toc.njk" %}
+
+{% set tocHtml = content | toc %}
+{% if tocHtml and (tocHtml | trim) %}
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc-heading">Table of contents</p>
+  <div class="toc-list">
+    {{ tocHtml
+    | stripNav
+    | safe }}
+  </div>
+</nav>
+<script src="/scripts/toc-scrollspy.js" defer></script>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script src="/scripts/code-block.js" defer></script>
+{% endblock %}

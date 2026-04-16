@@ -1,0 +1,108 @@
+@use '../variables';
+@use '../utilities';
+
+.linked-post {
+  padding: var(--gap-medium);
+  border: none;
+  background: none;
+  margin-bottom: var(--gap-xxl);
+
+  &.linked-post-needs-review {
+    position: relative;
+    border-left: 3px solid var(--color-warning-border);
+    background: var(--color-warning-bg);
+    padding-left: 0.75rem;
+  }
+}
+
+.linked-post h2.front-post-title {
+  line-height: 1.25;
+  margin-top: -0.65rem;
+  margin-bottom: var(--gap-small);
+}
+
+.linked-post h2.front-post-title a {
+  display: inline-block;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.front-post-title a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Meta info row */
+.linked-post .front-post-info {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  align-items: center;
+  margin-bottom: calc(var(--gap-small) * 2);
+}
+
+.front-post-info-date {
+  white-space: nowrap;
+}
+
+/* Layout: image + text block */
+.linked-post > div {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: flex-start;
+}
+
+.front-post-image {
+  flex-shrink: 0;
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.front-post-image .image-wrapper {
+  width: 160px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.front-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.front-post-excerpt {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-top: -3px;
+  font-size: 1rem;
+  max-height: 120px;
+}
+
+/* Hover effect on the whole card */
+.linked-post .front-post-title a:hover {
+  text-decoration: underline;
+  color: var(--color-heading-link-hover);
+}
+
+/* ====== RESPONSIVE ====== */
+@include utilities.respond(medium) {
+  .front-post-image .image-wrapper {
+    width: 90px;
+  }
+}
+
+@include utilities.respond(small) {
+  .front-post-image,
+  .front-post-image .image-wrapper {
+    display: none;
+  }
+}

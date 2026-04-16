@@ -1,0 +1,18 @@
+// markdownlint configuration for blog posts
+// https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+{
+  "config": {
+    // Validate line length with max 120 characters (exclude code blocks, tables, and headings)
+    "MD013": { "line_length": 120, "code_blocks": false, "tables": false, "headings": false, "ignore_urls": true },
+    // Kbd tags are for displaying keyboard shortcuts, sup for superscript which does not have native equivalent in markdown
+    "MD033": {
+      "allowed_elements": ["kbd", "sup"]
+    },
+    // Emphasis used instead of a heading - on some places used as miniheadings which would otherwise be h3
+    // or similiar and part of TOC
+    "MD036": false,
+    //todo temporary for review files
+    "MD041": false
+  },
+  "globs": ["src/posts/**/*.md"]
+}

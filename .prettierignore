@@ -1,1 +1,5 @@
-**/*.md
+_site
+node_modules
+_original
+package.json
+package-lock.json

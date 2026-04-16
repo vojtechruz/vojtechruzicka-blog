@@ -1,0 +1,26 @@
+@use '../variables';
+@use '../utilities';
+
+.post .post-tags {
+  margin-top: var(--gap-small);
+  margin-bottom: var(--gap-small);
+}
+
+.post-tags {
+  @include utilities.reset-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-small) * 1.5);
+
+  .tag-name::before {
+    content: '#';
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

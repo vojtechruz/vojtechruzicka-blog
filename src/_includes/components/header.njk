@@ -1,0 +1,29 @@
+{% set current = page.url %}
+<header class="main-navigation">
+  <nav aria-label="Main navigation">
+      <div class="navigation">
+        <div class="blog-name">
+          {{site.title}}
+        </div>
+
+        <div class="menu-container">
+          <ul class="menu-items">
+            {% set isHome = (current == '/') %}
+            <li>
+              <a href="/" {% if isHome %}class="active" aria-current="page"{% endif %}>Home</a>
+            </li>
+            {% set isTopics = (current == '/archives/' or current.startsWith('/tags/')) %}
+            <li>
+              <a href="/archives/" {% if isTopics %}class="active" aria-current="page"{% endif %}>Topics</a>
+            </li>
+            {% set isAbout = (current == '/about/') %}
+            <li>
+              <a href="/about/" {% if isAbout %}class="active" aria-current="page"{% endif %}>About <span class="not-small-screen">me</span></a>
+            </li>
+          </ul>
+          {% from "components/search.njk" import renderSearch %}
+          {{ renderSearch('search') }}
+        </div>
+      </div>
+  </nav>
+</header>

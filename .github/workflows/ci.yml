@@ -1,0 +1,55 @@
+name: CI — Build & Test
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches-ignore: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint JavaScript
+        run: npm run validate:js
+
+      - name: Lint Stylesheets
+        run: npm run validate:css
+
+      - name: Validate Markdown
+        run: npm run validate:md
+
+      - name: Build site
+        run: npm run build
+
+      - name: Validate HTML
+        run: npm run validate:html
+
+      - name: Validate XML
+        run: npm run validate:xml
+
+      - name: Validate internal links
+        run: npm run validate:links
+
+      - name: Run Lighthouse CI
+        run: npm run lighthouse
+
+      - name: Run tests
+        run: npm test

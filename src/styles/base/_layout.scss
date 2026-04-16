@@ -1,0 +1,82 @@
+@use '../variables';
+@use '../utilities';
+
+.main {
+  display: flex;
+  flex-grow: 1;
+  gap: var(--gap-small);
+  padding: var(--gap-small);
+  justify-content: center;
+}
+
+.content {
+  max-width: 70ch;
+  padding: 0 var(--gap-large);
+}
+
+.sidebar-inner {
+  top: var(--offset-sidebar);
+  max-width: 50ch;
+  padding: var(--gap-small) var(--gap-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  position: sticky;
+  max-height: calc(100vh - 3rem - 2rem);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  .footer-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// When on small screen then switch from two columns to one column with sidebar hidden
+@include utilities.respond(large) {
+  .main {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@include utilities.respond(medium) {
+  .content {
+    //padding-inline: 1.5rem;
+  }
+
+  .main {
+    align-items: stretch;
+  }
+}
+
+@include utilities.respond(small) {
+  .content {
+    padding-inline: 0.75rem;
+  }
+
+  .main {
+    align-items: stretch;
+  }
+}
+
+.section-404 {
+  margin-top: var(--gap-xlarge);
+}
+
+.page + .sidebar {
+  display: none;
+}

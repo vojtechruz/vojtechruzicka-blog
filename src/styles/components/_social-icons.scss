@@ -1,0 +1,98 @@
+@use '../variables';
+@use '../utilities';
+
+.social-share {
+  text-align: center;
+}
+
+.social-share-label {
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.share-list,
+.footer-social {
+  @include utilities.reset-list;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--gap-medium);
+
+  @include utilities.respond(small) {
+    gap: var(--gap-small);
+  }
+}
+
+.footer-icon,
+.share-icon {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: var(--radius-full);
+  display: inline-grid;
+  place-items: center;
+  background: var(--color-surface-2);
+  border: 1px solid color-mix(in oklab, var(--color-border), transparent 35%);
+  color: var(--color-text);
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 0.2s ease,
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  svg {
+    inline-size: 1.15rem;
+    block-size: 1.15rem;
+    fill: currentColor;
+  }
+
+  &:hover {
+    background: color-mix(in oklab, var(--color-surface-2), white 6%);
+    color: var(--color-link-hover);
+  }
+
+  &:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  &:focus-visible {
+    border-radius: var(--radius-full);
+  }
+}
+
+// Floating text 'Link copied' after pressing button
+.share-copy.copied::after {
+  content: 'Link copied';
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-bg-highlight);
+  color: var(--color-text);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  z-index: var(--z-overlay);
+  box-shadow: var(--shadow-sm);
+  transition: opacity 0.2s ease;
+}
+
+.share-copy:not(.copied)::after {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.share-copy svg {
+  margin-left: 2px;
+}
+
+.share-native svg {
+  fill: transparent;
+}

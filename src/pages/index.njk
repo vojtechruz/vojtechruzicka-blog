@@ -1,0 +1,34 @@
+---
+pagination:
+  data: collections.posts
+  size: 10            # items per page
+  alias: posts        # variable name in template
+  reverse: false
+paginationWindowSize: 2 # number of visible pages around the current page on each side
+eleventyComputed:
+  # "/" for page 1, "/pages/2/" for page 2, etc.
+  permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/pages/{{ pagination.pageNumber + 1 }}/{% endif %}"
+  title: "{% if pagination.pageNumber == 0 %}Latest posts{% else %}Page {{ pagination.pageNumber + 1 }} – Latest posts{% endif %}"
+---
+{% extends "layouts/post-list.njk" %}
+
+{% block postList %}
+
+<h1 class="visually-hidden">{{ title }}</h1>
+
+{% if pagination.pageNumber > 0 %}
+  {% include "components/pagination.njk" %}
+{% endif %}
+
+
+<ul class="post-list">
+  {% for post in pagination.items %}
+    <li>
+      {% linkedPost post.url %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% include "components/pagination.njk" %}
+
+{% endblock %}

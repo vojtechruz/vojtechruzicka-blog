@@ -1,0 +1,219 @@
+@use '../variables';
+@use '../utilities';
+
+.post-header-featured-image {
+  width: 100%;
+}
+
+.content h1 {
+  margin-top: var(--gap-medium);
+}
+
+.post-list {
+  @include utilities.reset-list;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-medium) * 1.1);
+
+  h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+article {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.post-header-divider,
+.divider {
+  margin-top: var(--gap-large);
+  margin-bottom: var(--gap-large);
+  height: 2px;
+  background: color-mix(in srgb, var(--color-border) 80%, transparent);
+  border: none;
+}
+
+.divider {
+  margin-bottom: var(--gap-large);
+}
+
+.post-footer {
+  margin-block: var(--gap-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.post-header-excerpt {
+  margin-top: var(--gap-large);
+  color: var(--color-text-muted);
+}
+
+.date-published,
+.date-modified {
+  color: var(--color-text-muted);
+}
+
+/* Applies to headings that have the permalink anchor */
+.post h1,
+.post h2,
+.post h3,
+.post h4 {
+  position: relative;
+  scroll-margin-top: var(--offset-anchor-post);
+  /* prevents heading from sitting under the fixed nav */
+}
+
+/* The inserted anchor icon */
+.post h2 .header-anchor,
+.post h3 .header-anchor,
+.post h4 .header-anchor {
+  position: absolute;
+  left: -2.3rem;
+  /* distance into the left gutter */
+  top: 52.5%;
+  transform: translateY(-50%);
+  opacity: 0;
+  /* hide by default */
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
+  padding: 0.2rem;
+}
+
+/* Show the icon on hover/focus */
+.post h2:hover .header-anchor,
+.post h2:focus-within .header-anchor,
+.post h3:hover .header-anchor,
+.post h3:focus-within .header-anchor,
+.post h4:hover .header-anchor,
+.post h4:focus-within .header-anchor {
+  opacity: 1;
+  color: var(--color-link);
+}
+
+/* Mobile: always show icon (no hover available) */
+@include utilities.respond(medium) {
+  .post h2 .header-anchor,
+  .post h3 .header-anchor,
+  .post h4 .header-anchor {
+    opacity: 1;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+#comments {
+  padding-top: var(--gap-large);
+  padding-bottom: var(--gap-xlarge);
+}
+
+.post blockquote {
+  margin: var(--gap-medium) 0;
+  padding: 1.2rem 1.6rem;
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-surface-2) 85%, black);
+  border-radius: var(--radius-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.post-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.related-posts {
+  margin-bottom: var(--gap-xlarge);
+}
+
+.related-posts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Responsive Embeds */
+.yt-embed,
+.video-embed,
+.codepen-embed {
+  width: 100%;
+  border: 0;
+}
+
+.yt-embed,
+.video-embed {
+  height: auto;
+}
+
+.yt-embed {
+  aspect-ratio: 16 / 9;
+}
+
+.codepen-embed-figure,
+.video-embed-figure,
+.yt-embed {
+  margin-block: calc(var(--gap-medium) * 1.15);
+}
+
+.codepen-embed-figure {
+  margin-inline: 0;
+
+  .codepen-caption {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+}
+
+.video-embed-figure {
+  margin-inline: 0;
+
+  .video-caption {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+}
+
+.post-metadata {
+  margin-block-end: var(--gap-large);
+
+  .post-metadata-primary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap-medium);
+  }
+
+  .post-meta-separator {
+    opacity: 0.5;
+  }
+
+  .date-modified {
+    font-size: 0.9rem;
+  }
+}
+
+.post-header {
+  margin-block-end: var(--gap-small);
+}
+
+hr {
+  margin-block: var(--gap-large);
+  color: transparent;
+  border: 1px solid var(--color-border);
+}

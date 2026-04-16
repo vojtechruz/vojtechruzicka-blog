@@ -1,0 +1,38 @@
+@use '../variables';
+@use '../utilities';
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 36rem;
+  color: var(--color-text);
+  margin-block: var(--gap-large);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 0.7rem 1rem;
+  vertical-align: top;
+  line-height: 1.35;
+}
+
+thead th {
+  top: 0;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in oklab, var(--color-surface-1) 70%, var(--color-surface-2));
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+td code {
+}
+
+tr:hover {
+  background: color-mix(in oklab, var(--color-surface-1) 90%, var(--color-surface-2));
+}

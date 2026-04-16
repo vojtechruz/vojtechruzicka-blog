@@ -1,0 +1,44 @@
+---
+title: "About me"
+permalink: /about/
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+  <div class="about-page">
+    <p>Hi, I'm <strong>{{ site.author }}</strong>, a {{ site.person.jobTitle }} based in Prague, Czech Republic.</p>
+
+    <p>This blog is my way to continuously learn and give back to the community by sharing during the process.
+      Here I share my knowledge and experiences with various technologies, including Java, Spring, IntelliJ, JAMstack and more.
+    </p>
+
+    <p>You'll find no AI-generated content here, no ads, affiliate links, no sponsored posts or paid content.</p>
+
+    <h2>Stay informed</h2>
+    <p>Get notified when I publish new content:</p>
+    <ul class="about-links">
+      <li><a href="{{ site.url }}/feed/" data-social-name="RSS">Subscribe to RSS Feed</a></li>
+      <li><a href="https://twitter.com/vojtechruzicka" data-social-name="Twitter" data-location="About Page">X (Twitter)</a></li>
+      <li><a href="https://mastodon.social/@vojtechruzicka" data-social-name="Mastodon" data-location="About Page">Mastodon</a></li>
+      <li><a href="https://bsky.app/profile/vojtechruzicka.com" data-social-name="Bluesky" data-location="About Page">Bluesky</a></li>
+      <li><a href="https://eepurl.com/bZ0waf" data-about-name="Email Subscription">Receive new posts by email</a></li>
+    </ul>
+
+    <h2>Contact me</h2>
+    <p>Got a question or idea? Feel free to reach out.:</p>
+    <ul class="about-links">
+      <li>Email: <a href="mailto:vojtech.ruz@gmail.com" data-about-name="Email Contact">vojtech.ruz@gmail.com</a></li>
+    </ul>
+
+    <h2>Additional links</h2>
+    <ul class="about-links">
+      <li><a href="https://github.com/vojtechruz" data-social-name="GitHub" data-location="About Page">GitHub profile</a></li>
+      <li><a href="https://www.linkedin.com/in/vojtechruzicka" data-social-name="LinkedIn" data-location="About Page">LinkedIn profile</a></li>
+      <li><a href="https://stackoverflow.com/users/4560142/vojtech-ruzicka" data-social-name="Stack Overflow" data-location="About Page">Stack Overflow profile</a></li>
+    </ul>
+
+    <h2>Found any issues?</h2>
+    <p>This whole blog and its content is available on <a href="https://github.com/vojtechruz/vojtechruzicka-blog" data-about-name="Blog Source">GitHub</a>. If you find any typos, bugs, or have suggestions for improvement, please feel free to create a Pull Request or open an Issue.</p>
+  </div>
+
+{% endblock %}

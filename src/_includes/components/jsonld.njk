@@ -1,0 +1,103 @@
+{# Uses precomputed values: pageTitle, pageDescription, pageUrl, imageUrl,
+isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate,
+modifiedDate, breadcrumbs, isAbout #}
+
+{% if isPost %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": {{ pageUrl | dump | safe }} },
+  "headline": {{ pageTitle | dump | safe }},
+  "description": {{ pageDescription | dump | safe }},
+  "image": {{ imageUrl | dump | safe }},
+  "author": { "@type": "Person", "name": {{ site.author | dump | safe }} },
+  "publisher": {
+  "@type": "Organization",
+  "name": {{ site.title | dump | safe }},
+  "logo": { "@type": "ImageObject", "url": {{ (site.url + "/favicon.png") | dump | safe }} }
+  }{% if publishedDate %},
+  "datePublished": {{ (publishedDate | toRfc3339) | dump | safe }}{% endif %}{% if modifiedDate %},
+  "dateModified": {{ (modifiedDate | toRfc3339) | dump | safe }}{% endif %},
+  "url": {{ pageUrl | dump | safe }}
+  }
+</script>
+
+{% elif isHome %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ site.title | dump | safe }},
+  "url": {{ site.url | dump | safe }},
+  "sameAs": [
+  {% for s in site.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %}
+  ]{% if site.twitter %},
+  "potentialAction": {
+  "@type": "SearchAction",
+  "target": {{ (site.url + "/search/?q={query}") | dump | safe }},
+  "query-input": "required name=query"
+  }{% endif %}
+  }
+</script>
+
+{% elif isHomePaginated or isTopics or isTag %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }}
+  }
+</script>
+
+{% elif isAbout %}
+{# --- AboutPage (the page) --- #}
+{% set person = site.person %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }},
+  "mainEntity": {
+  "@type": "Person",
+  "image": {{ person.image | dump | safe }},
+  "jobTitle": {{ person.jobTitle | dump | safe }},
+  "email": {{ person.email | dump | safe }},
+  "url": {{ person.url | dump | safe }},
+  "sameAs": [
+  {% for s in site.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %}
+  ],
+  "name": {{ (person.name or site.author or site.title) | dump | safe }}
+  }
+  }
+</script>
+
+{% else %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": {{ pageTitle | dump | safe }},
+  "url": {{ pageUrl | dump | safe }},
+  "description": {{ pageDescription | dump | safe }}
+  }
+</script>
+{% endif %}
+
+{% if not isHome %}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {% for c in breadcrumbs %}
+      { "@type": "ListItem", "position": {{ loop.index }}, "name": {{ c.name | dump | safe }}, "item": {{ (site.url + c.url) | dump | safe }} }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+</script>
+{% endif %}

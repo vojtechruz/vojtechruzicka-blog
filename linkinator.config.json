@@ -1,0 +1,9 @@
+{
+  "recurse": true,
+  "skip": [
+    "^https?://(?!localhost)",
+    "http://localhost:4200"
+  ],
+  "timeout": 10000,
+  "verbosity": "error"
+}

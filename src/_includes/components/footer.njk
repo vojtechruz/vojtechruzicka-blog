@@ -1,0 +1,19 @@
+<footer class="footer">
+  <div class="footer-container">
+    <nav class="footer-social" aria-label="Social links">
+      {% for item in site.social %}
+      <a
+        href="{{ item.url }}"
+        class="footer-icon"
+        title="{{ item.title }}"
+        aria-label="{{ item.title }}"
+        data-social-name="{{ item.name }}"
+        data-location="Footer"
+        {% if item.rel %}rel="{{ item.rel }}"{% endif %}
+      >
+        {% include item.icon %}
+      </a>
+      {% endfor %}
+    </nav>
+  </div>
+</footer>

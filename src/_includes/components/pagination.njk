@@ -1,0 +1,37 @@
+{#
+  Truncated Pagination Component
+
+  This component renders a list of page links with first/last links and ellipses
+  when there are many pages. It uses the `generatePaginationLinks` filter to
+  calculate which links to show.
+
+  Usage:
+  - In a template with pagination enabled, include this file.
+  - Optionally set `paginationWindowSize` in frontmatter to change the number
+    of visible pages around the current page (defaults to 2).
+#}
+{% if pagination.hrefs | length > 1 %}
+  <nav class="pagination" aria-label="Pagination">
+    {# Previous link #}
+    {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}" rel="prev" class="pagination-prev">« Previous</a>
+    {% endif %}
+
+    {# Truncated page numbers (first, ..., window, current, window, ..., last) #}
+    {% set paginationLinks = pagination | generatePaginationLinks(paginationWindowSize or 2) %}
+    {% for page in paginationLinks %}
+      {% if page.ellipsis %}
+        <span class="pagination-ellipsis">…</span>
+      {% elseif page.current %}
+        <span class="current" aria-current="page">{{ page.number }}</span>
+      {% else %}
+        <a href="{{ page.url }}">{{ page.number }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {# Next link #}
+    {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}" rel="next" class="pagination-next">Next »</a>
+    {% endif %}
+  </nav>
+{% endif %}
