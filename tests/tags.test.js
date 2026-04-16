@@ -35,8 +35,13 @@ describe('Tags functionality', () => {
       const $ = loadPage('/');
 
       // Find the card for our test post by its link
+      // We use a recent post that is guaranteed to be on the home page (first 10 posts)
+      const recentPostPath = '/spring-ai/';
+      const recentPostTagName = 'Spring';
+      const recentPostTagSlug = 'spring';
+
       // Shortcode renders: <div class="linked-post ..."> ... <a href="${url}">${title}</a> ... </div>
-      const postCard = $(`.linked-post:has(a[href="${testPostPath}"])`);
+      const postCard = $(`.linked-post:has(a[href="${recentPostPath}"])`);
       expect(postCard.length).toBeGreaterThan(0);
 
       // Shortcode renders tags as: <li><a href="/tags/${slug}/"><span class="tag-name">${name}</span></a></li>
@@ -44,9 +49,9 @@ describe('Tags functionality', () => {
       expect(tagLinks.length).toBeGreaterThan(0);
 
       const tagTexts = tagLinks.map((i, el) => $(el).text()).get();
-      expect(tagTexts).toContain(testTagName);
+      expect(tagTexts).toContain(recentPostTagName);
 
-      const tagLink = postCard.find(`.post-tags a[href="/tags/${testTagSlug}/"]`);
+      const tagLink = postCard.find(`.post-tags a[href="/tags/${recentPostTagSlug}/"]`);
       expect(tagLink.length).toBe(1);
     });
   });

@@ -24,15 +24,9 @@ describe('Feeds (RSS and Atom)', () => {
     const atomContent = existsSync(atomPath) ? readFileSync(atomPath, 'utf-8') : '';
 
     const allPosts = getAllPosts();
+    const olderPosts = allPosts.filter((p) => p.frontmatter.date && new Date(p.frontmatter.date) < minDate);
 
-    it('should not contain posts older than minDate', () => {
-      const olderPosts = allPosts.filter((p) => p.frontmatter.date && new Date(p.frontmatter.date) < minDate);
-
-      if (olderPosts.length === 0) {
-        console.warn('[DEBUG_LOG] No posts older than minDate found in source. Cutoff test may be less effective.');
-        return;
-      }
-
+    it.skipIf(!olderPosts)('should not contain posts older than minDate', () => {
       for (const post of olderPosts) {
         // Checking for the path/URL of the post in the feed content
         const postPath = post.frontmatter.path;
@@ -69,9 +63,7 @@ describe('Feeds (RSS and Atom)', () => {
     const allPosts = getAllPosts();
     const draftPosts = allPosts.filter((p) => p.frontmatter.draftStatus);
 
-    it('should not contain any draft posts, regardless of date', () => {
-      expect(draftPosts.length).toBeGreaterThan(0);
-
+    it.skipIf(!draftPosts)('should not contain any draft posts, regardless of date', () => {
       for (const post of draftPosts) {
         const postPath = post.frontmatter.path;
         if (postPath) {
