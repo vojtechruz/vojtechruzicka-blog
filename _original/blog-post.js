@@ -147,7 +147,7 @@ function BlogPostTemplate(props) {
       <div className="social">
         <p className="notification-link">
           Get notifications about new posts on{" "}
-          <OutboundLink href="https://www.vojtechruzicka.com/feed/">
+          <OutboundLink href="https://www.vojtechruzicka.com/feed.xml">
             {rssIcon}RSS,
           </OutboundLink>{" "}
           <OutboundLink href="https://twitter.com/vojtechruzicka">

@@ -65,7 +65,7 @@ export default {
   social: [
     {
       name: 'RSS',
-      url: 'https://www.vojtechruzicka.com/feed/',
+      url: 'https://www.vojtechruzicka.com/feed.xml',
       icon: 'icons/rss.njk',
       title: 'Subscribe to RSS feed',
     },

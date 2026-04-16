@@ -17,7 +17,7 @@ class AboutPage extends React.Component {
           <ul>
             <li>
               {rssIcon}
-              <OutboundLink href="https://www.vojtechruzicka.com/feed/">
+              <OutboundLink href="https://www.vojtechruzicka.com/feed.xml">
                 Subscribe to RSS Feed
               </OutboundLink>
             </li>
