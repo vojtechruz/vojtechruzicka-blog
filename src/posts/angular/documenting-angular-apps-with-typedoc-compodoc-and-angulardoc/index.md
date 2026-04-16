@@ -93,7 +93,7 @@ npm run compodoc
 
 Once you run the compodoc command it will automatically generate your documentation from your project in form of HTML.
 Unlike TypeDoc, Compodoc understands that your app is an Angular application. That means it understands all the concepts
-such as components, pipes or directives. Bellow, you can see the generated documentation for a component.
+such as components, pipes or directives. Below, you can see the generated documentation for a component.
 
 ![compodoc](./documentation-compodoc.png)
 

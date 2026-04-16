@@ -31,16 +31,16 @@ This feature can be toggled using `Edit → Column` selection. The shortcut is:
 You can exit column selection mode by using <kbd>Esc</kbd> key.
 
 Column selection mode can be also used with keyboard only. When in column selection mode and holding <kbd>Shift</kbd>,
-you can extend cursor to the line above/bellow by using <kbd>↑</kbd> or <kbd>↓</kbd> keys.
+you can extend cursor to the line above/below by using <kbd>↑</kbd> or <kbd>↓</kbd> keys.
 
 ## Caret Cloning
 
 The same functionality of creating new cursors as with <kbd>Shift</kbd> + arrows can be achieved by `Clone caret above`
-and `Clone caret bellow` commands.
+and `Clone caret below` commands.
 
 The commands are issued by pressing <kbd>Ctrl</kbd> (or <kbd>⌥</kbd> on Mac), then pressing it again and not releasing.
 While still holding <kbd>Ctrl</kbd>, you can press <kbd>↑</kbd> and <kbd>↓</kbd> arrows to clone cursor to the line
-above or bellow.
+above or below.
 
 {% video "/videos/intellij-idea-tips-tricks-multiple-cursors/clone-caret" %}
 

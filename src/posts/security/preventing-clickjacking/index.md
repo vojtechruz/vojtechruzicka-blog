@@ -97,8 +97,8 @@ Please note that `ALLOW-FROM` option is not widely supported in the same way as 
 client\'s browser is not compatible, it just ignores the header, and you are left with no clickjacking protection
 whatsoever.
 
-The image bellow shows the compatibility ([see more](http://caniuse.com/#feat=x-frame-options)) of the `X-Frame-Options`
-header. Green represent full compatibility. Striped brown represents just `DENY` and `SAMEORIGIN`, but unsupported
+The image below shows the compatibility ([see more](http://caniuse.com/#feat=x-frame-options)) of the `X-Frame-Options`
+header. Green represents full compatibility. Striped brown represents just `DENY` and `SAMEORIGIN`, but unsupported
 `ALLOW-FROM`.
 
 ![x-frame-options-compatibility](x-frame-options-compatibility-table.png)

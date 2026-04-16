@@ -183,7 +183,7 @@ IDEA allows you to reuse the same requests among multiple environments by specif
 using placeholders for the variables. Then it is really easy to switch between environments.
 
 The environments and their variables are defined in a file called `rest-client.env.json`. It is not supplied by default,
-so you need to create one. Bellow is an example of three environments with different host variable.
+so you need to create one. Below is an example of three environments with different host variable.
 
 ```json
 {
