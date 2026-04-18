@@ -45,7 +45,7 @@
     "@11ty/eleventy": "^3.1.5",
     "@11ty/eleventy-img": "^6.0.4",
     "@11tyrocks/eleventy-plugin-sass-lightningcss": "^1.3.0",
-    "@shikijs/transformers": "^3.15.0",
+    "@shikijs/transformers": "^4.0.2",
     "cheerio": "^1.2.0",
     "eleventy-plugin-nesting-toc": "^1.3.0",
     "ffprobe-static": "^3.1.0",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
-    "@shikijs/markdown-it": "^3.14.0",
+    "@shikijs/markdown-it": "^4.0.2",
     "@xmldom/xmldom": "^0.9.9",
     "cross-env": "^10.1.0",
     "esbuild": "^0.28.0",
@@ -71,7 +71,7 @@
     "pagefind": "^1.5.2",
     "prettier": "^3.8.3",
     "rimraf": "^6.1.3",
-    "shiki": "^3.14.0",
+    "shiki": "^4.0.2",
     "stylelint": "^17.8.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "vitest": "^4.1.4"
