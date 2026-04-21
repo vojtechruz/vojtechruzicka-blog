@@ -326,5 +326,5 @@ project.
 
 ## What's next
 
-In the next article [Building Blocks](/angular/02-building-blocks), we'll learn what the basic building blocks of
+In the next article [Building Blocks](/angular/02-building-blocks/), we'll learn what the basic building blocks of
 Angular applications are. {% endraw %}
