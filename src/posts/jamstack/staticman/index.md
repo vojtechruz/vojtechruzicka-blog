@@ -1,10 +1,12 @@
 ---
 title: 'Staticman: User generated content made static'
 date: '2018-08-25'
+dateModified: '2026-04-20'
 tags: ['JAMStack']
 path: '/staticman/'
-excerpt: 'How to make your JAMStack site truly static even with user-generated content.'
+excerpt: 'How to make your JAMStack site truly static even with user-generated content such as comments.'
 needsReview: true
+featuredImage: 'featured.png'
 ---
 
 ## Dynamic content in static sites
@@ -236,7 +238,7 @@ GitHub.
 The source code for a simple GatsbyJS site integrating Staticman is available on
 [GitHub Staticman example repository](https://github.com/vojtechruz/staticman-example).
 
-You can also check [a live and interactive version of the site](https://staticman-example.netlify.app/).
+You can also check [a live and interactive version of the site](https://staticman-example.vojtech-ruz.workers.dev/).
 
 ## Conclusion
 
