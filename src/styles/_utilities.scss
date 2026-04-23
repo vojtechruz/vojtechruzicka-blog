@@ -31,7 +31,9 @@
 // Focus ring mixin for consistent accessibility
 @mixin focus-ring($color: var(--color-focus-ring), $width: 3px, $radius: var(--radius-sm)) {
   outline: none;
-  box-shadow: 0 0 0 $width color-mix(in oklab, $color 80%, transparent);
+  box-shadow:
+    0 0 0 2px var(--color-surface-0),
+    0 0 0 calc(2px + $width) $color;
   border-radius: $radius;
 }
 
