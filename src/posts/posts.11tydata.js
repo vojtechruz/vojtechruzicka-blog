@@ -18,7 +18,9 @@ export default {
     // Returns undefined on failure (missing image, draft with no asset) so imageUrl can fall
     // back to the generic shareImageUrl logic.
     ogImageUrl: async (data) => {
-      if (!data.page?.inputPath) return undefined;
+      if (!data.page?.inputPath) {
+        return undefined;
+      }
 
       // Use raw data.featuredImage to avoid depending on the computed featuredImage property
       // in the same eleventyComputed object (resolution order is not guaranteed).
