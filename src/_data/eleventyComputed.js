@@ -117,8 +117,14 @@ export default {
   isPost: (d) => getPageKind(d).kind === 'post',
   isAbout: (d) => d.page?.url === '/about/',
 
-  // Image
-  imageUrl: (d) => shareImageUrl({ featuredImage: d.featuredImage, page: d.page, site: d.site }),
+  // Prefer the pre-generated og-image.jpg (posts only) over the raw featuredImage path.
+  // The transform plugin's hashed filenames are not predictable at data-computation time,
+  // so posts.11tydata.js generates a stable JPEG via eleventy-img and exposes it as ogImageUrl.
+  // Non-post pages (home, tag, about) fall back to shareImageUrl.
+  imageUrl: (d) =>
+    d.ogImageUrl
+      ? (d.site?.url || '') + d.ogImageUrl
+      : shareImageUrl({ featuredImage: d.featuredImage, page: d.page, site: d.site }),
 
   // Dates
   publishedDate: (d) => d.date,
