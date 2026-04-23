@@ -2,6 +2,7 @@
 // Centralized SEO + structure helpers. Works with "type": "module" in package.json.
 
 import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
+import { slugify } from '../../config/utils/formatting.js';
 
 const AVOID = new Set(['blog', 'post', 'misc', 'general']);
 
@@ -91,7 +92,7 @@ function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
       const primary = pickPrimaryTag(tags);
       const middle = [{ name: 'Topics', url: '/archives/' }];
       if (primary) {
-        middle.push({ name: primary, url: `/tags/${primary}/` });
+        middle.push({ name: primary, url: `/tags/${slugify(primary)}/` });
       }
       return crumbs.concat(middle, { name: title || 'Post', url });
     }
