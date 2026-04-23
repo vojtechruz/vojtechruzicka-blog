@@ -106,7 +106,7 @@ function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
 export default {
   // Canonical basics
   pageTitle: (d) => d.title || d.site?.title,
-  pageDescription: (d) => d.description || d.site?.description,
+  pageDescription: (d) => d.description || d.excerpt || d.site?.description,
   pageUrl: (d) => (d.site?.url || '') + (d.page?.url || '/'),
 
   // Page type flags
