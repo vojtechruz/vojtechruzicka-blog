@@ -88,17 +88,28 @@
 
 .pagination {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--gap-small);
+  gap: 3px;
   margin-block: var(--gap-large);
+
+  a,
+  .current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+  }
 
   .current {
     font-weight: 600;
     background: var(--color-surface-1);
     border: 1px solid var(--color-border);
     color: var(--color-text-heading);
-    border-radius: 999px;
-    padding: 0 0.6rem;
   }
 
   .pagination-prev {
@@ -114,10 +125,6 @@
   .pagination-ellipsis {
     color: var(--color-text-muted);
     padding: 0 0.2rem;
-  }
-
-  a {
-    text-decoration: none;
   }
 
   a:hover {

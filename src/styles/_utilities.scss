@@ -29,11 +29,9 @@
 }
 
 // Focus ring mixin for consistent accessibility
-@mixin focus-ring($color: var(--color-focus-ring), $width: 3px, $radius: var(--radius-sm)) {
-  outline: none;
-  box-shadow:
-    0 0 0 2px var(--color-surface-0),
-    0 0 0 calc(2px + $width) $color;
+@mixin focus-ring($color: var(--color-focus-ring), $width: 2px, $gap: 2px, $radius: var(--radius-sm)) {
+  outline: $width solid $color;
+  outline-offset: $gap;
   border-radius: $radius;
 }
 
