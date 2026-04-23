@@ -7,7 +7,7 @@ export function registerPassthrough(eleventyConfig) {
     './src/static/': '/', // Copy static files to the output directory
   });
   // copy attachment files from each post subdirectory to _site based on relative url in generated html files
-  // Only files referenced via links are copied, not all files in the direcotry and only with whitelisted extensions
+  // Only files referenced via links are copied, not all files in the directory and only with whitelisted extensions
   eleventyConfig.addPassthroughCopy('./src/posts/**/*.{pdf,zip,doc,docx,xls,xlsx,ppt,pptx,css,xml}', {
     mode: 'html-relative',
   });

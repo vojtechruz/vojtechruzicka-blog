@@ -170,7 +170,7 @@
 .pagefind-ui__result-title a:hover {
   color: var(--color-link);
   text-decoration: underline;
-  text-underline-offset: var(--underline-offset);
+
 }
 
 .pagefind-ui__result-excerpt {
@@ -222,6 +222,6 @@ body.search-open {
 
 .pagefind-ui__result-title a:hover {
   text-decoration: underline;
-  text-underline-offset: var(--underline-offset);
+
   color: var(--color-heading-link-hover);
 }
