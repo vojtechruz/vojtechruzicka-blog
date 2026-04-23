@@ -88,7 +88,7 @@
 }
 
 .pagefind-ui .pagefind-ui__search-input {
-  height: 46px !important;
+  height: 36px !important;
   padding-left: 36px !important;
   padding-right: 40px !important;
   border-radius: var(--radius-lg);
@@ -108,7 +108,7 @@
   content: '';
   position: absolute;
   left: 1rem;
-  top: calc(0.5rem + 23px);
+  top: calc(0.5rem + 18px);
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
@@ -125,7 +125,7 @@
 .pagefind-ui .pagefind-ui__search-clear {
   position: absolute;
   right: 0.75rem;
-  top: calc(0.5rem + 23px);
+  top: calc(0.5rem + 17px);
   transform: translateY(-50%);
   width: 32px;
   height: 32px;
