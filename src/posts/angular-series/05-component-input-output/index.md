@@ -22,7 +22,7 @@ achieved.
 Let's first cover the situation when a component needs some data from the outside to function properly. In most cases,
 such data is not static - it would be very useful if we can pass new data to our component whenever it is required.
 
-Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding), which would
+Does this ring a bell? We already covered [data binding in the previous section](/angular/04-data-binding/), which would
 be a perfect fit for this use case. We could bind a variable to some property of our component, so whenever the variable
 changes, the component gets new data. So far, we covered only data binding to simple elements such as `button`, just a
 quick reminder:

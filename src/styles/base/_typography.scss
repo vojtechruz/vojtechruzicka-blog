@@ -18,6 +18,7 @@ h4 {
 
 a {
   color: var(--color-link);
+  text-underline-offset: var(--underline-offset);
 }
 
 a:hover {

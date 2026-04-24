@@ -371,5 +371,5 @@ extract them in their own file(s) using `styleUrls`.
 
 ## What's Next
 
-In the next part, we'll cover [Data Binding](/angular/04-data-binding), which is useful for synchronizing data in and
+In the next part, we'll cover [Data Binding](/angular/04-data-binding/), which is useful for synchronizing data in and
 out of components and creating and handling events.

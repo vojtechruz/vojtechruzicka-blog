@@ -238,4 +238,4 @@ We also learned how Angular applications are started:
 
 ## What's Next
 
-In the next article in the series, we'll learn more about [Angular Components](/angular/03-components).
+In the next article in the series, we'll learn more about [Angular Components](/angular/03-components/).
