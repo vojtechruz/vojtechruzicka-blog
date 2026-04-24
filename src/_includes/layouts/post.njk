@@ -91,6 +91,7 @@
 
 {% block sidebar %}
 {% include "components/series-toc.njk" %}
+{% if series %}<script src="/scripts/series-toc.js" defer></script>{% endif %}
 
 {% set tocHtml = content | toc %}
 {% if tocHtml and (tocHtml | trim) %}

@@ -21,6 +21,39 @@ $toc-indent-step: 1.25rem;
   .series-current {
     font-weight: 600;
   }
+
+  .toc-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-small);
+  }
+}
+
+.series-toc-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-xxs);
+  line-height: 1;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  svg {
+    transition: transform 0.2s ease;
+    display: block;
+  }
+}
+
+.series-toc--collapsed .series-toc-toggle svg {
+  transform: rotate(-90deg);
 }
 
 // TOC -----------------------------------------------------------------------------------------------------------------

@@ -9,6 +9,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/analytics.js',
       'src/scripts/search.js',
       'src/scripts/code-block.js',
+      'src/scripts/series-toc.js',
     ];
 
     await esbuild.build({
