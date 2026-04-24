@@ -1,17 +1,7 @@
 # Gatsby → Eleventy Migration Checklist
 
-Use this checklist to ensure feature parity when migrating a personal blog from Gatsby to Eleventy (11ty). Check off each item as you complete it. Adjust to your stack (templates, hosting, search, comments, etc.).
-
-Legend:
-- [ ] To do
-- [x] Done
-
---------------------------------------------------------------------------------
-
 ## 1) Project setup and goals
 - [ ] Define success criteria (identical URLs, SEO parity, page speed, core features).
-- [x] Choose template language(s) for Eleventy (e.g., Nunjucks, Liquid, EJS, 11ty.js).
-- [x] Confirm output directory (default: _site) and deployment target (e.g., Netlify, Vercel, GitHub Pages).
 - [ ] Node version alignment (.node-version / .nvmrc) and engines field in package.json.
 - [x] Install Eleventy and essential plugins as devDependencies.
   - [x] @11ty/eleventy
@@ -28,7 +18,6 @@ Legend:
   - [ ] Pages (about, contact, legal)
   - [ ] Tag/category pages
   - [ ] Drafts
-  - [ ] Guest posts (e.g., guest-posts directory)
   - [ ] Media assets (images, video, downloads)
 - [ ] Decide Eleventy input directory layout (e.g., src/site, content/, posts/, pages/).
 - [ ] Copy content files (.md/.mdx) to Eleventy structure.
@@ -108,7 +97,6 @@ For each content file, ensure the following keys and types exist or are transfor
 ## 8) Feeds, sitemap, robots, headers
 - [ ] RSS/Atom feed parity using @11ty/eleventy-plugin-rss.
 - [ ] Sitemap using @11ty/eleventy-plugin-sitemap (provide site URL, lastmod).
-- [ ] Security and cache headers (via Netlify headers file or framework equivalent).
 
 ## 9) Redirects and legacy URLs
 - [ ] Extract current/old Gatsby URLs (if structure changed historically).
@@ -118,13 +106,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] 410 for removed content when intentional.
 
 ## 10) Analytics, comments, search, forms
-- [ ] Analytics (GA4/GTM/other) snippets moved to base layout; env-gated for production.
-- [ ] Cookie consent banner if required.
-- [ ] Comments provider (Disqus, Giscus, Utterances, Commento, etc.) embedded and styled.
-- [ ] Search:
-  - [ ] Algolia (re-index and update build hooks) OR
-  - [ ] Static Lunr/FlexSearch index generated at build time OR
-  - [ ] Client-side simple search.
 - [ ] Newsletter/signup forms (Netlify Forms, Mailchimp, Buttondown, etc.).
   - [ ] Validate form attributes and spam protection (honeypot/reCAPTCHA if used).
 
@@ -146,7 +127,6 @@ For each content file, ensure the following keys and types exist or are transfor
 
 ## 13) Build, deploy, and hosting
 - [ ] Update Netlify/Vercel build command (e.g., npm run build) and publish directory (_site).
-- [ ] Validate netlify.toml (redirects, headers, build env, edge functions if any).
 - [ ] 404 page behavior verified in hosting environment.
 - [ ] Caching rules for static assets and HTML.
 - [ ] Image optimization cache directory persisted across builds (if supported).
@@ -183,7 +163,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Review third-party scripts; defer and limit scopes.
 - [ ] CSP and security headers ported (Netlify headers or meta http-equiv as last resort).
 - [ ] Remove unused APIs, tokens, and plugins.
-- [ ] Cookie categories and consent if in scope of GDPR/CCPA.
 
 ## 20) Final verification and launch checklist
 - [ ] Crawl the Eleventy site locally and on a staging deploy; compare against Gatsby pages count.
@@ -192,5 +171,3 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Submit updated sitemap in Search Console.
 - [ ] Monitor logs/analytics for 404s and fix redirects as needed.
 - [ ] Tag the repo/release and note migration date in README.
-
---------------------------------------------------------------------------------

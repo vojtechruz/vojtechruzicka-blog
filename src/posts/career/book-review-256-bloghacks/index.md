@@ -9,12 +9,12 @@ needsReview: true
 
 ## About the author
 
-Yegor Bugayenko (also known as Yegor256), is a [successful blogger](http://www.yegor256.com), mainly blogging about
+Yegor Bugayenko (also known as Yegor256), is a [successful blogger](https://www.yegor256.com), mainly blogging about
 Object Oriented Programming and management of remote teams. Author of
 [two other books](https://www.amazon.com/Yegor-Bugayenko/e/B01AM1QMDK/ref=dp_byline_cont_book_1). He also speaks at
 conferences and has a [YouTube channel](https://www.youtube.com/user/technoparkcorp) with his webinars and talks. His
 content is usually quite opinionated and controversial - you can check his
-[Testimonials page](http://www.yegor256.com/testimonials.html).
+[Testimonials page](https://www.yegor256.com/testimonials.html).
 
 ## Contents
 
@@ -104,7 +104,7 @@ All in all, I think this book can be very helpful when you are trying to start y
 is a lot of useful information, which is divided into independent chapters. That means, you can safely skip whatever you
 already know or are not interested in, which is good. The style is fresh and concise, easy to read. The book itself is
 quite short, it should not be a problem to finish it quickly. I really appreciate its honesty, it does not try to
-convince you, that you'll be able to turn your block quickly into a money-machine and be a full-time blogger.
+convince you, that you'll be able to turn your blog quickly into a money-machine and be a full-time blogger.
 
 While most of the advice given in the book is valuable, every now and then there are arbitrary recommendations not
 really backed up by any real data, evidence or reasoning. Some of them are most likely just meant to stir controversy,
@@ -126,4 +126,4 @@ starting out. Recommended and well worth the \$40.
 - [Amazon Reviews](https://www.amazon.com/256-Bloghacks-Yegor-Bugayenko/product-reviews/1537688669/ref=cm_cr_arp_d_show_all?ie=UTF8&reviewerType=all_reviews&pageNumber=1)
 - [Goodreads Reviews](https://www.goodreads.com/book/show/32885804-256-bloghacks)
 - [Book review by Wojciech Adam Koszek](https://www.koszek.com/books/2017/01/07/book-blog-hacks-256/)
-- [Author's page about the book](http://www.yegor256.com/256-bloghacks.html)
+- [Author's page about the book](https://www.yegor256.com/256-bloghacks.html)

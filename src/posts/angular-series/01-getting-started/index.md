@@ -173,7 +173,7 @@ Simply go to [http://localhost:4200/](http://localhost:4200/) to check your new 
 ## Project structure
 
 Let's check the project structure, which was generated for us to better understand how Angular works. You can find a
-more detailed description of each file [in the official documenation](https://angular.io/guide/file-structure).
+more detailed description of each file [in the official documentation](https://angular.io/guide/file-structure).
 
 ### Root folder
 
@@ -226,7 +226,7 @@ There is one component called `app.component`, which consists of four files:
 - `app.component.scss`: Here are the styles of the component, this is how the component looks.
 
 Note that the generated component by Angular CLI is a bit irregular as it contains the styles directly in its HTML.
-Usually, you would put these style runes in the `app.component.scss`.
+Usually, you would put these style rules in the `app.component.scss`.
 
 Again, if you used something else than SASS during project creation, the styles file will have a different extension,
 but the concept is still the same.

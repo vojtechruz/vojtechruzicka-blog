@@ -81,8 +81,8 @@ write whole books about each of the topics. That does not mean it is not useful,
 expectations. Instead of targeting audience of developers of all skill levels, the book could have been divided into two
 or more books, which would go into more detail.
 
-The style of the writing is fresh and the book reads easily. It is succinct but shallow in some cases. The chapters are not dependent on each other, so you can
-choose just the parts you are interested in, which is good.
+The style of the writing is fresh and the book reads easily. It is succinct but shallow in some cases. The chapters are
+not dependent on each other, so you can choose just the parts you are interested in, which is good.
 
 The content of the book is mostly composed of information already published by the author over the years in the form of
 blog posts, YouTube videos or podcasts. It is not a bad thing as it is useful to have a compilation instead of hunting

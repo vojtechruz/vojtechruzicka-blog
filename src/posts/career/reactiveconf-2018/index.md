@@ -110,7 +110,7 @@ The selection of speakers was impressive with interesting and well-known present
 about "How I met Elon Musk", there was nothing bad.
 
 While 30 minutes (or more like 25) per talk was sufficient in many cases, I was wondering whether it would be better to
-have some presentations longer. For some topics, it is just not enough time and the talk is more shallow that it could
+have some presentations longer. For some topics, it is just not enough time and the talk is more shallow than it could
 be. I liked that there were lightning talks as a short alternative to the regular presentations. Maybe it would also be
 good to introduce a longer alternative as well. Then again, some topics were covered in much detail during the workshops
 on the third day.
@@ -124,7 +124,7 @@ watch the talks I missed because of my volunteering duties.
 It was nice that there was a lot to do after the talks - Czech delicacies tasting, after-parties with various companies,
 discovering the city or Czech traditional live music.
 
-Overall my experience was very positive, I'm sure I'll visit also the next year.
+Overall my experience was very positive, I'm sure I'll also visit next year.
 
 ## Talks
 

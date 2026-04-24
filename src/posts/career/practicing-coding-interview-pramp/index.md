@@ -32,7 +32,7 @@ many more levels than just your ability to provide the solution. The communicati
 You need to project confidence. You need to ask questions, make sure you gather all the requirements right. Sometimes
 the task is missing some key information on purpose and you are tested on your ability to ask questions and clarify
 requirements. And most importantly, you are supposed to think out loud and explain what you are doing and why - reveal
-your thought process as you are coding. The interviewer is much more interested how you tackle problems and how you
+your thought process as you are coding. The interviewer is much more interested in how you tackle problems and how you
 approach them instead of just a plain result.
 
 The bottom line is - you need to train with an actual person as an interviewer.
