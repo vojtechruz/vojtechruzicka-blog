@@ -99,9 +99,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Sitemap using @11ty/eleventy-plugin-sitemap (provide site URL, lastmod).
 
 ## 9) Redirects and legacy URLs
-- [ ] Extract current/old Gatsby URLs (if structure changed historically).
-- [ ] Map 1:1 to Eleventy permalinks to avoid redirects if possible.
-- [ ] Create explicit redirects for any changed/removed routes.
 - [ ] Verify 301 status codes and canonicalization (trailing slash, www/non-www, http→https).
 - [ ] 410 for removed content when intentional.
 
@@ -126,7 +123,6 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] "clean": remove _site and artifacts
 
 ## 13) Build, deploy, and hosting
-- [ ] Update Netlify/Vercel build command (e.g., npm run build) and publish directory (_site).
 - [ ] 404 page behavior verified in hosting environment.
 - [ ] Caching rules for static assets and HTML.
 - [ ] Image optimization cache directory persisted across builds (if supported).
@@ -145,12 +141,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Review lists, tables, blockquotes, admonitions, and custom Markdown extensions.
 - [ ] Ensure embedded media (YouTube, Tweets, iframes) still render and are responsive.
 - [ ] Verify RSS feed validity (W3C validator) and discoverability.
-- [ ] Validate HTML (Nu HTML Checker) for glaring issues.
-
-## 17) Drafts and content workflow
-- [ ] Preserve drafts behavior (exclude drafts from production, include in local dev):
-  - [ ] Implement Eleventy computed data or filters to exclude draft: true when ELEVENTY_ENV=production.
-  - [ ] Keep drafts directory (e.g., drafts/) and add build ignore rules.
 
 ## 18) Optional features parity
 - [ ] Social image generation (OG images) via SSG step (Satori/Puppeteer/Cloud function).

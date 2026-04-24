@@ -1,0 +1,37 @@
+---
+pagination:
+  data: seriesMetadata
+  size: 1
+  alias: currentSeries
+  addAllPagesToCollections: true
+eleventyComputed:
+  permalink: /series/{{ currentSeries.slug }}/
+  title: "{{ currentSeries.name }} Series"
+  description: "{{ currentSeries.description }}"
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<p class="series-description">{{ currentSeries.description }}</p>
+
+<p><a href="/series/">← All series</a></p>
+
+{% set seriesItems = [] %}
+{% for post in collections.posts %}
+  {% if post.data.series == currentSeries.name %}
+    {% set _ = seriesItems.push({
+      url: post.url,
+      order: (post.data['series-order'] or 999999)
+    }) %}
+  {% endif %}
+{% endfor %}
+{% set seriesItems = seriesItems | sort(false, false, 'order') %}
+
+<p class="series-post-count">
+  {{ seriesItems | length }} article{% if seriesItems | length != 1 %}s{% endif %} in this series
+</p>
+
+{% for item in seriesItems %}
+  {% linkedPost item.url %}
+{% endfor %}
+{% endblock %}

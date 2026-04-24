@@ -59,6 +59,14 @@ function getPageKind(d) {
     return { url, stem, kind: 'tag' };
   }
 
+  if (url === '/series/') {
+    return { url, stem, kind: 'seriesListing' };
+  }
+
+  if (url.startsWith('/series/')) {
+    return { url, stem, kind: 'series' };
+  }
+
   if (stem.startsWith('/posts/')) {
     return { url, stem, kind: 'post' };
   }
@@ -97,6 +105,12 @@ function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
       return crumbs.concat(middle, { name: title || 'Post', url });
     }
 
+    case 'seriesListing':
+      return crumbs.concat({ name: 'Series', url: '/series/' });
+
+    case 'series':
+      return crumbs.concat({ name: 'Series', url: '/series/' }, { name: title || 'Series', url });
+
     case 'page':
     default:
       return crumbs.concat({ name: title || 'Page', url });
@@ -116,6 +130,8 @@ export default {
   isTag: (d) => getPageKind(d).kind === 'tag',
   isPost: (d) => getPageKind(d).kind === 'post',
   isAbout: (d) => d.page?.url === '/about/',
+  isSeries: (d) => getPageKind(d).kind === 'series',
+  isSeriesListing: (d) => getPageKind(d).kind === 'seriesListing',
 
   // Prefer the pre-generated og-image.jpg (posts only) over the raw featuredImage path.
   // The transform plugin's hashed filenames are not predictable at data-computation time,

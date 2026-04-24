@@ -1,6 +1,13 @@
 {% if series %}
-  {# Determine the series name from the current page front matter #}
   {% set seriesName = series %}
+
+  {# Find matching series metadata to get the slug for the series index page #}
+  {% set seriesMetaMatches = [] %}
+  {% for meta in seriesMetadata %}
+    {% if meta.name == seriesName %}
+      {% set _ = seriesMetaMatches.push(meta) %}
+    {% endif %}
+  {% endfor %}
 
   {# Collect all posts from the same series #}
   {% set seriesPosts = [] %}
@@ -20,7 +27,15 @@
   {% set seriesPosts = seriesPosts | sort(false, false, 'order') %}
 
   <nav class="series-toc" aria-label="Series navigation">
-    <p class="toc-heading">All posts in the {{ seriesName }} series</p>
+    <p class="toc-heading">
+      All posts in the
+      {% if seriesMetaMatches[0] %}
+        <a href="/series/{{ seriesMetaMatches[0].slug }}/">{{ seriesName }}</a>
+      {% else %}
+        {{ seriesName }}
+      {% endif %}
+      series
+    </p>
     <ol class="toc-list">
       {% for item in seriesPosts %}
         {% if item.isCurrent %}
@@ -30,7 +45,7 @@
             </a>
           </li>
         {% else %}
-          <li><a href="{{ item.url }}">{{ item.title }} </a></li>
+          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
         {% endif %}
       {% endfor %}
     </ol>
