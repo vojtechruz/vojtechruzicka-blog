@@ -8,10 +8,11 @@
   margin-bottom: var(--gap-xxl);
 
   &.linked-post-needs-review {
-    position: relative;
-    border-left: 3px solid var(--color-warning-border);
-    background: var(--color-warning-bg);
-    padding-left: 0.75rem;
+    //     TODO reenable this when reviewing posts
+    //     position: relative;
+    //     border-left: 3px solid var(--color-warning-border);
+    //     background: var(--color-warning-bg);
+    //     padding-left: 0.75rem;
   }
 }
 

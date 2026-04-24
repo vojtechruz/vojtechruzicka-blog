@@ -4,8 +4,7 @@ date: '2019-10-01'
 tags: ['Java', 'JavaFX']
 path: '/javafx-hello-world/'
 excerpt: 'Tutorial on how to build your first JavaFX application.'
-series: JavaFX
-series-order: 2
+series: javafx
 needsReview: true
 ---
 

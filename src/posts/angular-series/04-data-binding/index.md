@@ -5,8 +5,7 @@ tags: ['Angular']
 path: '/angular/04-data-binding/'
 excerpt:
   'Data binding allows you to sync data automatically in and out of components and fire events to external listeners.'
-series: 'Angular Tutorial'
-series-order: 4
+series: angular-tutorial
 needsReview: true
 ---
 

@@ -1,54 +1,35 @@
 {% if series %}
-  {% set seriesName = series %}
-
-  {# Find matching series metadata to get the slug for the series index page #}
-  {% set seriesMetaMatches = [] %}
+  {# Find series metadata by slug #}
+  {% set seriesMeta = null %}
   {% for meta in seriesMetadata %}
-    {% if meta.name == seriesName %}
-      {% set _ = seriesMetaMatches.push(meta) %}
+    {% if meta.slug == series %}
+      {% set seriesMeta = meta %}
     {% endif %}
   {% endfor %}
 
-  {# Collect all posts from the same series #}
-  {% set seriesPosts = [] %}
-  {% for post in collections.posts %}
-    {% if post.data.series and post.data.series == seriesName %}
-      {% set item = {
-        title: post.data.title,
-        url: post.url,
-        order: (post.data['series-order'] or 999999),
-        isCurrent: (post.url == page.url)
-      } %}
-      {% set _ = seriesPosts.push(item) %}
-    {% endif %}
-  {% endfor %}
-
-  {# Sort by numeric order #}
-  {% set seriesPosts = seriesPosts | sort(false, false, 'order') %}
-
-  <nav class="series-toc" aria-label="Series navigation">
-    <p class="toc-heading">
-      All posts in the
-      {% if seriesMetaMatches[0] %}
-        <a href="/series/{{ seriesMetaMatches[0].slug }}/">{{ seriesName }}</a>
-      {% else %}
-        {{ seriesName }}
-      {% endif %}
-      series
-    </p>
-    <ol class="toc-list">
-      {% for item in seriesPosts %}
-        {% if item.isCurrent %}
-          <li>
-            <a href="{{ item.url }}" aria-current="page" class="series-current">
-              {{ item.title }}
-            </a>
-          </li>
-        {% else %}
-          <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-    </ol>
-  </nav>
-  <hr class="series-toc-divider" aria-hidden="true">
+  {% if seriesMeta %}
+    <nav class="series-toc" aria-label="Series navigation">
+      <p class="toc-heading">
+        All posts in the
+        <a href="/series/{{ seriesMeta.slug }}/">{{ seriesMeta.name }}</a>
+        series
+      </p>
+      <ol class="toc-list">
+        {% for postUrl in seriesMeta.posts %}
+          {% for post in collections.posts %}
+            {% if post.url == postUrl %}
+              <li>
+                {% if post.url == page.url %}
+                  <a href="{{ post.url }}" aria-current="page" class="series-current">{{ post.data.title }}</a>
+                {% else %}
+                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </ol>
+    </nav>
+    <hr class="series-toc-divider" aria-hidden="true">
+  {% endif %}
 {% endif %}

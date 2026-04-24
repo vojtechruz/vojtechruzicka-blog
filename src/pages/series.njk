@@ -16,22 +16,11 @@ eleventyComputed:
 
 <p><a href="/series/">← All series</a></p>
 
-{% set seriesItems = [] %}
-{% for post in collections.posts %}
-  {% if post.data.series == currentSeries.name %}
-    {% set _ = seriesItems.push({
-      url: post.url,
-      order: (post.data['series-order'] or 999999)
-    }) %}
-  {% endif %}
-{% endfor %}
-{% set seriesItems = seriesItems | sort(false, false, 'order') %}
-
 <p class="series-post-count">
-  {{ seriesItems | length }} article{% if seriesItems | length != 1 %}s{% endif %} in this series
+  {{ currentSeries.posts | length }} article{% if currentSeries.posts | length != 1 %}s{% endif %} in this series
 </p>
 
-{% for item in seriesItems %}
-  {% linkedPost item.url %}
+{% for postUrl in currentSeries.posts %}
+  {% linkedPost postUrl %}
 {% endfor %}
 {% endblock %}

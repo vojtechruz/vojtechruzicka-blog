@@ -8,19 +8,13 @@ description: "All article series on this blog."
 {% block pageContent %}
 <ul class="series-list">
   {% for series in seriesMetadata %}
-    {% set seriesPostsList = [] %}
-    {% for post in collections.posts %}
-      {% if post.data.series == series.name %}
-        {% set _ = seriesPostsList.push(post) %}
-      {% endif %}
-    {% endfor %}
     <li class="series-list-item">
       <h2 class="series-list-item-title">
         <a href="/series/{{ series.slug }}/">{{ series.name }}</a>
       </h2>
       <p class="series-list-item-description">{{ series.description }}</p>
       <p class="series-list-item-count">
-        {{ seriesPostsList | length }} article{% if seriesPostsList | length != 1 %}s{% endif %}
+        {{ series.posts | length }} article{% if series.posts | length != 1 %}s{% endif %}
       </p>
     </li>
   {% endfor %}
