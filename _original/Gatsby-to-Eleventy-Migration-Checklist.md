@@ -62,7 +62,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Establish tag collection and tag list page generation.
 - [ ] Optional category collection (if categories are distinct from tags).
 - [ ] Implement pagination for the home/blog index and tag archives.
-- [ ] Yearly/monthly archives (if present in Gatsby).
 
 ## 4) Templates, layouts, and partials
 - [ ] Choose/implement base layout (HTML skeleton with head, header, footer, scripts).
@@ -77,7 +76,6 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Markdown rendering in templates (if needed)
   - [ ] Responsive images (eleventy-img shortcode)
   - [ ] External embeds (YouTube, Tweets, CodePen, etc.)
-  - [ ] Reading time (optional)
 
 ## 5) Markdown/MDX processing
 - [ ] If Gatsby used MDX, choose approach:
@@ -89,9 +87,7 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Heading anchors and table of contents (TOC)
   - [ ] Footnotes and task lists (if used)
 - [ ] Syntax highlighting for code blocks (Prism or eleventy-plugin-syntaxhighlight):
-  - [ ] Theme parity with Gatsby
-  - [ ] Language aliases (e.g., sh → bash)
-  - [ ] Line numbers/copy button (if used)
+  - [ ] Line numbers
 
 ## 6) Images and static assets
 - [ ] Migrate images from Gatsby static/src directories to Eleventy input/static dirs.
@@ -108,12 +104,10 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Open Graph and Twitter Card tags (image, title, description, type, url).
 - [ ] JSON-LD (BlogPosting, BreadcrumbList, WebSite search action) if previously used.
 - [ ] Pagination rel=prev/next and index/noindex as needed.
-- [ ] hreflang/i18n tags if multilingual.
 
 ## 8) Feeds, sitemap, robots, headers
 - [ ] RSS/Atom feed parity using @11ty/eleventy-plugin-rss.
 - [ ] Sitemap using @11ty/eleventy-plugin-sitemap (provide site URL, lastmod).
-- [ ] robots.txt replicated.
 - [ ] Security and cache headers (via Netlify headers file or framework equivalent).
 
 ## 9) Redirects and legacy URLs
@@ -157,11 +151,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Caching rules for static assets and HTML.
 - [ ] Image optimization cache directory persisted across builds (if supported).
 
-## 14) Internationalization (if applicable)
-- [x] Content organization by locale (e.g., content/en, content/cs).
-- [x] Locale switcher UI and routing.
-- [x] Per-locale metadata, hreflang, and canonical logic.
-
 ## 15) Accessibility and performance
 - [ ] Accessibility pass (semantics, labels, contrast, focus states, skip links).
 - [ ] Lighthouse: performance, accessibility, best practices, SEO matches or exceeds Gatsby.
@@ -182,10 +171,8 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Preserve drafts behavior (exclude drafts from production, include in local dev):
   - [ ] Implement Eleventy computed data or filters to exclude draft: true when ELEVENTY_ENV=production.
   - [ ] Keep drafts directory (e.g., drafts/) and add build ignore rules.
-- [ ] Authoring docs updated (README) for adding posts, tags, images, front matter keys.
 
 ## 18) Optional features parity
-- [x] PWA/offline: decide to keep, replace with Workbox, or drop.
 - [ ] Social image generation (OG images) via SSG step (Satori/Puppeteer/Cloud function).
 - [ ] Breadcrumbs and related posts logic.
 - [ ] Table of contents component on long posts.
@@ -207,22 +194,3 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Tag the repo/release and note migration date in README.
 
 --------------------------------------------------------------------------------
-
-## Quick mapping reference (Gatsby → Eleventy)
-- Site metadata: gatsby-config.mjs → _data/site.json
-- Pages/posts: src/pages or content directories → Eleventy content dirs (with permalinks)
-- Templates: React components → Nunjucks/Liquid/EJS layouts and includes
-- GraphQL data layer → Collections, data files, computed data
-- Images: gatsby-plugin-image → eleventy-img shortcode + templates
-- Plugins: gatsby-plugin-feed → @11ty/eleventy-plugin-rss
-- Sitemap: gatsby-plugin-sitemap → @11ty/eleventy-plugin-sitemap
-- Markdown: gatsby-transformer-remark/MDX → markdown-it or eleventy-plugin-mdx
-- Redirects: gatsby-node or gatsby-plugin-netlify → netlify.toml/_redirects
-- Build: gatsby build → eleventy build (+ asset bundler if used)
-
---------------------------------------------------------------------------------
-
-Notes
-- Keep a changelog of any unavoidable URL or behavior changes.
-- Prefer preserving URLs to avoid SEO impact; add 301s for any changes.
-- Test early on a staging domain and iterate before cutting over production.

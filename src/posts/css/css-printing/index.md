@@ -205,7 +205,7 @@ which. You can use the following mnemonic:
 Note that the browser is not 100% guaranteed to follow these rules when printing. It can decide to break this rule in
 favor of some other printing optimizations.
 
-There is a [good browser support](https://caniuse.com/#feat=css-widows-orphans) (as of 4/2020) for widows and orphans,
+There is [good browser support](https://caniuse.com/#feat=css-widows-orphans) (as of 4/2020) for widows and orphans,
 93.76%, except for Firefox.
 
 ## Hyperlinks
@@ -360,7 +360,7 @@ It is usually preferred to do as much as possible in CSS, but sometimes using JS
 
 It can be time-consuming to open print preview dialog in your browser whenever you make changes and want to check how
 your page looks when printing. Fortunately, in Developer Tools, you can easily emulate how the page would look like when
-printing without triggering he print dialog.
+printing without triggering the print dialog.
 
 ### Chrome
 
@@ -392,7 +392,7 @@ the user prefers a light or dark theme or reduced motion, you can show FPS and m
 In Firefox, you need just to click the `Toggle print media simulation for the page` button marked in red in the
 following image.
 
-![Emulater Print Rendering in Firefox](firefox-print-preview.png)
+![Emulate Print Rendering in Firefox](firefox-print-preview.png)
 
 ## Conclusion
 
