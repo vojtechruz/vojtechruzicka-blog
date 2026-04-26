@@ -6,38 +6,8 @@ permalink: /topics/
 
 {% block pageContent %}
 
-{% set topicsData = topicCategories | categoriesWithStats(collections.topicStats) %}
-
 <div class="topics-page-meta">{{ collections.topicStats | length }} topics · {{ collections.posts | length }} articles</div>
 
-<div class="topic-categories">
-  {% for category in topicsData.categories %}
-  <section class="topic-category">
-    <h2 class="topic-category-heading">{{ category.name }}</h2>
-    <ul class="topic-chips">
-      {% for topic in category.topics %}
-      <li>
-        <a href="/topics/{{ topic.slug }}/" class="topic-chip">
-          {{ topic.name }}<span class="topic-chip-count">{{ topic.count }}</span>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-  </section>
-  {% endfor %}
-</div>
-
-{% if topicsData.minor.length > 0 %}
-<section class="topic-minor">
-  <h2 class="topic-category-heading">Also writing about</h2>
-  <ul class="topic-chips">
-    {% for topic in topicsData.minor %}
-    <li>
-      <a href="/topics/{{ topic.slug }}/" class="topic-chip">{{ topic.name }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
+{% include "components/topic-browser.njk" %}
 
 {% endblock %}
