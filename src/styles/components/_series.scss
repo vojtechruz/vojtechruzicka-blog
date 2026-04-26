@@ -2,12 +2,15 @@
 @use '../utilities';
 
 .series-description {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   font-size: 1.05rem;
-  margin-bottom: var(--gap-large);
 }
 
-.series-post-count {
+.series-post-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-medium);
   color: var(--color-text-muted);
   font-size: 0.9rem;
   margin-bottom: var(--gap-large);
