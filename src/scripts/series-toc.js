@@ -1,11 +1,15 @@
 // Collapsible series TOC with localStorage persistence
 (() => {
   const nav = document.querySelector('nav.series-toc');
-  if (!nav) return;
+  if (!nav) {
+    return;
+  }
 
   const btn = nav.querySelector('.series-toc-toggle');
   const list = document.getElementById('series-toc-list');
-  if (!btn || !list) return;
+  if (!btn || !list) {
+    return;
+  }
 
   const STORAGE_KEY = 'series-toc-collapsed';
 
