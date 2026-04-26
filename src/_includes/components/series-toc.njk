@@ -22,10 +22,11 @@
           {% for post in collections.posts %}
             {% if post.url == postUrl %}
               <li>
+                {% set tocTitle = post.data.seriesTitle or post.data.title %}
                 {% if post.url == page.url %}
-                  <a href="{{ post.url }}" aria-current="page" class="series-current">{{ post.data.title }}</a>
+                  <a href="{{ post.url }}" aria-current="page" class="series-current">{{ tocTitle }}</a>
                 {% else %}
-                  <a href="{{ post.url }}">{{ post.data.title }}</a>
+                  <a href="{{ post.url }}">{{ tocTitle }}</a>
                 {% endif %}
               </li>
             {% endif %}

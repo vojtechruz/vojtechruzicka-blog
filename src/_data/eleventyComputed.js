@@ -142,6 +142,16 @@ export default {
       ? (d.site?.url || '') + d.ogImageUrl
       : shareImageUrl({ featuredImage: d.featuredImage, page: d.page, site: d.site }),
 
+  // Short title for use within a series TOC — strips everything up to and including the first ': '
+  seriesTitle: (d) => {
+    if (!d.series || !d.title) {
+      return null;
+    }
+
+    const idx = d.title.indexOf(': ');
+    return idx !== -1 ? d.title.slice(idx + 2) : null;
+  },
+
   // Dates
   publishedDate: (d) => d.date,
   modifiedDate: (d) => d.dateModified || d.date,
