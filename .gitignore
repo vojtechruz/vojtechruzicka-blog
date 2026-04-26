@@ -7,3 +7,5 @@ public
 /*.iml
 .env.development
 _site/
+review.md
+_out/

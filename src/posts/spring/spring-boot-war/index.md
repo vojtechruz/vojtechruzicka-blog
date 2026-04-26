@@ -1,7 +1,7 @@
 ---
 title: 'Deploying Spring Boot app as WAR'
 date: '2019-07-20'
-tags: ['Java', 'Spring']
+tags: ['Spring', 'Java']
 path: '/spring-boot-war/'
 excerpt:
   'How to change your JAR Spring Boot app to be packaged and deployed as WAR without sacrificing direct execution

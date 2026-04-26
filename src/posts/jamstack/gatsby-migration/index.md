@@ -1,7 +1,7 @@
 ---
 title: 'Migration to GatsbyJS and JAM stack from WordPress'
 date: '2018-03-25'
-tags: ['Blogging', 'JAMStack']
+tags: ['JAMStack', 'Blogging']
 path: '/gatsby-migration/'
 excerpt: 'How and why I migrated from WordPress to static JAM Stack site built with Gatsby JS.'
 needsReview: true

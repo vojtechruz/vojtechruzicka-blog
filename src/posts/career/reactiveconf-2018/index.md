@@ -2,7 +2,7 @@
 title: 'Reactive Conf 2018: My volunteering experience'
 date: '2018-11-09'
 dateModified: '2018-12-21'
-tags: ['Javascript']
+tags: ['Career', 'Javascript']
 path: '/reactiveconf-2018/'
 excerpt: 'My experience as a volunteer at Reactive Conf Prague 2018.'
 needsReview: true

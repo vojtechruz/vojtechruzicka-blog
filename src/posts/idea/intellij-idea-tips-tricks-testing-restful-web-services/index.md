@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA integrated HTTP Client'
 date: '2018-01-17'
 dateModified: '2019-06-20'
-tags: ['IDEA', 'REST']
+tags: ['IntelliJ IDEA', 'REST']
 path: '/intellij-idea-tips-tricks-testing-restful-web-services/'
 featuredImage: './intellij-idea-icon.png'
 excerpt:

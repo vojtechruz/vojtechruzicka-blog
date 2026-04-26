@@ -1,7 +1,7 @@
 ---
 title: 'Configuring IntelliJ IDEA code style per folder'
 date: '2019-07-09'
-tags: ['IDEA']
+tags: ['IntelliJ IDEA']
 path: '/idea-editorconfig/'
 excerpt: How to define IDE settings per folder in IntelliJ IDEA including IDEA's custom settings using EditorConfig.
 needsReview: true

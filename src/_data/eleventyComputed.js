@@ -75,7 +75,7 @@ function getPageKind(d) {
 }
 
 /** Build breadcrumb array based on kind */
-function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
+function buildBreadcrumbs({ url, title, tags, kind, tagName, seriesMetadata }) {
   const crumbs = [{ name: 'Home', url: '/' }];
 
   switch (kind) {
@@ -97,6 +97,15 @@ function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
     }
 
     case 'post': {
+      const postSeries = Array.isArray(seriesMetadata) ? seriesMetadata.find((s) => s.posts.includes(url)) : null;
+      if (postSeries) {
+        return crumbs.concat(
+          { name: 'Series', url: '/series/' },
+          { name: postSeries.name, url: `/series/${postSeries.slug}/` },
+          { name: title || 'Post', url },
+        );
+      }
+
       const primary = pickPrimaryTag(tags);
       const middle = [{ name: 'Topics', url: '/archives/' }];
       if (primary) {
@@ -165,6 +174,7 @@ export default {
       tags: d.tags,
       kind,
       tagName: d.tag,
+      seriesMetadata: d.seriesMetadata,
     });
   },
 

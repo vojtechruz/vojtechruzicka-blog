@@ -1,7 +1,7 @@
 ---
 title: 'Comparing files and folders in IntelliJ IDEA'
 date: '2019-10-25'
-tags: ['IDEA']
+tags: ['IntelliJ IDEA']
 path: '/idea-compare-files-and-folders/'
 excerpt:
   'IntelliJ IDEA offers numerous ways of comparing files, folders and code snippets and even synchronizing folder

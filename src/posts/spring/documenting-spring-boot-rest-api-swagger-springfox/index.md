@@ -1,7 +1,7 @@
 ---
 title: Documenting Spring Boot REST API with Swagger and SpringFox
 date: '2018-02-16'
-tags: ['REST', 'Spring', 'Java']
+tags: ['Spring', 'REST' , 'Java']
 path: '/documenting-spring-boot-rest-api-swagger-springfox/'
 excerpt: 'How to document your Spring Boot REST APIs using Swagger with SpringFox?'
 needsReview: true

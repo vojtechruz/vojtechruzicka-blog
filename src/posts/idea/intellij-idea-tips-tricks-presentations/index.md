@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA Tips & Tricks: Presentations'
 date: '2017-07-12'
 dateModified: '2020-04-15'
-tags: ['IDEA']
+tags: ['IntelliJ IDEA']
 path: '/intellij-idea-tips-tricks-presentations/'
 excerpt:
   How to make the most of the IntelliJ IDEA's view modes to make the best presentations possible including visualization

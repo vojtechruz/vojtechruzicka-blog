@@ -2,7 +2,7 @@
 title: Telescoping Constructor Pattern alternatives
 date: '2016-05-11'
 dateModified: '2019-07-03'
-tags: ['OOP', 'Java']
+tags: ['Java','OOP']
 path: '/avoid-telescoping-constructor-pattern/'
 excerpt:
   'Telescoping constructor pattern is quite common practice. It has, however, some shortcomings. What are the
