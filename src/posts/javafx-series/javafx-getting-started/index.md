@@ -1,7 +1,7 @@
 ---
 title: 'JavaFX Tutorial: Getting started'
 date: '2019-10-01'
-tags: ['Java', 'JavaFX']
+topics: ['Java', 'JavaFX']
 path: '/javafx-getting-started/'
 excerpt: 'How to setup and start working with JavaFX using Maven, Gradle or JavaFX SDK.'
 series: javafx

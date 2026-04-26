@@ -10,18 +10,18 @@ export function getPostDate($) {
   return $('time.post-date, .post-date time');
 }
 
-export function getPostTags($) {
-  return $('ul.post-tags a.tag-name');
+export function getPostTopics($) {
+  return $('ul.post-topics a.topic-name');
 }
 
-export function getPostTagNames($) {
-  return getPostTags($)
+export function getPostTopicNames($) {
+  return getPostTopics($)
     .map((_, el) => $(el).text().trim())
     .get();
 }
 
-export function getPostTagHrefs($) {
-  return getPostTags($)
+export function getPostTopicHrefs($) {
+  return getPostTopics($)
     .map((_, el) => $(el).attr('href'))
     .get();
 }

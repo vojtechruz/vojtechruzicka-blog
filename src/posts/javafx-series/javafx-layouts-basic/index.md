@@ -1,7 +1,7 @@
 ---
 title: 'JavaFX Tutorial: Basic layouts'
 date: '2019-10-01'
-tags: ['Java', 'JavaFX']
+topics: ['Java', 'JavaFX']
 path: '/javafx-layouts-basic/'
 excerpt: 'How to organize and layout your GUI components in JavaFX application.'
 series: javafx

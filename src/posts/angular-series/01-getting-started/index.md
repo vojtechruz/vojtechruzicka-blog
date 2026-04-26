@@ -1,7 +1,7 @@
 ---
 title: 'Angular Tutorial 1: Getting Started'
 date: '2020-07-20'
-tags: ['Angular']
+topics: ['Angular']
 path: '/angular/01-getting-started/'
 excerpt: 'How to get started with Angular from scratch, part 1.'
 series: angular-tutorial

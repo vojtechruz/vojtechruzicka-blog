@@ -33,12 +33,12 @@ export default function linkedPost(permalink, maybeCollections) {
   const readableDate = readableDateUTC(post.date);
   const htmlDate = htmlDateString(post.date);
 
-  const tags = Array.isArray(data.tags) ? data.tags : [];
-  const tagLinks = tags
-    .map((tag) => {
-      const name = String(tag);
+  const topics = Array.isArray(data.topics) ? data.topics : [];
+  const topicLinks = topics
+    .map((topic) => {
+      const name = String(topic);
       const slug = slugify(name);
-      return `<li><a href="/tags/${slug}/"><span class="tag-name">${escapeHtml(name)}</span></a></li>`;
+      return `<li><a href="/topics/${slug}/"><span class="topic-name">${escapeHtml(name)}</span></a></li>`;
     })
     .join('');
 
@@ -78,8 +78,8 @@ export default function linkedPost(permalink, maybeCollections) {
       ${escapeHtml(readableDate)}
     </time>
     ${seriesBadge}
-    <ul class="post-tags" aria-label="Tags">
-      ${tagLinks}
+    <ul class="post-topics" aria-label="Topics">
+      ${topicLinks}
     </ul>
   </div>
   <div>

@@ -1,17 +1,17 @@
 ---
 title: "Topics"
-permalink: /archives/
+permalink: /topics/
 ---
 {% extends "layouts/page.njk" %}
 
 {% block pageContent %}
 
-{% set tagsByCount = collections.tagStats | sortByCountThenName %}
+{% set topicsByCount = collections.topicStats | sortByCountThenName %}
 
-<ul class="tag-list">
-  {% for tag in tagsByCount %}
+<ul class="topic-list">
+  {% for topic in topicsByCount %}
     <li>
-      <a href="/tags/{{ tag.name | slugify }}/">{{ tag.name }} ({{ tag.count }})</a>
+      <a href="/topics/{{ topic.name | slugify }}/">{{ topic.name }} ({{ topic.count }})</a>
     </li>
   {% endfor %}
 </ul>

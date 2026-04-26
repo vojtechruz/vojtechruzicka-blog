@@ -19,12 +19,12 @@ export default function linkedSeries(slug) {
   const count = series.posts.length;
   const articleLabel = count === 1 ? 'article' : 'articles';
 
-  const tags = Array.isArray(series.tags) ? series.tags : [];
-  const tagLinks = tags
-    .map((tag) => {
-      const name = String(tag);
-      const tagSlug = slugify(name);
-      return `<li><a href="/tags/${tagSlug}/"><span class="tag-name">${escapeHtml(name)}</span></a></li>`;
+  const topics = Array.isArray(series.topics) ? series.topics : [];
+  const topicLinks = topics
+    .map((topic) => {
+      const name = String(topic);
+      const topicSlug = slugify(name);
+      return `<li><a href="/topics/${topicSlug}/"><span class="topic-name">${escapeHtml(name)}</span></a></li>`;
     })
     .join('');
 
@@ -40,8 +40,8 @@ export default function linkedSeries(slug) {
   </h2>
   <div class="front-post-info">
     <span class="series-article-count">${count} ${articleLabel}</span>
-    <ul class="post-tags" aria-label="Tags">
-      ${tagLinks}
+    <ul class="post-topics" aria-label="Topics">
+      ${topicLinks}
     </ul>
   </div>
   <div>

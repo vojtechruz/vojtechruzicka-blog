@@ -2,7 +2,7 @@
 title: 'IDEA EduTools: Learning directly in your IDE'
 date: '2019-05-05'
 dateModified: '2020-03-16'
-tags: ['IntelliJ IDEA']
+topics: ['IntelliJ IDEA']
 path: '/idea-edu-tools/'
 excerpt:
   'With IntelliJ IDEA Edu Tools plugin you can study various programming courses directly in your IDE and work on all

@@ -1,7 +1,7 @@
 ---
 title: 'Angular Tutorial 2: Building Blocks'
 date: '2020-07-21'
-tags: ['Angular']
+topics: ['Angular']
 path: '/angular/02-building-blocks/'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
 series: angular-tutorial

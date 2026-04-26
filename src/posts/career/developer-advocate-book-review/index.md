@@ -1,7 +1,7 @@
 ---
 title: 'Developer Advocate Book Review'
 date: '2020-04-20'
-tags: ['Books', 'Career']
+topics: ['Books', 'Career']
 path: '/developer-advocate-book-review/'
 featuredImage: './developer-advocate-book-review.png'
 excerpt:

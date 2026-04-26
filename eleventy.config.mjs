@@ -1,7 +1,7 @@
 import { registerPassthrough, registerLayouts, configureNunjucks } from "./config/basic-config.js";
 import registerPostsCollection from "./config/collections/posts.js";
-import registerTagListCollection from "./config/collections/tag-list.js";
-import registerTagStatsCollection from "./config/collections/tag-stats.js";
+import registerTopicListCollection from "./config/collections/topic-list.js";
+import registerTopicStatsCollection from "./config/collections/topic-stats.js";
 import registerSassPlugin from "./config/plugins/sass.js";
 import registerEsbuildPlugin from "./config/plugins/esbuild.js";
 import registerImagePlugin from "./config/plugins/image.js";
@@ -29,8 +29,8 @@ export default async function (eleventyConfig) {
 
   // Collections
   registerPostsCollection(eleventyConfig);
-  registerTagListCollection(eleventyConfig);
-  registerTagStatsCollection(eleventyConfig);
+  registerTopicListCollection(eleventyConfig);
+  registerTopicStatsCollection(eleventyConfig);
 
   // Layout aliases
   registerLayouts(eleventyConfig);

@@ -11,11 +11,11 @@ import eleventyComputed from '../src/_data/eleventyComputed.js';
  * Build a minimal data object for eleventyComputed.breadcrumbs().
  * filePathStem must start with /posts/ for getPageKind to return 'post'.
  */
-function makePostData({ url, title = 'Test Post', tags = [], seriesMeta = seriesMetadata } = {}) {
+function makePostData({ url, title = 'Test Post', topics = [], seriesMeta = seriesMetadata } = {}) {
   return {
     page: { url, filePathStem: `/posts${url}index` },
     title,
-    tags,
+    topics,
     seriesMetadata: seriesMeta,
   };
 }
@@ -87,10 +87,10 @@ describe('breadcrumbs – series posts (unit)', () => {
     expect(crumbs[1]).toEqual({ name: 'Series', url: '/series/' });
   });
 
-  it('does not include /archives/ for series posts', () => {
+  it('does not include /topics/ for series posts', () => {
     for (const series of seriesMetadata) {
       const crumbs = eleventyComputed.breadcrumbs(makePostData({ url: series.posts[0] }));
-      expect(crumbs.some((c) => c.url === '/archives/')).toBe(false);
+      expect(crumbs.some((c) => c.url === '/topics/')).toBe(false);
     }
   });
 });
@@ -102,38 +102,38 @@ describe('breadcrumbs – series posts (unit)', () => {
 describe('breadcrumbs – non-series posts (unit)', () => {
   const url = '/some-standalone-post/';
 
-  it('routes non-series post with a tag through Topics hierarchy', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: ['JavaScript'] }));
-    expect(crumbs.map((c) => c.url)).toEqual(['/', '/archives/', '/tags/javascript/', url]);
+  it('routes non-series post with a topic through Topics hierarchy', () => {
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: ['JavaScript'] }));
+    expect(crumbs.map((c) => c.url)).toEqual(['/', '/topics/', '/topics/javascript/', url]);
   });
 
   it('includes Topics as second crumb', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: ['Java'] }));
-    expect(crumbs[1]).toEqual({ name: 'Topics', url: '/archives/' });
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: ['Java'] }));
+    expect(crumbs[1]).toEqual({ name: 'Topics', url: '/topics/' });
   });
 
-  it('uses the first non-generic tag as primary', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: ['blog', 'Spring'] }));
-    expect(crumbs[2]).toEqual({ name: 'Spring', url: '/tags/spring/' });
+  it('uses the first non-generic topic as primary', () => {
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: ['blog', 'Spring'] }));
+    expect(crumbs[2]).toEqual({ name: 'Spring', url: '/topics/spring/' });
   });
 
-  it('omits the tag level when no tags are present', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: [] }));
-    expect(crumbs.map((c) => c.url)).toEqual(['/', '/archives/', url]);
+  it('omits the topic level when no topics are present', () => {
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: [] }));
+    expect(crumbs.map((c) => c.url)).toEqual(['/', '/topics/', url]);
   });
 
-  it('produces 4 crumbs when a tag is present', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: ['Java'] }));
+  it('produces 4 crumbs when a topic is present', () => {
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: ['Java'] }));
     expect(crumbs).toHaveLength(4);
   });
 
-  it('produces 3 crumbs when no tags are present', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: [] }));
+  it('produces 3 crumbs when no topics are present', () => {
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: [] }));
     expect(crumbs).toHaveLength(3);
   });
 
   it('never produces a /series/ crumb for a non-series URL', () => {
-    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, tags: ['Java'] }));
+    const crumbs = eleventyComputed.breadcrumbs(makePostData({ url, topics: ['Java'] }));
     expect(crumbs.some((c) => c.url.startsWith('/series/'))).toBe(false);
   });
 });
@@ -183,14 +183,14 @@ describe('breadcrumbs – visual nav on series posts', () => {
     }
   });
 
-  it('series post breadcrumbs do not link to /archives/', () => {
+  it('series post breadcrumbs do not link to /topics/', () => {
     for (const series of seriesMetadata) {
       for (const postUrl of series.posts) {
         const $ = loadPage(postUrl);
         const hrefs = $('nav.breadcrumbs a')
           .map((_, el) => $(el).attr('href'))
           .get();
-        expect(hrefs, `unexpected /archives/ on ${postUrl}`).not.toContain('/archives/');
+        expect(hrefs, `unexpected /topics/ on ${postUrl}`).not.toContain('/topics/');
       }
     }
   });
@@ -202,12 +202,12 @@ describe('breadcrumbs – visual nav on non-series posts', () => {
     expect($('nav.breadcrumbs').length).toBe(1);
   });
 
-  it('links to /archives/', () => {
+  it('links to /topics/', () => {
     const $ = loadPage(NON_SERIES_POST_URL);
     const hrefs = $('nav.breadcrumbs a')
       .map((_, el) => $(el).attr('href'))
       .get();
-    expect(hrefs).toContain('/archives/');
+    expect(hrefs).toContain('/topics/');
   });
 
   it('does not link to /series/', () => {
@@ -270,13 +270,13 @@ describe('breadcrumbs – JSON-LD BreadcrumbList on series posts', () => {
     }
   });
 
-  it('BreadcrumbList has no item pointing to /archives/', () => {
+  it('BreadcrumbList has no item pointing to /topics/', () => {
     for (const series of seriesMetadata) {
       for (const postUrl of series.posts) {
         const blist = extractBreadcrumbList(loadPageHtml(postUrl));
         expect(
-          blist.itemListElement.some((i) => i.item.includes('/archives/')),
-          `unexpected /archives/ item on ${postUrl}`,
+          blist.itemListElement.some((i) => i.item.includes('/topics/')),
+          `unexpected /topics/ item on ${postUrl}`,
         ).toBe(false);
       }
     }
@@ -289,10 +289,10 @@ describe('breadcrumbs – JSON-LD BreadcrumbList on non-series posts', () => {
     expect(blist).not.toBeNull();
   });
 
-  it('item at position 2 points to /archives/ with name "Topics"', () => {
+  it('item at position 2 points to /topics/ with name "Topics"', () => {
     const blist = extractBreadcrumbList(loadPageHtml(NON_SERIES_POST_URL));
     const item = blist.itemListElement.find((i) => i.position === 2);
-    expect(item.item).toMatch(/\/archives\/$/);
+    expect(item.item).toMatch(/\/topics\/$/);
     expect(item.name).toBe('Topics');
   });
 

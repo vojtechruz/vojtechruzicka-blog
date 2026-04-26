@@ -2,7 +2,7 @@
 title: 'Practicing coding interviews online with a real interviewer using Pramp'
 date: '2017-08-17'
 dateModified: '2022-01-11'
-tags: ['Career']
+topics: ['Career']
 path: '/practicing-coding-interview-pramp/'
 excerpt:
   'Coding Interviews can be hard. Knowing algorithms and data structures is required, but not enough. You need to

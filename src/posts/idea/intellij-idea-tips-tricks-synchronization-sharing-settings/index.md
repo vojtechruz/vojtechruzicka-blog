@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA Tips: Synchronization and Sharing of Settings'
 date: '2018-01-24'
 dateModified: '2019-07-09'
-tags: ['IntelliJ IDEA']
+topics: ['IntelliJ IDEA']
 path: '/intellij-idea-tips-tricks-synchronization-sharing-settings/'
 excerpt:
   'Did you know IDEA offers two ways of synchronization of you settings among multiple instances of your IDE? You can

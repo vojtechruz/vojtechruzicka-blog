@@ -1,7 +1,7 @@
 ---
 title: 'Destructuring objects and arrays in JavaScript'
 date: '2019-02-03'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/destructuring-javascript/'
 excerpt: 'Destructuring allows you to assign items from arrays or properties of objects into single variables easily.'
 needsReview: true

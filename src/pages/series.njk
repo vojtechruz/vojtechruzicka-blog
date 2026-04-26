@@ -15,11 +15,11 @@ eleventyComputed:
 <p class="series-description">{{ currentSeries.description }}</p>
 
 <div class="series-post-info">
-  <span class="series-article -count">{{ currentSeries.posts | length }} article{% if currentSeries.posts | length != 1 %}s{% endif %} in this series</span>
-  {% if currentSeries.tags %}
-  <ul class="post-tags" aria-label="Tags">
-    {% for tag in currentSeries.tags %}
-    <li><a href="/tags/{{ tag | slugify }}/"><span class="tag-name">{{ tag }}</span></a></li>
+  <span class="series-post-count">{{ currentSeries.posts | length }} article{% if currentSeries.posts | length != 1 %}s{% endif %} in this series</span>
+  {% if currentSeries.topics %}
+  <ul class="post-topics" aria-label="Topics">
+    {% for topic in currentSeries.topics %}
+    <li><a href="/topics/{{ topic | slugify }}/"><span class="topic-name">{{ topic }}</span></a></li>
     {% endfor %}
   </ul>
   {% endif %}

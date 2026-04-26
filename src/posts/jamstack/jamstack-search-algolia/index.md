@@ -2,7 +2,7 @@
 title: 'Adding search to your static JAMStack site'
 date: '2018-06-17'
 dateModified: '2022-02-15'
-tags: ['JAMStack']
+topics: ['JAMStack']
 path: '/jamstack-search-algolia/'
 excerpt: 'How to add search option to your static JAMStack site using Algolia Search and Algolia DocSearch.'
 needsReview: true

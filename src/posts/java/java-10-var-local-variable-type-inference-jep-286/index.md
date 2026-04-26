@@ -2,7 +2,7 @@
 title: 'Java 10 – var – Local Variable Type Inference (JEP-286)'
 date: '2018-01-04'
 dateModified: '2023-11-11'
-tags: ['Java']
+topics: ['Java']
 path: '/java-10-var-local-variable-type-inference-jep-286/'
 excerpt:
   'In Java 10, you no longer need to explicitly declare a type of local variables, which significantly reduces

@@ -1,7 +1,7 @@
 ---
 title: 'Book Review: 256 Bloghacks'
 date: '2017-10-09'
-tags: ['Books', 'Blogging', 'Career']
+topics: ['Books', 'Blogging', 'Career']
 path: '/book-review-256-bloghacks/'
 excerpt: 'A detailed review of a guide to blogging by Yegor Bugayenko.'
 needsReview: true

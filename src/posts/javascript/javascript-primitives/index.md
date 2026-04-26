@@ -2,7 +2,7 @@
 title: 'Javascript Primitives Guide'
 date: '2018-01-31'
 dateModified: '2020-01-10'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/javascript-primitives/'
 excerpt:
   'What are primitives in Javascript? What pitfalls to watch for? What are their object wrappers and when should you use

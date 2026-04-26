@@ -38,9 +38,9 @@
       <div class="post-metadata">
         <div class="post-metadata-primary" >
           <span class="date-published">{{date | readableDate}}</span>
-          <ul class="post-tags">
-            {% for tag in tags %}
-            <li><a class="tag-name" href="/tags/{{ tag | slugify }}/">{{tag}}</a></li>
+          <ul class="post-topics">
+            {% for topic in topics %}
+            <li><a class="topic-name" href="/topics/{{ topic | slugify }}/">{{topic}}</a></li>
             {% endfor %}
           </ul>
         </div>
@@ -64,7 +64,7 @@
   </article>
 
   {% if not series %}
-    {% set currentPageObj = { url: page.url, data: { tags: tags, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
+    {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
     {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
     {% if related.length > 0 %}
       <section class="related-posts" aria-label="Related posts">

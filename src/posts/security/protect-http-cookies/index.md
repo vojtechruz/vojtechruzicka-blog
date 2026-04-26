@@ -2,7 +2,7 @@
 title: 'How to protect your HTTP Cookies'
 date: '2018-01-18'
 dateModified: '2023-11-06'
-tags: ['Security', 'HTTP']
+topics: ['Security', 'HTTP']
 path: '/protect-http-cookies/'
 excerpt:
   'Protecting your sensitive cookies is very important as stolen session cookie means an attacker can take your identity

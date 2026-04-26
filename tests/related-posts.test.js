@@ -6,11 +6,11 @@ import { getRelatedPosts } from '../config/filters/related-posts.js';
 // Unit tests for getRelatedPosts()
 // ---------------------------------------------------------------------------
 
-function makePost(url, tags = [], extra = {}) {
+function makePost(url, topics = [], extra = {}) {
   return {
     url,
     date: extra.date || new Date('2024-01-01'),
-    data: { tags, title: url, ...extra },
+    data: { topics, title: url, ...extra },
   };
 }
 
@@ -46,16 +46,16 @@ describe('getRelatedPosts – unit tests', () => {
     expect(results.find((p) => p.url === '/draft/')).toBeUndefined();
   });
 
-  it('requires at least one shared tag', () => {
+  it('requires at least one shared topic', () => {
     const results = getRelatedPosts(postA, pool, 10);
     expect(results.find((p) => p.url === postD.url)).toBeUndefined();
   });
 
-  it('ranks by number of shared tags (most shared first)', () => {
+  it('ranks by number of shared topics (most shared first)', () => {
     // postA has ['Java', 'Spring']
-    // postE has ['Java', 'Spring', 'OOP'] → 2 shared tags
-    // postB has ['Java'] → 1 shared tag
-    // postC has ['Spring', 'OOP'] → 1 shared tag
+    // postE has ['Java', 'Spring', 'OOP'] → 2 shared topics
+    // postB has ['Java'] → 1 shared topic
+    // postC has ['Spring', 'OOP'] → 1 shared topic
     const results = getRelatedPosts(postA, pool, 10);
     expect(results[0].url).toBe('/e/');
   });
@@ -65,7 +65,7 @@ describe('getRelatedPosts – unit tests', () => {
     expect(results.length).toBe(2);
   });
 
-  it('uses date as tiebreaker (newer first) when tag overlap is equal', () => {
+  it('uses date as tiebreaker (newer first) when topic overlap is equal', () => {
     const older = makePost('/old/', ['Java'], { date: new Date('2020-01-01') });
     const newer = makePost('/new/', ['Java'], { date: new Date('2024-06-01') });
     const current = makePost('/me/', ['Java']);
@@ -81,28 +81,28 @@ describe('getRelatedPosts – unit tests', () => {
     expect(results[1].url).toBe('/b/');
   });
 
-  it('fills remaining slots with tag-based matches after explicit posts', () => {
-    // current shares Java+Spring; explicit is postD (Angular, no shared tags but explicit)
-    // wait — postD has Angular only, it's in pool but excluded from tag matches
-    // Let's use postB as explicit, then tag matches fill the rest
+  it('fills remaining slots with topic-based matches after explicit posts', () => {
+    // current shares Java+Spring; explicit is postD (Angular, no shared topics but explicit)
+    // wait — postD has Angular only, it's in pool but excluded from topic matches
+    // Let's use postB as explicit, then topic matches fill the rest
     const current = makePost('/me/', ['Java', 'Spring'], { relatedPosts: ['/b/'] });
     const results = getRelatedPosts(current, pool, 3);
     expect(results[0].url).toBe('/b/'); // explicit first
-    expect(results.length).toBe(3); // filled by tag matches
+    expect(results.length).toBe(3); // filled by topic matches
     expect(results.find((p) => p.url === '/b/')).toBeDefined();
     // postB should not appear twice
     const urls = results.map((r) => r.url);
     expect(new Set(urls).size).toBe(urls.length);
   });
 
-  it('does not duplicate explicit posts in tag-based results', () => {
+  it('does not duplicate explicit posts in topic-based results', () => {
     const current = makePost('/me/', ['Java', 'Spring'], { relatedPosts: ['/e/'] });
     const results = getRelatedPosts(current, pool, 10);
     const urls = results.map((r) => r.url);
     expect(urls.filter((u) => u === '/e/').length).toBe(1);
   });
 
-  it('returns empty when current post has no tags and no explicit related', () => {
+  it('returns empty when current post has no topics and no explicit related', () => {
     const noTags = makePost('/lonely/', []);
     const results = getRelatedPosts(noTags, pool, 10);
     expect(results).toEqual([]);

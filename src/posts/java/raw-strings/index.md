@@ -2,7 +2,7 @@
 title: 'Java Raw String Literals'
 date: '2018-11-26'
 dateModified: '2019-06-24'
-tags: ['Java']
+topics: ['Java']
 path: '/raw-strings/'
 excerpt:
   "Java finally brings support for raw strings. They can span multiple lines and you don't need to escape special

@@ -2,7 +2,7 @@
 title: 'Detecting vulnerable dependencies in IntelliJ IDEA'
 date: '2019-06-07'
 dateModified: '2022-05-22'
-tags: ['IntelliJ IDEA', 'Security']
+topics: ['IntelliJ IDEA', 'Security']
 path: '/idea-snyk-plugin/'
 excerpt: 'How to detect third party libraries with security vulnerabilities directly in IntelliJ IDEA.'
 needsReview: true

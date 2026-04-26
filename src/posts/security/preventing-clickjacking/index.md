@@ -2,7 +2,7 @@
 title: Preventing Clickjacking
 date: '2017-04-10'
 dateModified: '2023-10-04'
-tags: ['Security']
+topics: ['Security']
 path: '/preventing-clickjacking/'
 excerpt:
   'Clickjacking is an attack, where the user is tricked into performing an unwanted action by clicking on a seemingly

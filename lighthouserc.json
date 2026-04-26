@@ -6,7 +6,7 @@
         "http://localhost/index.html",
         "http://localhost/break-java-generics-naming-convention/",
         "http://localhost/about/",
-        "http://localhost/tags/java/"
+        "http://localhost/topics/java/"
       ],
       "numberOfRuns": 3
     },

@@ -1,7 +1,7 @@
 ---
 title: Avoid Utility Classes
 date: '2017-03-07'
-tags: ['Java', 'OOP']
+topics: ['Java', 'OOP']
 path: '/avoid-utility-classes/'
 excerpt: 'Utility classes, while popular, have some serious implications and you should think twice before using them.'
 needsReview: true

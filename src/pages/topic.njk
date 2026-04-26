@@ -1,0 +1,41 @@
+---
+pagination:
+  data: collections.topicList   # iterate over all topics
+  size: 1                     # one page per topic
+  alias: topic                  # variable name inside template
+  addAllPagesToCollections: true
+eleventyComputed:
+  permalink: /topics/{{ topic | slugify }}/index.html
+  title: 'Posts about {{topic}}'
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+
+{# Filter posts for this topic #}
+{% set topicPosts = [] %}
+{% for post in collections.posts %}
+  {% if post.data.topics and topic in post.data.topics %}
+    {% set _ = topicPosts.push(post) %}
+  {% endif %}
+{% endfor %}
+<p>
+  <a href="/topics/"> Browse all topics </a>
+</p>
+
+<p>
+  There {% if topicPosts | length == 1 %}is {% else %}are {% endif %}
+  {% if topicPosts | length == 1 %}one{% else %}{{ topicPosts | length }}{% endif %}
+  post{% if topicPosts | length != 1 %}s{% endif %}
+  about <strong>{{ topic }}</strong>:
+</p>
+
+<ul>
+  {% for post in topicPosts %}
+    {% if post.data.topics and topic in post.data.topics %}
+      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+{% endblock %}

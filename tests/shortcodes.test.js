@@ -100,7 +100,7 @@ describe('linkedPost shortcode', () => {
         date: new Date('2023-01-01'),
         data: {
           title: 'Test Post',
-          tags: ['java', 'spring'],
+          topics: ['Java', 'Spring'],
           excerpt: 'This is a test post excerpt.',
           draftStatus: 'ready',
         },
@@ -114,8 +114,10 @@ describe('linkedPost shortcode', () => {
     expect(result).toContain('href="/posts/test-post/"');
     expect(result).toContain('Test Post');
     expect(result).toContain('This is a test post excerpt.');
-    expect(result).toContain('java');
-    expect(result).toContain('spring');
+    expect(result).toContain('/topics/java/');
+    expect(result).toContain('/topics/spring/');
+    expect(result).toContain('Java');
+    expect(result).toContain('Spring');
     expect(result).toContain('Ready');
   });
 

@@ -2,7 +2,7 @@
 title: 'Java Cloning Problems'
 date: '2017-06-07'
 dateModified: '2019-07-03'
-tags: ['Java']
+topics: ['Java']
 path: '/java-cloning-problems/'
 excerpt:
   Java's mechanism for copying objects is deeply flawed. What are the alternatives? What are the pitfalls if you decide

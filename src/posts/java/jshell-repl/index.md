@@ -1,7 +1,7 @@
 ---
 title: 'JShell - New REPL tool in Java 9 for quick prototyping'
 date: '2018-04-20'
-tags: ['Java']
+topics: ['Java']
 path: '/jshell-repl/'
 excerpt:
   'From version 9, Java now has its own interactive REPL console, which is useful for quick checks, prototyping and

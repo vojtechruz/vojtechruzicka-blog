@@ -1,7 +1,7 @@
 ---
 title: 'Adjusting your web for printing with CSS'
 date: '2020-04-10'
-tags: ['CSS']
+topics: ['CSS']
 path: '/css-printing/'
 excerpt: 'How to adjust your pages with CSS to be printer-friendly.'
 needsReview: true

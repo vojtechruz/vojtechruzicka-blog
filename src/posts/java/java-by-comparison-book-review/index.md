@@ -2,7 +2,7 @@
 title: 'Java By Comparison Book Review'
 date: '2019-04-13'
 dateModified: '2019-07-03'
-tags: ['Books', 'Java']
+topics: ['Books', 'Java']
 path: '/java-by-comparison-book-review/'
 excerpt:
   'This book aims to teach you how to write cleaner, more elegant code in Java. It covers 70 issues of various topics

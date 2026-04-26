@@ -1,7 +1,7 @@
 ---
 title: 'IntelliJ IDEA Tips & Tricks: Postfix Code Completion'
 date: '2017-11-07'
-tags: ['IntelliJ IDEA']
+topics: ['IntelliJ IDEA']
 path: '/intellij-idea-tips-tricks-postfix-code-completion/'
 featuredImage: './intellij-idea-icon.png'
 excerpt:

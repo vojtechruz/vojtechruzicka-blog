@@ -2,7 +2,7 @@
 title: 'Java 9: Compact Strings'
 date: '2017-05-23'
 path: '/java-9-compact-strings/'
-tags: ['Java']
+topics: ['Java']
 excerpt: 'Java 9 brings a new, improved string, which in most cases, will greatly reduce String memory consumption.'
 needsReview: true
 ---

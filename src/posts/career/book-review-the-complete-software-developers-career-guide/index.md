@@ -1,7 +1,7 @@
 ---
 title: 'Book Review: The Complete Software Developer’s Career Guide'
 date: '2017-09-07'
-tags: ['Books', 'Career']
+topics: ['Books', 'Career']
 path: '/book-review-the-complete-software-developers-career-guide/'
 excerpt:
   'Review of the new Book by John Sonmez. Is it a book, which every software developer should have on their bookshelf?

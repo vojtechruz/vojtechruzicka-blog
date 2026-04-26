@@ -4,7 +4,7 @@ export default [
     name: 'Angular Tutorial',
     description:
       'A step-by-step guide to building Angular applications from scratch, covering components, data binding, routing, and more.',
-    tags: ['Angular'],
+    topics: ['Angular'],
     posts: [
       '/angular/01-getting-started/',
       '/angular/02-building-blocks/',
@@ -18,7 +18,7 @@ export default [
     name: 'JavaFX Tutorial',
     description:
       'A practical guide to building desktop GUI applications with JavaFX, covering layouts, CSS styling, FXML, Scene Builder, and Spring Boot integration.',
-    tags: ['Java', 'JavaFX'],
+    topics: ['Java', 'JavaFX'],
     posts: [
       '/javafx-getting-started/',
       '/javafx-hello-world/',

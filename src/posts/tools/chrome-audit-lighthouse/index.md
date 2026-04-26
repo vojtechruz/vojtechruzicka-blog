@@ -2,7 +2,7 @@
 title: 'Lighthouse: Web Page Audit with Chrome Developer Tools'
 date: '2018-01-22'
 dateModified: '2019-01-23'
-tags: ['Chrome']
+topics: ['Chrome']
 path: '/chrome-audit-lighthouse/'
 excerpt:
   'Did you know Chrome can perform a comprehensive audit of a web page and analyze many different categories such as

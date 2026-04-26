@@ -9,3 +9,5 @@ public
 _site/
 review.md
 _out/
+.claude
+.junie

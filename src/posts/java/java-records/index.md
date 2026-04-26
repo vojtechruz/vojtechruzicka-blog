@@ -1,7 +1,7 @@
 ---
 title: 'Java Records (JEP 359)'
 date: '2020-02-03'
-tags: ['Java']
+topics: ['Java']
 path: '/java-records/'
 excerpt: 'Records are new type in Java 14, which allow you to declare simple data classes without all the boilerplate.'
 needsReview: true
