@@ -117,23 +117,20 @@ describe('Topics functionality', () => {
 
     it('archives page should list topics and link to their pages', () => {
       const $ = loadPage(archivesPath);
-      // topics.njk renders: <a href="/topics/{{ topic.name | slugify }}/">{{ topic.name }} ({{ topic.count }})</a>
-      const topicLink = $(`.topic-list a[href="/topics/${testTopicSlug}/"]`);
+      const topicLink = $(`.topic-chip[href="/topics/${testTopicSlug}/"]`);
 
       expect(topicLink.length).toBe(1);
       expect(topicLink.text()).toContain(testTopicName);
 
-      // Verify count is present (numeric in parentheses)
-      expect(topicLink.text()).toMatch(/\(\d+\)/);
+      // Verify count is present as a numeric chip-count element
+      expect(topicLink.find('.topic-chip-count').text().trim()).toMatch(/\d+/);
     });
 
     it('archives page should show correct count of published posts for a topic', () => {
       const $ = loadPage(archivesPath);
-      const topicLink = $(`.topic-list a[href="/topics/${testTopicSlug}/"]`);
-      const text = topicLink.text();
-      const match = text.match(/\((\d+)\)/);
-      expect(match).not.toBeNull();
-      const countOnPage = parseInt(match[1], 10);
+      const topicLink = $(`.topic-chip[href="/topics/${testTopicSlug}/"]`);
+      const countText = topicLink.find('.topic-chip-count').text().trim();
+      const countOnPage = parseInt(countText.replace(/\D/g, ''), 10);
 
       const allPosts = getAllPosts();
       const publishedJavaPosts = allPosts.filter(
