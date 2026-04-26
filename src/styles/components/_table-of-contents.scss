@@ -14,7 +14,7 @@ $toc-indent-step: 1.25rem;
   }
 
   ol {
-    padding-left: var(--gap-medium);
+    padding-left: calc(var(--gap-medium) + 4px);
     color: var(--color-text-muted);
   }
 
@@ -93,7 +93,7 @@ $toc-indent-step: 1.25rem;
 }
 
 .toc-list {
-  padding-inline: 2px;
+  padding-inline: 3px;
   li a {
     white-space: nowrap;
     text-overflow: ellipsis;
