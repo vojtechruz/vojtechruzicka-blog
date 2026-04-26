@@ -49,6 +49,16 @@ export default function linkedPost(permalink, maybeCollections) {
   const draftStatus = data.draftStatus || '';
   const needsReview = data.needsReview === true && (isLocalDevelopment() || isPreview());
 
+  const allSeriesMetadata = ctx.seriesMetadata || [];
+  const postSeries = allSeriesMetadata.find((s) => s.posts.includes(url));
+  let seriesBadge = '';
+  if (postSeries) {
+    const partIndex = postSeries.posts.indexOf(url);
+    const partNumber = partIndex + 1;
+    const totalParts = postSeries.posts.length;
+    seriesBadge = `<span class="series-part-badge"><a title="View all posts in ${escapeHtml(postSeries.name)} series" href="/series/${escapeHtml(postSeries.slug)}/">${escapeHtml(postSeries.name)}</a> · Part ${partNumber}/${totalParts}</span>`;
+  }
+
   // Draft badge HTML
   let draftBadge = '';
   if (draftStatus) {
@@ -67,6 +77,7 @@ export default function linkedPost(permalink, maybeCollections) {
     <time class="front-post-info-date" datetime="${htmlDate}">
       ${escapeHtml(readableDate)}
     </time>
+    ${seriesBadge}
     <ul class="post-tags" aria-label="Tags">
       ${tagLinks}
     </ul>

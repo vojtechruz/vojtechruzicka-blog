@@ -50,10 +50,25 @@
   white-space: nowrap;
 }
 
+.series-part-badge {
+  font-size: 0.8125rem;
+  white-space: nowrap;
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-heading-link-hover);
+    text-decoration: underline;
+  }
+}
+
 /* Layout: image + text block */
 .linked-post > div {
   display: flex;
-  gap: var(--gap-medium);
+  gap: calc(var(--gap-medium) + 2px);
   align-items: flex-start;
 }
 
