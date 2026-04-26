@@ -32,6 +32,7 @@
   </div>
   <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
+      {% include "components/breadcrumbs.njk" %}
       <h1 class="post-header">{{ title }}</h1>
 
       <div class="post-metadata">

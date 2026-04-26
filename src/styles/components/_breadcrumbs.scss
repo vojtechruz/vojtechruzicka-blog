@@ -1,0 +1,41 @@
+@use '../variables';
+@use '../utilities';
+
+.breadcrumbs {
+  margin-bottom: var(--gap-medium);
+}
+
+.breadcrumbs-list {
+  @include utilities.reset-list;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &:not(:last-child)::after {
+    content: '/';
+    opacity: 0.5;
+  }
+
+  a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
+  }
+
+  span[aria-current='page'] {
+    color: var(--color-text);
+  }
+}
