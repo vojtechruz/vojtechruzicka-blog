@@ -9,7 +9,11 @@ export default [
   },
   {
     name: 'Security & Web',
-    topics: ['Security', 'REST', 'HTTP'],
+    topics: ['Security', 'HTTP'],
+  },
+  {
+    name: 'Architecture & Design',
+    topics: ['REST', 'OOP', 'Design-Patterns', 'Testing'],
   },
   {
     name: 'Tools',

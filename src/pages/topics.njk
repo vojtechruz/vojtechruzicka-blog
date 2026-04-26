@@ -8,6 +8,8 @@ permalink: /topics/
 
 {% set topicsData = topicCategories | categoriesWithStats(collections.topicStats) %}
 
+<div class="topics-page-meta">{{ collections.topicStats | length }} topics · {{ collections.posts | length }} articles</div>
+
 <div class="topic-categories">
   {% for category in topicsData.categories %}
   <section class="topic-category">
