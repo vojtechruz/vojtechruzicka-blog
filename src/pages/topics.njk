@@ -1,19 +1,13 @@
 ---
 title: "Topics"
-permalink: /archives/
+permalink: /topics/
 ---
 {% extends "layouts/page.njk" %}
 
 {% block pageContent %}
 
-{% set tagsByCount = collections.tagStats | sortByCountThenName %}
+<div class="topics-page-meta">{{ collections.topicStats | length }} topics · {{ collections.posts | length }} articles</div>
 
-<ul class="tag-list">
-  {% for tag in tagsByCount %}
-    <li>
-      <a href="/tags/{{ tag.name | slugify }}/">{{ tag.name }} ({{ tag.count }})</a>
-    </li>
-  {% endfor %}
-</ul>
+{% include "components/topic-browser.njk" %}
 
 {% endblock %}

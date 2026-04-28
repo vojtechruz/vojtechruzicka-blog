@@ -2,7 +2,7 @@
 title: 'Field Dependency Injection Considered Harmful'
 date: '2016-05-21'
 dateModified: '2018-06-21'
-tags: ['Java', 'Spring']
+topics: ['Java', 'Spring']
 path: '/field-dependency-injection-considered-harmful/'
 excerpt:
   'Field injection is a very popular practice in Dependency Injection frameworks, such as Spring. It has, however,

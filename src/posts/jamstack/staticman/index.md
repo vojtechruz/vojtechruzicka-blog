@@ -2,7 +2,7 @@
 title: 'Staticman: User generated content made static'
 date: '2018-08-25'
 dateModified: '2026-04-20'
-tags: ['JAMStack']
+topics: ['JAMStack']
 path: '/staticman/'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content such as comments.'
 needsReview: true

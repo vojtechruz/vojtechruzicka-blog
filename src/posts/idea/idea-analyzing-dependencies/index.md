@@ -2,7 +2,7 @@
 title: 'Analyzing dependencies in IntelliJ IDEA'
 date: '2019-04-30'
 dateModified: '2019-07-02'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/idea-analyzing-dependencies/'
 excerpt: 'How to analyze dependencies in IDEA using Dependency Structure Matrix and other tools.'
 needsReview: true

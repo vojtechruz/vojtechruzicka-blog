@@ -2,7 +2,7 @@
 title: 'Netlify build plugins: 3x faster GatsbyJS build'
 date: '2020-05-13'
 dateModified: '2023-11-25'
-tags: ['JAMStack']
+topics: ['JAMStack']
 path: '/gatsby-build-netlify-plugins/'
 excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x faster.'
 needsReview: true

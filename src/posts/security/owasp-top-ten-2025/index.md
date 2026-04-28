@@ -1,7 +1,7 @@
 ---
 title: 'OWASP Top Ten 2025'
 date: '2026-04-22'
-tags: ['Security']
+topics: ['Security']
 path: '/owasp-top-ten-2025/'
 excerpt:
   'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What changed since 2021, what is new,

@@ -1,7 +1,7 @@
 ---
 title: 'Bit Manipulation in Java – Bitwise and Bit Shift operations'
 date: '2017-09-02'
-tags: ['Java']
+topics: ['Java']
 path: '/bit-manipulation-java-bitwise-bit-shift-operations/'
 excerpt:
   'Java enables you to manipulate integers on a bit level, that means operating on specific bits, which represent an

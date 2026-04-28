@@ -1,13 +1,12 @@
 ---
 title: 'Angular Tutorial 3: Creating Components'
 date: '2020-07-22'
-tags: ['Angular']
+topics: ['Angular']
 path: '/angular/03-components/'
 excerpt:
   "Angular apps are composed of components, which encapsulate view, logic and styling. We'll focus on these in this part
   of the series."
-series: 'Angular Tutorial'
-series-order: 3
+series: angular-tutorial
 needsReview: true
 ---
 

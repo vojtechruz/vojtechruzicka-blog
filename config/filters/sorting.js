@@ -1,5 +1,5 @@
 export default function registerSortingFilters(eleventyConfig) {
-  // Sort tags by count desc, then name asc (for tie-breakers)
+  // Sort topics by count desc, then name asc (for tie-breakers)
   eleventyConfig.addFilter('sortByCountThenName', (arr) => {
     if (!Array.isArray(arr)) {
       return [];

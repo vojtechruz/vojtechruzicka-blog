@@ -1,7 +1,7 @@
 ---
 title: 'History of Java interface feature changes'
 date: '2019-07-05'
-tags: ['Java']
+topics: ['Java']
 path: '/java-interface-history/'
 excerpt: 'Java interface changed a lot through the years. What were the changes during its evolution?'
 needsReview: true

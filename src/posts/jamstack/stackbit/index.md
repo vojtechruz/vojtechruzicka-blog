@@ -1,7 +1,7 @@
 ---
 title: 'Stackbit: build JAMStack sites in a few clicks'
 date: '2019-11-07'
-tags: ['JAMStack']
+topics: ['JAMStack']
 path: '/stackbit/'
 featuredImage: './stackbit.png'
 excerpt:

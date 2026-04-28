@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL’s JSONB type mapping using Hibernate
 date: '2017-03-16'
-tags: ['Java', 'Spring', 'PostgreSQL', 'Hibernate']
+topics: ['Java', 'Spring', 'PostgreSQL', 'Hibernate']
 path: '/postgresqls-jsonb-type-mapping-using-hibernate/'
 excerpt:
   'PostgreSQL 9.4 added support for JSONB data type. Hibernate, however, currently does not support out of the box

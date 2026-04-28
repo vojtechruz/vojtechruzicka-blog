@@ -1,7 +1,7 @@
 ---
 title: 'Javascript spread operator and rest parameters (...)'
 date: '2019-01-30'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/spread-javascript/'
 excerpt: 'What do three dots (...) mean in javascript? They can be used for various different purposes.'
 needsReview: true

@@ -1,7 +1,7 @@
 ---
 title: 'Javascript promises tutorial'
 date: '2019-03-28'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/javascript-promises/'
 excerpt:
   'Promises are a useful, modern technique in javascript to handle async behavior and a good alternative to callbacks.'

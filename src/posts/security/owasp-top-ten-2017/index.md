@@ -1,7 +1,7 @@
 ---
 title: 'OWASP Top Ten 2017'
 date: '2018-01-01'
-tags: ['Security']
+topics: ['Security']
 path: '/owasp-top-ten-2017/'
 excerpt:
   'OWASP released 2017 version of top 10 Web Application Security Vulnerabilities. What are they, what is new and is

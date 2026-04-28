@@ -1,11 +1,10 @@
 ---
 title: 'JavaFX Weaver: Integration of JavaFX and Spring Boot'
 date: '2019-11-18'
-tags: ['JavaFX', 'Spring']
+topics: ['JavaFX', 'Spring']
 path: '/javafx-spring-boot/'
 excerpt: 'How to easily integrate JavaFX and Spring Boot using JavaFX Weaver.'
-series-order: 7
-series: JavaFX
+series: javafx
 needsReview: true
 ---
 

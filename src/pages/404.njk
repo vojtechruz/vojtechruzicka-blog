@@ -12,26 +12,19 @@ eleventyExcludeFromCollections: true
 
 {% block pageContent %}
 
-{% set tagsByCount = collections.tagStats | sortByCountThenName %}
-
-{% warning %}
-The page you are looking for does not exist.
-You can either try using search or browse all posts by category below.
-{% endwarning %}
-
-<p class="section-404"><a href="/">Go back to homepage</a></p>
+<div class="error-404">
+  <p class="error-404-code" aria-hidden="true">404</p>
+  <p class="error-404-message">This page doesn’t exist. <a href="/">Go to homepage</a>,
+    try searching or explore topics.</p>
+</div>
 
 <h4 class="section-404">Search for posts</h4>
 {% from "components/search.njk" import renderSearch %}
-{{ renderSearch(null, 'Search the site') }}
+<div class="search-404">
+  {{ renderSearch(null, 'Search the site') }}
+</div>
 
-<h4 class="section-404">All available posts by category</h4>
-<ul class="tag-list">
-  {% for tag in tagsByCount %}
-  <li>
-    <a href="/tags/{{ tag.name | slugify }}/">{{ tag.name }} ({{ tag.count }})</a>
-  </li>
-  {% endfor %}
-</ul>
+<h4 class="section-404">Explore topics</h4>
+{% include "components/topic-browser.njk" %}
 
 {% endblock %}

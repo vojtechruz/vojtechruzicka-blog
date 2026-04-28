@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA best plugins'
 date: '2020-01-21'
 dateModified: '2021-11-20'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/idea-best-plugins/'
 excerpt: 'A collection of useful plugins to enhance your IntelliJ IDEA experience.'
 needsReview: true

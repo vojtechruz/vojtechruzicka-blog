@@ -2,7 +2,7 @@
 title: 'Commitlint: validate commit conventions automatically'
 date: '2019-11-11'
 dateModified: '2019-11-18'
-tags: ['Git']
+topics: ['Git']
 path: '/commitlint/'
 excerpt: 'Automatically check and enforce your commit conventions either with various available configurations.'
 needsReview: true

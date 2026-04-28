@@ -1,7 +1,7 @@
 ---
 title: 'Spring AI: Getting Started'
 date: '2024-04-24'
-tags: ['Spring', 'Java']
+topics: ['Spring', 'Java']
 path: '/spring-ai/'
 excerpt:
   'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot

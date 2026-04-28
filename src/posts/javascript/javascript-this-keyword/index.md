@@ -1,7 +1,7 @@
 ---
 title: 'Javascript: Uncovering mysteries of "this" keyword'
 date: '2018-02-13'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/javascript-this-keyword/'
 excerpt:
   '"This" is a very straightforward concept in other languages. Not so in javascript. It can point to pretty much

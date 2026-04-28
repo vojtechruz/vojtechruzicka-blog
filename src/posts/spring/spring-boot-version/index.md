@@ -1,7 +1,7 @@
 ---
 title: 'Detecting build version and time at runtime in Spring Boot'
 date: '2018-06-25'
-tags: ['Spring', 'Java']
+topics: ['Spring', 'Java']
 path: '/spring-boot-version/'
 excerpt: 'How to obtain artifact version, build time and other build information in a Spring Boot app at runtime?'
 needsReview: true

@@ -1,0 +1,12 @@
+---
+title: "Series"
+permalink: /series/
+description: "All article series on this blog."
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+{% for series in seriesMetadata %}
+  {% linkedSeries series.slug %}
+{% endfor %}
+{% endblock %}

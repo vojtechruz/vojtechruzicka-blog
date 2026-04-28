@@ -2,7 +2,7 @@
 title: 'CSS Flexbox tutorial'
 date: '2020-04-24'
 dateModified: '2020-05-08'
-tags: ['CSS']
+topics: ['CSS']
 path: '/css-flexbox/'
 featuredImage: 'css-flexbox.png'
 excerpt:

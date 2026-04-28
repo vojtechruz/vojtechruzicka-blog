@@ -2,7 +2,7 @@
 title: Stop using Javadoc @author tag
 date: '2016-05-07'
 dateModified: '2020-03-25'
-tags: ['Java']
+topics: ['Java']
 path: '/stop-using-javadoc-author-tag/'
 excerpt:
   Are you still using @author Javadoc tag? Maybe it's time to reconsider. Let's discuss why the tag may be actually

@@ -1,7 +1,7 @@
 ---
 title: 'Spring Boot Admin Tutorial'
 date: '2018-11-18'
-tags: ['Spring', 'Java']
+topics: ['Spring', 'Java']
 path: '/spring-boot-admin/'
 featuredImage: './spring-boot-admin.png'
 excerpt: 'Monitor and manage your Spring Boot apps with a nice UI on top of Spring Boot Actuator endpoints.'

@@ -1,7 +1,7 @@
 ---
 title: 'CSS Position guide'
 date: '2020-03-31'
-tags: ['CSS']
+topics: ['CSS']
 path: '/css-position/'
 excerpt: 'How to understand and properly use CSS position property to control placement of your elements.'
 needsReview: true

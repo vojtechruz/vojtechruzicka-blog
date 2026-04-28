@@ -1,11 +1,10 @@
 ---
 title: 'JavaFX Tutorial: CSS Styling'
 date: '2019-10-10'
-tags: ['Java', 'JavaFX']
+topics: ['Java', 'JavaFX']
 path: '/javafx-css/'
 excerpt: 'How to style JavaFX components using good old CSS.'
-series-order: 6
-series: JavaFX
+series: javafx
 needsReview: true
 ---
 

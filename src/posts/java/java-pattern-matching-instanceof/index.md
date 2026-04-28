@@ -2,7 +2,7 @@
 title: 'Java Pattern Matching: InstanceOf (JEP 305)'
 date: '2020-04-05'
 dateModified: '2023-11-14'
-tags: ['Java']
+topics: ['Java']
 path: '/java-pattern-matching-instanceof/'
 excerpt:
   'This new feature in Java 14 allows you to simplify your code and get rid of a lot of boilerplate when using
