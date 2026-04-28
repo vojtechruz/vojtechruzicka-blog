@@ -240,9 +240,9 @@ body.search-open {
     background-color 0.15s ease;
 
   &:hover {
-    border-color: var(--color-text-muted);
+    border-color: var(--color-link-hover);
     color: var(--color-link-hover);
-    background: color-mix(in srgb, var(--color-bg-highlight), transparent 93%);
+    background: color-mix(in oklab, var(--color-surface-2), white 6%);
   }
 
   &:focus-visible {

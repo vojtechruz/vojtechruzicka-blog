@@ -73,7 +73,6 @@
   padding: 0.3em 0.75em;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
-  color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.875rem;
   background-color: var(--color-surface-1);
@@ -84,13 +83,14 @@
   &:hover {
     border-color: var(--color-link-hover);
     color: var(--color-link-hover);
-    background-color: var(--color-surface-2);
+    background-color: color-mix(in oklab, var(--color-surface-2), white 6%);
   }
 }
 
 .topic-chip-count {
   font-size: 0.75em;
   opacity: 0.6;
+  color: var(--color-text-muted);
 
   &::before {
     content: '·';
