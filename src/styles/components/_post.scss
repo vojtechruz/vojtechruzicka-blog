@@ -140,6 +140,14 @@ article {
   margin-bottom: var(--gap-xlarge);
 }
 
+.related-posts-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding-inline-start: 0;
+}
+
 /* Responsive Embeds */
 .yt-embed,
 .video-embed,

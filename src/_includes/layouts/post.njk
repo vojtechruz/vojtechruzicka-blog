@@ -63,6 +63,8 @@
 
   </article>
 
+  {% include "components/social-share.njk" %}
+
   {% if not series %}
     {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
     {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
@@ -71,9 +73,7 @@
         <h2 class="related-posts-heading">Related Posts</h2>
         <ul class="related-posts-list">
           {% for relPost in related %}
-            <li>
-              <a href="{{ relPost.url }}">{{ relPost.data.title }}</a>
-            </li>
+            <li>{% linkedPostCompact relPost.url %}</li>
           {% endfor %}
         </ul>
       </section>
@@ -81,7 +81,6 @@
   {% endif %}
 
   <div class="post-footer">
-    {% include "components/social-share.njk" %}
     {% include "components/comments.njk" %}
   </div>
 
