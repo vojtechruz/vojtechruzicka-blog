@@ -21,12 +21,11 @@ export default function linkedPostCompact(permalink, maybeCollections) {
   const data = post.data || {};
   const url = post.url || (post.page && post.page.url) || String(permalink || '');
   const title = String(data.title || '');
-  const readableDate = readableDateUTC(post.date);
-  const htmlDate = htmlDateString(post.date);
 
   const featuredImage = data.featuredImage;
   const postDir = data.postDir;
   const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
+  const excerpt = String(data.excerpt || '');
 
   const imageHtml = imgUrl
     ? `<a class="linked-post-compact-image" href="${url}" aria-hidden="true" tabindex="-1">
@@ -38,7 +37,7 @@ export default function linkedPostCompact(permalink, maybeCollections) {
   ${imageHtml}
   <div class="linked-post-compact-body">
     <a class="linked-post-compact-title" href="${url}">${escapeHtml(title)}</a>
-    <time class="linked-post-compact-date" datetime="${htmlDate}">${escapeHtml(readableDate)}</time>
+    ${excerpt ? `<p class="linked-post-compact-excerpt">${escapeHtml(excerpt)}</p>` : ''}
   </div>
 </div>`;
 }
