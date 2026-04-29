@@ -30,12 +30,14 @@ eleventyComputed:
   about <strong>{{ topic }}</strong>:
 </p>
 
-<ul>
+<ul class="post-list">
   {% for post in topicPosts %}
-    {% if post.data.topics and topic in post.data.topics %}
-      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-    {% endif %}
+    <li>{% linkedPost post.url %}</li>
   {% endfor %}
 </ul>
+
+{% if topicPosts | length > 3 %}
+<div class="all-topics-link-bottom"><a href="/topics/">Browse all topics</a></div>
+{% endif %}
 
 {% endblock %}
