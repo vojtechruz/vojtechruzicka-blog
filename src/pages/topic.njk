@@ -19,16 +19,7 @@ eleventyComputed:
     {% set _ = topicPosts.push(post) %}
   {% endif %}
 {% endfor %}
-<p>
-  <a href="/topics/"> Browse all topics </a>
-</p>
-
-<p>
-  There {% if topicPosts | length == 1 %}is {% else %}are {% endif %}
-  {% if topicPosts | length == 1 %}one{% else %}{{ topicPosts | length }}{% endif %}
-  post{% if topicPosts | length != 1 %}s{% endif %}
-  about <strong>{{ topic }}</strong>:
-</p>
+<div class="page-meta">{{ topicPosts | length }} post{% if topicPosts | length != 1 %}s{% endif %} <a href="/topics/">Browse all topics</a></div>
 
 <ul class="post-list">
   {% for post in topicPosts %}

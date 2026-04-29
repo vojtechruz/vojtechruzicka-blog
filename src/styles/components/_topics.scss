@@ -29,11 +29,13 @@
 
 // ── Topics listing page (/topics/) ───────────────────────────────────────────
 
-.topics-page-meta {
+.page-meta {
   font-size: 0.875rem;
   color: var(--color-text-muted);
   margin-bottom: var(--gap-large);
   margin-top: -1rem;
+  display: flex;
+  gap: var(--gap-medium);
 }
 
 .topic-categories {
