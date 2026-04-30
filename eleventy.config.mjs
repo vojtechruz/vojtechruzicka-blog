@@ -75,6 +75,7 @@ export default async function (eleventyConfig) {
 
   // Rebuild when these files change in --serve mode
   eleventyConfig.addWatchTarget("./config/**/*.js");
+  eleventyConfig.addWatchTarget("./src/styles/");
 
   // CORS for giscus iframe for local development
   eleventyConfig.setServerOptions({

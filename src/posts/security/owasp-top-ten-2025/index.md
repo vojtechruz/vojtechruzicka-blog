@@ -8,6 +8,7 @@ excerpt:
   and is your application still vulnerable?'
 draftStatus: 'draft'
 relatedPosts: ['/owasp-top-ten-2017/']
+featuredImage: './featured.png'
 ---
 
 ## What is OWASP?

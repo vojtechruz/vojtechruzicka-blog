@@ -1,4 +1,4 @@
-import { readableDateUTC, htmlDateString, escapeHtml } from '../utils/formatting.js';
+import { escapeHtml } from '../utils/formatting.js';
 import { logError } from '../logger.js';
 
 export default function linkedPostCompact(permalink, maybeCollections) {
