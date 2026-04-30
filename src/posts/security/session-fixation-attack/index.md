@@ -1,7 +1,7 @@
 ---
 title: Session Fixation Attack
 date: '2017-02-20'
-tags: ['Security', 'HTTP']
+topics: ['Security', 'HTTP']
 path: '/session-fixation-attack/'
 excerpt:
   Session fixation is a type of attack, where the attacker can hijack user's session. What are some of the variants and

@@ -1,7 +1,7 @@
 ---
 title: 'Javascript constructor functions and new operator'
 date: '2018-02-02'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/javascript-constructor-functions-and-new-operator/'
 excerpt:
   What does Javascript's new operator do? What are constructor functions? Why is new criticised and what are the

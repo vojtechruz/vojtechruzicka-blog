@@ -12,7 +12,7 @@
 {% endblock %}
 {% block content %}
   <main  id="content" class="page content">
-
+    {% include "components/breadcrumbs.njk" %}
     {% block postList %}
       {{ content | safe }}
     {% endblock %}

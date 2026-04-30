@@ -1,0 +1,111 @@
+@use '../variables';
+@use '../utilities';
+
+// ── Post-level topic chips (used inside post pages) ──────────────────────────
+
+.post .post-topics {
+  margin-top: var(--gap-small);
+  margin-bottom: var(--gap-small);
+}
+
+.post-topics {
+  @include utilities.reset-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap-small) * 1.5);
+
+  .topic-name::before {
+    content: '#';
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+// ── Topics listing page (/topics/) ───────────────────────────────────────────
+
+.page-meta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--gap-large);
+  margin-top: -1rem;
+  display: flex;
+  gap: var(--gap-medium);
+}
+
+.topic-categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  margin-bottom: var(--gap-large);
+}
+
+.topic-category,
+.topic-minor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.topic-category-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-block-start: 0;
+}
+
+.topic-chips {
+  @include utilities.reset-list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-small);
+}
+
+.topic-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.75em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  font-size: 0.875rem;
+  background-color: var(--color-surface-1);
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    border-color: var(--color-link-hover);
+    color: var(--color-link-hover);
+    background-color: color-mix(in oklab, var(--color-surface-2), white 6%);
+  }
+}
+
+.topic-chip-count {
+  font-size: 0.75em;
+  opacity: 0.6;
+  color: var(--color-text-muted);
+
+  &::before {
+    content: '·';
+    margin-right: 0.2em;
+  }
+}
+
+.topic-minor {
+  margin-top: var(--gap-medium);
+  padding-top: var(--gap-large);
+}
+
+.all-topics-link-bottom {
+  margin-top: var(--gap-large);
+  text-align: center;
+}

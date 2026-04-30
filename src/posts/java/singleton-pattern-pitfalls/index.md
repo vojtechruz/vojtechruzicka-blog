@@ -2,7 +2,7 @@
 title: Singleton Pattern Pitfalls
 date: '2016-08-31'
 dateModified: '2019-07-03'
-tags: ['Java', 'Design-Patterns']
+topics: ['Java', 'Design-Patterns']
 path: '/singleton-pattern-pitfalls/'
 excerpt:
   'Singleton, one of the most popular design patterns has a lot of serious drawbacks and some even consider it an

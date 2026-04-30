@@ -2,7 +2,7 @@
 title: 'Java Text Blocks'
 date: '2019-06-23'
 dateModified: '2020-04-16'
-tags: ['Java']
+topics: ['Java']
 path: '/java-text-blocks/'
 excerpt:
   'Java 13 finally brings support for multi-line string literals after dropping similar functionality from Java 12.'

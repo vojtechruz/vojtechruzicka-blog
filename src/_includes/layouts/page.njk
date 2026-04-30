@@ -5,6 +5,7 @@
 {% block content %}
   <main id="content" class="page content">
     <header>
+      {% include "components/breadcrumbs.njk" %}
       <h1>{{ title }}</h1>
     </header>
     {% block pageContent %}

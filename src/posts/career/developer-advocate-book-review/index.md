@@ -1,7 +1,7 @@
 ---
 title: 'Developer Advocate Book Review'
 date: '2020-04-20'
-tags: ['Books']
+topics: ['Books', 'Career']
 path: '/developer-advocate-book-review/'
 featuredImage: './developer-advocate-book-review.png'
 excerpt:
@@ -38,7 +38,7 @@ The book contains interviews with 32 developer advocates in total. Here are some
 - [Arun Gupta](https://twitter.com/arungupta)
 - [Trisha Gee](https://trishagee.github.io/)
 - [Josh Long](https://joshlong.com/)
-- [Adam Bien](http://adam-bien.com/)
+- [Adam Bien](https://adam-bien.com/)
 - [Kirk Pepperdine](https://twitter.com/javaperftuning)
 - [Venkat Subramaniam](https://twitter.com/venkat_s)
 
@@ -50,7 +50,7 @@ advocates interviewed in the book.
 The book is definitely a very interesting insight into the life and role of a developer advocate. Considering there are
 32 advocates interviewed, you can read a lot of different stories and backgrounds. It is interesting to get to know more
 people from the community. Since the advocates have different backgrounds, it allows you to learn about interesting
-people, which are not inside of your usual "bubble" defined by your technology stack.
+people, who are not inside your usual "bubble" defined by your technology stack.
 
 If you want to get involved more in the community, this book is definitely a great source of inspiration as you can read
 about the journey of seasoned advocates from the bottom-up - their humble beginnings in small user groups up to the huge

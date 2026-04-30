@@ -1,17 +1,7 @@
 # Gatsby → Eleventy Migration Checklist
 
-Use this checklist to ensure feature parity when migrating a personal blog from Gatsby to Eleventy (11ty). Check off each item as you complete it. Adjust to your stack (templates, hosting, search, comments, etc.).
-
-Legend:
-- [ ] To do
-- [x] Done
-
---------------------------------------------------------------------------------
-
 ## 1) Project setup and goals
 - [ ] Define success criteria (identical URLs, SEO parity, page speed, core features).
-- [x] Choose template language(s) for Eleventy (e.g., Nunjucks, Liquid, EJS, 11ty.js).
-- [x] Confirm output directory (default: _site) and deployment target (e.g., Netlify, Vercel, GitHub Pages).
 - [ ] Node version alignment (.node-version / .nvmrc) and engines field in package.json.
 - [x] Install Eleventy and essential plugins as devDependencies.
   - [x] @11ty/eleventy
@@ -28,7 +18,6 @@ Legend:
   - [ ] Pages (about, contact, legal)
   - [ ] Tag/category pages
   - [ ] Drafts
-  - [ ] Guest posts (e.g., guest-posts directory)
   - [ ] Media assets (images, video, downloads)
 - [ ] Decide Eleventy input directory layout (e.g., src/site, content/, posts/, pages/).
 - [ ] Copy content files (.md/.mdx) to Eleventy structure.
@@ -62,7 +51,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Establish tag collection and tag list page generation.
 - [ ] Optional category collection (if categories are distinct from tags).
 - [ ] Implement pagination for the home/blog index and tag archives.
-- [ ] Yearly/monthly archives (if present in Gatsby).
 
 ## 4) Templates, layouts, and partials
 - [ ] Choose/implement base layout (HTML skeleton with head, header, footer, scripts).
@@ -77,7 +65,6 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Markdown rendering in templates (if needed)
   - [ ] Responsive images (eleventy-img shortcode)
   - [ ] External embeds (YouTube, Tweets, CodePen, etc.)
-  - [ ] Reading time (optional)
 
 ## 5) Markdown/MDX processing
 - [ ] If Gatsby used MDX, choose approach:
@@ -89,9 +76,7 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Heading anchors and table of contents (TOC)
   - [ ] Footnotes and task lists (if used)
 - [ ] Syntax highlighting for code blocks (Prism or eleventy-plugin-syntaxhighlight):
-  - [ ] Theme parity with Gatsby
-  - [ ] Language aliases (e.g., sh → bash)
-  - [ ] Line numbers/copy button (if used)
+  - [ ] Line numbers
 
 ## 6) Images and static assets
 - [ ] Migrate images from Gatsby static/src directories to Eleventy input/static dirs.
@@ -108,29 +93,16 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Open Graph and Twitter Card tags (image, title, description, type, url).
 - [ ] JSON-LD (BlogPosting, BreadcrumbList, WebSite search action) if previously used.
 - [ ] Pagination rel=prev/next and index/noindex as needed.
-- [ ] hreflang/i18n tags if multilingual.
 
 ## 8) Feeds, sitemap, robots, headers
 - [ ] RSS/Atom feed parity using @11ty/eleventy-plugin-rss.
 - [ ] Sitemap using @11ty/eleventy-plugin-sitemap (provide site URL, lastmod).
-- [ ] robots.txt replicated.
-- [ ] Security and cache headers (via Netlify headers file or framework equivalent).
 
 ## 9) Redirects and legacy URLs
-- [ ] Extract current/old Gatsby URLs (if structure changed historically).
-- [ ] Map 1:1 to Eleventy permalinks to avoid redirects if possible.
-- [ ] Create explicit redirects for any changed/removed routes.
 - [ ] Verify 301 status codes and canonicalization (trailing slash, www/non-www, http→https).
 - [ ] 410 for removed content when intentional.
 
 ## 10) Analytics, comments, search, forms
-- [ ] Analytics (GA4/GTM/other) snippets moved to base layout; env-gated for production.
-- [ ] Cookie consent banner if required.
-- [ ] Comments provider (Disqus, Giscus, Utterances, Commento, etc.) embedded and styled.
-- [ ] Search:
-  - [ ] Algolia (re-index and update build hooks) OR
-  - [ ] Static Lunr/FlexSearch index generated at build time OR
-  - [ ] Client-side simple search.
 - [ ] Newsletter/signup forms (Netlify Forms, Mailchimp, Buttondown, etc.).
   - [ ] Validate form attributes and spam protection (honeypot/reCAPTCHA if used).
 
@@ -151,16 +123,9 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] "clean": remove _site and artifacts
 
 ## 13) Build, deploy, and hosting
-- [ ] Update Netlify/Vercel build command (e.g., npm run build) and publish directory (_site).
-- [ ] Validate netlify.toml (redirects, headers, build env, edge functions if any).
 - [ ] 404 page behavior verified in hosting environment.
 - [ ] Caching rules for static assets and HTML.
 - [ ] Image optimization cache directory persisted across builds (if supported).
-
-## 14) Internationalization (if applicable)
-- [x] Content organization by locale (e.g., content/en, content/cs).
-- [x] Locale switcher UI and routing.
-- [x] Per-locale metadata, hreflang, and canonical logic.
 
 ## 15) Accessibility and performance
 - [ ] Accessibility pass (semantics, labels, contrast, focus states, skip links).
@@ -176,16 +141,8 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Review lists, tables, blockquotes, admonitions, and custom Markdown extensions.
 - [ ] Ensure embedded media (YouTube, Tweets, iframes) still render and are responsive.
 - [ ] Verify RSS feed validity (W3C validator) and discoverability.
-- [ ] Validate HTML (Nu HTML Checker) for glaring issues.
-
-## 17) Drafts and content workflow
-- [ ] Preserve drafts behavior (exclude drafts from production, include in local dev):
-  - [ ] Implement Eleventy computed data or filters to exclude draft: true when ELEVENTY_ENV=production.
-  - [ ] Keep drafts directory (e.g., drafts/) and add build ignore rules.
-- [ ] Authoring docs updated (README) for adding posts, tags, images, front matter keys.
 
 ## 18) Optional features parity
-- [x] PWA/offline: decide to keep, replace with Workbox, or drop.
 - [ ] Social image generation (OG images) via SSG step (Satori/Puppeteer/Cloud function).
 - [ ] Breadcrumbs and related posts logic.
 - [ ] Table of contents component on long posts.
@@ -196,7 +153,6 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Review third-party scripts; defer and limit scopes.
 - [ ] CSP and security headers ported (Netlify headers or meta http-equiv as last resort).
 - [ ] Remove unused APIs, tokens, and plugins.
-- [ ] Cookie categories and consent if in scope of GDPR/CCPA.
 
 ## 20) Final verification and launch checklist
 - [ ] Crawl the Eleventy site locally and on a staging deploy; compare against Gatsby pages count.
@@ -205,24 +161,3 @@ For each content file, ensure the following keys and types exist or are transfor
 - [ ] Submit updated sitemap in Search Console.
 - [ ] Monitor logs/analytics for 404s and fix redirects as needed.
 - [ ] Tag the repo/release and note migration date in README.
-
---------------------------------------------------------------------------------
-
-## Quick mapping reference (Gatsby → Eleventy)
-- Site metadata: gatsby-config.mjs → _data/site.json
-- Pages/posts: src/pages or content directories → Eleventy content dirs (with permalinks)
-- Templates: React components → Nunjucks/Liquid/EJS layouts and includes
-- GraphQL data layer → Collections, data files, computed data
-- Images: gatsby-plugin-image → eleventy-img shortcode + templates
-- Plugins: gatsby-plugin-feed → @11ty/eleventy-plugin-rss
-- Sitemap: gatsby-plugin-sitemap → @11ty/eleventy-plugin-sitemap
-- Markdown: gatsby-transformer-remark/MDX → markdown-it or eleventy-plugin-mdx
-- Redirects: gatsby-node or gatsby-plugin-netlify → netlify.toml/_redirects
-- Build: gatsby build → eleventy build (+ asset bundler if used)
-
---------------------------------------------------------------------------------
-
-Notes
-- Keep a changelog of any unavoidable URL or behavior changes.
-- Prefer preserving URLs to avoid SEO impact; add 301s for any changes.
-- Test early on a staging domain and iterate before cutting over production.

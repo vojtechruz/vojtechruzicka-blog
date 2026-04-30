@@ -1,7 +1,7 @@
 ---
 title: 'Documenting Angular apps: TypeDoc, CompoDoc and AngularDoc'
 date: '2017-12-18'
-tags: ['Javascript', 'Angular']
+topics: ['Angular','Javascript']
 path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/'
 excerpt:
   There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what
@@ -12,7 +12,7 @@ needsReview: true
 ## Documentation in AngularJS
 
 When working with plain JS applications, you would use documentation tools specially designed for JavaScript. One of the
-common ones is, for example, [JSDoc](http://usejsdoc.org/). It is similar to JavaDoc tool used with Java, which can
+common ones is, for example, [JSDoc](https://jsdoc.app/). It is similar to JavaDoc tool used with Java, which can
 generate automatically documentation based on special comments, which are present directly in the code.
 
 However, when working with a framework such as AngularJS (that is -- Angular 1.x), it is handy to have something more
@@ -27,7 +27,7 @@ stuff on top of regular JSDoc. It is then processed by a utility called [Dgeni](
 
 Angular 2+ is way different than AngularJS. What's more, you usually write your code not in JS, but in TypeScript. That
 means you cannot use JSDoc nor ngdoc. You need a new tool. Turns out, that for TypeScript, there is a tool similar to
-JSDoc called [TypeDoc](http://typedoc.org/). It is, however, angular-agnostic, so you cannot use any framework-specific
+JSDoc called [TypeDoc](https://typedoc.org/). It is, however, angular-agnostic, so you cannot use any framework-specific
 goodies.
 
 ### Getting started with TypeDoc
@@ -64,7 +64,7 @@ followed by the name of the predefined theme or a path to a custom one.
 
 While you can use TypeDoc to document Angular apps, it will treat your code as any other plain TypeScript app. That
 means no Angular specific documentation. But there is a whole lot to be documented.
-[Compodoc](https://compodoc.github.io/website/) solves this, it is focused on Angular apps specifically giving you a
+[Compodoc](https://compodoc.app/) solves this, it is focused on Angular apps specifically giving you a
 much more tailored solution.
 
 ### Getting started with CompoDoc

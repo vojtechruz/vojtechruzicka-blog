@@ -1,7 +1,7 @@
 ---
 title: 'Spring REST Docs - Test driven documentation of REST API'
 date: '2018-05-31'
-tags: ['Spring', 'REST', 'Java']
+topics: ['Spring', 'REST', 'Java']
 path: '/spring-rest-docs/'
 excerpt: 'Test driven REST API documentation as an alternative to traditional Swagger docs.'
 needsReview: true

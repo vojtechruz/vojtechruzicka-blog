@@ -2,7 +2,7 @@
 title: 'Easy git hooks with Husky'
 date: '2018-06-21'
 dateModified: '2019-06-25'
-tags: ['Git']
+topics: ['Git']
 path: '/githooks-husky/'
 excerpt: 'Effortless creation and management of git hooks for your Node/NPM projects with Husky.'
 needsReview: true

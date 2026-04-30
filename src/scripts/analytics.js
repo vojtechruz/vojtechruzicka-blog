@@ -71,10 +71,10 @@ window.trackAnalyticsEvent = trackAnalyticsEvent;
       return;
     }
 
-    // 5. Tag Clicks
-    const tagLink = e.target.closest('.tag-name');
-    if (tagLink) {
-      trackAnalyticsEvent('Tag Click', { tag: tagLink.innerText.trim() });
+    // 5. Topic Clicks
+    const topicLink = e.target.closest('.topic-name');
+    if (topicLink) {
+      trackAnalyticsEvent('Topic Click', { topic: topicLink.innerText.trim() });
       return;
     }
   });

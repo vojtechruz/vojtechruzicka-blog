@@ -2,7 +2,7 @@
 title: Should I explicitly declare serialVersionUID?
 date: '2016-05-03'
 dateModified: '2018-12-31'
-tags: ['Java']
+topics: ['Java']
 path: '/explicitly-declare-serialversionuid/'
 excerpt: 'Should you explicitly declare serialVersionUID or leave it to be automatically generated?'
 needsReview: true

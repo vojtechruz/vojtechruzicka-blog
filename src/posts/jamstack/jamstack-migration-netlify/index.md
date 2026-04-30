@@ -2,7 +2,7 @@
 title: 'Migration to JAM stack and Netlify from WordPress'
 date: '2018-05-21'
 dateModified: '2019-10-24'
-tags: ['JAMStack', 'Blogging']
+topics: ['JAMStack', 'Blogging']
 path: '/jamstack-migration-netlify/'
 excerpt: 'How and Why I migrated from WordPress to static JAM Stack site deployed on Netlify.'
 needsReview: true

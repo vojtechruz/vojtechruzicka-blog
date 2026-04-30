@@ -3,13 +3,13 @@
  *
  * Resolution order:
  *  1. Explicit `relatedPosts` frontmatter array (paths) — kept in declaration order.
- *  2. Tag-based matching — posts sharing the most tags with the current post,
+ *  2. Topic-based matching — posts sharing the most topics with the current post,
  *     with date as tiebreaker (newer first).
  *
  * Rules:
  *  - Posts belonging to any series are completely excluded.
  *  - Draft posts are excluded.
- *  - At least one shared tag is required for tag-based matches.
+ *  - At least one shared topic is required for topic-based matches.
  *  - The current post is never included in its own related list.
  */
 
@@ -27,7 +27,7 @@ export function getRelatedPosts(currentPost, allPosts, maxCount) {
   }
 
   const currentUrl = currentPost.url || '';
-  const currentTags = new Set(currentPost.data?.tags || []);
+  const currentTopics = new Set(currentPost.data?.topics || []);
 
   // Build the eligible pool: exclude self, series posts, and drafts
   const pool = allPosts.filter((p) => {
@@ -63,13 +63,13 @@ export function getRelatedPosts(currentPost, allPosts, maxCount) {
     }
   }
 
-  // --- Phase 2: Tag-based matching for remaining slots ---
-  if (results.length < maxCount && currentTags.size > 0) {
+  // --- Phase 2: Topic-based matching for remaining slots ---
+  if (results.length < maxCount && currentTopics.size > 0) {
     const candidates = pool
       .filter((p) => !usedUrls.has(p.url))
       .map((p) => {
-        const postTags = new Set(p.data?.tags || []);
-        const overlap = [...currentTags].filter((t) => postTags.has(t)).length;
+        const postTopics = new Set(p.data?.topics || []);
+        const overlap = [...currentTopics].filter((t) => postTopics.has(t)).length;
         return { post: p, score: overlap };
       })
       .filter((item) => item.score > 0)

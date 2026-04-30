@@ -1,7 +1,7 @@
 ---
 title: 'How to share run configurations in IntelliJ IDEA'
 date: '2020-04-03'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/idea-sharing-run-configurations/'
 excerpt:
   'Finally, with IDEA 2020.1, you can easily share your run configurations among your team members utilizing version

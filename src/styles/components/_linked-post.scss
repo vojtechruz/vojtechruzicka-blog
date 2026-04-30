@@ -8,10 +8,11 @@
   margin-bottom: var(--gap-xxl);
 
   &.linked-post-needs-review {
-    position: relative;
-    border-left: 3px solid var(--color-warning-border);
-    background: var(--color-warning-bg);
-    padding-left: 0.75rem;
+    //     TODO reenable this when reviewing posts
+    //     position: relative;
+    //     border-left: 3px solid var(--color-warning-border);
+    //     background: var(--color-warning-bg);
+    //     padding-left: 0.75rem;
   }
 }
 
@@ -49,10 +50,25 @@
   white-space: nowrap;
 }
 
+.series-part-badge {
+  font-size: 0.8125rem;
+  white-space: nowrap;
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-heading-link-hover);
+    text-decoration: underline;
+  }
+}
+
 /* Layout: image + text block */
 .linked-post > div {
   display: flex;
-  gap: var(--gap-medium);
+  gap: calc(var(--gap-medium) + 2px);
   align-items: flex-start;
 }
 
@@ -94,6 +110,74 @@
   color: var(--color-heading-link-hover);
 }
 
+/* ====== COMPACT VARIANT ====== */
+
+.linked-post-compact {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: flex-start;
+}
+
+.linked-post-compact-image {
+  flex-shrink: 0;
+  display: block;
+  width: 72px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+
+  .image-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.linked-post-compact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  min-width: 0;
+  margin-top: -3px;
+}
+
+.linked-post-compact-title {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+
+  &:hover {
+    color: var(--color-heading-link-hover);
+    text-decoration: underline;
+  }
+}
+
+.linked-post-compact-excerpt {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* ====== RESPONSIVE ====== */
 @include utilities.respond(medium) {
   .front-post-image .image-wrapper {
@@ -103,7 +187,8 @@
 
 @include utilities.respond(small) {
   .front-post-image,
-  .front-post-image .image-wrapper {
+  .front-post-image .image-wrapper,
+  .linked-post-compact-image {
     display: none;
   }
 }

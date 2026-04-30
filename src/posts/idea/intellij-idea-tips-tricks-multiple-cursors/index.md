@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA Tips & Tricks: Multiple Cursors'
 date: '2017-06-29'
 dateModified: '2019-03-22'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/intellij-idea-tips-tricks-multiple-cursors/'
 excerpt:
   'Sometimes it is useful to edit multiple places in the file at once, which can save you precious time and increase

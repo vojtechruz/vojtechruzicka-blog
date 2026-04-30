@@ -1,7 +1,7 @@
 ---
 title: 'Getting rid of web.xml in Spring MVC App'
 date: '2018-04-02'
-tags: ['Java', 'Spring']
+topics: ['Spring', 'Java']
 path: '/spring-get-rid-of-web-xml/'
 excerpt:
   'From Servlet 3.0 on, web.xml is optional. How to get rid of it in your Spring MVC app and what is the replacement?'

@@ -1,7 +1,7 @@
 ---
 title: How to prepare for a phone screening interview
 date: '2017-11-02'
-tags: ['Career']
+topics: ['Career']
 path: '/prepare-phone-screening-interview/'
 excerpt:
   Phone screening interview is the first step in a hiring process. If you fail, you'll never get a chance to proceed to

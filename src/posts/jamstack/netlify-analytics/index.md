@@ -1,7 +1,7 @@
 ---
 title: 'Netlify Analytics Review: Google Analytics alternative?'
 date: '2019-10-11'
-tags: ['JAMStack']
+topics: ['JAMStack']
 path: '/netlify-analytics/'
 excerpt: 'Zero-impact server-side analytics for your Netlify projects. Works even with adblockers.'
 needsReview: true

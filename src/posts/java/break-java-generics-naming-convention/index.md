@@ -1,12 +1,13 @@
 ---
 title: Break the Java Generics Naming Convention?
 date: '2016-04-30'
-tags: ['Java']
+topics: ['Java']
 path: '/break-java-generics-naming-convention/'
 excerpt:
   'Descriptive names improve readability and reduce confusion. Yet official Java conventions restrict generic type names
   to a single letter — should you stick to it?'
 needsReview: true
+featuredImage: './featured.png'
 ---
 
 ## Java Generics Naming Convention

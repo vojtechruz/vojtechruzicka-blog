@@ -2,6 +2,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
 import siteConfig from '../src/_data/site.js';
+import { slugify } from '../config/utils/formatting.js';
 
 describe('Sitemap (sitemap.xml)', () => {
   const sitemapPath = `${SITE_DIR}/sitemap.xml`;
@@ -88,7 +89,7 @@ describe('Sitemap (sitemap.xml)', () => {
     });
 
     it('should contain core pages', () => {
-      const corePages = ['/', '/about/', '/archives/'];
+      const corePages = ['/', '/about/', '/topics/'];
 
       for (const pagePath of corePages) {
         const expectedUrl = `${siteConfig.url.replace(/\/$/, '')}${pagePath}`;
@@ -98,18 +99,18 @@ describe('Sitemap (sitemap.xml)', () => {
       }
     });
 
-    it('should contain tag pages', () => {
-      // Tags from published posts should be in sitemap
-      const publishedTags = new Set();
+    it('should contain topic pages', () => {
+      // Topics from published posts should be in sitemap
+      const publishedTopics = new Set();
       for (const { frontmatter } of publishedPosts) {
-        if (frontmatter.tags) {
-          frontmatter.tags.forEach((t) => publishedTags.add(t.toLowerCase()));
+        if (frontmatter.topics) {
+          frontmatter.topics.forEach((t) => publishedTopics.add(slugify(t)));
         }
       }
 
-      for (const tag of publishedTags) {
-        const expectedUrl = `${siteConfig.url.replace(/\/$/, '')}/tags/${tag}/`;
-        expect(sitemapContent, `Sitemap should contain tag page: ${expectedUrl}`).toContain(
+      for (const topic of publishedTopics) {
+        const expectedUrl = `${siteConfig.url.replace(/\/$/, '')}/topics/${topic}/`;
+        expect(sitemapContent, `Sitemap should contain topic page: ${expectedUrl}`).toContain(
           `<loc>${expectedUrl}</loc>`,
         );
       }

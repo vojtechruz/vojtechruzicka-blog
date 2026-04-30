@@ -1,7 +1,7 @@
 ---
 title: 'Learning IntelliJ IDEA keyboard shortcuts'
 date: '2016-05-08'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/learning-intellij-idea-keyboard-shortcuts/'
 excerpt:
   'Learning shortcut keys of your favorite IDE can greatly boost your programming productivity. There is a trick to

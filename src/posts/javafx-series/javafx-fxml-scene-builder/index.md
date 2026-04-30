@@ -1,11 +1,10 @@
 ---
 title: 'JavaFX Tutorial: FXML and SceneBuilder'
 date: '2019-10-01'
-tags: ['Java', 'JavaFX']
+topics: ['Java', 'JavaFX']
 path: '/javafx-fxml-scene-builder/'
 excerpt: 'How to build GUI with JavaFX using FXML markup and SceneBuilder.'
-series: JavaFX
-series-order: 3
+series: javafx
 needsReview: true
 ---
 

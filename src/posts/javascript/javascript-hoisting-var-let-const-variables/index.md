@@ -1,7 +1,7 @@
 ---
 title: 'Javascript hoisting, var, let and const variables'
 date: '2018-02-09'
-tags: ['Javascript']
+topics: ['Javascript']
 path: '/javascript-hoisting-var-let-const-variables/'
 excerpt:
   One of the Javascript's oddities is that you can use variables and functions before they are declared. It's called

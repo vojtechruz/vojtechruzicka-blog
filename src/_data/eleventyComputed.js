@@ -6,14 +6,14 @@ import { slugify } from '../../config/utils/formatting.js';
 
 const AVOID = new Set(['blog', 'post', 'misc', 'general']);
 
-/** Pick first non-generic tag, else first tag */
-function pickPrimaryTag(tags = []) {
-  if (!Array.isArray(tags) || tags.length === 0) {
+/** Pick first non-generic topic, else first topic */
+function pickPrimaryTopic(topics = []) {
+  if (!Array.isArray(topics) || topics.length === 0) {
     return null;
   }
 
-  const chosen = tags.find((t) => !AVOID.has(String(t).toLowerCase()));
-  return chosen || tags[0] || null;
+  const chosen = topics.find((t) => !AVOID.has(String(t).toLowerCase()));
+  return chosen || topics[0] || null;
 }
 
 /** Share image absolute URL (supports http, /root, ./relative next to page url) */
@@ -37,7 +37,7 @@ function shareImageUrl({ featuredImage, page, site }) {
 
 /**
  * Compute a single "kind" (enum) for the current page.
- * Possible values: "home" | "homePaginated" | "topics" | "tag" | "post" | "page"
+ * Possible values: "home" | "homePaginated" | "topics" | "topic" | "post" | "page"
  */
 function getPageKind(d) {
   const url = d.page?.url || '/';
@@ -51,12 +51,20 @@ function getPageKind(d) {
     return { url, stem, kind: 'homePaginated' };
   }
 
-  if (url === '/archives/') {
+  if (url === '/topics/') {
     return { url, stem, kind: 'topics' };
   }
 
-  if (url.startsWith('/tags/') && url !== '/tags/') {
-    return { url, stem, kind: 'tag' };
+  if (url.startsWith('/topics/') && url !== '/topics/') {
+    return { url, stem, kind: 'topic' };
+  }
+
+  if (url === '/series/') {
+    return { url, stem, kind: 'seriesListing' };
+  }
+
+  if (url.startsWith('/series/')) {
+    return { url, stem, kind: 'series' };
   }
 
   if (stem.startsWith('/posts/')) {
@@ -67,7 +75,7 @@ function getPageKind(d) {
 }
 
 /** Build breadcrumb array based on kind */
-function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
+function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata }) {
   const crumbs = [{ name: 'Home', url: '/' }];
 
   switch (kind) {
@@ -77,25 +85,40 @@ function buildBreadcrumbs({ url, title, tags, kind, tagName }) {
     case 'homePaginated': {
       const m = url.match(/^\/pages\/(\d+)\/?$/);
       const pageNum = m ? m[1] : url;
-      return crumbs.concat({ name: 'Topics', url: '/archives/' }, { name: `Page ${pageNum}`, url });
+      return crumbs.concat({ name: 'Topics', url: '/topics/' }, { name: `Page ${pageNum}`, url });
     }
 
     case 'topics':
-      return crumbs.concat({ name: 'Topics', url: '/archives/' });
+      return crumbs.concat({ name: 'Topics', url: '/topics/' });
 
-    case 'tag': {
-      const tagSlug = url.replace(/^\/tags\/|\/$/g, '');
-      return crumbs.concat({ name: 'Topics', url: '/archives/' }, { name: tagName || tagSlug, url });
+    case 'topic': {
+      const topicSlug = url.replace(/^\/topics\/|\/$/g, '');
+      return crumbs.concat({ name: 'Topics', url: '/topics/' }, { name: topicName || topicSlug, url });
     }
 
     case 'post': {
-      const primary = pickPrimaryTag(tags);
-      const middle = [{ name: 'Topics', url: '/archives/' }];
+      const postSeries = Array.isArray(seriesMetadata) ? seriesMetadata.find((s) => s.posts.includes(url)) : null;
+      if (postSeries) {
+        return crumbs.concat(
+          { name: 'Series', url: '/series/' },
+          { name: postSeries.name, url: `/series/${postSeries.slug}/` },
+          { name: title || 'Post', url },
+        );
+      }
+
+      const primary = pickPrimaryTopic(topics);
+      const middle = [{ name: 'Topics', url: '/topics/' }];
       if (primary) {
-        middle.push({ name: primary, url: `/tags/${slugify(primary)}/` });
+        middle.push({ name: primary, url: `/topics/${slugify(primary)}/` });
       }
       return crumbs.concat(middle, { name: title || 'Post', url });
     }
+
+    case 'seriesListing':
+      return crumbs.concat({ name: 'Series', url: '/series/' });
+
+    case 'series':
+      return crumbs.concat({ name: 'Series', url: '/series/' }, { name: title || 'Series', url });
 
     case 'page':
     default:
@@ -113,18 +136,30 @@ export default {
   isHome: (d) => getPageKind(d).kind === 'home',
   isHomePaginated: (d) => getPageKind(d).kind === 'homePaginated',
   isTopics: (d) => getPageKind(d).kind === 'topics',
-  isTag: (d) => getPageKind(d).kind === 'tag',
+  isTopic: (d) => getPageKind(d).kind === 'topic',
   isPost: (d) => getPageKind(d).kind === 'post',
   isAbout: (d) => d.page?.url === '/about/',
+  isSeries: (d) => getPageKind(d).kind === 'series',
+  isSeriesListing: (d) => getPageKind(d).kind === 'seriesListing',
 
   // Prefer the pre-generated og-image.jpg (posts only) over the raw featuredImage path.
   // The transform plugin's hashed filenames are not predictable at data-computation time,
   // so posts.11tydata.js generates a stable JPEG via eleventy-img and exposes it as ogImageUrl.
-  // Non-post pages (home, tag, about) fall back to shareImageUrl.
+  // Non-post pages (home, topic, about) fall back to shareImageUrl.
   imageUrl: (d) =>
     d.ogImageUrl
       ? (d.site?.url || '') + d.ogImageUrl
       : shareImageUrl({ featuredImage: d.featuredImage, page: d.page, site: d.site }),
+
+  // Short title for use within a series TOC — strips everything up to and including the first ': '
+  seriesTitle: (d) => {
+    if (!d.series || !d.title) {
+      return null;
+    }
+
+    const idx = d.title.indexOf(': ');
+    return idx !== -1 ? d.title.slice(idx + 2) : null;
+  },
 
   // Dates
   publishedDate: (d) => d.date,
@@ -136,9 +171,10 @@ export default {
     return buildBreadcrumbs({
       url,
       title: d.title,
-      tags: d.tags,
+      topics: d.topics,
       kind,
-      tagName: d.tag,
+      topicName: d.topic,
+      seriesMetadata: d.seriesMetadata,
     });
   },
 

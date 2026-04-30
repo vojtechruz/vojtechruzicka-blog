@@ -1,7 +1,7 @@
 ---
 title: Premium Quality Tests
 date: '2017-05-02'
-tags: ['Testing']
+topics: ['Testing']
 path: '/premium-quality-tests/'
 featuredImage: './premium.png'
 excerpt:

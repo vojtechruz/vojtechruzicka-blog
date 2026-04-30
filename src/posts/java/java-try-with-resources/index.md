@@ -1,7 +1,7 @@
 ---
 title: 'Try with resources in Java'
 date: '2019-04-23'
-tags: ['Java']
+topics: ['Java']
 path: '/java-try-with-resources/'
 excerpt:
   'Try with resources offers an easy and foolproof way to make sure all your resources are properly closed. It manages

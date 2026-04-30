@@ -1,7 +1,7 @@
 ---
 title: 'Actuator: Spring Boot Production Monitoring and Management'
 date: '2018-09-03'
-tags: ['Spring', 'Java']
+topics: ['Spring', 'Java']
 path: '/spring-boot-actuator/'
 excerpt:
   'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health

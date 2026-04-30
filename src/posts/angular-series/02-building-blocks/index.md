@@ -1,16 +1,15 @@
 ---
 title: 'Angular Tutorial 2: Building Blocks'
 date: '2020-07-21'
-tags: ['Angular']
+topics: ['Angular']
 path: '/angular/02-building-blocks/'
 excerpt: Let's learn about the basic building blocks of Angular - Components, Directives, Pipes, Services and Modules.
-series: 'Angular Tutorial'
-series-order: 2
+series: angular-tutorial
 needsReview: true
 ---
 
 This is the second article in the Angular Tutorial series. You can check the first one -
-[Angular Tutorial 1: Getting Started](https://www.vojtechruzicka.com/angular/01-getting-started/)
+[Angular Tutorial 1: Getting Started](/angular/01-getting-started/)
 
 ## Building blocks
 
@@ -68,8 +67,8 @@ component.
 
 ### Pipes
 
-Unlike component's the pipes don't have any visible user interface. Instead, they are used in your components to
-transform and manipulate data. Each pipe accepts some input, optionally some other parameters, and produce some
+Unlike components, the pipes don't have any visible user interface. Instead, they are used in your components to
+transform and manipulate data. Each pipe accepts some input, optionally some other parameters, and produces some
 transformed output based on that. There are some built-in pipes such as:
 
 - currency formatting

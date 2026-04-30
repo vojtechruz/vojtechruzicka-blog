@@ -2,7 +2,7 @@
 title: 'Faster Development with Spring Boot DevTools'
 date: '2018-11-02'
 dateModified: '2019-04-28'
-tags: ['Spring', 'Java']
+topics: ['Spring', 'Java']
 path: '/spring-boot-devtools/'
 excerpt:
   'How to speed up your Spring Boot development even more with DevTools and make it more enjoyable and productive?'

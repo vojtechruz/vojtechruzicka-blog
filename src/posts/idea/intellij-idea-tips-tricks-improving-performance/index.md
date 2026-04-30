@@ -2,7 +2,7 @@
 title: 'IntelliJ IDEA Tips & Tricks: Improving performance'
 date: '2017-08-01'
 dateModified: '2019-01-14'
-tags: ['IDEA']
+topics: ['IntelliJ IDEA']
 path: '/intellij-idea-tips-tricks-improving-performance/'
 excerpt:
   'Running IntelliJ IDEA IDE can be taxing on your machine, especially for large projects, here are a few tips, which

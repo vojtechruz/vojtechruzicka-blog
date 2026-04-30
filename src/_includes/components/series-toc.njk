@@ -1,39 +1,39 @@
 {% if series %}
-  {# Determine the series name from the current page front matter #}
-  {% set seriesName = series %}
-
-  {# Collect all posts from the same series #}
-  {% set seriesPosts = [] %}
-  {% for post in collections.posts %}
-    {% if post.data.series and post.data.series == seriesName %}
-      {% set item = {
-        title: post.data.title,
-        url: post.url,
-        order: (post.data['series-order'] or 999999),
-        isCurrent: (post.url == page.url)
-      } %}
-      {% set _ = seriesPosts.push(item) %}
+  {# Find series metadata by slug #}
+  {% set seriesMeta = null %}
+  {% for meta in seriesMetadata %}
+    {% if meta.slug == series %}
+      {% set seriesMeta = meta %}
     {% endif %}
   {% endfor %}
 
-  {# Sort by numeric order #}
-  {% set seriesPosts = seriesPosts | sort(false, false, 'order') %}
-
-  <nav class="series-toc" aria-label="Series navigation">
-    <p class="toc-heading">All posts in the {{ seriesName }} series</p>
-    <ol class="toc-list">
-      {% for item in seriesPosts %}
-        {% if item.isCurrent %}
-          <li>
-            <a href="{{ item.url }}" aria-current="page" class="series-current">
-              {{ item.title }}
-            </a>
-          </li>
-        {% else %}
-          <li><a href="{{ item.url }}">{{ item.title }} </a></li>
-        {% endif %}
-      {% endfor %}
-    </ol>
-  </nav>
-  <hr class="series-toc-divider" aria-hidden="true">
+  {% if seriesMeta %}
+    <nav class="series-toc" aria-label="Series navigation">
+      <p class="toc-heading">
+        <span>All posts in the <a href="/series/{{ seriesMeta.slug }}/">{{ seriesMeta.name }}</a> series</span>
+        <button class="series-toc-toggle" type="button" aria-expanded="true" aria-controls="series-toc-list" title="Collapse series list">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </p>
+      <ol class="toc-list" id="series-toc-list">
+        {% for postUrl in seriesMeta.posts %}
+          {% for post in collections.posts %}
+            {% if post.url == postUrl %}
+              <li>
+                {% set tocTitle = post.data.seriesTitle or post.data.title %}
+                {% if post.url == page.url %}
+                  <a href="{{ post.url }}" aria-current="page" class="series-current">{{ tocTitle }}</a>
+                {% else %}
+                  <a href="{{ post.url }}">{{ tocTitle }}</a>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </ol>
+    </nav>
+    <hr class="series-toc-divider" aria-hidden="true">
+  {% endif %}
 {% endif %}

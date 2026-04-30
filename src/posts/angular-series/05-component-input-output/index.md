@@ -1,11 +1,10 @@
 ---
 title: 'Angular Tutorial 5: Component input and output'
 date: '2020-07-24'
-tags: ['Angular']
+topics: ['Angular']
 path: '/angular/05-component-input-output/'
 excerpt: 'How to define possible inputs for your components and also output events, which can be subscribed to.'
-series: 'Angular Tutorial'
-series-order: 5
+series: angular-tutorial
 needsReview: true
 ---
 

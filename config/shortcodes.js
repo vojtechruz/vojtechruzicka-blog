@@ -5,6 +5,8 @@ import youtube from './shortcodes/youtube.js';
 import codepen from './shortcodes/codepen.js';
 import video from './shortcodes/video.js';
 import linkedPost from './shortcodes/linked-post.js';
+import linkedPostCompact from './shortcodes/linked-post-compact.js';
+import linkedSeries from './shortcodes/linked-series.js';
 
 export default function registerShortcodes(eleventyConfig) {
   // Paired shortcodes
@@ -17,4 +19,6 @@ export default function registerShortcodes(eleventyConfig) {
   eleventyConfig.addShortcode('codepen', codepen);
   eleventyConfig.addShortcode('video', video);
   eleventyConfig.addShortcode('linkedPost', linkedPost);
+  eleventyConfig.addShortcode('linkedPostCompact', linkedPostCompact);
+  eleventyConfig.addShortcode('linkedSeries', linkedSeries);
 }
