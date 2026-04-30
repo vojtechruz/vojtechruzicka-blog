@@ -7,18 +7,25 @@ import { globSync } from 'glob';
 /** Directory where the built site lives */
 export const SITE_DIR = '_site';
 
+const _pageCache = new Map();
+
 /**
  * Load and parse an HTML file from the build output.
  * @param {string} urlPath – URL path, e.g. '/break-java-generics-naming-convention/'
  * @returns {cheerio.CheerioAPI}
  */
 export function loadPage(urlPath) {
+  if (_pageCache.has(urlPath)) {
+    return _pageCache.get(urlPath);
+  }
   const filePath = urlPath.endsWith('.html') ? `${SITE_DIR}${urlPath}` : `${SITE_DIR}${urlPath}index.html`;
   if (!existsSync(filePath)) {
     throw new Error(`Built HTML not found: ${filePath}. Run "npm run build" first.`);
   }
   const html = readFileSync(filePath, 'utf-8');
-  return cheerio.load(html);
+  const $ = cheerio.load(html);
+  _pageCache.set(urlPath, $);
+  return $;
 }
 
 /**

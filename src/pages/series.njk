@@ -14,7 +14,7 @@ eleventyComputed:
 {% block pageContent %}
 
 <div class="page-meta">
-  <span>
+  <span class="series-post-count">
     {{ currentSeries.posts | length }} article{% if currentSeries.posts | length != 1 %}s{% endif %}
   </span>
 
