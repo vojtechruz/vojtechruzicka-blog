@@ -70,6 +70,18 @@ export default {
       title: 'Subscribe to RSS feed',
     },
     {
+      name: 'GitHub',
+      url: 'https://github.com/vojtechruz',
+      icon: 'icons/github.njk',
+      title: 'View my GitHub profile',
+    },
+    {
+      name: 'Bluesky',
+      url: 'https://bsky.app/profile/vojtechruzicka.com',
+      icon: 'icons/bluesky.njk',
+      title: 'View my Bluesky profile',
+    },
+    {
       name: 'Mastodon',
       url: 'https://mastodon.social/@vojtechruzicka',
       icon: 'icons/mastodon.njk',
@@ -81,12 +93,6 @@ export default {
       url: 'https://www.linkedin.com/in/vojtechruzicka',
       icon: 'icons/linkedin.njk',
       title: 'View my LinkedIn profile',
-    },
-    {
-      name: 'GitHub',
-      url: 'https://github.com/vojtechruz',
-      icon: 'icons/github.njk',
-      title: 'View my GitHub profile',
     },
   ],
 };
