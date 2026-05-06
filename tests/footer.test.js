@@ -31,8 +31,8 @@ describe('Footer', () => {
     expect(socialNav.attr('aria-label')).toBe('Social links');
   });
 
-  it('contains exactly 4 social links', () => {
-    expect(getSocialLinks($).length).toBe(4);
+  it('contains exactly 5 social links', () => {
+    expect(getSocialLinks($).length).toBe(5);
   });
 
   it('all footer social links have href', () => {
@@ -81,6 +81,7 @@ describe('Footer', () => {
     expect(hrefs).toContain('https://mastodon.social/@vojtechruzicka');
     expect(hrefs).toContain('https://www.linkedin.com/in/vojtechruzicka');
     expect(hrefs).toContain('https://github.com/vojtechruz');
+    expect(hrefs).toContain('https://bsky.app/profile/vojtechruzicka.com');
   });
 
   it('rss link has correct accessible label', () => {
@@ -95,6 +96,13 @@ describe('Footer', () => {
 
     expect(mastodonLink.length).toBe(1);
     expect(mastodonLink.attr('rel')).toBe('me');
+  });
+
+  it('bluesky link has correct accessible label', () => {
+    const blueskyLink = getSocialLinkByHref($, 'https://bsky.app/profile/vojtechruzicka.com');
+
+    expect(blueskyLink.length).toBe(1);
+    expect(blueskyLink.attr('aria-label')).toBe('View my Bluesky profile');
   });
 
   it('does not contain empty social link labels', () => {
