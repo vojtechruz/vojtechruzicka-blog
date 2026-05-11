@@ -58,17 +58,18 @@ The database ID is saved to `.notion_sync_state.json` next to the script, so
 it won't be recreated on subsequent runs. Commit the file to the repo (it
 contains nothing sensitive), or cache it in CI (see the workflow below).
 
-### 3. GitHub Action
+### 3. GitHub Actions
 
-Copy `notion-sync.yml` into `.github/workflows/`, the script into `scripts/sync_to_notion.py`,
-and `requirements.txt` into `scripts/requirements.txt`. In repo settings → Secrets add:
+The workflow is at `.github/workflows/notion-sync.yml`. It runs on every push to
+`master` when files under `src/posts/**` change.
+
+Add two secrets in GitHub repo → Settings → Secrets and variables → Actions:
 
 - `NOTION_TOKEN`
 - `NOTION_PARENT_PAGE_ID`
 
-The workflow runs on push to `main` when files under `posts/**` change. If your
-posts live elsewhere, update `paths:` and the last line
-`python scripts/sync_to_notion.py posts` accordingly.
+If you recreate the Notion database locally, commit the updated
+`.notion_sync_state.json` so the workflow picks up the new database ID.
 
 ## Deleted / renamed posts
 

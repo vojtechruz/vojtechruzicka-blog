@@ -1,0 +1,23 @@
+name: Notion Sync
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/posts/**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: '_tools/notion/requirements.txt'
+      - run: pip install -r _tools/notion/requirements.txt
+      - run: python _tools/notion/sync_to_notion.py src/posts
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
