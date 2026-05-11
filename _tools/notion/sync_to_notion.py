@@ -44,7 +44,8 @@ DB_SCHEMA = {
     "Excerpt": {"rich_text": {}},
     "Days Since Modified": {
         "formula": {
-            "expression": 'if(empty(prop("Date Modified")), toNumber(""), '
+            "expression": 'if(empty(prop("Date Modified")), '
+                          'if(empty(prop("Date")), toNumber(""), dateBetween(now(), prop("Date"), "days")), '
                           'dateBetween(now(), prop("Date Modified"), "days"))'
         }
     },
