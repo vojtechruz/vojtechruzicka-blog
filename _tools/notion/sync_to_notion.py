@@ -46,6 +46,15 @@ DB_SCHEMA = {
                           'dateBetween(now(), prop("Date Modified"), "days"))'
         }
     },
+    "Series": {"select": {}},
+    "Draft Status": {
+        "select": {
+            "options": [
+                {"name": "Published", "color": "green"},
+                {"name": "Draft", "color": "gray"},
+            ]
+        }
+    },
     "Status": {
         "select": {
             "options": [
@@ -71,7 +80,7 @@ DB_SCHEMA = {
 # These are the only properties the sync script writes on update.
 # Everything else (tracking fields) is left alone.
 FRONTMATTER_PROPS = {"Title", "Slug", "Date", "Date Modified",
-                     "Topics", "Path", "Excerpt"}
+                     "Topics", "Path", "Excerpt", "Series", "Draft Status"}
 
 
 class Notion:
@@ -167,6 +176,13 @@ def fm_to_properties(fm: dict, fallback_slug: str) -> dict:
         props["Path"] = {"rich_text": [{"text": {"content": str(fm["path"])}}]}
     if fm.get("excerpt"):
         props["Excerpt"] = {"rich_text": [{"text": {"content": str(fm["excerpt"])}}]}
+
+    series_slug = fm.get("series", "")
+    if series_slug:
+        props["Series"] = {"select": {"name": series_slug.replace("-", " ").title()}}
+
+    draft_label = "Draft" if str(fm.get("draftStatus", "")).lower() == "draft" else "Published"
+    props["Draft Status"] = {"select": {"name": draft_label}}
 
     return props
 
