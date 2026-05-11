@@ -194,9 +194,15 @@ def get_slug_from_page(page: dict) -> str:
     return rt[0]["plain_text"] if rt else ""
 
 
-def collect_markdown(root: Path) -> list[Path]:
-    return sorted([p for p in root.rglob("*.md")] +
-                  [p for p in root.rglob("*.mdx")])
+IGNORED_FILES: set[str] = {"review.md"}
+
+
+def collect_markdown(root: Path, ignore: set[str] | None = None) -> list[Path]:
+    blocked = (ignore or set()) | IGNORED_FILES
+    return sorted(
+        p for p in (list(root.rglob("*.md")) + list(root.rglob("*.mdx")))
+        if p.name not in blocked
+    )
 
 
 def main() -> int:
@@ -207,6 +213,8 @@ def main() -> int:
                     help="Database title (used only on first run)")
     ap.add_argument("--dry-run", action="store_true",
                     help="Don't call Notion API, just show what would happen")
+    ap.add_argument("--ignore", metavar="FILENAME", action="append", default=[],
+                    help="Filename to skip (repeatable). 'review.md' is always ignored.")
     args = ap.parse_args()
 
     token = os.environ.get("NOTION_TOKEN", "")
@@ -220,7 +228,7 @@ def main() -> int:
         print(f"Not a directory: {args.posts_dir}", file=sys.stderr)
         return 2
 
-    files = collect_markdown(args.posts_dir)
+    files = collect_markdown(args.posts_dir, ignore=set(args.ignore))
     print(f"Found {len(files)} markdown file(s) under {args.posts_dir}")
 
     if args.dry_run:

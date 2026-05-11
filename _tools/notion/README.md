@@ -32,16 +32,23 @@ Without step 3 you will get a 404 even if the token is valid.
 ### 2. Running locally
 
 ```bash
+cd _tools/notion
+
+# create and activate a virtual environment (one-time)
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+# source .venv/bin/activate   # macOS / Linux
+
 pip install -r requirements.txt
 
 # one-time setup: copy the example and fill in your values
-cp _tools/notion/.env.example _tools/notion/.env
+cp .env.example .env
 
 # dry-run first so you can see what the script found in the files
-python sync_to_notion.py /path/to/posts --dry-run
+python sync_to_notion.py ../../src/posts --dry-run
 
 # live run — creates the database on first run
-python sync_to_notion.py /path/to/posts
+python sync_to_notion.py ../../src/posts
 ```
 
 The `.env` file is gitignored. The script loads it automatically — no need to
