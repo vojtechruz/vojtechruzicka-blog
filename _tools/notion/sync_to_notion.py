@@ -8,8 +8,7 @@ frontmatter-derived fields. Tracking fields (Status, Priority,
 Last reviewed) are never touched after the page is created.
 
 Usage:
-    export NOTION_TOKEN=ntn_...
-    export NOTION_PARENT_PAGE_ID=<page-id>
+    Copy _tools/notion/.env.example to _tools/notion/.env and fill in values.
     python sync_to_notion.py /path/to/blog/posts
 """
 
@@ -23,6 +22,9 @@ from typing import Any
 
 import frontmatter
 import requests
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).parent / ".env")
 
 NOTION_VERSION = "2022-06-28"
 API = "https://api.notion.com/v1"

@@ -34,8 +34,8 @@ Without step 3 you will get a 404 even if the token is valid.
 ```bash
 pip install -r requirements.txt
 
-export NOTION_TOKEN=ntn_...
-export NOTION_PARENT_PAGE_ID=351dceb02b4480bdba66c1a1b34c7181
+# one-time setup: copy the example and fill in your values
+cp _tools/notion/.env.example _tools/notion/.env
 
 # dry-run first so you can see what the script found in the files
 python sync_to_notion.py /path/to/posts --dry-run
@@ -43,6 +43,9 @@ python sync_to_notion.py /path/to/posts --dry-run
 # live run — creates the database on first run
 python sync_to_notion.py /path/to/posts
 ```
+
+The `.env` file is gitignored. The script loads it automatically — no need to
+export variables in each terminal session.
 
 The database ID is saved to `.notion_sync_state.json` next to the script, so
 it won't be recreated on subsequent runs. Commit the file to the repo (it
