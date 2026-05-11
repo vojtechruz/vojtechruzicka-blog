@@ -1,12 +1,12 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-# --- Konfigurace ---
+# --- Configuration ---
 $SrcRoot      = "src\posts"
 $OutRoot      = "src\static\videos"
 $FfmpegExe    = 'C:\Program Files\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe'
 $MaxWidth     = 900
-$ForceRebuild = $false          # $true = překóduj vše znovu, $false = jen změněné
+$ForceRebuild = $false          # $true = encode everything again, $false = encode changed only
 
 function Get-FileSize {
     param([string]$Path)
@@ -33,7 +33,7 @@ if ($null -eq $gifs) {
 }
 else {
     foreach ($gif in $gifs) {
-        # Výstupní složka je pojmenována podle složky, ve které je GIF (v našem projektu je to post-name)
+        # Output directory us named after directory containing the GIF (usually slug of the post)
         $directoryName = $gif.Directory.Name
         $outDir = Join-Path $OutRoot $directoryName
         if (!(Test-Path $outDir)) {
@@ -45,7 +45,7 @@ else {
         $webmPath    = Join-Path $outDir ($baseName + '.webm')
         $posterPath  = Join-Path $outDir ($baseName + '-poster.jpg')
 
-        # společný filter chain
+        # Common filter chain
         $vf = "crop=trunc(iw/2)*2:trunc(ih/2)*2,scale='min($MaxWidth,iw)':-2:flags=lanczos"
 
         $doMp4    = $ForceRebuild -or !(Test-Path $mp4Path)  -or ((Get-Item $mp4Path).LastWriteTime  -lt $gif.LastWriteTime)

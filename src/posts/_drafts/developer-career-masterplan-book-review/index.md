@@ -15,10 +15,19 @@ I am not affiliated with the book or authors in any way and this review does not
 ## About the authors
 
 ### Heather VanCura
-Heather is a senior director at oracle, leading the JCP program and MySQL Community Outreach team. She's been working at Oracle and previously Sun Microsystems for more than 20 years. You can check her [Blog](https://heathervcblog.wordpress.com/), [Twitter](https://twitter.com/heathervc) or [LinkedIn](https://www.linkedin.com/in/heather-vancura-400395/).
+
+Heather is a senior director at oracle, leading the JCP program and MySQL Community Outreach team. She's been working
+at Oracle and previously Sun Microsystems for more than 20 years. You can check her 
+[Blog](https://heathervcblog.wordpress.com/), [Twitter](https://twitter.com/heathervc) 
+or [LinkedIn](https://www.linkedin.com/in/heather-vancura-400395/).
 
 ### Bruno Souza
-Bruno is a Java Developer and consultant working in Summa Technologies. He is founder of [SouJava](https://soujava.org.br/) a Brazilian Java user group. You can check his [page](code4.life), [Twitter](https://twitter.com/brjavaman), [LinkedIn](https://www.linkedin.com/in/brjavaman/?originalSubdomain=br) or [YouTube channel](https://www.youtube.com/@brjavaman).
+
+Bruno is a Java Developer and consultant working in Summa Technologies. He is founder 
+of [SouJava](https://soujava.org.br/) a Brazilian Java user group. 
+You can check his page [code4.life](https://code4.life/), [Twitter](https://twitter.com/brjavaman), 
+[LinkedIn](https://www.linkedin.com/in/brjavaman/?originalSubdomain=br) 
+or [YouTube channel](https://www.youtube.com/@brjavaman).
 
 ## Conclusion
 
