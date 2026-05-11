@@ -2,7 +2,7 @@
 title: 'Developer Career Masterplan Book Review'
 date: '2026-04-22'
 tags: ['Books', 'Career']
-path: '/developer-career-masterplan-book-review
+path: '/developer-career-masterplan-book-review'
 featuredImage: './developer-career-masterplan-book-review.png'
 excerpt: 'Review of book Developer Career Masterplan: Build your path to senior level and beyond with practical insights from industry experts by Heather VanCura and Bruno Souza.'
 draftStatus: draft
@@ -17,16 +17,16 @@ I am not affiliated with the book or authors in any way and this review does not
 ### Heather VanCura
 
 Heather is a senior director at oracle, leading the JCP program and MySQL Community Outreach team. She's been working
-at Oracle and previously Sun Microsystems for more than 20 years. You can check her 
-[Blog](https://heathervcblog.wordpress.com/), [Twitter](https://twitter.com/heathervc) 
+at Oracle and previously Sun Microsystems for more than 20 years. You can check her
+[Blog](https://heathervcblog.wordpress.com/), [Twitter](https://twitter.com/heathervc)
 or [LinkedIn](https://www.linkedin.com/in/heather-vancura-400395/).
 
 ### Bruno Souza
 
-Bruno is a Java Developer and consultant working in Summa Technologies. He is founder 
-of [SouJava](https://soujava.org.br/) a Brazilian Java user group. 
-You can check his page [code4.life](https://code4.life/), [Twitter](https://twitter.com/brjavaman), 
-[LinkedIn](https://www.linkedin.com/in/brjavaman/?originalSubdomain=br) 
+Bruno is a Java Developer and consultant working in Summa Technologies. He is the founder
+of [SouJava](https://soujava.org.br/) a Brazilian Java user group.
+You can check his page [code4.life](https://code4.life/), [Twitter](https://twitter.com/brjavaman),
+[LinkedIn](https://www.linkedin.com/in/brjavaman/?originalSubdomain=br)
 or [YouTube channel](https://www.youtube.com/@brjavaman).
 
 ## Conclusion
