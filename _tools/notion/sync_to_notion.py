@@ -15,6 +15,7 @@ Usage:
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -47,6 +48,16 @@ DB_SCHEMA = {
             "expression": 'if(empty(prop("Date Modified")), '
                           'if(empty(prop("Date")), toNumber(""), dateBetween(now(), prop("Date"), "days")), '
                           'dateBetween(now(), prop("Date Modified"), "days"))'
+        }
+    },
+    "Days Since Reviewed": {
+        "formula": {
+            "expression": 'if(empty(prop("Last reviewed")), dateBetween(now(), prop("Date"), "days"), dateBetween(now(), prop("Last reviewed"), "days"))'
+        }
+    },
+    "URL": {
+        "formula": {
+            "expression": '"https://www.vojtechruzicka.com" + prop("Path")'
         }
     },
     "Series": {"select": {}},
@@ -84,6 +95,71 @@ DB_SCHEMA = {
 # Everything else (tracking fields) is left alone.
 FRONTMATTER_PROPS = {"Title", "Slug", "Date", "Date Modified",
                      "Topics", "Path", "Excerpt", "Series", "Draft Status"}
+
+
+_INLINE_RE = re.compile(r'\*\*(.+?)\*\*|`(.+?)`')
+
+
+def _parse_inline(text: str) -> list[dict]:
+    """Convert **bold** and `code` spans to Notion rich text objects."""
+    parts = []
+    last = 0
+    for m in _INLINE_RE.finditer(text):
+        if m.start() > last:
+            parts.append({"type": "text", "text": {"content": text[last:m.start()]}})
+        if m.group(1) is not None:
+            parts.append({"type": "text", "text": {"content": m.group(1)},
+                          "annotations": {"bold": True}})
+        else:
+            parts.append({"type": "text", "text": {"content": m.group(2)},
+                          "annotations": {"code": True}})
+        last = m.end()
+    if last < len(text):
+        parts.append({"type": "text", "text": {"content": text[last:]}})
+    return parts or [{"type": "text", "text": {"content": ""}}]
+
+
+def _bullet_block(text: str, children: list[dict] | None = None) -> dict:
+    item: dict = {"object": "block", "type": "bulleted_list_item",
+                  "bulleted_list_item": {"rich_text": _parse_inline(text)}}
+    if children:
+        item["bulleted_list_item"]["children"] = children
+    return item
+
+
+def md_to_notion_blocks(md: str) -> list[dict]:
+    """Convert review markdown (headings, bullets, paragraphs) to Notion blocks."""
+    blocks: list[dict] = []
+    lines = md.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if line.startswith("#### "):
+            blocks.append({"object": "block", "type": "heading_3",
+                            "heading_3": {"rich_text": _parse_inline(line[5:].strip())}})
+        elif line.startswith("### "):
+            blocks.append({"object": "block", "type": "heading_2",
+                            "heading_2": {"rich_text": _parse_inline(line[4:].strip())}})
+        elif line.startswith("- "):
+            children = []
+            j = i + 1
+            while j < len(lines) and lines[j].startswith("  - "):
+                children.append(_bullet_block(lines[j][4:].strip()))
+                j += 1
+            blocks.append(_bullet_block(line[2:].strip(), children or None))
+            i = j - 1
+        elif line.strip():
+            blocks.append({"object": "block", "type": "paragraph",
+                            "paragraph": {"rich_text": _parse_inline(line.strip())}})
+        i += 1
+    return blocks
+
+
+def load_review_blocks(post_path: Path) -> list[dict]:
+    review = post_path.parent / "review.md"
+    if not review.exists():
+        return []
+    return md_to_notion_blocks(review.read_text(encoding="utf-8"))
 
 
 class Notion:
@@ -130,8 +206,11 @@ class Notion:
                 return results
             cursor = data["next_cursor"]
 
-    def create_page(self, database_id: str, properties: dict) -> dict:
+    def create_page(self, database_id: str, properties: dict,
+                    children: list[dict] | None = None) -> dict:
         body = {"parent": {"database_id": database_id}, "properties": properties}
+        if children:
+            body["children"] = children
         return self._req("POST", "/pages", data=json.dumps(body))
 
     def update_page(self, page_id: str, properties: dict) -> dict:
@@ -277,8 +356,9 @@ def main() -> int:
             print(f"  ~ updated: {slug}")
             updated += 1
         else:
-            notion.create_page(db_id, props)
-            print(f"  + created: {slug}")
+            review_blocks = load_review_blocks(f)
+            notion.create_page(db_id, props, review_blocks or None)
+            print(f"  + created: {slug}" + (" (with review)" if review_blocks else ""))
             created += 1
 
     print(f"\nDone. created={created} updated={updated} skipped={skipped}")
