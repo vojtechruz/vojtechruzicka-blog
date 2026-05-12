@@ -8,6 +8,26 @@ Parse `$ARGUMENTS` to determine mode:
 - **`--drafts`**: like default but also include posts under `src/posts/_drafts/`
 - **A path** (e.g. `src/posts/java/java-records`): review just that one post directory
 
+## Step 0 — Check permissions
+
+Before doing anything else, check whether the required permissions are present in `.claude/settings.local.json`:
+
+```json
+"Write(src/posts/**/review.md)",
+"Edit(src/posts/**/review.md)"
+```
+
+Read `.claude/settings.local.json` (it may not exist yet). If either rule is missing, **stop and tell the user**:
+
+> ⚠️ Subagents need write access to `review.md` files to run efficiently. Add these two lines to `.claude/settings.local.json` under `permissions.allow`:
+> ```json
+> "Write(src/posts/**/review.md)",
+> "Edit(src/posts/**/review.md)"
+> ```
+> Without them the skill will still work but will use significantly more tokens. Continue anyway? (y/n)
+
+If the user says no, stop. If yes, proceed — the skill will fall back to having subagents output review content as text and the main agent will write the files.
+
 ## Step 1 — Collect posts to review
 
 Use PowerShell or glob to find `index.md` files matching the selected mode. Exclude `src/posts/_drafts/` unless `--drafts` is passed. Collect the full list of post directories to process.
