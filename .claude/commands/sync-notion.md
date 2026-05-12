@@ -10,15 +10,17 @@ Run the Notion sync script to update the blog's Notion database with current pos
 
 1. **Check dependencies**
    - Verify `_tools/notion/.env` exists. If it doesn't, stop and tell the user to copy `_tools/notion/.env.example` and fill in `NOTION_TOKEN` and `NOTION_PARENT_PAGE_ID`
-   - Check pip dependencies are installed: `pip show python-frontmatter` — if missing, run `pip install -r _tools/notion/requirements.txt` first
+   - The script uses a local venv at `_tools/notion/.venv`. On Windows use `_tools/notion/.venv/Scripts/python`, on Mac/Linux use `_tools/notion/.venv/bin/python`. Use PowerShell `Test-Path` to check which exists.
+   - If neither exists, create the venv: `python -m venv _tools/notion/.venv`, then install: `_tools/notion/.venv/Scripts/pip install -r _tools/notion/requirements.txt`
+   - If the venv exists but `python-frontmatter` is not installed (check with `_tools/notion/.venv/Scripts/pip show python-frontmatter`), run the install step
 
 2. **Dry run** (skip if `--force`)
-   - Run: `python _tools/notion/sync_to_notion.py src/posts --dry-run`
+   - Run: `_tools/notion/.venv/Scripts/python _tools/notion/sync_to_notion.py src/posts --dry-run`
    - Show the output to the user
    - Ask for confirmation before proceeding. If the user declines, stop.
 
 3. **Full sync**
-   - Run: `python _tools/notion/sync_to_notion.py src/posts`
+   - Run: `_tools/notion/.venv/Scripts/python _tools/notion/sync_to_notion.py src/posts`
    - Show the output including the final `created=N updated=N skipped=N` summary
 
 4. **Report** — confirm completion or surface any errors from the script output
