@@ -159,7 +159,16 @@ def load_review_blocks(post_path: Path) -> list[dict]:
     review = post_path.parent / "review.md"
     if not review.exists():
         return []
-    return md_to_notion_blocks(review.read_text(encoding="utf-8"))
+    inner = md_to_notion_blocks(review.read_text(encoding="utf-8"))
+    return [{
+        "object": "block",
+        "type": "heading_1",
+        "heading_1": {
+            "rich_text": [{"type": "text", "text": {"content": "AI Review"}}],
+            "is_toggleable": True,
+            "children": inner,
+        },
+    }]
 
 
 class Notion:
