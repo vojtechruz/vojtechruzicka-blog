@@ -1,0 +1,2234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<disqus xmlns="http://disqus.com" xmlns:dsq="http://disqus.com/disqus-internals" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://disqus.com/api/schemas/1.0/disqus.xsd http://disqus.com/api/schemas/1.0/disqus-internals.xsd">
+<category dsq:id="6602998">
+<forum>vojtechruzicka</forum>
+<title>General</title>
+<isDefault>true</isDefault>
+</category>
+<thread dsq:id="6491921606">
+<id>1628 http://vojtechruzicka.com/?p=1628</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/documenting-spring-boot-rest-api-swagger-springfox/</link>
+<title>Documenting Spring Boot REST API with Swagger and SpringFox</title>
+<message />
+<createdAt>2018-02-20T09:00:01Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491922637">
+<id>1592 http://vojtechruzicka.com/?p=1592</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/javascript-this-keyword/</link>
+<title>Javascript: Uncovering mysteries of ‘this’ keyword</title>
+<message />
+<createdAt>2018-02-20T09:00:50Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>49.34.79.219</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491942240">
+<id>236 http://vojtechruzicka.com/?p=236</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/avoid-telescoping-constructor-pattern/</link>
+<title>Telescoping Constructor Pattern alternatives</title>
+<message />
+<createdAt>2018-02-20T09:14:54Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>195.178.178.197</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491950702">
+<id>913 http://vojtechruzicka.com/?p=913</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-multiple-cursors/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Multiple Cursors</title>
+<message />
+<createdAt>2018-02-20T09:21:25Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>170.148.132.136</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491955932">
+<id>1051 http://vojtechruzicka.com/?p=1051</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/bit-manipulation-java-bitwise-bit-shift-operations/</link>
+<title>Bit Manipulation in Java – Bitwise and Bit Shift operations</title>
+<message />
+<createdAt>2018-02-20T09:25:20Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>197.95.198.194</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491955972">
+<id>553 http://vojtechruzicka.com/?p=553</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/exam-notes-pivotal-certified-spring-professional/</link>
+<title>Exam Notes – Pivotal Certified Spring Professional</title>
+<message />
+<createdAt>2018-02-20T09:25:21Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>94.156.47.57</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491969703">
+<id>1268 http://vojtechruzicka.com/?p=1268</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/</link>
+<title>Documenting Angular apps with TypeDoc, CompoDoc and AngularDoc</title>
+<message />
+<createdAt>2018-02-20T09:35:15Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>114.125.186.215</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491971049">
+<id>734 http://vojtechruzicka.com/?p=734</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/avoid-utility-classes/</link>
+<title>Avoid Utility Classes</title>
+<message />
+<createdAt>2018-02-20T09:36:14Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>212.186.88.33</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491973385">
+<id>736 http://vojtechruzicka.com/?p=736</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/postgresqls-jsonb-type-mapping-using-hibernate/</link>
+<title>PostgreSQL’s JSONB type mapping using Hibernate</title>
+<message />
+<createdAt>2018-02-20T09:37:57Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>111.93.235.138</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491977410">
+<id>827 http://vojtechruzicka.com/?p=827</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/preventing-clickjacking/</link>
+<title>Preventing Clickjacking</title>
+<message />
+<createdAt>2018-02-20T09:40:58Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>87.137.64.193</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491978452">
+<id>1487 http://vojtechruzicka.com/?p=1487</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-synchronization-sharing-settings/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Synchronization and Sharing of Settings</title>
+<message />
+<createdAt>2018-02-20T09:41:48Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>197.239.5.109</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491991121">
+<id>426 http://vojtechruzicka.com/?p=426</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/field-dependency-injection-considered-harmful/</link>
+<title>Field Dependency Injection Considered Harmful</title>
+<message />
+<createdAt>2018-02-20T09:51:38Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>198.39.100.21</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6491991291">
+<id>203 http://vojtechruzicka.com/?p=203</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/break-java-generics-naming-convention/</link>
+<title>Break the Java Generics Naming Convention?</title>
+<message />
+<createdAt>2018-02-20T09:51:44Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>84.248.100.108</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492015317">
+<id>1444 http://vojtechruzicka.com/?p=1444</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/protect-http-cookies/</link>
+<title>How to protect your HTTP Cookies</title>
+<message />
+<createdAt>2018-02-20T10:09:28Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492024514">
+<id>238 http://vojtechruzicka.com/?p=238</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/explicitly-declare-serialversionuid/</link>
+<title>Should I explicitly declare serialVersionUID?</title>
+<message />
+<createdAt>2018-02-20T10:16:05Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.182.149.13</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492024876">
+<id>357 http://vojtechruzicka.com/?p=357</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/learning-intellij-idea-keyboard-shortucts/</link>
+<title>Learning IntelliJ IDEA keyboard shortcuts</title>
+<message />
+<createdAt>2018-02-20T10:16:19Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>139.112.144.208</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492054615">
+<id>1389 http://vojtechruzicka.com/?p=1389</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-testing-restful-web-services/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Testing RESTful web services with integrated HTTP Client</title>
+<message />
+<createdAt>2018-02-20T10:36:59Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>93.190.128.186</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492059854">
+<id>991 http://vojtechruzicka.com/?p=991</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-improving-performance/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Improving performance</title>
+<message />
+<createdAt>2018-02-20T10:40:41Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>158.196.118.135</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492060193">
+<id>935 http://vojtechruzicka.com/?p=935</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-presentations/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Presentations</title>
+<message />
+<createdAt>2018-02-20T10:40:56Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>162.11.179.24</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492073741">
+<id>874 http://vojtechruzicka.com/?p=874</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/java-9-compact-strings/</link>
+<title>Java 9: Compact Strings</title>
+<message />
+<createdAt>2018-02-20T10:50:39Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>195.23.12.174</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492077008">
+<id>499 http://vojtechruzicka.com/?p=499</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/pivotal-certified-spring-web-application-developer-notes/</link>
+<title>Exam Notes – Pivotal Certified Spring Web Application Developer</title>
+<message />
+<createdAt>2018-02-20T10:52:57Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>219.91.160.182</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492099208">
+<id>806 http://vojtechruzicka.com/?p=806</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/java-cloning-problems/</link>
+<title>Java Cloning Problems</title>
+<message />
+<createdAt>2018-02-20T11:07:42Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>92.98.1.191</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492140623">
+<id>808 http://vojtechruzicka.com/?p=808</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/</link>
+<title>Detecting dependencies with known vulnerabilities</title>
+<message />
+<createdAt>2018-02-20T11:36:32Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>212.31.206.226</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492161053">
+<id>1548 http://vojtechruzicka.com/?p=1548</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/javascript-constuctor-functions-and-new-operator/</link>
+<title>Javascript constuctor functions and new operator</title>
+<message />
+<createdAt>2018-02-20T11:50:53Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>41.208.82.92</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492168754">
+<id>1027 http://vojtechruzicka.com/?p=1027</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/practicing-coding-interview-pramp/</link>
+<title>Practicing coding interviews online with a real interviewer using Pramp</title>
+<message />
+<createdAt>2018-02-20T11:56:13Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>49.35.44.176</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492231596">
+<id>578 http://vojtechruzicka.com/?p=578</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/session-fixation-attack/</link>
+<title>Session Fixation Attack</title>
+<message />
+<createdAt>2018-02-20T12:37:39Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>223.38.17.99</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492262248">
+<id>1573 http://vojtechruzicka.com/?p=1573</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/javascript-hoisting-var-let-const-variables/</link>
+<title>Javascript hoisting, var, let and const variables</title>
+<message />
+<createdAt>2018-02-20T12:56:53Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>130.117.173.162</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492276226">
+<id>316 http://vojtechruzicka.com/?p=316</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/stop-using-javadoc-author-tag/</link>
+<title>Stop using Javadoc @author tag</title>
+<message />
+<createdAt>2018-02-20T13:05:16Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>193.194.132.78</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492284387">
+<id>1360 http://vojtechruzicka.com/?p=1360</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/java-10-var-local-variable-type-inference-jep-286/</link>
+<title>Java 10 – var – Local Variable Type Inference (JEP-286)</title>
+<message />
+<createdAt>2018-02-20T13:10:17Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>39.9.235.90</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492398080">
+<id>1225 http://vojtechruzicka.com/?p=1225</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/snyk-detecting-dependencies-with-known-vulnerabilities/</link>
+<title>Snyk – Detecting dependencies with known vulnerabilities</title>
+<message />
+<createdAt>2018-02-20T14:16:45Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>193.191.180.235</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492462667">
+<id>1511 http://vojtechruzicka.com/?p=1511</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/javascript-primitives/</link>
+<title>Javascript Primitives Guide</title>
+<message />
+<createdAt>2018-02-20T14:53:48Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>176.240.201.250</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492472091">
+<id>871 http://vojtechruzicka.com/?p=871</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/java-9-enhanced-deprecation/</link>
+<title>Java 9: Enhanced deprecation</title>
+<message />
+<createdAt>2018-02-20T14:59:04Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>49.171.98.175</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492476129">
+<id>1466 http://vojtechruzicka.com/?p=1466</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/chrome-audit-lighthouse/</link>
+<title>Web Page Audit with Chrome Developer Tools and Lighthouse</title>
+<message />
+<createdAt>2018-02-20T15:01:20Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>183.82.110.145</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492538263">
+<id>1015 http://vojtechruzicka.com/?p=1015</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/book-review-the-complete-software-developers-career-guide/</link>
+<title>Book Review: The Complete Software Developer’s Career Guide</title>
+<message />
+<createdAt>2018-02-20T15:35:30Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>116.102.228.211</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6492992863">
+<id>959 http://vojtechruzicka.com/?p=959</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools/</link>
+<title>Measuring Javascript and CSS coverage with Google Chrome Developer Tools</title>
+<message />
+<createdAt>2018-02-20T19:45:27Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>104.129.200.110</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493008275">
+<id>1095 http://vojtechruzicka.com/?p=1095</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/vaadin-8-certification/</link>
+<title>Vaadin 8 Certification</title>
+<message />
+<createdAt>2018-02-20T19:54:31Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>187.94.103.249</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493027784">
+<id>786 http://vojtechruzicka.com/?p=786</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/bem-writing-css-using-block-element-modifier-methodology/</link>
+<title>BEM – Writing CSS using Block Element Modifier Methodology</title>
+<message />
+<createdAt>2018-02-20T20:06:07Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>72.22.168.26</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493222401">
+<id>1129 http://vojtechruzicka.com/?p=1129</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/book-review-256-bloghacks/</link>
+<title>Book Review: 256 Bloghacks</title>
+<message />
+<createdAt>2018-02-20T22:07:31Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>46.53.202.106</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493383606">
+<id>1159 http://vojtechruzicka.com/?p=1159</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/intellij-idea-tips-tricks-postfix-code-completion/</link>
+<title>IntelliJ IDEA Tips &amp; Tricks: Postfix Code Completion</title>
+<message />
+<createdAt>2018-02-20T23:58:24Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>2.86.13.44</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493475885">
+<id>1305 http://vojtechruzicka.com/?p=1305</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/owasp-top-ten-2017/</link>
+<title>OWASP Top Ten 2017</title>
+<message />
+<createdAt>2018-02-21T01:00:32Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>101.98.87.121</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6493511654">
+<id>516 http://vojtechruzicka.com/?p=516</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/singleton-pattern-pitfalls/</link>
+<title>Singleton Pattern Pitfalls</title>
+<message />
+<createdAt>2018-02-21T01:24:33Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>54.240.196.191</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6495565447">
+<id>1161 http://vojtechruzicka.com/?p=1161</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/prepare-phone-screening-interview/</link>
+<title>How to prepare for a phone screening interview</title>
+<message />
+<createdAt>2018-02-21T20:53:24Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>46.33.97.70</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6502034970">
+<id>865 http://vojtechruzicka.com/?p=865</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/premium-quality-tests/</link>
+<title>Premium Quality Tests</title>
+<message />
+<createdAt>2018-02-24T13:33:20Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>80.187.111.11</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6516244037">
+<id>736</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.comundefined</link>
+<title>Documenting Spring Boot REST API with Swagger and SpringFox</title>
+<message />
+<createdAt>2018-03-02T16:15:58Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<thread dsq:id="6516284350">
+<id>293 http://vojtechruzicka.com/wp-content/uploads/2016/05/path4164.png</id>
+<forum>vojtechruzicka</forum>
+<category dsq:id="6602998" />
+<link>http://vojtechruzicka.com/path4164/</link>
+<title>path4164</title>
+<message />
+<createdAt>2018-03-02T16:37:11Z</createdAt>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<isClosed>false</isClosed>
+<isDeleted>false</isDeleted>
+</thread>
+<post dsq:id="3798974515">
+<id>wp_id=6</id>
+<message><![CDATA[<p>@author tag is extremely useful when components/classes are reused across different projects and version history is lost (because they are using different repos and sometimes also different VCS). Thats common situation at our projects and @author tag points me usually to right person in case of any questions.</p><p>Mostly are @author tags extended and updated during component life time on project. Because it's devs nature to shout:  "Hey it was me who fix it!"</p><p>There is also another super cool feature of @author tag. It works as "code quality flag" which says ok I know this guy and this code will be pure shit show. Or I know this guy and it will be ok.</p><p>Nice post. Love it!</p>]]></message>
+<createdAt>2016-05-10T12:23:06Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>krablak@gmail.com</email>
+<name>Krab</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>91.139.0.68</ipAddress>
+<thread dsq:id="6492276226" />
+</post>
+<post dsq:id="3798974522">
+<id>wp_id=7</id>
+<message><![CDATA[<p>Thanks for your feedback. That is certainly true. The issue is not black and white. As usual in software development, there is no silver bullet which you can apply in each and every situation. You have to weigh tradeoffs of each solution in each case separately depending on your current priorities. <br>In case version history is unavailable, it is probably best to keep the @author tag. However more that ever, be sure to keep that information up to date. Also, when you are cited as an author, you may arguably feel more responsibility for the piece of code and do your best to maintain its quality. Unfortunately, from my experience it is seldom the case.<br>So the bottom line might be - if you have your code in the Version Control System at all times, you may want to ommit the @author tag. If not, be aware of the downsides and at least try hard to keep it updated at all times.</p>]]></message>
+<createdAt>2016-05-10T19:51:42Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>86.49.120.214</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974515" />
+</post>
+<post dsq:id="3798974439">
+<id>wp_id=13</id>
+<message><![CDATA[<p>The word singleton was indeed popularized as a GoF pattern but that was more than 20 years ago. It's meaning has been generalized since then as "a class that has one (or otherwise predictable number) instance in the system" instead of more specific "class that manages it's own creation in certain way". You may be fighting an irrelevant battle.</p>]]></message>
+<createdAt>2016-09-08T07:31:42Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>calaverainfo@twitter.example.com</email>
+<name>Franti&amp;#353;ek &amp;#344;ez&amp;#225;&amp;</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>212.24.143.66</ipAddress>
+<thread dsq:id="6493511654" />
+</post>
+<post dsq:id="3798974462">
+<id>wp_id=14</id>
+<message><![CDATA[<p>Excellent job with the Anki deck, thank you for this. I am just about to get the Spring Enterprise Integration Specialist exam, so maybe I will be able to prepare something similar.</p>]]></message>
+<createdAt>2016-09-08T08:07:22Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>kainblog@twitter.example.com</email>
+<name>Micha&amp;#322; Kowalczyk (@KainBl</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>80.69.142.132</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974484">
+<id>wp_id=15</id>
+<message><![CDATA[<p>Thanks, I'm glad it was helpful. It would be great if you prepared something similar. If you do, please send me a link.</p>]]></message>
+<createdAt>2016-09-09T11:01:02Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.28.231</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974462" />
+</post>
+<post dsq:id="3798974588">
+<id>wp_id=16</id>
+<message><![CDATA[<p>In my opinion, there are two meanings of singleton. "Singleton", the design pattern as introduced by GOF in the original design patterns book and more general idea of "singleton", that is a class which has only one instance. This post was focused on the first one, the original singleton and the flaw its original implementation has. I don't think there is anything wrong with general idea of singletons as long as the management of having just one instance is clearly separated from the class itself. E.g it is perfectly ok to have spring managed singletons as the instance lifecycle is externally managed by the container and it has none of the flaws of the GOF implementation. Fortunately these days GOF singleton is widely recognised as flawed, but unfortunately is still sometimes being used, especially by those, who just discovered design patterns.</p>]]></message>
+<createdAt>2016-09-09T11:19:39Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.28.231</ipAddress>
+<thread dsq:id="6493511654" />
+<parent dsq:id="3798974439" />
+</post>
+<post dsq:id="3798974447">
+<id>wp_id=30</id>
+<message><![CDATA[<p>HI,<br>Did you get any questions on JMS in spring 4.2 exam? In 4.2 study guide, it is not mentioned seen as a topic. But many who have ot notes to help have mentioned regarding questions on JMS. Any idea?<br>Thanks</p>]]></message>
+<createdAt>2016-11-26T11:44:28Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>ashajoice@live.com</email>
+<name>Asha</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>103.6.157.172</ipAddress>
+<thread dsq:id="6491955972" />
+</post>
+<post dsq:id="3798974448">
+<id>wp_id=31</id>
+<message><![CDATA[<p>Also,questions on xml based configurations were less? Let me know if you remember.Thanks</p>]]></message>
+<createdAt>2016-11-26T11:50:01Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>ashajoice@live.com</email>
+<name>Asha</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>103.6.157.172</ipAddress>
+<thread dsq:id="6491955972" />
+</post>
+<post dsq:id="3798974586">
+<id>wp_id=32</id>
+<message><![CDATA[<p>Hi, Sorry, I am afraid I don't remember specific questions. But majority of questions was from the chapters about general concepts such as Spring Container, DI, AOP, Configuration etc.</p>]]></message>
+<createdAt>2016-11-28T18:46:00Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.28.231</ipAddress>
+<thread dsq:id="6491955972" />
+<parent dsq:id="3798974448" />
+</post>
+<post dsq:id="3798974463">
+<id>wp_id=34</id>
+<message><![CDATA[<p>Hi Vojtech, where did you attend Spring Web Training? Which provider is it? Thanks</p>]]></message>
+<createdAt>2017-03-06T09:28:10Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>mihalcin.patrik@gmail.com</email>
+<name>Patrik Mihal&amp;#269;in</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>194.228.254.118</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974485">
+<id>wp_id=35</id>
+<message><![CDATA[<p>Hi Patrik, Yes I did attend the training. It was the official Spring Web Training by Pivotal, the company behind the Spring Framework. Online version as a videoconference through webex.  <a href="https://pivotal.io/training/courses/spring-web-training" rel="nofollow noopener" title="https://pivotal.io/training/courses/spring-web-training">https://pivotal.io/training...</a>. They have changed the policy and now you can purchase the exam separately for $ 200 - <a href="https://pivotal.io/training/certification" rel="nofollow noopener" title="https://pivotal.io/training/certification">https://pivotal.io/training...</a>.</p>]]></message>
+<createdAt>2017-03-06T10:01:25Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.15</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974463" />
+</post>
+<post dsq:id="3798974435">
+<id>wp_id=37</id>
+<message><![CDATA[<p>Hey Vojta, thanks for the post. I completely agree with you.</p><p>Could you imagine having a Sniff for Code Sniffer that would check these rules?</p><p>That would be great way to teach it by context.</p>]]></message>
+<createdAt>2017-03-10T02:50:23Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>tomas.vot@gmail.com</email>
+<name>Tomas Votruba</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>46.135.255.0</ipAddress>
+<thread dsq:id="6491971049" />
+</post>
+<post dsq:id="3798974587">
+<id>wp_id=38</id>
+<message><![CDATA[<p>Good Idea, it should be pretty straightforward to detect utility classes by static code analysis tools such as SonarQube. You would need to implement a custom rule for that. IT should not be so hard as there is usually a rule for private constructor in utility classes, so you could start from that one (detection of Util Class is already part of that rule).</p>]]></message>
+<createdAt>2017-03-11T10:44:16Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.28.237</ipAddress>
+<thread dsq:id="6491971049" />
+<parent dsq:id="3798974435" />
+</post>
+<post dsq:id="3798974464">
+<id>wp_id=40</id>
+<message><![CDATA[<p>Is it necessary to attain the training for getting certified for the spring web application exam</p>]]></message>
+<createdAt>2017-03-14T06:52:58Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>bhavesh.yadav77@outlook.com</email>
+<name>Bhavesh</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>49.44.51.53</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974486">
+<id>wp_id=41</id>
+<message><![CDATA[<p>It used to be, you had to attend the training to get a certificate voucher. The have recently changed that and from now on you can purchase the certificate separately: <a href="https://pivotal.io/training/certification" rel="nofollow noopener" title="https://pivotal.io/training/certification">https://pivotal.io/training...</a></p>]]></message>
+<createdAt>2017-03-14T09:35:07Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.11</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974464" />
+</post>
+<post dsq:id="3798974466">
+<id>wp_id=42</id>
+<message><![CDATA[<p>Thanks for the Information :)</p>]]></message>
+<createdAt>2017-03-14T13:17:26Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>bhavesh.yadav77@outlook.com</email>
+<name>Bhavesh</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>49.44.51.53</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974610">
+<id>wp_id=43</id>
+<message><![CDATA[<p>How can we get the promo code or voucher(as it is compulsory to submit this details for further payment), please guide regarding this.</p>]]></message>
+<createdAt>2017-03-22T08:09:54Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>bhavesh.yadav77@outlook.com</email>
+<name>Bhavesh</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>49.44.51.249</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974486" />
+</post>
+<post dsq:id="3798974617">
+<id>wp_id=44</id>
+<message><![CDATA[<p><a href="https://academy.pivotal.io/confirm-course?courseid=EDU-1120" rel="nofollow noopener" title="https://academy.pivotal.io/confirm-course?courseid=EDU-1120">https://academy.pivotal.io/...</a> Here you can add "Spring Web Application Developer Exam" to you cart and purchase.</p>]]></message>
+<createdAt>2017-03-22T08:20:02Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.11</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974610" />
+</post>
+<post dsq:id="3798974872">
+<id>wp_id=46</id>
+<message><![CDATA[<p>If I failed the exam, so within how many days I can again give the exam</p>]]></message>
+<createdAt>2017-03-28T12:24:37Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>bhavesh.yadav77@outlook.com</email>
+<name>bhavesh</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>182.58.121.16</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974617" />
+</post>
+<post dsq:id="3798974871">
+<id>wp_id=47</id>
+<message><![CDATA[<p>The exam can be taken after six weeks, it is right in the first paragraph :)</p>]]></message>
+<createdAt>2017-03-28T12:58:14Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.28.234</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974617" />
+</post>
+<post dsq:id="3798974517">
+<id>wp_id=53</id>
+<message><![CDATA[<p>Even if a Version Control System is used, the code can be distributed without it's history. E.g. as a tarball. Such case is another reason to duplicate the authorship information.</p><p>Also AFAIK, here in Czech Republic, if I, as an employee, write a code, the author is actually my employer. Then, depending on the policy, it may happen that the content of the @author tag is different from the name stored in the commit metadata.</p><p>I am not saying that we all should use @author tags. But I believe that tracking the information in VCS is not the best idea. Personally, I prefer to maintain two files in the top-level directory. An AUTHORS file and a CONTRIBUTORS file. One for the copyright owners, the other to give credit to the real people who actually wrote the code. I consider this approach to be a decent alternative to the @author and VCS approaches.</p>]]></message>
+<createdAt>2017-04-18T20:02:17Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>radeq.cz@gmail.com</email>
+<name>Radek</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>37.188.150.117</ipAddress>
+<thread dsq:id="6492276226" />
+</post>
+<post dsq:id="3798974528">
+<id>wp_id=64</id>
+<message><![CDATA[<p>It is an viable alternative and it is well suited for high level overview. It does not, however allow such fine grained information as VCS, where you can find a person responsible for each line of code and find a broader context of their change by linking it to particular commit and task. VCS is more suited to find a specific person responsible when working on a larger project with multiple developers, while your approach is more suitable for external users of your code.</p>]]></message>
+<createdAt>2017-04-20T13:57:30Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.11</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974517" />
+</post>
+<post dsq:id="3798974450">
+<id>wp_id=84</id>
+<message><![CDATA[<p>Thanks Vojtech Ruzicka for this wonderful article. I will now have an idea of what the actual exam looks like and it will help me a lot to pass the certification. Your resources are very useful and I find it very nice to study.<br>I just want also to share these Web simulator that I'm also using right now in my study in preparing for the certification. It is a free and easy to use and provide clear explanation of the answer which will probably appears in the actual exam. I hope it will also help my fellow readers who is preparing for there certification examination.<br>You can find the free web simulator in this link –&gt;<a href="https://www.certification-questions.com/spring-certification-questions.html" rel="nofollow noopener" title="https://www.certification-questions.com/spring-certification-questions.html">https://www.certification-q...</a></p>]]></message>
+<createdAt>2017-04-29T15:19:05Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>aldreyn@twitter.example.com</email>
+<name>Drin (@aldreyn)</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>93.45.71.25</ipAddress>
+<thread dsq:id="6491955972" />
+</post>
+<post dsq:id="3798974473">
+<id>wp_id=140</id>
+<message><![CDATA[<p>Hey Vojtech Ruzicka,</p><p>Thank you for the info. Now taking the Spring Certification is not mandatory at all and you can take the exam without training as well.</p><p>Thanks for suggesting a study guide. Could you also please suggest if there are any mock exams or web simulator over which we can practice ?</p><p>Regards,<br>Sayali</p>]]></message>
+<createdAt>2017-07-03T13:32:14Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>prateek.ashtikar512@gmail.com</email>
+<name>Sayali Shinde</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>49.205.91.174</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974492">
+<id>wp_id=141</id>
+<message><![CDATA[<p>Hi,<br>thanks for the info, I will update the article. Regarding the mock exams - there are no official ones. I did not look for any other so I cannot help with this.</p>]]></message>
+<createdAt>2017-07-04T09:29:09Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.15</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974473" />
+</post>
+<post dsq:id="3798974616">
+<id>wp_id=143</id>
+<message><![CDATA[<p>Really well-written and helpful article. Thank you.</p>]]></message>
+<createdAt>2017-07-06T17:32:39Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>nabil.a.hassan@gmail.com</email>
+<name>Nabil Hassan</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>31.51.127.235</ipAddress>
+<thread dsq:id="6492024514" />
+</post>
+<post dsq:id="3798974624">
+<id>wp_id=144</id>
+<message><![CDATA[<p>Thank you, I'm glad you liked it.</p>]]></message>
+<createdAt>2017-07-09T19:43:45Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492024514" />
+<parent dsq:id="3798974616" />
+</post>
+<post dsq:id="3798974474">
+<id>wp_id=151</id>
+<message><![CDATA[<p>There are practice tests at <a href="http://itestjava.com" rel="nofollow noopener" title="http://itestjava.com">http://itestjava.com</a></p>]]></message>
+<createdAt>2017-07-17T13:52:13Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>kcasey200kc@hotmail.com</email>
+<name>john cruz</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>182.55.203.79</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974589">
+<id>wp_id=152</id>
+<message><![CDATA[<p>I tried to use this simulator, this is not working anymore</p>]]></message>
+<createdAt>2017-07-18T06:20:22Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>tharakad1990@gmail.com</email>
+<name>Tharaka Wijesooriya</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>203.127.89.206</ipAddress>
+<thread dsq:id="6491955972" />
+<parent dsq:id="3798974450" />
+</post>
+<post dsq:id="3798974449">
+<id>wp_id=153</id>
+<message><![CDATA[<p>anyone has new exam dumps ?</p>]]></message>
+<createdAt>2017-07-18T06:20:59Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>tharakad1990@gmail.com</email>
+<name>Tharaka Wijesooriya</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>203.127.89.206</ipAddress>
+<thread dsq:id="6491955972" />
+</post>
+<post dsq:id="3798974438">
+<id>wp_id=173</id>
+<message><![CDATA[<p>This line if (o.getValue() != null) { throws a NullPointerException if the column has null values.  I suggest testing for null as well before you the object</p>]]></message>
+<createdAt>2017-08-22T08:55:43Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>gsheunesu@gmail.com</email>
+<name>Sheu</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>196.11.134.77</ipAddress>
+<thread dsq:id="6491973385" />
+</post>
+<post dsq:id="3798974316">
+<id>wp_id=174</id>
+<message><![CDATA[<p>Is there any way to download/save/export the coverage report?</p>]]></message>
+<createdAt>2017-08-29T09:41:46Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>sharanya.raju@gmail.com</email>
+<name>shar</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>57.96.7.78</ipAddress>
+<thread dsq:id="6492992863" />
+</post>
+<post dsq:id="3798974446">
+<id>wp_id=175</id>
+<message><![CDATA[<p>It would be really useful. I was trying to find if it is possible, however I was not able to find a way. Might be added in future releases though.</p>]]></message>
+<createdAt>2017-08-30T15:25:12Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>31.30.35.202</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974316" />
+</post>
+<post dsq:id="3798974454">
+<id>wp_id=176</id>
+<message><![CDATA[<p>Thanks for the tip, I will update the article and the code repo.</p>]]></message>
+<createdAt>2017-08-30T15:36:07Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>31.30.35.202</ipAddress>
+<thread dsq:id="6491973385" />
+<parent dsq:id="3798974438" />
+</post>
+<post dsq:id="3798974437">
+<id>wp_id=177</id>
+<message><![CDATA[<p>Actually you can embed the postgresql for your integration tests:<br><a href="https://github.com/yandex-qatools/postgresql-embedded" rel="nofollow noopener" title="https://github.com/yandex-qatools/postgresql-embedded">https://github.com/yandex-q...</a><br><a href="https://github.com/opentable/otj-pg-embedded" rel="nofollow noopener" title="https://github.com/opentable/otj-pg-embedded">https://github.com/opentabl...</a></p><p>But good stuff, I already found same/similar solution and it is really great. Thanks for sharing.</p>]]></message>
+<createdAt>2017-09-03T01:39:27Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>archenroot@gmail.com</email>
+<name>Ladislav Jech</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>46.135.4.74</ipAddress>
+<thread dsq:id="6491973385" />
+</post>
+<post dsq:id="3798974453">
+<id>wp_id=178</id>
+<message><![CDATA[<p>Cool, I didn't know, thanks for pointing this out, I will update the article.</p>]]></message>
+<createdAt>2017-09-04T05:54:19Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>155.91.64.15</ipAddress>
+<thread dsq:id="6491973385" />
+<parent dsq:id="3798974437" />
+</post>
+<post dsq:id="3798974444">
+<id>wp_id=179</id>
+<message><![CDATA[<p>Well, this is anyway just about storing/retrieving the json, or I can also query the JSONB data? I understand JSONB is not supported in JPA itself, so not sure if JPA based query will work or not.</p>]]></message>
+<createdAt>2017-09-06T15:01:45Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>archenroot@gmail.com</email>
+<name>Ladislav Jech</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>46.135.13.143</ipAddress>
+<thread dsq:id="6491973385" />
+</post>
+<post dsq:id="3798974579">
+<id>wp_id=180</id>
+<message><![CDATA[<p>To be more precious. Imagine I have following code...</p><p>Spring Data JPA repository:<br>@RepositoryRestResource(collectionResourceRel = "business-processes", path = "business-processes")<br>@Repository<br>@Api(tags = "business-processes")<br>public interface BusinessProcessRepository extends<br>        JpaRepository,<br>        QueryByExampleExecutor {</p><p>    /**<br>     * Method that returns a lista of clients doing a search by the passed name parameter.<br>     * * * @param name * @return list of clients<br>     */<br>    //Page findAll(Pageable pageable);<br>    List findByName(String name);<br>}</p><p>And following Spring Data Rest controller:<br> @RequestMapping(<br>            params = {"name"},<br>            method = RequestMethod.GET)<br>    public ResponseEntity&lt;Collection&gt;<br>    findBusinessProcessWithName(<br>            @RequestParam(value = "name") String name) {<br>        return new ResponseEntity(businessProcessRepository.findByName(name), HttpStatus.OK);<br>    }</p><p>now imagine my parameter "name" is part of JSONB document, will this approach work?</p>]]></message>
+<createdAt>2017-09-06T17:22:07Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>archenroot@gmail.com</email>
+<name>Ladislav Jech</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>46.135.13.143</ipAddress>
+<thread dsq:id="6491973385" />
+<parent dsq:id="3798974444" />
+</post>
+<post dsq:id="3798974841">
+<id>wp_id=181</id>
+<message><![CDATA[<p>In general I would like to use JSONB same way as I use @Entities via JPARepository, CrudRepository, etc. I don't see this approach is capable of doing this</p>]]></message>
+<createdAt>2017-09-06T19:52:04Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>archenroot@gmail.com</email>
+<name>Ladislav Jech</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>46.135.13.143</ipAddress>
+<thread dsq:id="6491973385" />
+<parent dsq:id="3798974579" />
+</post>
+<post dsq:id="3798974303">
+<id>wp_id=196</id>
+<message><![CDATA[<p>good article</p>]]></message>
+<createdAt>2017-10-03T09:03:53Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>softashu@gmail.com</email>
+<name>softashu</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>115.110.104.172</ipAddress>
+<thread dsq:id="6492073741" />
+</post>
+<post dsq:id="3798974698">
+<id>wp_id=201</id>
+<message><![CDATA[<p>Hey,</p><p>Did you find any way to download or export the coverage report ? I really need this coverage report on my system.</p>]]></message>
+<createdAt>2017-10-06T12:08:31Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>kagarwal29@gmail.com</email>
+<name>kapil agarwal</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>52.95.75.0</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974446" />
+</post>
+<post dsq:id="3798974514">
+<id>wp_id=202</id>
+<message><![CDATA[<p>Hello, <br>what's reference of Spring certification exam 4.3?</p>]]></message>
+<createdAt>2017-10-09T06:09:25Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>samir.almorabite@gmail.com</email>
+<name>SAMIR</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>78.141.179.155</ipAddress>
+<thread dsq:id="6492276226" />
+</post>
+<post dsq:id="3798974525">
+<id>wp_id=203</id>
+<message><![CDATA[<p>Hi, what do you mean by that? This article is about javadoc @author tag.</p>]]></message>
+<createdAt>2017-10-09T17:34:08Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974514" />
+</post>
+<post dsq:id="3798975045">
+<id>wp_id=204</id>
+<message><![CDATA[<p>No luck, unfortunatelly. If you find a way, be sure to share it here :)</p>]]></message>
+<createdAt>2017-10-09T17:38:54Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974698" />
+</post>
+<post dsq:id="3798974198">
+<id>wp_id=205</id>
+<message><![CDATA[<p>Thanks for buying, reading, and reviewing! You misspelled my name in the first paragraph though :)</p>]]></message>
+<createdAt>2017-10-09T17:48:03Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>yegor@tpc2.com</email>
+<name>Yegor Bugayenko</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>78.26.151.230</ipAddress>
+<thread dsq:id="6493222401" />
+</post>
+<post dsq:id="3798974332">
+<id>wp_id=206</id>
+<message><![CDATA[<p>Shame on me, fixed :)</p>]]></message>
+<createdAt>2017-10-09T18:43:24Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6493222401" />
+<parent dsq:id="3798974198" />
+</post>
+<post dsq:id="3798974200">
+<id>wp_id=207</id>
+<message><![CDATA[<p>Thanks for the review Vojta</p><p>tl;dr; What were 3 tips you've already included in your blogflow? Do you see or feel any results?</p>]]></message>
+<createdAt>2017-10-10T07:46:53Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>tomas.vot@gmail.com</email>
+<name>Tomas Votruba</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>89.102.206.174</ipAddress>
+<thread dsq:id="6493222401" />
+</post>
+<post dsq:id="3798974334">
+<id>wp_id=209</id>
+<message><![CDATA[<p>To be honest, almost nothing. The book would be much more helpful for me a year ago. However, I did confirm many of my processes and experiences as a good practice. But the chapters are too short to provide any additional information if you are somewhat familar with the topic.</p><p>So no mindblowing revelations I am afraid :)</p>]]></message>
+<createdAt>2017-10-13T06:55:12Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6493222401" />
+<parent dsq:id="3798974200" />
+</post>
+<post dsq:id="3798974226">
+<id>wp_id=210</id>
+<message><![CDATA[<p>Thanks for detailed explanation.</p>]]></message>
+<createdAt>2017-10-16T05:15:49Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>rajubalachandra@gmail.com</email>
+<name>Balachandra</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>182.71.193.3</ipAddress>
+<thread dsq:id="6492168754" />
+</post>
+<post dsq:id="3798974363">
+<id>wp_id=211</id>
+<message><![CDATA[<p>You welcome, I'm glad it was helpful :)</p>]]></message>
+<createdAt>2017-10-16T06:51:18Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492168754" />
+<parent dsq:id="3798974226" />
+</post>
+<post dsq:id="3798974476">
+<id>wp_id=215</id>
+<message><![CDATA[<p>I have a mock exam if anyone is interested.</p>]]></message>
+<createdAt>2017-11-01T11:34:32Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>pablotr87@gmail.com</email>
+<name>nullptr00</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>78.30.15.93</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974315">
+<id>wp_id=220</id>
+<message><![CDATA[<p>would be cool if capturing works in a separated dev tool window</p>]]></message>
+<createdAt>2017-11-17T18:06:19Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>acerunyan@gmail.com</email>
+<name>Arno</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>141.206.246.10</ipAddress>
+<thread dsq:id="6492992863" />
+</post>
+<post dsq:id="3798974452">
+<id>wp_id=221</id>
+<message><![CDATA[<p>You can undock the whole dev tools into a separate window as usual. However, what you cannot do as far as I know is to separate coverage sub-window into a separate window. Is this what you meant?</p>]]></message>
+<createdAt>2017-11-19T13:44:36Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974315" />
+</post>
+<post dsq:id="3798974475">
+<id>wp_id=235</id>
+<message><![CDATA[<p>Hi Vojtech,<br>  Thanks for the useful info. In the Spring Web Application Developer Exam, are there also questions around XML configuration, or knowing JavaConfig is sufficient.<br>Regards,<br>Vinay</p>]]></message>
+<createdAt>2017-12-20T04:30:21Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vinaymp80@gmail.com</email>
+<name>Vinay</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>223.237.15.244</ipAddress>
+<thread dsq:id="6492077008" />
+</post>
+<post dsq:id="3798974493">
+<id>wp_id=236</id>
+<message><![CDATA[<p>Hi Vinay,<br>I do not remember the questions, so take it with a grain of salt, but I think there is more about java config than xml. But it is better to know both - better safe than sorry :)</p>]]></message>
+<createdAt>2017-12-21T08:14:11Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974475" />
+</post>
+<post dsq:id="3798974619">
+<id>wp_id=237</id>
+<message><![CDATA[<p>Hi Vojtech,<br>  Thanks again for your inputs. Similarly, it's unclear from the course contents whether the exam may center more around Thymeleaf or JSP knowledge is good enough.<br>Regards,<br>Parag</p>]]></message>
+<createdAt>2017-12-25T06:57:21Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vinaymp80@gmail.com</email>
+<name>Vinay</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>183.82.102.4</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974493" />
+</post>
+<post dsq:id="3798974874">
+<id>wp_id=238</id>
+<message><![CDATA[<p>I think there was nothing or very little about Thymeleaf. Certainly not any syntax or details.</p>]]></message>
+<createdAt>2017-12-25T07:48:12Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>217.66.178.112</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974619" />
+</post>
+<post dsq:id="3798975195">
+<id>wp_id=239</id>
+<message><![CDATA[<p>Thanks Vojtech!<br><br>Regards,<br><br>Parag.</p>]]></message>
+<createdAt>2017-12-26T12:50:38Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vinaymp80@gmail.com</email>
+<name>Vinay</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>223.237.31.194</ipAddress>
+<thread dsq:id="6492077008" />
+<parent dsq:id="3798974874" />
+</post>
+<post dsq:id="3798974213">
+<id>wp_id=241</id>
+<message><![CDATA[<p>Nice post, I used to only use sout as a postfix, didn't come to mind to learn other ones until now. Java is a pretty boilerplate language and this is a very nice feature of the IDE.</p>]]></message>
+<createdAt>2017-12-28T21:39:11Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>arsensim08@gmail.com</email>
+<name>arsensimonean</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>93.116.204.117</ipAddress>
+<thread dsq:id="6493383606" />
+</post>
+<post dsq:id="3798974199">
+<id>wp_id=242</id>
+<message><![CDATA[<p>Very nice blog post. I am currently searching for such a book myself. I would consider buying it if it were in .mobi format so I could read in in Kindle. Waiting for paperback copy as well as paying for delivery turns me off mostly. As well as I also disagree with the point of making the blog from scratch. If you are already a software developer, you will most probably be bored implementing a blog from scratch- this task is not so complex, it is just a whole lot of work. So why not use an already established free software that you can use and save so much time and more importantly, enthusiasm? Other than that, I would be very interested in reading other chapters. Too bad it is not in electronic format, but I also read Yegor's post about why he doesn't sell in that format and I understand the reasons behind it.</p>]]></message>
+<createdAt>2017-12-28T22:03:54Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>arsensim08@gmail.com</email>
+<name>arsensimonean</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>93.116.204.117</ipAddress>
+<thread dsq:id="6493222401" />
+</post>
+<post dsq:id="3798974348">
+<id>wp_id=243</id>
+<message><![CDATA[<p>Thanks, glad you  like it. Exactly, it is so much useful especially in boilerplate-heavy languages. I especially like those for iteration of collections because you use them so often.</p>]]></message>
+<createdAt>2017-12-30T08:29:19Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>80.243.99.152</ipAddress>
+<thread dsq:id="6493383606" />
+<parent dsq:id="3798974213" />
+</post>
+<post dsq:id="3798974333">
+<id>wp_id=244</id>
+<message><![CDATA[<p>Thank you. Yes, unfortunately it is quite a hassle to obtain the book and then wait that long for the delivery as express shipping is quite steep. Still probably worth reading unless one is experienced blogger.</p>]]></message>
+<createdAt>2017-12-30T08:36:14Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>80.243.99.152</ipAddress>
+<thread dsq:id="6493222401" />
+<parent dsq:id="3798974199" />
+</post>
+<post dsq:id="3798974434">
+<id>wp_id=245</id>
+<message><![CDATA[<p>These problems with utility classes are less problematic in Python/JavaScript /Scala than in Java/C# because you can switch static classes/namespaces easily(math = mymath), and they have support for first-order functions resulting in dramatically less code since you don't have to build complex OOP hierarchies and constructors.</p><p>import mymath<br>math = mymath<br>def weirdFunc(angle, cos=math.cos, sin=math.sin):<br>  return cos(angle) + sin(angle)</p><p>weirdFunc(5.0, cos = customCosMethod)</p>]]></message>
+<createdAt>2018-01-01T14:49:37Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>aoeu512@gmail.com</email>
+<name>Penguin Monkey</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>97.103.70.182</ipAddress>
+<thread dsq:id="6491971049" />
+</post>
+<post dsq:id="3798974585">
+<id>wp_id=246</id>
+<message><![CDATA[<p>Thank you for this example, is it definitely true, my post was written from the perspective of Java but it is not so problematic in some other languages.</p>]]></message>
+<createdAt>2018-01-01T14:57:41Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>80.243.99.152</ipAddress>
+<thread dsq:id="6491971049" />
+<parent dsq:id="3798974434" />
+</post>
+<post dsq:id="3798974221">
+<id>wp_id=248</id>
+<message><![CDATA[<p>Thanks for the review; it's quite helpful.</p>]]></message>
+<createdAt>2018-01-04T19:00:53Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>nmithani1@gmail.com</email>
+<name>N.M.</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>184.70.3.210</ipAddress>
+<thread dsq:id="6492538263" />
+</post>
+<post dsq:id="3798974349">
+<id>wp_id=249</id>
+<message><![CDATA[<p>Thank you, I'm glad you find it helpful.</p>]]></message>
+<createdAt>2018-01-04T19:04:52Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492538263" />
+<parent dsq:id="3798974221" />
+</post>
+<post dsq:id="3798974312">
+<id>wp_id=252</id>
+<message><![CDATA[<p>i would first take a closer look at the idea64*vmoptions and fiddle a little with it.</p><p><a href="https://gist.github.com/Brethel/f1726433ba426af381a11dfd42c95744" rel="nofollow noopener" title="https://gist.github.com/Brethel/f1726433ba426af381a11dfd42c95744">https://gist.github.com/Bre...</a> <br>is a constant work in progress...</p>]]></message>
+<createdAt>2018-01-15T11:34:32Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>brethel@gmail.com</email>
+<name>alexandre brethel</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>177.99.241.134</ipAddress>
+<thread dsq:id="6492059854" />
+</post>
+<post dsq:id="3798974313">
+<id>wp_id=253</id>
+<message><![CDATA[<p>Hi, thank you for your comment. Yes, of course, if your IDE does not have enough memory, it will be slow. Thanks for the link. I'll update the article.</p>]]></message>
+<createdAt>2018-01-15T15:17:00Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492059854" />
+</post>
+<post dsq:id="3798974618">
+<id>wp_id=256</id>
+<message><![CDATA[<p>Very nice article.<br>Thanks.</p>]]></message>
+<createdAt>2018-01-17T07:19:20Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>aakash.bajoria@gmail.com</email>
+<name>Aakash Bajoria</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>52.95.75.1</ipAddress>
+<thread dsq:id="6492024514" />
+</post>
+<post dsq:id="3798974629">
+<id>wp_id=257</id>
+<message><![CDATA[<p>Thank you, I'm glad you liked it.</p>]]></message>
+<createdAt>2018-01-17T07:21:26Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492024514" />
+<parent dsq:id="3798974618" />
+</post>
+<post dsq:id="3798974520">
+<id>wp_id=263</id>
+<message><![CDATA[<p>What version of javadoc are you using? The information from the @author tag is definitely included in the documentation generated by the version I'm using (1.8.0_152). It's at the bottom of the heading section of class / interface / etc pages, there's an "Author:" section with names listed. Maybe this was added in Java 8 or something?</p>]]></message>
+<createdAt>2018-01-24T17:29:40Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>me@patrick.codes</email>
+<name>PMLavigne</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>47.200.186.143</ipAddress>
+<thread dsq:id="6492276226" />
+</post>
+<post dsq:id="3798974212">
+<id>wp_id=264</id>
+<message><![CDATA[<p>How has your luck been for TypeDoc and large projects?  I've found there's no way to make it output the HTML such that it isn't just a giant top level flat list of things (file or module mode - doesn't matter - only difference seems to be that for module mode it prepends the name of the module with the folder name rather than using the folder name as a navigable feature).</p><p>Your example here is with a pretty small project.  In larger projects I don't see TypeDoc actually producing output that is more useful than just browsing the code.</p>]]></message>
+<createdAt>2018-01-24T17:46:37Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>jason.burrows@gmail.com</email>
+<name>WillyC</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>70.71.238.54</ipAddress>
+<thread dsq:id="6491969703" />
+</post>
+<post dsq:id="3798975510">
+<id>wp_id=266</id>
+<message><![CDATA[<p>Hey,</p><p>did you find a way to download only the used lines meanwhile? :)</p><p>Greets from Copenhagen,</p>]]></message>
+<createdAt>2018-01-26T15:09:16Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>matthias.kupperschmidt@resolutionmedia.com</email>
+<name>Matthias Kupperschmidt</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>93.178.178.26</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798975045" />
+</post>
+<post dsq:id="3799037066">
+<id>wp_id=267</id>
+<message><![CDATA[<p>Hi :) Sorry, I'm afraid not.</p>]]></message>
+<createdAt>2018-01-28T11:11:52Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798975510" />
+</post>
+<post dsq:id="3798974527">
+<id>wp_id=268</id>
+<message><![CDATA[<p>Thanks for pointing this out. Authora are not generated by default by javadoc command line tool. You need to explicitly add -author parameter. I should update my article so it is more clear and not misleading.</p>]]></message>
+<createdAt>2018-01-28T12:10:12Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974520" />
+</post>
+<post dsq:id="3798974347">
+<id>wp_id=269</id>
+<message><![CDATA[<p>Hi, to be honest, I didn't try it for large projects, I just did it as a POC for a small one. Then I moved on to Compodoc as it was much better suited for my angular project. Good to know that it does not behave so well for big ones.</p>]]></message>
+<createdAt>2018-01-28T12:13:26Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6491969703" />
+<parent dsq:id="3798974212" />
+</post>
+<post dsq:id="3798974660">
+<id>wp_id=272</id>
+<message><![CDATA[<p>Ah ok, my build tool must be setting that automatically then since I didn't have to explicitly set it. Anyway your points are still all valid, just confused me a bit :)</p>]]></message>
+<createdAt>2018-01-29T14:40:01Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>me@patrick.codes</email>
+<name>PMLavigne</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>96.228.152.146</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974527" />
+</post>
+<post dsq:id="3798974895">
+<id>wp_id=273</id>
+<message><![CDATA[<p>The article is now updated with a link to docs explaining this issue, no more confusion, thanks for pointing it out :)</p>]]></message>
+<createdAt>2018-01-31T07:16:53Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492276226" />
+<parent dsq:id="3798974660" />
+</post>
+<post dsq:id="3798974322">
+<id>wp_id=275</id>
+<message><![CDATA[<p>Hi Vojtech, thanks for article!<br>Is there any way how to get code coverage info programmatically? Is there any API?<br>For instance, when using headless Chrome or Google Lighthouse</p>]]></message>
+<createdAt>2018-02-01T15:43:07Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>povesma@gmail.com</email>
+<name>Dmytro</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>91.199.119.247</ipAddress>
+<thread dsq:id="6492992863" />
+</post>
+<post dsq:id="3798974455">
+<id>wp_id=276</id>
+<message><![CDATA[<p>Hi. As far as I know, there is currently no way to retrieve programmatically coverage data through API. Let's hope it will be included in a future release. :)</p>]]></message>
+<createdAt>2018-02-01T19:49:29Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974322" />
+</post>
+<post dsq:id="3798974699">
+<id>wp_id=277</id>
+<message><![CDATA[<p>What about<br><a href="https://chromedevtools.github.io/devtools-protocol/tot/Profiler" rel="nofollow noopener" title="https://chromedevtools.github.io/devtools-protocol/tot/Profiler">https://chromedevtools.gith...</a></p><p>Can it help somehow?</p>]]></message>
+<createdAt>2018-02-02T06:25:37Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>povesma@gmail.com</email>
+<name>Dmytro Povesma</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.57.61.152</ipAddress>
+<thread dsq:id="6492992863" />
+<parent dsq:id="3798974455" />
+</post>
+<post dsq:id="3798974318">
+<id>wp_id=279</id>
+<message><![CDATA[<p>How to record find unused css in multiple pages. ? Tried all the ways not working.</p>]]></message>
+<createdAt>2018-02-04T11:03:08Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>kk.fasil2@gmail.com</email>
+<name>Fasil kk</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>137.97.183.32</ipAddress>
+<thread dsq:id="6492992863" />
+</post>
+<post dsq:id="3798975174">
+<id>wp_id=281</id>
+<message><![CDATA[<p>Hi Ladislav,</p><p>Did you find solution for your query. I have a similar requirement in my hand for which I need to store jsonb object and use jpa query on that data. Could you please give me pointers to the solution..</p>]]></message>
+<createdAt>2018-02-08T12:02:39Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>ssstarsarkar664@gmail.com</email>
+<name>CNatka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>61.12.86.234</ipAddress>
+<thread dsq:id="6491973385" />
+<parent dsq:id="3798974841" />
+</post>
+<post dsq:id="3798974113">
+<id>wp_id=286</id>
+<message><![CDATA[<p>We have been using swagger at Zonky for a long time and now moving away from it. All those annotations are making controller code way more messy. We introduced spring rest doc which serves also the purpose of testing and we are able to generate stub servers from the documentation test code. Check it out.</p>]]></message>
+<createdAt>2018-02-16T15:14:38Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>dominikmostek@twitter.example.com</email>
+<name>Dominik Mo&amp;#353;t&amp;#283;k (@Dom</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>195.39.14.130</ipAddress>
+<thread dsq:id="6491921606" />
+</post>
+<post dsq:id="3798974232">
+<id>wp_id=287</id>
+<message><![CDATA[<p>Thanks for the tip, I know about it and I am just tinkering with it. :)I like it a lot so far. I just wanted to try both to have a comparison, spring rest docs is going to be my next article :) How do you generate stub server though?</p>]]></message>
+<createdAt>2018-02-16T16:35:34Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6491921606" />
+<parent dsq:id="3798974113" />
+</post>
+<post dsq:id="3798974214">
+<id>wp_id=288</id>
+<message><![CDATA[<p>.try looks pretty cool :-), there is still so much to learn about IDEA ...</p>]]></message>
+<createdAt>2018-02-16T19:27:35Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>antonin.brettsnajdr@gmail.com</email>
+<name>Anton&amp;#237;n Brett&amp;#353;najdr</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>31.30.52.241</ipAddress>
+<thread dsq:id="6493383606" />
+</post>
+<post dsq:id="3798974489">
+<id>wp_id=289</id>
+<message><![CDATA[<p>By</p><p>`.andDo(verify().stub("STUB_NAME"))` in the api tests and then packing the results into the wiremock docker image.</p>]]></message>
+<createdAt>2018-02-19T12:30:06Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>dominikmostek@twitter.example.com</email>
+<name>Dominik Mo&amp;#353;t&amp;#283;k (@Dom</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>195.39.14.130</ipAddress>
+<thread dsq:id="6491921606" />
+<parent dsq:id="3798974232" />
+</post>
+<post dsq:id="3798974112">
+<id>wp_id=290</id>
+<message><![CDATA[<p>Thanks for the great article! <br>Pay attention you have<br>springfox-bean-validators<br>Instead of <br>springfox-swagger-ui<br>In maven dependency.</p>]]></message>
+<createdAt>2018-02-20T05:26:14Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>hedin.mail@gmail.com</email>
+<name>Vladimir</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>188.130.177.246</ipAddress>
+<thread dsq:id="6491921606" />
+</post>
+<post dsq:id="3798974350">
+<id>wp_id=291</id>
+<message><![CDATA[<p>definitely :) And they are adding new cool features all the time :)</p>]]></message>
+<createdAt>2018-02-20T07:03:55Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6493383606" />
+<parent dsq:id="3798974214" />
+</post>
+<post dsq:id="3798974233">
+<id>wp_id=292</id>
+<message><![CDATA[<p>Thanks a lot, It's fixed now :)</p>]]></message>
+<createdAt>2018-02-20T07:29:54Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtech Ruzicka</name>
+<isAnonymous>true</isAnonymous>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6491921606" />
+<parent dsq:id="3798974112" />
+</post>
+<post dsq:id="3772072357">
+<id />
+<message><![CDATA[<p>Really awesome blog. Your blog is really useful for me. Thanks for sharing this informative blog. Keep update your blog...<a href="http://www.greenstechnologys.com/java-training-course-content.html" rel="nofollow noopener" title="http://www.greenstechnologys.com/java-training-course-content.html">Java Training in Chennai</a></p>]]></message>
+<createdAt>2018-02-23T06:59:55Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>true</isSpam>
+<author>
+<email>apsara0295@gmail.com</email>
+<name>Apsara G</name>
+<isAnonymous>false</isAnonymous>
+<username>apsara_g</username>
+</author>
+<ipAddress>182.65.196.223</ipAddress>
+<thread dsq:id="6492284387" />
+</post>
+<post dsq:id="3774322722">
+<id />
+<message><![CDATA[<p>What a brilliant and well-rounded explanation of the Utility Classes in an OOP paradigm. Consider me a fan of your write-up, Vojtech Ruzicka!</p>]]></message>
+<createdAt>2018-02-24T18:26:38Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>ashwinirao.karai@gmail.com</email>
+<name>Ashwini Karai</name>
+<isAnonymous>false</isAnonymous>
+<username>ashwinikarai</username>
+</author>
+<ipAddress>67.190.68.173</ipAddress>
+<thread dsq:id="6491971049" />
+</post>
+<post dsq:id="3778303389">
+<id />
+<message><![CDATA[<p>Thank you, glad you liked it.</p>]]></message>
+<createdAt>2018-02-27T10:41:56Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6491971049" />
+<parent dsq:id="3774322722" />
+</post>
+<post dsq:id="3784246600">
+<id />
+<message><![CDATA[<p>Great post! Thanks!</p>]]></message>
+<createdAt>2018-03-02T20:38:05Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>michal.cumpl@gmail.com</email>
+<name>Michal Cumpl 💣</name>
+<isAnonymous>false</isAnonymous>
+<username>michalcumpl</username>
+</author>
+<ipAddress>94.142.238.126</ipAddress>
+<thread dsq:id="6491969703" />
+</post>
+<post dsq:id="3785812024">
+<id />
+<message><![CDATA[<p>Thanks, Glad you like it :)</p>]]></message>
+<createdAt>2018-03-03T22:37:17Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>vojtech.ruz@gmail.com</email>
+<name>Vojtěch Růžička</name>
+<isAnonymous>false</isAnonymous>
+<username>disqus_iGQsQ6dJK8</username>
+</author>
+<ipAddress>213.220.217.109</ipAddress>
+<thread dsq:id="6491969703" />
+<parent dsq:id="3784246600" />
+</post>
+<post dsq:id="3792517455">
+<id />
+<message><![CDATA[<p>Thank you so much, very useful article</p>]]></message>
+<createdAt>2018-03-08T02:36:50Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>false</isSpam>
+<author>
+<email>luanecaroline1@hotmail.com</email>
+<name>Luane Aquino</name>
+<isAnonymous>false</isAnonymous>
+<username>luaneaquino</username>
+</author>
+<ipAddress>177.3.61.146</ipAddress>
+<thread dsq:id="6491971049" />
+</post>
+<post dsq:id="3797399636">
+<id />
+<message><![CDATA[<p>Your starter project looks very interesting. I also love the photo of the fox!<br>Carolyn | <a href="http://www.northstarltd.co.uk/cloud-projects/" rel="nofollow noopener" title="Cloud Projects">Cloud Projects</a></p>]]></message>
+<createdAt>2018-03-11T11:52:35Z</createdAt>
+<isDeleted>false</isDeleted>
+<isSpam>true</isSpam>
+<author>
+<email>northstarbristol2017@gmail.com</email>
+<name>Northstar Bristol</name>
+<isAnonymous>false</isAnonymous>
+<username>northstarbristol</username>
+</author>
+<ipAddress>193.153.4.82</ipAddress>
+<thread dsq:id="6491921606" />
+</post>
+</disqus>

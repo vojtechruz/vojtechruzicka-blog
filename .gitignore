@@ -6,6 +6,8 @@ public
 /.idea/
 /*.iml
 .env.development
+_tools/notion/.env
+_tools/notion/.venv/
 _site/
 review.md
 _out/
