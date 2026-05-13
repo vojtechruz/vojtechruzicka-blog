@@ -40,6 +40,9 @@ export function getRelatedPosts(currentPost, allPosts, maxCount) {
     if (p.data?.draftStatus) {
       return false;
     }
+    if (p.data?.archivedStatus) {
+      return false;
+    }
     return true;
   });
 

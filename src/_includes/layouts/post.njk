@@ -3,6 +3,15 @@
 
 {% block content %}
 <main id="content" class="post content">
+  {% if archivedStatus %}
+  <div class="archived-banner" role="note">
+    <span class="archived-banner-icon" aria-hidden="true">📜</span>
+    <div class="archived-banner-body">
+      <strong>Historical Archive</strong>
+      <p>This is an older version of this article preserved for historical reference.{% if supersededBy %} <a href="{{ supersededBy }}">Read the current version →</a>{% endif %}</p>
+    </div>
+  </div>
+  {% endif %}
   {% if draftStatus %}
   <div class="draft-banner draft-banner-{{ draftStatus }}" role="status">
     <span class="draft-banner-icon" aria-hidden="true">
@@ -30,7 +39,7 @@
     aria-valuemax="100" aria-valuenow="0" hidden>
     <span class="reading-progress__bar" aria-hidden="true"></span>
   </div>
-  <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
+  <article {% if draftStatus or archivedStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
       {% include "components/breadcrumbs.njk" %}
       <h1 class="post-header">{{ title }}</h1>
@@ -49,8 +58,10 @@
         {% endif %}
       </div>
 
+      {% if not archivedStatus %}
       <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
         fetchpriority="high" decoding="async">
+      {% endif %}
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
 
@@ -78,6 +89,16 @@
         </ul>
       </section>
     {% endif %}
+  {% endif %}
+
+  {% if historicalVersions.length > 0 %}
+  <aside class="historical-versions">
+    <p>Older versions of this article:
+    {% for v in historicalVersions %}
+      <a href="{{ v.url }}">{{ v.label if v.label else ("archived " + v.archivedDate) }}</a>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+    </p>
+  </aside>
   {% endif %}
 
   <div class="post-footer">

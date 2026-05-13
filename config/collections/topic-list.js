@@ -1,11 +1,11 @@
-// Alphabetically ordered list of unique topics across all posts (excluding drafts)
-import { shouldIncludeDraft } from '../draft-utils.js';
+// Alphabetically ordered list of unique topics across all public discovery posts
+import { isPublicPostForDiscovery } from '../post-discovery.js';
 
 export default function registerTopicListCollection(eleventyConfig) {
   eleventyConfig.addCollection('topicList', function (collectionApi) {
     const topicsSet = new Set();
     collectionApi.getAll().forEach((item) => {
-      if (!shouldIncludeDraft(item.data.draftStatus)) {
+      if (!isPublicPostForDiscovery(item)) {
         return;
       }
 

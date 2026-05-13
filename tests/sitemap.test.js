@@ -8,7 +8,8 @@ describe('Sitemap (sitemap.xml)', () => {
   const sitemapPath = `${SITE_DIR}/sitemap.xml`;
   const allSourcePosts = getAllPosts();
   const draftPosts = allSourcePosts.filter((p) => p.frontmatter.draftStatus);
-  const publishedPosts = allSourcePosts.filter((p) => !p.frontmatter.draftStatus);
+  // Archived posts are excluded from the sitemap by design (they have noindex)
+  const publishedPosts = allSourcePosts.filter((p) => !p.frontmatter.draftStatus && !p.frontmatter.archivedStatus);
 
   it('sitemap.xml should exist in the build output', () => {
     expect(existsSync(sitemapPath), 'sitemap.xml does not exist. Run "npm run build" first.').toBe(true);

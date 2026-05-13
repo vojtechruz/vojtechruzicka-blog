@@ -132,6 +132,25 @@ export default {
   pageDescription: (d) => d.description || d.excerpt || d.site?.description,
   pageUrl: (d) => (d.site?.url || '') + (d.page?.url || '/'),
 
+  // For archived posts, the canonical URL points to the superseding article
+  canonicalUrl: (d) => {
+    if (d.archivedStatus && d.supersededBy) {
+      return (d.site?.url || '') + d.supersededBy;
+    }
+    return (d.site?.url || '') + (d.page?.url || '/');
+  },
+
+  isArchived: (d) => !!d.archivedStatus,
+
+  // Reverse lookup: find all archived posts that point to this page via supersededBy.
+  // Eliminates the need to maintain historicalVersions frontmatter on the live post.
+  historicalVersions: (d) => {
+    if (!d.collections?.all || !d.page?.url) return [];
+    return d.collections.all
+      .filter((p) => p.data?.archivedStatus && p.data?.supersededBy === d.page.url)
+      .map((p) => ({ url: p.data.path, label: p.data.title, archivedDate: p.data.archivedDate }));
+  },
+
   // Page type flags
   isHome: (d) => getPageKind(d).kind === 'home',
   isHomePaginated: (d) => getPageKind(d).kind === 'homePaginated',
@@ -179,7 +198,11 @@ export default {
   },
 
   // For <title>
-  metaTitle: (d) => (d.title ? `${d.title} | ${d.site.title}` : d.site.title),
+  metaTitle: (d) => {
+    if (!d.title) return d.site.title;
+    const suffix = d.archivedStatus ? ' (Historical Archive)' : '';
+    return `${d.title}${suffix} | ${d.site.title}`;
+  },
 
   isLocalDevelopment,
   isPreview,

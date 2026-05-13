@@ -1,4 +1,4 @@
-import { shouldIncludeDraft } from '../draft-utils.js';
+import { isPublicPostForDiscovery } from '../post-discovery.js';
 import seriesMetadata from '../../src/_data/seriesMetadata.js';
 
 const postToSeriesOrder = new Map();
@@ -17,7 +17,7 @@ export default function registerPostsCollection(eleventyConfig) {
         if (post.inputPath.endsWith('review.md') || post.inputPath.endsWith('master-review.md')) {
           return false;
         }
-        return shouldIncludeDraft(post.data.draftStatus);
+        return isPublicPostForDiscovery(post);
       })
       .sort((a, b) => {
         const dateDiff = b.date - a.date;

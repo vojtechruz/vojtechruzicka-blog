@@ -12,7 +12,8 @@ import { getAllPosts, SITE_DIR } from './helpers.js';
 // Collect draft posts from source
 const allSourcePosts = getAllPosts();
 const draftPosts = allSourcePosts.filter((p) => p.frontmatter.draftStatus);
-const publishedPosts = allSourcePosts.filter((p) => !p.frontmatter.draftStatus);
+// Archived posts are published pages but excluded from sitemap/feeds by design
+const publishedPosts = allSourcePosts.filter((p) => !p.frontmatter.draftStatus && !p.frontmatter.archivedStatus);
 
 describe('Draft posts exclusion (production build)', () => {
   // Integration tests below are optional and depend on the presence of draft posts in source.
