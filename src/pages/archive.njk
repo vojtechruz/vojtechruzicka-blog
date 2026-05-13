@@ -1,0 +1,60 @@
+---
+title: "Archive"
+description: "Historical versions of posts kept for reference. These posts may be outdated or superseded."
+permalink: /archive/
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+
+<p>
+  Archived posts are kept for historical reference. They may be outdated, superseded,
+  or no longer maintained. Where available, use the current version linked from each archived post.
+</p>
+
+<div class="page-meta">
+  {{ collections.archivedPosts | length }} archived post{% if (collections.archivedPosts | length) != 1 %}s{% endif %}
+</div>
+
+{% if (collections.archivedPosts | length) > 0 %}
+<ul class="post-list">
+  {% for post in collections.archivedPosts %}
+    <li>
+      <article class="linked-post archived-linked-post">
+        <h2 class="front-post-title">
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </h2>
+
+        <div class="front-post-info">
+          {% set archiveDate = post.data.archivedDate or post.date %}
+          <time class="front-post-info-date" datetime="{{ archiveDate | htmlDateString }}">
+            Archived {{ archiveDate | readableDate }}
+          </time>
+
+          {% if post.data.topics %}
+            <span class="post-topics" aria-label="Topics">
+              {% for topic in post.data.topics %}
+                <span class="topic-name">{{ topic }}</span>{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+
+        {% if post.data.excerpt %}
+          <p class="front-post-excerpt">{{ post.data.excerpt }}</p>
+        {% endif %}
+
+        {% if post.data.supersededBy %}
+          <p>
+            <a href="{{ post.data.supersededBy }}">Read the current version →</a>
+          </p>
+        {% endif %}
+      </article>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No archived posts yet.</p>
+{% endif %}
+
+{% endblock %}

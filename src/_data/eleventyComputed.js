@@ -37,7 +37,7 @@ function shareImageUrl({ featuredImage, page, site }) {
 
 /**
  * Compute a single "kind" (enum) for the current page.
- * Possible values: "home" | "homePaginated" | "topics" | "topic" | "post" | "page"
+ * Possible values: "home" | "homePaginated" | "archive" | "topics" | "topic" | "post" | "page"
  */
 function getPageKind(d) {
   const url = d.page?.url || '/';
@@ -49,6 +49,10 @@ function getPageKind(d) {
 
   if (url.startsWith('/pages/')) {
     return { url, stem, kind: 'homePaginated' };
+  }
+
+  if (url === '/archive/') {
+    return { url, stem, kind: 'archive' };
   }
 
   if (url === '/topics/') {
@@ -75,7 +79,7 @@ function getPageKind(d) {
 }
 
 /** Build breadcrumb array based on kind */
-function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata }) {
+function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata, archivedStatus }) {
   const crumbs = [{ name: 'Home', url: '/' }];
 
   switch (kind) {
@@ -88,6 +92,9 @@ function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata 
       return crumbs.concat({ name: 'Topics', url: '/topics/' }, { name: `Page ${pageNum}`, url });
     }
 
+    case 'archive':
+      return crumbs.concat({ name: 'Archive', url: '/archive/' });
+
     case 'topics':
       return crumbs.concat({ name: 'Topics', url: '/topics/' });
 
@@ -97,6 +104,10 @@ function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata 
     }
 
     case 'post': {
+      if (archivedStatus) {
+        return crumbs.concat({ name: 'Archive', url: '/archive/' }, { name: title || 'Archived Post', url });
+      }
+
       const postSeries = Array.isArray(seriesMetadata) ? seriesMetadata.find((s) => s.posts.includes(url)) : null;
       if (postSeries) {
         return crumbs.concat(
@@ -157,6 +168,7 @@ export default {
   isTopics: (d) => getPageKind(d).kind === 'topics',
   isTopic: (d) => getPageKind(d).kind === 'topic',
   isPost: (d) => getPageKind(d).kind === 'post',
+  isArchive: (d) => getPageKind(d).kind === 'archive',
   isAbout: (d) => d.page?.url === '/about/',
   isSeries: (d) => getPageKind(d).kind === 'series',
   isSeriesListing: (d) => getPageKind(d).kind === 'seriesListing',
@@ -194,6 +206,7 @@ export default {
       kind,
       topicName: d.topic,
       seriesMetadata: d.seriesMetadata,
+      archivedStatus: d.archivedStatus,
     });
   },
 
