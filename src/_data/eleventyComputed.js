@@ -139,8 +139,14 @@ function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata,
 
 export default {
   // Canonical basics
-  pageTitle: (d) => d.title || d.site?.title,
-  pageDescription: (d) => d.description || d.excerpt || d.site?.description,
+  pageTitle: (d) => {
+    if (!d.title) return d.site?.title;
+    return d.archivedStatus ? `${d.title} (Historical Archive)` : d.title;
+  },
+  pageDescription: (d) => {
+    const description = d.description || d.excerpt || d.site?.description;
+    return d.archivedStatus ? `Historical archive: ${description}` : description;
+  },
   pageUrl: (d) => (d.site?.url || '') + (d.page?.url || '/'),
 
   // For archived posts, the canonical URL points to the superseding article

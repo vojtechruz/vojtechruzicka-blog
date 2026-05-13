@@ -2,7 +2,7 @@
 isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate,
 modifiedDate, breadcrumbs, isAbout #}
 
-{% if isPost %}
+{% if isPost and not archivedStatus %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -22,6 +22,9 @@ modifiedDate, breadcrumbs, isAbout #}
   "url": {{ pageUrl | dump | safe }}
   }
 </script>
+
+{% elif isPost and archivedStatus %}
+{# Archived posts intentionally omit primary article/page JSON-LD; BreadcrumbList remains below. #}
 
 {% elif isHome %}
 <script type="application/ld+json">
