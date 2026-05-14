@@ -140,7 +140,9 @@ function buildBreadcrumbs({ url, title, topics, kind, topicName, seriesMetadata,
 export default {
   // Canonical basics
   pageTitle: (d) => {
-    if (!d.title) return d.site?.title;
+    if (!d.title) {
+      return d.site?.title;
+    }
     return d.archivedStatus ? `${d.title} (Historical Archive)` : d.title;
   },
   pageDescription: (d) => {
@@ -162,7 +164,9 @@ export default {
   // Reverse lookup: find all archived posts that point to this page via supersededBy.
   // Eliminates the need to maintain historicalVersions frontmatter on the live post.
   historicalVersions: (d) => {
-    if (!d.collections?.all || !d.page?.url) return [];
+    if (!d.collections?.all || !d.page?.url) {
+      return [];
+    }
     return d.collections.all
       .filter((p) => p.data?.archivedStatus && p.data?.supersededBy === d.page.url)
       .map((p) => ({ url: p.data.path, label: p.data.title, archivedDate: p.data.archivedDate }));
@@ -218,7 +222,9 @@ export default {
 
   // For <title>
   metaTitle: (d) => {
-    if (!d.title) return d.site.title;
+    if (!d.title) {
+      return d.site.title;
+    }
     const suffix = d.archivedStatus ? ' (Historical Archive)' : '';
     return `${d.title}${suffix} | ${d.site.title}`;
   },
