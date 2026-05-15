@@ -58,10 +58,8 @@
         {% endif %}
       </div>
 
-      {% if not archivedStatus %}
       <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
         fetchpriority="high" decoding="async">
-      {% endif %}
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
 
@@ -76,7 +74,7 @@
 
   {% include "components/social-share.njk" %}
 
-  {% if not series %}
+  {% if not series and not archivedStatus %}
     {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
     {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
     {% if related.length > 0 %}
