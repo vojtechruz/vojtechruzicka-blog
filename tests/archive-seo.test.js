@@ -29,26 +29,26 @@ describe('archive SEO metadata', () => {
   });
 
   it('marks archived posts as noindex follow and canonicalizes to the current article', () => {
-    const $ = loadPage('/archive/test-archive/');
+    const $ = loadPage('/archive/chrome-audit-lighthouse-2026-05/');
 
     expect(getRobotsMeta($)).toBe('noindex, follow');
-    expect(getCanonicalUrl($)).toBe(`${siteUrl}/spring-ai/`);
+    expect(getCanonicalUrl($)).toBe(`${siteUrl}/chrome-audit-lighthouse/`);
   });
 
   it('omits primary article/page JSON-LD for archived posts but keeps breadcrumb JSON-LD', () => {
-    const $ = loadPage('/archive/test-archive/');
+    const $ = loadPage('/archive/chrome-audit-lighthouse-2026-05/');
     const jsonLdTypes = getJsonLdBlocks($).map((block) => block['@type']);
 
     expect(jsonLdTypes).toEqual(['BreadcrumbList']);
   });
 
   it('uses historical social metadata and an existing generated image for archived posts', () => {
-    const $ = loadPage('/archive/test-archive/');
+    const $ = loadPage('/archive/chrome-audit-lighthouse-2026-05/');
     const ogImage = getOgImage($);
 
-    expect(getOgTitle($)).toBe('Test Post (Archive Test) (Historical Archive)');
+    expect(getOgTitle($)).toBe('Lighthouse: Web Page Audit with Chrome Developer Tools (Historical Archive)');
     expect(getOgDescription($)).toContain('Historical archive:');
-    expect(ogImage).toBe(`${siteUrl}/archive/test-archive/og-image.jpg`);
+    expect(ogImage).toBe(`${siteUrl}/archive/chrome-audit-lighthouse-2026-05/og-image.jpg`);
     expect($('meta[name="twitter:image"]').attr('content')).toBe(ogImage);
     expect(existsSync(localPathForAbsoluteUrl(ogImage))).toBe(true);
   });
