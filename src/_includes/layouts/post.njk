@@ -3,15 +3,6 @@
 
 {% block content %}
 <main id="content" class="post content">
-  {% if archivedStatus %}
-  <div class="archived-banner" role="note">
-    <span class="archived-banner-icon" aria-hidden="true">📜</span>
-    <div class="archived-banner-body">
-      <strong>Historical Archive</strong>
-      <p>This is an older version of this article preserved for historical reference.{% if supersededBy %} <a href="{{ supersededBy }}">Read the current version →</a>{% endif %}</p>
-    </div>
-  </div>
-  {% endif %}
   {% if draftStatus %}
   <div class="draft-banner draft-banner-{{ draftStatus }}" role="status">
     <span class="draft-banner-icon" aria-hidden="true">
@@ -42,6 +33,19 @@
   <article {% if draftStatus or archivedStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
       {% include "components/breadcrumbs.njk" %}
+
+      {% if archivedStatus %}
+      <div class="archived-banner" role="note">
+        <div class="archived-banner-body">
+          <strong>Historical Archive</strong>
+          <p>This is an older version of this article preserved for historical reference.</p>
+          {% if supersededBy %}
+          <a href="{{ supersededBy }}">Read the current version</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
       <h1 class="post-header">{{ title }}</h1>
 
       <div class="post-metadata">
@@ -90,13 +94,16 @@
   {% endif %}
 
   {% if historicalVersions.length > 0 %}
-  <aside class="historical-versions">
-    <h2>Older version{{ 's' if historicalVersions.length > 1 else '' }} of this article</h2>
-    <ul>
-    {% for v in historicalVersions %}
-      <li><a href="{{ v.url }}">{{ v.label if v.label else "Archived version" }}{% if v.archivedDate %} ({{ v.archivedDate | readableMonthYear }}){% endif %}</a></li>
-    {% endfor %}
-    </ul>
+  <aside class="archived-banner historical-versions" role="note">
+    <div class="archived-banner-body">
+      <strong>Previous Version{{ 's' if historicalVersions.length > 1 else '' }}</strong>
+      <p>This article has been rewritten. {% if historicalVersions.length > 1 %}Older versions are{% else %}The older version is{% endif %} preserved below for historical reference.</p>
+      <ul>
+      {% for v in historicalVersions %}
+        <li><a href="{{ v.url }}">{{ v.label if v.label else "Archived version" }}{% if v.archivedDate %} ({{ v.archivedDate | readableMonthYear }}){% endif %}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
   </aside>
   {% endif %}
 

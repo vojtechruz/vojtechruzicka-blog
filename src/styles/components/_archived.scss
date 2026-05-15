@@ -21,26 +21,6 @@
   margin-top: 0.1rem;
 }
 
-// ── Historical Versions Back-reference (shown on the live/current post) ──
-
-.historical-versions {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-border);
-
-  p {
-    margin: 0;
-  }
-
-  ul {
-    margin: 0.25rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-}
-
 .archived-banner-body {
   strong {
     display: block;
@@ -53,4 +33,22 @@
     margin: 0;
     line-height: 1.5;
   }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 1.5;
+  }
+
+  li + li {
+    margin-top: 0.125rem;
+  }
+}
+
+// ── Historical Versions Back-reference (shown on the live/current post) ──
+
+.historical-versions {
+  margin-bottom: 0;
+  margin-top: 1.5rem;
 }
