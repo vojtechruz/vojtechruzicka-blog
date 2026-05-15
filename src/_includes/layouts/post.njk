@@ -93,11 +93,12 @@
 
   {% if historicalVersions.length > 0 %}
   <aside class="historical-versions">
-    <p>Older versions of this article:
+    <h2>Older version{{ 's' if historicalVersions.length > 1 else '' }} of this article</h2>
+    <ul>
     {% for v in historicalVersions %}
-      <a href="{{ v.url }}">{{ v.label if v.label else ("archived " + v.archivedDate) }}</a>{% if not loop.last %}, {% endif %}
+      <li><a href="{{ v.url }}">{{ v.label if v.label else "Archived version" }}{% if v.archivedDate %} ({{ v.archivedDate | readableMonthYear }}){% endif %}</a></li>
     {% endfor %}
-    </p>
+    </ul>
   </aside>
   {% endif %}
 
