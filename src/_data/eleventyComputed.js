@@ -161,15 +161,14 @@ export default {
 
   isArchived: (d) => !!d.archivedStatus,
 
-  // Reverse lookup: find all archived posts that point to this page via supersededBy.
-  // Eliminates the need to maintain historicalVersions frontmatter on the live post.
+  // Reverse lookup: which archived posts point to this page via supersededBy.
+  // Uses a pre-built map (historicalVersionsMap) to avoid accessing collections.all,
+  // which would force a full rebuild of all pages on every file change.
   historicalVersions: (d) => {
-    if (!d.collections?.all || !d.page?.url) {
+    if (!d.historicalVersionsMap || !d.page?.url) {
       return [];
     }
-    return d.collections.all
-      .filter((p) => p.data?.archivedStatus && p.data?.supersededBy === d.page.url)
-      .map((p) => ({ url: p.data.path, label: p.data.title, archivedDate: p.data.archivedDate }));
+    return d.historicalVersionsMap[d.page.url] || [];
   },
 
   // Page type flags

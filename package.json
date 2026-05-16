@@ -4,7 +4,7 @@
   "description": "Vojtech Ruzicka's Programming Blog",
   "main": "N/A",
   "scripts": {
-    "dev": "npx cross-env ELEVENTY_RUN_MODE=serve eleventy --serve",
+    "dev": "npx cross-env ELEVENTY_RUN_MODE=serve eleventy --serve --incremental",
     "start:no-drafts": "npx cross-env INCLUDE_DRAFTS=none eleventy --serve",
     "clean": "rimraf _site",
     "build": "npm run clean && npx cross-env INCLUDE_DRAFTS=none eleventy",
