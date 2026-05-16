@@ -70,7 +70,7 @@ export default function linkedPost(permalink, maybeCollections) {
   const currentVersionLink =
     isArchived && data.supersededBy
       ? `<p>
-      <a href="${escapeHtml(data.supersededBy)}">Read the current version →</a>
+      <a class="archived-link-current" href="${escapeHtml(data.supersededBy)}">Read the current version</a>
     </p>`
       : '';
   const classes = [
@@ -87,6 +87,7 @@ export default function linkedPost(permalink, maybeCollections) {
   <h2 class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </h2>
+
   <div class="front-post-info">
     <time class="front-post-info-date" datetime="${htmlDate}">
       ${datePrefix}${escapeHtml(readableDate)}
@@ -94,7 +95,9 @@ export default function linkedPost(permalink, maybeCollections) {
     ${seriesBadge}
     <ul class="post-topics" aria-label="Topics">
       ${topicLinks}
+              
     </ul>
+    ${currentVersionLink}
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
@@ -102,8 +105,8 @@ export default function linkedPost(permalink, maybeCollections) {
     </a>
     <p class="front-post-excerpt">
       ${escapeHtml(excerpt)}
+
     </p>
-    ${currentVersionLink}
   </div>
 </div>
 `;
