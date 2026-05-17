@@ -1,3 +1,6 @@
+// Each series entry supports an optional `image` field: the filename of a cover image
+// stored at src/images/series/<slug>/<filename> (e.g. image: 'featured.jpg').
+// When omitted the series card falls back to the first post's featured image.
 export default [
   {
     slug: 'angular-tutorial',

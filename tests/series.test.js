@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { loadPage, getAllPosts, SITE_DIR } from './helpers.js';
 import { existsSync } from 'fs';
+import path from 'path';
 import seriesMetadata from '../src/_data/seriesMetadata.js';
 
 // ---------------------------------------------------------------------------
@@ -51,6 +52,16 @@ describe('seriesMetadata – data integrity', () => {
     for (const series of seriesMetadata) {
       const unique = new Set(series.posts);
       expect(unique.size, `duplicate URLs in "${series.slug}"`).toBe(series.posts.length);
+    }
+  });
+
+  it('image field, when present, is a non-empty string and the file exists', () => {
+    for (const series of seriesMetadata) {
+      if (series.image === undefined) continue;
+      expect(typeof series.image, `image must be a string on "${series.slug}"`).toBe('string');
+      expect(series.image.length, `image must be non-empty on "${series.slug}"`).toBeGreaterThan(0);
+      const filePath = path.join('src', 'images', 'series', series.slug, series.image);
+      expect(existsSync(filePath), `image file missing: ${filePath}`).toBe(true);
     }
   });
 });
