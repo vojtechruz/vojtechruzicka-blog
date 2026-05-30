@@ -1,6 +1,8 @@
 // _data/eleventyComputed.js
 // Centralized SEO + structure helpers. Works with "type": "module" in package.json.
 
+import path from 'path';
+import Image from '@11ty/eleventy-img';
 import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
 import { slugify } from '../../config/utils/formatting.js';
 
@@ -182,10 +184,57 @@ export default {
   isSeries: (d) => getPageKind(d).kind === 'series',
   isSeriesListing: (d) => getPageKind(d).kind === 'seriesListing',
 
-  // Prefer the pre-generated og-image.jpg (posts only) over the raw featuredImage path.
-  // The transform plugin's hashed filenames are not predictable at data-computation time,
-  // so posts.11tydata.js generates a stable JPEG via eleventy-img and exposes it as ogImageUrl.
-  // Non-post pages (home, topic, about) fall back to shareImageUrl.
+  // Generate a stable og-image.jpg at build time for posts and series pages.
+  // The image transform plugin renames files with content hashes (e.g. featured-a1b-800.avif),
+  // so social crawlers need a plain JPEG at a predictable URL. eleventy-img caches by source
+  // hash, so incremental rebuilds skip unchanged images. Returns undefined on failure so
+  // imageUrl can fall back to shareImageUrl.
+  ogImageUrl: async (d) => {
+    const { kind } = getPageKind(d);
+
+    if (kind === 'post') {
+      if (!d.page?.inputPath) { return undefined; }
+      // Use raw data.featuredImage — the computed version from posts.11tydata.js may not yet
+      // be resolved when this global computed property runs.
+      const imageFile = (d.featuredImage || 'featured.jpg').replace(/^\.\//, '');
+      const src = path.resolve(path.dirname(d.page.inputPath), imageFile);
+      const postUrl = d.path || d.page?.url || '/';
+      try {
+        const metadata = await Image(src, {
+          formats: ['jpeg'],
+          widths: [1200],
+          outputDir: path.resolve('_site' + postUrl),
+          urlPath: postUrl,
+          filenameFormat: () => 'og-image.jpg',
+        });
+        return metadata.jpeg[0].url;
+      } catch {
+        return undefined;
+      }
+    }
+
+    if (kind === 'series') {
+      const series = d.currentSeries;
+      if (!series?.image) { return undefined; }
+      const src = path.resolve('src', 'images', 'series', series.slug, series.image);
+      const seriesUrl = `/series/${series.slug}/`;
+      try {
+        const metadata = await Image(src, {
+          formats: ['jpeg'],
+          widths: [1200],
+          outputDir: path.resolve('_site' + seriesUrl),
+          urlPath: seriesUrl,
+          filenameFormat: () => 'og-image.jpg',
+        });
+        return metadata.jpeg[0].url;
+      } catch {
+        return undefined;
+      }
+    }
+
+    return undefined;
+  },
+
   imageUrl: (d) =>
     d.ogImageUrl
       ? (d.site?.url || '') + d.ogImageUrl
