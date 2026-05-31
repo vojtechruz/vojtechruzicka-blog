@@ -31,7 +31,7 @@ export default function linkedSeries(slug) {
 
   // Use the series-level image if set; otherwise fall back to the first post's featured image.
   // Series images live at src/images/series/<slug>/<filename> by convention.
-  let imgUrl = '';
+  let imgUrl;
   if (series.image) {
     const imageDir = path.join('src', 'images', 'series', series.slug);
     imgUrl = `/../${imageDir}/${series.image}`;

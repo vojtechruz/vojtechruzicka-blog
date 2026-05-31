@@ -87,27 +87,19 @@ export default function linkedPost(permalink, maybeCollections) {
   <h2 class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </h2>
-
   <div class="front-post-info">
     <time class="front-post-info-date" datetime="${htmlDate}">
       ${datePrefix}${escapeHtml(readableDate)}
     </time>
     ${seriesBadge}
-    <ul class="post-topics" aria-label="Topics">
-      ${topicLinks}
-              
-    </ul>
+    <ul class="post-topics" aria-label="Topics">${topicLinks}</ul>
     ${currentVersionLink}
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
       ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
     </a>
-    <p class="front-post-excerpt">
-      ${escapeHtml(excerpt)}
-
-    </p>
+    <p class="front-post-excerpt">${escapeHtml(excerpt)}</p>
   </div>
-</div>
-`;
+</div>`;
 }

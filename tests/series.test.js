@@ -57,7 +57,9 @@ describe('seriesMetadata – data integrity', () => {
 
   it('image field, when present, is a non-empty string and the file exists', () => {
     for (const series of seriesMetadata) {
-      if (series.image === undefined) continue;
+      if (series.image === undefined) {
+        continue;
+      }
       expect(typeof series.image, `image must be a string on "${series.slug}"`).toBe('string');
       expect(series.image.length, `image must be non-empty on "${series.slug}"`).toBeGreaterThan(0);
       const filePath = path.join('src', 'images', 'series', series.slug, series.image);
