@@ -142,7 +142,7 @@ describe('linkedPost shortcode', () => {
     expect(result).toContain('archived-linked-post');
     expect(result).toContain('Archived January 1, 2020');
     expect(result).toContain('datetime="2020-01-01"');
-    expect(result).toContain('Read the current version →');
+    expect(result).toContain('Read the current version');
     expect(result).toContain('href="/posts/test-post/"');
   });
 

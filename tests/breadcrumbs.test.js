@@ -270,7 +270,7 @@ describe('breadcrumbs – visual nav on archive pages and posts', () => {
   });
 
   it('archived post breadcrumb links to /archive/ and not /topics/', () => {
-    const $ = loadPage('/archive/test-archive/');
+    const $ = loadPage('/archive/chrome-audit-lighthouse-2026-05/');
     const hrefs = $('nav.breadcrumbs a')
       .map((_, el) => $(el).attr('href'))
       .get();
