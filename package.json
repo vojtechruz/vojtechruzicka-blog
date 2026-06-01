@@ -62,7 +62,7 @@
     "glob": "^13.0.6",
     "globals": "^17.6.0",
     "gray-matter": "^4.0.3",
-    "html-validate": "^11.4.0",
+    "html-validate": "^11.5.0",
     "jsdom": "^29.1.1",
     "linkinator": "^7.6.1",
     "markdown-it": "^14.2.0",
@@ -74,6 +74,6 @@
     "shiki": "^4.1.0",
     "stylelint": "^17.12.0",
     "stylelint-config-standard-scss": "^17.0.0",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.8"
   }
 }
