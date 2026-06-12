@@ -62,6 +62,10 @@ Looking at the current ten items tells you only part of the story. What's intere
 | 9. Security Logging and Monitoring Failures   | 9. Security Logging and Alerting Failures |
 | 10. Server Side Request Forgery (SSRF)        | 10. Mishandling of Exceptional Conditions |
 
+If you'd like to compare with even older version, you can check my article on OWASP TOP 10 2017.
+
+{% linkedPost "/owasp-top-ten-2017/" %}
+
 
 ## What Changed Since 2021
 
@@ -90,4 +94,5 @@ security education at the top ten. The next step is to get to know these risks i
 - [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/) Comprehensive guide on how to test security of web apps.
 - [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/) - Collection of very condensed guides on various topics as a quick reference.
 - [OWASP API Security](https://owasp.org/www-project-api-security/) - Top ten focused on API.
-<!-- TODO: top ten is just for awareness and not covering everying, hwere to look deeper? -->
+- [OWASP Gen AI Security Project](https://genai.owasp.org/) - Guidance and resources focused on generative AI security.
+
