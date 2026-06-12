@@ -1,11 +1,11 @@
 ---
 title: 'OWASP Top Ten 2025'
-date: '2026-04-22'
+date: '2026-06-22'
 topics: ['Security']
 path: '/owasp-top-ten-2025/'
 excerpt:
-  'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What changed since 2021, what is new,
-  and is your application still vulnerable?'
+  'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What are the changes since 2021,
+  and is your application vulnerable?'
 draftStatus: 'draft'
 relatedPosts: ['/owasp-top-ten-2017/']
 featuredImage: './featured.png'
@@ -13,32 +13,37 @@ featuredImage: './featured.png'
 
 ## What is OWASP?
 
-OWASP stands for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It is a non-profit organization dedicated
+<!-- TODO:  OWASP stands for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It is a non-profit organization dedicated
 to improving the security of software, raising awareness of security issues, and providing tools and resources to
-mitigate security risks.
+mitigate security risks. -->
+
+[OWASP](https://owasp.org/) is an acronym for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It open-source non profit organization, which focuses on improving security of software. It aims to raise awareness of security issues and provides free tools and resources to mitigate them.
+
+It cover broad range of tools, resources and activities. They [organize various events](https://owasp.org/events/) including their own AppSec conference. OWASP consists of various projects with different focus including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/), [GenAI Security Project](https://genai.owasp.org/), [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/), [variaous cheatsheets](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
 
 ## OWASP Top Ten
+Even though OWASP consists of many projects, one of them is particulary popular - [OWASP Top Ten Web Application Security Risks](https://owasp.org/www-project-top-ten/), usually referred to as OWASP Top 10 for short.
 
-OWASP Top Ten is a list of the 10 most critical web application security risks. It is not an exhaustive guide, but a
-concise awareness document — each vulnerability fits on roughly one page. It is released periodically every few years.
-The versions preceding 2025 were 2021, 2017, 2013, and 2010.
+It is an ordered list of top ten security risks, which is released periodically every couple of years since 2003. The most recent one was released at the end of 2025, with 2021 and 2017 before that. The document is very and does barely go in any detail.
+
+You could argue that reducing security risks to just 10 items on couple of pages is very reductive and web app security is way broader issue. But the point of this list is not to bring exhaustive guide on security risks, but rather increase awarness of the broad public audience. With just a short list it is easy to keep track what is happening in the security area, how it evolves and what to keep eye on. Then you can dive deeper into individual items with other OWASP resources.
 
 ## Top Ten 2025
 
 <!-- TODO: brief intro on methodology, data sources, community survey items -->
 
-| Item                           | Description                     |
-|--------------------------------|---------------------------------|
-| A01:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A02:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A03:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A04:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A05:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A06:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A07:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A08:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A09:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
-| A10:2025 – <!-- TODO: name --> | <!-- TODO: one-line summary --> |
+| Item                                      | Description                     |
+|-------------------------------------------|---------------------------------|
+| 1. Broken Access Control                  | <!-- TODO: one-line summary --> |
+| 2. Security Misconfiguration              | <!-- TODO: one-line summary --> |
+| 3. Software Supply Chain Failures         | <!-- TODO: one-line summary --> |
+| 4. Cryptographic Failures                 | <!-- TODO: one-line summary --> |
+| 5. Injection                              | <!-- TODO: one-line summary --> |
+| 6. Insecure Design                        | <!-- TODO: one-line summary --> |
+| 7. Authentication Failures                | <!-- TODO: one-line summary --> |
+| 8. Software or Data Integrity Failures    | <!-- TODO: one-line summary --> |
+| 9. Security Logging and Alerting Failures | <!-- TODO: one-line summary --> |
+| 10. Mishandling of Exceptional Conditions | <!-- TODO: one-line summary --> |
 
 ## What Changed Since 2021
 
@@ -58,24 +63,18 @@ The versions preceding 2025 were 2021, 2017, 2013, and 2010.
 
 ### 2021 vs 2025 Comparison
 
-| 2021                                                  | 2025                     |
-|-------------------------------------------------------|--------------------------|
-| A01:2021 – Broken Access Control                      | A01:2025 – <!-- TODO --> |
-| A02:2021 – Cryptographic Failures                     | A02:2025 – <!-- TODO --> |
-| A03:2021 – Injection                                  | A03:2025 – <!-- TODO --> |
-| A04:2021 – Insecure Design                            | A04:2025 – <!-- TODO --> |
-| A05:2021 – Security Misconfiguration                  | A05:2025 – <!-- TODO --> |
-| A06:2021 – Vulnerable and Outdated Components         | A06:2025 – <!-- TODO --> |
-| A07:2021 – Identification and Authentication Failures | A07:2025 – <!-- TODO --> |
-| A08:2021 – Software and Data Integrity Failures       | A08:2025 – <!-- TODO --> |
-| A09:2021 – Security Logging and Monitoring Failures   | A09:2025 – <!-- TODO --> |
-| A10:2021 – Server-Side Request Forgery (SSRF)         | A10:2025 – <!-- TODO --> |
+| 2021                                           | 2025                     |
+|------------------------------------------------|--------------------------|
+| A01 Broken Access Control                      | A01:2025 - Broken Access Control |
+| A02 Cryptographic Failures                     | A02:2025 - Security Misconfiguration |
+| A03 Injection                                  | A03:2025 - Software Supply Chain Failures |
+| A04 Insecure Design                            | A04:2025 - Cryptographic Failures |
+| A05 Security Misconfiguration                  | A05:2025 - Injection |
+| A06 Vulnerable and Outdated Components         | A06:2025 - Insecure Design |
+| A07 Identification and Authentication Failures | A07:2025 - Authentication Failures |
+| A08 Software and Data Integrity Failures       | A08:2025 - Software or Data Integrity Failures |
+| A09 Security Logging and Monitoring Failures                                               | A09:2025 - Security Logging and Alerting Failures |
+| A10 Server Side Request Forgery (SSRF)                                               | A10:2025 - Mishandling of Exceptional Conditions |
 
 ## Beyond the Top Ten
-
-The Top Ten is a starting point, not a security checklist. Other OWASP resources worth exploring:
-
-- [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/)
-- [OWASP Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
-- [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/)
-- [OWASP Developer Guide](https://owasp.org/www-project-developer-guide/)
+<!-- TODO: top ten is just for awareness and not covering everying, hwere to look deeper? -->
