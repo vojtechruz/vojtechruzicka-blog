@@ -32,18 +32,18 @@ You could argue that reducing security risks to just 10 items on couple of pages
 
 <!-- TODO: brief intro on methodology, data sources, community survey items -->
 
-| Item                                      | Description                     |
-|-------------------------------------------|---------------------------------|
-| 1. Broken Access Control                  | <!-- TODO: one-line summary --> |
-| 2. Security Misconfiguration              | <!-- TODO: one-line summary --> |
-| 3. Software Supply Chain Failures         | <!-- TODO: one-line summary --> |
-| 4. Cryptographic Failures                 | <!-- TODO: one-line summary --> |
-| 5. Injection                              | <!-- TODO: one-line summary --> |
-| 6. Insecure Design                        | <!-- TODO: one-line summary --> |
-| 7. Authentication Failures                | <!-- TODO: one-line summary --> |
-| 8. Software or Data Integrity Failures    | <!-- TODO: one-line summary --> |
-| 9. Security Logging and Alerting Failures | <!-- TODO: one-line summary --> |
-| 10. Mishandling of Exceptional Conditions | <!-- TODO: one-line summary --> |
+| Item                                      | Description                                                                                                                                                                                           |
+|-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. Broken Access Control                  | Gain access to restricted information or actions by bypassing auth checks, impersonating users, missing access controls.                                                                              |
+| 2. Security Misconfiguration              | Incorrect setup using default settings, enabling unused features, verbose errors with sensitive information.                                                                                          |
+| 3. Software Supply Chain Failures         | Outdated vulnerable components, untrusted dependencies, build pipeline with weak security.                                                                                                            |
+| 4. Cryptographic Failures                 | Weak or missing cryptography for data in transit or at rest, leaked security keys.                                                                                                                    |
+| 5. Injection                              | User supplied data not sanitized when used as part of dynamic command or query - malicious code execution such as SQL injection, Cross-Site Scripting.                                                |
+| 6. Insecure Design                        | Architecture and design flaws, unexpected states in business logic, lack of secure development lifecycle and threat modelling.                                                                        |
+| 7. Authentication Failures                | Vulnerability to automated and brute force attacks, weak passwords, lasking multi factor auth, vulnerable account recovery, incorrect session and token invalidation.                                 |
+| 8. Software or Data Integrity Failures    | Lack of validation of code and data coming from external sources can lead to malicious code execution or unexpected states. Software auto update, insecure deserialization, unexpected source change. |
+| 9. Security Logging and Alerting Failures | Insufficient logging and monitoring results in atacks being detected late or never. Log tampering, sensitive data leakage through logs and alerts.                                                    |
+| 10. Mishandling of Exceptional Conditions | Not reacting to unexpected conditions, detecting them or preventing them. This can lead to may other vulnerabilities including crashing the system or complete takeover.                              |
 
 ### 2021 vs 2025 Comparison
 
@@ -81,8 +81,13 @@ Looking at the current ten items tells you only part of the story. What's intere
 
 ## Beyond the Top Ten
 
-Now you've familiarized yourself with the top ten security risks of web applications and it will help you stay more vigilant and aware of potential issues. However, as I mentioned, the top ten is an awareness document rather than detailed guide. It covers just tip of the iceberg and very briefly. You should not definitely stop your security education at the top ten. The next step is to get to know these risks in more detail and learn about others. If you're looking where to start, OWASP fortunately offers many resources such as:
+Now you've familiarized yourself with the top ten security risks of web applications and it will help you stay 
+more vigilant and aware of potential issues. However, as I mentioned, the top ten is an awareness document rather 
+than detailed guide. It covers just tip of the iceberg and very briefly. You should not definitely stop your 
+security education at the top ten. The next step is to get to know these risks in more detail and learn about others.
 
-- 
-
+- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) - Detailed list of security requirements for designing, developing, and testing web applications.
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/) Comprehensive guide on how to test security of web apps.
+- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/) - Collection of very condensed guides on various topics as a quick reference.
+- [OWASP API Security](https://owasp.org/www-project-api-security/) - Top ten focused on API.
 <!-- TODO: top ten is just for awareness and not covering everying, hwere to look deeper? -->
