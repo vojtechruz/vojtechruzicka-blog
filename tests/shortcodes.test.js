@@ -1,10 +1,45 @@
 import { describe, it, expect } from 'vitest';
+import badge from '../config/shortcodes/badge.js';
 import info from '../config/shortcodes/info.js';
 import warning from '../config/shortcodes/warning.js';
 import error from '../config/shortcodes/error.js';
 import youtube from '../config/shortcodes/youtube.js';
 import video from '../config/shortcodes/video.js';
 import linkedPost from '../config/shortcodes/linked-post.js';
+
+describe('Badge Shortcode', () => {
+  it.each([
+    ['new', 'New'],
+    ['up', '↑ Up'],
+    ['down', '↓ Down'],
+    ['merged', 'Merged'],
+    ['removed', 'Removed'],
+    ['renamed', 'Renamed'],
+  ])('renders default label for variant "%s"', (variant, expectedLabel) => {
+    const result = badge(variant);
+    expect(result).toContain(`class="badge badge--${variant}"`);
+    expect(result).toContain(expectedLabel);
+  });
+
+  it('renders custom label when provided', () => {
+    const result = badge('up', '↑ 3');
+    expect(result).toContain('badge--up');
+    expect(result).toContain('↑ 3');
+    expect(result).not.toContain('↑ Up');
+  });
+
+  it('falls back to variant name as label for unknown variants', () => {
+    const result = badge('custom-type');
+    expect(result).toContain('badge--custom-type');
+    expect(result).toContain('custom-type');
+  });
+
+  it('renders a span element', () => {
+    const result = badge('new');
+    expect(result).toMatch(/^<span /);
+    expect(result).toMatch(/<\/span>$/);
+  });
+});
 
 describe('Message Shortcodes', () => {
   it('should render info message with markdown', async () => {
