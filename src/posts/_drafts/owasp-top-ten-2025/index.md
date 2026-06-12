@@ -63,18 +63,23 @@ You could argue that reducing security risks to just 10 items on couple of pages
 
 ### 2021 vs 2025 Comparison
 
-| 2021                                           | 2025                     |
-|------------------------------------------------|--------------------------|
-| A01 Broken Access Control                      | A01:2025 - Broken Access Control |
-| A02 Cryptographic Failures                     | A02:2025 - Security Misconfiguration |
-| A03 Injection                                  | A03:2025 - Software Supply Chain Failures |
-| A04 Insecure Design                            | A04:2025 - Cryptographic Failures |
-| A05 Security Misconfiguration                  | A05:2025 - Injection |
-| A06 Vulnerable and Outdated Components         | A06:2025 - Insecure Design |
-| A07 Identification and Authentication Failures | A07:2025 - Authentication Failures |
-| A08 Software and Data Integrity Failures       | A08:2025 - Software or Data Integrity Failures |
-| A09 Security Logging and Monitoring Failures                                               | A09:2025 - Security Logging and Alerting Failures |
-| A10 Server Side Request Forgery (SSRF)                                               | A10:2025 - Mishandling of Exceptional Conditions |
+| 2021                                          | 2025                                      |
+|-----------------------------------------------|-------------------------------------------|
+| 1. Broken Access Control                      | 1. Broken Access Control                  |
+| 2. Cryptographic Failures                     | 2. Security Misconfiguration              |
+| 3. Injection                                  | 3. Software Supply Chain Failures         |
+| 4. Insecure Design                            | 4. Cryptographic Failures                 |
+| 5. Security Misconfiguration                  | 5. Injection                              |
+| 6. Vulnerable and Outdated Components         | 6. Insecure Design                        |
+| 7. Identification and Authentication Failures | 7. Authentication Failures                |
+| 8. Software and Data Integrity Failures       | 8. Software or Data Integrity Failures    |
+| 9. Security Logging and Monitoring Failures   | 9. Security Logging and Alerting Failures |
+| 10. Server Side Request Forgery (SSRF)        | 10. Mishandling of Exceptional Conditions |
 
 ## Beyond the Top Ten
+
+Now you've familiarized yourself with the top ten security risks of web applications and it will help you stay more vigilant and aware of potential issues. However, as I mentioned, the top ten is an awareness document rather than detailed guide. It covers just tip of the iceberg and very briefly. You should not definitely stop your security education at the top ten. The next step is to get to know these risks in more detail and learn about others. If you're looking where to start, OWASP fortunately offers many resources such as:
+
+- 
+
 <!-- TODO: top ten is just for awareness and not covering everying, hwere to look deeper? -->
