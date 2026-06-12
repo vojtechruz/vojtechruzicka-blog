@@ -1,28 +1,5 @@
 # Gatsby → Eleventy Migration Checklist
 
-## 1) Project setup and goals
-- [ ] Define success criteria (identical URLs, SEO parity, page speed, core features).
-- [ ] Node version alignment (.node-version / .nvmrc) and engines field in package.json.
-- [x] Install Eleventy and essential plugins as devDependencies.
-  - [x] @11ty/eleventy
-  - [x] @11ty/eleventy-plugin-rss (if RSS)
-  - [x] @11ty/eleventy-plugin-syntaxhighlight (or Prism integration)
-  - [x] eleventy-img (responsive images)
-  - [x] @11ty/eleventy-plugin-sitemap (if using sitemap)
-  - [x] markdown-it and plugins as needed
-- [x] Create/validate .eleventy.js config file.
-
-## 2) Content inventory and migration
-- [ ] Inventory all content types in Gatsby:
-  - [ ] Blog posts (Markdown/MDX)
-  - [ ] Pages (about, contact, legal)
-  - [ ] Tag/category pages
-  - [ ] Drafts
-  - [ ] Media assets (images, video, downloads)
-- [ ] Decide Eleventy input directory layout (e.g., src/site, content/, posts/, pages/).
-- [ ] Copy content files (.md/.mdx) to Eleventy structure.
-- [ ] Normalize front matter across posts/pages.
-
 ### 2.1 Front matter mapping (Gatsby → Eleventy)
 For each content file, ensure the following keys and types exist or are transformed as needed:
 - [ ] title → title (string)
@@ -46,24 +23,13 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Pagination URLs (e.g., /page/2/, /tags/{tag}/page/2/).
 - [ ] Set pathPrefix/basePath equivalent if previously used in Gatsby.
 
-## 3) Collections, taxonomies, and pagination
-- [ ] Configure Eleventy collections for posts, pages, drafts filtered out.
-- [ ] Establish tag collection and tag list page generation.
-- [ ] Optional category collection (if categories are distinct from tags).
-- [ ] Implement pagination for the home/blog index and tag archives.
-
 ## 4) Templates, layouts, and partials
 - [ ] Choose/implement base layout (HTML skeleton with head, header, footer, scripts).
 - [ ] Post layout (title, meta, date, tags, share buttons, next/prev links).
-- [ ] Page layout (generic static pages).
-- [ ] Index/blog list layout with pagination UI.
-- [ ] Tag list and tag detail page layouts.
-- [ ] 404 page layout.
 - [ ] Partials/includes (head, meta tags, header/nav, footer, analytics, open graph, Twitter cards).
 - [ ] Template filters/shortcodes for:
   - [ ] Date formatting and timezone handling
   - [ ] Markdown rendering in templates (if needed)
-  - [ ] Responsive images (eleventy-img shortcode)
   - [ ] External embeds (YouTube, Tweets, CodePen, etc.)
 
 ## 5) Markdown/MDX processing
@@ -144,10 +110,7 @@ For each content file, ensure the following keys and types exist or are transfor
 
 ## 18) Optional features parity
 - [ ] Social image generation (OG images) via SSG step (Satori/Puppeteer/Cloud function).
-- [ ] Breadcrumbs and related posts logic.
-- [ ] Table of contents component on long posts.
 - [ ] Dark mode toggle and theme persistence.
-- [ ] Comments moderation and spam workflows.
 
 ## 19) Security and privacy
 - [ ] Review third-party scripts; defer and limit scopes.

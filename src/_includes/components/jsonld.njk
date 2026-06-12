@@ -2,7 +2,7 @@
 isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate,
 modifiedDate, breadcrumbs, isAbout #}
 
-{% if isPost %}
+{% if isPost and not archivedStatus %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -23,6 +23,9 @@ modifiedDate, breadcrumbs, isAbout #}
   }
 </script>
 
+{% elif isPost and archivedStatus %}
+{# Archived posts intentionally omit primary article/page JSON-LD; BreadcrumbList remains below. #}
+
 {% elif isHome %}
 <script type="application/ld+json">
   {
@@ -41,7 +44,7 @@ modifiedDate, breadcrumbs, isAbout #}
   }
 </script>
 
-{% elif isHomePaginated or isTopics or isTag or isSeries or isSeriesListing %}
+{% elif isHomePaginated or isTopics or isTag or isSeries or isSeriesListing or isArchive %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",

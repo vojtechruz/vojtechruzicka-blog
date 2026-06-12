@@ -1,0 +1,30 @@
+---
+title: "Archive"
+description: "Historical versions of posts kept for reference. These posts may be outdated or superseded."
+permalink: /archive/
+---
+{% extends "layouts/page.njk" %}
+
+{% block pageContent %}
+<div class="page-meta">
+  {{ collections.archivedPosts | length }} archived post{% if (collections.archivedPosts | length) != 1 %}s{% endif %}
+</div>
+<p>
+  Archived posts are historical versions of posts kept for reference. Each archived post has a link to the current version.
+</p>
+
+
+
+{% if (collections.archivedPosts | length) > 0 %}
+<ul class="post-list">
+  {% for post in collections.archivedPosts %}
+    <li>
+      {% linkedPost post.url %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No archived posts yet.</p>
+{% endif %}
+
+{% endblock %}

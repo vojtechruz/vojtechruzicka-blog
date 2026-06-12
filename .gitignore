@@ -11,5 +11,6 @@ _tools/notion/.venv/
 _site/
 review.md
 _out/
-.claude
+.claude/*
+!.claude/commands/
 .junie

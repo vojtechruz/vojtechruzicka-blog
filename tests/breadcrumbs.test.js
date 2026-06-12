@@ -11,11 +11,12 @@ import eleventyComputed from '../src/_data/eleventyComputed.js';
  * Build a minimal data object for eleventyComputed.breadcrumbs().
  * filePathStem must start with /posts/ for getPageKind to return 'post'.
  */
-function makePostData({ url, title = 'Test Post', topics = [], seriesMeta = seriesMetadata } = {}) {
+function makePostData({ url, title = 'Test Post', topics = [], seriesMeta = seriesMetadata, archivedStatus } = {}) {
   return {
     page: { url, filePathStem: `/posts${url}index` },
     title,
     topics,
+    archivedStatus,
     seriesMetadata: seriesMeta,
   };
 }
@@ -139,6 +140,42 @@ describe('breadcrumbs – non-series posts (unit)', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Unit tests – eleventyComputed.breadcrumbs() for archive pages/posts
+// ---------------------------------------------------------------------------
+
+describe('breadcrumbs – archive pages and posts (unit)', () => {
+  it('routes the archive landing page through Home / Archive', () => {
+    const crumbs = eleventyComputed.breadcrumbs({
+      page: { url: '/archive/', filePathStem: '/pages/archive' },
+      title: 'Archive',
+    });
+
+    expect(crumbs).toEqual([
+      { name: 'Home', url: '/' },
+      { name: 'Archive', url: '/archive/' },
+    ]);
+  });
+
+  it('routes archived posts through Archive instead of Topics', () => {
+    const crumbs = eleventyComputed.breadcrumbs(
+      makePostData({
+        url: '/archive/test-archive/',
+        title: 'Test Post (Archive Test)',
+        topics: ['Testing'],
+        archivedStatus: 'archived',
+      }),
+    );
+
+    expect(crumbs).toEqual([
+      { name: 'Home', url: '/' },
+      { name: 'Archive', url: '/archive/' },
+      { name: 'Test Post (Archive Test)', url: '/archive/test-archive/' },
+    ]);
+    expect(crumbs.some((c) => c.url === '/topics/')).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Integration tests – visual breadcrumbs nav in built HTML
 // ---------------------------------------------------------------------------
 
@@ -221,6 +258,25 @@ describe('breadcrumbs – visual nav on non-series posts', () => {
   it('last breadcrumb item has aria-current="page"', () => {
     const $ = loadPage(NON_SERIES_POST_URL);
     expect($('nav.breadcrumbs [aria-current="page"]').length).toBe(1);
+  });
+});
+
+describe('breadcrumbs – visual nav on archive pages and posts', () => {
+  it('archive landing page exists and has archive breadcrumb', () => {
+    const $ = loadPage('/archive/');
+
+    expect($('h1').text().trim()).toBe('Archive');
+    expect($('nav.breadcrumbs [aria-current="page"]').text().trim()).toBe('Archive');
+  });
+
+  it('archived post breadcrumb links to /archive/ and not /topics/', () => {
+    const $ = loadPage('/archive/chrome-audit-lighthouse-2026-05/');
+    const hrefs = $('nav.breadcrumbs a')
+      .map((_, el) => $(el).attr('href'))
+      .get();
+
+    expect(hrefs).toContain('/archive/');
+    expect(hrefs).not.toContain('/topics/');
   });
 });
 

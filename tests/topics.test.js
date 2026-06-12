@@ -1,6 +1,22 @@
 import { describe, it, expect } from 'vitest';
 import { loadPage, getAllPosts, SITE_DIR } from './helpers.js';
 import { existsSync } from 'fs';
+import registerTopicListCollection from '../config/collections/topic-list.js';
+import registerTopicStatsCollection from '../config/collections/topic-stats.js';
+import { slugify } from '../config/utils/formatting.js';
+
+function getRegisteredCollection(registerCollection, collectionName, items) {
+  const collections = new Map();
+  const eleventyConfig = {
+    addCollection(name, callback) {
+      collections.set(name, callback);
+    },
+  };
+
+  registerCollection(eleventyConfig);
+
+  return collections.get(collectionName)({ getAll: () => items });
+}
 
 describe('Topics functionality', () => {
   // We use a known published post and its topic for testing
@@ -134,15 +150,107 @@ describe('Topics functionality', () => {
 
       const allPosts = getAllPosts();
       const publishedJavaPosts = allPosts.filter(
-        (p) => !p.frontmatter.draftStatus && p.frontmatter.topics && p.frontmatter.topics.includes(testTopicName),
+        (p) =>
+          !p.frontmatter.draftStatus &&
+          !p.frontmatter.archivedStatus &&
+          p.frontmatter.topics &&
+          p.frontmatter.topics.includes(testTopicName),
       );
 
       expect(countOnPage).toBe(publishedJavaPosts.length);
     });
+
+    it('visible topic counts should exclude archived posts', () => {
+      const $ = loadPage(archivesPath);
+      const allPosts = getAllPosts();
+      const visibleCountedArchivedTopicLinks = $('.topic-chip')
+        .toArray()
+        .filter((el) => $(el).find('.topic-chip-count').length > 0)
+        .filter((el) =>
+          allPosts.some(
+            (p) =>
+              p.frontmatter.archivedStatus &&
+              Array.isArray(p.frontmatter.topics) &&
+              p.frontmatter.topics.some((topic) => $(el).attr('href') === `/topics/${slugify(topic)}/`),
+          ),
+        );
+
+      for (const el of visibleCountedArchivedTopicLinks) {
+        const href = $(el).attr('href');
+        const topic = allPosts
+          .filter((p) => p.frontmatter.archivedStatus && Array.isArray(p.frontmatter.topics))
+          .flatMap((p) => p.frontmatter.topics)
+          .find((candidate) => href === `/topics/${slugify(candidate)}/`);
+        const expectedCount = allPosts.filter(
+          (p) =>
+            !p.frontmatter.draftStatus &&
+            !p.frontmatter.archivedStatus &&
+            Array.isArray(p.frontmatter.topics) &&
+            p.frontmatter.topics.includes(topic),
+        ).length;
+        const countText = $(el).find('.topic-chip-count').text().trim();
+        const countOnPage = parseInt(countText.replace(/\D/g, ''), 10);
+
+        expect(countOnPage, `Topic count should exclude archived posts for ${topic}`).toBe(expectedCount);
+      }
+    });
+
+    it('should not list archived-only topics', () => {
+      const $ = loadPage(archivesPath);
+      const allPosts = getAllPosts();
+      const archivedOnlyTopics = new Set(
+        allPosts
+          .filter((p) => p.frontmatter.archivedStatus && Array.isArray(p.frontmatter.topics))
+          .flatMap((p) => p.frontmatter.topics)
+          .filter(
+            (topic) =>
+              !allPosts.some(
+                (p) =>
+                  !p.frontmatter.draftStatus &&
+                  !p.frontmatter.archivedStatus &&
+                  Array.isArray(p.frontmatter.topics) &&
+                  p.frontmatter.topics.includes(topic),
+              ),
+          ),
+      );
+
+      for (const topic of archivedOnlyTopics) {
+        expect($(`.topic-chip[href="/topics/${slugify(topic)}/"]`).length, `Archived-only topic listed: ${topic}`).toBe(
+          0,
+        );
+      }
+    });
+  });
+
+  describe('Topic collection source data', () => {
+    const items = [
+      { data: { topics: ['Public Topic', 'Shared Topic'] } },
+      { data: { draftStatus: 'draft', topics: ['Draft Topic'] } },
+      { data: { archivedStatus: 'archived', topics: ['Archived Topic', 'Shared Topic'] } },
+    ];
+
+    it('topicList should exclude topics that only come from archived posts', () => {
+      const topics = getRegisteredCollection(registerTopicListCollection, 'topicList', items);
+
+      expect(topics).toContain('Public Topic');
+      expect(topics).toContain('Shared Topic');
+      expect(topics).not.toContain('Draft Topic');
+      expect(topics).not.toContain('Archived Topic');
+    });
+
+    it('topicStats should count only public non-archived posts', () => {
+      const stats = getRegisteredCollection(registerTopicStatsCollection, 'topicStats', items);
+
+      expect(stats).toContainEqual({ name: 'Public Topic', count: 1 });
+      expect(stats).toContainEqual({ name: 'Shared Topic', count: 1 });
+      expect(stats).not.toContainEqual({ name: 'Draft Topic', count: 1 });
+      expect(stats).not.toContainEqual({ name: 'Archived Topic', count: 1 });
+      expect(stats).not.toContainEqual({ name: 'Shared Topic', count: 2 });
+    });
   });
 
   describe('Post topic links - all posts', () => {
-    const posts = getAllPosts().filter((post) => !post.frontmatter.draftStatus);
+    const posts = getAllPosts().filter((post) => !post.frontmatter.draftStatus && !post.frontmatter.archivedStatus);
 
     it('topic links use lowercase slugified hrefs with trailing slash', () => {
       for (const { frontmatter } of posts) {

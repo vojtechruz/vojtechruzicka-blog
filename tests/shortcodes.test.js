@@ -110,7 +110,7 @@ describe('linkedPost shortcode', () => {
 
   it('should render a linked post card', () => {
     const result = linkedPost('/posts/test-post/', mockCollections);
-    expect(result).toContain('class="linked-post  linked-post-draft linked-post-ready"');
+    expect(result).toContain('class="linked-post linked-post-draft linked-post-ready"');
     expect(result).toContain('href="/posts/test-post/"');
     expect(result).toContain('Test Post');
     expect(result).toContain('This is a test post excerpt.');
@@ -119,6 +119,52 @@ describe('linkedPost shortcode', () => {
     expect(result).toContain('Java');
     expect(result).toContain('Spring');
     expect(result).toContain('Ready');
+  });
+
+  it('should render archived post details when the post is archived', () => {
+    const result = linkedPost('/archive/test-post/', {
+      all: [
+        {
+          url: '/archive/test-post/',
+          date: new Date('2023-01-01'),
+          data: {
+            title: 'Archived Test Post',
+            topics: ['Java'],
+            excerpt: 'Archived excerpt.',
+            archivedStatus: 'archived',
+            archivedDate: '2020-01-01',
+            supersededBy: '/posts/test-post/',
+          },
+        },
+      ],
+    });
+
+    expect(result).toContain('archived-linked-post');
+    expect(result).toContain('Archived January 1, 2020');
+    expect(result).toContain('datetime="2020-01-01"');
+    expect(result).toContain('Read the current version');
+    expect(result).toContain('href="/posts/test-post/"');
+  });
+
+  it('should resolve archived posts from the archivedPosts collection', () => {
+    const result = linkedPost('/archive/test-post/', {
+      archivedPosts: [
+        {
+          url: '/archive/test-post/',
+          date: new Date('2023-01-01'),
+          data: {
+            title: 'Archived Test Post',
+            topics: [],
+            excerpt: 'Archived excerpt.',
+            archivedStatus: 'archived',
+            archivedDate: '2020-01-01',
+          },
+        },
+      ],
+    });
+
+    expect(result).toContain('Archived Test Post');
+    expect(result).toContain('Archived January 1, 2020');
   });
 
   it('should throw error if post not found', () => {

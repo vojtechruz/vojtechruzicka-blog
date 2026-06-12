@@ -41,6 +41,14 @@ describe('Canonical URLs', () => {
 
       expect(canonical, `Canonical URL missing for ${normalizedUrlPath}`).toBeDefined();
 
+      // Archived pages intentionally point their canonical at the superseding article
+      // rather than their own URL. Allow any absolute canonical for noindex pages.
+      const isNoindex = $('meta[name="robots"]').attr('content')?.includes('noindex');
+      if (isNoindex) {
+        expect(canonical, `Archived page canonical should be an absolute URL`).toMatch(/^https?:\/\//);
+        return;
+      }
+
       // The canonical URL should be absolute and match site.url + page.url
       const expectedCanonical = `${siteUrl}${normalizedUrlPath}`;
       expect(canonical).toBe(expectedCanonical);

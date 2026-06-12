@@ -30,9 +30,22 @@
     aria-valuemax="100" aria-valuenow="0" hidden>
     <span class="reading-progress__bar" aria-hidden="true"></span>
   </div>
-  <article {% if draftStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
+  <article {% if draftStatus or archivedStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
       {% include "components/breadcrumbs.njk" %}
+
+      {% if archivedStatus %}
+      <div class="archived-banner" role="note">
+        <div class="archived-banner-body">
+          <strong>Historical Archive</strong>
+          <p>This is an older version of this article preserved for historical reference.</p>
+          {% if supersededBy %}
+          <a href="{{ supersededBy }}">Read the current version</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
       <h1 class="post-header">{{ title }}</h1>
 
       <div class="post-metadata">
@@ -65,7 +78,7 @@
 
   {% include "components/social-share.njk" %}
 
-  {% if not series %}
+  {% if not series and not archivedStatus %}
     {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
     {% set related = currentPageObj | relatedPosts(collections.posts, site.maxRelatedPosts) %}
     {% if related.length > 0 %}
@@ -78,6 +91,20 @@
         </ul>
       </section>
     {% endif %}
+  {% endif %}
+
+  {% if historicalVersions.length > 0 %}
+  <aside class="archived-banner historical-versions" role="note">
+    <div class="archived-banner-body">
+      <strong>Previous Version{{ 's' if historicalVersions.length > 1 else '' }}</strong>
+      <p>This article has been rewritten. {% if historicalVersions.length > 1 %}Older versions are{% else %}The older version is{% endif %} preserved below for historical reference.</p>
+      <ul>
+      {% for v in historicalVersions %}
+        <li><a href="{{ v.url }}">{{ v.label if v.label else "Archived version" }}{% if v.archivedDate %} ({{ v.archivedDate | readableMonthYear }}){% endif %}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  </aside>
   {% endif %}
 
   <div class="post-footer">

@@ -1,12 +1,12 @@
-// Collection of pairs - topic name and number of posts with that topic (excluding drafts)
-import { shouldIncludeDraft } from '../draft-utils.js';
+// Collection of pairs - topic name and number of public discovery posts with that topic
+import { isPublicPostForDiscovery } from '../post-discovery.js';
 
 export default function registerTopicStatsCollection(eleventyConfig) {
   eleventyConfig.addCollection('topicStats', (api) => {
     const counts = new Map();
 
     for (const item of api.getAll()) {
-      if (!shouldIncludeDraft(item.data.draftStatus)) {
+      if (!isPublicPostForDiscovery(item)) {
         continue;
       }
 

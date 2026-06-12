@@ -11,13 +11,8 @@ export default function linkedPost(permalink, maybeCollections) {
   // Resolve collections from passed argument or context
   const ctx = this && (this.ctx || this) ? this.ctx || this : {};
   const collections = maybeCollections || ctx.collections || (ctx.page && ctx.page.collections) || {};
-  const posts = collections.posts || [];
-
-  let post = posts.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
-  if (!post) {
-    const all = collections.all || [];
-    post = all.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
-  }
+  const collectionBuckets = [collections.posts || [], collections.archivedPosts || [], collections.all || []];
+  const post = collectionBuckets.flat().find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
 
   if (!post) {
     const errorMessage = `Article not found for permalink: ${permalink}`;
@@ -30,8 +25,11 @@ export default function linkedPost(permalink, maybeCollections) {
   const url = post.url || (post.page && post.page.url) || String(permalink || '');
   const title = String(data.title || '');
 
-  const readableDate = readableDateUTC(post.date);
-  const htmlDate = htmlDateString(post.date);
+  const isArchived = !!data.archivedStatus;
+  const dateValue = isArchived ? data.archivedDate || post.date : post.date;
+  const readableDate = readableDateUTC(dateValue);
+  const htmlDate = htmlDateString(dateValue);
+  const datePrefix = isArchived ? 'Archived ' : '';
 
   const topics = Array.isArray(data.topics) ? data.topics : [];
   const topicLinks = topics
@@ -69,27 +67,39 @@ export default function linkedPost(permalink, maybeCollections) {
     draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}">${icon} ${escapeHtml(label)}</span>`;
   }
 
-  return `<div class="linked-post ${draftStatus ? ` linked-post-draft linked-post-${escapeHtml(draftStatus)}` : ''}${needsReview ? ' linked-post-needs-review' : ''}">
+  const currentVersionLink =
+    isArchived && data.supersededBy
+      ? `<p>
+      <a class="archived-link-current" href="${escapeHtml(data.supersededBy)}">Read the current version</a>
+    </p>`
+      : '';
+  const classes = [
+    'linked-post',
+    isArchived ? 'archived-linked-post' : '',
+    draftStatus ? 'linked-post-draft' : '',
+    draftStatus ? `linked-post-${escapeHtml(draftStatus)}` : '',
+    needsReview ? 'linked-post-needs-review' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return `<div class="${classes}">
   <h2 class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </h2>
   <div class="front-post-info">
     <time class="front-post-info-date" datetime="${htmlDate}">
-      ${escapeHtml(readableDate)}
+      ${datePrefix}${escapeHtml(readableDate)}
     </time>
     ${seriesBadge}
-    <ul class="post-topics" aria-label="Topics">
-      ${topicLinks}
-    </ul>
+    <ul class="post-topics" aria-label="Topics">${topicLinks}</ul>
+    ${currentVersionLink}
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
       ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
     </a>
-    <p class="front-post-excerpt">
-      ${escapeHtml(excerpt)}
-    </p>
+    <p class="front-post-excerpt">${escapeHtml(excerpt)}</p>
   </div>
-</div>
-`;
+</div>`;
 }

@@ -1,3 +1,4 @@
+import path from 'path';
 import { slugify, escapeHtml } from '../utils/formatting.js';
 import { logError } from '../logger.js';
 
@@ -28,11 +29,18 @@ export default function linkedSeries(slug) {
     })
     .join('');
 
-  // Use the first post's featured image as the series cover
-  const firstPost = posts.find((p) => p.url === series.posts[0]);
-  const featuredImage = firstPost?.data?.featuredImage;
-  const postDir = firstPost?.data?.postDir;
-  const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
+  // Use the series-level image if set; otherwise fall back to the first post's featured image.
+  // Series images live at src/images/series/<slug>/<filename> by convention.
+  let imgUrl;
+  if (series.image) {
+    const imageDir = path.join('src', 'images', 'series', series.slug);
+    imgUrl = `/../${imageDir}/${series.image}`;
+  } else {
+    const firstPost = posts.find((p) => p.url === series.posts[0]);
+    const featuredImage = firstPost?.data?.featuredImage;
+    const postDir = firstPost?.data?.postDir;
+    imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
+  }
 
   return `<div class="linked-post linked-series">
   <h2 class="front-post-title">

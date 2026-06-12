@@ -4,7 +4,7 @@ import globals from 'globals';
 export default [
   // Ignore build output, dependencies, and legacy files
   {
-    ignores: ['_site/', 'node_modules/', '_original/'],
+    ignores: ['_site/', 'node_modules/', '_original/', '**/venv/**', '**/.venv/**'],
   },
 
   // Base recommended rules for all JS files

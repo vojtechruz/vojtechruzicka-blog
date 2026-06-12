@@ -2,7 +2,7 @@
 title: 'Developer Career Masterplan Book Review'
 date: '2026-04-22'
 topics: ['Books', 'Career']
-path: '/developer-career-masterplan-book-review'
+path: '/developer-career-masterplan-book-review/'
 featuredImage: './developer-career-masterplan-book-review.png'
 excerpt: 'Review of book Developer Career Masterplan: Build your path to senior level and beyond with practical insights from industry experts by Heather VanCura and Bruno Souza.'
 draftStatus: draft
