@@ -49,4 +49,22 @@
     color: var(--color-text-muted);
     border-color: rgba(148, 163, 184, 0.28);
   }
+
+  &--draft {
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+    border-color: var(--color-warning-border);
+  }
+
+  &--review {
+    background: var(--color-info-bg);
+    color: var(--color-info);
+    border-color: var(--color-info-border);
+  }
+
+  &--ready {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border-color: var(--color-success-border);
+  }
 }

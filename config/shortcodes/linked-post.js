@@ -54,17 +54,15 @@ export default function linkedPost(permalink, maybeCollections) {
     const partIndex = postSeries.posts.indexOf(url);
     const partNumber = partIndex + 1;
     const totalParts = postSeries.posts.length;
-    seriesBadge = `<span class="series-part-badge"><a title="View all posts in ${escapeHtml(postSeries.name)} series" href="/series/${escapeHtml(postSeries.slug)}/">${escapeHtml(postSeries.name)}</a> · Part ${partNumber}/${totalParts}</span>`;
+    seriesBadge = `<span class="series-part-label"><a title="View all posts in ${escapeHtml(postSeries.name)} series" href="/series/${escapeHtml(postSeries.slug)}/">${escapeHtml(postSeries.name)}</a> · Part ${partNumber}/${totalParts}</span>`;
   }
 
   // Draft badge HTML
   let draftBadge = '';
   if (draftStatus) {
-    const icons = { draft: '🟠', review: '🔵', ready: '🟢' };
     const labels = { draft: 'Draft', review: 'In Review', ready: 'Ready' };
-    const icon = icons[draftStatus] || '📝';
     const label = labels[draftStatus] || draftStatus;
-    draftBadge = `<span class="draft-badge draft-badge-${escapeHtml(draftStatus)}">${icon} ${escapeHtml(label)}</span>`;
+    draftBadge = `<span class="badge badge--${escapeHtml(draftStatus)}">${escapeHtml(label)}</span>`;
   }
 
   const currentVersionLink =

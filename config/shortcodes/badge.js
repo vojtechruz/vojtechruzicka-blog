@@ -5,6 +5,9 @@ const DEFAULTS = {
   merged: 'Merged',
   removed: 'Removed',
   renamed: 'Renamed',
+  draft: 'Draft',
+  review: 'In Review',
+  ready: 'Ready',
 };
 
 export default function badge(variant, label) {
