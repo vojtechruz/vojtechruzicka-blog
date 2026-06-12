@@ -45,6 +45,24 @@ You could argue that reducing security risks to just 10 items on couple of pages
 | 9. Security Logging and Alerting Failures | <!-- TODO: one-line summary --> |
 | 10. Mishandling of Exceptional Conditions | <!-- TODO: one-line summary --> |
 
+### 2021 vs 2025 Comparison
+
+Looking at the current ten items tells you only part of the story. What's interesting is to compare how the list changed since the last one to see how the risks are developing and where the security is heading to.
+
+| 2021                                          | 2025                                      |
+|-----------------------------------------------|-------------------------------------------|
+| 1. Broken Access Control                      | 1. Broken Access Control                  |
+| 2. Cryptographic Failures                     | 2. Security Misconfiguration              |
+| 3. Injection                                  | 3. Software Supply Chain Failures         |
+| 4. Insecure Design                            | 4. Cryptographic Failures                 |
+| 5. Security Misconfiguration                  | 5. Injection                              |
+| 6. Vulnerable and Outdated Components         | 6. Insecure Design                        |
+| 7. Identification and Authentication Failures | 7. Authentication Failures                |
+| 8. Software and Data Integrity Failures       | 8. Software or Data Integrity Failures    |
+| 9. Security Logging and Monitoring Failures   | 9. Security Logging and Alerting Failures |
+| 10. Server Side Request Forgery (SSRF)        | 10. Mishandling of Exceptional Conditions |
+
+
 ## What Changed Since 2021
 
 <!-- TODO: brief summary of overall changes before the detailed breakdown -->
@@ -60,21 +78,6 @@ You could argue that reducing security risks to just 10 items on couple of pages
 ### New Items
 
 <!-- TODO: for each new item: what it is, why it was added (data-driven vs community survey), how to mitigate -->
-
-### 2021 vs 2025 Comparison
-
-| 2021                                          | 2025                                      |
-|-----------------------------------------------|-------------------------------------------|
-| 1. Broken Access Control                      | 1. Broken Access Control                  |
-| 2. Cryptographic Failures                     | 2. Security Misconfiguration              |
-| 3. Injection                                  | 3. Software Supply Chain Failures         |
-| 4. Insecure Design                            | 4. Cryptographic Failures                 |
-| 5. Security Misconfiguration                  | 5. Injection                              |
-| 6. Vulnerable and Outdated Components         | 6. Insecure Design                        |
-| 7. Identification and Authentication Failures | 7. Authentication Failures                |
-| 8. Software and Data Integrity Failures       | 8. Software or Data Integrity Failures    |
-| 9. Security Logging and Monitoring Failures   | 9. Security Logging and Alerting Failures |
-| 10. Server Side Request Forgery (SSRF)        | 10. Mishandling of Exceptional Conditions |
 
 ## Beyond the Top Ten
 
