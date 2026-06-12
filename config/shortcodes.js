@@ -7,6 +7,7 @@ import video from './shortcodes/video.js';
 import linkedPost from './shortcodes/linked-post.js';
 import linkedPostCompact from './shortcodes/linked-post-compact.js';
 import linkedSeries from './shortcodes/linked-series.js';
+import badge from './shortcodes/badge.js';
 
 export default function registerShortcodes(eleventyConfig) {
   // Paired shortcodes
@@ -21,4 +22,5 @@ export default function registerShortcodes(eleventyConfig) {
   eleventyConfig.addShortcode('linkedPost', linkedPost);
   eleventyConfig.addShortcode('linkedPostCompact', linkedPostCompact);
   eleventyConfig.addShortcode('linkedSeries', linkedSeries);
+  eleventyConfig.addShortcode('badge', badge);
 }
