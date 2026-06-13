@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "Vojtech Ruzicka's Programming Blog",
   "main": "N/A",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "npx cross-env ELEVENTY_RUN_MODE=serve eleventy --serve --incremental",
     "start:no-drafts": "npx cross-env INCLUDE_DRAFTS=none eleventy --serve",
