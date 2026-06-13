@@ -2,6 +2,7 @@
 @use '../utilities';
 
 .linked-post {
+  position: relative;
   padding: var(--gap-medium);
   border: none;
   background: none;
@@ -16,10 +17,45 @@
   }
 }
 
+/*
+ * The same `linked-post` component is reused for plain post listings
+ * (front page, topic, series and archive pages) AND for inline
+ * "related article" embeds inside a post body via {% linkedPost %}.
+ * Only the in-body embeds get the card treatment + eyebrow label so
+ * they stand out from the surrounding prose; the listings stay plain.
+ */
+article .linked-post {
+  padding-left: calc(var(--gap-medium) + 3px);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-sm);
+  margin-top: var(--gap-large);
+  margin-bottom: var(--gap-large);
+
+  /* "Related article" eyebrow label to signal the card's purpose */
+  &::before {
+    content: 'Related article';
+    display: block;
+    margin-bottom: var(--gap-small);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+}
+
 .linked-post h2.front-post-title {
   line-height: 1.25;
   margin-top: -0.65rem;
   margin-bottom: var(--gap-small);
+}
+
+/* No negative pull needed under the eyebrow label in the in-body card */
+article .linked-post h2.front-post-title {
+  margin-top: 0;
 }
 
 .linked-post h2.front-post-title a {
