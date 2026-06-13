@@ -13,20 +13,32 @@ featuredImage: './featured.png'
 
 ## What is OWASP?
 
-<!-- TODO:  OWASP stands for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It is a non-profit organization dedicated
-to improving the security of software, raising awareness of security issues, and providing tools and resources to
-mitigate security risks. -->
+[OWASP](https://owasp.org/) is an acronym for **O**pen **W**eb **A**pplication **S**ecurity **P**roject.
+It is open-source non profit organization, which focuses on improving security of software.
+OWASP aims to raise awareness of security issues and provides free tools and resources to mitigate them.
 
-[OWASP](https://owasp.org/) is an acronym for **O**pen **W**eb **A**pplication **S**ecurity **P**roject. It open-source non profit organization, which focuses on improving security of software. It aims to raise awareness of security issues and provides free tools and resources to mitigate them.
-
-It cover broad range of tools, resources and activities. They [organize various events](https://owasp.org/events/) including their own AppSec conference. OWASP consists of various projects with different focus including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/), [GenAI Security Project](https://genai.owasp.org/), [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/), [variaous cheatsheets](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
+It cover broad range of tools, resources and activities. They [organize various events](https://owasp.org/events/)
+including their own AppSec conference. OWASP consists of various projects with different focus
+including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/),
+[GenAI Security Project](https://genai.owasp.org/),
+[Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/),
+[variaous cheatsheets](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
 
 ## OWASP Top Ten
-Even though OWASP consists of many projects, one of them is particulary popular - [OWASP Top Ten Web Application Security Risks](https://owasp.org/www-project-top-ten/), usually referred to as OWASP Top 10 for short.
 
-It is an ordered list of top ten security risks, which is released periodically every couple of years since 2003. The most recent one was released at the end of 2025, with 2021 and 2017 before that. The document is very and does barely go in any detail.
+Even though OWASP consists of many projects, one of them is particulary
+popular - [OWASP Top Ten Web Application Security Risks](https://owasp.org/www-project-top-ten/), usually referred
+to as OWASP Top 10 for short.
 
-You could argue that reducing security risks to just 10 items on couple of pages is very reductive and web app security is way broader issue. But the point of this list is not to bring exhaustive guide on security risks, but rather increase awarness of the broad public audience. With just a short list it is easy to keep track what is happening in the security area, how it evolves and what to keep eye on. Then you can dive deeper into individual items with other OWASP resources.
+It is an ordered list of top ten security risks, which is released periodically every couple of years since 2003.
+The most recent one was released at the end of 2025, with 2021 and 2017 before that. The document is very brief
+and does barely go in any detail.
+
+You could argue that reducing security risks to just 10 items on couple of pages is very reductive
+and web app security is way broader issue. But the point of this list is not to bring exhaustive guide
+on security risks, but rather increase awarness of the broad public audience.
+With just a short list it is easy to keep track what is happening in the security area,
+how it evolves and what to keep eye on. Then you can dive deeper into individual items with other OWASP resources.
 
 ## Top Ten 2025
 
@@ -47,20 +59,21 @@ You could argue that reducing security risks to just 10 items on couple of pages
 
 ### 2021 vs 2025 Comparison
 
-Looking at the current ten items tells you only part of the story. What's interesting is to compare how the list changed since the last one to see how the risks are developing and where the security is heading to.
+Looking at the current ten items tells you only part of the story. What's interesting is to compare how
+the list changed since the last one to see how the risks are developing and where the security is heading to.
 
-| 2021                                                          | 2025                                                                                  |
-|---------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| 1. Broken Access Control                      | 1. Broken Access Control                                                              |
-| 2. Cryptographic Failures                     | 2. Security Misconfiguration {% badge "up", "↑ 3" %}                                  |
-| 3. Injection                                  | 3. Software Supply Chain Failures {% badge "merged" %} {% badge "up", "↑ 3" %}        |
-| 4. Insecure Design                            | 4. Cryptographic Failures {% badge "down", "↓ 2" %}                                   |
-| 5. Security Misconfiguration                  | 5. Injection {% badge "down", "↓ 2" %}                                                 |
-| 6. Vulnerable and Outdated Components         | 6. Insecure Design {% badge "down", "↓ 2" %}                                           |
-| 7. Identification and Authentication Failures | 7. Authentication Failures {% badge "renamed" %}                                      |
-| 8. Software and Data Integrity Failures       | 8. Software or Data Integrity Failures {% badge "renamed" %}                          |
-| 9. Security Logging and Monitoring Failures   | 9. Security Logging and Alerting Failures {% badge "renamed" %}                       |
-| 10. Server Side Request Forgery (SSRF) {% badge "merged" %} | 10. Mishandling of Exceptional Conditions {% badge "new" %}           |
+| 2021                                                        | 2025                                                                           |
+|-------------------------------------------------------------|--------------------------------------------------------------------------------|
+| 1. Broken Access Control                                    | 1. Broken Access Control                                                       |
+| 2. Cryptographic Failures                                   | 2. Security Misconfiguration {% badge "up", "↑ 3" %}                           |
+| 3. Injection                                                | 3. Software Supply Chain Failures {% badge "merged" %} {% badge "up", "↑ 3" %} |
+| 4. Insecure Design                                          | 4. Cryptographic Failures {% badge "down", "↓ 2" %}                            |
+| 5. Security Misconfiguration                                | 5. Injection {% badge "down", "↓ 2" %}                                         |
+| 6. Vulnerable and Outdated Components                       | 6. Insecure Design {% badge "down", "↓ 2" %}                                   |
+| 7. Identification and Authentication Failures               | 7. Authentication Failures {% badge "renamed" %}                               |
+| 8. Software and Data Integrity Failures                     | 8. Software or Data Integrity Failures {% badge "renamed" %}                   |
+| 9. Security Logging and Monitoring Failures                 | 9. Security Logging and Alerting Failures {% badge "renamed" %}                |
+| 10. Server Side Request Forgery (SSRF) {% badge "merged" %} | 10. Mishandling of Exceptional Conditions {% badge "new" %}                    |
 
 If you'd like to compare with even older version, you can check my article on OWASP TOP 10 2017.
 
@@ -85,14 +98,17 @@ If you'd like to compare with even older version, you can check my article on OW
 
 ## Beyond the Top Ten
 
-Now you've familiarized yourself with the top ten security risks of web applications and it will help you stay 
-more vigilant and aware of potential issues. However, as I mentioned, the top ten is an awareness document rather 
-than detailed guide. It covers just tip of the iceberg and very briefly. You should not definitely stop your 
+Now you've familiarized yourself with the top ten security risks of web applications and it will help you stay
+more vigilant and aware of potential issues. However, as I mentioned, the top ten is an awareness document rather
+than detailed guide. It covers just tip of the iceberg and very briefly. You should not definitely stop your
 security education at the top ten. The next step is to get to know these risks in more detail and learn about others.
 
-- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/) - Detailed list of security requirements for designing, developing, and testing web applications.
-- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/) Comprehensive guide on how to test security of web apps.
-- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/) - Collection of very condensed guides on various topics as a quick reference.
-- [OWASP API Security](https://owasp.org/www-project-api-security/) - Top ten focused on API.
-- [OWASP Gen AI Security Project](https://genai.owasp.org/) - Guidance and resources focused on generative AI security.
-
+- [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
+: Detailed list of security requirements for designing, developing, and testing web applications.
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/):
+Comprehensive guide on how to test security of web apps.
+- [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/):
+Collection of very condensed guides on various topics as a quick reference.
+- [OWASP API Security](https://owasp.org/www-project-api-security/):
+Top ten focused on API.
+- [OWASP Gen AI Security Project](https://genai.owasp.org/): Guidance and resources focused on generative AI security.
