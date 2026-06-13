@@ -79,7 +79,6 @@ If you'd like to compare with even older version, you can check my article on OW
 
 {% linkedPost "/owasp-top-ten-2017/" %}
 
-
 ## What Changed Since 2021
 
 <!-- TODO: brief summary of overall changes before the detailed breakdown -->

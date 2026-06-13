@@ -99,5 +99,6 @@ export default function linkedPost(permalink, maybeCollections) {
     </a>
     <p class="front-post-excerpt">${escapeHtml(excerpt)}</p>
   </div>
-</div>`;
+</div>
+`;
 }
