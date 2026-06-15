@@ -64,6 +64,14 @@ article .linked-post h2.front-post-title {
   padding: 0 !important;
 }
 
+/* The title font is large here, so the badge's relative size balloons —
+ * pin it to an absolute size and add spacing from the heading text. */
+.linked-post h2.front-post-title .badge {
+  margin-left: var(--gap-small);
+  font-size: 0.75rem;
+  vertical-align: middle;
+}
+
 .front-post-title a {
   color: var(--color-text);
   text-decoration: none;
