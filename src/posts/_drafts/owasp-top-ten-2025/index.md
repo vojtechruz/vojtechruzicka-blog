@@ -62,6 +62,8 @@ how it evolves and what to keep eye on. Then you can dive deeper into individual
 Looking at the current ten items tells you only part of the story. What's interesting is to compare how
 the list changed since the last one to see how the risks are developing and where the security is heading to.
 
+TODO mark which are community driven
+
 | 2021                                                        | 2025                                                                           |
 |-------------------------------------------------------------|--------------------------------------------------------------------------------|
 | 1. Broken Access Control                                    | 1. Broken Access Control                                                       |
@@ -81,17 +83,27 @@ If you'd like to compare with even older version, you can check my article on OW
 
 ## What Changed Since 2021
 
-<!-- TODO: brief summary of overall changes before the detailed breakdown -->
+### Broken Access Control still on the top
 
-### Removed
+<!-- TODO:  -->
 
-<!-- TODO: what items were dropped and why (e.g. merged, prevalence dropped) -->
+### Rising threats
+<!-- TODO:  -->
 
-### Merged
+### Traditional risks moving down
+<!-- TODO:  -->
 
-<!-- TODO: what items were merged, and which new item they became -->
+### Broadening categories
 
-### New Items
+<!-- TODO:  -->
+
+### New - Mishandling of Exceptional Conditions
+
+This is the only truly new item in 2025, sitting on the last place.
+
+<!-- TODO:  -->
+
+### Minor adjustments
 
 <!-- TODO: for each new item: what it is, why it was added (data-driven vs community survey), how to mitigate -->
 
