@@ -40,9 +40,53 @@ on security risks, but rather to increase awareness of the broad public audience
 With just a short list it is easy to keep track of what is happening in the security area,
 how it evolves and what to keep an eye on. Then you can dive deeper into individual items with other OWASP resources.
 
+
+
+## Methodology
+
+### Data sources
+
+The methodology of determining the top ten security risks has matured significantly over the years and is now very transparent. It is calculated based on vast amounts of data gathered from various sources such as security tooling vendors, vulnerability databases, bug bounties and more. 
+
+Vulnerability data from applications are however a metrict looking back and is only able to cover well documented vulnerabilities which are already properly suppopted by security analysis tooling. It does not reflect what are the latest trends, emerging threads and how will the situation develop in the future. Some vulnerabilities are also on higher level such as architecture or are hard to cover by automated analysis.
+
+To address both historical and future trends, the methodology chooses 8 out of 10 risks based only on the data and the rest two items are based on community survey of security experts.
+
+### Risk categorization
+
+Historically, the top ten used to contain some very specific weaknesses such as Cross Site Scripting (XSS) or Cross Site REquest Forgery (CSRF). Over the years, the categories became much broader, such as Broken Access Control or Insecure Design.
+
+But the source data consists of specific reported weaknesses, which are much more specific - Such as SQL Injection. These are known as [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/index.html) and are well documented and categorized. Example of such weakness is [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html).
+
+All the reported CWEs are then categorized by OWASP into groups such as Injection or Authentication Failures - these are already items which are later included in the top ten. 
+
+### Risk Score Calculation
+
+Now when  all the reported weaknesses are sorted into risk groups, the order needs to be determined. That is based on [Risk Score](https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/) formula. There are multiple factors affecting the final score.
+
+Simply put, the main factors are:
+1. How prevelant is the weakness
+2. How severe is the technical impact
+3. How easy is it to exploit
+
+The prevalance is the major factor with exploitability and impact being secondary.
+
+Prevelance is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability.
+
+CWE is definition of a weakness, such as SQL Injection, but the impact and exploitability can be different in each application.
+Here comes into play CVE, which is a specific instance of CWE in a particular product. 
+
+> [CWE-149 Improper Neutralization of Quoting Syntax](https://cwe.mitre.org/data/definitions/149.html)
+> [CVE-2025-1094](https://nvd.nist.gov/vuln/detail/cve-2025-1094) Specific SQL Injection vulnerability in specific PostgreSQL versions
+
+Those CVEs already have impact and exploitability scores defined and can be used for risk score calculation.
+
+What is important to understand is that the imact is technical and not business. Same vulnerability can have same technical impact but drastically different business impact based on the company. Same SQL injection vulnerability can lead to leaking unimportant read only data in one company and exposing sensitive data or dropping the entire DB in other. 
+
+Important part of secure design is therefore considering how technical vulnerabilities translate into business risks and how to mitigate them.
+
 ## Top Ten 2025
 
-<!-- TODO: brief intro on methodology, data sources, community survey items -->
 
 | Item                                      | Description                                                                                                                                                                                           |
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -121,3 +165,5 @@ Collection of very condensed guides on various topics as a quick reference.
 - [OWASP API Security](https://owasp.org/www-project-api-security/):
 Top ten focused on API security.
 - [OWASP Gen AI Security Project](https://genai.owasp.org/): Guidance and resources focused on generative AI security.
+
+TODO add info about MITRE top 25
