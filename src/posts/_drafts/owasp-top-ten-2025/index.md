@@ -48,13 +48,13 @@ how it evolves and what to keep eye on. Then you can dive deeper into individual
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1. Broken Access Control                  | Gain access to restricted information or actions by bypassing auth checks, impersonating users, missing access controls.                                                                              |
 | 2. Security Misconfiguration              | Incorrect setup using default settings, enabling unused features, verbose errors with sensitive information.                                                                                          |
-| 3. Software Supply Chain Failures         | Outdated vulnerable components, untrusted dependencies, build pipeline with weak security.                                                                                                            |
+| 3. Software Supply Chain Failures {% badge "community", "Community Survey" %}         | Outdated vulnerable components, untrusted dependencies, build pipeline with weak security.                                                                                                            |
 | 4. Cryptographic Failures                 | Weak or missing cryptography for data in transit or at rest, leaked security keys.                                                                                                                    |
 | 5. Injection                              | User supplied data not sanitized when used as part of dynamic command or query - malicious code execution such as SQL injection, Cross-Site Scripting.                                                |
 | 6. Insecure Design                        | Architecture and design flaws, unexpected states in business logic, lack of secure development lifecycle and threat modelling.                                                                        |
 | 7. Authentication Failures                | Vulnerability to automated and brute force attacks, weak passwords, lasking multi factor auth, vulnerable account recovery, incorrect session and token invalidation.                                 |
 | 8. Software or Data Integrity Failures    | Lack of validation of code and data coming from external sources can lead to malicious code execution or unexpected states. Software auto update, insecure deserialization, unexpected source change. |
-| 9. Security Logging and Alerting Failures | Insufficient logging and monitoring results in atacks being detected late or never. Log tampering, sensitive data leakage through logs and alerts.                                                    |
+| 9. Security Logging and Alerting Failures {% badge "community", "Community Survey" %} | Insufficient logging and monitoring results in atacks being detected late or never. Log tampering, sensitive data leakage through logs and alerts.                                                    |
 | 10. Mishandling of Exceptional Conditions | Not reacting to unexpected conditions, detecting them or preventing them. This can lead to may other vulnerabilities including crashing the system or complete takeover.                              |
 
 ### 2021 vs 2025 Comparison
@@ -62,19 +62,17 @@ how it evolves and what to keep eye on. Then you can dive deeper into individual
 Looking at the current ten items tells you only part of the story. What's interesting is to compare how
 the list changed since the last one to see how the risks are developing and where the security is heading to.
 
-TODO mark which are community driven
-
 | 2021                                                        | 2025                                                                           |
 |-------------------------------------------------------------|--------------------------------------------------------------------------------|
 | 1. Broken Access Control                                    | 1. Broken Access Control                                                       |
 | 2. Cryptographic Failures                                   | 2. Security Misconfiguration {% badge "up", "↑ 3" %}                           |
-| 3. Injection                                                | 3. Software Supply Chain Failures {% badge "merged" %} {% badge "up", "↑ 3" %} |
+| 3. Injection                                                | 3. Software Supply Chain Failures {% badge "merged" %} {% badge "up", "↑ 3" %} {% badge "community", "Community Survey" %} |
 | 4. Insecure Design                                          | 4. Cryptographic Failures {% badge "down", "↓ 2" %}                            |
 | 5. Security Misconfiguration                                | 5. Injection {% badge "down", "↓ 2" %}                                         |
 | 6. Vulnerable and Outdated Components                       | 6. Insecure Design {% badge "down", "↓ 2" %}                                   |
 | 7. Identification and Authentication Failures               | 7. Authentication Failures {% badge "renamed" %}                               |
 | 8. Software and Data Integrity Failures                     | 8. Software or Data Integrity Failures {% badge "renamed" %}                   |
-| 9. Security Logging and Monitoring Failures                 | 9. Security Logging and Alerting Failures {% badge "renamed" %}                |
+| 9. Security Logging and Monitoring Failures                 | 9. Security Logging and Alerting Failures {% badge "renamed" %} {% badge "community", "Community Survey" %} |
 | 10. Server Side Request Forgery (SSRF) {% badge "merged" %} | 10. Mishandling of Exceptional Conditions {% badge "new" %}                    |
 
 If you'd like to compare with even older version, you can check my article on OWASP TOP 10 2017.
