@@ -62,6 +62,8 @@ Format each review as markdown that will be rendered in Notion:
 ```
 ### [idea title]
 
+**Reviewed:** YYYY-MM-DD HH:MM UTC
+
 **Overlap:** [none / partial — existing post: "Title"]
 **Gap value:** [High / Medium / Low] — [one sentence why]
 **Series fit:** [none / fits "Series Name"]
@@ -102,7 +104,7 @@ For each idea write a file to `_tools/notion/idea-reviews/{priority-folder}/{tag
 
 **Filename** — `{first-tag-slug}-{title-slug}.md`. Slugify by lowercasing and replacing spaces/special chars with hyphens. If the idea has no tags use `untagged` as prefix. Example: `java-virtual-threads-deep-dive.md`.
 
-File content is the full per-idea review markdown (everything from the review format template above, without the `### [title]` heading — that becomes the `# Title` H1 of the file).
+File content is the full per-idea review markdown (everything from the review format template above, without the `### [title]` heading — that becomes the `# Title` H1 of the file). The `**Reviewed:** YYYY-MM-DD HH:MM UTC` line must be the first content line in every file (right after the H1), using the actual current UTC date and time at the moment of writing.
 
 Overwrite files from previous runs. Create directories as needed.
 

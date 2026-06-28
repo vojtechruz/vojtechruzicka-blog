@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -223,6 +224,11 @@ def main() -> int:
             print(f"  ! skipping entry with missing page_id or feedback")
             failed += 1
             continue
+
+        # Prepend review timestamp if the feedback doesn't already carry one
+        if not feedback.startswith("**Reviewed:**"):
+            reviewed_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+            feedback = f"**Reviewed:** {reviewed_at}\n\n{feedback}"
 
         try:
             result = push_review(notion, page_id, feedback, priority, effort, args.dry_run)
