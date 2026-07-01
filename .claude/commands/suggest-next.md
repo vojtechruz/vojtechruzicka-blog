@@ -92,7 +92,7 @@ Apply this weighted scoring formula to every item (higher = more recommended):
 | Starred in Notion | +3 |
 | Has active draft | +5 |
 
-Exclude On Ice items from all recommendation categories unless their total score is ≥ 10 (which would only happen if they are starred and/or have an active draft — a deliberate override to surface nearly-done work).
+Exclude On Ice items from all recommendation categories unless their total score is ≥ 10 (which would only happen if they are starred and/or have an active draft — a deliberate override to surface nearly-done work). Always exclude Suggested Deletion items entirely regardless of score.
 
 Sort descending by score.
 

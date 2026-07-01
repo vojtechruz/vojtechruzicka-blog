@@ -15,6 +15,7 @@ PRIORITY_MAP = {
     '4-low': 'Low',
     '5-very-low': 'Very Low',
     '6-on-ice': 'On Ice',
+    '7-suggested-deletion': 'Suggested Deletion',
 }
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
