@@ -89,11 +89,11 @@ CWE is definition of a weakness, such as SQL Injection, but the impact and explo
 Here comes into play CVE, which is a specific instance of CWE in a particular product.
 
 > [CWE-149 Improper Neutralization of Quoting Syntax](https://cwe.mitre.org/data/definitions/149.html)
-> 
+>
 > Generic definition of the weakness
-> 
-> [CVE-2025-1094](https://nvd.nist.gov/vuln/detail/cve-2025-1094) 
-> 
+>
+> [CVE-2025-1094](https://nvd.nist.gov/vuln/detail/cve-2025-1094)
+>
 > Specific SQL Injection vulnerability in specific PostgreSQL versions
 
 Those CVEs already have impact and exploitability scores defined and can be used for risk score calculation.
