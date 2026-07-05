@@ -167,3 +167,199 @@ Top ten focused on API security.
 - [OWASP Gen AI Security Project](https://genai.owasp.org/): Guidance and resources focused on generative AI security.
 
 TODO add info about MITRE top 25
+
+
+
+
+
+
+
+
+
+
+
+
+Celkově bych řekl, že **ano, po technické stránce jsi metodiku pochopil správně**. Myslím, že jsi zachytil hlavní myšlenku lépe než většina článků o OWASP Top 10. Je tam ale několik nepřesností a pár míst, která bych upravil, aby byla fakticky přesná.
+
+## 1. "Vulnerability data from applications..."
+
+Tohle je největší nepřesnost.
+
+Píšeš:
+
+> *Vulnerability data from applications...*
+
+Ve skutečnosti OWASP nedostává primárně **vulnerability (CVE)** data. Dostává **CWE findings**.
+
+Lepší by bylo:
+
+> **The source data primarily consists of security findings mapped to Common Weakness Enumerations (CWEs), rather than lists of publicly disclosed vulnerabilities (CVEs).**
+
+---
+
+## 2. "only able to cover well documented vulnerabilities"
+
+To není úplně pravda.
+
+Mnoho nálezů:
+
+* nikdy nebude mít CVE,
+* jsou z interních aplikací.
+
+Spíš bych napsal:
+
+> **The collected data primarily reflects weaknesses that can be detected by existing security tools and assessment methodologies.**
+
+---
+
+## 3. "The rest two items"
+
+Lepší angličtina:
+
+> **the remaining two categories**
+
+---
+
+## 4. "All the reported CWEs are then categorized..."
+
+Tady bych byl opatrnější.
+
+Ne všechny CWE skončí v Top 10.
+
+Spíš:
+
+> **Related CWEs are grouped into broader OWASP risk categories such as Injection or Identification and Authentication Failures.**
+
+---
+
+## 5. Risk Score
+
+Tohle:
+
+> Simply put...
+
+je super.
+
+Já bych jen doplnil:
+
+> together with **coverage** and **total occurrences**.
+
+Protože jinak čtenář uvidí vzorec a řekne si:
+
+"A co coverage?"
+
+---
+
+## 6. Největší faktická chyba
+
+Tady:
+
+> Those CVEs already have impact and exploitability scores defined and can be used for risk score calculation.
+
+To není úplně přesné.
+
+Ve skutečnosti:
+
+OWASP nejdříve:
+
+```
+CVE
+
+↓
+
+group by CWE
+
+↓
+
+calculate average exploitability
+
+↓
+
+calculate average impact
+
+↓
+
+assign averages to CWE
+```
+
+Až potom jde Risk Score.
+
+Takže bych napsal:
+
+> **OWASP groups all CVEs mapped to a given CWE and calculates the average Exploitability and Technical Impact from their CVSS scores. These averages are then used as inputs to the Risk Score calculation for the corresponding risk category.**
+
+To je přesně podle metodiky.
+
+---
+
+## 7. Business impact
+
+Tohle je moc pěkně napsané.
+
+Jen bych drobně změnil:
+
+> Same SQL injection vulnerability
+
+na
+
+> **The same type of SQL injection weakness**
+
+Protože jedna konkrétní CVE nemůže být současně ve dvou firmách.
+
+Je to spíš:
+
+> stejný typ weakness.
+
+---
+
+## 8. Chybí jedna věc
+
+Myslím, že čtenářům bude chybět jedna jediná věta:
+
+> **CVEs are not used to determine how common a weakness is—they are only used to estimate its average technical severity (Exploitability and Impact).**
+
+To je podle mě nejdůležitější myšlenka celé metodiky.
+
+---
+
+# Co bych ještě přidal
+
+Já bych úplně na začátku "Risk Score" vložil jeden jednoduchý diagram:
+
+```text
+Security vendors
+        │
+        ▼
+     CWE findings
+        │
+        ├───────────────┐
+        │               │
+        ▼               ▼
+ Incidence         NVD (CVE + CVSS)
+ Coverage               │
+ Occurrences            ▼
+                  Avg Exploit
+                  Avg Impact
+        └───────────────┘
+                │
+                ▼
+          Risk Score
+                │
+                ▼
+          OWASP Top 10
+```
+
+Myslím, že za **10 sekund vysvětlí víc než dvě stránky textu**.
+
+---
+
+# Celkové hodnocení
+
+Obsahově bych tomu dal **9,5/10**.
+
+To půl bodu dolů je jen za dvě nepřesnosti:
+
+* míchání **vulnerability (CVE)** a **CWE findings**,
+* formulaci, že CVE "vstupují do Risk Score" (ve skutečnosti OWASP z nich nejdříve spočítá průměrné hodnoty pro CWE).
+
+Jinak je to podle mě jeden z nejlépe strukturovaných popisů metodiky OWASP Top 10 2025, jaký jsem viděl.
