@@ -176,6 +176,13 @@ more vigilant and aware of potential issues. However, as I mentioned, the top te
 than a detailed guide. It covers just the tip of the iceberg and very briefly. You should definitely not stop
 your security education at the top ten. The next step is to get to know these risks in more detail and learn about others.
 
+Another useful resource is [MITRE CWE Top 25](https://cwe.mitre.org/top25/), which instead of broad categories focuses on ranking much more specific weaknesses - on CWE level.
+That means classic weaknesses such as Cross-Site Scripting, SQL Injection or Out-of-bound reads and writes.
+It is good to keep in mind both of the lists - OWASP Top 10 for realizing broader risk areas
+and MITRE CWE list for specific lower level weaknesses.
+
+More OWASP Resources:
+
 - [OWASP Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
 : Detailed list of security requirements for designing, developing, and testing web applications.
 - [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/):
