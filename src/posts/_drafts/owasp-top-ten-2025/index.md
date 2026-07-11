@@ -147,16 +147,34 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### Broken Access Control still on top
 
-<!-- TODO:  -->
+This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection. Despite being it top positions since the very beginning in 2003 and being well documented and known risk, it still stays on the top. Every application from OWASP's dataset had some sort of access control related vulnerability. Every single one! This area is complex and contains high number of weaknesses which results in high prevelance. The potential impact of access related attacks can be very severe including loss of data, exposure of sensitive infromation or even complete system takeover.
+
+Access control related issues result in user action outside of their permissions and boundaries. This includes weaknesses such as Cross-Site Request Forgery, [misconfiguration of sensitive cookies](/protect-http-cookies/), Path Traversal, Insecure Storage of Sensitive Data and missing or incorrect authorization.
+
+There are many mitigation strategies, such as:
+
+- LEast priviledge possible. Deny by default.
+- Short lived sessions and tokens. Properly invaldiate after logout.
+- Rate limits to minimize automated attacks.
+- Prefer established authentication and authorization tooling. Prefer declarative over imperative.
+- Make access control part of your testing workflow.
+
+### Merged: Server Side Request Forgery
+In the previous version, Server Side Request Forgery (SSRF) was added as a new item on the 10th position. In 2025, it was merged into Broken Access Control as it is fundamentally Access Control issue. This better reflects item granularity and unifies categorization. The reason why it was separate in 2021 was that it was ranked as #1 in the community survey and explicitly having it as and item helps to raise awareness. But it was even back then considered later to be addeed to a broader category. Even though it is longer standalone item, it is still good to keep SSRF in mind when considering access control.
+
+SSRF vulnerabilities allow attackers to trick server-side application to make request to unintended location. This allows attackers to reach resources unaccessible from the outside. It can lead to accessing internal only services, leaking sensitive data or mapping internal networks for further exploitation.
+
+Prevention includes:
+- Avoid depending on client-provided data to determine taget location of network calls.
+- deny access by default only whitelisting exceptions instead of blacklists.
+- Do not directly send responses received from external calls to the client.
+- Internal network segmentation.
+- Monitoring even internal traffic and alerting on unusual behavior. 
 
 ### Rising threats
 <!-- TODO:  -->
 
 ### Traditional risks moving down
-<!-- TODO:  -->
-
-### Broadening categories
-
 <!-- TODO:  -->
 
 ### New: Mishandling of Exceptional Conditions
