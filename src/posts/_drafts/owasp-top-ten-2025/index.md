@@ -161,13 +161,25 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### New: Mishandling of Exceptional Conditions
 
-This is the only truly new item in 2025, sitting on the last place.
+This is the only truly new item in 2025, sitting on the last place. Many issues covered by this category were previously considered as part of bad code quality and design. But given the importance of this area, it deserved its own new category.
 
-<!-- TODO:  -->
+It covers errors and unexpected states. Applications often fail to predict and prevent such situations. If such situation happens, it is important to indentify it and react properly. Exceptional states are not necessarily only technical issues, but also logical flaws or bad design of domain logic and business processes. This makes it very important to keep in mind these issues early in the design and development process as they are much more difficult and expensive to fix later on.
+
+These weaknesses are serious on their own and can lead to various security issues, such as denial of service, data corruption, or even complete system compromise. However they are also often used as a bridge to more efficient and targeted attacks. For example, sending detailed error information can expose important details about your system which is then used for other attacks. Exposing which frameworks and libraries and versions are used can lead to exploiting their known vulnerabilities. Leaking database internals can lead to better targeted SQL injection.
+
+Mitigatios for these weaknesses include:
+- Proper error handling, logging, and alerting. Do not expose sensitive information in error messages and logs.
+- Input validation and sanitization. Also prevents injection attacks.
+- Limit resource utilization. Rate limiting, throttling, resource quotas.
+- Centralised error handling.
 
 ### Renames and minor adjustments
 
-<!-- TODO: for each new item: what it is, why it was added (data-driven vs community survey), how to mitigate -->
+Three items were renamed to better reflect their scope and focus:
+
+- **Identification and Authentication Failures** → **Authentication Failures**. The name better represents CWEs assigned to this category and is not misleading.
+- **Software and Data Integrity Failures** → **Software or Data Integrity Failures**. This reflects that those are two independent categories and weakness in just one of them is enough to cause a security issue, not both at once.
+- **Security Logging and Monitoring Failures** → **Security Logging and Alerting Failures**. This change aims to emphasize that logging alone is not enough. It is crucial to have proper alerting in place so you can quickly know about security incidents and react in time. Unnoticed incidents give an attacker an opportunity to cause more damage and try different attack vectors.
 
 ## Beyond the Top Ten
 
@@ -192,5 +204,3 @@ Collection of very condensed guides on various topics as a quick reference.
 - [OWASP API Security](https://owasp.org/www-project-api-security/):
 Top ten focused on API security.
 - [OWASP Gen AI Security Project](https://genai.owasp.org/): Guidance and resources focused on generative AI security.
-
-TODO add info about MITRE top 25
