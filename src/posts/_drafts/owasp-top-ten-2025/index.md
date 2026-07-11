@@ -14,7 +14,7 @@ featuredImage: './featured.png'
 ## What is OWASP?
 
 [OWASP](https://owasp.org/) is an acronym for **O**pen **W**eb **A**pplication **S**ecurity **P**roject.
-It is an open-source non-profit organization, which focuses on improving security of software.
+It is an open-source non-profit organization, which focuses on improving software security.
 OWASP aims to raise awareness of security issues and provides free tools and resources to mitigate them.
 
 It covers a broad range of tools, resources and activities. They [organize various events](https://owasp.org/events/)
@@ -34,7 +34,7 @@ It is an ordered list of top ten security risks, which is released periodically 
 The most recent one was released at the end of 2025, with 2021 and 2017 before that. The document is very brief
 and does barely go in any detail.
 
-You could argue that reducing security risks to just 10 items on couple of pages is very reductive
+You could argue that reducing security risks to just 10 items on a couple of pages is very reductive
 and that web app security is way broader issue. But the point of the list is not to be an exhaustive guide
 on security risks, but rather to increase awareness of the broad public audience.
 With just a short list it is easy to keep track of what is happening in the security area,
@@ -48,9 +48,9 @@ The methodology of determining the top ten security risks has matured significan
 very transparent. It is calculated based on vast amounts of data gathered from various sources such as security
 tooling vendors, vulnerability databases, bug bounties and more.
 
-Vulnerability data from applications are however a metric looking back and is only able to cover well documented
+Vulnerability data from applications are however a metric looking back and are only able to cover well documented
 vulnerabilities which are already properly supported by security analysis tooling. It does not reflect what
-are the latest trends, emerging threads and how will the situation develop in the future. Some vulnerabilities are also
+are the latest trends, emerging threats and how will the situation develop in the future. Some vulnerabilities are also
 on higher level such as architecture or are hard to cover by automated analysis.
 
 To address both historical and future trends, the methodology chooses 8 out of 10 risks based only on the data
@@ -58,11 +58,11 @@ and the rest two items are based on community survey of security experts.
 
 ### Risk categorization
 
-Historically, the top ten used to contain some very specific weaknesses such as Cross Site Scripting (XSS)
-or Cross Site REquest Forgery (CSRF). Over the years, the categories became much broader, such as Broken Access Control
+Historically, the top ten used to contain some very specific weaknesses such as Cross-Site Scripting (XSS)
+or Cross-Site Request Forgery (CSRF). Over the years, the categories became much broader, such as Broken Access Control
 or Insecure Design.
 
-But the source data consists of specific reported weaknesses, which are much more specific - Such as SQL Injection.
+But the source data consists of specific reported weaknesses, which are much more specific - such as SQL Injection.
 These are known as [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/index.html) and are well documented and categorized.
 Example of such weakness is [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html).
 
@@ -77,13 +77,13 @@ There are multiple factors affecting the final score.
 
 Simply put, the main factors are:
 
-1. How prevelant is the weakness
+1. How prevalent is the weakness
 2. How severe is the technical impact
 3. How easy is it to exploit
 
-The prevalance is the major factor with exploitability and impact being secondary.
+The prevalence is the major factor with exploitability and impact being secondary.
 
-Prevelance is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability.
+Prevalence is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability?
 
 CWE is definition of a weakness, such as SQL Injection, but the impact and exploitability can be different in each application.
 Here comes into play CVE, which is a specific instance of CWE in a particular product.
@@ -98,10 +98,10 @@ Here comes into play CVE, which is a specific instance of CWE in a particular pr
 
 Those CVEs already have impact and exploitability scores defined and can be used for risk score calculation.
 
-What is important to understand is that the imact is technical and not business. Same vulnerability can have same
-technical impact but drastically different business impact based on the company. Same SQL injection vulnerability
-can lead to leaking unimportant read only data in one company and exposing sensitive
-data or dropping the entire DB in other.
+What is important to understand is that the impact is technical and not business. Same vulnerability can have the same
+technical impact but drastically different business impact based on the company. Same SQL injection vulnerability can
+lead to leaking unimportant read only data in one company and exposing sensitive data or dropping the entire DB in
+another.
 
 Important part of secure design is therefore considering how technical vulnerabilities translate into business risks
 and how to mitigate them.
@@ -118,8 +118,8 @@ and how to mitigate them.
 | 6. Insecure Design                                                                    | Architecture and design flaws, unexpected states in business logic, lack of secure development lifecycle and threat modelling.                                                                        |
 | 7. Authentication Failures                                                            | Vulnerability to automated and brute force attacks, weak passwords, lacking multi-factor auth, vulnerable account recovery, incorrect session and token invalidation.                                 |
 | 8. Software or Data Integrity Failures                                                | Lack of validation of code and data coming from external sources can lead to malicious code execution or unexpected states. Software auto update, insecure deserialization, unexpected source change. |
-| 9. Security Logging and Alerting Failures {% badge "community", "Community Survey" %} | Insufficient logging and monitoring results in atacks being detected late or never. Log tampering, sensitive data leakage through logs and alerts.                                                    |
-| 10. Mishandling of Exceptional Conditions                                             | Not reacting to unexpected conditions, detecting them or preventing them. This can lead to may other vulnerabilities including crashing the system or complete takeover.                              |
+| 9. Security Logging and Alerting Failures {% badge "community", "Community Survey" %} | Insufficient logging and monitoring results in attacks being detected late or never. Log tampering, sensitive data leakage through logs and alerts.                                                   |
+| 10. Mishandling of Exceptional Conditions                                             | Not reacting to unexpected conditions, detecting them or preventing them. This can lead to many other vulnerabilities including crashing the system or complete takeover.                             |
 
 ### 2021 vs 2025 comparison
 
