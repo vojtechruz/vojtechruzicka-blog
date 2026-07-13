@@ -32,10 +32,10 @@ to as OWASP Top 10 for short.
 
 It is an ordered list of top ten security risks, which is released periodically every couple of years since 2003.
 The most recent one was released at the end of 2025, with 2021 and 2017 before that. The document is very brief
-and does barely go in any detail.
+and barely goes into any detail.
 
 You could argue that reducing security risks to just 10 items on a couple of pages is very reductive
-and that web app security is way broader issue. But the point of the list is not to be an exhaustive guide
+and that web app security is a much broader issue. But the point of the list is not to be an exhaustive guide
 on security risks, but rather to increase awareness of the broad public audience.
 With just a short list it is easy to keep track of what is happening in the security area,
 how it evolves, and what to keep an eye on. Then you can dive deeper into individual items with other OWASP resources.
@@ -48,13 +48,13 @@ The methodology of determining the top ten security risks has matured significan
 very transparent. It is calculated based on vast amounts of data gathered from various sources such as security
 tooling vendors, vulnerability databases, bug bounties, and more.
 
-Vulnerability data from applications are however a metric looking back and are only able to cover well documented
-vulnerabilities which are already properly supported by security analysis tooling. It does not reflect what
-are the latest trends, emerging threats, and how will the situation develop in the future. Some vulnerabilities are also
+Vulnerability data from applications is, however, a backward-looking metric and is only able to cover well documented
+vulnerabilities which are already properly supported by security analysis tooling. It does not reflect
+the latest trends, emerging threats, or how the situation will develop in the future. Some vulnerabilities are also
 on higher level such as architecture or are hard to cover by automated analysis.
 
 To address both historical and future trends, the methodology chooses 8 out of 10 risks based only on the data
-and the rest two items are based on community survey of security experts.
+and the remaining two items are based on a community survey of security experts.
 
 ### Risk categorization
 
@@ -85,7 +85,7 @@ The prevalence is the major factor with exploitability and impact being secondar
 
 Prevalence is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability?
 
-CWE is definition of a weakness, such as SQL Injection, but the impact and exploitability can be different in each application.
+A CWE is a definition of a weakness, such as SQL Injection, but the impact and exploitability can differ in each application.
 Here comes into play CVE, which is a specific instance of CWE in a particular product.
 
 > [CWE-149 Improper Neutralization of Quoting Syntax](https://cwe.mitre.org/data/definitions/149.html)
@@ -98,12 +98,12 @@ Here comes into play CVE, which is a specific instance of CWE in a particular pr
 
 Those CVEs already have impact and exploitability scores defined and can be used for risk score calculation.
 
-What is important to understand is that the impact is technical and not business. Same vulnerability can have the same
-technical impact but drastically different business impact based on the company. Same SQL injection vulnerability can
+What is important to understand is that the impact is technical and not business. The same vulnerability can have the same
+technical impact but drastically different business impact based on the company. The same SQL injection vulnerability can
 lead to leaking unimportant read only data in one company and exposing sensitive data or dropping the entire DB in
 another.
 
-Important part of secure design is therefore considering how technical vulnerabilities translate into business risks
+An important part of secure design is therefore considering how technical vulnerabilities translate into business risks
 and how to mitigate them.
 
 ## Top Ten 2025
@@ -147,7 +147,7 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### Broken Access Control still on top
 
-This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection. Despite being it top positions since the very beginning in 2003 and being well documented and known risk, it still stays on the top. Every application from OWASP's dataset had some sort of access control related vulnerability. Every single one! This area is complex and contains high number of weaknesses which results in high prevalence. The potential impact of access related attacks can be very severe including loss of data, exposure of sensitive information or even complete system takeover.
+This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection. Despite being in top positions since the very beginning in 2003 and being a well-documented and known risk, it still stays on top. Every application from OWASP's dataset had some sort of access control related vulnerability. Every single one! This area is complex and contains a high number of weaknesses, which results in high prevalence. The potential impact of access related attacks can be very severe including loss of data, exposure of sensitive information or even complete system takeover.
 
 Access control related issues result in user action outside of their permissions and boundaries. This includes weaknesses such as Cross-Site Request Forgery, [misconfiguration of sensitive cookies](/protect-http-cookies/), Path Traversal, Insecure Storage of Sensitive Data and missing or incorrect authorization.
 
@@ -160,25 +160,25 @@ There are many mitigation strategies, such as:
 - Make access control part of your testing workflow.
 
 ### Merged: Server Side Request Forgery
-In the previous version, Server Side Request Forgery (SSRF) was added as a new item on the 10th position. In 2025, it was merged into Broken Access Control as it is fundamentally Access Control issue. This better reflects item granularity and unifies categorization. The reason why it was separate in 2021 was that it was ranked as #1 in the community survey and explicitly having it as and item helps to raise awareness. But it was even back then considered later to be addeed to a broader category. Even though it is longer standalone item, it is still good to keep SSRF in mind when considering access control.
+In the previous version, Server Side Request Forgery (SSRF) was added as a new item in the 10th position. In 2025, it was merged into Broken Access Control as it is fundamentally an Access Control issue. This better reflects item granularity and unifies categorization. The reason why it was separate in 2021 was that it was ranked as #1 in the community survey, and explicitly having it as an item helps to raise awareness. But even back then it was considered for later addition to a broader category. Even though it is no longer a standalone item, it is still good to keep SSRF in mind when considering access control.
 
-SSRF vulnerabilities allow attackers to trick server-side application to make request to unintended location. This allows attackers to reach resources unaccessible from the outside. It can lead to accessing internal only services, leaking sensitive data, or mapping internal networks for further exploitation.
+SSRF vulnerabilities allow attackers to trick a server-side application into making a request to an unintended location. This allows attackers to reach resources inaccessible from the outside. It can lead to accessing internal-only services, leaking sensitive data, or mapping internal networks for further exploitation.
 
 Prevention includes:
-- Avoid depending on client-provided data to determine taget location of network calls.
-- deny access by default only whitelisting exceptions instead of blacklists.
+- Avoid depending on client-provided data to determine the target location of network calls.
+- Deny access by default, whitelisting only exceptions instead of using blacklists.
 - Do not directly send responses received from external calls to the client.
 - Internal network segmentation.
 - Monitoring even internal traffic and alerting on unusual behavior. 
 
 ### Rising threats
-There are two items, which juped up significantly, both by 3 positions. **Security Misconfiguration** now sits in the second place after Broken Access Management. This are includes all the configuration settings which are incorrect from the security prespective creating vulnerabilities. This are is very broad and with systems getting more and more complex and more configurable it is easy to miss and item or two in your configuration. In fact, same as with access control issues, every single tested application has some sort of security misconfiguration.
+There are two items which jumped up significantly, both by 3 positions. **Security Misconfiguration** now sits in second place, after Broken Access Control. This area includes all the configuration settings which are incorrect from the security perspective, creating vulnerabilities. It is very broad, and with systems getting more and more complex and more configurable, it is easy to miss an item or two in your configuration. In fact, same as with access control issues, every single tested application has some sort of security misconfiguration.
 
-Common examples of config issues include relying on external unsafe configuration source, [missing security headers](/preventing-clickjacking/), permissive cross origin policy or enabling unnecessary features widening potential attack surface. MAke sure you review your configurations regularly, keep centralised ceonfiguration, enable only neccessary features, automate as much as possible, regularly scan for misplaced secrets and keep as much configuration as possible same across environments.
+Common examples of config issues include relying on an external unsafe configuration source, [missing security headers](/preventing-clickjacking/), a permissive cross-origin policy, or enabling unnecessary features that widen the potential attack surface. Make sure you review your configurations regularly, keep configuration centralised, enable only necessary features, automate as much as possible, regularly scan for misplaced secrets, and keep as much configuration as possible the same across environments.
 
-The second item rising from the sixth to the third place is **Software Supply Chain Failures**. It was originally introduced almost at the end of the list in 2013 under name **Using Components with Known Vulnerabilities**, later expanded and renamed to **Vulnerable and Outdated Components**. The area has grown in importance over the years and this year was broadened to contain all the supply chain related issues, not only vulnerable dependencies. It is getting more and more common that reliable vendor gets compromised and malicious package is released on which application depends. It does not even have to be direct dependency - you can get such package as part of your transitive dependencies (dependencies of your dependencies). Your application can get compromised at any point in its lifecycle - from malicious IDE plugin, outdated dependency, during CICD process or code or artifact repository. This are is getting more and more attention - it is one of two items added based on comunity survey (other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list with vast majority of votes.
+The second item rising from the sixth to the third place is **Software Supply Chain Failures**. It was originally introduced almost at the end of the list in 2013 under name **Using Components with Known Vulnerabilities**, later expanded and renamed to **Vulnerable and Outdated Components**. The area has grown in importance over the years and this year was broadened to contain all the supply chain related issues, not only vulnerable dependencies. It is getting more and more common that a reliable vendor gets compromised and a malicious package that your application depends on is released. It does not even have to be a direct dependency - you can get such a package as part of your transitive dependencies (dependencies of your dependencies). Your application can get compromised at any point in its lifecycle - from a malicious IDE plugin or an outdated dependency to the CI/CD process or a code or artifact repository. This area is getting more and more attention - it is one of two items added based on a community survey (the other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list with a vast majority of votes.
 
-These days there are powerful tools to detect vulnerable dependencies, such as [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/), [OWASP dependency check](/detecting-dependencies-known-vulnerabilities/) or even [your IDE](/idea-snyk-plugin/). But be careful as detecting the vulnerability is one thing and upgrading another. New versions may break compatibility, require newer versions of runtime or the component may be long time abandoned and unmaintained. Maintain list of your dependencies (such as Software Bill of Materials) and actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and end of life compoents, but be mindful about upgrading and do it for a reason - getting new version needlessly may result in introducing new vulnerabilities or compromised package. Obtain only components from trusted sources, signed if possible to avoid tampering. Remove anything unused to reduce attack surface.
+These days there are powerful tools to detect vulnerable dependencies, such as [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/), [OWASP dependency check](/detecting-dependencies-known-vulnerabilities/) or even [your IDE](/idea-snyk-plugin/). But be careful as detecting the vulnerability is one thing and upgrading another. New versions may break compatibility, require newer versions of runtime or the component may be long time abandoned and unmaintained. Maintain list of your dependencies (such as Software Bill of Materials) and actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and end-of-life components, but be mindful about upgrading and do it for a reason - getting new version needlessly may result in introducing new vulnerabilities or compromised package. Obtain only components from trusted sources, signed if possible to avoid tampering. Remove anything unused to reduce attack surface.
 
 ### Traditional risks moving down
 Three items that were in the top 4 in 2021 have all moved down by two positions:
@@ -189,17 +189,17 @@ Three items that were in the top 4 in 2021 have all moved down by two positions:
 
 As you can see, all of them moved by 3 places, while preserving their relative positions. This suggests that their importance has not dropped significantly, but they were rather pushed by two major categories moving up, which we discussed above. With systems getting more and more config driven, **Security Misconfiguration** has risen significantly. **Software Supply Chain Failures** had significant support in the community survey and since the category was significantly broadened, it now contains more weaknesses.
 
-Still, over time items in OWASP top ten tend to gradually go down as the awareness increases over time and tooling gets better at identyfying these issues. For example injection used to be #1 for a long time, but eventually ended in fifth place. It is still very much relevant (same as cryptographic failures and insecure design) though and should not be taken lightly.
+Still, over time items in the OWASP top ten tend to gradually go down as awareness increases and tooling gets better at identifying these issues. For example, injection used to be #1 for a long time, but eventually ended up in fifth place. It is still very much relevant (same as cryptographic failures and insecure design) though and should not be taken lightly.
 
 ### New: Mishandling of Exceptional Conditions
 
 This is the only truly new item in 2025, sitting on the last place. Many issues covered by this category were previously considered as part of bad code quality and design. But given the importance of this area, it deserved its own new category.
 
-It covers errors and unexpected states. Applications often fail to predict and prevent such situations. If such situation happens, it is important to indentify it and react properly. Exceptional states are not necessarily only technical issues, but also logical flaws or bad design of domain logic and business processes. This makes it very important to keep in mind these issues early in the design and development process as they are much more difficult and expensive to fix later on.
+It covers errors and unexpected states. Applications often fail to predict and prevent such situations. If such a situation happens, it is important to identify it and react properly. Exceptional states are not necessarily only technical issues, but also logical flaws or bad design of domain logic and business processes. This makes it very important to keep in mind these issues early in the design and development process as they are much more difficult and expensive to fix later on.
 
-These weaknesses are serious on their own and can lead to various security issues, such as denial of service, data corruption, or even complete system compromise. However they are also often used as a bridge to more efficient and targeted attacks. For example, sending detailed error information can expose important details about your system which is then used for other attacks. Exposing which frameworks and libraries and versions are used can lead to exploiting their known vulnerabilities. Leaking database internals can lead to better targeted SQL injection.
+These weaknesses are serious on their own and can lead to various security issues, such as denial of service, data corruption, or even complete system compromise. However, they are also often used as a bridge to more efficient and targeted attacks. For example, sending detailed error information can expose important details about your system which is then used for other attacks. Exposing which frameworks, libraries, and versions are used can lead to exploiting their known vulnerabilities. Leaking database internals can lead to better targeted SQL injection.
 
-Mitigatios for these weaknesses include:
+Mitigations for these weaknesses include:
 - Proper error handling, logging, and alerting. Do not expose sensitive information in error messages and logs.
 - Input validation and sanitization. Also prevents injection attacks.
 - Limit resource utilization. Rate limiting, throttling, resource quotas.
