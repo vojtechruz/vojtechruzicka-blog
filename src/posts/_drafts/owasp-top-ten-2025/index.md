@@ -1,13 +1,13 @@
 ---
 title: 'OWASP Top Ten 2025'
-date: '2026-06-22'
+date: '2026-07-15'
 topics: ['Security']
 path: '/owasp-top-ten-2025/'
 excerpt:
   'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What are the changes since 2021,
   and is your application vulnerable?'
 draftStatus: 'draft'
-relatedPosts: ['/owasp-top-ten-2017/']
+relatedPosts: ['/owasp-top-ten-2017/', '/snyk-detecting-dependencies-with-known-vulnerabilities/', '/detecting-dependencies-known-vulnerabilities/', '/preventing-clickjacking/']
 featuredImage: './featured.png'
 ---
 
@@ -174,11 +174,11 @@ Prevention includes:
 ### Rising threats
 There are two items, which juped up significantly, both by 3 positions. **Security Misconfiguration** now sits in the second place after Broken Access Management. This are includes all the configuration settings which are incorrect from the security prespective creating vulnerabilities. This are is very broad and with systems getting more and more complex and more configurable it is easy to miss and item or two in your configuration. In fact, same as with access control issues, every single tested application has some sort of security misconfiguration.
 
-Common examples of config issues include relying on external unsafe configuration source, missing security headers, permissive cross origin policy or enabling unnecessary features widening potential attack surface. MAke sure you review your configurations regularly, keep centralised ceonfiguration, enable only neccessary features, automate as much as possible, regularly scan for misplaced secrets and keep as much configuration as possible same across environments.
+Common examples of config issues include relying on external unsafe configuration source, [missing security headers](/preventing-clickjacking/), permissive cross origin policy or enabling unnecessary features widening potential attack surface. MAke sure you review your configurations regularly, keep centralised ceonfiguration, enable only neccessary features, automate as much as possible, regularly scan for misplaced secrets and keep as much configuration as possible same across environments.
 
 The second item rising from the sixth to the third place is **Software Supply Chain Failures**. It was originally introduced almost at the end of the list in 2013 under name **Using Components with Known Vulnerabilities**, later expanded and renamed to **Vulnerable and Outdated Components**. The area has grown in importance over the years and this year was broadened to contain all the supply chain related issues, not only vulnerable dependencies. It is getting more and more common that reliable vendor gets compromised and malicious package is released on which application depends. It does not even have to be direct dependency - you can get such package as part of your transitive dependencies (dependencies of your dependencies). Your application can get compromised at any point in its lifecycle - from malicious IDE plugin, outdated dependency, during CICD process or code or artifact repository. This are is getting more and more attention - it is one of two items added based on comunity survey (other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list with vast majority of votes.
 
-These days there are powerful tools to detect vulnerable dependencies, such as Snyk, OWASP dependency check or even your IDE. But be careful as detecting the vulnerability is one thing and upgrading another. New versions may break compatibility, require newer versions of runtime or the component may be long time abandoned and unmaintained. Maintain list of your dependencies (such as Software Bill of Materials) and actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and end of life compoents, but be mindful about upgrading and do it for a reason - getting new version needlessly may result in introducing new vulnerabilities or compromised package. Obtain only components from trusted sources, signed if possible to avoid tampering. Remove anything unused to reduce attack surface.
+These days there are powerful tools to detect vulnerable dependencies, such as [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/), [OWASP dependency check](/detecting-dependencies-known-vulnerabilities/) or even [your IDE](/idea-snyk-plugin/). But be careful as detecting the vulnerability is one thing and upgrading another. New versions may break compatibility, require newer versions of runtime or the component may be long time abandoned and unmaintained. Maintain list of your dependencies (such as Software Bill of Materials) and actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and end of life compoents, but be mindful about upgrading and do it for a reason - getting new version needlessly may result in introducing new vulnerabilities or compromised package. Obtain only components from trusted sources, signed if possible to avoid tampering. Remove anything unused to reduce attack surface.
 
 ### Traditional risks moving down
 Three items that were in the top 4 in 2021 have all moved down by two positions:
