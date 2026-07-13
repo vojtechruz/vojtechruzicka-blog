@@ -126,18 +126,18 @@ and how to mitigate them.
 Looking at the current ten items tells you only part of the story. What's interesting is to compare how
 the list changed since the last one to see how the risks are developing and where security is heading.
 
-| 2021                                                        | 2025                                                                                                                       |
-|-------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| 1. Broken Access Control                                    | 1. Broken Access Control                                                                                                   |
-| 2. Cryptographic Failures                                   | 2. Security Misconfiguration {% badge "up", "↑ 3" %}                                                                       |
-| 3. Injection                                                | 3. Software Supply Chain Failures {% badge "merged" %} {% badge "up", "↑ 3" %} {% badge "community", "Community Survey" %} |
-| 4. Insecure Design                                          | 4. Cryptographic Failures {% badge "down", "↓ 2" %}                                                                        |
-| 5. Security Misconfiguration                                | 5. Injection {% badge "down", "↓ 2" %}                                                                                     |
-| 6. Vulnerable and Outdated Components                       | 6. Insecure Design {% badge "down", "↓ 2" %}                                                                               |
-| 7. Identification and Authentication Failures               | 7. Authentication Failures {% badge "renamed" %}                                                                           |
-| 8. Software and Data Integrity Failures                     | 8. Software or Data Integrity Failures {% badge "renamed" %}                                                               |
-| 9. Security Logging and Monitoring Failures                 | 9. Security Logging and Alerting Failures {% badge "renamed" %} {% badge "community", "Community Survey" %}                |
-| 10. Server Side Request Forgery (SSRF) {% badge "merged" %} | 10. Mishandling of Exceptional Conditions {% badge "new" %}                                                                |
+| 2021                                                        | 2025                                                                                                                                     |
+|-------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| 1. Broken Access Control                                    | 1. Broken Access Control                                                                                                                 |
+| 2. Cryptographic Failures                                   | 2. Security Misconfiguration {% badge "up", "↑ 3" %}                                                                                     |
+| 3. Injection                                                | 3. Software Supply Chain Failures {% badge "up", "↑ 3" %} {% badge "extended", "Extended" %} {% badge "community", "Community Survey" %} |
+| 4. Insecure Design                                          | 4. Cryptographic Failures {% badge "down", "↓ 2" %}                                                                                      |
+| 5. Security Misconfiguration                                | 5. Injection {% badge "down", "↓ 2" %}                                                                                                   |
+| 6. Vulnerable and Outdated Components                       | 6. Insecure Design {% badge "down", "↓ 2" %}                                                                                             |
+| 7. Identification and Authentication Failures               | 7. Authentication Failures {% badge "renamed" %}                                                                                         |
+| 8. Software and Data Integrity Failures                     | 8. Software or Data Integrity Failures {% badge "renamed" %}                                                                             |
+| 9. Security Logging and Monitoring Failures                 | 9. Security Logging and Alerting Failures {% badge "renamed" %} {% badge "community", "Community Survey" %}                              |
+| 10. Server Side Request Forgery (SSRF) {% badge "merged" %} | 10. Mishandling of Exceptional Conditions {% badge "new" %}                                                                              |
 
 If you'd like to compare with an even older version, you can check my article on OWASP Top 10 2017.
 

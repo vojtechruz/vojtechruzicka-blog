@@ -38,6 +38,18 @@
     border-color: color-mix(in srgb, var(--color-accent) 36%, transparent);
   }
 
+  &--extended {
+    background: rgba(167, 139, 250, 0.14);
+    color: #a78bfa;
+    border-color: rgba(167, 139, 250, 0.36);
+  }
+
+  &--community {
+    background: rgba(45, 212, 191, 0.14);
+    color: #2dd4bf;
+    border-color: rgba(45, 212, 191, 0.36);
+  }
+
   &--removed {
     background: var(--color-error-bg);
     color: var(--color-error);
