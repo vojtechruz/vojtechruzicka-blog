@@ -17,12 +17,12 @@ featuredImage: './featured.png'
 It is an open-source non-profit organization, which focuses on improving software security.
 OWASP aims to raise awareness of security issues and provides free tools and resources to mitigate them.
 
-It covers a broad range of tools, resources and activities. They [organize various events](https://owasp.org/events/)
+It covers a broad range of tools, resources, and activities. They [organize various events](https://owasp.org/events/)
 including their own AppSec conference. OWASP consists of various projects with different focus
 including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/),
 [GenAI Security Project](https://genai.owasp.org/),
 [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/),
-[various cheat sheets](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
+[various cheat sheets,](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
 
 ## OWASP Top Ten
 
@@ -38,7 +38,7 @@ You could argue that reducing security risks to just 10 items on a couple of pag
 and that web app security is way broader issue. But the point of the list is not to be an exhaustive guide
 on security risks, but rather to increase awareness of the broad public audience.
 With just a short list it is easy to keep track of what is happening in the security area,
-how it evolves and what to keep an eye on. Then you can dive deeper into individual items with other OWASP resources.
+how it evolves, and what to keep an eye on. Then you can dive deeper into individual items with other OWASP resources.
 
 ## Methodology
 
@@ -46,11 +46,11 @@ how it evolves and what to keep an eye on. Then you can dive deeper into individ
 
 The methodology of determining the top ten security risks has matured significantly over the years and is now
 very transparent. It is calculated based on vast amounts of data gathered from various sources such as security
-tooling vendors, vulnerability databases, bug bounties and more.
+tooling vendors, vulnerability databases, bug bounties, and more.
 
 Vulnerability data from applications are however a metric looking back and are only able to cover well documented
 vulnerabilities which are already properly supported by security analysis tooling. It does not reflect what
-are the latest trends, emerging threats and how will the situation develop in the future. Some vulnerabilities are also
+are the latest trends, emerging threats, and how will the situation develop in the future. Some vulnerabilities are also
 on higher level such as architecture or are hard to cover by automated analysis.
 
 To address both historical and future trends, the methodology chooses 8 out of 10 risks based only on the data
@@ -71,7 +71,7 @@ are already items which are later included in the top ten.
 
 ### Risk Score Calculation
 
-Now when  all the reported weaknesses are sorted into risk groups, the order needs to be determined.
+Now when all the reported weaknesses are sorted into risk groups, the order needs to be determined.
 That is based on [Risk Score](https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/) formula.
 There are multiple factors affecting the final score.
 
@@ -147,14 +147,14 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### Broken Access Control still on top
 
-This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection. Despite being it top positions since the very beginning in 2003 and being well documented and known risk, it still stays on the top. Every application from OWASP's dataset had some sort of access control related vulnerability. Every single one! This area is complex and contains high number of weaknesses which results in high prevelance. The potential impact of access related attacks can be very severe including loss of data, exposure of sensitive infromation or even complete system takeover.
+This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection. Despite being it top positions since the very beginning in 2003 and being well documented and known risk, it still stays on the top. Every application from OWASP's dataset had some sort of access control related vulnerability. Every single one! This area is complex and contains high number of weaknesses which results in high prevalence. The potential impact of access related attacks can be very severe including loss of data, exposure of sensitive information or even complete system takeover.
 
 Access control related issues result in user action outside of their permissions and boundaries. This includes weaknesses such as Cross-Site Request Forgery, [misconfiguration of sensitive cookies](/protect-http-cookies/), Path Traversal, Insecure Storage of Sensitive Data and missing or incorrect authorization.
 
 There are many mitigation strategies, such as:
 
-- LEast priviledge possible. Deny by default.
-- Short lived sessions and tokens. Properly invaldiate after logout.
+- Least privilege possible. Deny by default.
+- Short-lived sessions and tokens. Properly invalidate after logout.
 - Rate limits to minimize automated attacks.
 - Prefer established authentication and authorization tooling. Prefer declarative over imperative.
 - Make access control part of your testing workflow.
@@ -162,7 +162,7 @@ There are many mitigation strategies, such as:
 ### Merged: Server Side Request Forgery
 In the previous version, Server Side Request Forgery (SSRF) was added as a new item on the 10th position. In 2025, it was merged into Broken Access Control as it is fundamentally Access Control issue. This better reflects item granularity and unifies categorization. The reason why it was separate in 2021 was that it was ranked as #1 in the community survey and explicitly having it as and item helps to raise awareness. But it was even back then considered later to be addeed to a broader category. Even though it is longer standalone item, it is still good to keep SSRF in mind when considering access control.
 
-SSRF vulnerabilities allow attackers to trick server-side application to make request to unintended location. This allows attackers to reach resources unaccessible from the outside. It can lead to accessing internal only services, leaking sensitive data or mapping internal networks for further exploitation.
+SSRF vulnerabilities allow attackers to trick server-side application to make request to unintended location. This allows attackers to reach resources unaccessible from the outside. It can lead to accessing internal only services, leaking sensitive data, or mapping internal networks for further exploitation.
 
 Prevention includes:
 - Avoid depending on client-provided data to determine taget location of network calls.
