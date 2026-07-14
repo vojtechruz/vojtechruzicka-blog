@@ -62,14 +62,14 @@ Historically, the top ten used to contain some very specific weaknesses such as 
 or Cross-Site Request Forgery (CSRF). Over the years, the categories became much broader, such as Broken Access Control
 or Insecure Design.
 
-But the source data consists of specific reported weaknesses, which are much more specific - such as SQL Injection.
-These are known as [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/index.html) and are well documented and categorized.
+But the source data consists of specific reported weaknesses, such as SQL Injection.
+These are known as [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/index.html) and are well-documented and categorized.
 An example of such a weakness is [CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute](https://cwe.mitre.org/data/definitions/614.html).
 
 All the reported CWEs are then categorized by OWASP into groups such as Injection or Authentication Failures - these
 are the items later included in the top ten.
 
-### Risk Score Calculation
+### Risk score calculation
 
 Now when all the reported weaknesses are sorted into risk groups, the order needs to be determined.
 That is based on the [Risk Score](https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/) formula.
@@ -86,7 +86,7 @@ The prevalence is the major factor with exploitability and impact being secondar
 Prevalence is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability?
 
 A CWE is a definition of a weakness, such as SQL Injection, but the impact and exploitability can differ in each application.
-This is where CVE comes into play — a specific instance of a CWE in a particular product.
+This is where CVE (Common Vulnerabilities and Exposures) comes into play - a specific instance of a CWE in a particular product.
 
 > [CWE-149 Improper Neutralization of Quoting Syntax](https://cwe.mitre.org/data/definitions/149.html)
 >
@@ -147,14 +147,14 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### Broken Access Control still on top
 
-This item ranked as #1 both in 2021 and 2025, while being #2 in 2017 and 2013 after Injection.
+This item ranked as #1 both in 2021 and 2025, while being #5 in 2017 and #2 2013 after Injection.
 Despite being in top positions since the very beginning in 2003 and being a well-documented and known risk,
 it still stays on top. Every application from OWASP's dataset had some sort of access-control-related
 vulnerability. Every single one! This area is complex and contains a high number of weaknesses,
 which results in high prevalence. The potential impact of access-related attacks can be very severe, including loss
 of data, exposure of sensitive information or even complete system takeover.
 
-Access control related issues result in user action outside of their permissions and boundaries.
+Access-control-related issues result in user action outside of their permissions and boundaries.
 This includes weaknesses such as Cross-Site Request Forgery,
 [misconfiguration of sensitive cookies](/protect-http-cookies/), Path Traversal, Insecure Storage of
 Sensitive Data and missing or incorrect authorization.
@@ -193,19 +193,26 @@ Prevention includes:
 There are two items which jumped up significantly, both by 3 positions. **Security Misconfiguration** now sits in
 second place, after Broken Access Control. This area includes all the configuration settings which are incorrect
 from the security perspective, creating vulnerabilities. It is very broad, and with systems getting more and more
-complex and more configurable, it is easy to miss an item or two in your configuration. In fact, same as with
+complex and more configurable, it is easy to miss an item or two in your configuration. In fact, as with
 access control issues, every single tested application has some sort of security misconfiguration.
 
 Common examples of config issues include relying on an external unsafe configuration source,
 [missing security headers](/preventing-clickjacking/), a permissive cross-origin policy, or enabling unnecessary
-features that widen the potential attack surface. Make sure you review your configurations regularly,
-keep configuration centralised, enable only necessary features, automate as much as possible,
-regularly scan for misplaced secrets, and keep as much configuration as possible the same across environments.
+features that widen the potential attack surface.
+
+To prevent Security Misconfiguration issues:
+
+- Make sure you review your configurations regularly.
+- Keep configuration centralised.
+- Enable only necessary features.
+- Automate as much as possible.
+- Regularly scan for misplaced secrets.
+- Keep as much configuration as possible the same across environments.
 
 The second item rising from the sixth to the third place is **Software Supply Chain Failures**.
 It was originally introduced almost at the end of the list in 2013 under the name
 **Using Components with Known Vulnerabilities**, later expanded and renamed to **Vulnerable and Outdated Components**.
-The area has grown in importance over the years and this year was broadened to contain all the supply chain related
+The area has grown in importance over the years and this year was broadened to contain all the supply-chain-related
 issues, not only vulnerable dependencies. It is getting more and more common that a reliable vendor gets
 compromised and a malicious package that your application depends on is released. It does not even have to be
 a direct dependency - you can get such a package as part of your transitive dependencies
@@ -219,12 +226,19 @@ These days there are powerful tools to detect vulnerable dependencies, such as
 [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/),
 [OWASP dependency check](/detecting-dependencies-known-vulnerabilities/) or even
 [your IDE](/idea-snyk-plugin/). But be careful as detecting the vulnerability is one thing and upgrading another.
-New versions may break compatibility, require newer versions of the runtime or the component may be long abandoned
-and unmaintained. Maintain a list of your dependencies (such as Software Bill of Materials) and actively scan
-for vulnerable and outdated component versions, including transitive dependencies, unmaintained and end-of-life
-components, but be mindful about upgrading and do it for a reason - getting a new version needlessly may result
-in new vulnerabilities or a compromised package. Obtain only components from trusted sources, signed if possible
-to avoid tampering. Remove anything unused to reduce attack surface.
+New versions may break compatibility or require a newer runtime - or the component may be long abandoned
+and unmaintained.
+
+Possible mitigations:
+
+- Maintain a list of your dependencies (such as Software Bill of Materials).
+- Actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and
+  end-of-life components.
+- Be mindful about upgrading and do it for a reason - getting a new version needlessly may result
+  in new vulnerabilities or a compromised package.
+- Obtain only components from trusted sources, signed if possible
+  to avoid tampering.
+- Remove anything unused to reduce attack surface.
 
 ### Traditional risks moving down
 
@@ -234,15 +248,15 @@ Three items that were in the top 4 in 2021 have all moved down by two positions:
 - **Injection** #3 -> #5
 - **Insecure Design** #4 -> #6
 
-As you can see, all of them moved by 3 places, while preserving their relative positions. This suggests that their
+As you can see, all of them moved by 2 places, while preserving their relative positions. This suggests that their
 importance has not dropped significantly, but they were rather pushed by two major categories moving up, which we
-discussed above. With systems getting more and more config driven, **Security Misconfiguration** has risen
+discussed above. With systems getting more and more config-driven, **Security Misconfiguration** has risen
 significantly. **Software Supply Chain Failures** had significant support in the community survey and since the category
 was significantly broadened, it now contains more weaknesses.
 
 Still, over time items in the OWASP top ten tend to gradually go down as awareness increases and tooling gets
 better at identifying these issues. For example, injection used to be #1 for a long time, but eventually ended up
-in fifth place. It is still very much relevant (same as cryptographic failures and insecure design) though and should
+in fifth place. It is still very much relevant, though - as are cryptographic failures and insecure design - and should
 not be taken lightly.
 
 ### New: Mishandling of Exceptional Conditions
@@ -293,8 +307,8 @@ your security education at the top ten. The next step is to get to know these ri
 
 Another useful resource is [MITRE CWE Top 25](https://cwe.mitre.org/top25/), which instead of broad categories
 focuses on ranking much more specific weaknesses - at the CWE level. That means classic weaknesses such as
-Cross-Site Scripting, SQL Injection or Out-of-bound reads and writes.
-It is good to keep in mind both of the lists - OWASP Top 10 for realizing broader risk areas
+Cross-Site Scripting, SQL Injection or out-of-bounds reads and writes.
+It is good to keep in mind both lists - OWASP Top 10 for realizing broader risk areas
 and MITRE CWE list for specific, lower-level weaknesses.
 
 More OWASP Resources:
