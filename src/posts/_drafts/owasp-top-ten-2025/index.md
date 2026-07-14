@@ -90,8 +90,9 @@ The prevalence is the major factor with exploitability and impact being secondar
 
 Prevalence is based on the data gathered by OWASP, but how do you quantify technical impact and exploitability?
 
-A CWE is a definition of a weakness, such as SQL Injection, but the impact and exploitability can differ in each application.
-This is where CVE (Common Vulnerabilities and Exposures) comes into play - a specific instance of a CWE in a particular product.
+A CWE is a definition of a weakness, such as SQL Injection, but the impact and exploitability can differ in each
+application. This is where CVE (Common Vulnerabilities and Exposures) comes into play - a specific instance of a CWE
+in a particular product.
 
 > [CWE-149 Improper Neutralization of Quoting Syntax](https://cwe.mitre.org/data/definitions/149.html)
 >
@@ -195,7 +196,12 @@ Prevention includes:
 
 ### Rising threats
 
-There are two items which jumped up significantly, both by 3 positions. **Security Misconfiguration** now sits in
+Only two items which moved up, both by 3 positions. These are definitely worth watching for and looking at the reasons
+can give us better understanding on how the security situation will evolve in the future.
+
+### Security Misconfiguration
+
+**Security Misconfiguration** now sits in
 second place, after Broken Access Control. This area includes all the configuration settings which are incorrect
 from the security perspective, creating vulnerabilities. It is very broad, and with systems getting more and more
 complex and more configurable, it is easy to miss an item or two in your configuration. In fact, as with
@@ -213,6 +219,8 @@ To prevent Security Misconfiguration issues:
 - Automate as much as possible.
 - Regularly scan for misplaced secrets.
 - Keep as much configuration as possible the same across environments.
+
+### Software Supply Chain Failures
 
 The second item rising from the sixth to the third place is **Software Supply Chain Failures**.
 It was originally introduced almost at the end of the list in 2013 under the name
@@ -305,9 +313,9 @@ Three items were renamed to better reflect their scope and focus:
   can quickly know about security incidents and react in time. Unnoticed incidents give an attacker an opportunity to
   cause more damage and try different attack vectors.
 
-## Takeaways
+## Key Takeaways
 
-OWASP Top 10 is a great place to start if you want to become more familiar with web application security. 
+OWASP Top 10 is a great place to start if you want to become more familiar with web application security.
 It is not an exhaustive guide, but rather a quick reference to the areas that are currently the most important to keep
 in mind when thinking about application security.
 
@@ -319,16 +327,15 @@ lurking in every phase of the development pipeline. With increasing reliance on 
 cloud infrastructure, and a complex software supply chain, the attack surface extends far beyond your application.
 
 The Top 10 is not a security checklist, and you should not worry about memorizing all the categories,
-let alone the underlying CWEs. Many mitigations apply to multiple weaknesses, so it is more important to start
+let alone the underlying CWEs. Many mitigations apply to multiple weaknesses, so it is more valuable to start
 building a security mindset. When building or reviewing a feature, you can start by asking yourself:
 
 - Do I trust my dependencies too much?
 - Did I validate and sanitize external input?
 - How do I react if something unexpected happens?
 - How will I know about and be notified of malicious activity?
-...
 
-Building this mindset will help you harden your application far more than memorizing a list of CWEs. But ultimately, 
+Building this mindset will help you harden your application far more than memorizing a list of CWEs. But ultimately,
 remember that security is by no means a one-time activity. It should be a continuous process throughout the entire
 application lifecycle.
 
@@ -337,7 +344,7 @@ application lifecycle.
 Now that you're familiar with the top ten security risks of web applications, you'll be more vigilant and aware of
 potential issues. However, as I mentioned, the top ten is an awareness document rather
 than a detailed guide. It covers just the tip of the iceberg and very briefly. You should definitely not stop
-your security education at the top ten. You can use the list to identify where to focus your efforts first and then 
+your security education at the top ten. You can use the list to identify where to focus your efforts first and then
 gradually expand with more detailed resources. The next step is to get to know these risks in more detail
 and learn about others.
 
