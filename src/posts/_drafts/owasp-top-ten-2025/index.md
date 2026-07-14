@@ -305,12 +305,41 @@ Three items were renamed to better reflect their scope and focus:
   can quickly know about security incidents and react in time. Unnoticed incidents give an attacker an opportunity to
   cause more damage and try different attack vectors.
 
+## Takeaways
+
+OWASP Top 10 is a great place to start if you want to become more familiar with web application security. 
+It is not an exhaustive guide, but rather a quick reference to the areas that are currently the most important to keep
+in mind when thinking about application security.
+
+Keeping track of how the list evolves from one version to the next can give you an idea of how the security landscape
+is changing and what emerging threats to look out for. Traditional threats become better understood over time and are
+pushed down by broader and more complex categories. It is no longer just about sanitizing your inputs, but about secure
+design and architecture as a whole. It's not just about your code or your application anymore - there are threats
+lurking in every phase of the development pipeline. With increasing reliance on external services, configuration,
+cloud infrastructure, and a complex software supply chain, the attack surface extends far beyond your application.
+
+The Top 10 is not a security checklist, and you should not worry about memorizing all the categories,
+let alone the underlying CWEs. Many mitigations apply to multiple weaknesses, so it is more important to start
+building a security mindset. When building or reviewing a feature, you can start by asking yourself:
+
+- Do I trust my dependencies too much?
+- Did I validate and sanitize external input?
+- How do I react if something unexpected happens?
+- How will I know about and be notified of malicious activity?
+...
+
+Building this mindset will help you harden your application far more than memorizing a list of CWEs. But ultimately, 
+remember that security is by no means a one-time activity. It should be a continuous process throughout the entire
+application lifecycle.
+
 ## Beyond the Top Ten
 
 Now that you're familiar with the top ten security risks of web applications, you'll be more vigilant and aware of
 potential issues. However, as I mentioned, the top ten is an awareness document rather
 than a detailed guide. It covers just the tip of the iceberg and very briefly. You should definitely not stop
-your security education at the top ten. The next step is to get to know these risks in more detail and learn about others.
+your security education at the top ten. You can use the list to identify where to focus your efforts first and then 
+gradually expand with more detailed resources. The next step is to get to know these risks in more detail
+and learn about others.
 
 Another useful resource is [MITRE CWE Top 25](https://cwe.mitre.org/top25/), which instead of broad categories
 focuses on ranking much more specific weaknesses - at the CWE level. That means classic weaknesses such as
