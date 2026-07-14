@@ -37,7 +37,7 @@ npx markdownlint-cli2 "src/**/*.md"
 - `config/filters/` — Nunjucks filters for dates, URLs, text, sorting, pagination, related posts, topics
 - `config/plugins/` — esbuild (JS bundling), sass (SCSS → CSS via LightningCSS), image (eleventy-img + Shiki), markdown
 - `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}`, `{% warning/info/error %}`, `{% linkedPost %}`, `{% linkedSeries %}`
-- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, aria-hidden/tabindex fixes
+- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, aria-hidden/tabindex fixes, Mermaid → inline SVG (` ```mermaid ` fences render at build time via mermaid-isomorphic/Playwright; requires `npx playwright install chromium` once)
 - `config/utils/` — shared markdown parser and formatting helpers
 
 ### Content (`src/`)

@@ -15,6 +15,7 @@ import registerTopicsFilters from "./config/filters/topics.js";
 import registerShortcodes from "./config/shortcodes.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
+import { mermaidTransform } from "./config/html-transform/mermaid-transform.js";
 import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
 import registerMarkdownPlugin from "./config/plugins/markdown.js";
@@ -61,6 +62,9 @@ export default async function (eleventyConfig) {
   registerShortcodes(eleventyConfig);
 
   // Markdown configuration extracted to config/plugins/markdown.js
+
+  // Render ```mermaid code blocks to inline SVG (placeholders emitted by the markdown parser)
+  eleventyConfig.addTransform("mermaid-svg", mermaidTransform);
 
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
