@@ -11,6 +11,11 @@ relatedPosts: ['/owasp-top-ten-2017/', '/snyk-detecting-dependencies-with-known-
 featuredImage: './featured.png'
 ---
 
+At the end of 2025, OWASP released a new edition of its Top 10 Web Application Security Risks. It has been four years since
+the previous edition, and a lot has changed. There are some notable changes in the order of the items as well as new,
+merged or renamed categories. We'll cover what OWASP is and how the list is created, walk through the 2025 top ten
+security risks, and then compare what actually changed since 2021 - and what it means for your applications.
+
 ## What is OWASP?
 
 [OWASP](https://owasp.org/) is an acronym for **O**pen **W**eb **A**pplication **S**ecurity **P**roject.
@@ -147,7 +152,7 @@ If you'd like to compare with an even older version, you can check my article on
 
 ### Broken Access Control still on top
 
-This item ranked as #1 both in 2021 and 2025, while being #5 in 2017 and #2 2013 after Injection.
+This item ranked as #1 both in 2021 and 2025, while being #5 in 2017.
 Despite being in top positions since the very beginning in 2003 and being a well-documented and known risk,
 it still stays on top. Every application from OWASP's dataset had some sort of access-control-related
 vulnerability. Every single one! This area is complex and contains a high number of weaknesses,
@@ -219,8 +224,8 @@ a direct dependency - you can get such a package as part of your transitive depe
 (dependencies of your dependencies). Your application can get compromised at any point in its
 lifecycle - from a malicious IDE plugin or an outdated dependency to the CI/CD process or a code or artifact repository.
 This area is getting more and more attention - it is one of two items added based on a community survey
-(the other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list with a vast majority
-of votes.
+(the other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list, with half of
+respondents ranking it top #1.
 
 These days there are powerful tools to detect vulnerable dependencies, such as
 [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/),
@@ -261,7 +266,7 @@ not be taken lightly.
 
 ### New: Mishandling of Exceptional Conditions
 
-This is the only truly new item in 2025, sitting in last place. Many issues covered by this category were previously
+This is the only entirely new category in 2025, sitting in last place. Many issues covered by this category were previously
 considered as part of bad code quality and design. But given the importance of this area,
 it deserved its own new category.
 
@@ -272,10 +277,12 @@ This makes it very important to keep in mind these issues early in the design an
 much more difficult and expensive to fix later on.
 
 These weaknesses are serious on their own and can lead to various security issues, such as denial of service, data
-corruption, or even complete system compromise. However, they are also often used as a bridge to more efficient
-and targeted attacks. For example, sending detailed error information can expose important details about your system
-which is then used for other attacks. Exposing which frameworks, libraries, and versions are used can lead to
-exploiting their known vulnerabilities. Leaking database internals can lead to better targeted SQL injection.
+corruption, or even complete system compromise. For example, a multi-step process can crash on invalid input, leaving
+the system in an inconsistent state. Malformed input combined with improper error handling can take the service down.
+However, such vulnerabilities are also often used as a bridge to more efficient and targeted attacks. For example,
+sending detailed error information can expose important details about your system which is then used for other exploits.
+Exposing which frameworks, libraries, and versions are used can lead to exploiting their known vulnerabilities.
+Leaking database internals can lead to better targeted SQL injection.
 
 Mitigations for these weaknesses include:
 
