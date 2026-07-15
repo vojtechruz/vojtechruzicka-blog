@@ -1,6 +1,7 @@
 import warning from './shortcodes/warning.js';
 import info from './shortcodes/info.js';
 import error from './shortcodes/error.js';
+import callout from './shortcodes/callout.js';
 import youtube from './shortcodes/youtube.js';
 import codepen from './shortcodes/codepen.js';
 import video from './shortcodes/video.js';
@@ -14,6 +15,7 @@ export default function registerShortcodes(eleventyConfig) {
   eleventyConfig.addPairedShortcode('warning', warning);
   eleventyConfig.addPairedShortcode('info', info);
   eleventyConfig.addPairedShortcode('error', error);
+  eleventyConfig.addPairedShortcode('callout', callout);
 
   // Single shortcodes
   eleventyConfig.addShortcode('youtube', youtube);

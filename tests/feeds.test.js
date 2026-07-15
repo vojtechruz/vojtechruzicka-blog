@@ -7,6 +7,23 @@ import feedsConfig from '../src/_data/feeds.js';
 
 const minDate = new Date(feedsConfig.minDate);
 
+// Post bodies in <content:encoded>/<content> may legitimately link to other (old or draft) posts,
+// so membership checks must look at item URLs (<guid> in RSS, entry <id> in Atom), not the raw XML.
+function getFeedItemUrls(feedContent) {
+  const urls = [];
+  for (const match of feedContent.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)) {
+    urls.push(match[1]);
+  }
+  for (const match of feedContent.matchAll(/<id>([^<]+)<\/id>/g)) {
+    urls.push(match[1]);
+  }
+  return urls;
+}
+
+function feedHasItem(feedContent, postPath) {
+  return getFeedItemUrls(feedContent).some((url) => url.includes(postPath));
+}
+
 describe('Feeds (RSS and Atom)', () => {
   const rssPath = `${SITE_DIR}/feed.xml`;
   const atomPath = `${SITE_DIR}/atom.xml`;
@@ -29,11 +46,10 @@ describe('Feeds (RSS and Atom)', () => {
     // Note: skipIf must test .length - arrays are always truthy, so skipIf(!olderPosts) never skips
     it.skipIf(olderPosts.length === 0)('should not contain posts older than minDate', () => {
       for (const post of olderPosts) {
-        // Checking for the path/URL of the post in the feed content
         const postPath = post.frontmatter.path;
         if (postPath) {
-          expect(rssContent, `RSS feed should not contain old post: ${postPath}`).not.toContain(postPath);
-          expect(atomContent, `Atom feed should not contain old post: ${postPath}`).not.toContain(postPath);
+          expect(feedHasItem(rssContent, postPath), `RSS feed should not contain old post: ${postPath}`).toBe(false);
+          expect(feedHasItem(atomContent, postPath), `Atom feed should not contain old post: ${postPath}`).toBe(false);
         }
       }
     });
@@ -49,8 +65,12 @@ describe('Feeds (RSS and Atom)', () => {
       for (const post of newerPublishedPosts) {
         const postPath = post.frontmatter.path;
         if (postPath) {
-          expect(rssContent, `RSS feed should contain newer published post: ${postPath}`).toContain(postPath);
-          expect(atomContent, `Atom feed should contain newer published post: ${postPath}`).toContain(postPath);
+          expect(feedHasItem(rssContent, postPath), `RSS feed should contain newer published post: ${postPath}`).toBe(
+            true,
+          );
+          expect(feedHasItem(atomContent, postPath), `Atom feed should contain newer published post: ${postPath}`).toBe(
+            true,
+          );
         }
       }
     });
@@ -67,8 +87,10 @@ describe('Feeds (RSS and Atom)', () => {
       for (const post of draftPosts) {
         const postPath = post.frontmatter.path;
         if (postPath) {
-          expect(rssContent, `RSS feed should not contain draft post: ${postPath}`).not.toContain(postPath);
-          expect(atomContent, `Atom feed should not contain draft post: ${postPath}`).not.toContain(postPath);
+          expect(feedHasItem(rssContent, postPath), `RSS feed should not contain draft post: ${postPath}`).toBe(false);
+          expect(feedHasItem(atomContent, postPath), `Atom feed should not contain draft post: ${postPath}`).toBe(
+            false,
+          );
         }
       }
     });

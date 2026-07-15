@@ -1,0 +1,58 @@
+@use '../variables';
+
+/*
+ * Titled multiline callout panels ({% callout "variant", "Title" %}).
+ * Unlike `.msg` boxes (short inline notes, fully tinted), callouts keep
+ * body text in the normal color and signal the variant only through
+ * the left stripe, title and icon — readable for long bullet content.
+ */
+.callout {
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--callout-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-sm);
+  padding: var(--gap-medium);
+  padding-left: calc(var(--gap-medium) + 3px);
+  margin: var(--gap-large) 0;
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--gap-small) + 0.15rem);
+  margin: 0 0 var(--gap-small);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--callout-accent);
+
+  svg {
+    width: 2em;
+    height: 2em;
+    flex-shrink: 0;
+  }
+}
+
+.callout-body {
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.callout--success {
+  --callout-accent: var(--color-success);
+}
+
+.callout--info {
+  --callout-accent: var(--color-info);
+}
+
+.callout--warning {
+  --callout-accent: var(--color-warning);
+}
+
+.callout--error {
+  --callout-accent: var(--color-error);
+}

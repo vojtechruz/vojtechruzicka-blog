@@ -182,13 +182,15 @@ This includes weaknesses such as Cross-Site Request Forgery,
 [misconfiguration of sensitive cookies](/protect-http-cookies/), Path Traversal, Insecure Storage of
 Sensitive Data and missing or incorrect authorization.
 
-There are many mitigation strategies, such as:
+{% callout "success", "How to prevent it" %}
 
 - Least privilege possible. Deny by default.
 - Short-lived sessions and tokens. Properly invalidate after logout.
 - Rate limits to minimize automated attacks.
 - Prefer established authentication and authorization tooling. Prefer declarative over imperative.
 - Make access control part of your testing workflow.
+
+{% endcallout %}
 
 ### Merged: Server Side Request Forgery
 
@@ -203,13 +205,15 @@ SSRF vulnerabilities allow attackers to trick a server-side application into mak
 This allows attackers to reach resources inaccessible from the outside. It can lead to accessing internal-only services,
 leaking sensitive data, or mapping internal networks for further exploitation.
 
-Prevention includes:
+{% callout "success", "How to prevent it" %}
 
 - Avoid depending on client-provided data to determine the target location of network calls.
 - Deny access by default, whitelisting only exceptions instead of using blacklists.
 - Do not directly send responses received from external calls to the client.
 - Internal network segmentation.
 - Monitoring even internal traffic and alerting on unusual behavior.
+
+{% endcallout %}
 
 ### Rising threats
 
@@ -228,7 +232,7 @@ Common examples of config issues include relying on an external unsafe configura
 [missing security headers](/preventing-clickjacking/), a permissive cross-origin policy, or enabling unnecessary
 features that widen the potential attack surface.
 
-To prevent Security Misconfiguration issues:
+{% callout "success", "How to prevent it" %}
 
 - Make sure you review your configurations regularly.
 - Keep configuration centralised.
@@ -236,6 +240,8 @@ To prevent Security Misconfiguration issues:
 - Automate as much as possible.
 - Regularly scan for misplaced secrets.
 - Keep as much configuration as possible the same across environments.
+
+{% endcallout %}
 
 #### Software Supply Chain Failures
 
@@ -269,7 +275,7 @@ These days there are powerful tools to detect vulnerable dependencies, such as
 New versions may break compatibility or require a newer runtime - or the component may be long abandoned
 and unmaintained.
 
-Possible mitigations:
+{% callout "success", "How to prevent it" %}
 
 - Maintain a list of your dependencies (such as Software Bill of Materials).
 - Actively scan for vulnerable and outdated component versions, including transitive dependencies, unmaintained and
@@ -279,6 +285,8 @@ Possible mitigations:
 - Obtain only components from trusted sources, signed if possible
   to avoid tampering.
 - Remove anything unused to reduce attack surface.
+
+{% endcallout %}
 
 ### Traditional risks moving down
 
@@ -319,12 +327,14 @@ sending detailed error information can expose important details about your syste
 Exposing which frameworks, libraries, and versions are used can lead to exploiting their known vulnerabilities.
 Leaking database internals can lead to better targeted SQL injection.
 
-Mitigations for these weaknesses include:
+{% callout "success", "How to prevent it" %}
 
 - Proper error handling, logging, and alerting. Do not expose sensitive information in error messages and logs.
 - Input validation and sanitization. Also prevents injection attacks.
 - Limit resource utilization. Rate limiting, throttling, resource quotas.
 - Centralised error handling.
+
+{% endcallout %}
 
 ### Renames and minor adjustments
 
