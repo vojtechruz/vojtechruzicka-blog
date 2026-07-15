@@ -6,7 +6,6 @@ path: '/owasp-top-10-2025/'
 excerpt:
   'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What are the changes since 2021,
   and is your application vulnerable?'
-draftStatus: 'draft'
 relatedPosts: ['/owasp-top-ten-2017/', '/snyk-detecting-dependencies-with-known-vulnerabilities/', '/detecting-dependencies-known-vulnerabilities/', '/preventing-clickjacking/']
 featuredImage: './featured.png'
 ---
