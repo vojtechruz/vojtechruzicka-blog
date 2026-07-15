@@ -26,7 +26,8 @@ describe('Feeds (RSS and Atom)', () => {
     const allPosts = getAllPosts();
     const olderPosts = allPosts.filter((p) => p.frontmatter.date && new Date(p.frontmatter.date) < minDate);
 
-    it.skipIf(!olderPosts)('should not contain posts older than minDate', () => {
+    // Note: skipIf must test .length - arrays are always truthy, so skipIf(!olderPosts) never skips
+    it.skipIf(olderPosts.length === 0)('should not contain posts older than minDate', () => {
       for (const post of olderPosts) {
         // Checking for the path/URL of the post in the feed content
         const postPath = post.frontmatter.path;
@@ -37,15 +38,14 @@ describe('Feeds (RSS and Atom)', () => {
       }
     });
 
-    it('should contain published posts newer than or equal to minDate', () => {
-      const newerPublishedPosts = allPosts.filter(
-        (p) => new Date(p.frontmatter.date) >= minDate && !p.frontmatter.draftStatus,
-      );
+    // NOTE: as of 2026-07 the feeds are intentionally empty - minDate (2026-01-01) is newer than
+    // every published post, so nothing qualifies yet. This skip makes that state visible in the
+    // test report instead of passing vacuously; the test activates once a post publishes past minDate.
+    const newerPublishedPosts = allPosts.filter(
+      (p) => new Date(p.frontmatter.date) >= minDate && !p.frontmatter.draftStatus,
+    );
 
-      if (newerPublishedPosts.length === 0) {
-        return;
-      }
-
+    it.skipIf(newerPublishedPosts.length === 0)('should contain published posts newer than or equal to minDate', () => {
       for (const post of newerPublishedPosts) {
         const postPath = post.frontmatter.path;
         if (postPath) {
@@ -63,7 +63,7 @@ describe('Feeds (RSS and Atom)', () => {
     const allPosts = getAllPosts();
     const draftPosts = allPosts.filter((p) => p.frontmatter.draftStatus);
 
-    it.skipIf(!draftPosts)('should not contain any draft posts, regardless of date', () => {
+    it.skipIf(draftPosts.length === 0)('should not contain any draft posts, regardless of date', () => {
       for (const post of draftPosts) {
         const postPath = post.frontmatter.path;
         if (postPath) {

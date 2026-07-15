@@ -1,10 +1,11 @@
 name: CI — Build & Test
 
+# Runs on every push (including master, so direct pushes to the deploy branch are gated)
+# and on PRs targeting master.
 on:
   pull_request:
     branches: [master]
   push:
-    branches-ignore: [master]
 
 concurrency:
   group: ci-${{ github.ref }}

@@ -56,66 +56,6 @@ article {
   color: var(--color-text-muted);
 }
 
-/* Applies to headings that have the permalink anchor */
-.post h1,
-.post h2,
-.post h3,
-.post h4 {
-  position: relative;
-  scroll-margin-top: var(--offset-anchor-post);
-  /* prevents heading from sitting under the fixed nav */
-}
-
-/* The inserted anchor icon */
-.post h2 .header-anchor,
-.post h3 .header-anchor,
-.post h4 .header-anchor {
-  position: absolute;
-  left: -2.3rem;
-  /* distance into the left gutter */
-  top: 52.5%;
-  transform: translateY(-50%);
-  opacity: 0;
-  /* hide by default */
-  text-decoration: none;
-  color: var(--color-text-muted);
-  font-size: 0.9em;
-  transition:
-    opacity 0.2s ease,
-    color 0.2s ease;
-  padding: 0.2rem;
-}
-
-/* Show the icon on hover/focus */
-.post h2:hover .header-anchor,
-.post h2:focus-within .header-anchor,
-.post h3:hover .header-anchor,
-.post h3:focus-within .header-anchor,
-.post h4:hover .header-anchor,
-.post h4:focus-within .header-anchor {
-  opacity: 1;
-  color: var(--color-link);
-}
-
-/* Mobile: always show icon (no hover available) */
-@include utilities.respond(medium) {
-  .post h2 .header-anchor,
-  .post h3 .header-anchor,
-  .post h4 .header-anchor {
-    opacity: 1;
-  }
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 #comments {
   padding-top: var(--gap-large);
   padding-bottom: var(--gap-xlarge);

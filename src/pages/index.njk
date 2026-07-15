@@ -9,6 +9,9 @@ eleventyComputed:
   # "/" for page 1, "/pages/2/" for page 2, etc.
   permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/pages/{{ pagination.pageNumber + 1 }}/{% endif %}"
   title: "{% if pagination.pageNumber == 0 %}Latest posts{% else %}Page {{ pagination.pageNumber + 1 }} – Latest posts{% endif %}"
+  # Page 1 ("/") intentionally stays empty so it falls back to the site-wide description;
+  # later pages get a distinct description instead of duplicating it.
+  description: "{% if pagination.pageNumber > 0 %}Latest programming articles – page {{ pagination.pageNumber + 1 }}.{% endif %}"
 ---
 {% extends "layouts/post-list.njk" %}
 

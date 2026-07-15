@@ -20,6 +20,7 @@ import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-tra
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
 import registerMarkdownPlugin from "./config/plugins/markdown.js";
 import { stripPreTabindex } from "./config/html-transform/remove-code-tabindex.js";
+import { wrapTablesTransform } from "./config/html-transform/wrap-tables-transform.js";
 import registerDrafts from "./config/drafts.js";
 
 export default async function (eleventyConfig) {
@@ -76,6 +77,9 @@ export default async function (eleventyConfig) {
 
   // Shiki is adding tabindex to code blocks, remove that
   eleventyConfig.addTransform("strip-pre-tabindex", stripPreTabindex);
+
+  // Wrap tables in a horizontal scroll container for narrow screens
+  eleventyConfig.addTransform("wrap-tables", wrapTablesTransform);
 
   // Rebuild when these files change in --serve mode
   eleventyConfig.addWatchTarget("./config/**/*.js");

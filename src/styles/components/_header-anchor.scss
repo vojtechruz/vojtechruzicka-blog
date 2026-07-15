@@ -102,10 +102,10 @@
   color: var(--color-link);
 }
 
-// On mobile hide by default, show only on  tap
+// On mobile hide by default, show only on tap
 .post h2:target .header-anchor,
 .post h3:target .header-anchor,
-.post h3:target .header-anchor {
+.post h4:target .header-anchor {
   opacity: 1;
 }
 

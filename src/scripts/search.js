@@ -27,11 +27,23 @@
       return;
     }
 
-    // Load assets first (only once)
-    await ensureAssets();
+    // Set the guard synchronously, BEFORE any await. Multiple lazy triggers
+    // (pointerdown + click + focusin) can fire for a single user gesture; if the
+    // guard were set only after the async asset load, each of them would pass the
+    // check above and create a duplicate PagefindUI instance.
+    container.dataset.pagefindInited = '1';
 
-    if (!window.PagefindUI) {
-      throw new Error('window.PagefindUI not available');
+    try {
+      // Load assets first (only once)
+      await ensureAssets();
+
+      if (!window.PagefindUI) {
+        throw new Error('window.PagefindUI not available');
+      }
+    } catch (err) {
+      // Allow a later trigger to retry after a failed asset load
+      delete container.dataset.pagefindInited;
+      throw err;
     }
 
     // Clear any placeholder content
@@ -129,8 +141,6 @@
         }
       });
     });
-
-    container.dataset.pagefindInited = '1';
   }
 
   // Find all potential search containers: support both legacy #search and new .js-pagefind
@@ -139,7 +149,7 @@
   // Attach lazy-init triggers per container (include pointerdown for better touch support)
   containers.forEach((container) => {
     const triggerEvents = ['pointerdown', 'click', 'focusin', 'mouseenter'];
-    const onTrigger = () => initContainer(container);
+    const onTrigger = () => initContainer(container).catch(console.error);
     triggerEvents.forEach((ev) => container.addEventListener(ev, onTrigger, { once: true }));
   });
 
@@ -154,7 +164,7 @@
           const target = containers[0];
 
           if (target) {
-            initContainer(target);
+            initContainer(target).catch(console.error);
           }
         },
         { once: true },
@@ -176,7 +186,7 @@
       const target = containers[0];
 
       if (target) {
-        initContainer(target);
+        initContainer(target).catch(console.error);
       }
     }
   });

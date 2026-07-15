@@ -1,4 +1,4 @@
-// config/htm-transform/wrapPicturesTransform.js
+// config/html-transform/wrap-pictures-transform.js
 // ESM module
 import { load } from 'cheerio';
 
@@ -7,11 +7,11 @@ import { load } from 'cheerio';
  * with <div class="image-wrapper"> ... </div>.
  *
  * Safety:
- * - Only runs on .html outputs
+ * - Only runs on .html outputs that actually contain a <picture>
  * - Skips wrapping if the immediate parent is already a div.image-wrapper
  */
 export async function wrapPicturesTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith('.html')) {
+  if (!outputPath || !outputPath.endsWith('.html') || !content.includes('<picture')) {
     return content;
   }
 
