@@ -23,11 +23,11 @@ It is an open-source non-profit organization, which focuses on improving softwar
 OWASP aims to raise awareness of security issues and provides free tools and resources to mitigate them.
 
 It covers a broad range of tools, resources, and activities. They [organize various events](https://owasp.org/events/)
-including their own AppSec conference. OWASP consists of various projects with different focus
+including their own AppSec conference. OWASP consists of numerous projects with different focus
 including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/),
 [GenAI Security Project](https://genai.owasp.org/),
 [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/),
-[various cheat sheets,](https://owasp.org/www-project-cheat-sheets/) and [other projects](https://owasp.org/projects/).
+[various cheat sheets,](https://owasp.org/www-project-cheat-sheets/) and [others](https://owasp.org/projects/).
 
 ## OWASP Top Ten
 
@@ -111,6 +111,24 @@ another.
 
 An important part of secure design is therefore considering how technical vulnerabilities translate into business risks
 and how to mitigate them.
+
+The whole methodology can be summarized like this:
+
+```mermaid caption
+flowchart TD
+    accTitle: How the OWASP Top 10 is compiled
+    accDescr: Data from security tooling vendors, bug bounties and vulnerability databases is mapped to CWEs, grouped into risk categories and ranked by risk score. Eight categories come from the data, two from the community survey.
+    V[Security tooling vendors] --> CWE[Reported weaknesses - CWEs]
+    BB[Bug bounties] --> CWE
+    DB[Vulnerability databases] --> CWE
+    CWE --> CAT[Grouped into risk categories]
+    CAT --> SCORE["Risk score<br>prevalence + impact + exploitability"]
+    SCORE --> DATA[8 categories from data]
+    SURVEY[Community survey] --> EXPERT[2 categories from experts]
+    DATA --> TOP[OWASP Top 10 2025]
+    EXPERT --> TOP
+    style TOP stroke:#f59e0b,stroke-width:2px
+```
 
 ## Top Ten 2025
 
@@ -196,12 +214,12 @@ Prevention includes:
 
 ### Rising threats
 
-Only two items which moved up, both by 3 positions. These are definitely worth watching for and looking at the reasons
-can give us better understanding on how the security situation will evolve in the future.
+Only two items moved up, both by 3 positions. These are definitely worth watching, and looking at the reasons
+can give us a better understanding of how the security situation will evolve.
 
-### Security Misconfiguration
+#### Security Misconfiguration
 
-**Security Misconfiguration** now sits in
+Security Misconfiguration now sits in
 second place, after Broken Access Control. This area includes all the configuration settings which are incorrect
 from the security perspective, creating vulnerabilities. It is very broad, and with systems getting more and more
 complex and more configurable, it is easy to miss an item or two in your configuration. In fact, as with
@@ -220,7 +238,7 @@ To prevent Security Misconfiguration issues:
 - Regularly scan for misplaced secrets.
 - Keep as much configuration as possible the same across environments.
 
-### Software Supply Chain Failures
+#### Software Supply Chain Failures
 
 The second item rising from the sixth to the third place is **Software Supply Chain Failures**.
 It was originally introduced almost at the end of the list in 2013 under the name
@@ -230,10 +248,20 @@ issues, not only vulnerable dependencies. It is getting more and more common tha
 compromised and a malicious package that your application depends on is released. It does not even have to be
 a direct dependency - you can get such a package as part of your transitive dependencies
 (dependencies of your dependencies). Your application can get compromised at any point in its
-lifecycle - from a malicious IDE plugin or an outdated dependency to the CI/CD process or a code or artifact repository.
+lifecycle - from a malicious IDE plugin or an outdated dependency to the CI/CD process or a code/artifact repository.
 This area is getting more and more attention - it is one of two items added based on a community survey
 (the other being **Security Logging and Alerting Failures**) - reaching number 1 in the result list, with half of
-respondents ranking it top #1.
+respondents ranking it #1.
+
+```mermaid caption
+flowchart LR
+    accTitle: Evolution of the Software Supply Chain Failures category
+    accDescr: The category started in 2013 as Using Components with Known Vulnerabilities in position 9, kept the same name in 2017, was renamed to Vulnerable and Outdated Components in position 6 in 2021, and became Software Supply Chain Failures in position 3 in 2025.
+    A["2013 - #9<br>Using Components with<br>Known Vulnerabilities"] --> B["2017 - #9<br>Using Components with<br>Known Vulnerabilities"]
+    B --> C["2021 - #6<br>Vulnerable and<br>Outdated Components"]
+    C --> D["2025 - #3<br>Software Supply<br>Chain Failures"]
+    style D stroke:#f59e0b,stroke-width:2px
+```
 
 These days there are powerful tools to detect vulnerable dependencies, such as
 [Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/),
@@ -257,14 +285,14 @@ Possible mitigations:
 
 Three items that were in the top 4 in 2021 have all moved down by two positions:
 
-- **Cryptographic Failures**: #2 -> #4
-- **Injection** #3 -> #5
-- **Insecure Design** #4 -> #6
+- **Cryptographic Failures**: #2 → #4
+- **Injection** #3 → #5
+- **Insecure Design** #4 → #6
 
 As you can see, all of them moved by 2 places, while preserving their relative positions. This suggests that their
 importance has not dropped significantly, but they were rather pushed by two major categories moving up, which we
-discussed above. With systems getting more and more config-driven, **Security Misconfiguration** has risen
-significantly. **Software Supply Chain Failures** had significant support in the community survey and since the category
+discussed above. With systems getting more and more config-driven, **Security Misconfiguration** risk has risen
+significantly. **Software Supply Chain Failures** had major support in the community survey and since the category
 was significantly broadened, it now contains more weaknesses.
 
 Still, over time items in the OWASP top ten tend to gradually go down as awareness increases and tooling gets
@@ -278,7 +306,7 @@ This is the only entirely new category in 2025, sitting in last place. Many issu
 considered as part of bad code quality and design. But given the importance of this area,
 it deserved its own new category.
 
-It covers errors and unexpected states. Applications often fail to predict and prevent such situations. If such
+It covers errors and unexpected states. Applications often fail to predict and prevent these situations. If such
 a situation happens, it is important to identify it and react properly. Exceptional states are not necessarily
 only technical issues, but also logical flaws or bad design of domain logic and business processes.
 This makes it very important to keep in mind these issues early in the design and development process as they are
@@ -313,7 +341,7 @@ Three items were renamed to better reflect their scope and focus:
   can quickly know about security incidents and react in time. Unnoticed incidents give an attacker an opportunity to
   cause more damage and try different attack vectors.
 
-## Key Takeaways
+## Key takeaways
 
 OWASP Top 10 is a great place to start if you want to become more familiar with web application security.
 It is not an exhaustive guide, but rather a quick reference to the areas that are currently the most important to keep
