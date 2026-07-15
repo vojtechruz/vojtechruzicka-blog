@@ -1,0 +1,34 @@
+@use '../variables';
+
+/* Build-time rendered Mermaid diagrams (see config/html-transform/mermaid-transform.js).
+   Diagram colors are baked into the SVG from the same palette as _variables.scss. */
+.mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: var(--gap-large) 0;
+
+  /* Wide diagrams scroll horizontally instead of breaking the layout */
+  overflow-x: auto;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Diagram with a visible caption (```mermaid caption) - matches the video/codepen figure pattern */
+.mermaid-figure {
+  margin: var(--gap-large) 0;
+  margin-inline: 0;
+
+  .mermaid-diagram {
+    margin: 0;
+  }
+
+  .mermaid-caption {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: var(--gap-medium);
+  }
+}
