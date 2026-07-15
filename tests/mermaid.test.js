@@ -88,6 +88,17 @@ describe('mermaidTransform', () => {
     expect(style).toContain('#c7d2da'); // --color-text
   });
 
+  it('rounds node corners to match the blog styling', { timeout: 90_000 }, async () => {
+    const output = await mermaidTransform(pageWith(placeholder(DIAGRAM)), 'page/index.html');
+    const $ = cheerio.load(output);
+
+    const $rects = $('.mermaid-diagram svg g.node rect');
+    expect($rects.length).toBeGreaterThan(0);
+    $rects.each((_, el) => {
+      expect($(el).attr('rx')).toBe('3');
+    });
+  });
+
   it('renders labels as pure SVG text, not foreignObject HTML', { timeout: 90_000 }, async () => {
     const withLineBreak = 'flowchart TD\n    A["Multi<br>line"] --> B[Plain]';
     const output = await mermaidTransform(pageWith(placeholder(withLineBreak)), 'page/index.html');
@@ -100,10 +111,7 @@ describe('mermaidTransform', () => {
 
   it('renders multiple diagrams on one page with unique SVG ids', { timeout: 90_000 }, async () => {
     const second = 'flowchart LR\n    X[One] --> Y[Two]';
-    const output = await mermaidTransform(
-      pageWith(placeholder(DIAGRAM) + placeholder(second)),
-      'page/index.html',
-    );
+    const output = await mermaidTransform(pageWith(placeholder(DIAGRAM) + placeholder(second)), 'page/index.html');
     const $ = cheerio.load(output);
 
     const ids = $('.mermaid-diagram svg')

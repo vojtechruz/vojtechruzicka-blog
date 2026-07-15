@@ -117,11 +117,11 @@ The whole methodology can be summarized like this:
 flowchart TD
     accTitle: How the OWASP Top 10 is compiled
     accDescr: Data from security tooling vendors, bug bounties and vulnerability databases is mapped to CWEs, grouped into risk categories and ranked by risk score. Eight categories come from the data, two from the community survey.
-    V[Security tooling vendors] --> CWE[Reported weaknesses - CWEs]
+    V[Security tooling vendors] --> CWE[Reported weaknesses - CWE]
     BB[Bug bounties] --> CWE
     DB[Vulnerability databases] --> CWE
     CWE --> CAT[Grouped into risk categories]
-    CAT --> SCORE["Risk score<br>prevalence + impact + exploitability"]
+    CAT --> SCORE["Risk score calculation"]
     SCORE --> DATA[8 categories from data]
     SURVEY[Community survey] --> EXPERT[2 categories from experts]
     DATA --> TOP[OWASP Top 10 2025]

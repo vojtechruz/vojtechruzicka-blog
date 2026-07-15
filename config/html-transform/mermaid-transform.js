@@ -27,19 +27,21 @@ export const MERMAID_CONFIG = {
   htmlLabels: false,
   flowchart: { htmlLabels: false },
   fontFamily: BLOG_FONT_STACK,
+  // Diagrams sit on a surface-1 card (.mermaid-diagram in _mermaid.scss), so fills
+  // are one step darker (surface-0) to read as wells against the card background.
   themeVariables: {
     darkMode: true,
-    background: '#0b1220', // --color-surface-0
-    primaryColor: '#111827', // --color-surface-1 (node fill)
+    background: '#111827', // --color-surface-1 (card background)
+    primaryColor: '#0b1220', // --color-surface-0 (node fill)
     primaryTextColor: '#e5e7eb', // --color-text-heading
-    primaryBorderColor: '#2a3a54', // --color-border
-    secondaryColor: '#0f172a', // --color-surface-2
-    tertiaryColor: '#0f172a', // --color-surface-2
+    primaryBorderColor: '#475569', // --color-bg-highlight (node outline)
+    secondaryColor: '#0b1220', // --color-surface-0
+    tertiaryColor: '#0b1220', // --color-surface-0
     lineColor: '#94a3b8', // --color-text-muted (edges)
     textColor: '#c7d2da', // --color-text
-    clusterBkg: '#0f172a', // --color-surface-2 (subgraph fill)
+    clusterBkg: '#0b1220', // --color-surface-0 (subgraph fill)
     clusterBorder: '#233046', // --color-border-muted
-    edgeLabelBackground: '#0b1220', // --color-surface-0
+    edgeLabelBackground: '#111827', // --color-surface-1 (must match card background)
     noteBkgColor: '#233046',
     noteTextColor: '#e5e7eb',
     noteBorderColor: '#2a3a54',
@@ -48,6 +50,26 @@ export const MERMAID_CONFIG = {
     fontSize: '16px',
   },
 };
+
+/** ~ --radius-xs (0.2rem) - matches the subtle rounding used across the blog. */
+const NODE_CORNER_RADIUS = 3;
+
+/**
+ * Mermaid has no theme option for flowchart node corner radius, so round the
+ * rects in the rendered SVG directly. Baked into the markup (not page CSS),
+ * so the diagrams stay self-contained for feed readers. Rects that already
+ * declare a radius (e.g. the rounded `(text)` node shape) are left alone.
+ */
+function roundNodeCorners(svg) {
+  const $ = load(svg, { xmlMode: true });
+  $('g.node rect, g.cluster rect').each((_, el) => {
+    const $el = $(el);
+    if (!$el.attr('rx')) {
+      $el.attr('rx', String(NODE_CORNER_RADIUS));
+    }
+  });
+  return $.xml();
+}
 
 let renderer;
 
@@ -67,7 +89,7 @@ async function renderDiagrams(sources) {
   results.forEach((result, i) => {
     if (result.status === 'fulfilled') {
       // title carries the diagram's accTitle (if declared) - used for the optional <figcaption>
-      svgCache.set(sources[i], { svg: result.value.svg, title: result.value.title });
+      svgCache.set(sources[i], { svg: roundNodeCorners(result.value.svg), title: result.value.title });
     } else {
       console.error(`Mermaid rendering failed for diagram starting with "${sources[i].slice(0, 60)}":`, result.reason);
     }
