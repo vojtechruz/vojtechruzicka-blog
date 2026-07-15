@@ -126,7 +126,11 @@ flowchart TD
     SURVEY[Community survey] --> EXPERT[2 categories from experts]
     DATA --> TOP[OWASP Top 10 2025]
     EXPERT --> TOP
-    style TOP stroke:#f59e0b,stroke-width:2px
+    classDef data fill:#38bdf824,stroke:#38bdf85c
+    classDef survey fill:#2dd4bf24,stroke:#2dd4bf5c
+    class V,BB,DB,CWE,CAT,SCORE,DATA data
+    class SURVEY,EXPERT survey
+    style TOP fill:#f59e0b24,stroke:#f59e0b,stroke-width:2px
 ```
 
 ## Top Ten 2025
