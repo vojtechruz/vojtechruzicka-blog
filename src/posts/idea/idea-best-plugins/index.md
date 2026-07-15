@@ -70,7 +70,9 @@ as it is an important file for npm projects.
 
 ## [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
 
-{% info %} **UPDATE:** As of 2020.1, Grazie is bundled by default in IntelliJ IDEA. {% endinfo %}
+{% callout "update", "Update" %}
+As of 2020.1, Grazie is bundled by default in IntelliJ IDEA.
+{% endcallout %}
 
 IntelliJ IDEA has a basic spelling checker, which allows you to detect some typos, but it is not much useful on top of
 that. It is definitely not a replacement for dedicated grammar checking services such as

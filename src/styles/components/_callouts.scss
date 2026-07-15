@@ -49,6 +49,11 @@
   --callout-accent: var(--color-info);
 }
 
+/* Update notices share the informational blue; the refresh icon tells them apart */
+.callout--update {
+  --callout-accent: var(--color-info);
+}
+
 .callout--warning {
   --callout-accent: var(--color-warning);
 }

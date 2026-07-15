@@ -30,7 +30,7 @@ describe('callout shortcode', () => {
     expect($('.callout-body p em').text()).toBe('closing');
   });
 
-  it.each(['success', 'info', 'warning', 'error'])('supports the %s variant', async (variant) => {
+  it.each(['success', 'info', 'warning', 'error', 'update'])('supports the %s variant', async (variant) => {
     const output = await callout('Text', variant, 'Title');
     const $ = cheerio.load(output);
 

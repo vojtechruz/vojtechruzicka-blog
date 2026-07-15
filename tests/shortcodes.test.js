@@ -3,6 +3,7 @@ import badge from '../config/shortcodes/badge.js';
 import info from '../config/shortcodes/info.js';
 import warning from '../config/shortcodes/warning.js';
 import error from '../config/shortcodes/error.js';
+import success from '../config/shortcodes/success.js';
 import youtube from '../config/shortcodes/youtube.js';
 import video from '../config/shortcodes/video.js';
 import linkedPost from '../config/shortcodes/linked-post.js';
@@ -58,6 +59,23 @@ describe('Message Shortcodes', () => {
     const result = await error('[Link](http://example.com)');
     expect(result).toContain('msg msg-error');
     expect(result).toContain('<a href="http://example.com">Link</a>');
+  });
+
+  it('should render success message with markdown', async () => {
+    const result = await success('**Done**');
+    expect(result).toContain('msg msg-success');
+    expect(result).toContain('<strong>Done</strong>');
+  });
+
+  it.each([
+    ['info', info],
+    ['warning', warning],
+    ['error', error],
+    ['success', success],
+  ])('renders a decorative variant icon for %s', async (_, shortcode) => {
+    const result = await shortcode('Text');
+    expect(result).toContain('<svg aria-hidden="true"');
+    expect(result).toContain('class="msg-content"');
   });
 
   it('should handle multi-line markdown', async () => {
