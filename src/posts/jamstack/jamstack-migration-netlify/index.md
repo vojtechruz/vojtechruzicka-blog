@@ -85,7 +85,7 @@ redirect, rewrite or proxy rules.
 
 ### One click HTTPS
 
-{% callout "update", "Update" %}
+{% callout "update", "Update", "2018-08" %}
 As of July 2018,
 [all new sites on Netlify are HTTPS by default](https://www.netlify.com/blog/2018/07/02/all-new-sites-on-netlify-are-https-by-default/).
 You no longer need to explicitly enable it.

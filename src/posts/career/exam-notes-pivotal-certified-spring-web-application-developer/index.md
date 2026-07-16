@@ -12,7 +12,7 @@ needsReview: true
 
 ## Certification voucher
 
-{% callout "update", "Update" %}
+{% callout "update", "Update", "2018-02" %}
 Certification can now be purchased separately for $200,
 [you no longer need](https://spring.io/blog/2017/05/10/pivotal-announces-spring-curriculum-certification-changes) to
 purchase the four days training to receive the voucher. However, if you do so, you will still receive the free voucher.

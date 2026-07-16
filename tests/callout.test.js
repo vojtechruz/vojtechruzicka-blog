@@ -40,6 +40,24 @@ describe('callout shortcode', () => {
   it('throws on an unknown variant', async () => {
     await expect(callout('Text', 'purple', 'Title')).rejects.toThrow(/Unknown callout variant "purple"/);
   });
+
+  it('renders no date element when date is omitted', async () => {
+    const output = await callout('Text', 'update', 'Update');
+    expect(output).not.toContain('callout-date');
+  });
+
+  it.each([
+    ['2021', '2021'],
+    ['2021-11', 'November 2021'],
+    ['2021-11-05', 'November 5, 2021'],
+  ])('renders date "%s" as "%s" in a time element', async (input, expected) => {
+    const output = await callout('Text', 'update', 'Update', input);
+    const $ = cheerio.load(output);
+
+    const $time = $('.callout-title time.callout-date');
+    expect($time.attr('datetime')).toBe(input);
+    expect($time.text()).toBe(expected);
+  });
 });
 
 describe('callouts in built output', () => {

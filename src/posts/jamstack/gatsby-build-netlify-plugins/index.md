@@ -8,7 +8,7 @@ excerpt: 'What are Netlify Build plugins and how to make your GatsbyJS builds 3x
 needsReview: true
 ---
 
-{% callout "update", "Update" %}
+{% callout "update", "Update", "2021-11" %}
 Build plugins are no longer in beta and are
 [officially available](https://www.netlify.com/blog/2020/05/27/netlify-build-plugins-are-here/). Gatsby plugin described
 in this article is now used by default and does not need to be explicitly enabled.

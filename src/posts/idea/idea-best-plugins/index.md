@@ -70,7 +70,7 @@ as it is an important file for npm projects.
 
 ## [Grazie](https://plugins.jetbrains.com/plugin/12175-grazie/)
 
-{% callout "update", "Update" %}
+{% callout "update", "Update", "2020-02" %}
 As of 2020.1, Grazie is bundled by default in IntelliJ IDEA.
 {% endcallout %}
 
