@@ -1,5 +1,34 @@
 import { load } from 'cheerio';
 import site from '../../src/_data/site.js';
+import seriesMetadata from '../../src/_data/seriesMetadata.js';
+import { escapeHtml } from '../utils/formatting.js';
+
+/**
+ * Footer appended to each feed item's content. Full-text feeds otherwise lose the
+ * engagement chrome that lives below the article on the site: a link back for
+ * comments (readers never load Giscus in a reader) and, for series posts, the
+ * series context that only exists in the sidebar. Links are absolute since feed
+ * items are read off-site.
+ */
+export function feedFooter(postUrl, base = site.url) {
+  const abs = (p) => base.replace(/\/+$/, '') + '/' + String(p).replace(/^\/+/, '');
+  const postAbs = abs(postUrl);
+  const siteHost = new URL(base).host.replace(/^www\./, '');
+
+  let seriesLine = '';
+  const series = seriesMetadata.find((s) => s.posts.includes(postUrl));
+  if (series) {
+    const part = series.posts.indexOf(postUrl) + 1;
+    const seriesAbs = abs(`/series/${series.slug}/`);
+    seriesLine = `<p><em>Part ${part} of ${series.posts.length} in the <a href="${seriesAbs}">${escapeHtml(series.name)}</a> series.</em></p>`;
+  }
+
+  return (
+    `<hr>${seriesLine}` +
+    `<p><a href="${postAbs}#comments">Discuss this article</a> · ` +
+    `<a href="${postAbs}">Read it on ${escapeHtml(siteHost)}</a></p>`
+  );
+}
 
 /** Rewrite root-relative href/src to absolute URLs (exported for tests). */
 export function htmlToAbsoluteUrls(html, base = site.url) {
@@ -81,6 +110,7 @@ export function feedContent(html) {
 
 export default function registerUrlFilters(eleventyConfig) {
   eleventyConfig.addFilter('feedContent', feedContent);
+  eleventyConfig.addFilter('feedFooter', feedFooter);
 
   // Absolute URL
   eleventyConfig.addFilter('absoluteUrl', (path, base = site.url) => {

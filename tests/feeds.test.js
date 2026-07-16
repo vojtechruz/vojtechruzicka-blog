@@ -1,7 +1,7 @@
 ﻿import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
-import { feedContent, htmlToAbsoluteUrls } from '../config/filters/urls.js';
+import { feedContent, htmlToAbsoluteUrls, feedFooter } from '../config/filters/urls.js';
 
 // Load feed config
 import feedsConfig from '../src/_data/feeds.js';
@@ -179,6 +179,30 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
       }
+    });
+  });
+
+  describe('Feed item footer', () => {
+    it('appends a discuss link and read-on-site link with absolute URLs', () => {
+      const footer = feedFooter('/owasp-top-10-2025/', 'https://www.vojtechruzicka.com');
+      expect(footer).toContain('href="https://www.vojtechruzicka.com/owasp-top-10-2025/#comments"');
+      expect(footer).toContain('Discuss this article');
+      expect(footer).toContain('href="https://www.vojtechruzicka.com/owasp-top-10-2025/"');
+      expect(footer).toContain('Read it on vojtechruzicka.com');
+    });
+
+    it('adds a series line for posts that belong to a series', () => {
+      // /angular/02-building-blocks/ is part 2 of the Angular Tutorial series
+      const footer = feedFooter('/angular/02-building-blocks/', 'https://www.vojtechruzicka.com');
+      expect(footer).toContain('Part 2 of 5 in the');
+      expect(footer).toContain('href="https://www.vojtechruzicka.com/series/angular-tutorial/"');
+      expect(footer).toContain('Angular Tutorial');
+    });
+
+    it('omits the series line for standalone posts', () => {
+      const footer = feedFooter('/owasp-top-10-2025/', 'https://www.vojtechruzicka.com');
+      expect(footer).not.toContain('Part ');
+      expect(footer).not.toContain('series');
     });
   });
 
