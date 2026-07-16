@@ -22,8 +22,13 @@ import registerMarkdownPlugin from "./config/plugins/markdown.js";
 import { stripPreTabindex } from "./config/html-transform/remove-code-tabindex.js";
 import { wrapTablesTransform } from "./config/html-transform/wrap-tables-transform.js";
 import registerDrafts from "./config/drafts.js";
+import { configurePlaywrightBrowserPath } from "./config/env-utils.js";
 
 export default async function (eleventyConfig) {
+  // On Cloudflare Pages, point Playwright (Mermaid rendering) at node_modules
+  // so the browser survives in the build cache. See config/env-utils.js.
+  configurePlaywrightBrowserPath();
+
   // Draft preprocessor (must be registered before collections)
   registerDrafts(eleventyConfig);
 
