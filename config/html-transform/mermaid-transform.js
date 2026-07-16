@@ -10,7 +10,11 @@
 // incremental rebuilds in --serve mode do not re-launch the renderer.
 
 import { load } from 'cheerio';
-import { createMermaidRenderer } from 'mermaid-isomorphic';
+// mermaid-isomorphic (and through it Playwright) is imported lazily in renderDiagrams:
+// Playwright snapshots PLAYWRIGHT_BROWSERS_PATH when its module loads, and a static
+// import here would load it during eleventy.config.mjs import resolution - BEFORE
+// configurePlaywrightBrowserPath() (config/env-utils.js) can point it at .cache on
+// Cloudflare Pages. Verified: changing the env var after the module loads has no effect.
 
 /**
  * Mermaid theme derived from the blog's dark palette in src/styles/_variables.scss.
@@ -81,6 +85,7 @@ let batchCounter = 0;
 
 async function renderDiagrams(sources) {
   if (!renderer) {
+    const { createMermaidRenderer } = await import('mermaid-isomorphic');
     renderer = createMermaidRenderer();
   }
 

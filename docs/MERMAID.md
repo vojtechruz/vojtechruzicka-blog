@@ -136,6 +136,12 @@ browser is already present. The npm `prebuild` hook runs it automatically everyw
 preset (`node_modules` is NOT preserved), so the browser is not re-downloaded on every deploy. No dashboard
 configuration needed, everything is versioned in git. See IMAGES.md for the full build-cache picture.
 
+**Load-order gotcha:** Playwright snapshots `PLAYWRIGHT_BROWSERS_PATH` when its module first loads and ignores later
+changes (verified empirically). ESM imports are hoisted, so a static `import 'mermaid-isomorphic'` in the transform
+would load Playwright during `eleventy.config.mjs` import resolution — before `configurePlaywrightBrowserPath()` runs.
+That is why `mermaid-transform.js` imports `mermaid-isomorphic` **lazily** (dynamic `import()` at first render). Do not
+convert it back to a static import — it would silently break Cloudflare deploys while working everywhere else.
+
 ## What about sharing on social media?
 
 **Sharing the article: nothing changes.** When a post URL is shared, platforms (X, LinkedIn, Facebook…) never render the
