@@ -173,7 +173,8 @@ describe('Feeds (RSS and Atom)', () => {
       ]) {
         expect(content, `${name} feed should not contain a mermaid placeholder`).not.toContain('class="mermaid"');
         expect(content, `${name} feed should not contain raw mermaid source`).not.toContain('flowchart TD');
-        expect(content, `${name} feed should not contain img tags`).not.toContain('<img');
+        // trailing space matches real <img …> tags without matching the RSS <image> channel logo
+        expect(content, `${name} feed should not contain img tags`).not.toContain('<img ');
         expect(content, `${name} feed should not leak source paths`).not.toContain('/src/posts/');
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
@@ -202,6 +203,39 @@ describe('Feeds (RSS and Atom)', () => {
       if (atomContent.includes('<entry>')) {
         expect(atomContent).toContain('<entry>');
       }
+    });
+
+    it('RSS feed exposes author, self-link, generator and branding', () => {
+      const rssContent = readFileSync(rssPath, 'utf-8');
+      expect(rssContent).toContain('xmlns:dc="http://purl.org/dc/elements/1.1/"');
+      expect(rssContent).toContain('<dc:creator>Vojtech Ruzicka</dc:creator>');
+      expect(rssContent).toContain('rel="self"');
+      expect(rssContent).toContain('<generator>Eleventy</generator>');
+      expect(rssContent).toContain('<webfeeds:accentColor>f59e0b</webfeeds:accentColor>');
+      expect(rssContent).toContain('apple-touch-icon.png');
+    });
+
+    it('Atom feed exposes a feed-level author, self-link, generator and icon', () => {
+      const atomContent = readFileSync(atomPath, 'utf-8');
+      expect(atomContent).toContain('<author>');
+      expect(atomContent).toContain('<name>Vojtech Ruzicka</name>');
+      expect(atomContent).toContain('rel="self"');
+      expect(atomContent).toContain('<generator>Eleventy</generator>');
+      expect(atomContent).toContain('<icon>');
+    });
+
+    it('feeds tag each post with its topics as categories', () => {
+      const rssContent = readFileSync(rssPath, 'utf-8');
+      const atomContent = readFileSync(atomPath, 'utf-8');
+      // OWASP post has topics: ['Security']
+      expect(rssContent).toContain('<category>Security</category>');
+      expect(atomContent).toContain('<category term="Security" />');
+    });
+
+    it('feeds do not leak the author email address', () => {
+      // dc:creator / atom author use name + URI only, no email to scrape
+      expect(readFileSync(rssPath, 'utf-8')).not.toContain('vojtech.ruz@gmail.com');
+      expect(readFileSync(atomPath, 'utf-8')).not.toContain('vojtech.ruz@gmail.com');
     });
   });
 });

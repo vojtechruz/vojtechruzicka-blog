@@ -10,6 +10,12 @@ eleventyExcludeFromCollections: true
   <updated>{{ (collections.posts | first).date | toRfc3339 }}</updated>
   <id>{{ site.url }}/</id>
   <subtitle>{{ site.description }}</subtitle>
+  <generator>Eleventy</generator>
+  <icon>{{ feeds.icon | absoluteUrl(site.url) }}</icon>
+  <author>
+    <name>{{ site.author }}</name>
+    <uri>{{ site.url }}/about/</uri>
+  </author>
 
   {% for post in collections.posts %}
   {% if post.date >= feeds.minDate %}
@@ -18,6 +24,9 @@ eleventyExcludeFromCollections: true
     <link href="{{ post.url | absoluteUrl(site.url) }}" />
     <id>{{ post.url | absoluteUrl(site.url) }}</id>
     <updated>{{ post.date | toRfc3339 }}</updated>
+    {% for topic in post.data.topics %}
+    <category term="{{ topic }}" />
+    {% endfor %}
 
     {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
     <summary type="html"><![CDATA[{{ post.data.excerpt }}]]></summary>
