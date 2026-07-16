@@ -51,7 +51,7 @@ jobs:
       - name: Restore image cache
         uses: actions/cache/restore@v4
         with:
-          path: .image-cache
+          path: .cache/image-mirror
           key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
           restore-keys: |
             images-
@@ -70,7 +70,7 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: .image-cache
+          path: .cache/image-mirror
           key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
 
       - name: Validate HTML

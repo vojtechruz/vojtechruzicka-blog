@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 // This will work both for build via Github CI (currently using) and Cloudflare
 export const getBranch = () => process.env.GITHUB_REF_NAME || process.env.CF_PAGES_BRANCH || '';
 

@@ -40,18 +40,21 @@ Measured effect (local, full production formats): cold build **328 s** → warm 
 - Changed source image → different content hash → different filename → cache miss, re-encode.
 - Changed processing options (widths/formats/quality) → different hash → full re-encode.
 - The only garbage a cache can accumulate is _unused_ old variants (deleted posts, replaced images). They are harmless —
-  nothing references them. If the accumulation ever bothers you, delete `.image-cache/` (locally), bump the cache key
-  (CI), or retry a deploy without cache (Cloudflare).
+  nothing references them. If the accumulation ever bothers you, delete `.cache/image-mirror/` (locally), bump the cache
+  key (CI), or retry a deploy without cache (Cloudflare).
 
 ### Where the cache lives
 
-| Environment      | Location                           | Persisted by                                                                                                                                                        |
-| ---------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Local            | `.image-cache/` (gitignored)       | just stays on disk                                                                                                                                                  |
-| GitHub Actions   | `.image-cache/`                    | `actions/cache` restore/save steps in `ci.yml`                                                                                                                      |
-| Cloudflare Pages | `node_modules/.cache/image-mirror` | CF build cache (only preserves `node_modules` — same trick as `PLAYWRIGHT_BROWSERS_PATH=0`, see MERMAID.md); **build cache must be enabled** in CF project settings |
+The cache lives in **`.cache/image-mirror`** (covered by the gitignored `.cache/`) in every environment:
 
-The location switches automatically — `scripts/image-cache.mjs` detects `CF_PAGES=1`.
+| Environment      | Persisted by                                                                                                                                                                                                                                          |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Local            | just stays on disk                                                                                                                                                                                                                                    |
+| GitHub Actions   | `actions/cache` restore/save steps in `ci.yml`                                                                                                                                                                                                        |
+| Cloudflare Pages | CF build cache preserves `.cache` for the **Eleventy framework preset** (it does NOT preserve `node_modules` — only package manager stores like `.npm`). Requires **framework preset = Eleventy** and **build cache enabled** in CF project settings. |
+
+Cloudflare build cache limits: **10 GB per project**, least-recently-read eviction, entries purged 7 days after last
+read. Current cache size is ~212 MB (plus ~500 MB for Chromium) — comfortably within the limit.
 
 ### Failure behavior
 
@@ -84,6 +87,6 @@ entries — which is fine, they are separate storages anyway (GitHub cache vs CF
 ## Related build-time dependencies
 
 Chromium for Mermaid rendering installs automatically via the npm `prebuild`/`prebuild:with-drafts` hook
-(`config/install-chromium.js`) — a fast no-op when present. On Cloudflare it is stored inside `node_modules` via
-`PLAYWRIGHT_BROWSERS_PATH=0` (set automatically when `CF_PAGES=1`). Details in MERMAID.md. Playwright's browser download
-is cached in CI (`~/.cache/ms-playwright`).
+(`config/install-chromium.js`) — a fast no-op when present. On Cloudflare it is stored in `.cache/ms-playwright`
+(`PLAYWRIGHT_BROWSERS_PATH` is set automatically when `CF_PAGES=1`), so the CF build cache preserves it too. Details in
+MERMAID.md. Playwright's browser download is cached in CI (`~/.cache/ms-playwright`).

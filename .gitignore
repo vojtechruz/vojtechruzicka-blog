@@ -9,7 +9,6 @@ public
 _tools/notion/.env
 _tools/notion/.venv/
 _site/
-.image-cache/
 review.md
 _out/
 .claude/*

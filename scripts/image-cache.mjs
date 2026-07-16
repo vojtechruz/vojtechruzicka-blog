@@ -10,15 +10,15 @@
 //   restore - copy cached images into _site (run after clean, before eleventy)
 //   save    - mirror generated images from _site into the cache dir
 //
-// Cache location: .image-cache/ (gitignored) locally and in GitHub Actions
-// (persisted via actions/cache). On Cloudflare Pages the only directory the
-// build cache preserves is node_modules, so the mirror lives there instead.
+// Cache location: .cache/image-mirror (gitignored) everywhere. Cloudflare Pages
+// preserves `.cache` between builds for the Eleventy framework preset, GitHub
+// Actions persists it via actions/cache, and locally it just stays on disk.
 
 import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const SITE_DIR = '_site';
-const CACHE_DIR = process.env.CF_PAGES ? 'node_modules/.cache/image-mirror' : '.image-cache';
+const CACHE_DIR = '.cache/image-mirror';
 
 // Matches the filenameFormat in config/plugins/image.js: <name>-<hash>-<width>.<format>
 const GENERATED_IMAGE = /-[A-Za-z0-9_-]{8,12}-\d+\.(avif|webp|png|jpe?g|gif)$/i;
