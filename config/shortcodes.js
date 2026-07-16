@@ -1,18 +1,23 @@
 import warning from './shortcodes/warning.js';
 import info from './shortcodes/info.js';
 import error from './shortcodes/error.js';
+import success from './shortcodes/success.js';
+import callout from './shortcodes/callout.js';
 import youtube from './shortcodes/youtube.js';
 import codepen from './shortcodes/codepen.js';
 import video from './shortcodes/video.js';
 import linkedPost from './shortcodes/linked-post.js';
 import linkedPostCompact from './shortcodes/linked-post-compact.js';
 import linkedSeries from './shortcodes/linked-series.js';
+import badge from './shortcodes/badge.js';
 
 export default function registerShortcodes(eleventyConfig) {
   // Paired shortcodes
   eleventyConfig.addPairedShortcode('warning', warning);
   eleventyConfig.addPairedShortcode('info', info);
   eleventyConfig.addPairedShortcode('error', error);
+  eleventyConfig.addPairedShortcode('success', success);
+  eleventyConfig.addPairedShortcode('callout', callout);
 
   // Single shortcodes
   eleventyConfig.addShortcode('youtube', youtube);
@@ -21,4 +26,5 @@ export default function registerShortcodes(eleventyConfig) {
   eleventyConfig.addShortcode('linkedPost', linkedPost);
   eleventyConfig.addShortcode('linkedPostCompact', linkedPostCompact);
   eleventyConfig.addShortcode('linkedSeries', linkedSeries);
+  eleventyConfig.addShortcode('badge', badge);
 }

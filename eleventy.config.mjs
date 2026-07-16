@@ -15,13 +15,20 @@ import registerTopicsFilters from "./config/filters/topics.js";
 import registerShortcodes from "./config/shortcodes.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
+import { mermaidTransform } from "./config/html-transform/mermaid-transform.js";
 import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import { fixAriaHiddenHeaderAnchorsTransform } from "./config/html-transform/fix-aria-hidden-header-anchors-transform.js";
 import registerMarkdownPlugin from "./config/plugins/markdown.js";
 import { stripPreTabindex } from "./config/html-transform/remove-code-tabindex.js";
+import { wrapTablesTransform } from "./config/html-transform/wrap-tables-transform.js";
 import registerDrafts from "./config/drafts.js";
+import { configurePlaywrightBrowserPath } from "./config/env-utils.js";
 
 export default async function (eleventyConfig) {
+  // On Cloudflare Pages, point Playwright (Mermaid rendering) at node_modules
+  // so the browser survives in the build cache. See config/env-utils.js.
+  configurePlaywrightBrowserPath();
+
   // Draft preprocessor (must be registered before collections)
   registerDrafts(eleventyConfig);
 
@@ -62,6 +69,9 @@ export default async function (eleventyConfig) {
 
   // Markdown configuration extracted to config/plugins/markdown.js
 
+  // Render ```mermaid code blocks to inline SVG (placeholders emitted by the markdown parser)
+  eleventyConfig.addTransform("mermaid-svg", mermaidTransform);
+
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
 
   // Wrap <picture> in a div.image-wrapper (run after LQIP transform)
@@ -72,6 +82,9 @@ export default async function (eleventyConfig) {
 
   // Shiki is adding tabindex to code blocks, remove that
   eleventyConfig.addTransform("strip-pre-tabindex", stripPreTabindex);
+
+  // Wrap tables in a horizontal scroll container for narrow screens
+  eleventyConfig.addTransform("wrap-tables", wrapTablesTransform);
 
   // Rebuild when these files change in --serve mode
   eleventyConfig.addWatchTarget("./config/**/*.js");

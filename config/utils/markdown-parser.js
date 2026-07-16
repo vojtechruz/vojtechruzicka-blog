@@ -49,6 +49,15 @@ export async function getMarkdownParser() {
     const info = token.info ? md.utils.unescapeAll(token.info).trim() : '';
     const content = token.content;
 
+    // Mermaid diagrams skip Shiki entirely. They are emitted as a placeholder
+    // which the mermaid HTML transform converts to an inline SVG at build time.
+    // The "caption" flag (```mermaid caption) renders the diagram's accTitle as a visible <figcaption>.
+    const infoWords = info.split(/\s+/);
+    if (infoWords[0] === 'mermaid') {
+      const captionAttr = infoWords.includes('caption') ? ' data-caption' : '';
+      return `<pre class="mermaid"${captionAttr}>${md.utils.escapeHtml(content.trim())}</pre>\n`;
+    }
+
     if (options.highlight) {
       const infoParts = info.split(/\s+/);
       const langName = infoParts[0];

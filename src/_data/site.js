@@ -65,7 +65,9 @@ export default {
   social: [
     {
       name: 'RSS',
-      url: 'https://www.vojtechruzicka.com/feed.xml',
+      // Relative on purpose - keeps the link inside the current environment
+      // (preview deploys link to the preview feed, production to production)
+      url: '/feed.xml',
       icon: 'icons/rss.njk',
       title: 'Subscribe to RSS feed',
     },

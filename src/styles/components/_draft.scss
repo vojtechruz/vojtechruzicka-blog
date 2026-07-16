@@ -37,34 +37,3 @@
   flex-shrink: 0;
 }
 
-// ── Draft Badge (shown in post lists next to title) ──
-
-.draft-badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.15em 0.5em;
-  border-radius: 4px;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.draft-badge-draft {
-  border-color: var(--color-warning-border);
-  background: var(--color-warning-bg);
-  color: var(--color-warning);
-}
-
-.draft-badge-review {
-  border-color: var(--color-info-border);
-  background: var(--color-info-bg);
-  color: var(--color-info);
-}
-
-.draft-badge-ready {
-  border-color: var(--color-success-border);
-  background: var(--color-success-bg);
-  color: var(--color-success);
-}

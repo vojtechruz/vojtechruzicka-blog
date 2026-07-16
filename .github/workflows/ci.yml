@@ -1,10 +1,11 @@
 name: CI — Build & Test
 
+# Runs on every push (including master, so direct pushes to the deploy branch are gated)
+# and on PRs targeting master.
 on:
   pull_request:
     branches: [master]
   push:
-    branches-ignore: [master]
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -27,6 +28,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright Chromium (Mermaid diagram rendering)
+        run: npx playwright install --with-deps chromium
+
       - name: Lint JavaScript
         run: npm run validate:js
 
@@ -36,8 +46,32 @@ jobs:
       - name: Validate Markdown
         run: npm run validate:md
 
+      # Generated images are keyed by content hash of source + options, so a stale
+      # or partial cache is always safe - eleventy-img re-encodes only what's missing.
+      - name: Restore image cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/image-mirror
+          key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
+          restore-keys: |
+            images-
+
       - name: Build site
         run: npm run build
+        env:
+          # Lean image variant for CI - avif encoding dominates build time and
+          # CI only validates markup. Production builds keep the full defaults.
+          ELEVENTY_IMAGE_FORMATS: webp,auto
+          ELEVENTY_IMAGE_WIDTHS: 800,auto
+
+      # Save even when the build (or a later step) fails, so completed encode
+      # work is never thrown away.
+      - name: Save image cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/image-mirror
+          key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
 
       - name: Validate HTML
         run: npm run validate:html

@@ -1,10 +1,18 @@
-// config/htm-transform/lqipSvgTransform.js
+// config/html-transform/lqip-svg-transform.js
 // ESM module
 
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import sharp from 'sharp';
 import { load } from 'cheerio';
+
+/**
+ * LQIP results are deterministic per (image URL, grid size), and the same featured
+ * image appears on many pages (homepage, topic/series listings, related posts).
+ * Cache the generated data-URI so each image is decoded and mosaicked only once
+ * per build instead of once per page it appears on.
+ */
+const lqipCache = new Map();
 
 /**
  * --- Configuration ---
@@ -135,7 +143,7 @@ function buildSvgFromRaw({ data, width, height, channels }) {
  * and injects it as background-image on the <img>.
  */
 export async function lqipSvgTransform(content, outputPath) {
-  if (!outputPath || !outputPath.endsWith('.html')) {
+  if (!outputPath || !outputPath.endsWith('.html') || !content.includes('<picture')) {
     return content;
   }
 
@@ -167,26 +175,42 @@ export async function lqipSvgTransform(content, outputPath) {
           // Compute adaptive grid size
           const { gridW, gridH } = computeGrid(aspect);
 
-          // Load image buffer (origin in serve mode, built file otherwise)
-          const buf = await getBufferForSmallestPath(smallest);
+          // Reuse the cached mosaic when this image was already processed on another page.
+          // Cache the in-flight promise (not just the result) so concurrent pages
+          // referencing the same image do not start duplicate sharp pipelines.
+          const cacheKey = `${smallest}|${gridW}x${gridH}`;
+          if (!lqipCache.has(cacheKey)) {
+            lqipCache.set(
+              cacheKey,
+              (async () => {
+                // Load image buffer (origin in serve mode, built file otherwise)
+                const buf = await getBufferForSmallestPath(smallest);
 
-          // Downsample and extract raw RGB data
-          const { data, info } = await sharp(buf)
-            .toColorspace('srgb')
-            .resize(gridW, gridH, { fit: 'cover' })
-            .raw({ depth: 'uchar' })
-            .toBuffer({ resolveWithObject: true });
+                // Downsample and extract raw RGB data
+                const { data, info } = await sharp(buf)
+                  .toColorspace('srgb')
+                  .resize(gridW, gridH, { fit: 'cover' })
+                  .raw({ depth: 'uchar' })
+                  .toBuffer({ resolveWithObject: true });
 
-          // Build SVG mosaic
-          const svg = buildSvgFromRaw({
-            data,
-            width: info.width,
-            height: info.height,
-            channels: info.channels,
-          });
+                // Build SVG mosaic
+                const svg = buildSvgFromRaw({
+                  data,
+                  width: info.width,
+                  height: info.height,
+                  channels: info.channels,
+                });
 
-          // Base64-encode to avoid escaping issues
-          const svgUrl = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+                // Base64-encode to avoid escaping issues
+                return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+              })().catch((e) => {
+                // Do not cache failures - let a later page retry
+                lqipCache.delete(cacheKey);
+                throw e;
+              }),
+            );
+          }
+          const svgUrl = await lqipCache.get(cacheKey);
 
           // Apply background LQIP to <img>
           const prevImgStyle = $img.attr('style') || '';

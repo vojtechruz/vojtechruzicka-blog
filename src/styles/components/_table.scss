@@ -1,6 +1,17 @@
 @use '../variables';
 @use '../utilities';
 
+/* Tables are wrapped in .table-wrapper at build time (config/html-transform/wrap-tables-transform.js)
+   so wide tables scroll horizontally on narrow screens instead of overflowing the page. */
+.table-wrapper {
+  overflow-x: auto;
+  margin-block: var(--gap-large);
+
+  > table {
+    margin-block: 0;
+  }
+}
+
 table {
   width: 100%;
   border-collapse: separate;
@@ -28,9 +39,6 @@ thead th {
   background: color-mix(in oklab, var(--color-surface-1) 70%, var(--color-surface-2));
   letter-spacing: 0.04em;
   color: var(--color-text-muted);
-}
-
-td code {
 }
 
 tr:hover {

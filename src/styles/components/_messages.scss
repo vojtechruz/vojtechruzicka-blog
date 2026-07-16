@@ -1,42 +1,71 @@
 @use '../variables';
 
 .msg {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gap-small) + 0.25rem);
   border-width: 1px;
   border-style: solid;
   padding: var(--gap-medium);
   margin: var(--gap-medium) 0;
   border-radius: var(--radius-sm);
 
-  p {
-    margin: 0;
+  /* Variant icon - aligned with the first line of text */
+  > svg {
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    margin-top: 0.05em;
   }
 
-  p,
-  ul:last-of-type {
-    margin-bottom: 0;
+  .msg-content {
+    min-width: 0;
+
+    p {
+      margin: 0;
+    }
+
+    p,
+    ul:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
 
+/* Variant color goes on the icon and border only; body text stays neutral
+   so msg boxes read as the same family as the titled callouts. */
 .msg-warn {
   border-color: var(--color-warning-border);
   background: var(--color-warning-bg);
-  color: var(--color-warning);
+
+  > svg {
+    color: var(--color-warning);
+  }
 }
 
 .msg-error {
   border-color: var(--color-error-border);
   background: var(--color-error-bg);
-  color: var(--color-error);
+
+  > svg {
+    color: var(--color-error);
+  }
 }
 
 .msg-success {
   border-color: var(--color-success-border);
   background: var(--color-success-bg);
-  color: var(--color-success);
+
+  > svg {
+    color: var(--color-success);
+  }
 }
 
 .msg-info {
   border-color: var(--color-info-border);
   background: var(--color-info-bg);
-  color: var(--color-info);
+
+  > svg {
+    color: var(--color-info);
+  }
 }

@@ -5,7 +5,8 @@
   // CSS custom properties for LQIP (Low Quality Image Placeholder) behavior
   --lqip-blur-amount: 60px;
   --lqip-transition-duration: 0.3s;
-  --lqip-bg-color: #f0f0f0;
+  // Dark surface, not white - the placeholder must not flash bright on the dark theme
+  --lqip-bg-color: var(--color-surface-2);
 
   overflow: hidden;
 

@@ -1,0 +1,80 @@
+import { describe, it, expect } from 'vitest';
+import * as cheerio from 'cheerio';
+import callout from '../config/shortcodes/callout.js';
+import { loadPage } from './helpers.js';
+
+const CONTENT = `
+- First mitigation
+- Second mitigation
+
+Some *closing* paragraph.
+`;
+
+describe('callout shortcode', () => {
+  it('renders an aside with the variant class, title and icon', async () => {
+    const output = await callout(CONTENT, 'success', 'How to prevent it');
+    const $ = cheerio.load(output);
+
+    const aside = $('aside.callout.callout--success');
+    expect(aside.length).toBe(1);
+    expect(aside.find('.callout-title').text()).toBe('How to prevent it');
+
+    // The icon needs intrinsic dimensions so it doesn't stretch full-width where
+    // the component CSS is absent (RSS readers, feed HTML viewed directly).
+    const svg = aside.find('.callout-title svg[aria-hidden="true"]');
+    expect(svg.length).toBe(1);
+    expect(svg.attr('width')).toBe('24');
+    expect(svg.attr('height')).toBe('24');
+  });
+
+  it('renders inner content as markdown', async () => {
+    const output = await callout(CONTENT, 'info', 'Note');
+    const $ = cheerio.load(output);
+
+    expect($('.callout-body ul li').length).toBe(2);
+    expect($('.callout-body ul li').first().text()).toBe('First mitigation');
+    expect($('.callout-body p em').text()).toBe('closing');
+  });
+
+  it.each(['success', 'info', 'warning', 'error', 'update'])('supports the %s variant', async (variant) => {
+    const output = await callout('Text', variant, 'Title');
+    const $ = cheerio.load(output);
+
+    expect($(`aside.callout--${variant}`).length).toBe(1);
+  });
+
+  it('throws on an unknown variant', async () => {
+    await expect(callout('Text', 'purple', 'Title')).rejects.toThrow(/Unknown callout variant "purple"/);
+  });
+
+  it('renders no date element when date is omitted', async () => {
+    const output = await callout('Text', 'update', 'Update');
+    expect(output).not.toContain('callout-date');
+  });
+
+  it.each([
+    ['2021', '2021'],
+    ['2021-11', 'November 2021'],
+    ['2021-11-05', 'November 5, 2021'],
+  ])('renders date "%s" as "%s" in a time element', async (input, expected) => {
+    const output = await callout('Text', 'update', 'Update', input);
+    const $ = cheerio.load(output);
+
+    const $time = $('.callout-title time.callout-date');
+    expect($time.attr('datetime')).toBe(input);
+    expect($time.text()).toBe(expected);
+  });
+});
+
+describe('callouts in built output', () => {
+  it('renders the OWASP mitigation callouts', () => {
+    const $ = loadPage('/owasp-top-10-2025/');
+
+    const callouts = $('aside.callout.callout--success');
+    expect(callouts.length).toBe(5);
+    callouts.each((_, el) => {
+      expect($(el).find('.callout-title').text()).toBe('How to prevent it');
+      expect($(el).find('.callout-body ul li').length).toBeGreaterThan(0);
+    });
+  });
+});

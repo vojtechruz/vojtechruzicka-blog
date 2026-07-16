@@ -58,11 +58,12 @@ you don't like it, there are still alternatives.
 
 ## Algolia DocSearch
 
-{% info %} **UPDATE:** The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is
+{% callout "warning", "Outdated section", "2022-02" %}
+The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is
 version 3 [available](https://docsearch.algolia.com/docs/DocSearch-v3). One major change is that you can now apply not
 only with technical documentation site, but also a technical blog. It now also offers react components out of the box.
 The configuration and code examples are no longer up to date, please refer to the official documentation instead.
-{% endinfo %}
+{% endcallout %}
 
 [Algolia DocSearch](https://community.algolia.com/docsearch/) is similar to Google Custom Search in a way that you don't
 need to download the whole search index to the client and that the search is provided by third-party service.

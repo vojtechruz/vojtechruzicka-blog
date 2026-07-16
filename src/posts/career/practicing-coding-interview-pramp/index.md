@@ -11,9 +11,11 @@ excerpt:
 needsReview: true
 ---
 
-{% info %} **UPDATE:** In November 2021, [Pramp was acquired](https://blog.tryexponent.com/pramp-joining-exponent/) by
+{% callout "update", "Update", "2022-01" %}
+In November 2021, [Pramp was acquired](https://blog.tryexponent.com/pramp-joining-exponent/) by
 [Exponent](https://www.tryexponent.com/). According to the statement Pramp should still be available for free, but both
-platforms should be more integrated in the future. {% endinfo %}
+platforms should be more integrated in the future.
+{% endcallout %}
 
 ## Coding interviews
 

@@ -3,13 +3,26 @@ permalink: /feed.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <channel>
     <title>{{ site.title }}</title>
     <link>{{ site.url }}/</link>
+    <atom:link href="{{ '/feed.xml' | absoluteUrl(site.url) }}" rel="self" type="application/rss+xml" />
     <description>{{ site.description }}</description>
     <language>{{ site.lang }}</language>
+    <generator>Eleventy</generator>
     <lastBuildDate>{{ (collections.posts | first).date | utcRfc822 }}</lastBuildDate>
+    <image>
+      <url>{{ feeds.channelImage | absoluteUrl(site.url) }}</url>
+      <title>{{ site.title }}</title>
+      <link>{{ site.url }}/</link>
+    </image>
+    <webfeeds:icon>{{ feeds.icon | absoluteUrl(site.url) }}</webfeeds:icon>
+    <webfeeds:accentColor>{{ feeds.accentColor }}</webfeeds:accentColor>
 
     {% for post in collections.posts %}
       {% if post.date >= feeds.minDate %}
@@ -18,8 +31,12 @@ eleventyExcludeFromCollections: true
           <link>{{ post.url | absoluteUrl(site.url) }}</link>
           <guid isPermaLink="true">{{ post.url | absoluteUrl(site.url) }}</guid>
           <pubDate>{{ post.date | utcRfc822 }}</pubDate>
+          <dc:creator>{{ site.author }}</dc:creator>
+          {% for topic in post.data.topics %}
+          <category>{{ topic }}</category>
+          {% endfor %}
 
-          {% set body = (post.data.description or post.templateContent) | htmlToAbsoluteUrls(site.url) | safe %}
+          {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
           <description><![CDATA[{{ post.data.excerpt }}]]></description>
           <content:encoded><![CDATA[{{ body }}]]></content:encoded>
         </item>

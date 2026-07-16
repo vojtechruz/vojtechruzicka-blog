@@ -39,5 +39,6 @@ export default function linkedPostCompact(permalink, maybeCollections) {
     <a class="linked-post-compact-title" href="${url}">${escapeHtml(title)}</a>
     ${excerpt ? `<p class="linked-post-compact-excerpt">${escapeHtml(excerpt)}</p>` : ''}
   </div>
-</div>`;
+</div>
+`;
 }

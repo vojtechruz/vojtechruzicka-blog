@@ -67,7 +67,7 @@ Flexbox is slightly different from positioning normal elements using `display` p
 When we defined `display: flex;` we saw that it affected how the children are displayed in the `flex-container`. But
 what about the container itself - how is it displayed? Is it `inline` element, or is it `block`?
 
-{% info %}
+{% callout "info", "Block vs inline elements" %}
 
 **Block elements:**
 
@@ -84,7 +84,7 @@ what about the container itself - how is it displayed? Is it `inline` element, o
 - Inline-block elements behave as inline elements, but you can also specify properties such as width and height
 - Inline elements example: span, b, i, label
 
-{% endinfo %}
+{% endcallout %}
 
 Actually, we have two options when using Flexbox. We can make the container either inline or block element using:
 

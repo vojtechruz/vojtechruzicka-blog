@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ description or excerpt or site.description }}">
+  {# pageDescription (eleventyComputed) keeps this consistent with og:description, including the archived-post prefix #}
+  <meta name="description" content="{{ pageDescription }}">
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 
   {% if isLocalDevelopment %}
