@@ -144,6 +144,18 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('<em>Related article: </em><a href="/owasp-top-ten-2017/">OWASP Top Ten 2017</a>');
     });
 
+    it('strips decorative callout/msg icons but keeps the title text', () => {
+      const callout =
+        '<aside class="callout callout--success"><p class="callout-title">' +
+        '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M1 1"/></svg>How to prevent it</p>' +
+        '<div class="callout-body"><ul><li>Least privilege</li></ul></div></aside>';
+      const result = feedContent(callout);
+
+      expect(result).not.toContain('<svg');
+      expect(result).toContain('How to prevent it');
+      expect(result).toContain('<li>Least privilege</li>');
+    });
+
     it('leaves plain content untouched', () => {
       const html = '<p>No diagrams or images here</p>';
       expect(feedContent(html)).toBe(html);
@@ -164,6 +176,7 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not contain img tags`).not.toContain('<img');
         expect(content, `${name} feed should not leak source paths`).not.toContain('/src/posts/');
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
+        expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
       }
     });
   });

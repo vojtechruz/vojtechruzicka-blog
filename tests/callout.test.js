@@ -18,7 +18,13 @@ describe('callout shortcode', () => {
     const aside = $('aside.callout.callout--success');
     expect(aside.length).toBe(1);
     expect(aside.find('.callout-title').text()).toBe('How to prevent it');
-    expect(aside.find('.callout-title svg[aria-hidden="true"]').length).toBe(1);
+
+    // The icon needs intrinsic dimensions so it doesn't stretch full-width where
+    // the component CSS is absent (RSS readers, feed HTML viewed directly).
+    const svg = aside.find('.callout-title svg[aria-hidden="true"]');
+    expect(svg.length).toBe(1);
+    expect(svg.attr('width')).toBe('24');
+    expect(svg.attr('height')).toBe('24');
   });
 
   it('renders inner content as markdown', async () => {

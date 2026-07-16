@@ -34,6 +34,7 @@ Design notes and internal documentation live in the [`docs/`](docs/) directory:
   dependency
 - [IMAGES.md](docs/IMAGES.md) — responsive image pipeline and the persistent build cache (local, GitHub Actions,
   Cloudflare Pages)
+- [FEEDS.md](docs/FEEDS.md) — RSS/Atom feed generation and the content processing that keeps feeds readable
 
 ## Contributing
 

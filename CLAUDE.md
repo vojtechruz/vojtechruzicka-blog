@@ -74,6 +74,9 @@ environment variable (`all` or `none`). Draft posts live in `src/posts/_drafts/`
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
 4. Pagefind indexes `_site/` after build for client-side search
 5. Giscus (GitHub Discussions) provides comments; no server-side component
+6. RSS/Atom feeds (`src/feed.xml.njk`, `src/atom.xml.njk`) ship full post content; the `feedContent` filter
+   (`config/filters/urls.js`) rewrites site-CSS-dependent markup (Mermaid, images, linkedPost cards) into reader-safe
+   fallbacks. Details in docs/FEEDS.md.
 
 ### Image pipeline & build cache
 

@@ -26,6 +26,9 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  * - {% linkedPost %} cards are site chrome that depends on the site CSS (even
  *   their "Related article" label is a CSS ::before) - in a reader they fall
  *   apart into a bare heading, date and topic list. Reduce to a plain link.
+ * - Decorative icons (callout/msg SVGs, aria-hidden) rely on flexbox to sit
+ *   inline with their title; without CSS they misalign above the text. They
+ *   carry no information, so drop them.
  */
 export function feedContent(html) {
   if (!html) {
@@ -58,6 +61,9 @@ export function feedContent(html) {
     $fallback.find('a').attr('href', href).text(title);
     $(el).replaceWith($fallback);
   });
+
+  // Decorative icons only look right with the component's flexbox CSS - drop them.
+  $('svg[aria-hidden="true"]').remove();
 
   $('img').each((_, el) => {
     const alt = ($(el).attr('alt') || '').trim();
