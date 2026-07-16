@@ -19,7 +19,7 @@ eleventyExcludeFromCollections: true
     <id>{{ post.url | absoluteUrl(site.url) }}</id>
     <updated>{{ post.date | toRfc3339 }}</updated>
 
-    {% set body = (post.data.description or post.templateContent) | htmlToAbsoluteUrls(site.url) | safe %}
+    {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
     <summary type="html"><![CDATA[{{ post.data.excerpt }}]]></summary>
     <content type="html"><![CDATA[{{ body }}]]></content>
   </entry>

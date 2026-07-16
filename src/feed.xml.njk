@@ -19,7 +19,7 @@ eleventyExcludeFromCollections: true
           <guid isPermaLink="true">{{ post.url | absoluteUrl(site.url) }}</guid>
           <pubDate>{{ post.date | utcRfc822 }}</pubDate>
 
-          {% set body = (post.data.description or post.templateContent) | htmlToAbsoluteUrls(site.url) | safe %}
+          {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
           <description><![CDATA[{{ post.data.excerpt }}]]></description>
           <content:encoded><![CDATA[{{ body }}]]></content:encoded>
         </item>

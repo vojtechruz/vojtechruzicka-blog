@@ -77,7 +77,7 @@ describe('Footer', () => {
   it('contains expected social/profile links', () => {
     const hrefs = getSocialLinkHrefs($);
 
-    expect(hrefs).toContain('https://www.vojtechruzicka.com/feed.xml');
+    expect(hrefs).toContain('/feed.xml');
     expect(hrefs).toContain('https://mastodon.social/@vojtechruzicka');
     expect(hrefs).toContain('https://www.linkedin.com/in/vojtechruzicka');
     expect(hrefs).toContain('https://github.com/vojtechruz');
@@ -86,7 +86,7 @@ describe('Footer', () => {
   });
 
   it('rss link has correct accessible label', () => {
-    const rssLink = getSocialLinkByHref($, 'https://www.vojtechruzicka.com/feed.xml');
+    const rssLink = getSocialLinkByHref($, '/feed.xml');
 
     expect(rssLink.length).toBe(1);
     expect(rssLink.attr('aria-label')).toBe('Subscribe to RSS feed');

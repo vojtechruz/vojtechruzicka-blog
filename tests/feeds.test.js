@@ -1,6 +1,7 @@
 ﻿import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
+import { feedContent, htmlToAbsoluteUrls } from '../config/filters/urls.js';
 
 // Load feed config
 import feedsConfig from '../src/_data/feeds.js';
@@ -92,6 +93,77 @@ describe('Feeds (RSS and Atom)', () => {
             false,
           );
         }
+      }
+    });
+  });
+
+  describe('Feed content processing', () => {
+    const rssContent = existsSync(rssPath) ? readFileSync(rssPath, 'utf-8') : '';
+    const atomContent = existsSync(atomPath) ? readFileSync(atomPath, 'utf-8') : '';
+
+    it('replaces a mermaid placeholder with the accessible summary', () => {
+      const html =
+        '<p>Before</p><pre class="mermaid">flowchart TD\n    accTitle: My title\n    accDescr: My description.\n    A --> B</pre><p>After</p>';
+      const result = feedContent(html);
+
+      expect(result).not.toContain('mermaid');
+      expect(result).not.toContain('flowchart');
+      expect(result).toContain('<em>Diagram: My title. My description.</em>');
+      expect(result).toContain('<p>Before</p>');
+      expect(result).toContain('<p>After</p>');
+    });
+
+    it('uses a generic fallback when accTitle/accDescr are missing', () => {
+      const result = feedContent('<pre class="mermaid">flowchart TD\n    A --> B</pre>');
+      expect(result).toContain('Diagram available in the original article.');
+    });
+
+    it('replaces images with their alt text', () => {
+      const result = feedContent('<p>Text</p><img src="/../src/posts/x/pic.png" alt="Architecture overview">');
+      expect(result).not.toContain('<img');
+      expect(result).toContain('<em>Image: Architecture overview</em>');
+    });
+
+    it('drops images without alt text entirely', () => {
+      const result = feedContent('<p>Text</p><img src="/../src/posts/x/pic.png" alt="">');
+      expect(result).not.toContain('<img');
+      expect(result).not.toContain('Image:');
+    });
+
+    it('reduces a linkedPost card to a plain related-article link', () => {
+      const card =
+        '<div class="linked-post"><h2 class="front-post-title"><a href="/owasp-top-ten-2017/">OWASP Top Ten 2017</a></h2>' +
+        '<div class="front-post-info"><time datetime="2018-01-01">January 1, 2018</time><ul class="post-topics"><li>Security</li></ul></div>' +
+        '<div><a class="front-post-image" href="/owasp-top-ten-2017/"><img src="/x.jpg" alt=""></a><p class="front-post-excerpt">Excerpt text</p></div></div>';
+      const result = feedContent(`<p>Before</p>${card}<p>After</p>`);
+
+      expect(result).not.toContain('linked-post');
+      expect(result).not.toContain('front-post-title');
+      expect(result).not.toContain('January 1, 2018');
+      expect(result).not.toContain('Excerpt text');
+      expect(result).toContain('<em>Related article: </em><a href="/owasp-top-ten-2017/">OWASP Top Ten 2017</a>');
+    });
+
+    it('leaves plain content untouched', () => {
+      const html = '<p>No diagrams or images here</p>';
+      expect(feedContent(html)).toBe(html);
+    });
+
+    it('absolutizes root-relative URLs and keeps quotes balanced', () => {
+      const result = htmlToAbsoluteUrls('<a href="/some-post/">link</a>', 'https://example.com');
+      expect(result).toBe('<a href="https://example.com/some-post/">link</a>');
+    });
+
+    it('built feeds contain no raw mermaid source, images, or malformed attributes', () => {
+      for (const [name, content] of [
+        ['RSS', rssContent],
+        ['Atom', atomContent],
+      ]) {
+        expect(content, `${name} feed should not contain a mermaid placeholder`).not.toContain('class="mermaid"');
+        expect(content, `${name} feed should not contain raw mermaid source`).not.toContain('flowchart TD');
+        expect(content, `${name} feed should not contain img tags`).not.toContain('<img');
+        expect(content, `${name} feed should not leak source paths`).not.toContain('/src/posts/');
+        expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
       }
     });
   });
