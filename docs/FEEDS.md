@@ -48,11 +48,12 @@ them. So the raw `templateContent` contains site-internal artifacts that are bro
 `feedContent` filter (`config/filters/urls.js`) fixes four of them, then `htmlToAbsoluteUrls` absolutizes the remaining
 root-relative links.
 
-The pipeline in both templates:
+The pipeline in both templates (footer appended afterwards — see below):
 
 ```njk
 {% set body = (post.data.description or post.templateContent)
-   | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
+   | feedContent | htmlToAbsoluteUrls(site.url) %}
+… {{ (body + (post.url | feedFooter)) | safe }}
 ```
 
 ### 1. Mermaid diagrams → prose summary
@@ -92,6 +93,24 @@ related-article link) get absolutized too.
 > Note: this filter is a deliberately small regex, not a full HTML parse — it only touches attributes starting with `/`.
 > A past bug dropped the closing quote (`href="…/p` instead of `href="…/p"`); there's now a regression test asserting
 > quotes stay balanced.
+
+## Item footer (comments + series context)
+
+Full-text feeds lose the engagement chrome that lives _below_ the article on the site. `feedFooter`
+(`config/filters/urls.js`) appends a small footer to each item's content — a horizontal rule, then:
+
+- **Series line** (series posts only): "Part N of M in the {series} series" linking to the series page. Series
+  membership is looked up in `seriesMetadata`. This is the only place series context reaches the feed — on the site it
+  lives in the sidebar.
+- **Discuss + read-on-site line**: a link to `{post}#comments` (readers never load Giscus) and a link back to the
+  canonical post URL (attribution if the feed is scraped/republished).
+
+Links are built absolute directly (the footer is appended _after_ `htmlToAbsoluteUrls`). Templates:
+`{{ (body + (post.url | feedFooter)) | safe }}`.
+
+What is deliberately **not** added to the feed: related-articles (readers already get every post, so "you might also
+like" is noise), social-follow links (spammy — the feed itself is the subscription), and the table of contents
+(redundant with the in-content headings).
 
 ## Membership tests are URL-based, not substring
 

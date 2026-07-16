@@ -36,9 +36,9 @@ eleventyExcludeFromCollections: true
           <category>{{ topic }}</category>
           {% endfor %}
 
-          {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) | safe %}
+          {% set body = (post.data.description or post.templateContent) | feedContent | htmlToAbsoluteUrls(site.url) %}
           <description><![CDATA[{{ post.data.excerpt }}]]></description>
-          <content:encoded><![CDATA[{{ body }}]]></content:encoded>
+          <content:encoded><![CDATA[{{ (body + (post.url | feedFooter)) | safe }}]]></content:encoded>
         </item>
       {% endif %}
     {% endfor %}
