@@ -32,4 +32,11 @@ export default [
       '/javafx-spring-boot/',
     ],
   },
+  {
+    slug: 'spring-ai',
+    name: 'Spring AI Tutorial',
+    description: 'TODO',
+    topics: ['Spring', 'Java', 'AI'],
+    posts: ['/spring-ai/'],
+  },
 ];
