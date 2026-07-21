@@ -7,7 +7,8 @@ excerpt:
   'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot
   application.'
 featuredImage: featured.png
-series: spring-ai
+# Restore together with the spring-ai entry in src/_data/seriesMetadata.js
+# series: spring-ai
 draftStatus: 'draft'
 needsReview: true
 ---

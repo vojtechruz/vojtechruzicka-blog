@@ -32,11 +32,13 @@ export default [
       '/javafx-spring-boot/',
     ],
   },
-  {
-    slug: 'spring-ai',
-    name: 'Spring AI Tutorial',
-    description: 'TODO',
-    topics: ['Spring', 'Java', 'AI'],
-    posts: ['/spring-ai/'],
-  },
+  // Re-enable once the first article has content — while /spring-ai/ is a draft it is
+  // excluded from collections, and linkedPost on the series page fails the build.
+  // {
+  //   slug: 'spring-ai',
+  //   name: 'Spring AI Tutorial',
+  //   description: 'TODO',
+  //   topics: ['Spring', 'Java', 'AI'],
+  //   posts: ['/spring-ai/'],
+  // },
 ];
