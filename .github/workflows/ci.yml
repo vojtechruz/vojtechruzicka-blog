@@ -73,6 +73,11 @@ jobs:
           path: .cache/image-mirror
           key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
 
+      # Unit tests run right after the build (they assert against _site/) and before
+      # the slower validation and Lighthouse steps, so test failures surface fastest.
+      - name: Run tests
+        run: npm test
+
       - name: Validate HTML
         run: npm run validate:html
 
@@ -84,6 +89,3 @@ jobs:
 
       - name: Run Lighthouse CI
         run: npm run lighthouse
-
-      - name: Run tests
-        run: npm test
