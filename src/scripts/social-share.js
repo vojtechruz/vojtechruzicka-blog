@@ -1,3 +1,5 @@
+import { copyWithFeedback } from './clipboard.js';
+
 (() => {
   const nativeBtn = document.getElementById('native-share-button');
   // The URL is now passed via data attribute on the button itself or a parent container
@@ -36,36 +38,9 @@
 
     const url = btn.dataset.url || location.href;
 
-    (async () => {
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(url);
-        } else {
-          window.prompt('Copy URL of this page:', url);
-          return;
-        }
-
-        // Capture original state only if not already showing copied status
-        if (!btn.classList.contains('copied')) {
-          btn.dataset.originalAriaLabel = btn.getAttribute('aria-label') || 'Copy link to clipboard';
-        }
-
-        btn.classList.add('copied');
-        btn.setAttribute('aria-label', 'Link copied');
-
-        // Clear existing timeout if any to prevent overlapping resets
-        if (btn._copyTimeout) {
-          clearTimeout(btn._copyTimeout);
-        }
-
-        btn._copyTimeout = setTimeout(() => {
-          btn.classList.remove('copied');
-          btn.setAttribute('aria-label', btn.dataset.originalAriaLabel);
-          delete btn._copyTimeout;
-        }, 2000);
-      } catch {
-        window.prompt('Copy this URL:', url);
-      }
-    })();
+    copyWithFeedback(btn, url, {
+      copiedAriaLabel: 'Link copied',
+      onError: () => window.prompt('Copy this URL:', url),
+    });
   });
 })();
