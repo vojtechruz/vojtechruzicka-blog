@@ -27,6 +27,7 @@ export default {
     'https://github.com/vojtechruz',
     'https://www.linkedin.com/in/vojtechruzicka/',
     'https://bsky.app/profile/vojtechruzicka.com',
+    'https://mastodon.social/@vojtechruzicka',
     'https://twitter.com/vojtechruzicka',
   ],
 
@@ -41,6 +42,7 @@ export default {
       'https://github.com/vojtechruz',
       'https://www.linkedin.com/in/vojtechruzicka/',
       'https://bsky.app/profile/vojtechruzicka.com',
+      'https://mastodon.social/@vojtechruzicka',
       'https://twitter.com/vojtechruzicka',
     ],
     email: 'vojtech.ruz@gmail.com',
