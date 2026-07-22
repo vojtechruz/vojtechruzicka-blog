@@ -1,7 +1,11 @@
 {
   "name": "Vojtech Ruzicka's Programming Blog",
   "short_name": "VR Blog",
+  "description": "Blog about Full-stack Software Development. Clean code, Design patterns, Java, Spring, Javascript, Angular, React and more.",
+  "lang": "en",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
