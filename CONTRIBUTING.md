@@ -1,3 +1,5 @@
+# Contributing
+
 ## Issues
 
 Found a typo, bad grammar, broken link or anything wrong? All the contributions are most welcome and appreciated. The
