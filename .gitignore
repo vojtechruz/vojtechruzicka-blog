@@ -8,6 +8,7 @@ public
 .env.development
 _tools/obsidian/.env
 _tools/obsidian/.venv/
+__pycache__/
 _site/
 review.md
 _out/
