@@ -11,6 +11,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/code-block.js',
       'src/scripts/series-toc.js',
       'src/scripts/header-anchor.js',
+      'src/scripts/nav.js',
     ];
 
     await esbuild.build({

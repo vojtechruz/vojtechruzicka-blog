@@ -13,16 +13,97 @@
     max-width: var(--container-max-nav);
     margin: 0 auto;
     padding: 0.8rem 1rem;
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: var(--gap-medium);
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: var(--gap-small) var(--gap-medium);
   }
 
   .blog-name {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--gap-small);
+    margin-inline-end: auto; // push menu (or toggle) to the far end
     font-weight: 600;
     letter-spacing: 0.2px;
-    white-space: nowrap;
+    color: var(--color-text-heading);
+    text-decoration: none;
+
+    .blog-logo {
+      width: 1.75rem;
+      height: 1.75rem;
+      flex: none;
+    }
+  }
+
+  // Hamburger button — hidden on wide screens, shown by the mobile query below
+  // (and only when JS has enhanced the nav, via the .js-nav gate).
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-text-heading);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focus-ring);
+      outline-offset: 2px;
+    }
+
+    .nav-toggle-box {
+      position: relative;
+      display: block;
+      width: 1.375rem;
+      height: 1rem;
+    }
+
+    .nav-toggle-bar {
+      position: absolute;
+      inset-inline: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 7px;
+      }
+
+      &:nth-child(3) {
+        top: 14px;
+      }
+    }
+  }
+
+  // Open state: morph the three bars into an X.
+  &.nav-open .nav-toggle {
+    .nav-toggle-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
   }
 
   .menu-items {
@@ -63,26 +144,59 @@
 }
 
 @include utilities.respond(medium) {
-  .main-navigation .navigation {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap-small);
-    flex-basis: 100%;
+  .main-navigation {
+    // The links + search wrap onto their own full-width line under the top bar.
+    .menu-container {
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--gap-small);
+      padding-block: var(--gap-small);
+    }
 
     .menu-items {
+      flex-direction: column;
+      align-items: stretch;
       gap: 0;
+      margin-inline-end: 0;
+
+      a {
+        padding: 0.65rem 0.5rem; // larger tap targets
+      }
+    }
+
+    // Search should fill the width of the collapsed panel.
+    .nav-search,
+    .pagefind-ui,
+    .pagefind-ui__form,
+    .pagefind-ui__search-input {
+      width: 100%;
+    }
+
+    // Progressive enhancement: only once JS adds `.js-nav` does the menu collapse
+    // behind the hamburger. Without JS the panel above stays visible (usable stack).
+    &.js-nav {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .menu-container {
+        display: none;
+      }
+
+      &.nav-open .menu-container {
+        display: flex;
+      }
     }
   }
 }
 
 @include utilities.respond(small) {
-  .menu-container {
-    flex-direction: column;
-  }
-
-  // On mobile main nav will not be sticky
-  .main-navigation {
-    position: relative;
+  // On the narrowest screens the long title would wrap the compact bar onto two
+  // lines. Hide it visually and let the VR logo carry the brand — kept in the
+  // accessibility tree so the home link stays named.
+  .main-navigation .blog-name span {
+    @include utilities.visually-hidden;
   }
 }
 
