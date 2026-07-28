@@ -27,6 +27,7 @@ export default {
     'https://github.com/vojtechruz',
     'https://www.linkedin.com/in/vojtechruzicka/',
     'https://bsky.app/profile/vojtechruzicka.com',
+    'https://mastodon.social/@vojtechruzicka',
     'https://twitter.com/vojtechruzicka',
   ],
 
@@ -41,6 +42,7 @@ export default {
       'https://github.com/vojtechruz',
       'https://www.linkedin.com/in/vojtechruzicka/',
       'https://bsky.app/profile/vojtechruzicka.com',
+      'https://mastodon.social/@vojtechruzicka',
       'https://twitter.com/vojtechruzicka',
     ],
     email: 'vojtech.ruz@gmail.com',
@@ -52,7 +54,16 @@ export default {
   },
 
   defaultShareImage: '/default-share.jpg',
+  // Dimensions of the file in src/static - kept here so og:image:width/height can be emitted
+  // without reading the image at build time. Update if the asset is replaced.
+  defaultShareImageWidth: 1200,
+  defaultShareImageHeight: 630,
+  defaultShareImageAlt: 'Source code on a screen',
   twitter: '@vojtechruzicka',
+  // Mastodon 4.3+ author attribution on link preview cards. Requires vojtechruzicka.com to be
+  // allowlisted under Mastodon > Preferences > Public profile > Verification > Author attribution,
+  // plus the rel="me" link back to the profile (already in the footer).
+  fediverseCreator: '@vojtechruzicka@mastodon.social',
   maxRelatedPosts: 5,
   lang: 'en',
   giscus: {

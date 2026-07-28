@@ -42,12 +42,12 @@ export default [
     },
   },
 
-  // Browser scripts (IIFEs bundled by esbuild)
+  // Browser scripts (ES modules bundled by esbuild)
   {
     files: ['src/scripts/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'script',
+      sourceType: 'module',
       globals: {
         ...globals.browser,
       },

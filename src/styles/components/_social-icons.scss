@@ -64,29 +64,9 @@
   }
 }
 
-// Floating text 'Link copied' after pressing button
-.share-copy.copied::after {
-  content: 'Link copied';
-  position: absolute;
-  top: -2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--color-bg-highlight);
-  color: var(--color-text);
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 1;
-  z-index: var(--z-overlay);
-  box-shadow: var(--shadow-sm);
-  transition: opacity 0.2s ease;
-}
-
-.share-copy:not(.copied)::after {
-  opacity: 0;
-  pointer-events: none;
+// Floating 'Link copied' confirmation after pressing the button
+.share-copy {
+  @include utilities.copied-tooltip('Link copied');
 }
 
 .share-copy svg {

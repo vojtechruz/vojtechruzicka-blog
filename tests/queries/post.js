@@ -1,13 +1,17 @@
 export function getPostTitle($) {
-  return $('h1.post-title');
+  return $('h1.post-header');
 }
 
 export function getPostTitleText($) {
-  return $('h1.post-title').text();
+  return $('h1.post-header').text();
 }
 
 export function getPostDate($) {
-  return $('time.post-date, .post-date time');
+  return $('.post-metadata .date-published');
+}
+
+export function getPostDateModified($) {
+  return $('.post-metadata .date-modified');
 }
 
 export function getPostTopics($) {
@@ -27,13 +31,13 @@ export function getPostTopicHrefs($) {
 }
 
 export function getPostContent($) {
-  return $('article, .post-content');
+  return $('article');
 }
 
 export function getPostExcerpt($) {
-  return $('meta[name="description"]').attr('content');
+  return $('.post-header-excerpt').text().trim();
 }
 
 export function getFeaturedImage($) {
-  return $('img.post-featured-image, .post-featured-image img');
+  return $('img.post-header-featured-image');
 }

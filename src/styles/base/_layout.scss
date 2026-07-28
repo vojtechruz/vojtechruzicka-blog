@@ -80,6 +80,11 @@ body {
 .search-404 {
   .pagefind-ui {
     width: 35ch;
+
+    .pagefind-ui__form {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }
 

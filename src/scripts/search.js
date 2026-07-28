@@ -124,7 +124,7 @@
       // Plausible search tracking
       input?.addEventListener('blur', (e) => {
         const query = e.target.value.trim();
-        if (query.length > 3) {
+        if (query.length > 3 && typeof window.trackAnalyticsEvent === 'function') {
           window.trackAnalyticsEvent('Search Query', { searchQuery: query });
         }
       });
@@ -132,7 +132,7 @@
       // Track click on search result
       container.addEventListener('click', (e) => {
         const resultLink = e.target.closest('.pagefind-ui__result-link');
-        if (resultLink) {
+        if (resultLink && typeof window.trackAnalyticsEvent === 'function') {
           const url = resultLink.getAttribute('href');
           window.trackAnalyticsEvent('Search Result Click', {
             searchResultUrl: url,
