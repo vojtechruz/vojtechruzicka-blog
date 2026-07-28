@@ -18,15 +18,18 @@ plus `path`.
 Do not promote a post with `draft: true` or `draftStatus` in its frontmatter — it is not live yet. Warn the
 user and stop.
 
-From the body, pull out 4–6 **concrete, specific hooks** — the things a reader would not already know. Prefer:
+From the body, pick **exactly 3 concrete, specific hooks** — the things a reader would not already know. Prefer:
 
 - surprising numbers and statistics ("every single application in the dataset had one")
 - what changed, moved, was added or removed
 - a counterintuitive claim the post argues for
 - a short, quotable takeaway
 
-Avoid generic filler ("a deep dive into…", "everything you need to know about…"). Each variant should lead
-with a different hook so the three platforms do not read as copy-paste.
+Avoid generic filler ("a deep dive into…", "everything you need to know about…").
+
+These 3 hooks become options 1, 2 and 3 on **every** platform. The user picks one hook and posts that same
+angle everywhere — so option 2 on Mastodon, X and Bluesky all cover the same hook, and only the wording
+changes to fit the platform's length and conventions. Do not give each platform a different hook.
 
 ## Step 2 — Pick accounts to tag
 
@@ -50,7 +53,18 @@ than a misattributed one.
 
 ## Step 3 — Write the variants
 
-Produce **3 options per platform**, each leading with a different hook from Step 1.
+Produce **3 options per platform** — option N on every platform covers hook N from Step 1, reworded to fit.
+
+**Every variant must read as the author announcing their own new article, not as someone resharing a link
+they found.** This is the single most important thing to get right. Say it in the first sentence, and vary
+the phrasing across platforms rather than repeating one formula:
+
+- Good: "New post on my blog: I went through…", "I published a walkthrough of…", "Just published: my…",
+  "The change I found most telling while writing up…", "Writing up X, I spent the longest on…"
+- Bad: "OWASP Top 10 2025 is out.", "X just released Y." — these read as news sharing, and the reader has no
+  reason to think the link is yours.
+
+First person throughout. The post is the user's own work, so "I", "my", "I found", "I spent the longest on".
 
 | Platform | Limit | Link counts as | Hashtags | Mentions |
 |---|---|---|---|---|
@@ -87,6 +101,8 @@ Each file follows this structure:
 **Accounts to tag:** `<handle>` (<who>), …
 **Notes:** <platform-specific guidance that applies to these variants>
 
+Each option shares its hook with the same option number in `<other two files>` — only the wording differs.
+
 ---
 
 ## Option 1 — <angle> (recommended)
@@ -122,5 +138,5 @@ do not estimate these by hand.
 Tell the user:
 
 - the three file paths
-- the counted length of the recommended option per platform
+- the 3 hooks, and the counted length each one came out at on each platform
 - which accounts you tagged, and any handle you deliberately left out because you could not verify it

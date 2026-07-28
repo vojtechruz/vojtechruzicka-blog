@@ -70,8 +70,12 @@ async function generateOgImage(src, urlPath) {
       transform: (sharpInstance) => sharpInstance.resize(OG_IMAGE_WIDTH, OG_IMAGE_HEIGHT, { fit: 'cover' }),
     });
 
+    // The crop is deterministic, so report the constants rather than the stat eleventy-img
+    // returns. `transform` only runs when the image is actually generated — on an output-cache
+    // hit (serve mode, where _site is never cleaned) the stat still carries the uncropped
+    // aspect-derived height, which would not match the file on disk.
     const [image] = metadata.jpeg;
-    return { url: image.url, width: image.width, height: image.height };
+    return { url: image.url, width: OG_IMAGE_WIDTH, height: OG_IMAGE_HEIGHT };
   } catch {
     return undefined;
   }
