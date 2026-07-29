@@ -56,6 +56,15 @@ same-named header. The default rule (`/*`) is `max-age=0, must-revalidate` — s
 | Root statics (favicons, `site.webmanifest`, `default-share.jpg`, `vojtech.jpg`) | `max-age=3600`               | Fetched under bare URLs by browsers (automatic favicon lookup, manifest icons) and og:image scrapers — must pick up changes within an hour |
 | Feeds, `sitemap.xml`, `robots.txt`                                              | 5 min / 1 h / 1 day          | See FEEDS.md                                                                                                                               |
 
+Two exceptions to note:
+
+- `/*/og-image.jpg` (per-post social share image) has a **stable URL but changing content** — a dedicated rule after
+  the `/*/*.jpg` block overrides `immutable` down to `max-age=3600`.
+- Public images (post images, og-images, favicons, share images) carry
+  `Cross-Origin-Resource-Policy: cross-origin`, overriding the site-wide `same-origin` security default. Without it,
+  browsers refuse to embed the images on other origins — which breaks browser-rendered social preview tools
+  (metatags.io) and feed readers. Server-side scrapers (Facebook, X, LinkedIn) ignore CORP either way.
+
 Never add an extension-based catch-all like `/*.css` or `/*.svg` with `immutable` — it matches root-level files with
 stable URLs and reintroduces the original bug. `tests/asset-version.test.js` guards this: it parses the built `_headers`
 and fails when an immutable rule targets anything other than the hashed/versioned paths above.
