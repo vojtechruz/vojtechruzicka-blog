@@ -45,8 +45,12 @@ passed to giscus.app).
 
 ## Caching policy (`src/static/_headers`)
 
-Cloudflare `_headers` notes: `*` matches across `/`, and when multiple rules match, the **later** rule wins for a
-same-named header. The default rule (`/*`) is `max-age=0, must-revalidate` — safe for HTML.
+Cloudflare `_headers` notes: `*` matches across `/`, and when multiple rules match, same-named headers with
+**distinct values are appended**, not overridden (identical values are deduplicated). A joined value like
+`same-origin, cross-origin` is invalid — browsers then ignore the header and Cloudflare falls back to its edge
+defaults (observed as `Cache-Control: max-age=14400` on og-images). To replace a header set by an earlier rule,
+**detach it first with `! Header-Name`** on its own line, then set the new value. The default rule (`/*`) is
+`max-age=0, must-revalidate` — safe for HTML.
 
 | Path                                                                            | Cache-Control                | Why                                                                                                                                        |
 | ------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -59,9 +63,10 @@ same-named header. The default rule (`/*`) is `max-age=0, must-revalidate` — s
 Two exceptions to note:
 
 - `/*/og-image.jpg` (per-post social share image) has a **stable URL but changing content** — a dedicated rule after
-  the `/*/*.jpg` block overrides `immutable` down to `max-age=3600`.
+  the `/*/*.jpg` block replaces `immutable` with `max-age=3600` (via `! Cache-Control` + new value).
 - Public images (post images, og-images, favicons, share images) carry
-  `Cross-Origin-Resource-Policy: cross-origin`, overriding the site-wide `same-origin` security default. Without it,
+  `Cross-Origin-Resource-Policy: cross-origin` (each rule detaches the inherited value first via
+  `! Cross-Origin-Resource-Policy`), replacing the site-wide `same-origin` security default. Without it,
   browsers refuse to embed the images on other origins — which breaks browser-rendered social preview tools
   (metatags.io) and feed readers. Server-side scrapers (Facebook, X, LinkedIn) ignore CORP either way.
 
