@@ -1,5 +1,5 @@
-Generate promotional Mastodon, X and Bluesky posts for a published blog post, respecting each platform's
-character limit and conventions.
+Generate promotional Mastodon, X, Bluesky, LinkedIn and Facebook posts for a published blog post,
+respecting each platform's character limit and conventions.
 
 ## Arguments: $ARGUMENTS
 
@@ -38,14 +38,18 @@ certain about with a web search before using it; a wrong handle tags a stranger.
 
 Known-good handles:
 
-| Entity | Mastodon | X | Bluesky |
-|---|---|---|---|
-| OWASP Foundation | `@owasp@infosec.exchange` | `@owasp` | `@owasp.org` |
-| OWASP ASVS | — | — | `@asvs.owasp.org` |
-| MITRE CWE Program | — | `@CweCapec` | — |
-| Snyk | — | `@snyksec` | — |
-| Spring | — | `@springcentral` | — |
-| JetBrains IntelliJ IDEA | — | `@intellijidea` | — |
+| Entity | Mastodon | X | Bluesky | LinkedIn | Facebook |
+|---|---|---|---|---|---|
+| OWASP Foundation | `@owasp@infosec.exchange` | `@owasp` | `@owasp.org` | `OWASP® Foundation` | `OWASP Foundation` |
+| OWASP ASVS | — | — | `@asvs.owasp.org` | — | — |
+| MITRE CWE Program | — | `@CweCapec` | — | — | — |
+| Snyk | — | `@snyksec` | — | `Snyk` | — |
+| Spring | — | `@springcentral` | — | — | — |
+| JetBrains IntelliJ IDEA | — | `@intellijidea` | — | `JetBrains` | `JetBrains` |
+
+LinkedIn and Facebook mentions cannot be pre-written in plain text — they are resolved by typing `@` in the
+platform's editor and picking the page. Write the plain page name in the post text and list the pages to tag
+in the file's **Accounts to tag** line instead.
 
 If the post's topic has no entry here, search the vendor's or project's official site for its social links
 rather than guessing. Leave the mention out entirely if you cannot confirm it — an untagged post is better
@@ -71,6 +75,8 @@ First person throughout. The post is the user's own work, so "I", "my", "I found
 | Mastodon | 500 chars | 23 chars | 4–5, CamelCase (`#AppSec`) | `@user@instance.tld`; the `@instance.tld` part is free |
 | X | 280 chars | 23 chars (t.co) | 1–2 max | `@handle` |
 | Bluesky | 300 graphemes | **its full length** | 1–2 | `@domain.tld` — handles are domains |
+| LinkedIn | 3000 chars | its full length | 3–5, at the end | typed in the editor — see Step 2 |
+| Facebook | 63206 chars (aim under 500) | its full length | 0–2, they carry little weight | typed in the editor — see Step 2 |
 
 Platform conventions to respect:
 
@@ -79,6 +85,14 @@ Platform conventions to respect:
 - **X** punishes hashtag stuffing. One or two, at the end.
 - **Bluesky** is the tightest budget because the raw URL counts in full (a typical post URL is ~49 characters).
   Note in the file that the user can delete the raw URL once the preview card renders.
+- **LinkedIn** collapses everything after roughly the first 200 characters behind "…see more" — the hook must
+  land in the first sentence, before the fold. Use short paragraphs and line breaks; 3 concise paragraphs
+  (hook → what the post covers → link + hashtags) beat one wall of text. Aim for 500–1,200 characters even
+  though the hard limit is 3,000. Professional tone is fine, but keep the author's plain, direct voice.
+- **Facebook** truncates around ~480 characters with "See more", and short posts perform best — aim under 500
+  even though the technical limit is enormous. Hashtags carry little weight there; use 0–2 or none.
+  Conversational tone works better than on LinkedIn. The preview card renders from the URL; note in the file
+  that the raw URL can be deleted once the card appears.
 - Never write `#` directly before a number (`#6 → #3`) — it reads as a broken hashtag. Write `6th → 3rd`.
 - Use the post's own voice: plain, direct, no hype, no "🚀 excited to share".
 - Emoji are fine as list markers on Mastodon, sparing elsewhere.
@@ -90,6 +104,8 @@ Write one file per platform to `_out/social/<slug>/` (gitignored scratch output)
 - `_out/social/<slug>/mastodon.md`
 - `_out/social/<slug>/x.md`
 - `_out/social/<slug>/bluesky.md`
+- `_out/social/<slug>/linkedin.md`
+- `_out/social/<slug>/facebook.md`
 
 Each file follows this structure:
 
