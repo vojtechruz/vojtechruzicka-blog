@@ -12,6 +12,9 @@
     // or similiar and part of TOC
     "MD036": false
   },
-  "globs": ["src/posts/**/*.md"],
-  "ignores": ["**/review.md"]
+  // Blog posts plus the project's own documentation (root docs, docs/, tooling readmes).
+  "globs": ["src/posts/**/*.md", "*.md", "docs/**/*.md", "_tools/obsidian/README.md"],
+  // review.md: internal draft notes; LICENSE.md: verbatim license text, not ours to reformat;
+  // Gatsby checklist: throwaway migration working doc with an intentionally partial heading structure.
+  "ignores": ["**/review.md", "LICENSE.md", "Gatsby-to-Eleventy-Migration-Checklist.md"]
 }

@@ -87,7 +87,7 @@
     const percent = Math.round(ratio * 100);
 
     // Track when user has read most of the post
-    if (percent >= 90 && !window._postReadTracked) {
+    if (percent >= 90 && !window._postReadTracked && typeof window.trackAnalyticsEvent === 'function') {
       window.trackAnalyticsEvent('Post Read', { readPostUrl: location.pathname });
       window._postReadTracked = true;
     }

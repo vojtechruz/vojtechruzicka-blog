@@ -1,14 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-    <!-- Background circle -->
-    <circle cx="32" cy="32" r="31.2" fill="#7f1d1d" stroke="#7f1d1d" stroke-width="2" />
-
-    <!-- VR text -->
-    <text
-            x="6"
-            y="46"
-            font-family="sans-serif"
-            font-size="38"
-            font-weight="bold"
-            fill="#ffffff"
-    >VR</text>
+    <!-- Local dev: dark red so the environment is obvious in the browser tab.
+         Same Inter ExtraBold "VR" mark as favicon.svg, recolored. -->
+    <defs>
+        <linearGradient id="vr-bg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a52222"/>
+            <stop offset="1" stop-color="#7f1d1d"/>
+        </linearGradient>
+    </defs>
+    <rect width="64" height="64" rx="13" fill="url(#vr-bg)"/>
+    <path fill="#ffffff" d="M23.86 47L14.36 47L4.05 17L12.04 17L16.21 30.11Q17.2 33.37 18.11 36.95Q19.03 40.54 19.95 44.5L19.95 44.5L18.4 44.5Q19.31 40.52 20.18 36.94Q21.04 33.37 21.99 30.11L21.99 30.11L25.99 17L33.89 17L23.86 47M43.04 47L35.93 47L35.93 17L48.21 17Q51.6 17 54.05 18.22Q56.51 19.44 57.83 21.67Q59.15 23.91 59.15 26.97L59.15 26.97Q59.15 30.05 57.8 32.23Q56.45 34.42 53.95 35.54Q51.46 36.67 48.01 36.67L48.01 36.67L40.18 36.67L40.18 31.05L46.72 31.05Q48.39 31.05 49.51 30.61Q50.63 30.17 51.2 29.26Q51.78 28.36 51.78 26.97L51.78 26.97Q51.78 25.56 51.2 24.63Q50.63 23.7 49.5 23.23Q48.37 22.76 46.7 22.76L46.7 22.76L43.04 22.76L43.04 47M60.19 47L52.4 47L45.09 33.29L52.7 33.29L60.19 47"/>
 </svg>

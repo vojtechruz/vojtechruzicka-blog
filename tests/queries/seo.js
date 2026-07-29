@@ -26,6 +26,34 @@ export function getOgUrl($) {
   return $('meta[property="og:url"]').attr('content');
 }
 
+export function getOgImageWidth($) {
+  return $('meta[property="og:image:width"]').attr('content');
+}
+
+export function getOgImageHeight($) {
+  return $('meta[property="og:image:height"]').attr('content');
+}
+
+export function getOgImageAlt($) {
+  return $('meta[property="og:image:alt"]').attr('content');
+}
+
+export function getTwitterImage($) {
+  return $('meta[name="twitter:image"]').attr('content');
+}
+
+export function getTwitterImageAlt($) {
+  return $('meta[name="twitter:image:alt"]').attr('content');
+}
+
+export function getTwitterTitle($) {
+  return $('meta[name="twitter:title"]').attr('content');
+}
+
+export function getFediverseCreator($) {
+  return $('meta[name="fediverse:creator"]').attr('content');
+}
+
 export function getOgType($) {
   return $('meta[property="og:type"]').attr('content');
 }

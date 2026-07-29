@@ -1,19 +1,5 @@
 # Gatsby → Eleventy Migration Checklist
 
-### 2.1 Front matter mapping (Gatsby → Eleventy)
-For each content file, ensure the following keys and types exist or are transformed as needed:
-- [ ] title → title (string)
-- [ ] date → date (ISO date or YYYY-MM-DD)
-- [ ] updated / lastmod → updated (optional; used for sitemap/SEO)
-- [ ] description / excerpt → description (string)
-- [ ] tags / categories → tags (array or string; Eleventy collections use tags)
-- [ ] slug / path → permalink (string pattern or computed)
-- [ ] draft → draft (boolean; used to exclude from production builds)
-- [ ] cover / image / thumbnail → image (path/URL for social cards, list previews)
-- [ ] canonical_url → canonical (optional)
-- [ ] author → author (string or reference to data file)
-- [ ] lang → lang (optional; i18n)
-
 ### 2.2 Permalinks and URL parity
 - [ ] Document current Gatsby URL structure (with/without trailing slash, date-based, tag pages, pagination URLs).
 - [ ] Implement Eleventy permalinks to match Gatsby URLs exactly.
@@ -23,19 +9,7 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Pagination URLs (e.g., /page/2/, /tags/{tag}/page/2/).
 - [ ] Set pathPrefix/basePath equivalent if previously used in Gatsby.
 
-## 4) Templates, layouts, and partials
-- [ ] Choose/implement base layout (HTML skeleton with head, header, footer, scripts).
-- [ ] Post layout (title, meta, date, tags, share buttons, next/prev links).
-- [ ] Partials/includes (head, meta tags, header/nav, footer, analytics, open graph, Twitter cards).
-- [ ] Template filters/shortcodes for:
-  - [ ] Date formatting and timezone handling
-  - [ ] Markdown rendering in templates (if needed)
-  - [ ] External embeds (YouTube, Tweets, CodePen, etc.)
-
 ## 5) Markdown/MDX processing
-- [ ] If Gatsby used MDX, choose approach:
-  - [ ] Use Eleventy with MDX (eleventy-plugin-mdx) OR
-  - [ ] Convert MDX components/shortcodes to Liquid/Nunjucks/EJS + shortcodes.
 - [ ] Configure markdown-it (or default) options:
   - [ ] Smart quotes, typographer
   - [ ] External link attributes (target, rel)
@@ -45,11 +19,6 @@ For each content file, ensure the following keys and types exist or are transfor
   - [ ] Line numbers
 
 ## 6) Images and static assets
-- [ ] Migrate images from Gatsby static/src directories to Eleventy input/static dirs.
-- [ ] Replace gatsby-image / gatsby-plugin-image logic with eleventy-img shortcode.
-- [ ] Generate responsive sizes, modern formats (AVIF/WebP), and fallbacks.
-- [ ] Ensure content image paths work (absolute vs relative).
-- [ ] Favicons and app icons migrated; update <link rel> tags.
 - [ ] Optimize SVGs; keep accessibility (role, title, desc where appropriate).
 
 ## 7) SEO, metadata, and social
@@ -66,7 +35,6 @@ For each content file, ensure the following keys and types exist or are transfor
 
 ## 9) Redirects and legacy URLs
 - [ ] Verify 301 status codes and canonicalization (trailing slash, www/non-www, http→https).
-- [ ] 410 for removed content when intentional.
 
 ## 10) Analytics, comments, search, forms
 - [ ] Newsletter/signup forms (Netlify Forms, Mailchimp, Buttondown, etc.).
@@ -110,7 +78,6 @@ For each content file, ensure the following keys and types exist or are transfor
 
 ## 18) Optional features parity
 - [ ] Social image generation (OG images) via SSG step (Satori/Puppeteer/Cloud function).
-- [ ] Dark mode toggle and theme persistence.
 
 ## 19) Security and privacy
 - [ ] Review third-party scripts; defer and limit scopes.

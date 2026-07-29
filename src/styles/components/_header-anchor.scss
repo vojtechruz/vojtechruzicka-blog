@@ -89,6 +89,9 @@
     opacity 0.2s ease,
     color 0.2s ease;
   padding: 0.2rem;
+
+  /* 'Link copied' confirmation, matching the social-share copy button */
+  @include utilities.copied-tooltip('Link copied');
 }
 
 /* Show the icon on hover/focus */

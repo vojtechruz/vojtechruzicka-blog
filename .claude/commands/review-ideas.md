@@ -1,31 +1,35 @@
-Review blog post ideas from Notion, score and prioritize them in context of existing posts, then write AI feedback back to each Notion page.
+Review blog post ideas from the Obsidian vault, score and prioritize them in context of existing posts, then write AI feedback back into each idea note.
 
 ## Arguments: $ARGUMENTS
 
-- **No args**: dry-run the push step, show feedback in terminal, ask before writing to Notion
-- **`--dry-run`**: fetch and review ideas, show feedback, but do NOT write to Notion
-- **`--force`**: skip confirmation and write feedback to Notion immediately
+- **No args**: review ideas, show feedback in terminal, ask before writing to the vault
+- **`--dry-run`**: fetch and review ideas, show feedback, but do NOT write to the vault
+- **`--force`**: skip confirmation and write feedback to the notes immediately
 
 ## Steps
 
 ### 1. Check dependencies
 
-- Verify `_tools/notion/.env` exists. If it doesn't, stop and tell the user to copy `_tools/notion/.env.example` and fill in the values.
-- Verify `NOTION_IDEAS_DB_ID` is set in the `.env` file (open and check). If missing, stop and tell the user to add it.
-- The script uses a local venv at `_tools/notion/.venv`. On Windows use `_tools/notion/.venv/Scripts/python`. Check with PowerShell `Test-Path`.
-- If the venv is missing, create it: `python -m venv _tools/notion/.venv`, then install: `_tools/notion/.venv/Scripts/pip install -r _tools/notion/requirements.txt`
+- The scripts operate on local vault files — no tokens or `.env` are required. (Paths default to the
+  vault at `D:\Dropbox\Obsidian`; override with `OBSIDIAN_VAULT` if needed.)
+- The scripts use a local venv at `_tools/obsidian/.venv`. On Windows use
+  `_tools/obsidian/.venv/Scripts/python`. Check with PowerShell `Test-Path`.
+- If the venv is missing, create it: `python -m venv _tools/obsidian/.venv`, then install:
+  `_tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt`
 
 ### 2. Fetch ideas and existing posts
 
 Run:
 ```
-_tools/notion/.venv/Scripts/python _tools/notion/fetch_ideas.py --posts-dir src/posts
+_tools/obsidian/.venv/Scripts/python _tools/obsidian/fetch_ideas.py --posts-dir src/posts
 ```
 
 Parse the JSON output. It contains:
-- `ideas`: list of `{id, title, tags, priority, is_starred, body_text}`
+- `ideas`: list of `{id, title, tags, priority, is_starred, body_text}` — `id` is the idea note's file
+  path (used to write feedback back)
 - `existing_posts`: list of `{title, topics, date, series, excerpt, draft}`
-- `learning_items`: list of `{title, tags, priority, status}` — Development-category items not yet Done from the learning list
+- `learning_items`: list of `{title, tags, priority, status}` — Development-category items not yet Done
+  from the Learning Tracker
 
 Show the user a brief summary: how many ideas fetched, how many existing posts loaded.
 
@@ -57,11 +61,10 @@ For each idea, run a web search to verify current relevance — do not rely sole
 
 **Concerns** — any red flags: too broad, too niche, already covered, outdated topic, etc.
 
-Format each review as markdown that will be rendered in Notion:
+Format each review as markdown. This becomes the body of the idea note's `# AI Feedback` callout, so do
+NOT include a title heading — start directly with the `**Reviewed:**` line:
 
 ```
-### [idea title]
-
 **Reviewed:** YYYY-MM-DD HH:MM UTC
 
 **Overlap:** [none / partial — existing post: "Title"]
@@ -90,41 +93,26 @@ Format each review as markdown that will be rendered in Notion:
 **Concerns:** [bullet list or "none"]
 ```
 
-### 4. Write per-idea markdown files
+Use the actual current UTC date and time in the `**Reviewed:**` line. (The push script also prepends a
+timestamp if you omit it, but writing it here keeps the terminal summary and the note consistent.)
 
-For each idea write a file to `_tools/notion/idea-reviews/{priority-folder}/{tag-prefix}-{title-slug}.md`.
+### 4. Show terminal summary
 
-**Priority folder** — use a numbered prefix so folders sort by priority in file explorers:
-- `Very High` → `1-very-high`
-- `High` → `2-high`
-- `Medium` → `3-medium`
-- `Low` → `4-low`
-- `Very Low` → `5-very-low`
-- `On Ice` → `6-on-ice`
-
-**Filename** — `{first-tag-slug}-{title-slug}.md`. Slugify by lowercasing and replacing spaces/special chars with hyphens. If the idea has no tags use `untagged` as prefix. Example: `java-virtual-threads-deep-dive.md`.
-
-File content is the full per-idea review markdown (everything from the review format template above, without the `### [title]` heading — that becomes the `# Title` H1 of the file). The `**Reviewed:** YYYY-MM-DD HH:MM UTC` line must be the first content line in every file (right after the H1), using the actual current UTC date and time at the moment of writing.
-
-Overwrite files from previous runs. Create directories as needed.
-
-### 5. Show terminal summary
-
-After writing all files, print a compact summary table in the terminal — one line per idea:
+Print a compact summary table in the terminal — one line per idea:
 
 ```
-[AI Priority] [AI Effort] — Title (file: path/to/file.md)
+[AI Priority] [AI Effort] — Title
 ```
 
 Then print the **Prioritized shortlist**: top 5 ideas worth writing next, with a one-line reason each.
 
-### 6. Save JSON for Notion push
+### 5. Save JSON for the write step
 
 Write `idea_reviews.json` to the scratchpad:
 ```json
 [
   {
-    "page_id": "...",
+    "path": "<idea note path from `id`>",
     "title": "...",
     "feedback": "markdown text of the review for this idea",
     "ai_suggested_priority": "High",
@@ -133,17 +121,20 @@ Write `idea_reviews.json` to the scratchpad:
 ]
 ```
 
-`ai_suggested_priority` must be exactly one of: `Very High`, `High`, `Medium`, `Low`, `Very Low`, `On Ice`. `ai_expected_effort` must be exactly `Low`, `Medium`, or `High`.
+`ai_suggested_priority` must be exactly one of: `Very High`, `High`, `Medium`, `Low`, `Very Low`, `On Ice`. `ai_expected_effort` must be exactly `Low`, `Medium`, or `High`. `path` is the idea's `id` from the fetch output.
 
-### 7. Push to Notion (unless --dry-run)
+### 6. Write feedback into the notes (unless --dry-run)
 
-If `--dry-run`: stop here and tell the user files were written but Notion was NOT updated.
+If `--dry-run`: stop here and tell the user the reviews were prepared but the vault was NOT updated
+(you can preview with `push_idea_reviews.py <json> --dry-run`).
 
 Otherwise (no args or --force):
-- If no args: ask for confirmation before writing to Notion.
-- Run: `_tools/notion/.venv/Scripts/python _tools/notion/push_idea_reviews.py <path-to-idea_reviews.json>`
+- If no args: ask for confirmation before writing to the vault.
+- Run: `_tools/obsidian/.venv/Scripts/python _tools/obsidian/push_idea_reviews.py <path-to-idea_reviews.json>`
+- This replaces (or appends) the `# AI Feedback` callout in each idea note and sets the
+  `AI Suggested Priority` / `AI Expected Effort` frontmatter. All other note content is preserved.
 - Show the output summary.
 
-### 8. Report
+### 7. Report
 
-Confirm how many pages were updated in Notion, or surface any errors.
+Confirm how many idea notes were updated, or surface any errors.

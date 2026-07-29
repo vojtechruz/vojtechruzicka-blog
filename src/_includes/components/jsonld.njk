@@ -1,5 +1,5 @@
 {# Uses precomputed values: pageTitle, pageDescription, pageUrl, imageUrl,
-isHome, isHomePaginated, isTopics, isTag, isPost, publishedDate,
+isHome, isHomePaginated, isTopics, isTopic, isPost, publishedDate,
 modifiedDate, breadcrumbs, isAbout #}
 
 {% if isPost and not archivedStatus %}
@@ -44,7 +44,7 @@ modifiedDate, breadcrumbs, isAbout #}
   }
 </script>
 
-{% elif isHomePaginated or isTopics or isTag or isSeries or isSeriesListing or isArchive %}
+{% elif isHomePaginated or isTopics or isTopic or isSeries or isSeriesListing or isArchive %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",

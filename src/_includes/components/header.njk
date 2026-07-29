@@ -2,11 +2,20 @@
 <header class="main-navigation">
   <nav aria-label="Main navigation">
       <div class="navigation">
-        <div class="blog-name">
-          {{site.title}}
-        </div>
+        <a class="blog-name" href="/">
+          <img class="blog-logo" src="/favicon.svg" alt="" width="32" height="32" eleventy:ignore />
+          <span>{{site.title}}</span>
+        </a>
 
-        <div class="menu-container">
+        <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav-toggle-box" aria-hidden="true">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </span>
+        </button>
+
+        <div class="menu-container" id="nav-menu">
           <ul class="menu-items">
             {% set isHome = (current == '/') %}
             <li>

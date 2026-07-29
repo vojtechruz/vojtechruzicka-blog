@@ -8,14 +8,18 @@ Full-stack Software Development, Clean Code, Design Patterns, Java, Spring, Java
 
 To run the blog locally for development, follow these steps:
 
-1.  **Install dependencies**:
+1. **Install dependencies**:
+
     ```bash
     npm install
     ```
-2.  **Start the development server**:
+
+2. **Start the development server**:
+
     ```bash
     npm run dev
     ```
+
     This will start a local server at `http://localhost:8080` with hot-reloading.
 
 ### Other Commands
@@ -55,4 +59,4 @@ All blog content (posts, images, etc.) is licensed under
 
 ### Code
 
-The source code of this project is licensed under the [MIT License](LICENSE).
+The source code of this project is licensed under the [MIT License](LICENSE.md).
