@@ -70,7 +70,7 @@ describe('Navigation — rendered markup', () => {
   it('references the nav script, deferred, and ships the bundle', () => {
     const $ = loadPage(HOME);
     const html = loadPageHtml(HOME);
-    const script = $('script[src="/scripts/nav.js"]');
+    const script = $('script[src^="/scripts/nav.js"]');
 
     expect(script.length).toBe(1);
     expect(script.is('[defer]')).toBe(true);

@@ -9,19 +9,19 @@
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 
   {% if isLocalDevelopment %}
-  <link rel="icon" href="/favicon-local.svg" type="image/svg+xml">
+  <link rel="icon" href="{{ '/favicon-local.svg' | assetUrl }}" type="image/svg+xml">
   {% elif isPreview %}
-  <link rel="icon" href="/favicon-preview.svg" type="image/svg+xml">
+  <link rel="icon" href="{{ '/favicon-preview.svg' | assetUrl }}" type="image/svg+xml">
   {% else %}
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/png" href="/favicon.png" sizes="64x64" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | assetUrl }}" />
+  <link rel="icon" type="image/png" href="{{ '/favicon.png' | assetUrl }}" sizes="64x64" />
+  <link rel="shortcut icon" href="{{ '/favicon.ico' | assetUrl }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/apple-touch-icon.png' | assetUrl }}" />
   {% endif %}
 
   <meta name="apple-mobile-web-app-title" content="VR Blog" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="manifest" href="{{ '/site.webmanifest' | assetUrl }}" />
+  <link rel="stylesheet" href="{{ '/styles/main.css' | assetUrl }}">
   {% if archivedStatus or isArchive %}<meta name="robots" content="noindex, follow">
   {% endif %}<link rel="canonical" href="{{ canonicalUrl }}" />
 
@@ -53,9 +53,9 @@
 
   {% include "components/footer.njk" %}
 
-  <script src="/scripts/analytics.js" defer></script>
-  <script src="/scripts/search.js" defer></script>
-  <script src="/scripts/nav.js" defer></script>
+  <script src="{{ '/scripts/analytics.js' | assetUrl }}" defer></script>
+  <script src="{{ '/scripts/search.js' | assetUrl }}" defer></script>
+  <script src="{{ '/scripts/nav.js' | assetUrl }}" defer></script>
   {% block scripts %}{% endblock %}
 
 </body>

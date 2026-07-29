@@ -111,14 +111,14 @@
     {% include "components/comments.njk" %}
   </div>
 
-  <script src="/scripts/reading-progress.js" defer></script>
+  <script src="{{ '/scripts/reading-progress.js' | assetUrl }}" defer></script>
 
 </main>
 {% endblock %}
 
 {% block sidebar %}
 {% include "components/series-toc.njk" %}
-{% if series %}<script src="/scripts/series-toc.js" defer></script>{% endif %}
+{% if series %}<script src="{{ '/scripts/series-toc.js' | assetUrl }}" defer></script>{% endif %}
 
 {% set tocHtml = content | toc %}
 {% if tocHtml and (tocHtml | trim) %}
@@ -130,10 +130,10 @@
     | safe }}
   </div>
 </nav>
-<script src="/scripts/toc-scrollspy.js" defer></script>
+<script src="{{ '/scripts/toc-scrollspy.js' | assetUrl }}" defer></script>
 {% endif %}
 {% endblock %}
 {% block scripts %}
-<script src="/scripts/code-block.js" defer></script>
-<script src="/scripts/header-anchor.js" defer></script>
+<script src="{{ '/scripts/code-block.js' | assetUrl }}" defer></script>
+<script src="{{ '/scripts/header-anchor.js' | assetUrl }}" defer></script>
 {% endblock %}

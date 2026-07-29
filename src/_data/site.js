@@ -1,19 +1,22 @@
 import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
+import { versionedAssetUrl } from '../../config/utils/asset-version.js';
 
 const getGiscusTheme = () => {
+  // /styles/* is long-cached as immutable, so the theme URL carries a content hash too
+  const themePath = versionedAssetUrl('/styles/giscus-theme.css');
   if (isLocalDevelopment()) {
-    return 'https://posts-arcade-sender-volvo.trycloudflare.com/styles/giscus-theme.css';
+    return `https://posts-arcade-sender-volvo.trycloudflare.com${themePath}`;
   }
   if (isPreview()) {
     // Return absolute URL for previews too, as Giscus might require it
     // CF_PAGES_URL is provided by Cloudflare Pages
     const baseUrl = process.env.CF_PAGES_URL || '';
     if (baseUrl) {
-      return `${baseUrl}/styles/giscus-theme.css`;
+      return `${baseUrl}${themePath}`;
     }
-    return '/styles/giscus-theme.css';
+    return themePath;
   }
-  return 'https://www.vojtechruzicka.com/styles/giscus-theme.css';
+  return `https://www.vojtechruzicka.com${themePath}`;
 };
 
 export default {
