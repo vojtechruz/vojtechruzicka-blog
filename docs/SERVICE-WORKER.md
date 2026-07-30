@@ -28,7 +28,9 @@ A registered service worker never expires on its own. On each navigation the bro
 `activate` it deletes all Cache Storage entries, unregisters itself, and reloads open tabs via `clients.navigate()`.
 This fixes affected visitors on their very first return visit, with no broken page in between.
 
-The `_headers` rule for `/*.js` (`max-age=0, must-revalidate`) applies to `/sw.js`, so updates propagate immediately.
+`src/static/_headers` has a dedicated `/sw.js` rule (`max-age=0, must-revalidate`) — the file is fetched by the
+browser's SW update machinery under its bare URL, so it must never be long-cached (it is not referenced through the
+`assetUrl` `?v=` filter like other scripts).
 
 ## When to remove
 

@@ -8,24 +8,18 @@
   Permissions-Policy: geolocation=(), camera=(), microphone=()
   Cross-Origin-Opener-Policy: same-origin
 
-  Content-Security-Policy:
-    upgrade-insecure-requests;
-    default-src 'self';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    object-src 'none';
-    img-src 'self' data:;
-    font-src 'self';
-    style-src 'self';
-    # Web assembly eval is needed by Pagefind
-    script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app;
-    connect-src 'self' https://plausible.io;
-    frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app;
-    media-src 'self'
-
-  # --- Default caching (safe for HTML; asset rules below override it) ---
-  Cache-Control: public, max-age=0, must-revalidate
+  # CSP must be a SINGLE line — Cloudflare's _headers parser drops multiline values
+  # (this policy was silently not served at all while it was written across lines).
+  # Directive notes:
+  #  - style-src 'unsafe-inline': Shiki emits style="" on code spans, Mermaid SVGs carry
+  #    <style> blocks, LQIP placeholders use style="" — all inline
+  #  - script-src 'wasm-unsafe-eval': needed by Pagefind
+  #  - script-src sha256-S46Po…: the inline Plausible init snippet in
+  #    src/_includes/components/analytics.njk — REGENERATE when that snippet changes
+  #    (sha256 of the exact text between <script> and </script>, LF line endings)
+  #  - script-src 'unsafe-hashes' + sha256-0r1xa…: the onload="this.dataset.loaded=1;"
+  #    attribute emitted by config/html-transform/lqip-svg-transform.js
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app 'unsafe-hashes' 'sha256-S46PoNSIlqlHWn5jWqs3zz9yXx6Zq5efyOQb01rgaLs=' 'sha256-0r1xah0mO6tRZ4vR2AP8ON96OmHeR8AbJ/TKM4bNveI='; connect-src 'self' https://plausible.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
 
 /styles/giscus-theme.css
   Access-Control-Allow-Origin: https://giscus.app
@@ -33,14 +27,15 @@
   # --- Allow performance monitoring tools too see detailed metrics ---
   Timing-Allow-Origin: *
 
-# --- Caching ---
-# When several rules set the same header, Cloudflare Pages applies the LAST
-# matching rule's value (verified against production), so order matters:
-# generic rules first, specific overrides after.
-#
-# Only files whose names contain a content hash may be immutable. Fixed-name
-# files (main.css, scripts/*.js, favicons, og-image.jpg) keep the same URL
-# across deploys, so they must revalidate or use a short TTL.
+/*.html
+  # Ensure HTML revalidates (fresh content after deploys)
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/archives
+  Cache-Control: public, max-age=0, must-revalidate
 
 /sitemap.xml
   # Let search engines cache for a bit, but not forever
@@ -56,45 +51,79 @@
 /robots.txt
   Cache-Control: public, max-age=86400
 
-# Fixed-name statics (favicons, manifest icons, share/profile images):
-# contents change rarely, so a short TTL is a fair trade-off
-/*.svg
-  Cache-Control: public, max-age=86400
-/*.png
-  Cache-Control: public, max-age=86400
-/*.ico
-  Cache-Control: public, max-age=86400
-/*.jpg
-  Cache-Control: public, max-age=86400
-/*.jpeg
-  Cache-Control: public, max-age=86400
-/*.webmanifest
-  Cache-Control: public, max-age=86400
-
-# Fixed-name code assets (also covers Pagefind UI JS/CSS): must revalidate so
-# deploys take effect immediately; ETags make revalidation a cheap 304
-/*.css
-  Cache-Control: public, max-age=0, must-revalidate
-/*.js
-  Cache-Control: public, max-age=0, must-revalidate
-/*.mjs
+# Kill-switch service worker (see docs/SERVICE-WORKER.md) — fetched by the browser's
+# SW update machinery under its bare URL (never through the assetUrl ?v= filter), so it
+# must always revalidate; a frozen kill-switch could never replace the old Gatsby worker.
+# Browsers cap SW script caching at 24 h regardless, but explicit is safer.
+/sw.js
   Cache-Control: public, max-age=0, must-revalidate
 
-# Content-hashed images (eleventy-img output: <name>-<hash>-<width>.<ext>,
-# always inside a subdirectory): safe to cache forever
+# --- Long-cache immutable assets ---
+# NOTE: when several rules match one request, Cloudflare APPENDS same-named headers with
+# distinct values (identical values are deduplicated) — it does not override. A joined
+# value like "same-origin, cross-origin" is invalid and browsers/CDN fall back to defaults.
+# To replace a header set by an earlier rule (e.g. the /* security block), detach it first
+# with "! Header-Name" and then set the new value.
+#
+# Only assets whose URL changes with their content may be cached as immutable:
+#  - responsive images generated by eleventy-img carry a content hash in the filename
+#  - CSS/JS live under stable filenames, but every reference goes through the
+#    assetUrl filter (config/utils/asset-version.js) which appends ?v=<content hash>,
+#    so each new version is requested under a new URL
+# Anything else (favicons, site.webmanifest, share images at the site root) must NOT
+# be immutable - browsers and CDNs would keep the old version forever after a deploy.
+
+# Generated post/page images (content-hashed filenames in nested folders).
+# Cross-Origin-Resource-Policy overrides the site-wide same-origin default: images on a
+# public blog must be embeddable cross-origin (social preview tools, feed readers).
 /*/*.avif
   Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
 /*/*.webp
   Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
 /*/*.jpeg
   Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
 /*/*.jpg
   Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
 /*/*.png
   Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/*/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
 
-# Pagefind search-index chunks are content-hashed too (pagefind-entry.json and
-# the UI assets are not — those are handled by the rules above)
+# Per-post social share image (og:image) — stable URL, regenerated when the featured
+# image changes, so it must NOT be immutable (overrides the /*/*.jpg rule above)
+/*/og-image.jpg
+  ! Cache-Control
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
+# Video files and their poster JPGs (unhashed filenames under /videos/) — the posters
+# would otherwise inherit immutable from the /*/*.jpg rule above
+/videos/*
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+
+# Compiled stylesheets and script bundles (?v= versioned references)
+/styles/*
+  Cache-Control: public, max-age=31536000, immutable
+/scripts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Pagefind search-index chunks carry content hashes in their filenames, so they are
+# safe to cache forever. (pagefind-entry.json and the UI JS/CSS are unhashed and
+# deliberately left on the platform default so they revalidate after deploys.)
 /pagefind/*.pf_meta
   Cache-Control: public, max-age=31536000, immutable
 /pagefind/fragment/*
@@ -102,9 +131,44 @@
 /pagefind/index/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Fixed-name generated files living inside the hashed-image territory above —
-# override back to a short TTL
-/*/og-image.jpg
-  Cache-Control: public, max-age=86400
-/videos/*
-  Cache-Control: public, max-age=86400
+# --- Root-level static files (stable URLs, no content hash) ---
+# Fetched under their bare URL by browsers (automatic favicon lookup, manifest icons)
+# and scrapers (og:image), so they need a short cache to pick up changes after deploys.
+/favicon.ico
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/favicon.svg
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/favicon.png
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/favicon-local.svg
+  Cache-Control: public, max-age=3600
+/favicon-preview.svg
+  Cache-Control: public, max-age=3600
+/apple-touch-icon.png
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/site.webmanifest
+  Cache-Control: public, max-age=3600
+/web-app-manifest-192x192.png
+  Cache-Control: public, max-age=3600
+/web-app-manifest-512x512.png
+  Cache-Control: public, max-age=3600
+/web-app-manifest-maskable-192x192.png
+  Cache-Control: public, max-age=3600
+/web-app-manifest-maskable-512x512.png
+  Cache-Control: public, max-age=3600
+/default-share.jpg
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+/vojtech.jpg
+  Cache-Control: public, max-age=3600
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin

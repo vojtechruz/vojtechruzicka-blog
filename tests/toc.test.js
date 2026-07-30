@@ -141,7 +141,7 @@ describe('Table of contents – rendered output', () => {
       expect($('nav.toc').length, `${frontmatter.path}: TOC block presence should follow heading presence`).toBe(
         hasHeadings ? 1 : 0,
       );
-      expect($('script[src="/scripts/toc-scrollspy.js"]').length, `${frontmatter.path}: scrollspy script`).toBe(
+      expect($('script[src^="/scripts/toc-scrollspy.js"]').length, `${frontmatter.path}: scrollspy script`).toBe(
         hasHeadings ? 1 : 0,
       );
     }

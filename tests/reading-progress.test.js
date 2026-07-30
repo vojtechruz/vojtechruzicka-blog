@@ -43,7 +43,7 @@ describe('Reading progress — rendered markup', () => {
   it('references the reading progress script, deferred, and the bundle exists in the build', () => {
     const html = loadPageHtml(POST_PATH);
     const $ = loadPage(POST_PATH);
-    const script = $('script[src="/scripts/reading-progress.js"]');
+    const script = $('script[src^="/scripts/reading-progress.js"]');
 
     expect(script.length).toBe(1);
     expect(html).toContain('/scripts/reading-progress.js');
@@ -66,7 +66,7 @@ describe('Reading progress — rendered markup', () => {
     for (const path of NON_POST_PATHS) {
       const $ = loadPage(path);
       expect($('#reading-progress').length, `Unexpected reading progress bar on ${path}`).toBe(0);
-      expect($('script[src="/scripts/reading-progress.js"]').length, `Unexpected script on ${path}`).toBe(0);
+      expect($('script[src^="/scripts/reading-progress.js"]').length, `Unexpected script on ${path}`).toBe(0);
     }
   });
 

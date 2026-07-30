@@ -77,6 +77,9 @@ environment variable (`all` or `none`). Draft posts live in `src/posts/_drafts/`
 6. RSS/Atom feeds (`src/feed.xml.njk`, `src/atom.xml.njk`) ship full post content; the `feedContent` filter
    (`config/filters/urls.js`) rewrites site-CSS-dependent markup (Mermaid, images, linkedPost cards) into reader-safe
    fallbacks. Details in docs/FEEDS.md.
+7. HTTP caching is set by `src/static/_headers`; stable-URL assets (CSS, script bundles, favicons) must be referenced
+   through the `assetUrl` filter (`config/utils/asset-version.js`), which appends a `?v=<content hash>` so long-cached
+   (`immutable`) assets invalidate on change. Details in docs/CACHING.md.
 
 ### Service worker
 
