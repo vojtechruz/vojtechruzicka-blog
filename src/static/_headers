@@ -24,24 +24,23 @@
     frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app;
     media-src 'self'
 
+  # --- Default caching (safe for HTML; asset rules below override it) ---
+  Cache-Control: public, max-age=0, must-revalidate
+
 /styles/giscus-theme.css
   Access-Control-Allow-Origin: https://giscus.app
 
   # --- Allow performance monitoring tools too see detailed metrics ---
   Timing-Allow-Origin: *
 
-  # --- Default caching (safe for HTML) ---
-  Cache-Control: public, max-age=0, must-revalidate
-
-/*.html
-  # Ensure HTML revalidates (fresh content after deploys)
-  Cache-Control: public, max-age=0, must-revalidate
-
-/
-  Cache-Control: public, max-age=0, must-revalidate
-
-/archives
-  Cache-Control: public, max-age=0, must-revalidate
+# --- Caching ---
+# When several rules set the same header, Cloudflare Pages applies the LAST
+# matching rule's value (verified against production), so order matters:
+# generic rules first, specific overrides after.
+#
+# Only files whose names contain a content hash may be immutable. Fixed-name
+# files (main.css, scripts/*.js, favicons, og-image.jpg) keep the same URL
+# across deploys, so they must revalidate or use a short TTL.
 
 /sitemap.xml
   # Let search engines cache for a bit, but not forever
@@ -57,20 +56,32 @@
 /robots.txt
   Cache-Control: public, max-age=86400
 
-# Long-cache immutable assets
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
-/static/*
-  Cache-Control: public, max-age=31536000, immutable
-/images/*
-  Cache-Control: public, max-age=31536000, immutable
-/styles/*
-  Cache-Control: public, max-age=31536000, immutable
-/js/*
-  Cache-Control: public, max-age=31536000, immutable
-/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+# Fixed-name statics (favicons, manifest icons, share/profile images):
+# contents change rarely, so a short TTL is a fair trade-off
+/*.svg
+  Cache-Control: public, max-age=86400
+/*.png
+  Cache-Control: public, max-age=86400
+/*.ico
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.jpeg
+  Cache-Control: public, max-age=86400
+/*.webmanifest
+  Cache-Control: public, max-age=86400
 
+# Fixed-name code assets (also covers Pagefind UI JS/CSS): must revalidate so
+# deploys take effect immediately; ETags make revalidation a cheap 304
+/*.css
+  Cache-Control: public, max-age=0, must-revalidate
+/*.js
+  Cache-Control: public, max-age=0, must-revalidate
+/*.mjs
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Content-hashed images (eleventy-img output: <name>-<hash>-<width>.<ext>,
+# always inside a subdirectory): safe to cache forever
 /*/*.avif
   Cache-Control: public, max-age=31536000, immutable
 /*/*.webp
@@ -81,32 +92,19 @@
   Cache-Control: public, max-age=31536000, immutable
 /*/*.png
   Cache-Control: public, max-age=31536000, immutable
-/*/*.svg
+
+# Pagefind search-index chunks are content-hashed too (pagefind-entry.json and
+# the UI assets are not — those are handled by the rules above)
+/pagefind/*.pf_meta
+  Cache-Control: public, max-age=31536000, immutable
+/pagefind/fragment/*
+  Cache-Control: public, max-age=31536000, immutable
+/pagefind/index/*
   Cache-Control: public, max-age=31536000, immutable
 
-
-# Safety net by extension (covers any assets not living in the folders above)
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-/*.mjs
-  Cache-Control: public, max-age=31536000, immutable
-/*.woff2
-  Cache-Control: public, max-age=31536000, immutable
-/*.svg
-  Cache-Control: public, max-age=31536000, immutable
-/*.png
-  Cache-Control: public, max-age=31536000, immutable
-/*.jpg
-  Cache-Control: public, max-age=31536000, immutable
-/*.jpeg
-  Cache-Control: public, max-age=31536000, immutable
-/*.webp
-  Cache-Control: public, max-age=31536000, immutable
-/*.avif
-  Cache-Control: public, max-age=31536000, immutable
-/*.ico
-  Cache-Control: public, max-age=31536000, immutable
-/*.webmanifest
-  Cache-Control: public, max-age=31536000, immutable
+# Fixed-name generated files living inside the hashed-image territory above —
+# override back to a short TTL
+/*/og-image.jpg
+  Cache-Control: public, max-age=86400
+/videos/*
+  Cache-Control: public, max-age=86400
