@@ -62,6 +62,18 @@ export function getTwitterCard($) {
   return $('meta[name="twitter:card"]').attr('content');
 }
 
+export function getTwitterDescription($) {
+  return $('meta[name="twitter:description"]').attr('content');
+}
+
+export function getTwitterSite($) {
+  return $('meta[name="twitter:site"]').attr('content');
+}
+
+export function getTwitterCreator($) {
+  return $('meta[name="twitter:creator"]').attr('content');
+}
+
 export function getPageTitle($) {
   return $('title').text();
 }
