@@ -8,7 +8,6 @@
     Decide: enable (one-liner) or drop.
   - [ ] External link attributes (target, rel) — ❌ not implemented; links open in the same tab. If that's the intended
     behavior, drop this item (rel=noopener is then moot).
-    a11y fix-up transform, `tests/toc.test.js`.
   - [x] ~~Footnotes and task lists (if used)~~ — N/A, verified no post uses either.
   - [ ] Line numbers — ❌ not implemented. Drop if the Gatsby site didn't show them.
 
@@ -27,11 +26,10 @@
 
 ## 11) CSS, JS, and bundling
 - [ ] Purge/treeshake CSS — ❌ not implemented; likely unnecessary for hand-written SCSS. Drop or nice-to-have.
-  2. Filename fingerprinting deliberately NOT added — instead `_headers` was restructured so only content-hashed files
-     (eleventy-img output, Pagefind index chunks) are `immutable`; fixed-name CSS/JS `must-revalidate` (cheap ETag
-     304s), fixed-name statics get `max-age=86400`. Bonus fixes: the default HTML `Cache-Control` was mis-indented
-     into the `giscus-theme.css` block (HTML was saved only by the platform default), and dead rules
-     (`/js/*`, `/fonts/*`, `/assets/*`, `/images/*`, `/static/*`, `/archives`) were removed.
+- [x] Minify and fingerprint assets — done (master, PRs #113–#115): CSS/JS references go through the `assetUrl`
+  filter (`config/utils/asset-version.js`) which appends `?v=<content hash>`, so `/styles/*` and `/scripts/*` are
+  safely `immutable`; unhashed fixed-name files (favicons, og-image, `/sw.js`, Pagefind entry/UI) get short TTLs or
+  must-revalidate. See docs/CACHING.md.
 
 ## 15) Accessibility and performance
 - [ ] Lazy-loading; preconnect/preload — ⚠️ images/iframes lazy ✅ (hero eager + fetchpriority=high ✅), but no
@@ -46,7 +44,8 @@
 
 ## 19) Security and privacy
 - [x] CSP and security headers — full CSP allowlist + HSTS(preload)/XCTO/XFO/Referrer-Policy/COOP/CORP/
-  Permissions-Policy in `src/static/_headers`.
+  Permissions-Policy in `src/static/_headers`. Note: CSP must stay on a SINGLE line — Cloudflare's `_headers` parser
+  silently drops multiline values (fixed on master, PR #114/#115).
 
 ## 20) Final verification and launch checklist
 - [ ] Crawl and compare against Gatsby page count — ⚠️ one-time manual step; not evidenced in repo (migration merged
