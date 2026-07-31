@@ -11,6 +11,10 @@ import {
   getTwitterTitle,
   getTwitterImage,
   getTwitterImageAlt,
+  getTwitterDescription,
+  getTwitterSite,
+  getTwitterCreator,
+  getOgDescription,
   getFediverseCreator,
 } from './queries/seo.js';
 import siteConfig from '../src/_data/site.js';
@@ -85,6 +89,23 @@ describe('Social meta tags', () => {
 
     it.each([POST_URL, '/', '/about/', '/topics/security/'])('%s uses a large summary card', (url) => {
       expect(getTwitterCard(loadPage(url))).toBe('summary_large_image');
+    });
+
+    // Both tags render only when site.twitter is set — this catches the handle
+    // silently disappearing from src/_data/site.js.
+    it.each([POST_URL, '/', '/about/', '/topics/security/'])('%s attributes the card to the site handle', (url) => {
+      const $ = loadPage(url);
+
+      expect(siteConfig.twitter).toMatch(/^@./);
+      expect(getTwitterSite($)).toBe(siteConfig.twitter);
+      expect(getTwitterCreator($)).toBe(siteConfig.twitter);
+    });
+
+    it.each([POST_URL, '/', '/about/', '/topics/security/'])('%s keeps the twitter description in sync with og', (url) => {
+      const $ = loadPage(url);
+
+      expect(getTwitterDescription($)).toBeTruthy();
+      expect(getTwitterDescription($)).toBe(getOgDescription($));
     });
   });
 });

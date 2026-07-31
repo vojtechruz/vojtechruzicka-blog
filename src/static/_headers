@@ -51,6 +51,13 @@
 /robots.txt
   Cache-Control: public, max-age=86400
 
+# Kill-switch service worker (see docs/SERVICE-WORKER.md) — fetched by the browser's
+# SW update machinery under its bare URL (never through the assetUrl ?v= filter), so it
+# must always revalidate; a frozen kill-switch could never replace the old Gatsby worker.
+# Browsers cap SW script caching at 24 h regardless, but explicit is safer.
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
 # --- Long-cache immutable assets ---
 # NOTE: when several rules match one request, Cloudflare APPENDS same-named headers with
 # distinct values (identical values are deduplicated) — it does not override. A joined
@@ -102,10 +109,26 @@
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: cross-origin
 
+# Video files and their poster JPGs (unhashed filenames under /videos/) — the posters
+# would otherwise inherit immutable from the /*/*.jpg rule above
+/videos/*
+  ! Cache-Control
+  Cache-Control: public, max-age=86400
+
 # Compiled stylesheets and script bundles (?v= versioned references)
 /styles/*
   Cache-Control: public, max-age=31536000, immutable
 /scripts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Pagefind search-index chunks carry content hashes in their filenames, so they are
+# safe to cache forever. (pagefind-entry.json and the UI JS/CSS are unhashed and
+# deliberately left on the platform default so they revalidate after deploys.)
+/pagefind/*.pf_meta
+  Cache-Control: public, max-age=31536000, immutable
+/pagefind/fragment/*
+  Cache-Control: public, max-age=31536000, immutable
+/pagefind/index/*
   Cache-Control: public, max-age=31536000, immutable
 
 # --- Root-level static files (stable URLs, no content hash) ---

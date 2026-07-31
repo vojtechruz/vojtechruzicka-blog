@@ -6,12 +6,14 @@
 //   node scripts/social-char-count.mjs _out/social/<slug>/x.md       # single file
 //
 // Each ```text fenced block in the file is treated as one post variant. The platform is derived
-// from the file name (mastodon.md / x.md / bluesky.md).
+// from the file name (mastodon.md / x.md / bluesky.md / linkedin.md / facebook.md).
 //
 // Counting rules differ per platform:
 //   X        — 280 chars, every URL counts as 23 (t.co shortening)
 //   Mastodon — 500 chars, URLs count as 23, the @instance.tld part of a remote mention is free
 //   Bluesky  — 300 graphemes, everything counts at full length (no shortening)
+//   LinkedIn — 3000 chars, everything counts at full length; only ~200 chars show before "…see more"
+//   Facebook — 63206 chars, everything counts at full length; truncates around ~480 chars with "See more"
 
 import fs from 'fs';
 import path from 'path';
@@ -37,6 +39,14 @@ const PLATFORMS = {
     limit: 300,
     count: countGraphemes,
   },
+  linkedin: {
+    limit: 3000,
+    count: countGraphemes,
+  },
+  facebook: {
+    limit: 63206,
+    count: countGraphemes,
+  },
 };
 
 function collectFiles(target) {
@@ -55,7 +65,7 @@ function checkFile(file) {
   const platform = PLATFORMS[platformName];
 
   if (!platform) {
-    console.log(`SKIP ${file} — unknown platform (expected mastodon.md, x.md or bluesky.md)`);
+    console.log(`SKIP ${file} — unknown platform (expected mastodon.md, x.md, bluesky.md, linkedin.md or facebook.md)`);
     return true;
   }
 

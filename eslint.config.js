@@ -8,10 +8,11 @@ export default [
   },
 
   // Base recommended rules for all JS files
+  js.configs.recommended,
+
+  // Project-wide rule overrides on top of recommended
   {
-    ...js.configs.recommended,
     rules: {
-      ...js.configs.recommended.rules,
       // Allow unused variables prefixed with underscore (intentionally unused params)
       'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       eqeqeq: 'error',
@@ -50,6 +51,18 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.browser,
+      },
+    },
+  },
+
+  // Static files served verbatim (service worker)
+  {
+    files: ['src/static/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'script',
+      globals: {
+        ...globals.serviceworker,
       },
     },
   },

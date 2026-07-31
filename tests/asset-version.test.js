@@ -66,8 +66,11 @@ describe('Asset cache busting', () => {
     }
 
     // Nested wildcard image rules match eleventy-img output (content-hashed filenames);
-    // /styles/* and /scripts/* references always carry ?v= (assetUrl filter).
-    const allowed = /^\/(styles|scripts)\/\*$|^\/\*\/\*\.(avif|webp|jpeg|jpg|png|svg)$/;
+    // /styles/* and /scripts/* references always carry ?v= (assetUrl filter);
+    // Pagefind index chunks (.pf_meta, fragment/, index/) carry content hashes in their
+    // filenames — but its entry JSON and UI JS/CSS do not, so those stay disallowed.
+    const allowed =
+      /^\/(styles|scripts)\/\*$|^\/\*\/\*\.(avif|webp|jpeg|jpg|png|svg)$|^\/pagefind\/(\*\.pf_meta|fragment\/\*|index\/\*)$/;
     expect(immutablePaths.length).toBeGreaterThan(0);
     for (const path of immutablePaths) {
       expect(path, `"${path}" must not be cached as immutable — its URL has no content hash`).toMatch(allowed);
