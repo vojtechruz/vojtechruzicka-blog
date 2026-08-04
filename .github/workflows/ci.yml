@@ -63,6 +63,10 @@ jobs:
           # CI only validates markup. Production builds keep the full defaults.
           ELEVENTY_IMAGE_FORMATS: webp,auto
           ELEVENTY_IMAGE_WIDTHS: 800,auto
+          # Pin CI to a production-shaped build. Without this, GITHUB_REF_NAME makes
+          # every feature branch look like a preview deploy, which pulls "ready" drafts
+          # into the output and breaks the draft-exclusion tests (tests/drafts.test.js).
+          INCLUDE_DRAFTS: none
 
       # Save even when the build (or a later step) fails, so completed encode
       # work is never thrown away.

@@ -11,7 +11,7 @@
     "start:no-drafts": "npx cross-env INCLUDE_DRAFTS=none eleventy --serve",
     "clean": "rimraf _site",
     "prebuild": "node config/install-chromium.js",
-    "build": "npm run clean && node scripts/image-cache.mjs restore && npx cross-env INCLUDE_DRAFTS=none eleventy && node scripts/image-cache.mjs save",
+    "build": "npm run clean && node scripts/image-cache.mjs restore && npx eleventy && node scripts/image-cache.mjs save",
     "prebuild:with-drafts": "node config/install-chromium.js",
     "build:with-drafts": "npm run clean && node scripts/image-cache.mjs restore && npx cross-env INCLUDE_DRAFTS=all eleventy && node scripts/image-cache.mjs save && npm run search-index",
     "postbuild": "npm run search-index",

@@ -10,17 +10,17 @@ To run the blog locally for development, follow these steps:
 
 1. **Install dependencies**:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 2. **Start the development server**:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
-    This will start a local server at `http://localhost:8080` with hot-reloading.
+   This will start a local server at `http://localhost:8080` with hot-reloading.
 
 ### Other Commands
 
@@ -39,6 +39,8 @@ Design notes and internal documentation live in the [`docs/`](docs/) directory:
 - [IMAGES.md](docs/IMAGES.md) — responsive image pipeline and the persistent build cache (local, GitHub Actions,
   Cloudflare Pages)
 - [FEEDS.md](docs/FEEDS.md) — RSS/Atom feed generation and the content processing that keeps feeds readable
+- [DEPLOYMENT.md](docs/DEPLOYMENT.md) — Cloudflare Pages settings, preview vs production URLs, and what differs between
+  build environments
 
 ## Contributing
 

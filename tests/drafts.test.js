@@ -5,8 +5,9 @@ import { getAllPosts, SITE_DIR } from './helpers.js';
 /**
  * Tests for draft functionality.
  *
- * These tests run against a production build (no INCLUDE_DRAFTS env var),
- * so all draft posts should be excluded from the built output.
+ * These tests run against a production-shaped build — locally `npm run build` sets no INCLUDE_DRAFTS
+ * and resolves to production, while CI pins INCLUDE_DRAFTS=none — so all draft posts should be
+ * excluded from the built output.
  */
 
 // Collect draft posts from source
@@ -108,6 +109,24 @@ describe('Draft maturity stages', () => {
         frontmatter.draftStatus,
       );
     }
+  });
+});
+
+describe('Build script wiring', () => {
+  it('lets the environment decide which drafts a deploy includes', () => {
+    const { scripts } = JSON.parse(readFileSync('package.json', 'utf-8'));
+
+    // INCLUDE_DRAFTS wins over every other rule in getIncludeDrafts(), so pinning it here would
+    // short-circuit the tiering below and silently stop preview deploys from showing "ready" drafts.
+    expect(scripts.build, 'npm run build must not pin INCLUDE_DRAFTS').not.toContain('INCLUDE_DRAFTS');
+  });
+
+  it('pins CI to a production-shaped build', () => {
+    // GITHUB_REF_NAME makes CI look like a preview deploy on every feature branch, which would pull
+    // "ready" drafts into _site and break the exclusion tests above.
+    const workflow = readFileSync('.github/workflows/ci.yml', 'utf-8');
+
+    expect(workflow, 'CI build step must pin INCLUDE_DRAFTS: none').toMatch(/INCLUDE_DRAFTS:\s*none/);
   });
 });
 
