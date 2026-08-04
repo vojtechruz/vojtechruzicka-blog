@@ -123,10 +123,11 @@ describe('Build script wiring', () => {
 
   it('pins CI to a production-shaped build', () => {
     // GITHUB_REF_NAME makes CI look like a preview deploy on every feature branch, which would pull
-    // "ready" drafts into _site and break the exclusion tests above.
+    // "ready" drafts into _site and mark every page noindex, breaking the assertions above and in
+    // tests/preview-noindex.test.js.
     const workflow = readFileSync('.github/workflows/ci.yml', 'utf-8');
 
-    expect(workflow, 'CI build step must pin INCLUDE_DRAFTS: none').toMatch(/INCLUDE_DRAFTS:\s*none/);
+    expect(workflow, 'CI build step must pin DEPLOY_ENV: production').toMatch(/DEPLOY_ENV:\s*production/);
   });
 });
 
@@ -142,6 +143,7 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
     delete process.env.ELEVENTY_RUN_MODE;
     delete process.env.CF_PAGES_BRANCH;
     delete process.env.GITHUB_REF_NAME;
+    delete process.env.DEPLOY_ENV;
   }
 
   // We need a fresh import each time since the function reads env at call time
@@ -263,6 +265,22 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
     expect(shouldIncludeDraft('ready')).toBe(false);
+  });
+
+  it('DEPLOY_ENV=production overrides a feature branch (this is what CI does)', () => {
+    process.env.GITHUB_REF_NAME = 'feature/my-branch';
+    process.env.DEPLOY_ENV = 'production';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(false);
+  });
+
+  it('DEPLOY_ENV=preview overrides the production branch', () => {
+    process.env.GITHUB_REF_NAME = 'master';
+    process.env.DEPLOY_ENV = 'preview';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(true);
   });
 
   it('INCLUDE_DRAFTS env var takes priority over ELEVENTY_RUN_MODE', () => {

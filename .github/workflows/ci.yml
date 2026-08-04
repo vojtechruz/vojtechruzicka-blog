@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.node-version'
           cache: 'npm'
@@ -29,7 +29,7 @@ jobs:
         run: npm ci
 
       - name: Cache Playwright Chromium
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
@@ -49,7 +49,7 @@ jobs:
       # Generated images are keyed by content hash of source + options, so a stale
       # or partial cache is always safe - eleventy-img re-encodes only what's missing.
       - name: Restore image cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: .cache/image-mirror
           key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}
@@ -63,16 +63,18 @@ jobs:
           # CI only validates markup. Production builds keep the full defaults.
           ELEVENTY_IMAGE_FORMATS: webp,auto
           ELEVENTY_IMAGE_WIDTHS: 800,auto
-          # Pin CI to a production-shaped build. Without this, GITHUB_REF_NAME makes
-          # every feature branch look like a preview deploy, which pulls "ready" drafts
-          # into the output and breaks the draft-exclusion tests (tests/drafts.test.js).
-          INCLUDE_DRAFTS: none
+          # Pin CI to a production-shaped build. Without this, GITHUB_REF_NAME makes every
+          # feature branch look like a preview deploy, which pulls "ready" drafts into the
+          # output and marks every page noindex - both break tests that assert against the
+          # production artifact (tests/drafts.test.js, tests/preview-noindex.test.js).
+          # This one variable covers drafts, robots, favicon and analytics together.
+          DEPLOY_ENV: production
 
       # Save even when the build (or a later step) fails, so completed encode
       # work is never thrown away.
       - name: Save image cache
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: .cache/image-mirror
           key: images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png', 'src/posts/**/*.gif', 'config/plugins/image.js') }}

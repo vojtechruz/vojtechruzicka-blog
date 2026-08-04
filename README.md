@@ -6,7 +6,10 @@ Full-stack Software Development, Clean Code, Design Patterns, Java, Spring, Java
 
 ## Running Locally
 
-To run the blog locally for development, follow these steps:
+Requires **Node.js 24** (the version in `.node-version`, which CI and Cloudflare Pages both read — `nvm`, `fnm` and
+`volta` pick it up automatically).
+
+Then follow these steps:
 
 1. **Install dependencies**:
 

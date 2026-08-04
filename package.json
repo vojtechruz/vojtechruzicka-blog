@@ -4,7 +4,7 @@
   "description": "Vojtech Ruzicka's Programming Blog",
   "main": "N/A",
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "npx cross-env ELEVENTY_RUN_MODE=serve eleventy --serve --incremental",

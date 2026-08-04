@@ -72,8 +72,9 @@ includes is decided by `config/draft-utils.js`, in priority order:
 3. preview deploy (any branch other than `master`/`main`) → only `ready` drafts
 4. otherwise (production) → no drafts
 
-`npm run build` deliberately does **not** pin `INCLUDE_DRAFTS`, so rules 2–4 govern Cloudflare deploys. CI pins it to
-`none` instead, because `GITHUB_REF_NAME` would otherwise make every feature branch build look like a preview deploy.
+`npm run build` deliberately does **not** pin `INCLUDE_DRAFTS`, so rules 2–4 govern Cloudflare deploys. CI instead pins
+`DEPLOY_ENV=production` (which `config/env-utils.js` honours over the branch heuristic), because `GITHUB_REF_NAME` would
+otherwise make every feature branch build look like a preview deploy.
 
 Because rule 3 puts unpublished posts on a crawlable `*.pages.dev` URL, `base.njk` marks every page of a preview deploy
 `noindex, nofollow`. `robots.txt` still allows crawling everywhere on purpose — a `Disallow`ed page can be indexed

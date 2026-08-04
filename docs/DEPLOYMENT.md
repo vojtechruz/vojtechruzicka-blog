@@ -41,7 +41,8 @@ Preview deploys are public and require no authentication.
 
 - `isLocalDevelopment()` — `ELEVENTY_RUN_MODE=serve`, i.e. `npm run dev`
 - `isPreview()` — the build branch is neither empty nor `master`/`main`, read from `CF_PAGES_BRANCH` (Cloudflare) or
-  `GITHUB_REF_NAME` (GitHub Actions)
+  `GITHUB_REF_NAME` (GitHub Actions). Setting `DEPLOY_ENV` to `production` or `preview` overrides that heuristic
+  outright.
 
 Anything that is neither is treated as production.
 
@@ -83,7 +84,10 @@ rule**. That makes the npm scripts load-bearing:
 `.github/workflows/ci.yml` only validates — it builds, runs tests, and checks HTML/XML/links/Lighthouse. It never
 deploys; Cloudflare builds independently from the repository.
 
-CI therefore pins `INCLUDE_DRAFTS=none`. GitHub Actions always sets `GITHUB_REF_NAME`, so without the pin every
-feature-branch build would look like a preview deploy, pull `ready` drafts into `_site`, and break the draft-exclusion
-assertions in `tests/drafts.test.js`. CI also builds a lean image variant via `ELEVENTY_IMAGE_FORMATS` /
-`ELEVENTY_IMAGE_WIDTHS` — production keeps the full defaults.
+CI therefore pins `DEPLOY_ENV=production`. GitHub Actions always sets `GITHUB_REF_NAME`, so without the pin every
+feature-branch build would look like a preview deploy: it would pull `ready` drafts into `_site` and mark every page
+`noindex`, breaking every test that asserts against the production artifact. One variable covers drafts, robots, favicon
+and analytics together, which is why it is preferred over pinning `INCLUDE_DRAFTS` alone.
+
+CI also builds a lean image variant via `ELEVENTY_IMAGE_FORMATS` / `ELEVENTY_IMAGE_WIDTHS` — production keeps the full
+defaults.
