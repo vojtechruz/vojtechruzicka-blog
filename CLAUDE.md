@@ -99,6 +99,10 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 7. HTTP caching is set by `src/static/_headers`; stable-URL assets (CSS, script bundles, favicons) must be referenced
    through the `assetUrl` filter (`config/utils/asset-version.js`), which appends a `?v=<content hash>` so long-cached
    (`immutable`) assets invalidate on change. Details in docs/CACHING.md.
+8. Security headers (HSTS, CSP, etc.) also live in `src/static/_headers`. The CSP must stay on a **single line**
+   (Cloudflare drops multiline header values) and allowlists two inline-code hashes — the Plausible init snippet and the
+   LQIP `onload` attribute — which must be regenerated when that code changes. Guarded by
+   `tests/security-headers.test.js` and `tests/analytics.test.js`; details in docs/SECURITY-HEADERS.md.
 
 ### Service worker
 
