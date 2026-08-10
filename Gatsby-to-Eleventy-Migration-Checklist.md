@@ -9,5 +9,7 @@
       or add a scheduled workflow. (No target=_blank injection, so rel=noopener is moot.)
 - [ ] Verify RSS feed validity — ⚠️ XML well-formedness checked in CI (`validate:xml`); a one-time W3C Feed Validator
       pass would close this out.
-- [ ] Submit updated sitemap in Search Console — ⚠️ manual; not verifiable from repo.
-
+- [ ] Submit updated sitemap in Search Console — ⚠️ manual; not verifiable from repo. Needed: the Gatsby-era sitemap
+      lived at `/sitemap-index.xml` (per archived robots.txt), so the old GSC submission now points at a dead URL.
+      `_redirects` 301s it to `/sitemap.xml` since 2026-08-10, but the GSC entry should still be replaced: delete the
+      stale `sitemap-index.xml` submission, submit `https://www.vojtechruzicka.com/sitemap.xml`.
