@@ -1,7 +1,7 @@
 {
   "recurse": true,
   "skip": [
-    "^https?://(?!localhost)",
+    "^https?://(?!localhost|127\\.0\\.0\\.1)",
     "http://localhost:4200"
   ],
   "timeout": 10000,
