@@ -6,8 +6,10 @@ Full-stack Software Development, Clean Code, Design Patterns, Java, Spring, Java
 
 ## Running Locally
 
-Requires **Node.js 24** (the version in `.node-version`, which CI and Cloudflare Pages both read — `nvm`, `fnm` and
-`volta` pick it up automatically).
+Requires **Node.js 24.15+** (the exact version is pinned in `.node-version`, which CI and Cloudflare Pages both read —
+`nvm`, `fnm` and `volta` pick it up automatically). The version must stay pinned exactly: a bare `24` resolves to
+whatever 24.x the Cloudflare build image has cached, which can be older than the `engines` minimum in `package.json`
+and fail the install (`engine-strict` is on).
 
 Then follow these steps:
 
