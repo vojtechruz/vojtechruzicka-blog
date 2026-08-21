@@ -5,8 +5,9 @@ import { getAllPosts, SITE_DIR } from './helpers.js';
 /**
  * Tests for draft functionality.
  *
- * These tests run against a production build (no INCLUDE_DRAFTS env var),
- * so all draft posts should be excluded from the built output.
+ * These tests run against a production-shaped build — locally `npm run build` sets no INCLUDE_DRAFTS
+ * and resolves to production, while CI pins INCLUDE_DRAFTS=none — so all draft posts should be
+ * excluded from the built output.
  */
 
 // Collect draft posts from source
@@ -111,6 +112,25 @@ describe('Draft maturity stages', () => {
   });
 });
 
+describe('Build script wiring', () => {
+  it('lets the environment decide which drafts a deploy includes', () => {
+    const { scripts } = JSON.parse(readFileSync('package.json', 'utf-8'));
+
+    // INCLUDE_DRAFTS wins over every other rule in getIncludeDrafts(), so pinning it here would
+    // short-circuit the tiering below and silently stop preview deploys from showing "ready" drafts.
+    expect(scripts.build, 'npm run build must not pin INCLUDE_DRAFTS').not.toContain('INCLUDE_DRAFTS');
+  });
+
+  it('pins CI to a production-shaped build', () => {
+    // GITHUB_REF_NAME makes CI look like a preview deploy on every feature branch, which would pull
+    // "ready" drafts into _site and mark every page noindex, breaking the assertions above and in
+    // tests/preview-noindex.test.js.
+    const workflow = readFileSync('.github/workflows/ci.yml', 'utf-8');
+
+    expect(workflow, 'CI build step must pin DEPLOY_ENV: production').toMatch(/DEPLOY_ENV:\s*production/);
+  });
+});
+
 describe('shouldIncludeDraft logic (unit tests)', () => {
   // We dynamically import with env manipulation to test different scenarios.
   // The function reads process.env on each call, so we can manipulate it.
@@ -123,6 +143,7 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
     delete process.env.ELEVENTY_RUN_MODE;
     delete process.env.CF_PAGES_BRANCH;
     delete process.env.GITHUB_REF_NAME;
+    delete process.env.DEPLOY_ENV;
   }
 
   // We need a fresh import each time since the function reads env at call time
@@ -244,6 +265,22 @@ describe('shouldIncludeDraft logic (unit tests)', () => {
     expect(shouldIncludeDraft('draft')).toBe(false);
     expect(shouldIncludeDraft('review')).toBe(false);
     expect(shouldIncludeDraft('ready')).toBe(false);
+  });
+
+  it('DEPLOY_ENV=production overrides a feature branch (this is what CI does)', () => {
+    process.env.GITHUB_REF_NAME = 'feature/my-branch';
+    process.env.DEPLOY_ENV = 'production';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(false);
+  });
+
+  it('DEPLOY_ENV=preview overrides the production branch', () => {
+    process.env.GITHUB_REF_NAME = 'master';
+    process.env.DEPLOY_ENV = 'preview';
+    expect(shouldIncludeDraft('draft')).toBe(false);
+    expect(shouldIncludeDraft('review')).toBe(false);
+    expect(shouldIncludeDraft('ready')).toBe(true);
   });
 
   it('INCLUDE_DRAFTS env var takes priority over ELEVENTY_RUN_MODE', () => {

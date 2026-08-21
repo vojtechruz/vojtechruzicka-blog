@@ -6,21 +6,26 @@ Full-stack Software Development, Clean Code, Design Patterns, Java, Spring, Java
 
 ## Running Locally
 
-To run the blog locally for development, follow these steps:
+Requires **Node.js 24.15+** (the exact version is pinned in `.node-version`, which CI and Cloudflare Pages both read —
+`nvm`, `fnm` and `volta` pick it up automatically). The version must stay pinned exactly: a bare `24` resolves to
+whatever 24.x the Cloudflare build image has cached, which can be older than the `engines` minimum in `package.json`
+and fail the install (`engine-strict` is on).
+
+Then follow these steps:
 
 1. **Install dependencies**:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 2. **Start the development server**:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
-    This will start a local server at `http://localhost:8080` with hot-reloading.
+   This will start a local server at `http://localhost:8080` with hot-reloading.
 
 ### Other Commands
 
@@ -39,6 +44,8 @@ Design notes and internal documentation live in the [`docs/`](docs/) directory:
 - [IMAGES.md](docs/IMAGES.md) — responsive image pipeline and the persistent build cache (local, GitHub Actions,
   Cloudflare Pages)
 - [FEEDS.md](docs/FEEDS.md) — RSS/Atom feed generation and the content processing that keeps feeds readable
+- [DEPLOYMENT.md](docs/DEPLOYMENT.md) — Cloudflare Pages settings, preview vs production URLs, and what differs between
+  build environments
 
 ## Contributing
 
