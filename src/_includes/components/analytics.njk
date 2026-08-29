@@ -3,10 +3,10 @@
 
 {% if isPreview %}
   <!-- Preview -->
-  <script async src="https://plausible.io/js/pa-8BjKElQFX2XyqZAcaSGoy.js"></script>
+  <script async src="{{ site.plausible.previewScriptUrl }}"></script>
 {% else %}
   <!-- Production -->
-  <script async src="https://plausible.io/js/pa-xtcFmLVm-99urf6LDF4kZ.js"></script>
+  <script async src="{{ site.plausible.scriptUrl }}"></script>
 {% endif %}
 
 <script>

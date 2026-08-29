@@ -19,7 +19,10 @@
   #    (sha256 of the exact text between <script> and </script>, LF line endings)
   #  - script-src 'unsafe-hashes' + sha256-0r1xa…: the onload="this.dataset.loaded=1;"
   #    attribute emitted by config/html-transform/lqip-svg-transform.js
-  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app 'unsafe-hashes' 'sha256-S46PoNSIlqlHWn5jWqs3zz9yXx6Zq5efyOQb01rgaLs=' 'sha256-0r1xah0mO6tRZ4vR2AP8ON96OmHeR8AbJ/TKM4bNveI='; connect-src 'self' https://plausible.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
+  #  - frame-src: youtube-nocookie ({% youtube %} shortcode), codepen ({% codepen %}),
+  #    giscus (comments iframe — injected at runtime by the giscus script, so it never
+  #    appears in static HTML; do not remove it as "unused")
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app 'unsafe-hashes' 'sha256-S46PoNSIlqlHWn5jWqs3zz9yXx6Zq5efyOQb01rgaLs=' 'sha256-0r1xah0mO6tRZ4vR2AP8ON96OmHeR8AbJ/TKM4bNveI='; connect-src 'self' https://plausible.io; frame-src https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
 
 /styles/giscus-theme.css
   Access-Control-Allow-Origin: https://giscus.app

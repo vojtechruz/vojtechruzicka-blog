@@ -22,8 +22,8 @@
   <meta name="apple-mobile-web-app-title" content="VR Blog" />
   <link rel="manifest" href="{{ '/site.webmanifest' | assetUrl }}" />
   <link rel="stylesheet" href="{{ '/styles/main.css' | assetUrl }}">
-  {% if archivedStatus or isArchive %}<meta name="robots" content="noindex, follow">
-  {% endif %}<link rel="canonical" href="{{ canonicalUrl }}" />
+  {% include "components/robots-meta.njk" %}
+  <link rel="canonical" href="{{ canonicalUrl }}" />
 
   <title>{{metaTitle}}</title>
 

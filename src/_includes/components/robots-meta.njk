@@ -1,0 +1,16 @@
+{#
+Robots directives
+--------------------------------------------------------------
+• Preview deploys serve unpublished "ready" drafts (config/draft-utils.js) from a crawlable
+  *.pages.dev URL, so the whole environment stays out of search results. Crawling is still
+  allowed in robots.txt on purpose — a Disallow'd page can be indexed URL-only, and a blocked
+  crawler would never get to read this tag.
+• Archived posts and the archive listing stay "follow" so link equity keeps flowing to the
+  superseding article (their canonical points at it).
+• Order matters: a preview deploy must stay unindexable even when the page is also archived.
+• Anything else is left indexable — no tag at all, rather than an explicit "index, follow".
+--------------------------------------------------------------
+#}
+{% if isPreview %}<meta name="robots" content="noindex, nofollow">
+{% elif archivedStatus or isArchive %}<meta name="robots" content="noindex, follow">
+{% endif %}

@@ -78,6 +78,7 @@ export function getPageTitle($) {
   return $('title').text();
 }
 
+/** Scoped to <head> on purpose — a robots meta anywhere else is ignored by crawlers. */
 export function getRobotsMeta($) {
-  return $('meta[name="robots"]').attr('content');
+  return $('head meta[name="robots"]').attr('content');
 }

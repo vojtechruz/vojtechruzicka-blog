@@ -132,9 +132,9 @@ Not cleanly — and the reasons are worth understanding:
 Practical reality: `npx playwright install chromium` is a one-time step per machine and a **fast no-op** when the
 browser is already present. The npm `prebuild` hook runs it automatically everywhere. On Cloudflare Pages,
 `configurePlaywrightBrowserPath()` (`config/env-utils.js`) detects `CF_PAGES=1` and points `PLAYWRIGHT_BROWSERS_PATH` at
-`.cache/ms-playwright` — `.cache` is the directory CF's build cache preserves between deploys for the Eleventy framework
-preset (`node_modules` is NOT preserved), so the browser is not re-downloaded on every deploy. No dashboard
-configuration needed, everything is versioned in git. See IMAGES.md for the full build-cache picture.
+`.cache/ms-playwright` — `.cache` is the directory CF's build cache preserves between deploys, because it detects
+Eleventy from `package.json` (`node_modules` is NOT preserved), so the browser is not re-downloaded on every deploy. No
+dashboard configuration needed beyond build caching being enabled. See IMAGES.md for the full build-cache picture.
 
 **Load-order gotcha:** Playwright snapshots `PLAYWRIGHT_BROWSERS_PATH` when its module first loads and ignores later
 changes (verified empirically). ESM imports are hoisted, so a static `import 'mermaid-isomorphic'` in the transform

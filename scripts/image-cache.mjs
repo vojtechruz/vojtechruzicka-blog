@@ -11,8 +11,9 @@
 //   save    - mirror generated images from _site into the cache dir
 //
 // Cache location: .cache/image-mirror (gitignored) everywhere. Cloudflare Pages
-// preserves `.cache` between builds for the Eleventy framework preset, GitHub
-// Actions persists it via actions/cache, and locally it just stays on disk.
+// preserves `.cache` between builds because it detects Eleventy from package.json
+// (build caching just has to be enabled), GitHub Actions persists it via
+// actions/cache, and locally it just stays on disk.
 
 import { copyFileSync, existsSync, mkdirSync, readdirSync } from 'node:fs';
 import path from 'node:path';
