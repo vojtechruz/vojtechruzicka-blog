@@ -16,7 +16,49 @@ function trackAnalyticsEvent(event, props = {}) {
 
 window.trackAnalyticsEvent = trackAnalyticsEvent;
 
+/**
+ * Report Content Security Policy violations as Plausible events.
+ *
+ * There is no `report-uri` endpoint (see docs/SECURITY-HEADERS.md), so without this a broken CSP —
+ * a stale inline-code hash, a new embed nobody allowlisted — fails silently in production and only
+ * ever shows up in the visitor's own console.
+ *
+ * The listener lives in the inline snippet in components/analytics.njk, because most violations
+ * fire while the document is still parsing, long before this deferred bundle runs. That snippet
+ * only buffers; everything below decides what is worth sending.
+ */
+
+/** Extension-injected scripts and styles violate the policy constantly and say nothing about this site. */
+const EXTENSION_SCHEME = /^[a-z-]*(extension|resource):/i;
+/** Cap per page load — one broken directive can otherwise fire hundreds of identical events. */
+const MAX_CSP_REPORTS = 5;
+
+function reportCspViolations() {
+  const seen = new Set();
+
+  const report = (event) => {
+    const blocked = (event.blockedURI || 'inline').split(/[?#]/)[0];
+    const directive = event.effectiveDirective || event.violatedDirective || 'unknown';
+    const key = `${directive}|${blocked}`;
+
+    if (EXTENSION_SCHEME.test(blocked) || seen.has(key) || seen.size >= MAX_CSP_REPORTS) {
+      return;
+    }
+    seen.add(key);
+
+    trackAnalyticsEvent('CSP Violation', { directive, blocked, page: location.pathname });
+  };
+
+  // Same handoff the Plausible stub uses: swap the queue for something that reports straight away,
+  // then drain whatever the inline listener collected before this ran.
+  const buffered = window.cspViolations || [];
+  window.cspViolations = { push: report };
+  buffered.forEach(report);
+}
+
 (() => {
+  reportCspViolations();
+
   // Global click listener for multiple trackers
   document.addEventListener('click', (e) => {
     // 1. Social Links (Unified)

@@ -36,8 +36,7 @@
     }
   }
 
-  // Hamburger button — hidden on wide screens, shown by the mobile query below
-  // (and only when JS has enhanced the nav, via the .js-nav gate).
+  // Hamburger button — hidden on wide screens, shown by the mobile query below.
   .nav-toggle {
     display: none;
     align-items: center;
@@ -173,20 +172,20 @@
       width: 100%;
     }
 
-    // Progressive enhancement: only once JS adds `.js-nav` does the menu collapse
-    // behind the hamburger. Without JS the panel above stays visible (usable stack).
-    &.js-nav {
-      .nav-toggle {
-        display: inline-flex;
-      }
+    // Collapsed by default so the first paint already matches the JS-enhanced
+    // state — waiting for nav.js to collapse the menu caused a ~0.2 CLS on
+    // mobile. The no-JS fallback (expanded stack, no hamburger) is restored by
+    // the <noscript> style block in layouts/base.njk.
+    .nav-toggle {
+      display: inline-flex;
+    }
 
-      .menu-container {
-        display: none;
-      }
+    .menu-container {
+      display: none;
+    }
 
-      &.nav-open .menu-container {
-        display: flex;
-      }
+    &.nav-open .menu-container {
+      display: flex;
     }
   }
 }

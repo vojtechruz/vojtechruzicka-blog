@@ -22,6 +22,20 @@
   <meta name="apple-mobile-web-app-title" content="VR Blog" />
   <link rel="manifest" href="{{ '/site.webmanifest' | assetUrl }}" />
   <link rel="stylesheet" href="{{ '/styles/main.css' | assetUrl }}">
+  {# No-JS fallback for the mobile nav: the stylesheet collapses the menu behind
+     the hamburger by default (avoids a layout shift when nav.js loads), so
+     without JS un-collapse it and hide the then-useless toggle button. #}
+  <noscript>
+    <style>
+      .main-navigation .nav-toggle {
+        display: none !important;
+      }
+
+      .main-navigation .menu-container {
+        display: flex !important;
+      }
+    </style>
+  </noscript>
   {% include "components/robots-meta.njk" %}
   <link rel="canonical" href="{{ canonicalUrl }}" />
 

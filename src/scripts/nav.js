@@ -1,7 +1,8 @@
-// Mobile navigation toggle. Progressive enhancement: the `.js-nav` class is only
-// added here, so if this script never runs the menu falls back to a plain visible
-// stack (see _navigation.scss). Once enhanced, the hamburger collapses the links +
-// search behind an accessible toggle button.
+// Mobile navigation toggle. The menu is collapsed behind the hamburger by
+// default in CSS (so enhancing it causes no layout shift); with JS disabled a
+// <noscript> style block in layouts/base.njk restores the plain visible stack.
+// The `.js-nav` marker class is kept as a "JS is active" hook, but no styles
+// depend on it any more.
 //
 // The logic is wrapped in initNav(doc) so unit tests can run it against an isolated
 // jsdom document; the browser bundle auto-runs it against the real document below.
