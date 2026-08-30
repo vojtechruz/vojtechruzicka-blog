@@ -60,6 +60,11 @@ Anything that is neither is treated as production.
 The two Plausible scripts are separate site IDs kept in `src/_data/site.js`, so preview traffic never lands in the
 production stats. The favicon split exists so the environment is obvious from the browser tab.
 
+Besides Plausible, **Cloudflare Web Analytics (RUM)** is enabled in the Cloudflare dashboard (not in the repo): the edge
+injects its beacon script into served pages. It is kept for real-user Core Web Vitals, which Plausible does not collect
+and CrUX does not publish for a site this small. The CSP in `src/static/_headers` must keep its origins allowlisted —
+see docs/SECURITY-HEADERS.md.
+
 ### Search engine exclusion on previews
 
 Preview deploys serve unpublished `ready` drafts from a public, crawlable domain, so `base.njk` marks **every** page of
