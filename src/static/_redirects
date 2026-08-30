@@ -1,19 +1,81 @@
+# Legacy redirects, mostly from the Gatsby-era site. Cloudflare Pages matches
+# sources EXACTLY: case-sensitively and with no trailing-slash normalization,
+# so every page rule needs both slash variants and the old capitalized tags
+# need explicit lowercase mappings (a :placeholder cannot change case).
+# First matching rule wins - keep specific rules above generic ones.
+# Details: docs/REDIRECTS.md; guarded by tests/redirects.test.js
+
+# --- legacy pages ---
 /author/vojtechruzicka                                    /                                                   301
 /author/vojtechruzicka/                                   /                                                   301
+
+# --- renamed topic: idea -> intellij-idea ---
 /topics/idea                                              /topics/intellij-idea/                              301
 /topics/idea/                                             /topics/intellij-idea/                              301
 /tags/idea                                                /topics/intellij-idea/                              301
 /tags/idea/                                               /topics/intellij-idea/                              301
+/tags/IDEA                                                /topics/intellij-idea/                              301
+/tags/IDEA/                                               /topics/intellij-idea/                              301
+
+# --- legacy Gatsby tags (capitalized or renamed; must precede /tags/:topic) ---
+/tags/Java                                                /topics/java/                                       301
+/tags/Java/                                               /topics/java/                                       301
+/tags/Javascript                                          /topics/javascript/                                 301
+/tags/Javascript/                                         /topics/javascript/                                 301
+/tags/Spring                                              /topics/spring/                                     301
+/tags/Spring/                                             /topics/spring/                                     301
+/tags/REST                                                /topics/rest/                                       301
+/tags/REST/                                               /topics/rest/                                       301
+/tags/Maven                                               /topics/maven/                                      301
+/tags/Maven/                                              /topics/maven/                                      301
+/tags/Angular                                             /topics/angular/                                    301
+/tags/Angular/                                            /topics/angular/                                    301
+/tags/Testing                                             /topics/testing/                                    301
+/tags/Testing/                                            /topics/testing/                                    301
+/tags/Books                                               /topics/books/                                      301
+/tags/Books/                                              /topics/books/                                      301
+/tags/Blogging                                            /topics/blogging/                                   301
+/tags/Blogging/                                           /topics/blogging/                                   301
+/tags/Security                                            /topics/security/                                   301
+/tags/Security/                                           /topics/security/                                   301
+/tags/Career                                              /topics/career/                                     301
+/tags/Career/                                             /topics/career/                                     301
+/tags/Git                                                 /topics/git/                                        301
+/tags/Git/                                                /topics/git/                                        301
+/tags/CSS                                                 /topics/css/                                        301
+/tags/CSS/                                                /topics/css/                                        301
+/tags/JAMStack                                            /topics/jamstack/                                   301
+/tags/JAMStack/                                           /topics/jamstack/                                   301
+/tags/jam-stack                                           /topics/jamstack/                                   301
+/tags/jam-stack/                                          /topics/jamstack/                                   301
+/tags/postgre-sql                                         /topics/postgresql/                                 301
+/tags/postgre-sql/                                        /topics/postgresql/                                 301
+
+# --- generic tag -> topic mapping (after the explicit tag rules above) ---
 /tags/:topic                                              /topics/:topic/                                     301
 /tags/:topic/                                             /topics/:topic/                                     301
+
+# --- typo and truncated post slugs seen in inbound links ---
 /learning-intellij-idea-keyboard-shortucts                /learning-intellij-idea-keyboard-shortcuts/         301
 /learning-intellij-idea-keyboard-shortucts/               /learning-intellij-idea-keyboard-shortcuts/         301
 /javascript-constuctor-functions-and-new-operator         /javascript-constructor-functions-and-new-operator/ 301
 /javascript-constuctor-functions-and-new-operator/        /javascript-constructor-functions-and-new-operator/ 301
+/javafx-fxml-                                             /javafx-fxml-scene-builder/                         301
+/avoid-telescoping-                                       /avoid-telescoping-constructor-pattern/             301
+/netlify-analytics-                                       /netlify-analytics/                                 301
+
+# --- Gatsby hashed asset paths -> assets now live next to their post ---
+/b4ac1198c654c091ae4140e579688c44/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf /exam-notes-pivotal-certified-spring-professional/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf 301
+/64c0fcb21d981cae72421968f026fd42/Config.run.xml          /idea-sharing-run-configurations/Config.run.xml     301
+/bf4dd32d5823c258c319cced38727dce/OSSAReport.pdf          /detecting-dependencies-known-vulnerabilities/OSSAReport.pdf 301
+
+# --- legacy listing pages ---
 /tags                                                     /topics/                                            301
 /tags/                                                    /topics/                                            301
 /archives                                                 /topics/                                            301
 /archives/                                                /topics/                                            301
+
+# --- feeds and sitemap ---
 /sitemap-index.xml                                        /sitemap.xml                                        301
 /rss                                                      /feed.xml                                           301
 /rss/                                                     /feed.xml                                           301

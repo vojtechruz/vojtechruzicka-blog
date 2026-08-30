@@ -103,6 +103,9 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
    (Cloudflare drops multiline header values) and allowlists two inline-code hashes — the Plausible init snippet and the
    LQIP `onload` attribute — which must be regenerated when that code changes. Guarded by
    `tests/security-headers.test.js` and `tests/analytics.test.js`; details in docs/SECURITY-HEADERS.md.
+9. Legacy Gatsby-era URLs are 301-redirected by `src/static/_redirects` (Cloudflare Pages format). Matching is exact —
+   case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags
+   need explicit lowercase mappings. Guarded by `tests/redirects.test.js`; details in docs/REDIRECTS.md.
 
 ### Service worker
 
