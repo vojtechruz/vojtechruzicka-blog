@@ -14,8 +14,8 @@ The site publishes two equivalent feeds from the same data:
 | `atom.xml` | Atom 1.0 | `/atom.xml` |
 
 Both are Nunjucks templates with `eleventyExcludeFromCollections: true` so they never appear as pages/posts themselves.
-Legacy paths (`/rss`, `/rss.xml`, `/feed`, …) 301-redirect to `/feed.xml` (`src/static/_redirects`), and all three XML
-files get a short `max-age=300` cache header (`src/static/_headers`).
+Legacy paths (`/rss`, `/rss.xml`, `/feed`, …) 301-redirect to `/feed.xml` and `/atom` to `/atom.xml`
+(`src/static/_redirects`), and all three XML files get a short `max-age=300` cache header (`src/static/_headers`).
 
 Discovery: `src/_includes/layouts/base.njk` emits `<link rel="alternate">` tags in every page `<head>` pointing at the
 **absolute** production feed URLs (the canonical reference readers auto-discover). The visible RSS icon in the footer

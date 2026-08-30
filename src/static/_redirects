@@ -16,3 +16,5 @@
 /rss.xml                                                  /feed.xml                                           301
 /feed                                                     /feed.xml                                           301
 /feed/                                                    /feed.xml                                           301
+/atom                                                     /atom.xml                                           301
+/atom/                                                    /atom.xml                                           301
