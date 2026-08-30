@@ -100,6 +100,21 @@ describe('Analytics (Plausible)', () => {
       }
     });
 
+    it('buffers CSP violations inline, before the deferred bundle can run', () => {
+      // Most violations fire while the document is parsing, so the listener has to be inline;
+      // moving it into analytics.js would silently reduce reporting to whatever happens late.
+      for (const path of PAGES) {
+        const $ = loadPage(path);
+        const inline = $('script:not([src])')
+          .map((_, el) => $(el).html())
+          .get()
+          .join('\n');
+
+        expect(inline, `${path} is missing the CSP violation buffer`).toContain('securitypolicyviolation');
+        expect(inline).toContain('window.cspViolations');
+      }
+    });
+
     it('loads the custom event wrapper', () => {
       for (const path of PAGES) {
         const $ = loadPage(path);
