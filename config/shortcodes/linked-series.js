@@ -8,6 +8,9 @@ export default function linkedSeries(slug) {
   const ctx = this && (this.ctx || this) ? this.ctx || this : {};
   const posts = ctx.collections?.posts || [];
   const allSeriesMetadata = ctx.seriesMetadata || [];
+  // Inside a post body the card is a link, not a section of the article, so it must not add an <h2>
+  // to the heading outline. List pages (index, topics, series) keep the heading.
+  const titleTag = ctx.postDir ? 'p' : 'h2';
 
   const series = allSeriesMetadata.find((s) => s.slug === slug);
   if (!series) {
@@ -43,9 +46,9 @@ export default function linkedSeries(slug) {
   }
 
   return `<div class="linked-post linked-series">
-  <h2 class="front-post-title">
+  <${titleTag} class="front-post-title">
     <a href="${url}">${escapeHtml(series.name)}</a>
-  </h2>
+  </${titleTag}>
   <div class="front-post-info">
     <span class="series-article-count">${count} ${articleLabel}</span>
     <ul class="post-topics" aria-label="Topics">

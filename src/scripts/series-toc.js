@@ -16,7 +16,9 @@
   function setCollapsed(collapsed) {
     list.hidden = collapsed;
     btn.setAttribute('aria-expanded', String(!collapsed));
-    btn.title = collapsed ? 'Expand series list' : 'Collapse series list';
+    const label = collapsed ? 'Expand series list' : 'Collapse series list';
+    btn.title = label;
+    btn.setAttribute('aria-label', label);
     nav.classList.toggle('series-toc--collapsed', collapsed);
     if (collapsed) {
       localStorage.setItem(STORAGE_KEY, '1');

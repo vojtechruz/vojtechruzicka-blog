@@ -146,9 +146,9 @@ describe('Feeds (RSS and Atom)', () => {
 
     it('strips decorative callout/msg icons but keeps the title text', () => {
       const callout =
-        '<aside class="callout callout--success"><p class="callout-title">' +
+        '<div class="callout callout--success" role="note"><p class="callout-title">' +
         '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M1 1"/></svg>How to prevent it</p>' +
-        '<div class="callout-body"><ul><li>Least privilege</li></ul></div></aside>';
+        '<div class="callout-body"><ul><li>Least privilege</li></ul></div></div>';
       const result = feedContent(callout);
 
       expect(result).not.toContain('<svg');
