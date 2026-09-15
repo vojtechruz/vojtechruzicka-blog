@@ -13,6 +13,10 @@
   }
 
   function ensureAssets() {
+    // Already available (preloaded, or a stub in unit tests): nothing to fetch.
+    if (window.PagefindUI) {
+      return Promise.resolve();
+    }
     if (!bootAssetsPromise) {
       bootAssetsPromise = loadJS('/pagefind/pagefind-ui.js').catch((err) => {
         console.error(err);
@@ -46,11 +50,16 @@
       throw err;
     }
 
+    // Inline containers (the dedicated /search/ page) render results in the page
+    // flow instead of the header overlay: no backdrop, no body lock, and the query
+    // is read from / written to the URL so a search can be linked to.
+    const inline = container.hasAttribute('data-search-inline');
+
     // Clear any placeholder content
     container.innerHTML = '';
 
     // Create UI instance scoped to this container
-    new window.PagefindUI({
+    const ui = new window.PagefindUI({
       element: container,
       showSubResults: false,
       showImages: false,
@@ -71,51 +80,67 @@
       const drawer = container.querySelector('.pagefind-ui__drawer');
       const input = container.querySelector('.pagefind-ui__search-input');
 
-      // Shared backdrop (one per page)
-      let backdrop = document.querySelector('.backdrop-search');
-      if (!backdrop) {
-        backdrop = document.createElement('div');
-        backdrop.className = 'backdrop-search';
-        document.body.appendChild(backdrop);
-      }
-
-      // Close on backdrop click (affects currently open instance only)
-      const closeCurrent = () => {
-        if (input) {
-          input.value = '';
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-          input.blur();
+      if (inline) {
+        // Run the query carried in the URL (`/search/?q=term`, the SearchAction target)
+        const params = new URLSearchParams(window.location.search);
+        const initialQuery = (params.get('q') || '').trim();
+        if (initialQuery) {
+          ui.triggerSearch(initialQuery);
         }
-        hideBackdrop();
-      };
-      backdrop.addEventListener('click', closeCurrent);
 
-      // Observe open/close state for this instance
-      const mo = new MutationObserver(() => {
-        const open = drawer && !drawer.classList.contains('pagefind-ui__hidden');
-        document.body.classList.toggle('search-open', open);
-        backdrop.classList.toggle('is-visible', open);
-
-        if (open) {
-          input?.focus();
+        // Keep the URL shareable while typing, without polluting history
+        input?.addEventListener('input', () => {
+          const query = input.value.trim();
+          const url = query ? `?q=${encodeURIComponent(query)}` : window.location.pathname;
+          window.history.replaceState(null, '', url);
+        });
+      } else {
+        // Shared backdrop (one per page)
+        let backdrop = document.querySelector('.backdrop-search');
+        if (!backdrop) {
+          backdrop = document.createElement('div');
+          backdrop.className = 'backdrop-search';
+          document.body.appendChild(backdrop);
         }
-      });
 
-      if (drawer) {
-        mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
-      }
+        const hideBackdrop = () => {
+          document.body.classList.remove('search-open');
+          backdrop.classList.remove('is-visible');
+        };
 
-      // ESC closes if this instance is open
-      const onKey = (e) => {
-        if (e.key === 'Escape' && drawer && !drawer.classList.contains('pagefind-ui__hidden')) {
-          closeCurrent();
+        // Close on backdrop click (affects currently open instance only)
+        const closeCurrent = () => {
+          if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.blur();
+          }
+          hideBackdrop();
+        };
+        backdrop.addEventListener('click', closeCurrent);
+
+        // Observe open/close state for this instance
+        const mo = new MutationObserver(() => {
+          const open = drawer && !drawer.classList.contains('pagefind-ui__hidden');
+          document.body.classList.toggle('search-open', open);
+          backdrop.classList.toggle('is-visible', open);
+
+          if (open) {
+            input?.focus();
+          }
+        });
+
+        if (drawer) {
+          mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
         }
-      };
-      window.addEventListener('keydown', onKey);
 
-      function hideBackdrop() {
-        document.body.classList.remove('search-open');
-        backdrop.classList.remove('is-visible');
+        // ESC closes if this instance is open
+        const onKey = (e) => {
+          if (e.key === 'Escape' && drawer && !drawer.classList.contains('pagefind-ui__hidden')) {
+            closeCurrent();
+          }
+        };
+        window.addEventListener('keydown', onKey);
       }
 
       // Initial focus
@@ -148,6 +173,13 @@
 
   // Attach lazy-init triggers per container (include pointerdown for better touch support)
   containers.forEach((container) => {
+    // The dedicated search page is the whole point of the visit: initialise it
+    // right away so a `?q=` query from the URL runs without any interaction.
+    if (container.hasAttribute('data-search-inline')) {
+      initContainer(container).catch(console.error);
+      return;
+    }
+
     const triggerEvents = ['pointerdown', 'click', 'focusin', 'mouseenter'];
     const onTrigger = () => initContainer(container).catch(console.error);
     triggerEvents.forEach((ev) => container.addEventListener(ev, onTrigger, { once: true }));

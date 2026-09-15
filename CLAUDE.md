@@ -91,7 +91,9 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 1. Markdown posts → markdown-it parser (with custom plugins for callouts, TOC) → HTML
 2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
-4. Pagefind indexes `_site/` after build for client-side search
+4. Pagefind indexes `_site/` after build for client-side search. Only `<main data-pagefind-body>` (set by the three
+   layouts) is indexed; `src/pages/search.njk` (`/search/?q=`, the homepage `SearchAction` target) omits the attribute
+   so it stays out of the index and renders results inline (`data-search-inline` in `src/scripts/search.js`).
 5. Giscus (GitHub Discussions) provides comments; no server-side component
 6. RSS/Atom feeds (`src/feed.xml.njk`, `src/atom.xml.njk`) ship full post content; the `feedContent` filter
    (`config/filters/urls.js`) rewrites site-CSS-dependent markup (Mermaid, images, linkedPost cards) into reader-safe

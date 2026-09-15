@@ -32,9 +32,11 @@ pages, feeds and post assets. Validated by `tests/redirects.test.js`.
 | Feeds and sitemap                                         | Gatsby used `/rss.xml`, `/feed/`, `/sitemap-index.xml`; Eleventy serves `/feed.xml`, `/atom.xml`, `/sitemap.xml`                                        |
 
 The Gatsby-era 404s were identified from Google Search Console coverage exports (last reviewed 2026-08-30). URLs that
-intentionally stay 404: bot/scraper probe patterns (`/player?id=...`, `*.mp4?t={seek_to_start_number}`,
-`/search/?q={query}`), relative paths from code samples crawled as links (`/angular/03-components/*.component.html`,
-`/my-servlet`), and `/cdn-cgi/l/email-protection` (a Cloudflare email-obfuscation artifact).
+intentionally stay 404: bot/scraper probe patterns (`/player?id=...`, `*.mp4?t={seek_to_start_number}`), relative paths
+from code samples crawled as links (`/angular/03-components/*.component.html`, `/my-servlet`), and
+`/cdn-cgi/l/email-protection` (a Cloudflare email-obfuscation artifact). `/search/?q={query}` used to be on this list,
+but it is the homepage's own `SearchAction` JSON-LD target crawled literally — it is served by `src/pages/search.njk`
+since 2026-09.
 
 ## Adding a rule
 
