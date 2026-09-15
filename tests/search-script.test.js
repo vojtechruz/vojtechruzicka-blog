@@ -132,6 +132,34 @@ describe('search.js', () => {
       expect(ui.input.value).toBe('');
     });
 
+    it('reopens on a repeat shortcut after Escape instead of only working once', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      const ctrlK = () =>
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, bubbles: true }));
+
+      ctrlK();
+      await flush();
+      const [ui] = PagefindUIStub.instances;
+      expect(PagefindUIStub.instances).toHaveLength(1);
+      expect(document.activeElement).toBe(ui.input);
+
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      await flush();
+      expect(document.activeElement).not.toBe(ui.input);
+
+      ctrlK();
+      await flush();
+      expect(PagefindUIStub.instances, 'no second instance').toHaveLength(1);
+      expect(document.activeElement).toBe(ui.input);
+
+      ui.input.blur();
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: '/', bubbles: true }));
+      await flush();
+      expect(document.activeElement).toBe(ui.input);
+    });
+
     it('never runs a query from the URL or touches the address bar', async () => {
       await loadScript('/about/?q=java', HEADER_CONTAINER);
       document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));

@@ -185,6 +185,14 @@
     triggerEvents.forEach((ev) => container.addEventListener(ev, onTrigger, { once: true }));
   });
 
+  // Open a container on demand: initialise it on first use, and on every later
+  // use (repeat shortcut, reopening after Escape) put the caret back in its input,
+  // which initContainer alone does not do once its guard is set.
+  async function openContainer(container) {
+    await initContainer(container);
+    container.querySelector('.pagefind-ui__search-input')?.focus({ preventScroll: true });
+  }
+
   // Backwards-compat: explicit opener if present
   const explicitOpen = document.getElementById('open-search');
   if (explicitOpen) {
@@ -196,7 +204,7 @@
           const target = containers[0];
 
           if (target) {
-            initContainer(target).catch(console.error);
+            openContainer(target).catch(console.error);
           }
         },
         { once: true },
@@ -204,7 +212,7 @@
     );
   }
 
-  // Keyboard shortcuts (optional): open the first available container lazily
+  // Keyboard shortcuts (optional): open the first available container
   document.addEventListener('keydown', (e) => {
     const inField = /^(input|textarea|select)$/i.test(e.target.tagName) || e.target.isContentEditable;
 
@@ -218,7 +226,7 @@
       const target = containers[0];
 
       if (target) {
-        initContainer(target).catch(console.error);
+        openContainer(target).catch(console.error);
       }
     }
   });
