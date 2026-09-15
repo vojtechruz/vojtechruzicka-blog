@@ -91,7 +91,9 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 1. Markdown posts → markdown-it parser (with custom plugins for callouts, TOC) → HTML
 2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
-4. Pagefind indexes `_site/` after build for client-side search
+4. Pagefind indexes `_site/` after build for client-side search. Only `<main data-pagefind-body>` (set by the three
+   layouts) is indexed; `src/pages/search.njk` (`/search/?q=`, the homepage `SearchAction` target) omits the attribute
+   so it stays out of the index and renders results inline (`data-search-inline` in `src/scripts/search.js`).
 5. Giscus (GitHub Discussions) provides comments; no server-side component
 6. RSS/Atom feeds (`src/feed.xml.njk`, `src/atom.xml.njk`) ship full post content; the `feedContent` filter
    (`config/filters/urls.js`) rewrites site-CSS-dependent markup (Mermaid, images, linkedPost cards) into reader-safe
@@ -121,6 +123,21 @@ output filenames contain a content hash, so a stale cache is always safe. Cache 
 (gitignored) everywhere: persisted via actions/cache in CI and by the Cloudflare Pages build cache (which preserves
 `.cache` because it detects Eleventy from `package.json` — the dashboard framework preset plays no part). CI builds a
 lean variant via `ELEVENTY_IMAGE_FORMATS`/`ELEVENTY_IMAGE_WIDTHS` env vars. Details in docs/IMAGES.md.
+
+## Logging changes to the Obsidian daily note
+
+Every change made to the blog in a session must be recorded in the Obsidian daily note for that day:
+`D:\Dropbox\Obsidian\Carpe Diem\<YYYY>\<YYYY-MM>\<YYYY-MM-DD>.md` (the vault's daily-notes setting is
+`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Create the note if it does not exist yet (first line is the navigation header
+`← [[<prev day>]]  ·  [[<next day>]] →   ·   ↑ [[<YYYY>-W<week>]] · [[<YYYY-MM>]]`, then a blank line, then bullets).
+
+Format, matching the existing entries: one top-level bullet `- Blog` with one tab-indented sub-bullet per change,
+written in Czech without diacritics, short and outcome-oriented (`- Fixed webvitals`, `- added responsive navigation`).
+Link related vault notes with `[[...]]` where one exists.
+
+When a `Blog` entry for the day already exists, add to it rather than creating a second one, and feel free to edit or
+consolidate the existing sub-bullets so the day reads as one coherent summary (merge duplicates, fold a follow-up fix
+into the bullet it belongs to, drop items that were reverted). Do not touch non-blog bullets. Write the file as UTF-8.
 
 ## Code style
 

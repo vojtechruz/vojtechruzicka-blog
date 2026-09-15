@@ -18,13 +18,13 @@ eleventyExcludeFromCollections: true
     try searching or explore topics.</p>
 </div>
 
-<h4 class="section-404">Search for posts</h4>
+<h2 class="section-404">Search for posts</h2>
 {% from "components/search.njk" import renderSearch %}
 <div class="search-404">
   {{ renderSearch() }}
 </div>
 
-<h4 class="section-404">Explore topics</h4>
+<h2 class="section-404">Explore topics</h2>
 {% include "components/topic-browser.njk" %}
 
 {% endblock %}

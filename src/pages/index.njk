@@ -20,7 +20,9 @@ eleventyComputed:
 <h1 class="visually-hidden">{{ title }}</h1>
 
 {% if pagination.pageNumber > 0 %}
+  {% set paginationLabel = "Pagination (top)" %}
   {% include "components/pagination.njk" %}
+  {% set paginationLabel = "" %}
 {% endif %}
 
 
