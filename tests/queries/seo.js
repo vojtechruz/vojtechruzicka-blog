@@ -38,6 +38,31 @@ export function getOgImageAlt($) {
   return $('meta[property="og:image:alt"]').attr('content');
 }
 
+export function getArticlePublishedTime($) {
+  return $('meta[property="article:published_time"]').attr('content');
+}
+
+export function getArticleModifiedTime($) {
+  return $('meta[property="article:modified_time"]').attr('content');
+}
+
+export function getArticleAuthor($) {
+  return $('meta[property="article:author"]').attr('content');
+}
+
+export function getArticleTags($) {
+  return $('meta[property="article:tag"]')
+    .map((_, el) => $(el).attr('content'))
+    .get();
+}
+
+/** Every `article:*` meta property present on the page (for asserting their absence). */
+export function getArticleProperties($) {
+  return $('meta[property^="article:"]')
+    .map((_, el) => $(el).attr('property'))
+    .get();
+}
+
 export function getTwitterImage($) {
   return $('meta[name="twitter:image"]').attr('content');
 }

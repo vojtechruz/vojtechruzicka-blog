@@ -69,7 +69,8 @@
         one_result: "Found 1 result for '[SEARCH_TERM]'.",
         many_results: "Found [COUNT] results for '[SEARCH_TERM]'.",
         zero_results: "No results found for '[SEARCH_TERM]'.",
-        search_label: 'Search the site',
+        // Distinct landmark names: the /search/ page also has the header search form
+        search_label: inline ? 'Search posts' : 'Search the site',
         clear_search: '×',
         load_more: 'Load more',
       },

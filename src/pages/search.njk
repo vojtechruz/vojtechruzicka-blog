@@ -24,9 +24,10 @@ bodyClass: search-page
     <div class="js-pagefind search-page-ui" id="search-page" data-search-inline>
       <!-- Placeholder only: replaced by Pagefind UI as soon as the script loads -->
       <div class="pagefind-ui">
-        <form class="pagefind-ui__form" role="search" aria-label="Search the site">
-          <input class="pagefind-ui__search-input" type="text" name="q" placeholder="Search…" title="Search the site"
-                 aria-label="Search" autocapitalize="none" enterkeyhint="search" data-1p-ignore />
+        {# Distinct accessible name from the header search form (landmarks must be unique) #}
+        <form class="pagefind-ui__form" role="search" aria-label="Search posts">
+          <input class="pagefind-ui__search-input" type="text" name="q" placeholder="Search…" title="Search posts"
+                 aria-label="Search posts" autocapitalize="none" enterkeyhint="search" data-1p-ignore />
         </form>
       </div>
     </div>
