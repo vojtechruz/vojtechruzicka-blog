@@ -106,8 +106,13 @@ describe('About page', () => {
     expect(about.mainEntity.name).toBe(siteConfig.author);
     expect(about.mainEntity.url).toBe(siteConfig.person.url);
     expect(about.mainEntity.jobTitle).toBe(siteConfig.person.jobTitle);
-    expect(about.mainEntity.image).toBe(`${siteConfig.person.image}`);
+    // Absolute like every other URL in the structured data
+    expect(about.mainEntity.image).toBe(`${siteUrl}${siteConfig.person.image}`);
+    expect(about.mainEntity.birthDate).toBe(siteConfig.person.birthDate);
+    expect(about.mainEntity.birthDate).toMatch(/^\d{4}-\d{2}-\d{2}$/); // ISO 8601 as schema.org expects
+    // One profile list for the whole site: Person must match the homepage WebSite block
     expect(about.mainEntity.sameAs).toEqual(siteConfig.sameAs);
+    expect(siteConfig.person.sameAs, 'person.sameAs would silently diverge from site.sameAs').toBeUndefined();
     expect(blocks.some((block) => block['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });
