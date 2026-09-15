@@ -124,6 +124,21 @@ output filenames contain a content hash, so a stale cache is always safe. Cache 
 `.cache` because it detects Eleventy from `package.json` — the dashboard framework preset plays no part). CI builds a
 lean variant via `ELEVENTY_IMAGE_FORMATS`/`ELEVENTY_IMAGE_WIDTHS` env vars. Details in docs/IMAGES.md.
 
+## Logging changes to the Obsidian daily note
+
+Every change made to the blog in a session must be recorded in the Obsidian daily note for that day:
+`D:\Dropbox\Obsidian\Carpe Diem\<YYYY>\<YYYY-MM>\<YYYY-MM-DD>.md` (the vault's daily-notes setting is
+`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Create the note if it does not exist yet (first line is the navigation header
+`← [[<prev day>]]  ·  [[<next day>]] →   ·   ↑ [[<YYYY>-W<week>]] · [[<YYYY-MM>]]`, then a blank line, then bullets).
+
+Format, matching the existing entries: one top-level bullet `- Blog` with one tab-indented sub-bullet per change,
+written in Czech without diacritics, short and outcome-oriented (`- Fixed webvitals`, `- added responsive navigation`).
+Link related vault notes with `[[...]]` where one exists.
+
+When a `Blog` entry for the day already exists, add to it rather than creating a second one, and feel free to edit or
+consolidate the existing sub-bullets so the day reads as one coherent summary (merge duplicates, fold a follow-up fix
+into the bullet it belongs to, drop items that were reverted). Do not touch non-blog bullets. Write the file as UTF-8.
+
 ## Code style
 
 - ESLint flat config (`eslint.config.js`): `const` over `let`, no `var`, strict equality, curly braces always required
