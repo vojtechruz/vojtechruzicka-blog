@@ -3,6 +3,8 @@ import { loadPage, getAllPosts, SITE_DIR } from './helpers.js';
 import { existsSync } from 'fs';
 import registerTopicListCollection from '../config/collections/topic-list.js';
 import registerTopicStatsCollection from '../config/collections/topic-stats.js';
+import registerTopicsFilters, { UNCATEGORIZED_CATEGORY_NAME } from '../config/filters/topics.js';
+import topicCategories from '../src/_data/topicCategories.js';
 import { slugify } from '../config/utils/formatting.js';
 
 function getRegisteredCollection(registerCollection, collectionName, items) {
@@ -16,6 +18,33 @@ function getRegisteredCollection(registerCollection, collectionName, items) {
   registerCollection(eleventyConfig);
 
   return collections.get(collectionName)({ getAll: () => items });
+}
+
+function getRegisteredFilter(registerFilters, filterName) {
+  const filters = new Map();
+  const eleventyConfig = {
+    addFilter(name, callback) {
+      filters.set(name, callback);
+    },
+  };
+
+  registerFilters(eleventyConfig);
+
+  return filters.get(filterName);
+}
+
+/** Topics of public, non-archived posts with the number of such posts per topic - mirrors the topicStats collection. */
+function getPublishedTopicCounts() {
+  const counts = new Map();
+  for (const { frontmatter } of getAllPosts()) {
+    if (frontmatter.draftStatus || frontmatter.archivedStatus || !Array.isArray(frontmatter.topics)) {
+      continue;
+    }
+    for (const topic of frontmatter.topics) {
+      counts.set(topic, (counts.get(topic) || 0) + 1);
+    }
+  }
+  return counts;
 }
 
 describe('Topics functionality', () => {
@@ -219,6 +248,126 @@ describe('Topics functionality', () => {
           0,
         );
       }
+    });
+  });
+
+  describe('Topic categories (topicCategories.js) stay in sync with content', () => {
+    const categoryTopics = topicCategories.flatMap((cat) => cat.topics);
+    const publishedTopics = getPublishedTopicCounts();
+
+    it('every topic used by a published post is listed in a category', () => {
+      const missing = [...publishedTopics.keys()].filter((topic) => !categoryTopics.includes(topic));
+      expect(missing, `Add these topics to src/_data/topicCategories.js: ${missing.join(', ')}`).toEqual([]);
+    });
+
+    it('every category topic has at least one published post (catches typos and dead entries)', () => {
+      const dead = categoryTopics.filter((topic) => !publishedTopics.has(topic));
+      expect(dead, `Category topics without any published post: ${dead.join(', ')}`).toEqual([]);
+    });
+
+    it('no topic is listed in more than one category', () => {
+      const duplicates = categoryTopics.filter((topic, i) => categoryTopics.indexOf(topic) !== i);
+      expect(duplicates).toEqual([]);
+    });
+
+    it('no category uses the reserved fallback name', () => {
+      expect(topicCategories.map((cat) => cat.name)).not.toContain(UNCATEGORIZED_CATEGORY_NAME);
+    });
+
+    it('/topics/ page lists a chip for every published topic and never shows the fallback category', () => {
+      const $ = loadPage('/topics/');
+      const chipHrefs = $('.topic-chip')
+        .map((i, el) => $(el).attr('href'))
+        .get();
+
+      for (const topic of publishedTopics.keys()) {
+        expect(chipHrefs, `Topic missing on /topics/: ${topic}`).toContain(`/topics/${slugify(topic)}/`);
+      }
+      expect(chipHrefs.length).toBe(publishedTopics.size);
+
+      const headings = $('.topic-category-heading')
+        .map((i, el) => $(el).text().trim())
+        .get();
+      expect(headings).not.toContain(UNCATEGORIZED_CATEGORY_NAME);
+    });
+
+    it('/topics/ page-meta topic count matches the number of listed chips', () => {
+      const $ = loadPage('/topics/');
+      const metaCount = parseInt(
+        $('.page-meta')
+          .text()
+          .match(/(\d+)\s+topics/)[1],
+        10,
+      );
+      expect($('.topic-chip').length).toBe(metaCount);
+    });
+  });
+
+  describe('categoriesWithStats filter', () => {
+    const categoriesWithStats = getRegisteredFilter(registerTopicsFilters, 'categoriesWithStats');
+    const categories = [
+      { name: 'Backend', topics: ['Java', 'Spring', 'Maven'] },
+      { name: 'Frontend', topics: ['CSS'] },
+    ];
+    const stats = [
+      { name: 'Java', count: 10 },
+      { name: 'Spring', count: 4 },
+      { name: 'Maven', count: 1 },
+      { name: 'CSS', count: 2 },
+      { name: 'Rust', count: 5 },
+      { name: 'Go', count: 3 },
+      { name: 'Kotlin', count: 1 },
+    ];
+
+    it('splits category topics into major (>= 3 posts) and minor ones, sorted by count', () => {
+      const result = categoriesWithStats(categories, stats);
+      const backend = result.categories.find((cat) => cat.name === 'Backend');
+
+      expect(backend.topics.map((t) => t.name)).toEqual(['Java', 'Spring']);
+      expect(backend.topics[0]).toEqual({ name: 'Java', count: 10, slug: 'java' });
+      expect(result.minor.map((t) => t.name)).toContain('Maven');
+      expect(result.minor.map((t) => t.name)).toContain('CSS');
+    });
+
+    it('drops categories that have no major topics', () => {
+      const result = categoriesWithStats(categories, stats);
+      expect(result.categories.map((cat) => cat.name)).not.toContain('Frontend');
+    });
+
+    it('drops category topics with no published posts', () => {
+      const result = categoriesWithStats([{ name: 'Backend', topics: ['Java', 'Typo'] }], stats);
+      const names = [...result.categories.flatMap((cat) => cat.topics), ...result.minor].map((t) => t.name);
+      expect(names).not.toContain('Typo');
+    });
+
+    it('puts uncategorized major topics into a trailing fallback category', () => {
+      const result = categoriesWithStats(categories, stats);
+      const fallback = result.categories.at(-1);
+
+      expect(fallback.name).toBe(UNCATEGORIZED_CATEGORY_NAME);
+      expect(fallback.topics.map((t) => t.name)).toEqual(['Rust', 'Go']);
+      expect(fallback.topics[1]).toEqual({ name: 'Go', count: 3, slug: 'go' });
+    });
+
+    it('puts uncategorized minor topics into the flat minor list', () => {
+      const result = categoriesWithStats(categories, stats);
+      expect(result.minor.map((t) => t.name)).toContain('Kotlin');
+    });
+
+    it('never loses a topic from topicStats', () => {
+      const result = categoriesWithStats(categories, stats);
+      const listed = [...result.categories.flatMap((cat) => cat.topics), ...result.minor].map((t) => t.name).sort();
+      expect(listed).toEqual(stats.map((s) => s.name).sort());
+    });
+
+    it('adds no fallback category when every topic is categorized', () => {
+      const result = categoriesWithStats(categories, stats.slice(0, 4));
+      expect(result.categories.map((cat) => cat.name)).toEqual(['Backend']);
+    });
+
+    it('handles missing categories and stats gracefully', () => {
+      expect(categoriesWithStats(undefined, undefined)).toEqual({ categories: [], minor: [] });
+      expect(categoriesWithStats([], stats).categories.map((cat) => cat.name)).toEqual([UNCATEGORIZED_CATEGORY_NAME]);
     });
   });
 
