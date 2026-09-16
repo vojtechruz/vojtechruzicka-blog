@@ -31,15 +31,6 @@ body {
   min-height: 100vh;
 }
 
-.footer {
-  .footer-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
 // When on small screen then switch from two columns to one column with sidebar hidden
 @include utilities.respond(large) {
   .main {

@@ -31,7 +31,7 @@ export default {
     'https://www.linkedin.com/in/vojtechruzicka/',
     'https://bsky.app/profile/vojtechruzicka.com',
     'https://mastodon.social/@vojtechruzicka',
-    'https://twitter.com/vojtechruzicka',
+    'https://x.com/vojtechruzicka',
   ],
 
   // Person entity in the About page JSON-LD (components/jsonld.njk). Profile links come
