@@ -4,6 +4,9 @@ pagination:
   size: 10            # items per page
   alias: posts        # variable name in template
   reverse: false
+  # Pages 2+ are indexable (self-canonical, no robots restriction), so they belong in the sitemap,
+  # which is built from collections.all.
+  addAllPagesToCollections: true
 paginationWindowSize: 2 # number of visible pages around the current page on each side
 eleventyComputed:
   # "/" for page 1, "/pages/2/" for page 2, etc.

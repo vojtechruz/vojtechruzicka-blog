@@ -108,6 +108,11 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 9. Legacy Gatsby-era URLs are 301-redirected by `src/static/_redirects` (Cloudflare Pages format). Matching is exact —
    case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags
    need explicit lowercase mappings. Guarded by `tests/redirects.test.js`; details in docs/REDIRECTS.md.
+10. `src/sitemap.xml.njk` lists exactly the built pages whose computed `isIndexable` flag is true (the same flag
+    `components/robots-meta.njk` uses, so noindex pages such as archived posts and `/archive/` can never be listed).
+    `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for posts, the newest
+    listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on Cloudflare equals
+    the deploy time. Guarded by `tests/sitemap.test.js`; details in docs/SITEMAP.md.
 
 ### Service worker
 
