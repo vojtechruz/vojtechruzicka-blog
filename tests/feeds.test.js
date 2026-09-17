@@ -156,6 +156,17 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('<li>Least privilege</li>');
     });
 
+    it('strips heading permalink anchors but keeps the heading and its id', () => {
+      const heading =
+        '<h2 id="what-is-owasp">What is OWASP? ' +
+        '<a class="header-anchor" href="#what-is-owasp" aria-label="Copy link to this section: What is OWASP?" ' +
+        'title="Copy link to this section: What is OWASP?" tabindex="-1"></a></h2><p>Body</p>';
+      const result = feedContent(heading);
+
+      expect(result).not.toContain('header-anchor');
+      expect(result).toContain('<h2 id="what-is-owasp">What is OWASP? </h2>');
+    });
+
     it('leaves plain content untouched', () => {
       const html = '<p>No diagrams or images here</p>';
       expect(feedContent(html)).toBe(html);
@@ -178,6 +189,7 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not leak source paths`).not.toContain('/src/posts/');
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
+        expect(content, `${name} feed should not contain heading permalink anchors`).not.toContain('header-anchor');
       }
     });
   });

@@ -41,10 +41,11 @@ npx markdownlint-cli2 "src/**/*.md"
 - `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}`, `{% warning/info/error/success %}` (short
   inline notes with variant icon), `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants:
   success/info/warning/error/update, optional date), `{% linkedPost %}`, `{% linkedSeries %}`, `{% badge %}`
-- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, aria-hidden/tabindex
-  fixes, Mermaid → inline SVG (` ```mermaid ` fences render at build time via mermaid-isomorphic/Playwright; Chromium
-  installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
-- `config/utils/` — shared markdown parser and formatting helpers
+- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, table wrapping, Shiki
+  `<pre>` tabindex removal, Mermaid → inline SVG (` ```mermaid ` fences render at build time via
+  mermaid-isomorphic/Playwright; Chromium installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
+- `config/utils/` — shared markdown parser (heading ids via github-slugger, heading permalink anchors rendered with
+  their aria-label/title/tabindex at parse time; details in docs/HEADING-ANCHORS.md) and formatting helpers
 
 ### Content (`src/`)
 

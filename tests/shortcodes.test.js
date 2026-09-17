@@ -88,8 +88,8 @@ describe('Message Shortcodes', () => {
   it('should render headings inside shortcodes', async () => {
     const content = `### Heading inside`;
     const result = await info(content);
-    expect(result).toContain('<h3');
-    expect(result).toContain('Heading inside</h3>');
+    expect(result).toContain('<h3 id="heading-inside">Heading inside ');
+    expect(result).toContain('href="#heading-inside"');
   });
 });
 

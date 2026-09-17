@@ -55,6 +55,9 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  * - {% linkedPost %} cards are site chrome that depends on the site CSS (even
  *   their "Related article" label is a CSS ::before) - in a reader they fall
  *   apart into a bare heading, date and topic list. Reduce to a plain link.
+ * - Heading permalink anchors (<a class="header-anchor">) are empty icon links
+ *   that only make sense with the site CSS and JS; in a reader they are dead
+ *   empty links, so drop them.
  * - Decorative icons (callout/msg SVGs, aria-hidden) rely on flexbox to sit
  *   inline with their title; without CSS they misalign above the text. They
  *   carry no information, so drop them.
@@ -90,6 +93,8 @@ export function feedContent(html) {
     $fallback.find('a').attr('href', href).text(title);
     $(el).replaceWith($fallback);
   });
+
+  $('a.header-anchor').remove();
 
   // Decorative icons only look right with the component's flexbox CSS - drop them.
   $('svg[aria-hidden="true"]').remove();
