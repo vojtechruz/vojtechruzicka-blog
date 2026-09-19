@@ -4,13 +4,26 @@ layout: null
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
+{#
+  Sitemap — see docs/SITEMAP.md.
+  • Membership follows the computed `isIndexable` flag, the same one the robots meta uses, so a
+    noindex page (archived posts, /archive/) can never be listed here.
+  • Drafts never reach collections.all in production (config/drafts.js drops them entirely).
+  • <lastmod> is derived from content by the `sitemapLastmod` filter and omitted where nothing
+    tracks it; changefreq/priority are left out because Google ignores them.
+  • Nunjucks runs with trimBlocks + lstripBlocks (config/basic-config.js), so block tags on their
+    own lines leave no whitespace behind — no `{%-` trimming needed.
+#}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {%- for page in collections.all %}
-    {%- if page.url and not page.data.eleventyExcludeFromCollections and not page.data.archivedStatus and page.outputPath.endsWith('.html') %}
-      <url>
-        <loc>{{ page.url | absoluteUrl(site.url) }}</loc>
-        <lastmod>{{ page.date | toRfc3339 }}</lastmod>
-      </url>
-    {%- endif %}
-  {%- endfor %}
+{% for page in collections.all %}
+  {% if page.url and page.data.isIndexable and page.outputPath and page.outputPath.endsWith('.html') %}
+    {% set lastmod = page | sitemapLastmod(collections.posts) %}
+  <url>
+    <loc>{{ page.url | absoluteUrl(site.url) }}</loc>
+    {% if lastmod %}
+    <lastmod>{{ lastmod | toRfc3339 }}</lastmod>
+    {% endif %}
+  </url>
+  {% endif %}
+{% endfor %}
 </urlset>

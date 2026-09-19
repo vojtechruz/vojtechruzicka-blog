@@ -27,7 +27,7 @@
             </li>
             {% set isAbout = (current == '/about/') %}
             <li>
-              <a href="/about/" {% if isAbout %}class="active" aria-current="page"{% endif %}>About <span class="not-small-screen">me</span></a>
+              <a href="/about/" {% if isAbout %}class="active" aria-current="page"{% endif %}>About me</a>
             </li>
           </ul>
           {% from "components/search.njk" import renderSearch %}

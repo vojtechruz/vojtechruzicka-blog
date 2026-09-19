@@ -47,6 +47,9 @@ export default function linkedPost(permalink, maybeCollections) {
   const draftStatus = data.draftStatus || '';
   const needsReview = data.needsReview === true && (isLocalDevelopment() || isPreview());
 
+  // Inside a post body the card is a link, not a section of the article, so it must not add an <h2>
+  // to the heading outline. List pages (index, topics, series) keep the heading.
+  const titleTag = ctx.postDir ? 'p' : 'h2';
   const allSeriesMetadata = ctx.seriesMetadata || [];
   const postSeries = allSeriesMetadata.find((s) => s.posts.includes(url));
   let seriesBadge = '';
@@ -82,9 +85,9 @@ export default function linkedPost(permalink, maybeCollections) {
     .join(' ');
 
   return `<div class="${classes}">
-  <h2 class="front-post-title">
+  <${titleTag} class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
-  </h2>
+  </${titleTag}>
   <div class="front-post-info">
     <time class="front-post-info-date" datetime="${htmlDate}">
       ${datePrefix}${escapeHtml(readableDate)}

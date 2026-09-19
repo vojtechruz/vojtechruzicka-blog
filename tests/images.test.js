@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'fs';
 import { loadPage, SITE_DIR } from './helpers.js';
+import { resolveImageFormats, resolveImageWidths } from '../config/plugins/image.js';
 
 /**
  * Posts verified to contain a featured image plus several in-post images in the build output.
@@ -8,11 +9,21 @@ import { loadPage, SITE_DIR } from './helpers.js';
  */
 const POSTS_WITH_IMAGES = ['/css-position/', '/chrome-audit-lighthouse/', '/commitlint/', '/css-flexbox/'];
 
-/** Widths configured in config/plugins/image.js (plus 'auto' = the original width). */
-const CONFIGURED_WIDTHS = [400, 800, 1200];
+/**
+ * Expectations are derived from the pipeline configuration (config/plugins/image.js),
+ * not from the build output: with no env override the full production defaults
+ * (avif + webp, four widths) are required, so silently dropping a format or width from
+ * the defaults fails the tests. CI sets ELEVENTY_IMAGE_FORMATS / ELEVENTY_IMAGE_WIDTHS
+ * at job level, so its lean build and this test see the same overrides.
+ */
 
-/** Modern formats emitted as <source> elements, most preferred first. */
-const MODERN_SOURCE_TYPES = ['image/avif', 'image/webp'];
+/** Widths configured in config/plugins/image.js, without 'auto' (= the original width). */
+const CONFIGURED_WIDTHS = resolveImageWidths().filter((width) => width !== 'auto');
+
+/** Modern formats emitted as <source> elements, most preferred first ('auto' is the <img> fallback). */
+const MODERN_SOURCE_TYPES = resolveImageFormats()
+  .filter((format) => format !== 'auto')
+  .map((format) => `image/${format}`);
 
 /** Featured images are rendered inside the post <header>; in-post images are direct children of <article>. */
 const FEATURED_SELECTOR = 'main.post > article > header .image-wrapper > picture';
@@ -45,16 +56,14 @@ function collectPictures($, selector) {
     .map((el) => ({ $pic: $(el), $img: $(el).find('img').first() }));
 }
 
-/**
- * Whether this build emitted AVIF at all. CI builds a lean variant
- * (ELEVENTY_IMAGE_FORMATS=webp,auto), so AVIF assertions are conditional on the
- * build actually producing it — but if it is produced, it must be produced consistently.
- */
-function buildEmitsAvif($) {
-  return $('source[type="image/avif"]').length > 0;
-}
-
 describe('Responsive image pipeline', () => {
+  it('is configured to produce at least one modern format and several widths', () => {
+    // Guards the expectations themselves: if the defaults (or a CI override) were
+    // reduced to the original format only, the assertions below would test nothing.
+    expect(MODERN_SOURCE_TYPES.length).toBeGreaterThan(0);
+    expect(CONFIGURED_WIDTHS.length).toBeGreaterThan(0);
+  });
+
   describe('<picture> wrapping (wrap-pictures-transform)', () => {
     it('renders in-post images as <picture> elements with <source> children', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
@@ -90,7 +99,6 @@ describe('Responsive image pipeline', () => {
     it('emits modern-format sources before the original-format <img> fallback', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
-        const expectedTypes = buildEmitsAvif($) ? MODERN_SOURCE_TYPES : ['image/webp'];
 
         for (const { $pic } of collectPictures($, IN_POST_SELECTOR)) {
           const types = $pic
@@ -100,7 +108,7 @@ describe('Responsive image pipeline', () => {
 
           // Order matters: the browser picks the first source it supports,
           // so avif must precede webp and both must precede the <img> fallback.
-          expect(types, `Unexpected source formats in ${postPath}`).toEqual(expectedTypes);
+          expect(types, `Unexpected source formats in ${postPath}`).toEqual(MODERN_SOURCE_TYPES);
         }
       }
     });
@@ -172,11 +180,18 @@ describe('Responsive image pipeline', () => {
 
             // Every width is either a configured breakpoint or the original ('auto') width.
             const originalWidth = Number.parseInt($img.attr('width'), 10);
-            for (const { width } of entries) {
+            const widths = entries.map((entry) => entry.width);
+            for (const width of widths) {
               expect(
                 CONFIGURED_WIDTHS.includes(width) || width === originalWidth,
                 `Unexpected width ${width} in ${postPath}`,
               ).toBe(true);
+            }
+
+            // ...and every configured breakpoint narrower than the original must be present
+            // (eleventy-img skips only the ones that would upscale).
+            for (const width of CONFIGURED_WIDTHS.filter((candidate) => candidate < originalWidth)) {
+              expect(widths, `Configured width ${width} missing from srcset in ${postPath}`).toContain(width);
             }
 
             // The largest candidate is the original image.

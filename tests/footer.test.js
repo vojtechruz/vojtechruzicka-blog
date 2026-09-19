@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { loadPage } from './helpers.js';
+import siteConfig from '../src/_data/site.js';
 import {
   getFooter,
   getFooterContainer,
@@ -7,110 +8,103 @@ import {
   getSocialLinks,
   getSocialLinkHrefs,
   getSocialLinkByHref,
+  getFooterMeta,
 } from './queries/footer.js';
 
+// The footer (src/_includes/components/footer.njk) is included by base.njk, so every
+// layout gets it: homepage, post, plain page, search page and the 404 page.
+const PAGES = ['/', '/css-flexbox/', '/about/', '/search/', '/404.html'];
+
 describe('Footer', () => {
-  let $;
+  describe.each(PAGES)('on %s', (url) => {
+    const $ = loadPage(url);
 
-  beforeAll(() => {
-    $ = loadPage('/');
-  });
-
-  it('has exactly one footer element', () => {
-    expect(getFooter($).length).toBe(1);
-  });
-
-  it('has footer container', () => {
-    expect(getFooterContainer($).length).toBe(1);
-  });
-
-  it('has social navigation with accessible label', () => {
-    const socialNav = getSocialNav($);
-
-    expect(socialNav.length).toBe(1);
-    expect(socialNav.attr('aria-label')).toBe('Social links');
-  });
-
-  it('contains exactly 6 social links', () => {
-    expect(getSocialLinks($).length).toBe(6);
-  });
-
-  it('all footer social links have href', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).attr('href')).toBeTruthy();
+    it('has exactly one footer with a container', () => {
+      expect(getFooter($).length).toBe(1);
+      expect(getFooterContainer($).length).toBe(1);
     });
-  });
 
-  it('all footer social links have aria-label', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).attr('aria-label')).toBeTruthy();
+    it('has social navigation with accessible label', () => {
+      const socialNav = getSocialNav($);
+
+      expect(socialNav.length).toBe(1);
+      expect(socialNav.attr('aria-label')).toBe('Social links');
     });
-  });
 
-  it('all footer social links have title', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).attr('title')).toBeTruthy();
+    it('renders every entry of site.social in order', () => {
+      expect(getSocialLinks($).length).toBe(siteConfig.social.length);
+      expect(getSocialLinkHrefs($)).toEqual(siteConfig.social.map((item) => item.url));
     });
-  });
 
-  it('all footer social links have matching title and aria-label', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).attr('title')).toBe($(el).attr('aria-label'));
+    it('mirrors site.social on every link (label, analytics tags, rel)', () => {
+      for (const item of siteConfig.social) {
+        const link = getSocialLinkByHref($, item.url);
+
+        expect(link.length, `missing footer link for ${item.name}`).toBe(1);
+        expect(link.attr('title')).toBe(item.title);
+        expect(link.attr('aria-label')).toBe(item.title);
+        expect(link.attr('data-social-name')).toBe(item.name);
+        expect(link.attr('data-location')).toBe('Footer');
+        expect(link.attr('rel')).toBe(item.rel);
+      }
     });
-  });
 
-  it('all footer social links contain an svg icon', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).find('svg').length).toBe(1);
-    });
-  });
+    it('wraps exactly one decorative svg icon per link', () => {
+      getSocialLinks($).each((_, el) => {
+        const svg = $(el).find('svg');
 
-  it('all svg icons inside footer links are hidden from assistive tech', () => {
-    getSocialLinks($)
-      .find('svg')
-      .each((_, el) => {
-        expect($(el).attr('aria-hidden')).toBe('true');
-        expect($(el).attr('focusable')).toBe('false');
+        expect(svg.length).toBe(1);
+        expect(svg.attr('aria-hidden')).toBe('true');
+        expect(svg.attr('focusable')).toBe('false');
       });
+    });
+
+    it('shows the copyright and license line', () => {
+      const meta = getFooterMeta($);
+
+      expect(meta.length).toBe(1);
+      expect(meta.text()).toContain(`© ${siteConfig.author}`);
+
+      const license = meta.find('a[href="https://creativecommons.org/licenses/by/4.0/"]');
+      expect(license.length).toBe(1);
+      expect(license.attr('rel')).toBe('license');
+      expect(license.text().trim()).toBe('CC BY 4.0');
+      // About is already in the main navigation; the footer line must not duplicate it
+      expect(meta.find('a').length).toBe(1);
+    });
   });
 
-  it('contains expected social/profile links', () => {
-    const hrefs = getSocialLinkHrefs($);
+  describe('site.social config', () => {
+    it('has non-empty name, url and title on every entry', () => {
+      for (const item of siteConfig.social) {
+        expect(item.name?.trim()).toBeTruthy();
+        expect(item.url?.trim()).toBeTruthy();
+        expect(item.title?.trim()).toBeTruthy();
+      }
+    });
 
-    expect(hrefs).toContain('/feed.xml');
-    expect(hrefs).toContain('https://mastodon.social/@vojtechruzicka');
-    expect(hrefs).toContain('https://www.linkedin.com/in/vojtechruzicka');
-    expect(hrefs).toContain('https://github.com/vojtechruz');
-    expect(hrefs).toContain('https://bsky.app/profile/vojtechruzicka.com');
-    expect(hrefs).toContain('https://x.com/vojtechruzicka');
-  });
+    it('keeps RSS relative so preview deploys link to the preview feed', () => {
+      const rss = siteConfig.social.find((item) => item.name === 'RSS');
 
-  it('rss link has correct accessible label', () => {
-    const rssLink = getSocialLinkByHref($, '/feed.xml');
+      expect(rss.url).toBe('/feed.xml');
+      expect(rss.title).toBe('Subscribe to RSS feed');
+    });
 
-    expect(rssLink.length).toBe(1);
-    expect(rssLink.attr('aria-label')).toBe('Subscribe to RSS feed');
-  });
+    it('marks Mastodon with rel="me" for profile verification', () => {
+      expect(siteConfig.social.find((item) => item.name === 'Mastodon').rel).toBe('me');
+    });
 
-  it('mastodon link uses rel="me"', () => {
-    const mastodonLink = getSocialLinkByHref($, 'https://mastodon.social/@vojtechruzicka');
+    it('uses the same profile URLs as sameAs', () => {
+      // sameAs feeds JSON-LD and the About page; footer links must not drift from it
+      const external = siteConfig.social.filter((item) => item.url.startsWith('http'));
+      const normalise = (url) => url.replace(/\/$/, '');
 
-    expect(mastodonLink.length).toBe(1);
-    expect(mastodonLink.attr('rel')).toBe('me');
-  });
-
-  it('bluesky link has correct accessible label', () => {
-    const blueskyLink = getSocialLinkByHref($, 'https://bsky.app/profile/vojtechruzicka.com');
-
-    expect(blueskyLink.length).toBe(1);
-    expect(blueskyLink.attr('aria-label')).toBe('Follow me on Bluesky');
-  });
-
-  it('does not contain empty social link labels', () => {
-    getSocialLinks($).each((_, el) => {
-      expect($(el).attr('aria-label')?.trim()).not.toBe('');
-      expect($(el).attr('title')?.trim()).not.toBe('');
-      expect($(el).attr('href')?.trim()).not.toBe('');
+      for (const profile of siteConfig.sameAs) {
+        expect(
+          external.map((item) => normalise(item.url)),
+          `footer is missing ${profile}`,
+        ).toContain(normalise(profile));
+      }
     });
   });
 });

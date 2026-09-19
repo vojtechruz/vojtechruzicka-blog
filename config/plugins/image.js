@@ -18,13 +18,32 @@ function fromEnvList(name, defaults) {
   });
 }
 
+/** Output image formats; 'auto' keeps the original format for the <img> fallback. */
+export const DEFAULT_IMAGE_FORMATS = ['avif', 'webp', 'auto'];
+
+/** Output image widths; 'auto' is the original size. */
+export const DEFAULT_IMAGE_WIDTHS = [400, 800, 1200, 'auto'];
+
+/**
+ * The formats/widths a build with the current environment produces. Exported so
+ * tests/images.test.js can assert against the configured pipeline (and fail when a
+ * default is changed) rather than against whatever the build happened to emit.
+ */
+export function resolveImageFormats() {
+  return fromEnvList('ELEVENTY_IMAGE_FORMATS', DEFAULT_IMAGE_FORMATS);
+}
+
+export function resolveImageWidths() {
+  return fromEnvList('ELEVENTY_IMAGE_WIDTHS', DEFAULT_IMAGE_WIDTHS);
+}
+
 export default function registerImagePlugin(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     // output image formats
-    formats: fromEnvList('ELEVENTY_IMAGE_FORMATS', ['avif', 'webp', 'auto']),
+    formats: resolveImageFormats(),
 
-    // output image widths ('auto' is the original size)
-    widths: fromEnvList('ELEVENTY_IMAGE_WIDTHS', [400, 800, 1200, 'auto']),
+    // output image widths
+    widths: resolveImageWidths(),
     sizes: '100vw',
 
     // optional, attributes assigned on <img> nodes override these values

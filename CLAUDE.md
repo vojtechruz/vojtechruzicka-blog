@@ -41,10 +41,11 @@ npx markdownlint-cli2 "src/**/*.md"
 - `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}`, `{% warning/info/error/success %}` (short
   inline notes with variant icon), `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants:
   success/info/warning/error/update, optional date), `{% linkedPost %}`, `{% linkedSeries %}`, `{% badge %}`
-- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, aria-hidden/tabindex
-  fixes, Mermaid → inline SVG (` ```mermaid ` fences render at build time via mermaid-isomorphic/Playwright; Chromium
-  installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
-- `config/utils/` — shared markdown parser and formatting helpers
+- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, table wrapping, Shiki
+  `<pre>` tabindex removal, Mermaid → inline SVG (` ```mermaid ` fences render at build time via
+  mermaid-isomorphic/Playwright; Chromium installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
+- `config/utils/` — shared markdown parser (heading ids via github-slugger, heading permalink anchors rendered with
+  their aria-label/title/tabindex at parse time; details in docs/HEADING-ANCHORS.md) and formatting helpers
 
 ### Content (`src/`)
 
@@ -91,7 +92,9 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 1. Markdown posts → markdown-it parser (with custom plugins for callouts, TOC) → HTML
 2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
-4. Pagefind indexes `_site/` after build for client-side search
+4. Pagefind indexes `_site/` after build for client-side search. Only `<main data-pagefind-body>` (set by the three
+   layouts) is indexed; `src/pages/search.njk` (`/search/?q=`, the homepage `SearchAction` target) omits the attribute
+   so it stays out of the index and renders results inline (`data-search-inline` in `src/scripts/search.js`).
 5. Giscus (GitHub Discussions) provides comments; no server-side component
 6. RSS/Atom feeds (`src/feed.xml.njk`, `src/atom.xml.njk`) ship full post content; the `feedContent` filter
    (`config/filters/urls.js`) rewrites site-CSS-dependent markup (Mermaid, images, linkedPost cards) into reader-safe
@@ -106,6 +109,11 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 9. Legacy Gatsby-era URLs are 301-redirected by `src/static/_redirects` (Cloudflare Pages format). Matching is exact —
    case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags
    need explicit lowercase mappings. Guarded by `tests/redirects.test.js`; details in docs/REDIRECTS.md.
+10. `src/sitemap.xml.njk` lists exactly the built pages whose computed `isIndexable` flag is true (the same flag
+    `components/robots-meta.njk` uses, so noindex pages such as archived posts and `/archive/` can never be listed).
+    `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for posts, the newest
+    listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on Cloudflare equals
+    the deploy time. Guarded by `tests/sitemap.test.js`; details in docs/SITEMAP.md.
 
 ### Service worker
 
@@ -121,6 +129,21 @@ output filenames contain a content hash, so a stale cache is always safe. Cache 
 (gitignored) everywhere: persisted via actions/cache in CI and by the Cloudflare Pages build cache (which preserves
 `.cache` because it detects Eleventy from `package.json` — the dashboard framework preset plays no part). CI builds a
 lean variant via `ELEVENTY_IMAGE_FORMATS`/`ELEVENTY_IMAGE_WIDTHS` env vars. Details in docs/IMAGES.md.
+
+## Logging changes to the Obsidian daily note
+
+Every change made to the blog in a session must be recorded in the Obsidian daily note for that day:
+`D:\Dropbox\Obsidian\Carpe Diem\<YYYY>\<YYYY-MM>\<YYYY-MM-DD>.md` (the vault's daily-notes setting is
+`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Create the note if it does not exist yet (first line is the navigation header
+`← [[<prev day>]]  ·  [[<next day>]] →   ·   ↑ [[<YYYY>-W<week>]] · [[<YYYY-MM>]]`, then a blank line, then bullets).
+
+Format, matching the existing entries: one top-level bullet `- Blog` with one tab-indented sub-bullet per change,
+written in Czech without diacritics, short and outcome-oriented (`- Fixed webvitals`, `- added responsive navigation`).
+Link related vault notes with `[[...]]` where one exists.
+
+When a `Blog` entry for the day already exists, add to it rather than creating a second one, and feel free to edit or
+consolidate the existing sub-bullets so the day reads as one coherent summary (merge duplicates, fold a follow-up fix
+into the bullet it belongs to, drop items that were reverted). Do not touch non-blog bullets. Write the file as UTF-8.
 
 ## Code style
 

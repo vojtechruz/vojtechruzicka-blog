@@ -7,6 +7,12 @@ on:
     branches: [master]
   push:
 
+# Least-privilege token: the job only reads the repo (checkout, caches). Lighthouse CI
+# uploads to temporary public storage and needs no GitHub access. Flagged by CodeQL
+# (actions/missing-workflow-permissions) when left at the default, permissive token.
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -14,6 +20,14 @@ concurrency:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    env:
+      # Lean image variant for CI - avif encoding dominates build time and CI only
+      # validates markup. Production builds keep the full defaults. Set at job level
+      # (not only on the build step) because tests/images.test.js derives its expected
+      # formats/widths from these same variables and must see what the build saw.
+      ELEVENTY_IMAGE_FORMATS: webp,auto
+      ELEVENTY_IMAGE_WIDTHS: 800,auto
 
     steps:
       - name: Checkout repository
@@ -59,10 +73,6 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          # Lean image variant for CI - avif encoding dominates build time and
-          # CI only validates markup. Production builds keep the full defaults.
-          ELEVENTY_IMAGE_FORMATS: webp,auto
-          ELEVENTY_IMAGE_WIDTHS: 800,auto
           # Pin CI to a production-shaped build. Without this, GITHUB_REF_NAME makes every
           # feature branch look like a preview deploy, which pulls "ready" drafts into the
           # output and marks every page noindex - both break tests that assert against the

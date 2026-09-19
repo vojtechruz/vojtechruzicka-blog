@@ -11,7 +11,7 @@
     of visible pages around the current page (defaults to 2).
 #}
 {% if pagination.hrefs | length > 1 %}
-  <nav class="pagination" aria-label="Pagination">
+  <nav class="pagination" aria-label="{{ paginationLabel or "Pagination" }}">
     {# Previous link #}
     {% if pagination.href.previous %}
       <a href="{{ pagination.href.previous }}" rel="prev" class="pagination-prev">« Previous</a>

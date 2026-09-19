@@ -83,7 +83,8 @@ async function generateOgImage(src, urlPath) {
 
 /**
  * Compute a single "kind" (enum) for the current page.
- * Possible values: "home" | "homePaginated" | "archive" | "topics" | "topic" | "post" | "page"
+ * Possible values: "home" | "homePaginated" | "archive" | "topics" | "topic" | "seriesListing" | "series"
+ * | "post" | "page"
  */
 function getPageKind(d) {
   const url = d.page?.url || '/';
@@ -207,6 +208,13 @@ export default {
 
   isArchived: (d) => !!d.archivedStatus,
 
+  // Single source of truth for "may search engines index this page". Drives both the robots meta
+  // (components/robots-meta.njk) and sitemap membership (src/sitemap.xml.njk) so the two can never
+  // disagree. Archived posts and the archive listing are noindex — their canonical points at the
+  // superseding article. The preview-deploy noindex is an environment override layered on top in
+  // the robots component, not a property of the page.
+  isIndexable: (d) => !d.archivedStatus && getPageKind(d).kind !== 'archive',
+
   // Reverse lookup: which archived posts point to this page via supersededBy.
   // Uses a pre-built map (historicalVersionsMap) to avoid accessing collections.all,
   // which would force a full rebuild of all pages on every file change.
@@ -218,6 +226,7 @@ export default {
   },
 
   // Page type flags
+  pageKind: (d) => getPageKind(d).kind,
   isHome: (d) => getPageKind(d).kind === 'home',
   isHomePaginated: (d) => getPageKind(d).kind === 'homePaginated',
   isTopics: (d) => getPageKind(d).kind === 'topics',
@@ -233,7 +242,9 @@ export default {
     const { kind } = getPageKind(d);
 
     if (kind === 'post') {
-      if (!d.page?.inputPath) { return undefined; }
+      if (!d.page?.inputPath) {
+        return undefined;
+      }
       // Use raw data.featuredImage — the computed version from posts.11tydata.js may not yet
       // be resolved when this global computed property runs.
       const imageFile = (d.featuredImage || 'featured.jpg').replace(/^\.\//, '');
@@ -243,7 +254,9 @@ export default {
 
     if (kind === 'series') {
       const series = d.currentSeries;
-      if (!series?.image) { return undefined; }
+      if (!series?.image) {
+        return undefined;
+      }
       const src = path.resolve('src', 'images', 'series', series.slug, series.image);
       return generateOgImage(src, `/series/${series.slug}/`);
     }

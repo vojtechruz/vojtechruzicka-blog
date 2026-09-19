@@ -18,6 +18,13 @@ Parse `$ARGUMENTS` to determine mode:
 - Subagents only *produce* review text; the notes are written at the end by a Python script, so no vault
   write permissions are needed.
 
+## Step 0b — Refresh traffic
+
+Run `/sync-traffic` (i.e. `_tools/obsidian/.venv/Scripts/python _tools/obsidian/sync_traffic.py`) so every
+article note has a fresh `Views 6mo` and `# Traffic` callout; the update priority below depends on it.
+If it fails (no Plausible API key in `~/.plausible/config.json`, network), warn the user and continue —
+the review then judges priority from the findings alone.
+
 ## Step 1 — Collect posts to review
 
 Run:
@@ -25,7 +32,8 @@ Run:
 _tools/obsidian/.venv/Scripts/python _tools/obsidian/posts_status.py src/posts
 ```
 
-This returns JSON, one entry per post: `{path, slug, title, has_article_note, has_review}`. Filter by mode:
+This returns JSON, one entry per post: `{path, slug, title, has_article_note, has_review, views_6mo,
+views_rank, traffic_trend}` (the last three are `null` without traffic data). Filter by mode:
 - **default**: keep posts where `has_review` is `false`
 - **`--all`**: keep every post
 - **path**: keep only the post whose `path` is under the given directory
@@ -39,7 +47,8 @@ article note is missing and tell them to run `/sync-obsidian` first, then skip i
 ## Step 2 — Spawn parallel subagents
 
 Divide the remaining posts into batches of **8**. Spawn one subagent per batch in parallel using the
-Agent tool. Each subagent receives an explicit list of `{path, slug, title}` for its posts and must
+Agent tool. Each subagent receives an explicit list of `{path, slug, title, views_6mo, views_rank,
+traffic_trend}` for its posts and must
 handle each one independently, returning its results as structured text (see Output).
 
 ## Step 3 — Per-post review (what each subagent does)
@@ -89,7 +98,21 @@ exactly this markdown structure for the review body:
 #### Conclusion
 
 One paragraph: overall verdict and the single most important update needed.
+
+**Update priority:** High — one sentence weighing the findings against the traffic.
 ```
+
+**Update priority** (always the last line; one of `Very High` / `High` / `Medium` / `Low` / `Very Low`)
+ranks how worth it updating this post is **now**. It combines two things:
+- **Severity of the findings**: code that no longer compiles or runs, removed APIs and wrong security
+  advice are severe; outdated versions and missing modern context are moderate; typos and SEO are minor.
+- **Reach**: `views_rank` among all posts (top 10 % = high reach, bottom half = low), plus
+  `traffic_trend` (a declining popular post is often losing search rank *because* it is outdated, so
+  bump it up).
+Severe + high reach → `Very High`. Severe + no traffic → at most `Medium` (an `/archive-post` candidate
+may be the better move; say so). Minor findings → `Low`/`Very Low` regardless of traffic. Without traffic
+data, judge from severity alone and say so in the sentence. Cite the numbers
+(e.g. `1,234 views/6mo, rank 3/101, ▼ -20 %`).
 
 **Format rules:**
 - Section headings use exactly `#### ` (4 hashes + space)
@@ -98,13 +121,15 @@ One paragraph: overall verdict and the single most important update needed.
 - `` `backtick` `` for method names, API names, type names, CLI flags
 - Sub-bullets: `  - ` (2 spaces before dash)
 - No frontmatter; the review text becomes the body of the note's `# AI Review` callout
+- The `**Update priority:**` line is never omitted
 
 ## Step 4 — Write reviews into the notes
 
 Collect every subagent's results into `post_reviews.json` in the scratchpad:
 ```json
 [
-  { "slug": "java-records", "title": "Java Records", "feedback": "#### 1. Factual …" }
+  { "slug": "java-records", "title": "Java Records", "feedback": "#### 1. Factual …",
+    "ai_update_priority": "High" }
 ]
 ```
 
@@ -113,10 +138,12 @@ Then run:
 _tools/obsidian/.venv/Scripts/python _tools/obsidian/write_post_reviews.py <path-to-post_reviews.json>
 ```
 
-This finds each article note by `slug` and replaces (or appends) its `# AI Review` callout. (Preview
-first with `--dry-run` if you like.)
+This finds each article note by `slug`, replaces (or appends) its `# AI Review` callout and sets the
+`AI Update Priority` frontmatter from `ai_update_priority` (the same value as the `**Update priority:**`
+line), so posts can be sorted by it in `Blog Articles.base`. (Preview first with `--dry-run` if you like.)
 
 ## Step 5 — Report
 
 Print a summary: how many article notes were written, how many posts were skipped for a missing article
-note (needing `/sync-obsidian`), and any failures.
+note (needing `/sync-obsidian`), and any failures. Then list the reviewed posts with `Very High` / `High`
+update priority, highest first, with their `Views 6mo`: that is the update queue.

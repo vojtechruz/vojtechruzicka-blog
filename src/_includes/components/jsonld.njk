@@ -67,10 +67,12 @@ modifiedDate, breadcrumbs, isAbout #}
   "description": {{ pageDescription | dump | safe }},
   "mainEntity": {
   "@type": "Person",
-  "image": {{ person.image | dump | safe }},
+  "image": {{ (site.url + person.image) | dump | safe }},
   "jobTitle": {{ person.jobTitle | dump | safe }},
   "email": {{ person.email | dump | safe }},
-  "url": {{ person.url | dump | safe }},
+  "url": {{ person.url | dump | safe }},{% if person.birthDate %}
+  "birthDate": {{ person.birthDate | dump | safe }},{% endif %}
+  {# Same profile list as the WebSite block on the homepage (site.sameAs) #}
   "sameAs": [
   {% for s in site.sameAs -%}{{ s | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %}
   ],

@@ -3,10 +3,12 @@
 Write AI post reviews into Obsidian "Blog Articles" notes.
 
 Reads a JSON array:
-    [{"slug": "...", "title": "...", "feedback": "markdown"}, ...]
+    [{"slug": "...", "title": "...", "feedback": "markdown",
+      "ai_update_priority": "High"}, ...]
 
-For each entry: finds the article note whose `Slug` frontmatter matches and
-replaces (or appends) its `# AI Review` callout. Posts with no matching article
+For each entry: finds the article note whose `Slug` frontmatter matches,
+replaces (or appends) its `# AI Review` callout and sets the
+`AI Update Priority` frontmatter (when given). Posts with no matching article
 note are reported and skipped — run sync_to_obsidian.py first to create them.
 
 Usage:
@@ -18,7 +20,7 @@ import json
 import sys
 from pathlib import Path
 
-from config import ARTICLES_DIR, ARTICLE_CALLOUT_TITLE
+from config import ARTICLES_DIR, ARTICLE_CALLOUT_TITLE, UPDATE_PRIORITY_PROP
 import vault_reviews as vr
 
 
@@ -64,6 +66,7 @@ def main() -> int:
         slug = (entry.get("slug") or "").strip()
         title = entry.get("title") or slug or "?"
         feedback = (entry.get("feedback") or "").strip()
+        priority = (entry.get("ai_update_priority") or "").strip()
 
         if not slug or not feedback:
             print(f"  ! {title}: missing slug or feedback", file=sys.stderr)
@@ -76,14 +79,22 @@ def main() -> int:
             missing += 1
             continue
         try:
-            result = vr.splice_callout(note, ARTICLE_CALLOUT_TITLE, feedback,
-                                       dry_run=args.dry_run)
+            post = vr.load_note(note)
+            if args.dry_run:
+                existed = vr.has_callout(post.content, ARTICLE_CALLOUT_TITLE)
+                result = "replace" if existed else "append"
+            else:
+                existed = vr.apply_callout(post, ARTICLE_CALLOUT_TITLE, feedback)
+                vr.set_props(post, {UPDATE_PRIORITY_PROP: priority})
+                vr.dump_note(post, note)
+                result = "replaced" if existed else "appended"
         except Exception as e:  # noqa: BLE001
             print(f"  ! {title}: {e}", file=sys.stderr)
             failed += 1
             continue
-        mark = "~" if "replace" in result else "+"
-        print(f"  {mark} {title}: {result}")
+        mark = "~" if existed else "+"
+        suffix = f" (update priority={priority})" if priority else ""
+        print(f"  {mark} {title}: {result}{suffix}")
         ok += 1
 
     print(f"\nDone. ok={ok} missing={missing} failed={failed}")

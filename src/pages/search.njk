@@ -1,0 +1,39 @@
+---
+title: "Search"
+description: "Search all posts on Vojtech Ruzicka's Programming Blog."
+permalink: /search/
+bodyClass: search-page
+---
+{% extends "layouts/base.njk" %}
+
+{#
+  Dedicated search page, the target of the homepage `SearchAction` JSON-LD
+  (`/search/?q={query}`): the query from the URL is run automatically and the
+  URL is kept in sync while typing, so a search can be linked to or bookmarked.
+  Unlike the other layouts, <main> deliberately carries no `data-pagefind-body`,
+  which keeps this page out of the Pagefind index (see pagefind.yaml).
+  Results render inline (`data-search-inline`) instead of in the header overlay.
+#}
+{% block content %}
+  <main id="content" class="page content">
+    <header>
+      {% include "components/breadcrumbs.njk" %}
+      <h1>{{ title }}</h1>
+    </header>
+
+    <div class="js-pagefind search-page-ui" id="search-page" data-search-inline>
+      <!-- Placeholder only: replaced by Pagefind UI as soon as the script loads -->
+      <div class="pagefind-ui">
+        {# Distinct accessible name from the header search form (landmarks must be unique) #}
+        <form class="pagefind-ui__form" role="search" aria-label="Search posts">
+          <input class="pagefind-ui__search-input" type="text" name="q" placeholder="Search…" title="Search posts"
+                 aria-label="Search posts" autocapitalize="none" enterkeyhint="search" data-1p-ignore />
+        </form>
+      </div>
+    </div>
+
+    <noscript>
+      <p>Search needs JavaScript. Without it, browse the posts by <a href="/topics/">topic</a> instead.</p>
+    </noscript>
+  </main>
+{% endblock %}

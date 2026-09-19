@@ -8,6 +8,7 @@ Social Meta Tags (Open Graph + Twitter + Fediverse)
 - pageUrl (canonical absolute URL)
 - imageUrl / imageWidth / imageHeight / imageAlt (featuredImage or default)
 - isPost (true for articles)
+- publishedDate / modifiedDate, topics, site.person.url (article:* properties on posts)
 - site.title, site.twitter, site.fediverseCreator
 • Outputs OG + Twitter tags with correct type.
 --------------------------------------------------------------
@@ -29,6 +30,15 @@ Social Meta Tags (Open Graph + Twitter + Fediverse)
 {% if imageAlt %}<meta property="og:image:alt" content="{{ imageAlt }}">
 {% endif %}<meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:locale" content="en_US">
+{% if isPost %}
+  {# Article-specific Open Graph properties (og:type=article). author is a profile URL per the
+     OG spec; tags mirror the post topics. Dates use the same computed values as the JSON-LD. #}
+  {% if publishedDate %}<meta property="article:published_time" content="{{ publishedDate | toRfc3339 }}">
+  {% endif %}{% if modifiedDate %}<meta property="article:modified_time" content="{{ modifiedDate | toRfc3339 }}">
+  {% endif %}<meta property="article:author" content="{{ site.person.url }}">
+  {% for topic in topics %}<meta property="article:tag" content="{{ topic }}">
+  {% endfor %}
+{% endif %}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">

@@ -64,6 +64,12 @@ describe('Security headers (Content Security Policy)', () => {
     expect(sources('frame-src')).toContain('https://giscus.app');
   });
 
+  it('keeps giscus.app in style-src even though no static page references it', () => {
+    // The giscus script also injects <link href="https://giscus.app/default.css"> at runtime.
+    // Without it every post with comments fires a CSP Violation (2026-08-30 .. 2026-09-19).
+    expect(sources('style-src')).toContain('https://giscus.app');
+  });
+
   it('allowlists every inline event handler by its hash', () => {
     // config/html-transform/lqip-svg-transform.js emits onload="this.dataset.loaded=1;" on every
     // image. Editing that string without regenerating the sha256 in the CSP would make browsers

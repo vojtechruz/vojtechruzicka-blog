@@ -31,23 +31,17 @@ export default {
     'https://www.linkedin.com/in/vojtechruzicka/',
     'https://bsky.app/profile/vojtechruzicka.com',
     'https://mastodon.social/@vojtechruzicka',
-    'https://twitter.com/vojtechruzicka',
+    'https://x.com/vojtechruzicka',
   ],
 
+  // Person entity in the About page JSON-LD (components/jsonld.njk). Profile links come
+  // from `sameAs` above so the WebSite and Person blocks never drift apart.
   person: {
     name: 'Vojtech Ruzicka',
-    birthDate: '1986.07.27',
-    image: '/vojtech.jpg',
+    birthDate: '1986-07-27', // ISO 8601, as schema.org expects
+    image: '/vojtech.jpg', // site-root path; the template makes it absolute
     url: 'https://www.vojtechruzicka.com/about/',
     jobTitle: 'Full-Stack Software Developer',
-    sameAs: [
-      // overrides/extends site.sameAs for Person
-      'https://github.com/vojtechruz',
-      'https://www.linkedin.com/in/vojtechruzicka/',
-      'https://bsky.app/profile/vojtechruzicka.com',
-      'https://mastodon.social/@vojtechruzicka',
-      'https://twitter.com/vojtechruzicka',
-    ],
     email: 'vojtech.ruz@gmail.com',
   },
 

@@ -41,6 +41,12 @@ ARTICLES_BASE_LINK = "[[Blog Articles.base]]"
 # Callout titles used for the AI blocks inside notes.
 IDEA_CALLOUT_TITLE = "AI Feedback"
 ARTICLE_CALLOUT_TITLE = "AI Review"
+TRAFFIC_CALLOUT_TITLE = "Traffic"
+
+# Article frontmatter written by sync_traffic.py / write_post_reviews.py.
+VIEWS_MONTHS = 6
+VIEWS_PROP = f"Views {VIEWS_MONTHS}mo"
+UPDATE_PRIORITY_PROP = "AI Update Priority"
 
 # Learning list filter (mirrors the old Notion filter).
 LEARNING_CATEGORY = "Development"

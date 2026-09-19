@@ -47,18 +47,18 @@ article .linked-post {
   }
 }
 
-.linked-post h2.front-post-title {
+.linked-post .front-post-title {
   line-height: 1.25;
   margin-top: -0.65rem;
   margin-bottom: var(--gap-small);
 }
 
 /* No negative pull needed under the eyebrow label in the in-body card */
-article .linked-post h2.front-post-title {
+article .linked-post .front-post-title {
   margin-top: 0;
 }
 
-.linked-post h2.front-post-title a {
+.linked-post .front-post-title a {
   display: inline-block;
   margin: 0 !important;
   padding: 0 !important;
@@ -66,7 +66,7 @@ article .linked-post h2.front-post-title {
 
 /* The title font is large here, so the badge's relative size balloons —
  * pin it to an absolute size and add spacing from the heading text. */
-.linked-post h2.front-post-title .badge {
+.linked-post .front-post-title .badge {
   margin-left: var(--gap-small);
   font-size: 0.75rem;
   vertical-align: middle;

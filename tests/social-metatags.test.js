@@ -16,8 +16,15 @@ import {
   getTwitterCreator,
   getOgDescription,
   getFediverseCreator,
+  getOgType,
+  getArticlePublishedTime,
+  getArticleModifiedTime,
+  getArticleAuthor,
+  getArticleTags,
+  getArticleProperties,
 } from './queries/seo.js';
 import siteConfig from '../src/_data/site.js';
+import { getPostTopicNames } from './queries/post.js';
 
 // A published post with a featured image, used as the representative article page.
 const POST_URL = '/owasp-top-10-2025/';
@@ -55,6 +62,61 @@ describe('Social meta tags', () => {
       expect(getOgImageAlt($)).toBe('OWASP Top 10 2025');
       expect(getTwitterImageAlt($)).toBe(getOgImageAlt($));
     });
+  });
+
+  describe('article properties (og:type=article)', () => {
+    const RFC3339 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
+    const ARTICLES = [POST_URL, '/angular/01-getting-started/', '/exam-notes-pivotal-certified-spring-professional/'];
+
+    function blogPosting($) {
+      return $('script[type="application/ld+json"]')
+        .map((_, el) => JSON.parse($(el).text()))
+        .get()
+        .find((block) => block['@type'] === 'BlogPosting');
+    }
+
+    it.each(ARTICLES)('%s is typed as an article with RFC 3339 publish/modify times', (url) => {
+      const $ = loadPage(url);
+
+      expect(getOgType($)).toBe('article');
+      expect(getArticlePublishedTime($)).toMatch(RFC3339);
+      expect(getArticleModifiedTime($)).toMatch(RFC3339);
+      expect(Date.parse(getArticleModifiedTime($))).toBeGreaterThanOrEqual(Date.parse(getArticlePublishedTime($)));
+    });
+
+    it.each(ARTICLES)('%s uses the same dates as the BlogPosting JSON-LD', (url) => {
+      const $ = loadPage(url);
+      const posting = blogPosting($);
+
+      expect(getArticlePublishedTime($)).toBe(posting.datePublished);
+      expect(getArticleModifiedTime($)).toBe(posting.dateModified);
+    });
+
+    it('reflects the frontmatter dates of an updated post', () => {
+      const $ = loadPage('/exam-notes-pivotal-certified-spring-professional/');
+      expect(getArticlePublishedTime($).startsWith('2016-10-24')).toBe(true);
+      expect(getArticleModifiedTime($).startsWith('2018-07-12')).toBe(true);
+    });
+
+    it.each(ARTICLES)('%s names the author by profile URL, as the OG spec expects', (url) => {
+      expect(getArticleAuthor(loadPage(url))).toBe(siteConfig.person.url);
+      expect(siteConfig.person.url).toMatch(/^https:\/\//);
+    });
+
+    it.each(ARTICLES)('%s mirrors the post topics as article:tag', (url) => {
+      const $ = loadPage(url);
+      expect(getArticleTags($)).toEqual(getPostTopicNames($));
+      expect(getArticleTags($).length).toBeGreaterThan(0);
+    });
+
+    it.each(['/', '/about/', '/topics/security/', '/search/', '/pages/2/'])(
+      '%s is a website and carries no article:* properties',
+      (url) => {
+        const $ = loadPage(url);
+        expect(getOgType($)).toBe('website');
+        expect(getArticleProperties($)).toEqual([]);
+      },
+    );
   });
 
   describe('home page', () => {
@@ -101,11 +163,14 @@ describe('Social meta tags', () => {
       expect(getTwitterCreator($)).toBe(siteConfig.twitter);
     });
 
-    it.each([POST_URL, '/', '/about/', '/topics/security/'])('%s keeps the twitter description in sync with og', (url) => {
-      const $ = loadPage(url);
+    it.each([POST_URL, '/', '/about/', '/topics/security/'])(
+      '%s keeps the twitter description in sync with og',
+      (url) => {
+        const $ = loadPage(url);
 
-      expect(getTwitterDescription($)).toBeTruthy();
-      expect(getTwitterDescription($)).toBe(getOgDescription($));
-    });
+        expect(getTwitterDescription($)).toBeTruthy();
+        expect(getTwitterDescription($)).toBe(getOgDescription($));
+      },
+    );
   });
 });

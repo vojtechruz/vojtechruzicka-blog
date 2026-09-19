@@ -6,6 +6,7 @@ import * as cheerio from 'cheerio';
 // environment be tested at all — a production build contains no preview output to assert against.
 import nunjucks from 'nunjucks';
 import { loadPage } from './helpers.js';
+import eleventyComputed from '../src/_data/eleventyComputed.js';
 
 /**
  * Preview deploys build from a non-production branch, so they serve unpublished "ready" drafts
@@ -38,24 +39,47 @@ function headRobotsDirectives($) {
 }
 
 describe('Robots directives', () => {
+  describe('isIndexable (computed data shared with the sitemap)', () => {
+    // src/_data/eleventyComputed.js is the single place that decides which pages are noindex for
+    // content reasons; both the robots component and src/sitemap.xml.njk read this flag.
+    const { isIndexable } = eleventyComputed;
+
+    it('keeps ordinary pages indexable', () => {
+      for (const url of [
+        '/',
+        '/pages/2/',
+        '/java-records/',
+        '/topics/',
+        '/topics/java/',
+        '/series/javafx/',
+        '/about/',
+      ]) {
+        expect(isIndexable({ page: { url } }), url).toBe(true);
+      }
+    });
+
+    it('marks archived posts and the archive listing as not indexable', () => {
+      expect(isIndexable({ page: { url: '/archive/old-post/' }, archivedStatus: 'archived' })).toBe(false);
+      expect(isIndexable({ page: { url: '/archive/' } })).toBe(false);
+    });
+  });
+
   describe('Per environment (component)', () => {
     it('keeps ordinary production pages indexable by emitting no tag at all', () => {
-      expect(renderDirective({})).toBeUndefined();
+      expect(renderDirective({ isIndexable: true })).toBeUndefined();
     });
 
     it('locks a preview deploy out of search results entirely', () => {
-      expect(renderDirective({ isPreview: true })).toBe('noindex, nofollow');
+      expect(renderDirective({ isIndexable: true, isPreview: true })).toBe('noindex, nofollow');
     });
 
-    it('lets archived pages keep passing link equity to the current article', () => {
-      expect(renderDirective({ archivedStatus: true })).toBe('noindex, follow');
-      expect(renderDirective({ isArchive: true })).toBe('noindex, follow');
+    it('lets non-indexable pages keep passing link equity to the current article', () => {
+      expect(renderDirective({ isIndexable: false })).toBe('noindex, follow');
     });
 
-    it('prefers the preview restriction when a page is archived as well', () => {
+    it('prefers the preview restriction when a page is not indexable as well', () => {
       // Order matters: "noindex, follow" on a preview deploy would still invite crawlers onward.
-      expect(renderDirective({ isPreview: true, archivedStatus: true })).toBe('noindex, nofollow');
-      expect(renderDirective({ isPreview: true, isArchive: true })).toBe('noindex, nofollow');
+      expect(renderDirective({ isPreview: true, isIndexable: false })).toBe('noindex, nofollow');
     });
   });
 

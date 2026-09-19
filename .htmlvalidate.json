@@ -1,4 +1,10 @@
 {
   "root": true,
-  "extends": ["html-validate:standard"]
+  "extends": ["html-validate:standard", "html-validate:a11y"],
+  "rules": {
+    "heading-level": "error",
+    "no-redundant-role": "off",
+    "wcag/h32": "off",
+    "prefer-native-element": ["error", { "exclude": ["progressbar"] }]
+  }
 }
