@@ -146,14 +146,25 @@ describe('Feeds (RSS and Atom)', () => {
 
     it('strips decorative callout/msg icons but keeps the title text', () => {
       const callout =
-        '<aside class="callout callout--success"><p class="callout-title">' +
+        '<div class="callout callout--success" role="note"><p class="callout-title">' +
         '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M1 1"/></svg>How to prevent it</p>' +
-        '<div class="callout-body"><ul><li>Least privilege</li></ul></div></aside>';
+        '<div class="callout-body"><ul><li>Least privilege</li></ul></div></div>';
       const result = feedContent(callout);
 
       expect(result).not.toContain('<svg');
       expect(result).toContain('How to prevent it');
       expect(result).toContain('<li>Least privilege</li>');
+    });
+
+    it('strips heading permalink anchors but keeps the heading and its id', () => {
+      const heading =
+        '<h2 id="what-is-owasp">What is OWASP? ' +
+        '<a class="header-anchor" href="#what-is-owasp" aria-label="Copy link to this section: What is OWASP?" ' +
+        'title="Copy link to this section: What is OWASP?" tabindex="-1"></a></h2><p>Body</p>';
+      const result = feedContent(heading);
+
+      expect(result).not.toContain('header-anchor');
+      expect(result).toContain('<h2 id="what-is-owasp">What is OWASP? </h2>');
     });
 
     it('leaves plain content untouched', () => {
@@ -178,6 +189,7 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not leak source paths`).not.toContain('/src/posts/');
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
+        expect(content, `${name} feed should not contain heading permalink anchors`).not.toContain('header-anchor');
       }
     });
   });

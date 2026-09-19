@@ -70,7 +70,8 @@ read. Current cache size is ~212 MB (plus ~500 MB for Chromium) — comfortably 
 
 ## Lean CI variant
 
-CI only validates markup and runs tests — readers never see its output. The build step in `ci.yml` therefore sets:
+CI only validates markup and runs tests — readers never see its output. The `build-and-test` job in `ci.yml` therefore
+sets, at job level:
 
 ```yaml
 ELEVENTY_IMAGE_FORMATS: webp,auto
@@ -80,6 +81,12 @@ ELEVENTY_IMAGE_WIDTHS: 800,auto
 `config/plugins/image.js` reads these env overrides (comma-separated; numbers are parsed, `auto` kept). This skips AVIF
 entirely and cuts variants ~4× — so even a cold CI build is several times faster. **Production (Cloudflare) builds keep
 the full defaults** — no env vars are set there.
+
+`tests/images.test.js` derives its expected `<source>` formats and `srcset` widths from the same resolved configuration
+(`resolveImageFormats()` / `resolveImageWidths()` exported by the plugin), not from whatever the build emitted. With no
+override that means AVIF + WebP and all four widths are **required**, so a change to the defaults fails the tests
+locally and on Cloudflare; in CI the variables must stay at job level so the test step sees the same lean variant as the
+build step. Run the tests against a `_site/` built with the same env as the test process.
 
 Note: the lean options produce different content hashes than the full options, so CI and production caches never share
 entries — which is fine, they are separate storages anyway (GitHub cache vs CF build cache; they cannot share).

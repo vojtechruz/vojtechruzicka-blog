@@ -23,3 +23,7 @@ export function getSocialLinkHrefs($) {
 export function getSocialLinkByHref($, href) {
   return $(`footer.footer nav.footer-social a.footer-icon[href="${href}"]`);
 }
+
+export function getFooterMeta($) {
+  return $('footer.footer .footer-meta');
+}

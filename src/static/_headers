@@ -16,6 +16,9 @@
   # Directive notes:
   #  - style-src 'unsafe-inline': Shiki emits style="" on code spans, Mermaid SVGs carry
   #    <style> blocks, LQIP placeholders use style="" — all inline
+  #  - style-src giscus.app: the giscus script injects <link href="https://giscus.app/default.css">
+  #    into the page at runtime (sizing of the comments iframe) — never in static HTML,
+  #    do not remove as "unused"
   #  - script-src 'wasm-unsafe-eval': needed by Pagefind
   #  - script-src sha256-cxdiC…: the inline Plausible init snippet in
   #    src/_includes/components/analytics.njk — REGENERATE when that snippet changes
@@ -30,13 +33,13 @@
   #    appears in built HTML, so tests can't see it; do not remove as "unused". It is
   #    kept for real-user Core Web Vitals (CrUX has no data for this site). See
   #    docs/SECURITY-HEADERS.md.
-  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app https://static.cloudflareinsights.com 'unsafe-hashes' 'sha256-cxdiCZwtY24Laz1F2/V0AwTuoYuhoi1l3UDpsPGaFZQ=' 'sha256-0r1xah0mO6tRZ4vR2AP8ON96OmHeR8AbJ/TKM4bNveI='; connect-src 'self' https://plausible.io https://cloudflareinsights.com; frame-src https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline' https://giscus.app; script-src 'self' 'wasm-unsafe-eval' https://plausible.io https://giscus.app https://static.cloudflareinsights.com 'unsafe-hashes' 'sha256-cxdiCZwtY24Laz1F2/V0AwTuoYuhoi1l3UDpsPGaFZQ=' 'sha256-0r1xah0mO6tRZ4vR2AP8ON96OmHeR8AbJ/TKM4bNveI='; connect-src 'self' https://plausible.io https://cloudflareinsights.com; frame-src https://www.youtube-nocookie.com https://codepen.io https://giscus.app; media-src 'self'
+  # --- Let performance monitoring tools (RUM, WebPageTest) read detailed resource timings ---
+  # Site-wide on purpose; it used to sit under /styles/giscus-theme.css by mistake.
+  Timing-Allow-Origin: *
 
 /styles/giscus-theme.css
   Access-Control-Allow-Origin: https://giscus.app
-
-  # --- Allow performance monitoring tools too see detailed metrics ---
-  Timing-Allow-Origin: *
 
 /*.html
   # Ensure HTML revalidates (fresh content after deploys)

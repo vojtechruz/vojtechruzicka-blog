@@ -30,11 +30,11 @@ export default async (content, variant, title, date) => {
   // YYYY, YYYY-MM and YYYY-MM-DD are all valid <time datetime> values
   const dateHtml = date ? `<time class="callout-date" datetime="${date}">${formatCalloutDate(date)}</time>` : '';
   return `
-<aside class="callout callout--${variant}">
+<div class="callout callout--${variant}" role="note">
   <p class="callout-title">${ICONS[variant]}${title}${dateHtml}</p>
   <div class="callout-body">
     ${md.render(content)}
   </div>
-</aside>
+</div>
 `;
 };

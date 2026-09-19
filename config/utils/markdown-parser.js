@@ -1,9 +1,38 @@
 import markdownIt from 'markdown-it';
 import markdownItAnchor from 'markdown-it-anchor';
+import { slug as githubSlug } from 'github-slugger';
 import shikiMarkdownPlugin from '@shikijs/markdown-it';
 import { transformerMetaHighlight, transformerNotationDiff } from '@shikijs/transformers';
 import { dataLanguageTransformer } from '../markdown-transform/data-language-transformer.js';
 import { codeBlockTransformer } from '../markdown-transform/code-block-transformer.js';
+
+/**
+ * Heading permalink: an empty <a class="header-anchor"> appended after the
+ * heading text (src/styles/components/_header-anchor.scss draws the icon,
+ * src/scripts/header-anchor.js copies the link on click).
+ *
+ * Rendered here rather than patched by an HTML transform so the feed
+ * (post.templateContent, which is pre-transform) and the page see the same
+ * markup:
+ * - no aria-hidden, and an aria-label naming the section so screen-reader
+ *   users get a distinct link per heading instead of dozens of identical ones
+ * - a title equal to the accessible name, so the mouse tooltip and what a
+ *   screen reader announces agree
+ * - tabindex="-1": deliberately out of the tab order, because an article has
+ *   dozens of headings and each would otherwise become a tab stop
+ */
+export const HEADER_ANCHOR_LABEL_PREFIX = 'Copy link to this section: ';
+
+function renderHeaderAnchor(slug, opts, state, idx) {
+  const title = opts.getTokensText(state.tokens[idx + 1].children).trim();
+  const label = HEADER_ANCHOR_LABEL_PREFIX + title;
+  markdownItAnchor.permalink.linkInsideHeader({
+    class: 'header-anchor',
+    symbol: '',
+    placement: 'after',
+    renderAttrs: () => ({ 'aria-label': label, title: label, tabindex: '-1' }),
+  })(slug, opts, state, idx);
+}
 
 let md;
 
@@ -33,11 +62,16 @@ export async function getMarkdownParser() {
     html: true,
   })
     .use(markdownItAnchor, {
-      permalink: markdownItAnchor.permalink.ariaHidden({
-        placement: 'before',
-        class: 'header-anchor',
-        symbol: '',
-      }),
+      // GitHub-style slugs ("What's next?" -> "whats-next"): the same ids the
+      // Gatsby-era site produced via gatsby-remark-autolink-headers, so deep
+      // links shared before the Eleventy migration keep resolving and copied
+      // permalinks stay free of percent-encoding. markdown-it-anchor still
+      // de-duplicates repeated headings with a "-1", "-2" suffix.
+      slugify: githubSlug,
+      // markdown-it-anchor puts tabindex="-1" on every heading by default;
+      // headings are not interactive, so leave them alone.
+      tabIndex: false,
+      permalink: renderHeaderAnchor,
     })
     .use(shikiPlugin);
 

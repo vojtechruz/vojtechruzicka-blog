@@ -143,3 +143,51 @@ describe('Pagination integration tests', () => {
     expect(nextLinks.first().attr('href')).toBe('/pages/4/');
   });
 });
+
+describe('<link rel="prev|next"> in <head> (layouts/post-list.njk)', () => {
+  const headLink = ($, rel) => $(`head link[rel="${rel}"]`);
+
+  // Highest /pages/N/ that was built = the last page of the listing.
+  let lastPage = 1;
+  while (existsSync(`${SITE_DIR}/pages/${lastPage + 1}/index.html`)) {
+    lastPage += 1;
+  }
+
+  it.skipIf(!hasPage2)('the first page announces only a next page', () => {
+    const $ = loadPage('/');
+    expect(headLink($, 'prev').length).toBe(0);
+    expect(headLink($, 'next').length).toBe(1);
+    expect(headLink($, 'next').attr('href')).toBe('/pages/2/');
+  });
+
+  it.skipIf(!hasPage4)('a middle page announces both neighbours', () => {
+    const $ = loadPage('/pages/3/');
+    expect(headLink($, 'prev').attr('href')).toBe('/pages/2/');
+    expect(headLink($, 'next').attr('href')).toBe('/pages/4/');
+  });
+
+  it.skipIf(!hasPage2)('the last page announces only a previous page', () => {
+    const $ = loadPage(`/pages/${lastPage}/`);
+    expect(headLink($, 'next').length).toBe(0);
+    expect(headLink($, 'prev').length).toBe(1);
+    expect(headLink($, 'prev').attr('href')).toBe(lastPage === 2 ? '/' : `/pages/${lastPage - 1}/`);
+  });
+
+  it.skipIf(!hasPage2)('head links agree with the visible pagination widget', () => {
+    for (const url of ['/', '/pages/2/', `/pages/${lastPage}/`]) {
+      const $ = loadPage(url);
+      const widgetPrev = $('.pagination-prev').first().attr('href');
+      const widgetNext = $('.pagination-next').first().attr('href');
+
+      expect(headLink($, 'prev').attr('href'), `prev on ${url}`).toBe(widgetPrev);
+      expect(headLink($, 'next').attr('href'), `next on ${url}`).toBe(widgetNext);
+    }
+  });
+
+  it('post pages and topic pages carry no prev/next hints', () => {
+    for (const url of ['/css-flexbox/', '/topics/java/', '/about/']) {
+      const $ = loadPage(url);
+      expect(headLink($, 'prev').length + headLink($, 'next').length, url).toBe(0);
+    }
+  });
+});

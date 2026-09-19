@@ -11,17 +11,17 @@ Some *closing* paragraph.
 `;
 
 describe('callout shortcode', () => {
-  it('renders an aside with the variant class, title and icon', async () => {
+  it('renders a note with the variant class, title and icon', async () => {
     const output = await callout(CONTENT, 'success', 'How to prevent it');
     const $ = cheerio.load(output);
 
-    const aside = $('aside.callout.callout--success');
-    expect(aside.length).toBe(1);
-    expect(aside.find('.callout-title').text()).toBe('How to prevent it');
+    const note = $('.callout.callout--success');
+    expect(note.length).toBe(1);
+    expect(note.find('.callout-title').text()).toBe('How to prevent it');
 
     // The icon needs intrinsic dimensions so it doesn't stretch full-width where
     // the component CSS is absent (RSS readers, feed HTML viewed directly).
-    const svg = aside.find('.callout-title svg[aria-hidden="true"]');
+    const svg = note.find('.callout-title svg[aria-hidden="true"]');
     expect(svg.length).toBe(1);
     expect(svg.attr('width')).toBe('24');
     expect(svg.attr('height')).toBe('24');
@@ -40,7 +40,7 @@ describe('callout shortcode', () => {
     const output = await callout('Text', variant, 'Title');
     const $ = cheerio.load(output);
 
-    expect($(`aside.callout--${variant}`).length).toBe(1);
+    expect($(`.callout--${variant}`).length).toBe(1);
   });
 
   it('throws on an unknown variant', async () => {
@@ -70,7 +70,7 @@ describe('callouts in built output', () => {
   it('renders the OWASP mitigation callouts', () => {
     const $ = loadPage('/owasp-top-10-2025/');
 
-    const callouts = $('aside.callout.callout--success');
+    const callouts = $('.callout.callout--success');
     expect(callouts.length).toBe(5);
     callouts.each((_, el) => {
       expect($(el).find('.callout-title').text()).toBe('How to prevent it');

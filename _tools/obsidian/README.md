@@ -4,8 +4,8 @@ Local scripts that keep the blog's **Obsidian** vault in sync with the repo and
 run the AI idea/post review workflow. Everything operates on plain markdown
 files in the vault — there is **no API and no auth token**.
 
-These scripts back the `/sync-obsidian`, `/review-ideas`, `/review-posts` and
-`/suggest-next` slash commands, but can also be run by hand.
+These scripts back the `/sync-obsidian`, `/sync-traffic`, `/review-ideas`, `/review-posts`
+and `/suggest-next` slash commands, but can also be run by hand.
 
 ## Vault layout
 
@@ -37,7 +37,8 @@ _tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt   
 | `sync_to_obsidian.py <posts-dir> [--dry-run]` | Upsert article notes from post frontmatter (matched by `Slug`); preserves tracking fields and the AI Review callout. |
 | `fetch_ideas.py [--posts-dir PATH]` | Emit JSON of ideas + learning list (+ existing posts) for the review step. Each idea's `id` is its note path. |
 | `push_idea_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Feedback` callout + `AI Suggested Priority` / `AI Expected Effort` frontmatter into each idea note. |
-| `write_post_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Review` callout into the article note matching each `slug`. |
+| `write_post_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Review` callout + `AI Update Priority` frontmatter into the article note matching each `slug`. |
+| `sync_traffic.py [--months N] [--dry-run]` | Write Plausible pageviews into article notes: `Views 6mo` frontmatter + a `# Traffic` callout with monthly numbers. Needs a Plausible Stats API key in `~/.plausible/config.json` (the only script that talks to an API). |
 | `summarize_reviews.py` | Parse the AI Feedback callouts across all idea notes into compact JSON for `suggest-next`. |
 
 Shared helpers live in `config.py` (paths) and `vault_reviews.py` (frontmatter

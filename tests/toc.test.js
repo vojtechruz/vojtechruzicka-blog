@@ -25,7 +25,7 @@ function getFilters(registerFn, options) {
 }
 
 describe('Table of contents – rendered output', () => {
-  // A post with a flat (h2-only) TOC and percent-encoded heading ids
+  // A post with a flat (h2-only) TOC
   const flatPostPath = '/break-java-generics-naming-convention/';
   // A post that nests h3 headings under h2 headings
   const nestedPostPath = '/staticman/';
@@ -424,8 +424,9 @@ describe('toc-scrollspy.js behaviour', () => {
     expect(document.querySelector('a.outside').classList.contains('is-active')).toBe(false);
   });
 
-  it('matches heading ids that contain percent-encoded characters', async () => {
-    // Real posts produce ids such as "option-1.-follow-the-convention%2C-explain-in-javadoc"
+  it('matches heading ids that contain characters special to CSS selectors', async () => {
+    // Heading ids are plain github-slugger slugs today, but the scrollspy must
+    // not break on ids that need escaping in a selector (e.g. a hand-written id)
     const headings = [
       { id: 'option-1.-follow%2C-explain', top: -10 },
       { id: 'conclusion', top: 900 },

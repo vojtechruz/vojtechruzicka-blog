@@ -251,3 +251,36 @@ body.search-open {
     outline-offset: 2px;
   }
 }
+
+// Dedicated /search/ page (src/pages/search.njk): the same Pagefind UI, but the
+// results drawer flows inline in the page instead of floating as the header overlay.
+.search-page .search-page-ui {
+  .pagefind-ui {
+    width: 100%;
+  }
+
+  .pagefind-ui__drawer {
+    position: static !important;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    scrollbar-gutter: auto;
+    margin-top: var(--gap-medium);
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    .pagefind-ui__message {
+      margin-left: 0;
+    }
+  }
+
+  .pagefind-ui__result {
+    padding-left: 0;
+  }
+}
