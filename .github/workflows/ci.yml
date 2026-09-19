@@ -7,6 +7,12 @@ on:
     branches: [master]
   push:
 
+# Least-privilege token: the job only reads the repo (checkout, caches). Lighthouse CI
+# uploads to temporary public storage and needs no GitHub access. Flagged by CodeQL
+# (actions/missing-workflow-permissions) when left at the default, permissive token.
+permissions:
+  contents: read
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true

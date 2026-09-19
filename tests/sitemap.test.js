@@ -102,7 +102,7 @@ describe('Sitemap (sitemap.xml)', () => {
 
     it('lists only absolute, canonical-looking URLs under the site origin', () => {
       for (const loc of sitemap.entries.keys()) {
-        expect(loc, `"${loc}" is not under ${SITE_URL}`).toMatch(new RegExp(`^${SITE_URL}/`));
+        expect(loc.startsWith(`${SITE_URL}/`), `"${loc}" is not under ${SITE_URL}`).toBe(true);
         // Every page is a directory URL (canonical form); no .html, query strings or fragments.
         expect(loc, `"${loc}" is not a canonical directory URL`).toMatch(/\/$/);
         expect(loc, `"${loc}" carries a query string or fragment`).not.toMatch(/[?#]/);

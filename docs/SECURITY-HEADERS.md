@@ -39,19 +39,23 @@ CSP was once wrapped for readability and simply not served at all, with no error
 
 ### External hosts
 
-| Host                                    | Directive(s)                | Used by                                                                                                                                 |
-| --------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `https://plausible.io`                  | `script-src`, `connect-src` | Analytics script + event reporting (`src/_includes/components/analytics.njk`)                                                           |
-| `https://giscus.app`                    | `script-src`, `frame-src`, `style-src` | Comments. The iframe and its `default.css` stylesheet are injected at **runtime** by the giscus script, so they never appear in static HTML — do not remove it as "unused". Until 2026-09-19 `style-src` was missing and every post with comments reported a `CSP Violation` |
-| `https://www.youtube-nocookie.com`      | `frame-src`                 | `{% youtube %}` shortcode (always emits the nocookie domain)                                                                            |
-| `https://codepen.io`                    | `frame-src`                 | `{% codepen %}` shortcode                                                                                                               |
-| `https://static.cloudflareinsights.com` | `script-src`                | Cloudflare Web Analytics (RUM) beacon — see below                                                                                       |
-| `https://cloudflareinsights.com`        | `connect-src`               | The beacon's event reporting endpoint (`/cdn-cgi/rum`)                                                                                  |
+| Host                                    | Directive(s)                           | Used by                                                                       |
+| --------------------------------------- | -------------------------------------- | ----------------------------------------------------------------------------- |
+| `https://plausible.io`                  | `script-src`, `connect-src`            | Analytics script + event reporting (`src/_includes/components/analytics.njk`) |
+| `https://giscus.app`                    | `script-src`, `frame-src`, `style-src` | Comments — see the note below the table                                       |
+| `https://www.youtube-nocookie.com`      | `frame-src`                            | `{% youtube %}` shortcode (always emits the nocookie domain)                  |
+| `https://codepen.io`                    | `frame-src`                            | `{% codepen %}` shortcode                                                     |
+| `https://static.cloudflareinsights.com` | `script-src`                           | Cloudflare Web Analytics (RUM) beacon — see below                             |
+| `https://cloudflareinsights.com`        | `connect-src`                          | The beacon's event reporting endpoint (`/cdn-cgi/rum`)                        |
+
+The giscus iframe and its `default.css` stylesheet are injected at **runtime** by the giscus script, so they never
+appear in static HTML — do not remove the `style-src` entry as "unused". Until 2026-09-19 `style-src` was missing and
+every post with comments reported a `CSP Violation`.
 
 Everything else is `'self'` (plus `data:` for images — LQIP placeholders). There are deliberately no external fonts,
-stylesheets (except giscus' runtime `default.css`) or images; when adding a new embed or third-party script, add its origin to the matching directive and keep
-the policy on one line — the host-coverage test below fails on any external `script`/`iframe` source that is not
-allowlisted.
+stylesheets (except giscus' runtime `default.css`) or images; when adding a new embed or third-party script, add its
+origin to the matching directive and keep the policy on one line — the host-coverage test below fails on any external
+`script`/`iframe` source that is not allowlisted.
 
 #### Cloudflare Web Analytics beacon
 
@@ -100,7 +104,7 @@ Instead, violations are reported through Plausible, which the site already loads
 - `src/scripts/analytics.js` (`reportCspViolations`) drains that buffer, drops extension-scheme noise, deduplicates by
   directive + blocked URI, caps at 5 per page load, and sends a **`CSP Violation`** event with `directive`, `blocked`
   and `page` props. The event is sent as **non-interactive** (`{ interactive: false }`) so it does not count as
-  engagement: while giscus' stylesheet was blocked, the interactive events cut the reported bounce rate from 79 % to 37 %.
+  engagement: while giscus' stylesheet was blocked, the interactive events cut the reported bounce rate from 79% to 37%.
   It still starts a visit in Plausible, so a flood of violations also inflates visits/visitors — pageviews stay clean.
 
 So a broken policy in production shows up as events in the Plausible dashboard rather than only in visitors' consoles.

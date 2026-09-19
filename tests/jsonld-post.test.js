@@ -49,7 +49,7 @@ describe('BlogPosting JSON-LD', () => {
     const post = blogPosting($);
 
     expect(post.image).toBe(getOgImage($));
-    expect(post.image).toMatch(new RegExp(`^${siteUrl}/`));
+    expect(post.image.startsWith(`${siteUrl}/`)).toBe(true);
   });
 
   it.each([...POSTS, MODIFIED_POST])('%s attributes the article to the author and the site as publisher', (url) => {
