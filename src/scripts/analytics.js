@@ -2,10 +2,11 @@
  * Plausible Analytics wrapper for easy local debugging and safe execution.
  * @param {string} event - event name
  * @param {object} props - event properties
+ * @param {object} options - extra Plausible options, e.g. `{ interactive: false }`
  */
-function trackAnalyticsEvent(event, props = {}) {
+function trackAnalyticsEvent(event, props = {}, options = {}) {
   if (typeof window.plausible === 'function') {
-    window.plausible(event, { props });
+    window.plausible(event, { props, ...options });
   } else {
     // only in dev mode
     if (location.hostname === 'localhost') {
@@ -46,7 +47,9 @@ function reportCspViolations() {
     }
     seen.add(key);
 
-    trackAnalyticsEvent('CSP Violation', { directive, blocked, page: location.pathname });
+    // Non-interactive: a violation is not something the visitor did, so it must not turn a
+    // bounce into an engaged visit (it did, while giscus' stylesheet was blocked: bounce 79 % -> 37 %).
+    trackAnalyticsEvent('CSP Violation', { directive, blocked, page: location.pathname }, { interactive: false });
   };
 
   // Same handoff the Plausible stub uses: swap the queue for something that reports straight away,
