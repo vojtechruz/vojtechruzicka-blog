@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
 import { globSync } from 'glob';
-import { loadPage, SITE_DIR } from './helpers.js';
+import { getAllPosts, loadPage, SITE_DIR } from './helpers.js';
 import badge from '../config/shortcodes/badge.js';
 import info from '../config/shortcodes/info.js';
 import warning from '../config/shortcodes/warning.js';
@@ -235,12 +236,12 @@ describe('linkedPost shortcode', () => {
     expect(result).toContain('Archived January 1, 2020');
   });
 
-  it('marks a card inside a post body as ignored by the search index', () => {
+  it('keeps the card out of the search index, in a post body as well as in a listing', () => {
     const inPost = linkedPost.call({ ctx: { postDir: 'src/posts/host' } }, '/posts/test-post/', mockCollections);
     const inListing = linkedPost('/posts/test-post/', mockCollections);
 
     expect(inPost).toMatch(/^<div class="[^"]*" data-pagefind-ignore>/);
-    expect(inListing).not.toContain('data-pagefind-ignore');
+    expect(inListing).toMatch(/^<div class="[^"]*" data-pagefind-ignore>/);
   });
 
   it('labels a card inside a post body with a "Related article" eyebrow, listings stay plain', () => {
@@ -269,11 +270,12 @@ describe('linkedPost shortcode', () => {
   });
 });
 
-describe('linkedPost cards in built posts', () => {
-  const postPages = globSync('**/index.html', { cwd: SITE_DIR, posix: true })
+describe('linkedPost cards in built pages', () => {
+  const pages = globSync('**/index.html', { cwd: SITE_DIR, posix: true })
     .map((file) => `/${file.replace(/index\.html$/, '')}`)
-    .map((urlPath) => ({ urlPath, $: loadPage(urlPath) }))
-    .filter(({ $ }) => $('main.post article .linked-post').length > 0);
+    .map((urlPath) => ({ urlPath, $: loadPage(urlPath) }));
+  const postPages = pages.filter(({ $ }) => $('main.post article .linked-post').length > 0);
+  const listingPages = pages.filter(({ $ }) => $('main:not(.post) .linked-post').length > 0);
 
   it('finds posts with in-body cards to check', () => {
     expect(postPages.length).toBeGreaterThan(0);
@@ -290,6 +292,44 @@ describe('linkedPost cards in built posts', () => {
       $('main.post article .linked-post').each((_, card) => {
         expect($(card).attr('data-pagefind-ignore'), urlPath).toBeDefined();
       });
+    }
+  });
+
+  it('keep listing cards out of the search index, so listings do not duplicate article results', () => {
+    expect(listingPages.length).toBeGreaterThan(0);
+    for (const { urlPath, $ } of listingPages) {
+      $('.linked-post').each((_, card) => {
+        expect($(card).attr('data-pagefind-ignore'), urlPath).toBeDefined();
+      });
+    }
+  });
+
+  it('size card images for the 160px (90px on medium screens) image box', () => {
+    for (const { urlPath, $ } of [...postPages, ...listingPages]) {
+      $('.front-post-image img').each((_, img) => {
+        expect($(img).attr('sizes'), urlPath).toBe('(max-width: 768px) 90px, 160px');
+        const widths = ($(img).attr('srcset') || '').match(/\d+(?=w)/g)?.map(Number) || [];
+        expect(Math.max(...widths), `${urlPath} offers a candidate wider than 320px`).toBeLessThanOrEqual(320);
+      });
+    }
+  });
+});
+
+describe('linkedPost targets in published posts', () => {
+  const posts = getAllPosts();
+  const isDraft = ({ filePath, frontmatter }) =>
+    Boolean(frontmatter.draftStatus) || filePath.replaceAll('\\', '/').includes('/_drafts/');
+  const draftUrls = new Set(posts.filter(isDraft).map(({ frontmatter }) => frontmatter.path));
+
+  // Drafts are built only locally and on preview deploys, and linkedPost fails the build for a
+  // missing target - so a published post linking a draft would pass the preview and CI, then
+  // break the production build.
+  it('never point at a draft', () => {
+    for (const { filePath } of posts.filter((post) => !isDraft(post))) {
+      const body = readFileSync(filePath, 'utf-8');
+      for (const [, target] of body.matchAll(/\{%-?\s*linkedPost\s+["']([^"']+)["']/g)) {
+        expect(draftUrls.has(target), `${filePath} links the draft ${target}`).toBe(false);
+      }
     }
   });
 });

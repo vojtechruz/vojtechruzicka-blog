@@ -16,7 +16,8 @@ posts first, then archived copies (`collections.archivedPosts`, not part of `col
 `collections.all`. `linkedSeries` looks the slug up in `seriesMetadata`.
 
 **A missing target fails the build** (the shortcode throws). Keep in mind that drafts exist only in local and preview
-builds: a published post that links to a draft passes the preview deploy but breaks the production build.
+builds: a published post that links to a draft would pass the preview deploy but break the production build. A test in
+`tests/shortcodes.test.js` ("linkedPost targets in published posts") fails as soon as such a link is added.
 
 ## Inside a post body vs. in a listing
 
@@ -26,13 +27,21 @@ same card in a listing:
 - **Title is a `<p>`, not an `<h2>`**, so the card does not add a section to the article's heading outline.
 - **Eyebrow label** `<span class="linked-post-eyebrow">Related article</span>` signals the card's purpose. The feed
   fallback in `feedContent` (`config/filters/urls.js`) reuses its text for the plain link it puts in place of the card.
-- **`data-pagefind-ignore`** keeps the linked post's excerpt out of the host post's search index entry.
 - **Card styling** (border, accent stripe, background) comes from the `article .linked-post` selector in
   `src/styles/components/_linked-post.scss`; listings stay plain.
 
 The markup must not contain blank lines: in a markdown post a blank line ends the HTML block and markdown-it emits stray
 `<p></p>`s. `linkedPost` therefore strips whitespace-only lines left by its optional parts (series badge, archive link,
 image). Guarded by built-output tests in `tests/shortcodes.test.js`.
+
+## Search index and images
+
+- **Cards are never indexed.** `linkedPost` and `linkedSeries` always carry `data-pagefind-ignore`: inside a post the
+  card's excerpt is not the host post's content, and on a listing it would only duplicate the article's own search
+  result. Listing pages stay in the index with their own text (topic heading, series description).
+- **Card images** are sized for the actual image box: 160px wide, 90px up to the medium breakpoint (768px), hidden on
+  small screens (`_linked-post.scss`). The shortcodes declare `sizes="(max-width: 768px) 90px, 160px"` and generate 160w
+  and 320w (2x displays) candidates; `linkedPostCompact` uses an 80px box with 80w/160w.
 
 ## Archived and draft targets
 

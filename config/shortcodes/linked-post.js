@@ -75,13 +75,15 @@ export default function linkedPost(permalink, maybeCollections) {
     .filter(Boolean)
     .join(' ');
 
-  // Inside a post body the card describes another article - keep its excerpt out of the host
-  // post's search index entry (the article element is the data-pagefind-body), and label its
-  // purpose (feedContent reuses the label for the feed fallback).
-  const pagefindIgnore = ctx.postDir ? ' data-pagefind-ignore' : '';
+  // The card describes another article, so it never adds to the search index entry of the page it
+  // sits on: inside a post its excerpt is not the host post's content, and on a listing it would
+  // only duplicate the article's own result. Inside a post the eyebrow labels the card's purpose
+  // (feedContent reuses it for the feed fallback).
   const eyebrow = ctx.postDir ? '<span class="linked-post-eyebrow">Related article</span>' : '';
 
-  const html = `<div class="${classes}"${pagefindIgnore}>
+  // The image box is 160px wide, 90px up to the medium breakpoint (768px) and hidden on small
+  // screens (_linked-post.scss); 320w covers 2x displays.
+  const html = `<div class="${classes}" data-pagefind-ignore>
   ${eyebrow}
   <${titleTag} class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
@@ -96,7 +98,7 @@ export default function linkedPost(permalink, maybeCollections) {
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
-      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
+      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 768px) 90px, 160px" eleventy:widths="160,320">` : ''}
     </a>
     <p class="front-post-excerpt">${escapeHtml(excerpt)}</p>
   </div>
