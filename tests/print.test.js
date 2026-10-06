@@ -45,6 +45,8 @@ const HIDDEN_IN_PRINT = [
   'input',
 ];
 
+const SITE_ROOT = path.resolve(SITE_DIR);
+
 const CONTENT_TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml' };
 
 let server;
@@ -59,7 +61,12 @@ beforeAll(async () => {
       urlPath += 'index.html';
     }
     try {
-      const body = await readFile(path.join(SITE_DIR, urlPath));
+      // Only serve files inside the build output (no ../ traversal)
+      const filePath = path.resolve(SITE_ROOT, `.${urlPath}`);
+      if (!filePath.startsWith(SITE_ROOT + path.sep)) {
+        throw new Error('Outside of the site root');
+      }
+      const body = await readFile(filePath);
       res.writeHead(200, { 'content-type': CONTENT_TYPES[path.extname(urlPath)] || 'application/octet-stream' });
       res.end(body);
     } catch {
@@ -160,9 +167,9 @@ describe('Print styles', () => {
     expect(await pseudoContent('.yt-embed-figure', '::before')).toContain('https://www.youtube.com/watch?v=');
 
     await open(PAGES.video);
-    expect(await pseudoContent('.video-embed-figure', '::before')).toMatch(
-      new RegExp(`${site.url.replaceAll('.', '\\.')}/videos/.+\\.mp4`),
-    );
+    const videoUrl = await pseudoContent('.video-embed-figure', '::before');
+    expect(videoUrl).toContain(`${site.url}/videos/`);
+    expect(videoUrl).toContain('.mp4');
   });
 
   it('keep short tables on one page', async () => {
