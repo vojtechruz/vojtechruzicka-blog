@@ -145,6 +145,14 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('<em>Related article: </em><a href="/owasp-top-ten-2017/">OWASP Top Ten 2017</a>');
     });
 
+    it('labels the related-article link with the eyebrow rendered by the shortcode', () => {
+      const card =
+        '<div class="linked-post"><span class="linked-post-eyebrow">See also</span>' +
+        '<p class="front-post-title"><a href="/javafx-css/">JavaFX CSS</a></p></div>';
+
+      expect(feedContent(card)).toBe('<p><em>See also: </em><a href="/javafx-css/">JavaFX CSS</a></p>');
+    });
+
     it('strips decorative callout/msg icons but keeps the title text', () => {
       const callout =
         '<div class="callout callout--success" role="note"><p class="callout-title">' +
