@@ -22,7 +22,11 @@ import { copyWithFeedback } from './clipboard.js';
       return;
     }
 
-    const url = new URL(href, location.href).href;
+    // The page URL without its query string: a visitor who arrived via ?utm_source=… must not pass
+    // the tracking parameters on. Not <link rel="canonical">: on an archived copy it points to the
+    // current version of the post (different sections), and on a preview deploy to a production
+    // URL where a draft does not exist yet.
+    const url = `${location.origin}${location.pathname}${href}`;
     copyWithFeedback(anchor, url, { copiedAriaLabel: 'Link copied' });
   });
 })();

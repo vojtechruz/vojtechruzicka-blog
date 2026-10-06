@@ -170,6 +170,19 @@ describe('header-anchor.js — copy heading permalink', () => {
     expect(expected).toMatch(/#installation$/);
   });
 
+  it('drops the query string (tracking parameters) from the copied link', async () => {
+    const original = location.href;
+    history.replaceState(null, '', `${location.pathname}?utm_source=newsletter&ref=x`);
+    try {
+      anchor().click();
+      await vi.runAllTicks();
+
+      expect(writeTextMock).toHaveBeenCalledWith(`${location.origin}${location.pathname}#installation`);
+    } finally {
+      history.replaceState(null, '', original);
+    }
+  });
+
   it('does not prevent the default click, so the browser still follows the #fragment', () => {
     const event = new MouseEvent('click', { bubbles: true, cancelable: true });
     anchor().dispatchEvent(event);
