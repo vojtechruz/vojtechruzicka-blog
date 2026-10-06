@@ -36,8 +36,11 @@ export default function codepen(
   const hasCaption = Boolean(showCaption && title);
   const aria = hasCaption ? ` aria-labelledby="${captionId}"` : ` title="${escapeHtml(title)}"`;
 
+  // A printed iframe is an empty box - print styles replace it with this URL (_print.scss)
+  const penUrl = `https://codepen.io/vojtechruz/pen/${id}`;
+
   return `
-<figure class="codepen-embed-figure">
+<figure class="codepen-embed-figure" data-print-label="CodePen" data-print-url="${escapeHtml(penUrl)}">
   <iframe
     class="codepen-embed"
     ${aria}

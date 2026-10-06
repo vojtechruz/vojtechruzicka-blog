@@ -29,17 +29,22 @@ export default function youtube(input, title = 'YouTube video', start = 0) {
   params.set('modestbranding', '1');
   const src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
 
+  // A printed iframe is an empty box - print styles replace it with this URL (_print.scss)
+  const watchUrl = `https://www.youtube.com/watch?v=${videoId}${start && Number(start) > 0 ? `&t=${start}s` : ''}`;
+
   return `
-<iframe
-  class="yt-embed"
-  title="${escapeHtml(title)}"
-  width="560"
-  height="315"
-  src="${src}"
-  loading="lazy"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen
-></iframe>
+<figure class="yt-embed-figure" data-print-label="YouTube" data-print-url="${escapeHtml(watchUrl)}">
+  <iframe
+    class="yt-embed"
+    title="${escapeHtml(title)}"
+    width="560"
+    height="315"
+    src="${src}"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</figure>
 `;
 }
 

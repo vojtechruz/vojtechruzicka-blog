@@ -124,6 +124,15 @@ describe('YouTube Shortcode', () => {
     const result = youtube('dQw4w9WgXcQ', 'Dangerous <script>');
     expect(result).toContain('title="Dangerous &lt;script&gt;"');
   });
+
+  it('should expose the watch URL (with start time) for print styles', () => {
+    expect(youtube('dQw4w9WgXcQ')).toContain(
+      'data-print-label="YouTube" data-print-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"',
+    );
+    expect(youtube('dQw4w9WgXcQ', 45)).toContain(
+      'data-print-url="https://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;t=45s"',
+    );
+  });
 });
 
 describe('Video Shortcode', () => {
@@ -137,6 +146,10 @@ describe('Video Shortcode', () => {
     const result = await video('/videos/test.mp4');
     expect(result).toContain('src="/videos/test.mp4" type="video/mp4"');
     expect(result).toContain('src="/videos/test.webm" type="video/webm"');
+  });
+
+  it('should expose the mp4 URL for print styles', async () => {
+    expect(await video('/videos/test.webm')).toContain('data-print-label="Video" data-print-url="/videos/test.mp4"');
   });
 
   it('should include poster and dimensions if available', async () => {

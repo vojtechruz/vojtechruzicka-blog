@@ -43,7 +43,7 @@ export async function getMarkdownParser() {
 
   const shikiPlugin = await shikiMarkdownPlugin({
     themes: {
-      light: 'github-dark-dimmed',
+      light: 'github-light', // only used by print styles (_print.scss), the screen is dark-only
       dark: 'github-dark-dimmed',
     },
     cssVariablePrefix: '--shiki-',

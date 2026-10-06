@@ -55,6 +55,9 @@
 <body class="{{ bodyClass or '' }}">
   <a class="skip-link" href="#content">Skip to content</a>
   {% include "components/header.njk" %}
+  {# Print-only identification: the navigation and footer are hidden on paper (_print.scss).
+     aria-hidden: display:none on screen anyway; keeps it out of landmark checks (axe "region"). #}
+  <p class="print-header" aria-hidden="true">{{ site.title }} · {{ canonicalUrl }}</p>
 
   <div class="main">
     {% block content %}{% endblock %}
