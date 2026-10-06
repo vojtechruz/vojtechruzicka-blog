@@ -1,7 +1,9 @@
 ﻿import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
+import { DOMParser } from '@xmldom/xmldom';
 import { feedContent, htmlToAbsoluteUrls, feedFooter } from '../config/filters/urls.js';
+import { latestModifiedDate } from '../config/filters/dates.js';
 
 // Load feed config
 import feedsConfig from '../src/_data/feeds.js';
@@ -55,9 +57,8 @@ describe('Feeds (RSS and Atom)', () => {
       }
     });
 
-    // NOTE: as of 2026-07 the feeds are intentionally empty - minDate (2026-01-01) is newer than
-    // every published post, so nothing qualifies yet. This skip makes that state visible in the
-    // test report instead of passing vacuously; the test activates once a post publishes past minDate.
+    // Skips (visibly in the report, instead of passing vacuously) whenever no published post is
+    // newer than minDate - the state the feeds were in until the first post past the cutoff.
     const newerPublishedPosts = allPosts.filter(
       (p) => new Date(p.frontmatter.date) >= minDate && !p.frontmatter.draftStatus,
     );
@@ -144,6 +145,14 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('<em>Related article: </em><a href="/owasp-top-ten-2017/">OWASP Top Ten 2017</a>');
     });
 
+    it('labels the related-article link with the eyebrow rendered by the shortcode', () => {
+      const card =
+        '<div class="linked-post"><span class="linked-post-eyebrow">See also</span>' +
+        '<p class="front-post-title"><a href="/javafx-css/">JavaFX CSS</a></p></div>';
+
+      expect(feedContent(card)).toBe('<p><em>See also: </em><a href="/javafx-css/">JavaFX CSS</a></p>');
+    });
+
     it('strips decorative callout/msg icons but keeps the title text', () => {
       const callout =
         '<div class="callout callout--success" role="note"><p class="callout-title">' +
@@ -165,6 +174,12 @@ describe('Feeds (RSS and Atom)', () => {
 
       expect(result).not.toContain('header-anchor');
       expect(result).toContain('<h2 id="what-is-owasp">What is OWASP? </h2>');
+    });
+
+    it('keeps a literal "]]>" from closing the surrounding CDATA section', () => {
+      const result = feedContent('<pre><code><![CDATA[x]]></code></pre><script>if (a]]>b) {}</script>');
+
+      expect(result.replaceAll(']]]]><![CDATA[>', '')).not.toContain(']]>');
     });
 
     it('leaves plain content untouched', () => {
@@ -218,6 +233,75 @@ describe('Feeds (RSS and Atom)', () => {
     });
   });
 
+  describe('Atom structure', () => {
+    const RFC3339 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+    const atomContent = existsSync(atomPath) ? readFileSync(atomPath, 'utf-8') : '';
+    const doc = new DOMParser({
+      onError: (_level, message) => {
+        throw new Error(`atom.xml is not well-formed: ${message}`);
+      },
+    }).parseFromString(atomContent, 'application/xml');
+    const feed = doc.documentElement;
+    const entries = Array.from(feed.getElementsByTagName('entry'));
+    const text = (el, tag) => el.getElementsByTagName(tag)[0]?.textContent;
+    const childText = (el, tag) => Array.from(el.childNodes).find((node) => node.nodeName === tag)?.textContent;
+
+    const expectedEntries = getAllPosts().filter(
+      (p) => new Date(p.frontmatter.date) >= minDate && !p.frontmatter.draftStatus,
+    ).length;
+
+    it('declares the feed language', () => {
+      expect(feed.getAttribute('xml:lang')).toBe('en');
+    });
+
+    it('has one entry per published post newer than minDate, each with a unique id', () => {
+      expect(entries).toHaveLength(expectedEntries);
+      const ids = entries.map((entry) => text(entry, 'id'));
+      expect(new Set(ids).size).toBe(ids.length);
+    });
+
+    it('gives every entry RFC 3339 published/updated dates, updated never before published', () => {
+      for (const entry of entries) {
+        const published = text(entry, 'published');
+        const updated = text(entry, 'updated');
+        expect(published).toMatch(RFC3339);
+        expect(updated).toMatch(RFC3339);
+        expect(new Date(updated).getTime()).toBeGreaterThanOrEqual(new Date(published).getTime());
+      }
+    });
+
+    it('lists entries newest first', () => {
+      const published = entries.map((entry) => new Date(text(entry, 'published')).getTime());
+      expect(published).toEqual([...published].sort((a, b) => b - a));
+    });
+
+    it.skipIf(entries.length === 0)('feed-level <updated> is the newest entry update', () => {
+      const newest = Math.max(...entries.map((entry) => new Date(text(entry, 'updated')).getTime()));
+      expect(childText(feed, 'updated')).toMatch(RFC3339);
+      expect(new Date(childText(feed, 'updated')).getTime()).toBe(newest);
+    });
+
+    describe('latestModifiedDate filter', () => {
+      const post = (date, dateModified) => ({ date: new Date(date), data: { modifiedDate: dateModified } });
+      const cutoff = new Date('2026-01-01T00:00:00Z');
+
+      it('uses dateModified when a post in the feed was updated', () => {
+        const posts = [post('2026-03-01', '2026-09-15'), post('2026-02-01')];
+        expect(latestModifiedDate(posts, cutoff).toISOString()).toBe('2026-09-15T00:00:00.000Z');
+      });
+
+      it('ignores updates of posts older than minDate', () => {
+        const posts = [post('2026-03-01'), post('2020-01-01', '2026-12-24')];
+        expect(latestModifiedDate(posts, cutoff).toISOString()).toBe('2026-03-01T00:00:00.000Z');
+      });
+
+      it('falls back to the newest post when nothing is newer than minDate', () => {
+        const posts = [post('2025-05-05', '2025-06-06'), post('2024-01-01')];
+        expect(latestModifiedDate(posts, cutoff)).toEqual(new Date('2025-05-05'));
+      });
+    });
+  });
+
   describe('Feed Metadata', () => {
     it('RSS feed should have basic required tags', () => {
       const rssContent = readFileSync(rssPath, 'utf-8');
@@ -231,14 +315,11 @@ describe('Feeds (RSS and Atom)', () => {
 
     it('Atom feed should have basic required tags', () => {
       const atomContent = readFileSync(atomPath, 'utf-8');
-      expect(atomContent).toContain('<feed xmlns="http://www.w3.org/2005/Atom">');
+      expect(atomContent).toContain('<feed xmlns="http://www.w3.org/2005/Atom"');
       expect(atomContent).toContain('<title>');
       expect(atomContent).toContain('<link');
       expect(atomContent).toContain('<updated>');
       expect(atomContent).toContain('<id>');
-      if (atomContent.includes('<entry>')) {
-        expect(atomContent).toContain('<entry>');
-      }
     });
 
     it('RSS feed exposes author, self-link, generator and branding', () => {

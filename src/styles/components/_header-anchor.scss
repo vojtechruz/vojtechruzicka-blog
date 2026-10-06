@@ -74,8 +74,10 @@
 /* Narrow screens have no gutter: put the icon inline after the heading text */
 @include utilities.respond(medium) {
   .header-anchor {
-    /* still the containing block for the 'Link copied' tooltip */
-    position: relative;
+    /* static: the heading becomes the containing block, so the 'Link copied' tooltip centres over
+       the heading instead of the icon - an icon at the end of a long heading line would push the
+       tooltip past the right edge of the screen */
+    position: static;
     left: auto;
     top: auto;
     transform: none;

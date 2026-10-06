@@ -45,7 +45,9 @@ export default function linkedSeries(slug) {
     imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
   }
 
-  return `<div class="linked-post linked-series">
+  // Same card as linkedPost: kept out of the search index (the series page carries its own text)
+  // and sized for the 160px / 90px image box.
+  return `<div class="linked-post linked-series" data-pagefind-ignore>
   <${titleTag} class="front-post-title">
     <a href="${url}">${escapeHtml(series.name)}</a>
   </${titleTag}>
@@ -57,7 +59,7 @@ export default function linkedSeries(slug) {
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
-      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
+      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 768px) 90px, 160px" eleventy:widths="160,320">` : ''}
     </a>
     <p class="front-post-excerpt">
       ${escapeHtml(series.description)}

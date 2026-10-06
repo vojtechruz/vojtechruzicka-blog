@@ -1,16 +1,10 @@
 import { escapeHtml } from '../utils/formatting.js';
 import { logError } from '../logger.js';
+import { findPostByUrl, resolveCollections } from '../utils/find-post.js';
 
 export default function linkedPostCompact(permalink, maybeCollections) {
   const ctx = this && (this.ctx || this) ? this.ctx || this : {};
-  const collections = maybeCollections || ctx.collections || (ctx.page && ctx.page.collections) || {};
-  const posts = collections.posts || [];
-
-  let post = posts.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
-  if (!post) {
-    const all = collections.all || [];
-    post = all.find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
-  }
+  const post = findPostByUrl(permalink, resolveCollections(ctx, maybeCollections));
 
   if (!post) {
     const errorMessage = `Article not found for permalink: ${permalink}`;

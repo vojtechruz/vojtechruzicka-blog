@@ -36,9 +36,16 @@ never grows without limit.
 
 ### The minDate cutoff
 
-`src/_data/feeds.js` exports `minDate`. Only posts dated on or after it appear in the feeds. As of this writing every
-published post predates it, so the **production feed is intentionally empty** until a post publishes past the cutoff —
-`tests/feeds.test.js` documents and guards this state rather than passing vacuously.
+`src/_data/feeds.js` exports `minDate`. Only posts dated on or after it appear in the feeds, which keeps them small (one
+entry as of October 2026). When nothing qualifies, `tests/feeds.test.js` skips its "newer posts are present" check
+visibly in the report instead of passing vacuously.
+
+### Atom dates
+
+Each Atom entry carries `<published>` (the post `date`) and `<updated>` (`modifiedDate`, i.e. `dateModified` when the
+post has one), so feed readers can tell a revised article from a new one. The feed-level `<updated>` is the newest
+`modifiedDate` among the entries (`latestModifiedDate` filter in `config/filters/dates.js`). A literal `]]>` in post
+content is split across two CDATA sections by `feedContent`, so it cannot end the feed's CDATA early.
 
 ## Why feed content needs post-processing
 

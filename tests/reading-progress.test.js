@@ -109,12 +109,18 @@ describe('reading-progress.js behaviour', () => {
   /**
    * Build the DOM, stub layout metrics jsdom cannot compute, then run the IIFE.
    */
-  async function boot({ bar = true, article = true, articleHeight = ARTICLE_HEIGHT } = {}) {
+  async function boot({ bar = true, article = true, articleHeight = ARTICLE_HEIGHT, navHeight = 0 } = {}) {
     document.body.innerHTML = `
+      ${navHeight ? '<header class="main-navigation"></header>' : ''}
       ${bar ? BAR_MARKUP : ''}
       <main id="content" class="post content">
         ${article ? '<article><p>Post body</p></article>' : ''}
       </main>`;
+
+    const nav = document.querySelector('.main-navigation');
+    if (nav) {
+      Object.defineProperty(nav, 'offsetHeight', { value: navHeight, configurable: true });
+    }
 
     const articleEl = document.querySelector('main.post article');
     if (articleEl) {
@@ -160,7 +166,6 @@ describe('reading-progress.js behaviour', () => {
     window.innerHeight = VIEWPORT_HEIGHT;
     trackMock = vi.fn();
     window.trackAnalyticsEvent = trackMock;
-    window._postReadTracked = false;
   });
 
   afterEach(() => {
@@ -279,10 +284,73 @@ describe('reading-progress.js behaviour', () => {
 
     scrollTo(TOTAL * 0.95);
     expect(trackMock).toHaveBeenCalledTimes(1);
-    expect(trackMock).toHaveBeenCalledWith('Post Read', { readPostUrl: location.pathname });
+    expect(trackMock).toHaveBeenCalledWith('Post Read', { readPostUrl: location.pathname }, {});
 
     scrollTo(TOTAL);
     expect(trackMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('tracks "Post Read" as non-interactive on load when the whole article fits on screen', async () => {
+    await boot({ articleHeight: VIEWPORT_HEIGHT - 200 });
+
+    expect(trackMock).toHaveBeenCalledTimes(1);
+    expect(trackMock).toHaveBeenCalledWith('Post Read', { readPostUrl: location.pathname }, { interactive: false });
+
+    window.dispatchEvent(new Event('resize'));
+    expect(trackMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('retries "Post Read" when analytics was not available yet', async () => {
+    delete window.trackAnalyticsEvent;
+    await boot();
+
+    scrollTo(TOTAL * 0.95);
+    window.trackAnalyticsEvent = trackMock;
+    scrollTo(TOTAL);
+
+    expect(trackMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('starts progress once the article scrolls under the sticky navigation', async () => {
+    const navHeight = 100;
+    await boot({ navHeight });
+    // The navigation covers navHeight px, so the readable range is longer by the same amount.
+    const total = TOTAL + navHeight;
+
+    scrollTo(-navHeight);
+    expect(valueNow()).toBe('0');
+
+    scrollTo(total / 2 - navHeight);
+    expect(valueNow()).toBe('50');
+
+    scrollTo(total - navHeight);
+    expect(valueNow()).toBe('100');
+  });
+
+  it('re-measures when the article changes size (late images, fonts, embeds)', async () => {
+    let resizeCallback;
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(callback) {
+          resizeCallback = callback;
+        }
+        observe() {}
+      },
+    );
+    await boot();
+
+    scrollTo(TOTAL / 2);
+    expect(valueNow()).toBe('50');
+
+    // The article doubles in height: the same scroll offset is now a smaller share of it.
+    Object.defineProperty(document.querySelector('main.post article'), 'offsetHeight', {
+      value: ARTICLE_HEIGHT * 2,
+      configurable: true,
+    });
+    resizeCallback();
+
+    expect(Number(valueNow())).toBeLessThan(50);
   });
 
   it('does not throw and keeps updating when trackAnalyticsEvent is unavailable past 90%', async () => {

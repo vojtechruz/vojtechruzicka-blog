@@ -52,9 +52,9 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  * - <img> tags still point at source paths (e.g. /../src/posts/…) that do not
  *   exist on the deployed site - the eleventy-img rewrite also only runs for
  *   .html outputs. Replace images with their alt text, or drop decorative ones.
- * - {% linkedPost %} cards are site chrome that depends on the site CSS (even
- *   their "Related article" label is a CSS ::before) - in a reader they fall
- *   apart into a bare heading, date and topic list. Reduce to a plain link.
+ * - {% linkedPost %} cards are site chrome whose layout depends on the site CSS -
+ *   in a reader they fall apart into a bare heading, date and topic list. Reduce
+ *   to a plain link, labelled with the card's eyebrow ("Related article").
  * - Heading permalink anchors (<a class="header-anchor">) are empty icon links
  *   that only make sense with the site CSS and JS; in a reader they are dead
  *   empty links, so drop them.
@@ -89,7 +89,9 @@ export function feedContent(html) {
       $(el).remove();
       return;
     }
-    const $fallback = $('<p><em>Related article: </em><a></a></p>');
+    const label = $(el).find('.linked-post-eyebrow').text().trim() || 'Related article';
+    const $fallback = $('<p><em></em><a></a></p>');
+    $fallback.find('em').text(`${label}: `);
     $fallback.find('a').attr('href', href).text(title);
     $(el).replaceWith($fallback);
   });
@@ -110,7 +112,9 @@ export function feedContent(html) {
     $(el).replaceWith($fallback);
   });
 
-  return $.html();
+  // The feeds wrap this HTML in <![CDATA[ ... ]]>; a literal "]]>" (e.g. a post about XML) would end
+  // the section early and break the feed. Split it across two CDATA sections instead.
+  return $.html().replaceAll(']]>', ']]]]><![CDATA[>');
 }
 
 export default function registerUrlFilters(eleventyConfig) {

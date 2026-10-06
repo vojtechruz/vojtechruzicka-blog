@@ -1,6 +1,7 @@
 import { readableDateUTC, htmlDateString, slugify, escapeHtml } from '../utils/formatting.js';
 import { logError } from '../logger.js';
-import { isLocalDevelopment, isPreview } from '../env-utils.js';
+import { findPostByUrl, resolveCollections } from '../utils/find-post.js';
+import badge from './badge.js';
 
 // Renders a linked post card by permalink (URL)
 // Usage examples:
@@ -8,11 +9,8 @@ import { isLocalDevelopment, isPreview } from '../env-utils.js';
 // - In Markdown (Nunjucks enabled): {% linkedPost page.url %}
 // - In Nunjucks loops: {% linkedPost post.url %}
 export default function linkedPost(permalink, maybeCollections) {
-  // Resolve collections from passed argument or context
   const ctx = this && (this.ctx || this) ? this.ctx || this : {};
-  const collections = maybeCollections || ctx.collections || (ctx.page && ctx.page.collections) || {};
-  const collectionBuckets = [collections.posts || [], collections.archivedPosts || [], collections.all || []];
-  const post = collectionBuckets.flat().find((p) => p && (p.url === permalink || (p.page && p.page.url === permalink)));
+  const post = findPostByUrl(permalink, resolveCollections(ctx, maybeCollections));
 
   if (!post) {
     const errorMessage = `Article not found for permalink: ${permalink}`;
@@ -45,7 +43,6 @@ export default function linkedPost(permalink, maybeCollections) {
   const imgUrl = featuredImage && postDir ? `/../${postDir}/${featuredImage}` : '';
   const excerpt = String(data.excerpt || '');
   const draftStatus = data.draftStatus || '';
-  const needsReview = data.needsReview === true && (isLocalDevelopment() || isPreview());
 
   // Inside a post body the card is a link, not a section of the article, so it must not add an <h2>
   // to the heading outline. List pages (index, topics, series) keep the heading.
@@ -60,13 +57,8 @@ export default function linkedPost(permalink, maybeCollections) {
     seriesBadge = `<span class="series-part-label"><a title="View all posts in ${escapeHtml(postSeries.name)} series" href="/series/${escapeHtml(postSeries.slug)}/">${escapeHtml(postSeries.name)}</a> · Part ${partNumber}/${totalParts}</span>`;
   }
 
-  // Draft badge HTML
-  let draftBadge = '';
-  if (draftStatus) {
-    const labels = { draft: 'Draft', review: 'In Review', ready: 'Ready' };
-    const label = labels[draftStatus] || draftStatus;
-    draftBadge = `<span class="badge badge--${escapeHtml(draftStatus)}">${escapeHtml(label)}</span>`;
-  }
+  // Draft badge (labels for draft/review/ready come from the badge shortcode)
+  const draftBadge = draftStatus ? badge(escapeHtml(draftStatus)) : '';
 
   const currentVersionLink =
     isArchived && data.supersededBy
@@ -79,12 +71,20 @@ export default function linkedPost(permalink, maybeCollections) {
     isArchived ? 'archived-linked-post' : '',
     draftStatus ? 'linked-post-draft' : '',
     draftStatus ? `linked-post-${escapeHtml(draftStatus)}` : '',
-    needsReview ? 'linked-post-needs-review' : '',
   ]
     .filter(Boolean)
     .join(' ');
 
-  return `<div class="${classes}">
+  // The card describes another article, so it never adds to the search index entry of the page it
+  // sits on: inside a post its excerpt is not the host post's content, and on a listing it would
+  // only duplicate the article's own result. Inside a post the eyebrow labels the card's purpose
+  // (feedContent reuses it for the feed fallback).
+  const eyebrow = ctx.postDir ? '<span class="linked-post-eyebrow">Related article</span>' : '';
+
+  // The image box is 160px wide, 90px up to the medium breakpoint (768px) and hidden on small
+  // screens (_linked-post.scss); 320w covers 2x displays.
+  const html = `<div class="${classes}" data-pagefind-ignore>
+  ${eyebrow}
   <${titleTag} class="front-post-title">
     <a href="${url}">${escapeHtml(title)}</a>${draftBadge}
   </${titleTag}>
@@ -98,10 +98,14 @@ export default function linkedPost(permalink, maybeCollections) {
   </div>
   <div>
     <a class="front-post-image" href="${url}" aria-hidden="true" tabindex="-1">
-      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 200px, (max-width: 800px) 300px, 400px" eleventy:widths="200,300,400">` : ''}
+      ${imgUrl ? `<img src="${imgUrl}" alt="" loading="lazy" decoding="async" sizes="(max-width: 768px) 90px, 160px" eleventy:widths="160,320">` : ''}
     </a>
     <p class="front-post-excerpt">${escapeHtml(excerpt)}</p>
   </div>
 </div>
 `;
+
+  // Optional parts (series badge, archive link, image) leave whitespace-only lines when absent. In a
+  // markdown post a blank line ends the HTML block, so markdown-it would emit stray <p></p>s.
+  return html.replace(/\n\s*\n/g, '\n');
 }

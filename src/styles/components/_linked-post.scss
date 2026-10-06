@@ -7,14 +7,6 @@
   border: none;
   background: none;
   margin-bottom: var(--gap-xlarge);
-
-  &.linked-post-needs-review {
-    //     TODO reenable this when reviewing posts
-    //     position: relative;
-    //     border-left: 3px solid var(--color-warning-border);
-    //     background: var(--color-warning-bg);
-    //     padding-left: 0.75rem;
-  }
 }
 
 /*
@@ -34,9 +26,8 @@ article .linked-post {
   margin-top: var(--gap-large);
   margin-bottom: var(--gap-large);
 
-  /* "Related article" eyebrow label to signal the card's purpose */
-  &::before {
-    content: 'Related article';
+  /* "Related article" eyebrow label (rendered by the shortcode) to signal the card's purpose */
+  .linked-post-eyebrow {
     display: block;
     margin-bottom: var(--gap-small);
     font-size: 0.75rem;

@@ -17,10 +17,13 @@ Every heading in a post gets a stable `id` and an icon link that copies a deep l
   items, where an empty link is useless.
 - `src/styles/components/_header-anchor.scss` draws the link icon with a CSS mask. On wide screens it sits in the left
   gutter and appears on hover, `:focus-within` or `:target`; on touch devices it is always faintly visible; below the
-  `medium` breakpoint (no gutter) it sits inline after the heading text. Print hides it.
+  `medium` breakpoint (no gutter) it sits inline after the heading text and is `position: static`, so the `Link copied`
+  tooltip centres over the heading rather than the icon (an icon at the end of a long line would push it off-screen).
+  Print hides it.
 - `src/scripts/header-anchor.js` (loaded by `layouts/post.njk` with `defer`) delegates `click` on `a.header-anchor`. It
   does not prevent the default: the browser follows the `#fragment` (URL bar, scroll, `:target`), and on top of that the
-  absolute URL is written to the clipboard via the shared `copyWithFeedback` helper (`clipboard.js`), which shows the
+  absolute URL (origin + path + fragment, without the query string, so tracking parameters such as `?utm_source=` are
+  not passed on) is written to the clipboard via the shared `copyWithFeedback` helper (`clipboard.js`), which shows the
   `Link copied` tooltip and swaps the `aria-label` for two seconds. Without the Clipboard API nothing extra happens; the
   fragment navigation has already put the link in the address bar.
 
