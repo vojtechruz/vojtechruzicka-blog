@@ -3,11 +3,11 @@ permalink: /atom.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ site.lang }}">
   <title>{{ site.title }}</title>
   <link href="{{ site.url }}/" />
   <link rel="self" type="application/atom+xml" href="{{ '/atom.xml' | absoluteUrl(site.url) }}" />
-  <updated>{{ (collections.posts | first).date | toRfc3339 }}</updated>
+  <updated>{{ collections.posts | latestModifiedDate(feeds.minDate) | toRfc3339 }}</updated>
   <id>{{ site.url }}/</id>
   <subtitle>{{ site.description }}</subtitle>
   <generator>Eleventy</generator>
@@ -23,7 +23,8 @@ eleventyExcludeFromCollections: true
     <title>{{ post.data.title }}</title>
     <link href="{{ post.url | absoluteUrl(site.url) }}" />
     <id>{{ post.url | absoluteUrl(site.url) }}</id>
-    <updated>{{ post.date | toRfc3339 }}</updated>
+    <published>{{ post.date | toRfc3339 }}</published>
+    <updated>{{ post.data.modifiedDate | toRfc3339 }}</updated>
     {% for topic in post.data.topics %}
     <category term="{{ topic }}" />
     {% endfor %}

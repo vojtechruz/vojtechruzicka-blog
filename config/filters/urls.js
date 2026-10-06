@@ -110,7 +110,9 @@ export function feedContent(html) {
     $(el).replaceWith($fallback);
   });
 
-  return $.html();
+  // The feeds wrap this HTML in <![CDATA[ ... ]]>; a literal "]]>" (e.g. a post about XML) would end
+  // the section early and break the feed. Split it across two CDATA sections instead.
+  return $.html().replaceAll(']]>', ']]]]><![CDATA[>');
 }
 
 export default function registerUrlFilters(eleventyConfig) {

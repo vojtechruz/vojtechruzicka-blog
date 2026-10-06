@@ -1,5 +1,22 @@
 import { readableDateUTC, htmlDateString as htmlDate, toDateUtcMidnightIfDateOnly } from '../utils/formatting.js';
 
+function toDate(value) {
+  return (value instanceof Date ? value : toDateUtcMidnightIfDateOnly(value)) || new Date(value);
+}
+
+/**
+ * Newest modification date (dateModified, falling back to the publish date) among the posts that
+ * made it into a feed (date >= minDate) - the feed-level Atom <updated>. Falls back to the newest
+ * post's date when no post qualifies, so the feed always carries a valid timestamp.
+ */
+export function latestModifiedDate(posts, minDate) {
+  const inFeed = posts.filter((post) => toDate(post.date) >= toDate(minDate));
+  if (inFeed.length === 0) {
+    return posts[0]?.date;
+  }
+  return new Date(Math.max(...inFeed.map((post) => toDate(post.data.modifiedDate || post.date).getTime())));
+}
+
 export default function registerDateFilters(eleventyConfig) {
   eleventyConfig.addFilter('readableDate', (value) => readableDateUTC(value));
 
@@ -16,16 +33,16 @@ export default function registerDateFilters(eleventyConfig) {
   });
 
   // RFC 1123 / RFC 822-ish (HTTP date) in UTC, e.g. "Wed, 24 Apr 2024 22:12:03 GMT"
-  eleventyConfig.addFilter('utcRfc822', (value) => {
-    const d = (value instanceof Date ? value : toDateUtcMidnightIfDateOnly(value)) || new Date(value);
-    return d.toUTCString();
-  });
+  eleventyConfig.addFilter('utcRfc822', (value) => toDate(value).toUTCString());
 
   // RFC 3339 in UTC (Atom), e.g. "2024-04-24T22:12:03Z"
-  eleventyConfig.addFilter('toRfc3339', (value) => {
-    const d = (value instanceof Date ? value : toDateUtcMidnightIfDateOnly(value)) || new Date(value);
-    return d.toISOString().replace(/\.\d{3}Z$/, 'Z');
-  });
+  eleventyConfig.addFilter('toRfc3339', (value) =>
+    toDate(value)
+      .toISOString()
+      .replace(/\.\d{3}Z$/, 'Z'),
+  );
+
+  eleventyConfig.addFilter('latestModifiedDate', latestModifiedDate);
 
   // Add HTML date string filter (for <time datetime>) using shared utility
   eleventyConfig.addFilter('htmlDateString', (value) => htmlDate(value));
