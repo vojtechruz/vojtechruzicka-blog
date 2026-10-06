@@ -102,13 +102,18 @@ article {
 }
 
 .yt-embed {
+  display: block;
   aspect-ratio: 16 / 9;
 }
 
 .codepen-embed-figure,
 .video-embed-figure,
-.yt-embed {
+.yt-embed-figure {
   margin-block: calc(var(--gap-medium) * 1.15);
+}
+
+.yt-embed-figure {
+  margin-inline: 0;
 }
 
 .codepen-embed-figure {

@@ -19,4 +19,9 @@ describe('codepen shortcode', () => {
     expect(result).not.toContain('<figcaption');
     expect(result).toContain('title="A Cool Pen"');
   });
+
+  it('should expose the pen URL for print styles', () => {
+    const result = codepen('yMdQpQ');
+    expect(result).toContain('data-print-label="CodePen" data-print-url="https://codepen.io/vojtechruz/pen/yMdQpQ"');
+  });
 });

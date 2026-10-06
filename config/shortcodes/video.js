@@ -50,8 +50,13 @@ export default async function video(input, title = 'Video', poster = '', showCap
 
   const fallbackLink = escapeHtml(srcs[0]?.src || '#');
 
+  // A printed <video> is just its first frame with player controls - print styles replace it with this
+  // site-relative URL, prefixed with the site origin there (_print.scss). Prefer the mp4, the format
+  // every browser can open directly.
+  const printUrl = escapeHtml((srcs.find((s) => s.type === 'video/mp4') || srcs[0])?.src || '');
+
   return `
-<figure class="video-embed-figure">
+<figure class="video-embed-figure" data-print-label="Video" data-print-url="${printUrl}">
   <video
     class="video-embed"
    ${aria}${sizeAttrs}${videoTitleAttr}

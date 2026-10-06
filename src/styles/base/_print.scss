@@ -1,15 +1,234 @@
 @use '../variables';
 
+// Print styles. Imported LAST in main.scss so these rules win over component rules of equal
+// specificity. Verified by tests/print.test.js (Playwright, emulated print media).
+
+// Origin printed in front of site-relative URLs (internal links, local videos). Must match
+// site.url in src/_data/site.js - guarded by tests/print.test.js.
+$site-url: 'https://www.vojtechruzicka.com';
+
+// Screen: the print-only identification line in base.njk stays hidden.
+.print-header {
+  display: none;
+}
+
 @media print {
-  // This will print link target url after each anchor tag
-  #post p a:after {
-    content: ' (' attr(href) ') ';
-    font-size: 80%;
+  @page {
+    margin: 1.5cm 1.8cm;
   }
 
-  img,
-  pre {
-    break-inside: avoid-page;
+  // The site is dark-only. Without "background graphics" (the browser default) the dark
+  // surfaces disappear but the light text stays, so swap the palette for a light one.
+  :root {
+    color-scheme: light;
+
+    --color-surface-0: #fff;
+    --color-surface-1: #fff;
+    --color-surface-2: #fff;
+    --color-bg-highlight: #f1f5f9;
+
+    --color-text-heading: #111827;
+    --color-text: #1f2937;
+    --color-text-muted: #4b5563;
+
+    --color-link: #1d4ed8;
+    --color-link-hover: #1d4ed8;
+    --color-accent: #b45309;
+
+    --color-border: #94a3b8;
+    --color-border-muted: #cbd5e1;
+    --hr-color: #cbd5e1;
+
+    --color-info: #0369a1;
+    --color-info-border: #0369a1;
+    --color-success: #047857;
+    --color-success-border: #047857;
+    --color-warning: #b45309;
+    --color-warning-border: #b45309;
+    --color-error: #b91c1c;
+    --color-error-border: #b91c1c;
+
+    --shadow-sm: none;
+    --shadow-lg: none;
+  }
+
+  body {
+    min-height: 0;
+    background: #fff;
+  }
+
+  // Interactive chrome and screen-only navigation have no use on paper.
+  .skip-link,
+  .main-navigation,
+  .breadcrumbs,
+  .pagination,
+  .reading-progress,
+  .social-share,
+  .related-posts,
+  article > hr.divider:last-child,
+  .post-footer,
+  .sidebar,
+  .footer,
+  .header-anchor,
+  .post-header-featured-image,
+  .front-post-image,
+  .linked-post-compact-image,
+  .search-404,
+  .section-404:has(+ .search-404),
+  input,
+  button {
+    // !important: the featured image carries an inline display:block from the LQIP transform
+    display: none !important;
+  }
+
+  .print-header {
+    display: block;
+    margin: 0 0 var(--gap-medium);
+    padding-bottom: var(--gap-small);
+    border-bottom: 1px solid var(--color-border-muted);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .main,
+  .content {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+
+  // Print the target of links, so the paper copy stays usable. Internal links get the site
+  // origin; permalink, in-page, mail and topic links are skipped.
+  main a[href]:not(.header-anchor, .post-topics a, .topic-chip, [href^='#'], [href^='mailto:']) {
+    &[href^='http']::after,
+    &[href^='/']::after {
+      font-size: 0.8em;
+      font-weight: normal;
+      color: var(--color-text-muted);
+      word-break: break-all;
+    }
+
+    &[href^='http']::after {
+      content: ' (' attr(href) ')';
+    }
+
+    &[href^='/']::after {
+      content: ' (#{$site-url}' attr(href) ')';
+    }
+  }
+
+  .series-part-label a::after {
+    content: none !important;
+  }
+
+  // Embeds print as empty boxes (iframes) or a bare first frame (video) - replace them with
+  // their URL. The shortcodes put it on the figure (data-print-label / data-print-url).
+  .codepen-embed,
+  .yt-embed,
+  .video-embed {
+    display: none !important;
+  }
+
+  [data-print-url]::before {
+    display: block;
+    padding: var(--gap-small) var(--gap-medium);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    word-break: break-all;
+  }
+
+  [data-print-url^='http']::before {
+    content: attr(data-print-label) ': ' attr(data-print-url);
+  }
+
+  [data-print-url^='/']::before {
+    content: attr(data-print-label) ': #{$site-url}' attr(data-print-url);
+  }
+
+  // Code: switch to the light Shiki theme (the parser emits both, see markdown-parser.js) and
+  // wrap long lines instead of clipping them at the page edge.
+  pre.shiki,
+  pre.shiki span {
+    color: var(--shiki-light) !important;
+  }
+
+  pre.shiki {
+    overflow: visible;
+  }
+
+  pre.shiki code {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  pre.shiki .line {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  // Mermaid colors are baked into the SVG for the dark theme; Chrome lightens the dark fills on
+  // paper but keeps the light labels, which makes them unreadable.
+  .mermaid-diagram {
+    overflow: visible;
+
+    svg {
+      :is(rect, polygon, circle, ellipse, path).label-container,
+      .node :is(rect, polygon, circle, ellipse, path),
+      .cluster rect {
+        fill: #fff !important;
+      }
+
+      text,
+      tspan {
+        fill: #111827 !important;
+      }
+
+      .label,
+      span,
+      p {
+        color: #111827 !important;
+      }
+
+      .flowchart-link,
+      .edgePath path {
+        stroke: #4b5563 !important;
+      }
+
+      .marker,
+      .arrowMarkerPath {
+        fill: #4b5563 !important;
+        stroke: #4b5563 !important;
+      }
+    }
+  }
+
+  // Listing cards (everything but the in-body {% linkedPost %} cards): the screen spacing
+  // leaves most of a printed page empty, a hairline separates the cards instead
+  .post-list {
+    gap: 0;
+  }
+
+  .linked-post:not(article .linked-post) {
+    margin-bottom: 0;
+    padding: var(--gap-medium) 0;
+    border-bottom: 1px solid var(--color-border-muted);
+  }
+
+  .badge {
+    color: var(--color-text) !important;
+    border-color: var(--color-border) !important;
+  }
+
+  .lqip {
+    filter: none !important;
+    background-image: none !important;
+  }
+
+  // Page breaks
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
   }
 
   h1,
@@ -19,12 +238,21 @@
     break-after: avoid-page;
   }
 
-  .footer,
-  .post-header-featured-image,
-  .header-anchor,
-  .reading-progress {
-    display: none;
+  .image-wrapper,
+  figure,
+  .table-wrapper,
+  tr,
+  .code-block-container,
+  .callout,
+  .msg,
+  .linked-post,
+  .linked-post-compact,
+  .archived-banner {
+    break-inside: avoid-page;
   }
 
-  //  TODO HIDE ELEMENTS NOT SUITABLE FOR PRINT
+  // A scroll container would clip the table on paper; short tables stay on one page (above)
+  .table-wrapper {
+    overflow: visible;
+  }
 }
