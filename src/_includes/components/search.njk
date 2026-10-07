@@ -1,10 +1,12 @@
-{% macro renderSearch(id=null) %}
+{# label names the search landmark; a page with a second search form (e.g. 404) passes a distinct one
+   so screen readers do not list two identical "Search the site" landmarks. search.js reuses it. #}
+{% macro renderSearch(id=null, label="Search the site") %}
 <div class="nav-search">
-  <div class="js-pagefind"{% if id %} id="{{ id }}"{% endif %}>
+  <div class="js-pagefind"{% if id %} id="{{ id }}"{% endif %} data-search-label="{{ label }}">
     <!-- Placeholder only: will be replaced by Pagefind UI on first interaction -->
     <div class="pagefind-ui">
-      <form class="pagefind-ui__form" role="search" aria-label="Search the site">
-        <input class="pagefind-ui__search-input" type="text" placeholder="Search…" title="Search the site"
+      <form class="pagefind-ui__form" role="search" aria-label="{{ label }}">
+        <input class="pagefind-ui__search-input" type="text" placeholder="Search…" title="{{ label }}"
                aria-label="Search" autocapitalize="none" enterkeyhint="search" data-1p-ignore />
       </form>
     </div>

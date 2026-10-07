@@ -95,6 +95,20 @@ describe('search.js', () => {
       expect(document.getElementById('search').dataset.pagefindInited).toBe('1');
     });
 
+    it('names the search landmark from data-search-label, falling back to "Search the site"', async () => {
+      await loadScript(
+        '/404.html',
+        HEADER_CONTAINER + '<div class="js-pagefind" id="page-search" data-search-label="Search posts"></div>',
+      );
+
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      document.getElementById('page-search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const labels = PagefindUIStub.instances.map((ui) => ui.options.translations.search_label);
+      expect(labels).toEqual(['Search the site', 'Search posts']);
+    });
+
     it('creates one instance even when several triggers fire for a single gesture', async () => {
       await loadScript('/about/', HEADER_CONTAINER);
       const container = document.getElementById('search');

@@ -69,8 +69,9 @@
         one_result: "Found 1 result for '[SEARCH_TERM]'.",
         many_results: "Found [COUNT] results for '[SEARCH_TERM]'.",
         zero_results: "No results found for '[SEARCH_TERM]'.",
-        // Distinct landmark names: the /search/ page also has the header search form
-        search_label: inline ? 'Search posts' : 'Search the site',
+        // Distinct landmark names: /search/ and 404 have a second search form besides the header one.
+        // The label comes from renderSearch (data-search-label); /search/ renders its own markup.
+        search_label: container.dataset.searchLabel || (inline ? 'Search posts' : 'Search the site'),
         clear_search: '×',
         load_more: 'Load more',
       },

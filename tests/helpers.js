@@ -34,7 +34,7 @@ export function loadPage(urlPath) {
  * @returns {string}
  */
 export function loadPageHtml(urlPath) {
-  const filePath = `${SITE_DIR}${urlPath}index.html`;
+  const filePath = urlPath.endsWith('.html') ? `${SITE_DIR}${urlPath}` : `${SITE_DIR}${urlPath}index.html`;
   return readFileSync(filePath, 'utf-8');
 }
 
