@@ -365,6 +365,41 @@ describe('toc-scrollspy.js behaviour', () => {
     expect(scrollToMock).toHaveBeenCalledWith({ top: 1100, behavior: 'smooth' });
   });
 
+  it('moves focus to the clicked section and puts its fragment in the URL without a history entry', async () => {
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    window.history.replaceState(null, '', '/post/');
+    const lengthBefore = window.history.length;
+    await renderAndRun(headings);
+
+    const link = document.querySelector('a[href="#beta"]');
+    link.focus();
+    link.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+
+    const heading = document.getElementById('beta');
+    expect(document.activeElement).toBe(heading);
+    expect(heading.getAttribute('tabindex')).toBe('-1');
+    expect(window.location.pathname + window.location.hash).toBe('/post/#beta');
+    expect(window.history.length).toBe(lengthBefore);
+  });
+
+  it('scrolls instantly when the reader prefers reduced motion', async () => {
+    vi.stubGlobal('matchMedia', (query) => ({ matches: query === '(prefers-reduced-motion: reduce)' }));
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    await renderAndRun(headings);
+
+    document
+      .querySelector('a[href="#beta"]')
+      .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+
+    expect(scrollToMock).toHaveBeenCalledWith({ top: 900, behavior: 'auto' });
+  });
+
   it('suspends the scrollspy after a click and resumes it on a real user scroll', async () => {
     const headings = [
       { id: 'alpha', top: -40 },

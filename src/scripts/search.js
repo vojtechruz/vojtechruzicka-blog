@@ -2,6 +2,12 @@
   // Ensures Pagefind assets are loaded only once
   let bootAssetsPromise = null;
 
+  // Tab stops inside an open search overlay (focus trap)
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  // Element that had focus when a keyboard shortcut opened a container; Escape returns there
+  const shortcutOrigins = new WeakMap();
+
   function loadJS(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script'); // classic script, NOT type="module"
@@ -110,20 +116,60 @@
           backdrop.classList.remove('is-visible');
         };
 
-        // Close on backdrop click (affects currently open instance only)
-        const closeCurrent = () => {
+        const isOpen = () => drawer && !drawer.classList.contains('pagefind-ui__hidden');
+
+        // Close the open instance. `restoreFocus` (keyboard close) sends focus back to where a
+        // shortcut was pressed, or keeps it in the now empty input; a backdrop click just blurs.
+        const closeCurrent = (restoreFocus = false) => {
+          const origin = shortcutOrigins.get(container);
           if (input) {
             input.value = '';
             input.dispatchEvent(new Event('input', { bubbles: true }));
-            input.blur();
+            if (!restoreFocus) {
+              input.blur();
+            } else if (origin?.isConnected) {
+              origin.focus();
+            } else {
+              input.focus({ preventScroll: true });
+            }
           }
           hideBackdrop();
         };
-        backdrop.addEventListener('click', closeCurrent);
+        backdrop.addEventListener('click', () => closeCurrent());
+
+        // A shortcut origin only counts while focus stays in the search; leaving it forgets it
+        container.addEventListener('focusout', (e) => {
+          if (!container.contains(e.relatedTarget)) {
+            shortcutOrigins.delete(container);
+          }
+        });
+
+        // Focus trap: while the results cover the page, Tab cycles through the input, the clear
+        // button, the results and "Load more" instead of wandering into the page behind the backdrop
+        container.addEventListener('keydown', (e) => {
+          if (e.key !== 'Tab' || !isOpen()) {
+            return;
+          }
+          const focusables = Array.from(container.querySelectorAll(FOCUSABLE)).filter(
+            (el) => !el.closest('[hidden], .pagefind-ui__hidden'),
+          );
+          if (!focusables.length) {
+            return;
+          }
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
 
         // Observe open/close state for this instance
         const mo = new MutationObserver(() => {
-          const open = drawer && !drawer.classList.contains('pagefind-ui__hidden');
+          const open = isOpen();
           document.body.classList.toggle('search-open', open);
           backdrop.classList.toggle('is-visible', open);
 
@@ -138,8 +184,8 @@
 
         // ESC closes if this instance is open
         const onKey = (e) => {
-          if (e.key === 'Escape' && drawer && !drawer.classList.contains('pagefind-ui__hidden')) {
-            closeCurrent();
+          if (e.key === 'Escape' && isOpen()) {
+            closeCurrent(true);
           }
         };
         window.addEventListener('keydown', onKey);
@@ -227,7 +273,12 @@
       e.preventDefault();
       const target = containers[0];
 
-      if (target) {
+      // isConnected: a container removed from the page must not claim the shortcut (or its origin)
+      if (target?.isConnected) {
+        const origin = document.activeElement;
+        if (origin && origin !== document.body && !target.contains(origin)) {
+          shortcutOrigins.set(target, origin);
+        }
         openContainer(target).catch(console.error);
       }
     }
