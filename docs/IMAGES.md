@@ -33,6 +33,11 @@ eleventy-img **skips encoding when the expected output file already exists**. Th
 
 Both steps are wired into the `build` and `build:with-drafts` npm scripts, so the cache works locally too.
 
+The social card images (`<post>/og-image.jpg`, generated in `src/_data/eleventyComputed.js`) are deliberately **not**
+cached, and must stay that way. Their filename is stable rather than content-hashed (crawlers need a predictable URL),
+so a restored copy would satisfy eleventy-img's "output already exists" check and a post whose featured image changed
+would keep sharing the old card forever. They are re-encoded on every build instead, which costs a few seconds.
+
 Measured effect (local, full production formats): cold build **328 s** → warm build **21.6 s**.
 
 ### Why a stale cache can never serve wrong content
