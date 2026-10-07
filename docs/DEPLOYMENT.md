@@ -52,13 +52,14 @@ Anything that is neither is treated as production.
 | ------------------- | ------------------- | --------------------- | ----------------- |
 | Plausible analytics | not loaded at all   | preview script        | production script |
 | Favicon             | `favicon-local.svg` | `favicon-preview.svg` | full favicon set  |
-| Giscus theme URL    | Cloudflare tunnel   | `CF_PAGES_URL`        | production URL    |
+| Giscus theme URL    | production URL      | `CF_PAGES_URL`        | production URL    |
 | Drafts              | all                 | only `ready`          | none              |
-| `needsReview` badge | shown               | shown                 | hidden            |
 | Search engines      | n/a                 | `noindex, nofollow`   | indexable         |
 
 The two Plausible scripts are separate site IDs kept in `src/_data/site.js`, so preview traffic never lands in the
-production stats. The favicon split exists so the environment is obvious from the browser tab.
+production stats. The favicon split exists so the environment is obvious from the browser tab. Local dev uses the
+production Giscus theme because giscus loads the theme from inside its iframe on giscus.app, which cannot reach
+localhost; theme changes are tried out on a preview deploy.
 
 Besides Plausible, **Cloudflare Web Analytics (RUM)** is enabled in the Cloudflare dashboard (not in the repo): the edge
 injects its beacon script into served pages. It is kept for real-user Core Web Vitals, which Plausible does not collect

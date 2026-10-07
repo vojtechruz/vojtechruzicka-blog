@@ -1,12 +1,11 @@
-import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
+import { isPreview } from '../../config/env-utils.js';
 import { versionedAssetUrl } from '../../config/utils/asset-version.js';
 
 const getGiscusTheme = () => {
   // /styles/* is long-cached as immutable, so the theme URL carries a content hash too
   const themePath = versionedAssetUrl('/styles/giscus-theme.css');
-  if (isLocalDevelopment()) {
-    return `https://posts-arcade-sender-volvo.trycloudflare.com${themePath}`;
-  }
+  // Local dev falls through to the production theme: giscus fetches the theme from inside its
+  // iframe on giscus.app, which cannot reach localhost. Theme changes are tried on a preview deploy.
   if (isPreview()) {
     // Return absolute URL for previews too, as Giscus might require it
     // CF_PAGES_URL is provided by Cloudflare Pages
