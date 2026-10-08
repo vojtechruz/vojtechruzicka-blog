@@ -1,10 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import http from 'node:http';
-import { readFile } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
-import path from 'node:path';
 import { chromium } from 'playwright';
-import { SITE_DIR } from './helpers.js';
+import { serveSite } from './static-server.js';
 import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
 import site from '../src/_data/site.js';
 
@@ -45,37 +42,14 @@ const HIDDEN_IN_PRINT = [
   'input',
 ];
 
-const SITE_ROOT = path.resolve(SITE_DIR);
-
-const CONTENT_TYPES = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml' };
-
 let server;
 let browser;
 let page;
 let baseUrl;
 
 beforeAll(async () => {
-  server = http.createServer(async (req, res) => {
-    let urlPath = decodeURIComponent(req.url.split('?')[0]);
-    if (urlPath.endsWith('/')) {
-      urlPath += 'index.html';
-    }
-    try {
-      // Only serve files inside the build output (no ../ traversal)
-      const filePath = path.resolve(SITE_ROOT, `.${urlPath}`);
-      if (!filePath.startsWith(SITE_ROOT + path.sep)) {
-        throw new Error('Outside of the site root');
-      }
-      const body = await readFile(filePath);
-      res.writeHead(200, { 'content-type': CONTENT_TYPES[path.extname(urlPath)] || 'application/octet-stream' });
-      res.end(body);
-    } catch {
-      res.writeHead(404);
-      res.end();
-    }
-  });
-  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-  baseUrl = `http://127.0.0.1:${server.address().port}`;
+  server = await serveSite();
+  baseUrl = server.baseUrl;
 
   configurePlaywrightBrowserPath();
   browser = await chromium.launch();
@@ -85,7 +59,7 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await browser?.close();
-  await new Promise((resolve) => (server ? server.close(resolve) : resolve()));
+  await server?.close();
 });
 
 async function open(urlPath) {

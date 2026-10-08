@@ -95,6 +95,20 @@ describe('search.js', () => {
       expect(document.getElementById('search').dataset.pagefindInited).toBe('1');
     });
 
+    it('names the search landmark from data-search-label, falling back to "Search the site"', async () => {
+      await loadScript(
+        '/404.html',
+        HEADER_CONTAINER + '<div class="js-pagefind" id="page-search" data-search-label="Search posts"></div>',
+      );
+
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      document.getElementById('page-search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const labels = PagefindUIStub.instances.map((ui) => ui.options.translations.search_label);
+      expect(labels).toEqual(['Search the site', 'Search posts']);
+    });
+
     it('creates one instance even when several triggers fire for a single gesture', async () => {
       await loadScript('/about/', HEADER_CONTAINER);
       const container = document.getElementById('search');
@@ -147,8 +161,10 @@ describe('search.js', () => {
       await flush();
       window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
       await flush();
-      expect(document.activeElement).not.toBe(ui.input);
+      // Nothing was focused when the shortcut fired, so Escape keeps focus in the emptied input
+      expect(document.activeElement).toBe(ui.input);
 
+      ui.input.blur();
       ctrlK();
       await flush();
       expect(PagefindUIStub.instances, 'no second instance').toHaveLength(1);
@@ -158,6 +174,78 @@ describe('search.js', () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: '/', bubbles: true }));
       await flush();
       expect(document.activeElement).toBe(ui.input);
+    });
+
+    it('traps Tab inside the open overlay, wrapping in both directions', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const [ui] = PagefindUIStub.instances;
+      ui.drawer.innerHTML = `
+        <a class="pagefind-ui__result-link" href="/a/">A</a>
+        <a class="pagefind-ui__result-link" href="/b/">B</a>
+        <button class="pagefind-ui__button" type="button">Load more</button>`;
+      const loadMore = ui.drawer.querySelector('button');
+      const tab = (target, shiftKey = false) => {
+        const event = new KeyboardEvent('keydown', { key: 'Tab', shiftKey, bubbles: true, cancelable: true });
+        target.dispatchEvent(event);
+        return event;
+      };
+
+      // Closed overlay: Tab is left to the browser
+      ui.input.focus();
+      expect(tab(ui.input, true).defaultPrevented).toBe(false);
+
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+
+      loadMore.focus();
+      expect(tab(loadMore).defaultPrevented).toBe(true);
+      expect(document.activeElement).toBe(ui.input);
+
+      expect(tab(ui.input, true).defaultPrevented).toBe(true);
+      expect(document.activeElement).toBe(loadMore);
+
+      // Between the ends Tab moves natively
+      const firstResult = ui.drawer.querySelector('a');
+      firstResult.focus();
+      expect(tab(firstResult).defaultPrevented).toBe(false);
+    });
+
+    it('returns focus on Escape to the element that had it when the shortcut opened search', async () => {
+      await loadScript('/about/', HEADER_CONTAINER + '<a id="origin" href="/x/">x</a>');
+      const origin = document.getElementById('origin');
+      origin.focus();
+
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: '/', bubbles: true }));
+      await flush();
+      const [ui] = PagefindUIStub.instances;
+      expect(document.activeElement).toBe(ui.input);
+
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      await flush();
+
+      expect(document.activeElement).toBe(origin);
+      expect(document.body.classList.contains('search-open')).toBe(false);
+    });
+
+    it('keeps focus in the input on Escape when search was entered directly', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const [ui] = PagefindUIStub.instances;
+      ui.input.focus();
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      await flush();
+
+      expect(document.activeElement).toBe(ui.input);
+      expect(ui.input.value).toBe('');
     });
 
     it('never runs a query from the URL or touches the address bar', async () => {

@@ -31,6 +31,9 @@
   place-items: center;
   inline-size: 1.25em;
   block-size: 1.25em;
+  /* WCAG 2.5.8 target size: in smaller headings 1.25em (border-box) works out to ~21px */
+  min-inline-size: 1.5rem;
+  min-block-size: 1.5rem;
   padding: 0.2rem;
   border-radius: 0.35em;
   font-size: 0.9em;

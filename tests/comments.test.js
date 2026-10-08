@@ -9,6 +9,7 @@ import siteConfig from '../src/_data/site.js';
 
 const POSTS = ['/css-flexbox/', '/java-records/', '/angular/01-getting-started/'];
 const NON_POSTS = ['/', '/about/', '/topics/java/', '/search/'];
+const ARCHIVED = { url: '/archive/chrome-audit-lighthouse-2026-05/', current: '/chrome-audit-lighthouse/' };
 
 function giscusScript($) {
   return $('script[src="https://giscus.app/client.js"]');
@@ -68,6 +69,14 @@ describe('Giscus comments', () => {
 
     expect(block, 'a /styles/giscus-theme.css rule in _headers').toBeDefined();
     expect(block).toContain('Access-Control-Allow-Origin: https://giscus.app');
+  });
+
+  it('sends readers of an archived copy to the discussion on the current version', () => {
+    // giscus maps threads by pathname, so an embed here would start a separate, empty thread.
+    const $ = loadPage(ARCHIVED.url);
+
+    expect(giscusScript($).length).toBe(0);
+    expect($('section#comments a').attr('href')).toBe(`${ARCHIVED.current}#comments`);
   });
 
   it.each(NON_POSTS)('%s has no comments section', (url) => {

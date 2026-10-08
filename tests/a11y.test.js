@@ -22,6 +22,7 @@ const PAGES = [
   '/search/',
   '/archive/',
   '/archive/chrome-audit-lighthouse-2026-05/',
+  '/404.html', // two search forms (header + page): their landmarks must have distinct names
 ];
 
 // Layout- or colour-dependent rules jsdom cannot evaluate meaningfully.

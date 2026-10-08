@@ -269,10 +269,21 @@
       const rect = targetHeading.getBoundingClientRect();
       const absoluteY = window.scrollY + rect.top - offset;
 
+      // The CSS reduced-motion override (scroll-behavior: auto) does not reach a scripted scroll
+      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({
         top: absoluteY,
-        behavior: 'smooth',
+        behavior: reduceMotion ? 'auto' : 'smooth',
       });
+
+      // Do what the default link action would have: put the fragment in the URL (replaceState, so
+      // hopping through the TOC does not pile up history entries) and move focus to the section,
+      // so the next Tab continues in the content rather than in the sidebar.
+      window.history.replaceState(null, '', href);
+      if (!targetHeading.hasAttribute('tabindex')) {
+        targetHeading.setAttribute('tabindex', '-1');
+      }
+      targetHeading.focus({ preventScroll: true });
     }
     // scroll-spy will be re-enabled only when user scrolls (wheel/touch/keys),
     // not on the programmatic scroll we just triggered.

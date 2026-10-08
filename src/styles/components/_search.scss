@@ -23,8 +23,8 @@
       background-color 0.15s ease;
 
     &::placeholder {
+      /* full --color-text-muted: with the former opacity: .75 it was 4.44:1, below WCAG AA */
       color: var(--color-text-muted);
-      opacity: 0.75;
     }
 
     &:hover {

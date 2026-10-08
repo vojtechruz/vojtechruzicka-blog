@@ -1,9 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
+import { globSync } from 'glob';
 import { loadPage, SITE_DIR } from './helpers.js';
 import {
   getOgTitle,
   getOgImage,
+  getOgUrl,
+  getCanonicalUrl,
   getOgImageWidth,
   getOgImageHeight,
   getOgImageAlt,
@@ -140,6 +143,43 @@ describe('Social meta tags', () => {
 
       expect(metadata.width).toBe(siteConfig.defaultShareImageWidth);
       expect(metadata.height).toBe(siteConfig.defaultShareImageHeight);
+    });
+  });
+
+  // Sweep over the whole build: a post whose og-image silently failed to generate would fall back
+  // to the featured image or the site default, which no single-page test would notice.
+  describe('every article page', () => {
+    const articles = globSync(`${SITE_DIR}/**/index.html`, { posix: true })
+      .map((file) => file.slice(SITE_DIR.length, -'index.html'.length))
+      .filter((url) => getOgType(loadPage(url)) === 'article');
+
+    it('finds the article pages', () => {
+      expect(articles.length).toBeGreaterThan(50);
+    });
+
+    it.each(articles)('%s shares its own generated og-image.jpg', async (url) => {
+      const $ = loadPage(url);
+      expect(getOgImage($)).toBe(`${siteConfig.url}${url}og-image.jpg`);
+      expect(getTwitterImage($)).toBe(getOgImage($));
+
+      const sharp = (await import('sharp')).default;
+      const imagePath = `${SITE_DIR}${url}og-image.jpg`;
+      expect(existsSync(imagePath), `Missing ${imagePath}`).toBe(true);
+      const { width, height } = await sharp(imagePath).metadata();
+      expect(`${width}x${height}`).toBe(`${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT}`);
+    });
+
+    // og:url is the page's own address. For live posts that is also the canonical; an archived copy
+    // is the one deliberate exception: it is shared as itself (own og-image, "Historical archive"
+    // description) while its canonical points search engines at the superseding article.
+    it.each(articles)('%s has og:url matching its address and canonical', (url) => {
+      const $ = loadPage(url);
+      expect(getOgUrl($)).toBe(`${siteConfig.url}${url}`);
+      if (url.startsWith('/archive/')) {
+        expect(getCanonicalUrl($)).not.toBe(getOgUrl($));
+      } else {
+        expect(getCanonicalUrl($)).toBe(getOgUrl($));
+      }
     });
   });
 
