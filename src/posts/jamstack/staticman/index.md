@@ -84,7 +84,7 @@ pending invite.
 Staticman loads its configuration from a yaml file called `staticman.yml`. A
 [sample configuration file](https://github.com/eduardoboucas/staticman/blob/master/staticman.sample.yml) can be found on
 GitHub. A detailed explanation of all the available configuration options can be found in the
-[official documentation](https://staticman.net/docs/configuration).
+[official documentation](https://staticman.net/docs/).
 
 Here is a list of some of the most important configuration properties:
 
@@ -189,8 +189,8 @@ Staticman instance as it is using shared Akismet account under the hood, which r
 ### Email notifications
 
 Staticman supports email notifications on new user submissions using
-[Mailgun](https://staticman.net/docs/configuration). You just need to enable the notifications in your
-[config file](https://staticman.net/docs/configuration) and provide your Mailgun domain and API key.
+[Mailgun](https://staticman.net/docs/notifications). You just need to enable the notifications in your
+[config file](https://staticman.net/docs/notifications) and provide your Mailgun domain and API key.
 
 ### Re-captcha
 

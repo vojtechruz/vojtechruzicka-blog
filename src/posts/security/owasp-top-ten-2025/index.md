@@ -26,7 +26,7 @@ including their own AppSec conference. OWASP consists of numerous projects with 
 including [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/),
 [GenAI Security Project](https://genai.owasp.org/),
 [Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/),
-[various cheat sheets,](https://owasp.org/www-project-cheat-sheets/) and [others](https://owasp.org/projects/).
+[various cheat sheets,](https://cheatsheetseries.owasp.org/) and [others](https://owasp.org/projects/).
 
 ## OWASP Top Ten
 
@@ -403,6 +403,6 @@ More OWASP Resources:
 Comprehensive guide on how to test security of web apps.
 - [OWASP Cheat Sheets](https://cheatsheetseries.owasp.org/):
 Collection of very condensed guides on various topics as a quick reference.
-- [OWASP API Security](https://owasp.org/www-project-api-security/):
+- [OWASP API Security](https://owasp.org/API-Security/):
 Top ten focused on API security.
 - [OWASP Gen AI Security Project](https://genai.owasp.org/): Guidance and resources focused on generative AI security.

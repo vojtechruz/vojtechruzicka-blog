@@ -66,11 +66,12 @@
 .pagefind-ui__drawer {
   position: fixed !important;
   z-index: var(--z-overlay);
-  top: 12vh;
+  top: 12dvh;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(560px, 80vw, 820px);
-  max-height: 75vh;
+  // The 560px floor alone overflowed phones; never wider than the viewport minus a 1rem gutter each side
+  width: min(clamp(560px, 80vw, 820px), calc(100vw - 2rem));
+  max-height: 75dvh;
   overflow: auto;
   scrollbar-gutter: stable both-edges;
 
