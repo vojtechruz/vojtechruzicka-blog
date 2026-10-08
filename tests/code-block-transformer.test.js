@@ -137,6 +137,30 @@ describe('codeBlockTransformer', () => {
     expect(header.children[0].children[0].value).toBe('object-meta.js');
   });
 
+  it.each(['subtitle="not-a-title.js"', 'data-title="not-a-title.js"'])('does not take %s for a title', (meta) => {
+    const pre = { tagName: 'pre', children: [] };
+    const mockRoot = { children: [pre] };
+    const context = { options: { meta } };
+
+    codeBlockTransformer.root.call(context, mockRoot);
+
+    const container = mockRoot.children[0];
+    const header = container.children.find((c) => c.properties?.className?.includes('code-block-header'));
+    expect(header).toBeUndefined();
+  });
+
+  it('extracts a title that follows other meta', () => {
+    const pre = { tagName: 'pre', children: [] };
+    const mockRoot = { children: [pre] };
+    const context = { options: { meta: '{1} title="after-highlight.js"' } };
+
+    codeBlockTransformer.root.call(context, mockRoot);
+
+    const container = mockRoot.children[0];
+    const header = container.children.find((c) => c.properties?.className?.includes('code-block-header'));
+    expect(header.children[0].children[0].value).toBe('after-highlight.js');
+  });
+
   it('does nothing if no pre element is found', () => {
     const mockRoot = {
       children: [{ tagName: 'div' }],

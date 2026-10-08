@@ -8,7 +8,8 @@ export const codeBlockTransformer = {
 
     // Extract title from meta string (e.g., ```js title="filename.js")
     const meta = typeof this.options.meta === 'string' ? this.options.meta : this.options.meta?.__raw || '';
-    const titleMatch = meta.match(/title=(?:"([^"]+)"|'([^']+)'|([^\s]+))/);
+    // Anchored at a word start so `subtitle=` or `data-title=` are not taken for a title
+    const titleMatch = meta.match(/(?:^|\s)title=(?:"([^"]+)"|'([^']+)'|(\S+))/);
     const title = titleMatch ? titleMatch[1] || titleMatch[2] || titleMatch[3] : '';
     const language = this.options.lang || 'text';
 
