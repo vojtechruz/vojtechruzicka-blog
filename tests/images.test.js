@@ -93,6 +93,18 @@ describe('Responsive image pipeline', () => {
         }
       }
     });
+
+    // Two images written side by side in one paragraph (`![typedoc-1](…) ![typedoc-2](…)`) used to
+    // come out reversed; unit coverage of the transform is in wrap-pictures.test.js.
+    it('keeps side-by-side images of one paragraph in source order', () => {
+      const $ = loadPage('/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/');
+      const alts = $(`${IN_POST_SELECTOR} > img`)
+        .toArray()
+        .map((img) => $(img).attr('alt'))
+        .filter((alt) => alt.startsWith('typedoc-'));
+
+      expect(alts).toEqual(['typedoc-1', 'typedoc-2']);
+    });
   });
 
   describe('Modern formats (image plugin)', () => {
