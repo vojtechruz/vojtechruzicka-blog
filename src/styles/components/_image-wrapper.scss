@@ -18,9 +18,12 @@
     background-color: var(--lqip-bg-color);
     overflow: hidden;
 
-    // Remove blur once image is loaded
+    // Remove blur once image is loaded, and drop the placeholder behind it: a transparent PNG
+    // (e.g. a macOS window screenshot with its drop shadow) would otherwise show the mosaic through.
+    // !important because the mosaic is an inline style set by lqip-svg-transform.js.
     &[data-loaded] {
       filter: blur(0);
+      background: none !important;
     }
   }
 }
