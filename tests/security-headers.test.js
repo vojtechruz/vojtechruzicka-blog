@@ -50,12 +50,14 @@ describe('Security headers (Content Security Policy)', () => {
       'media-src': new Set(),
       'style-src': new Set(),
     };
-    const origin = (url) => /^(https?:\/\/[^/"]+)/.exec(url ?? '')?.[1];
-    const attr = (tag, name) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
+    const origin = (url) => /^(https?:\/\/[^/"]+)/i.exec(url ?? '')?.[1];
+    const attr = (tag, name) => new RegExp(`\\s${name}="([^"]*)"`, 'i').exec(tag)?.[1];
     for (const file of htmlFiles) {
       const html = readFileSync(file, 'utf-8');
-      // Anchored to a real tag start, so escaped code samples in post content do not match
-      for (const [tag, name] of html.matchAll(/<(script|iframe|img|video|audio|source|link)\b[^>]*>/g)) {
+      // Anchored to a real tag start, so escaped code samples in post content do not match.
+      // Case-insensitive: HTML tag and attribute names are, so <SCRIPT SRC=…> must count too.
+      for (const [tag, tagName] of html.matchAll(/<(script|iframe|img|video|audio|source|link)\b[^>]*>/gi)) {
+        const name = tagName.toLowerCase();
         const add = (directive, url) => origin(url) && used[directive].add(origin(url));
         if (name === 'script') {
           add('script-src', attr(tag, 'src'));
@@ -64,7 +66,7 @@ describe('Security headers (Content Security Policy)', () => {
         } else if (name === 'img') {
           add('img-src', attr(tag, 'src'));
         } else if (name === 'link') {
-          if (attr(tag, 'rel') === 'stylesheet') {
+          if (attr(tag, 'rel')?.toLowerCase() === 'stylesheet') {
             add('style-src', attr(tag, 'href'));
           }
         } else {
@@ -107,7 +109,7 @@ describe('Security headers (Content Security Policy)', () => {
       const html = readFileSync(file, 'utf-8');
       // Anchored to a real tag start: an unescaped "<tagname" cannot occur inside escaped
       // code samples, so attribute-lookalikes in post content do not match.
-      for (const [, code] of html.matchAll(/<[a-z][^>]*\son[a-z]+="([^"]+)"/g)) {
+      for (const [, code] of html.matchAll(/<[a-z][^>]*\son[a-z]+="([^"]+)"/gi)) {
         handlers.add(code);
       }
     }
