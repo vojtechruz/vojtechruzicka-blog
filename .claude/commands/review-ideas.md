@@ -11,7 +11,7 @@ Review blog post ideas from the Obsidian vault, score and prioritize them in con
 ### 1. Check dependencies
 
 - The scripts operate on local vault files — no tokens or `.env` are required. (Paths default to the
-  vault at `D:\Dropbox\Obsidian`; override with `OBSIDIAN_VAULT` if needed.)
+  vault at `<Dropbox>/Obsidian`, found automatically on Windows and Linux; override with `OBSIDIAN_VAULT` if needed.)
 - The scripts use a local venv at `_tools/obsidian/.venv`. On Windows use
   `_tools/obsidian/.venv/Scripts/python`. Check with PowerShell `Test-Path`.
 - If the venv is missing, create it: `python -m venv _tools/obsidian/.venv`, then install:
