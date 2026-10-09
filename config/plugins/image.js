@@ -44,7 +44,6 @@ export default function registerImagePlugin(eleventyConfig) {
 
     // output image widths
     widths: resolveImageWidths(),
-    sizes: '100vw',
 
     // optional, attributes assigned on <img> nodes override these values
     // Default attributes for <img> tags

@@ -35,7 +35,9 @@ pre.shiki .line.highlighted {
   border-radius: var(--radius-xs);
   padding: 0.1rem var(--gap-small);
   padding-bottom: 0.11rem;
-  white-space: nowrap;
+  // May wrap: nowrap pushed long snippets past the viewport on narrow phones (320 px)
+  overflow-wrap: anywhere;
+  box-decoration-break: clone;
 
   color: var(--color-text-muted);
 
@@ -161,6 +163,12 @@ pre.shiki {
   border-radius: 0;
   overflow: auto;
   box-shadow: none;
+}
+
+// Without a title header the copy button floats over the code: start the first line just below its icon,
+// so a long first line scrolls past it instead of running into it
+.code-block-container:has(> .copy-code-button) > pre.shiki {
+  padding-top: 1.25rem;
 }
 
 pre.shiki .line.diff {

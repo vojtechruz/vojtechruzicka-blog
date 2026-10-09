@@ -66,4 +66,22 @@ describe('LQIP placeholder', () => {
       IMAGE,
     );
   }, 30000);
+
+  it('shows the image unblurred when JavaScript is disabled', async () => {
+    // The onload handler that sets data-loaded never runs; the <noscript> style in base.njk takes over
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
+    try {
+      const noJsPage = await context.newPage();
+      await noJsPage.goto(server.baseUrl + PAGE);
+      const style = await noJsPage.$eval(IMAGE, (img) => {
+        const computed = getComputedStyle(img);
+        return { loaded: img.hasAttribute('data-loaded'), image: computed.backgroundImage, filter: computed.filter };
+      });
+      expect(style.loaded).toBe(false);
+      expect(style.image.slice(0, 40), 'mosaic set without JS').toBe('none');
+      expect(style.filter).toBe('none');
+    } finally {
+      await context.close();
+    }
+  }, 30000);
 });
