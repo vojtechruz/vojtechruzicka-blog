@@ -92,7 +92,7 @@ function reportNotFound() {
     // 2. Share Buttons
     const shareCopyBtn = e.target.closest('.share-copy');
     if (shareCopyBtn) {
-      trackAnalyticsEvent('Share Click', { type: 'Copy Post Link', shareCopyUrl: location.pathname });
+      trackAnalyticsEvent('Share Post Click', { type: 'Copy Post Link', shareCopyUrl: location.pathname });
       return;
     }
 
