@@ -79,15 +79,29 @@ describe('search overlay', () => {
 });
 
 describe('floating copy button', () => {
-  it('has an opaque background so code does not show through', async () => {
+  it('sits above the first line of code, so a long line does not run into the icon', async () => {
     const page = await openPage('/css-flexbox/', 1280);
     try {
-      const background = await page.$eval(
-        '.code-block-container > .copy-code-button',
-        (button) => getComputedStyle(button).backgroundColor,
+      const gap = await page.$eval('.code-block-container > .copy-code-button', (button) => {
+        const icon = button.querySelector('svg').getBoundingClientRect();
+        const line = button.parentElement.querySelector('pre .line').getBoundingClientRect();
+        return line.top - icon.bottom;
+      });
+      // The line box has ~4 px of leading above the glyphs, so the icon may reach into that, not further
+      expect(gap).toBeGreaterThanOrEqual(-4);
+    } finally {
+      await page.close();
+    }
+  }, 30000);
+
+  it('gives every block with a floating button the extra top padding', async () => {
+    const page = await openPage('/css-flexbox/', 1280);
+    try {
+      const paddings = await page.$$eval('.code-block-container:has(> .copy-code-button) > pre', (pres) =>
+        pres.map((pre) => getComputedStyle(pre).paddingTop),
       );
-      expect(background).not.toBe('rgba(0, 0, 0, 0)');
-      expect(background).not.toMatch(/rgba\(.*, 0(\.\d+)?\)$/);
+      expect(paddings.length).toBeGreaterThan(0);
+      expect(new Set(paddings)).toEqual(new Set(['20px']));
     } finally {
       await page.close();
     }

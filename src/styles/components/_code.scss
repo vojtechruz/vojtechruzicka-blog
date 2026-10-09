@@ -108,13 +108,11 @@ pre.shiki span {
     right: 0.15rem;
     z-index: 10;
     color: var(--color-text-muted);
-    // Opaque (the container's surface), so a long first line of code does not show through the icon
-    background: var(--color-surface-1);
 
     &:hover {
       color: var(--color-text-heading);
       background: var(--color-surface-2);
-      background: color-mix(in oklab, var(--color-bg-highlight) 28%, var(--color-surface-1));
+      background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
       border: 1px solid var(--color-border);
     }
   }
@@ -165,6 +163,12 @@ pre.shiki {
   border-radius: 0;
   overflow: auto;
   box-shadow: none;
+}
+
+// Without a title header the copy button floats over the code: start the first line just below its icon,
+// so a long first line scrolls past it instead of running into it
+.code-block-container:has(> .copy-code-button) > pre.shiki {
+  padding-top: 1.25rem;
 }
 
 pre.shiki .line.diff {
