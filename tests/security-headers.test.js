@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { createHash } from 'crypto';
 import { globSync } from 'glob';
-import { SITE_DIR } from './helpers.js';
+import { SITE_DIR, parseHeaders } from './helpers.js';
 
 const headers = readFileSync(`${SITE_DIR}/_headers`, 'utf-8');
 const cspLines = headers.split(/\r?\n/).filter((line) => line.trim().startsWith('Content-Security-Policy:'));
@@ -91,6 +91,57 @@ describe('Security headers (Content Security Policy)', () => {
     for (const code of handlers) {
       const hash = `'sha256-${createHash('sha256').update(code, 'utf-8').digest('base64')}'`;
       expect(sources('script-src'), `inline handler "${code}" needs ${hash} in script-src`).toContain(hash);
+    }
+  });
+});
+
+describe('Security headers (site-wide block)', () => {
+  const rules = parseHeaders(headers);
+  const siteWide = rules['/*'] ?? [];
+
+  // Exact values served on every response. Rationale for each (HSTS without preload, no COEP, …)
+  // is in docs/SECURITY-HEADERS.md; change the value there and here together.
+  const EXPECTED = {
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Cross-Origin-Resource-Policy': 'same-origin',
+    'Cross-Origin-Opener-Policy': 'same-origin',
+    'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+    'Timing-Allow-Origin': '*',
+  };
+
+  /** Values of a header in one rule; a header listed twice would be comma-joined by Cloudflare. */
+  const valuesOf = (lines, name) =>
+    lines
+      .filter((line) => line.toLowerCase().startsWith(`${name.toLowerCase()}:`))
+      .map((line) => line.slice(name.length + 1).trim());
+
+  it.each(Object.entries(EXPECTED))('sets %s exactly once with the expected value', (name, value) => {
+    expect(valuesOf(siteWide, name)).toEqual([value]);
+  });
+
+  it('never detaches a site-wide security header in a narrower rule, except CORP', () => {
+    // `! Header` removes the header for matching paths; only Cross-Origin-Resource-Policy is
+    // meant to be swapped (images and icons must be embeddable cross-origin).
+    const allowed = new Set(['cross-origin-resource-policy']);
+    const guarded = new Set([...Object.keys(EXPECTED), 'Content-Security-Policy'].map((n) => n.toLowerCase()));
+    for (const [path, lines] of Object.entries(rules)) {
+      for (const line of lines.filter((l) => l.startsWith('!'))) {
+        const name = line.slice(1).trim().toLowerCase();
+        if (guarded.has(name)) {
+          expect(allowed.has(name), `${path} detaches ${name}`).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('stays within the Cloudflare Pages limits (100 rules, 2,000 characters per line)', () => {
+    // Over the limit Cloudflare drops the rule or line without any build error.
+    expect(Object.keys(rules).length).toBeLessThanOrEqual(100);
+    for (const line of headers.split(/\r?\n/)) {
+      expect(line.length, `line too long: ${line.slice(0, 60)}…`).toBeLessThanOrEqual(2000);
     }
   });
 });

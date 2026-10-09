@@ -50,3 +50,25 @@ export function getAllPosts() {
     return { filePath, frontmatter: data };
   });
 }
+
+/**
+ * Parse a Cloudflare Pages _headers file into { path: [header lines] }, ignoring comments.
+ * Detach lines (`! Header-Name`) are kept as they are.
+ */
+export function parseHeaders(text) {
+  const rules = {};
+  let current = null;
+  for (const raw of text.split(/\r?\n/)) {
+    const line = raw.replace(/#.*$/, '').trimEnd();
+    if (!line.trim()) {
+      continue;
+    }
+    if (!/^\s/.test(line)) {
+      current = line.trim();
+      rules[current] = rules[current] || [];
+    } else if (current) {
+      rules[current].push(line.trim());
+    }
+  }
+  return rules;
+}
