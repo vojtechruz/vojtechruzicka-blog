@@ -134,7 +134,7 @@ describe('Security headers (site-wide block)', () => {
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Cross-Origin-Resource-Policy': 'same-origin',
     'Cross-Origin-Opener-Policy': 'same-origin',
-    'Permissions-Policy': 'geolocation=(), camera=(), microphone=()',
+    'Permissions-Policy': 'geolocation=(), camera=(), microphone=(), payment=(), usb=(), serial=(), hid=(), midi=()',
     'Timing-Allow-Origin': '*',
   };
 

@@ -7,17 +7,22 @@ is why the hashes below are guarded by tests).
 
 ## Headers at a glance
 
-| Header                         | Value                                  | Why                                                                     |
-| ------------------------------ | -------------------------------------- | ----------------------------------------------------------------------- |
-| `Strict-Transport-Security`    | 1 year, `includeSubDomains`            | HTTPS only — no `preload`, see below                                    |
-| `X-Content-Type-Options`       | `nosniff`                              | No MIME sniffing                                                        |
-| `X-Frame-Options`              | `DENY`                                 | Legacy fallback for CSP `frame-ancestors 'none'`                        |
-| `Referrer-Policy`              | `strict-origin-when-cross-origin`      | Full referrer only same-origin                                          |
-| `Cross-Origin-Opener-Policy`   | `same-origin`                          | Isolates the browsing context group                                     |
-| `Cross-Origin-Resource-Policy` | `same-origin`                          | Public images override this per path to `cross-origin` — see CACHING.md |
-| `Permissions-Policy`           | geolocation/camera/microphone disabled | The site uses none of them                                              |
-| `Timing-Allow-Origin`          | `*`                                    | Lets RUM and WebPageTest read detailed resource timings                 |
-| `Content-Security-Policy`      | see below                              |                                                                         |
+| Header                         | Value                             | Why                                                                     |
+| ------------------------------ | --------------------------------- | ----------------------------------------------------------------------- |
+| `Strict-Transport-Security`    | 1 year, `includeSubDomains`       | HTTPS only — no `preload`, see below                                    |
+| `X-Content-Type-Options`       | `nosniff`                         | No MIME sniffing                                                        |
+| `X-Frame-Options`              | `DENY`                            | Legacy fallback for CSP `frame-ancestors 'none'`                        |
+| `Referrer-Policy`              | `strict-origin-when-cross-origin` | Full referrer only same-origin                                          |
+| `Cross-Origin-Opener-Policy`   | `same-origin`                     | Isolates the browsing context group                                     |
+| `Cross-Origin-Resource-Policy` | `same-origin`                     | Public images override this per path to `cross-origin` — see CACHING.md |
+| `Permissions-Policy`           | 8 device/payment APIs disabled    | The site uses none of them — see the note below the table               |
+| `Timing-Allow-Origin`          | `*`                               | Lets RUM and WebPageTest read detailed resource timings                 |
+| `Content-Security-Policy`      | see below                         |                                                                         |
+
+`Permissions-Policy` disables geolocation, camera, microphone, payment, USB, serial, HID and MIDI for the page **and
+every embedded iframe**. Do not add `accelerometer`, `gyroscope`, `autoplay`, `encrypted-media`, `picture-in-picture`,
+`clipboard-write` or `web-share`: the `{% youtube %}` iframe requests them in its `allow` attribute, and disabling them
+would log a permissions-policy violation in the console on every page with a video.
 
 `tests/security-headers.test.js` pins every value in this table except the CSP (which has its own tests below), fails if
 a header appears twice in the `/*` block (Cloudflare would comma-join the two values into an invalid one), and fails if
@@ -42,11 +47,9 @@ These show up on production responses but are **not** set in `_headers` (checked
 - **`Report-To` / `NEL`** (group `cf-nel`, `success_fraction: 0.0`) — Cloudflare's Network Error Logging: browsers
   report failed connections to Cloudflare, never successful ones. It is unrelated to CSP reporting (see
   [Violation reporting](#violation-reporting)) and its reports are not visible to this site.
-- **Browser Cache TTL** — the zone-level Cloudflare setting (dashboard → Caching → Configuration) rewrites a
-  `Cache-Control: max-age` below its value for static file types (scripts, images, icons; HTML and XML are left alone).
-  With the default of 4 hours, `/sw.js` (`0` in `_headers`) and the icons (`3600`) are served with `max-age=14400`.
-  Setting it to **Respect Existing Headers** makes `_headers` authoritative. Until then the live TTLs differ from
-  docs/CACHING.md.
+- **`Cache-Control` rewrites** — none any more. The zone-level _Browser Cache TTL_ (dashboard → Caching → Configuration)
+  is set to **Respect Existing Headers**; on its default of 4 hours it raised a lower `max-age` on scripts, images and
+  icons (`/sw.js` was served with `14400` instead of `0`). See docs/CACHING.md.
 
 ## HSTS and the preload list
 
@@ -139,9 +142,11 @@ Instead, violations are reported through Plausible, which the site already loads
   engagement: while giscus' stylesheet was blocked, the interactive events cut the reported bounce rate from 79% to 37%.
   It still starts a visit in Plausible, so a flood of violations also inflates visits/visitors — pageviews stay clean.
 
-So a broken policy in production shows up as events in the Plausible dashboard rather than only in visitors' consoles.
-Note this covers production and preview deploys only — analytics is disabled locally, and `_headers` is not served by
-the dev server anyway.
+So a broken policy in production shows up in Plausible rather than only in visitors' consoles. The events are recorded
+either way, but the dashboard lists them only once `CSP Violation` is added as a custom-event goal (Plausible site
+settings → Goals); without it, query them through the Stats API by the `directive` property (the vault's
+`plausible-blog` skill: `query` with dimension `event:props:directive`). Note this covers production and preview deploys
+only — analytics is disabled locally, and `_headers` is not served by the dev server anyway.
 
 Changing that inline snippet **changes its CSP hash** — see [Inline code hashes](#inline-code-hashes) above and
 regenerate, or `tests/analytics.test.js` will fail.

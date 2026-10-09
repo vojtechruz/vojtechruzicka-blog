@@ -47,17 +47,16 @@ passed to giscus.app).
 
 Cloudflare `_headers` notes: `*` matches across `/`, and when multiple rules match, same-named headers with **distinct
 values are appended**, not overridden (identical values are deduplicated). A joined value like
-`same-origin, cross-origin` is invalid — browsers then ignore the header and Cloudflare falls back to its edge defaults
-(observed as `Cache-Control: max-age=14400` on og-images). To replace a header set by an earlier rule, **detach it first
-with `! Header-Name`** on its own line, then set the new value. The default rule (`/*`) is `max-age=0, must-revalidate`
-— safe for HTML.
+`same-origin, cross-origin` is invalid and browsers ignore the header. To replace a header set by an earlier rule,
+**detach it first with `! Header-Name`** on its own line, then set the new value. The default rule (`/*`) is
+`max-age=0, must-revalidate` — safe for HTML.
 
-**Live TTLs can be higher than the table below.** The zone-level Cloudflare setting _Browser Cache TTL_ (dashboard →
-Caching → Configuration, default 4 hours) raises a lower `max-age` to its value, but only for the file types Cloudflare
-caches by default (scripts, images, icons — not HTML, XML or the web manifest). On 2026-10-09 `/sw.js` was served with
-`max-age=14400, must-revalidate` and `/apple-touch-icon.png` and `/favicon.svg` with `max-age=14400`, although
-`_headers` sets `0` and `3600`; HTML, feeds, the sitemap and `site.webmanifest` matched the table. Set the dashboard
-option to **Respect Existing Headers** to make `_headers` authoritative.
+**The zone's _Browser Cache TTL_ must stay on "Respect Existing Headers"** (Cloudflare dashboard → vojtechruzicka.com →
+Caching → Configuration). Its default of 4 hours raises any lower `max-age` to 4 hours for the file types Cloudflare
+caches by default (scripts, images, icons — not HTML, XML or the web manifest). Until 2026-10-09 it was on the default,
+so `/sw.js` was served with `max-age=14400` instead of `0`, and the icons and og-images with `14400` instead of `3600`
+(this was also the source of the `14400` once blamed on joined `Cache-Control` values). Since the switch every live
+value matches the table below (checked with `curl -I` on 2026-10-09).
 
 | Path                                                                            | Cache-Control                | Why                                                                                                                                        |
 | ------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
