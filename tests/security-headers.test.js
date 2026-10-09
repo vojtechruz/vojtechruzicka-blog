@@ -40,20 +40,46 @@ describe('Security headers (Content Security Policy)', () => {
     }
   });
 
-  it('allowlists every external script and iframe host used in the built site', () => {
-    const used = { 'script-src': new Set(), 'frame-src': new Set() };
+  it('allowlists every external host the built pages load resources from', () => {
+    // A post that embeds an external <img>, <video> or stylesheet would otherwise be blocked by
+    // the CSP silently, and only in production (local dev never serves _headers).
+    const used = {
+      'script-src': new Set(),
+      'frame-src': new Set(),
+      'img-src': new Set(),
+      'media-src': new Set(),
+      'style-src': new Set(),
+    };
+    const origin = (url) => /^(https?:\/\/[^/"]+)/.exec(url ?? '')?.[1];
+    const attr = (tag, name) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
     for (const file of htmlFiles) {
       const html = readFileSync(file, 'utf-8');
-      for (const [, tag, origin] of html.matchAll(/<(script|iframe)\b[^>]*\ssrc="(https?:\/\/[^/"]+)/g)) {
-        used[tag === 'script' ? 'script-src' : 'frame-src'].add(origin);
+      // Anchored to a real tag start, so escaped code samples in post content do not match
+      for (const [tag, name] of html.matchAll(/<(script|iframe|img|video|audio|source|link)\b[^>]*>/g)) {
+        const add = (directive, url) => origin(url) && used[directive].add(origin(url));
+        if (name === 'script') {
+          add('script-src', attr(tag, 'src'));
+        } else if (name === 'iframe') {
+          add('frame-src', attr(tag, 'src'));
+        } else if (name === 'img') {
+          add('img-src', attr(tag, 'src'));
+        } else if (name === 'link') {
+          if (attr(tag, 'rel') === 'stylesheet') {
+            add('style-src', attr(tag, 'href'));
+          }
+        } else {
+          // <video>/<audio>/<source>: the media itself, plus a video poster (an image)
+          add('media-src', attr(tag, 'src'));
+          add('img-src', attr(tag, 'poster'));
+        }
       }
     }
     // Sanity check that the scan sees anything at all (Plausible loads on every page).
     expect(used['script-src'].size, 'expected at least one external script in the build output').toBeGreaterThan(0);
 
     for (const [directive, origins] of Object.entries(used)) {
-      for (const origin of origins) {
-        expect(sources(directive), `built pages load ${origin}, which is missing from ${directive}`).toContain(origin);
+      for (const host of origins) {
+        expect(sources(directive), `built pages load ${host}, which is missing from ${directive}`).toContain(host);
       }
     }
   });

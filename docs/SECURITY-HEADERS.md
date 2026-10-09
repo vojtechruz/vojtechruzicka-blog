@@ -16,7 +16,37 @@ is why the hashes below are guarded by tests).
 | `Cross-Origin-Opener-Policy`   | `same-origin`                          | Isolates the browsing context group                                     |
 | `Cross-Origin-Resource-Policy` | `same-origin`                          | Public images override this per path to `cross-origin` — see CACHING.md |
 | `Permissions-Policy`           | geolocation/camera/microphone disabled | The site uses none of them                                              |
+| `Timing-Allow-Origin`          | `*`                                    | Lets RUM and WebPageTest read detailed resource timings                 |
 | `Content-Security-Policy`      | see below                              |                                                                         |
+
+`tests/security-headers.test.js` pins every value in this table except the CSP (which has its own tests below), fails if
+a header appears twice in the `/*` block (Cloudflare would comma-join the two values into an invalid one), and fails if
+a narrower rule detaches one with `! Header-Name` — only `Cross-Origin-Resource-Policy` may be swapped that way. It also
+checks the Cloudflare Pages limits of 100 rules and 2,000 characters per line, past which a rule or line is dropped
+without any build error.
+
+### Not set on purpose
+
+- **`Cross-Origin-Embedder-Policy`** — `require-corp` would block the YouTube, CodePen and giscus iframes and every
+  cross-origin resource that does not send CORP/CORS headers. The site needs no cross-origin isolation
+  (`SharedArrayBuffer`, high-resolution timers), so there is nothing to gain.
+- **`X-XSS-Protection`** — the filter it controlled is gone from every current browser; the CSP covers XSS.
+
+## Headers Cloudflare adds
+
+These show up on production responses but are **not** set in `_headers` (checked with `curl -I` on 2026-10-09):
+
+- **`Access-Control-Allow-Origin: *`** on every response. Harmless for a public static site without cookies or
+  credentials: it only lets other origins _read_ files they could fetch anyway. The `/styles/giscus-theme.css` rule
+  replaces it with `https://giscus.app`.
+- **`Report-To` / `NEL`** (group `cf-nel`, `success_fraction: 0.0`) — Cloudflare's Network Error Logging: browsers
+  report failed connections to Cloudflare, never successful ones. It is unrelated to CSP reporting (see
+  [Violation reporting](#violation-reporting)) and its reports are not visible to this site.
+- **Browser Cache TTL** — the zone-level Cloudflare setting (dashboard → Caching → Configuration) rewrites a
+  `Cache-Control: max-age` below its value for static file types (scripts, images, icons; HTML and XML are left alone).
+  With the default of 4 hours, `/sw.js` (`0` in `_headers`) and the icons (`3600`) are served with `max-age=14400`.
+  Setting it to **Respect Existing Headers** makes `_headers` authoritative. Until then the live TTLs differ from
+  docs/CACHING.md.
 
 ## HSTS and the preload list
 
@@ -55,7 +85,9 @@ every post with comments reported a `CSP Violation`.
 Everything else is `'self'` (plus `data:` for images — LQIP placeholders). There are deliberately no external fonts,
 stylesheets (except giscus' runtime `default.css`) or images; when adding a new embed or third-party script, add its
 origin to the matching directive and keep the policy on one line — the host-coverage test below fails on any external
-`script`/`iframe` source that is not allowlisted.
+source in the built HTML that is not allowlisted: `<script src>` (`script-src`), `<iframe src>` (`frame-src`),
+`<img src>` and `<video poster>` (`img-src`), `<video>`/`<audio>`/`<source src>` (`media-src`) and
+`<link rel="stylesheet" href>` (`style-src`).
 
 #### Cloudflare Web Analytics beacon
 
@@ -120,8 +152,10 @@ regenerate, or `tests/analytics.test.js` will fail.
   `connect-src`.
 - `tests/csp-violation-reporting.test.js` — the built bundle turns buffered violations into `CSP Violation` events, and
   filters extension noise, duplicates and floods.
-- `tests/security-headers.test.js` — the policy is a single line with all directives; every external `script`/`iframe`
-  host in the built HTML is allowlisted; every inline event handler in the built HTML is hash-allowlisted; `giscus.app`
-  stays in `frame-src` and `style-src`.
+- `tests/security-headers.test.js` — the policy is a single line with all directives; every external script, iframe,
+  image, media and stylesheet host in the built HTML is allowlisted; every inline event handler in the built HTML is
+  hash-allowlisted; `giscus.app` stays in `frame-src` and `style-src`; the non-CSP headers keep their values, appear
+  once and are never detached (see [Headers at a glance](#headers-at-a-glance)); the file stays within the Cloudflare
+  limits.
 
 Both suites run against `_site/`, so `npm run build` first.

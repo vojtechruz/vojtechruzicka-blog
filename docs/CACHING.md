@@ -45,12 +45,19 @@ passed to giscus.app).
 
 ## Caching policy (`src/static/_headers`)
 
-Cloudflare `_headers` notes: `*` matches across `/`, and when multiple rules match, same-named headers with
-**distinct values are appended**, not overridden (identical values are deduplicated). A joined value like
-`same-origin, cross-origin` is invalid — browsers then ignore the header and Cloudflare falls back to its edge
-defaults (observed as `Cache-Control: max-age=14400` on og-images). To replace a header set by an earlier rule,
-**detach it first with `! Header-Name`** on its own line, then set the new value. The default rule (`/*`) is
-`max-age=0, must-revalidate` — safe for HTML.
+Cloudflare `_headers` notes: `*` matches across `/`, and when multiple rules match, same-named headers with **distinct
+values are appended**, not overridden (identical values are deduplicated). A joined value like
+`same-origin, cross-origin` is invalid — browsers then ignore the header and Cloudflare falls back to its edge defaults
+(observed as `Cache-Control: max-age=14400` on og-images). To replace a header set by an earlier rule, **detach it first
+with `! Header-Name`** on its own line, then set the new value. The default rule (`/*`) is `max-age=0, must-revalidate`
+— safe for HTML.
+
+**Live TTLs can be higher than the table below.** The zone-level Cloudflare setting _Browser Cache TTL_ (dashboard →
+Caching → Configuration, default 4 hours) raises a lower `max-age` to its value, but only for the file types Cloudflare
+caches by default (scripts, images, icons — not HTML, XML or the web manifest). On 2026-10-09 `/sw.js` was served with
+`max-age=14400, must-revalidate` and `/apple-touch-icon.png` and `/favicon.svg` with `max-age=14400`, although
+`_headers` sets `0` and `3600`; HTML, feeds, the sitemap and `site.webmanifest` matched the table. Set the dashboard
+option to **Respect Existing Headers** to make `_headers` authoritative.
 
 | Path                                                                            | Cache-Control                | Why                                                                                                                                        |
 | ------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -62,13 +69,13 @@ defaults (observed as `Cache-Control: max-age=14400` on og-images). To replace a
 
 Two exceptions to note:
 
-- `/*/og-image.jpg` (per-post social share image) has a **stable URL but changing content** — a dedicated rule after
-  the `/*/*.jpg` block replaces `immutable` with `max-age=3600` (via `! Cache-Control` + new value).
-- Public images (post images, og-images, favicons, share images) carry
-  `Cross-Origin-Resource-Policy: cross-origin` (each rule detaches the inherited value first via
-  `! Cross-Origin-Resource-Policy`), replacing the site-wide `same-origin` security default. Without it,
-  browsers refuse to embed the images on other origins — which breaks browser-rendered social preview tools
-  (metatags.io) and feed readers. Server-side scrapers (Facebook, X, LinkedIn) ignore CORP either way.
+- `/*/og-image.jpg` (per-post social share image) has a **stable URL but changing content** — a dedicated rule after the
+  `/*/*.jpg` block replaces `immutable` with `max-age=3600` (via `! Cache-Control` + new value).
+- Public images (post images, og-images, favicons, share images) carry `Cross-Origin-Resource-Policy: cross-origin`
+  (each rule detaches the inherited value first via `! Cross-Origin-Resource-Policy`), replacing the site-wide
+  `same-origin` security default. Without it, browsers refuse to embed the images on other origins — which breaks
+  browser-rendered social preview tools (metatags.io) and feed readers. Server-side scrapers (Facebook, X, LinkedIn)
+  ignore CORP either way.
 
 Never add an extension-based catch-all like `/*.css` or `/*.svg` with `immutable` — it matches root-level files with
 stable URLs and reintroduces the original bug. `tests/asset-version.test.js` guards this: it parses the built `_headers`
