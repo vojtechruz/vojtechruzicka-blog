@@ -59,8 +59,22 @@ function reportCspViolations() {
   buffered.forEach(report);
 }
 
+/**
+ * On the 404 page (src/pages/404.njk), report which URL was not found. Cloudflare Pages serves
+ * 404.html under the requested URL, so location.pathname is the missing path: old Gatsby assets,
+ * mistyped topic slugs, bot probes. Plausible counts the pageview either way; the event makes the
+ * 404s filterable (goal `404`, property `path`) instead of hiding among real pages.
+ */
+function reportNotFound() {
+  if (document.querySelector('[data-not-found]')) {
+    // Non-interactive like CSP Violation: landing on a 404 is not something the visitor did on the page
+    trackAnalyticsEvent('404', { path: location.pathname }, { interactive: false });
+  }
+}
+
 (() => {
   reportCspViolations();
+  reportNotFound();
 
   // Global click listener for multiple trackers
   document.addEventListener('click', (e) => {
