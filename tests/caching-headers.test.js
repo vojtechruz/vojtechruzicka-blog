@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
-import { SITE_DIR } from './helpers.js';
+import { SITE_DIR, parseHeaders } from './helpers.js';
 
 // Cache-Control policy in src/static/_headers (Cloudflare Pages format), as shipped
 // in _site/_headers. The immutable-only-for-hashed-assets rule is covered by
@@ -9,25 +9,6 @@ import { SITE_DIR } from './helpers.js';
 // kill-switch service worker in browser caches.
 
 const HEADERS_PATH = `${SITE_DIR}/_headers`;
-
-/** Parse the file into { path: [header lines] }, ignoring comments. */
-function parseHeaders(text) {
-  const rules = {};
-  let current = null;
-  for (const raw of text.split(/\r?\n/)) {
-    const line = raw.replace(/#.*$/, '').trimEnd();
-    if (!line.trim()) {
-      continue;
-    }
-    if (!/^\s/.test(line)) {
-      current = line.trim();
-      rules[current] = rules[current] || [];
-    } else if (current) {
-      rules[current].push(line.trim());
-    }
-  }
-  return rules;
-}
 
 const rules = existsSync(HEADERS_PATH) ? parseHeaders(readFileSync(HEADERS_PATH, 'utf-8')) : null;
 const cacheControl = (path) =>

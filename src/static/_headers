@@ -8,7 +8,7 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Resource-Policy: same-origin
-  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), serial=(), hid=(), midi=()
   Cross-Origin-Opener-Policy: same-origin
 
   # CSP must be a SINGLE line — Cloudflare's _headers parser drops multiline values
