@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import pluginTOC from 'eleventy-plugin-nesting-toc';
 import { loadPage, loadPageHtml, getAllPosts, SITE_DIR } from './helpers.js';
 import registerTextFilters from '../config/filters/text.js';
@@ -348,7 +348,7 @@ describe('toc-scrollspy.js behaviour', () => {
     addSpy.mockRestore();
   });
 
-  it('takes over TOC clicks: prevents default, highlights the target and scrolls with the anchor offset', async () => {
+  it('leaves the scrolling to the browser and highlights the clicked target at once', async () => {
     const headings = [
       { id: 'alpha', top: -40 },
       { id: 'beta', top: 900 },
@@ -359,19 +359,18 @@ describe('toc-scrollspy.js behaviour', () => {
     const event = new window.MouseEvent('click', { bubbles: true, cancelable: true });
     document.querySelector('a[href="#beta"]').dispatchEvent(event);
 
-    expect(event.defaultPrevented).toBe(true);
+    // Native fragment navigation: offset via scroll-margin-top, smoothness via scroll-behavior,
+    // a history entry and :target come with it
+    expect(event.defaultPrevented).toBe(false);
+    expect(scrollToMock).not.toHaveBeenCalled();
     expect(activeIds()).toEqual(['beta']);
-    // scrollY (200) + rect.top (900) - offset (0, no CSS var in jsdom)
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 1100, behavior: 'smooth' });
   });
 
-  it('moves focus to the clicked section and puts its fragment in the URL without a history entry', async () => {
+  it('moves focus to the clicked section', async () => {
     const headings = [
       { id: 'alpha', top: -40 },
       { id: 'beta', top: 900 },
     ];
-    window.history.replaceState(null, '', '/post/');
-    const lengthBefore = window.history.length;
     await renderAndRun(headings);
 
     const link = document.querySelector('a[href="#beta"]');
@@ -381,23 +380,14 @@ describe('toc-scrollspy.js behaviour', () => {
     const heading = document.getElementById('beta');
     expect(document.activeElement).toBe(heading);
     expect(heading.getAttribute('tabindex')).toBe('-1');
-    expect(window.location.pathname + window.location.hash).toBe('/post/#beta');
-    expect(window.history.length).toBe(lengthBefore);
   });
 
-  it('scrolls instantly when the reader prefers reduced motion', async () => {
-    vi.stubGlobal('matchMedia', (query) => ({ matches: query === '(prefers-reduced-motion: reduce)' }));
-    const headings = [
-      { id: 'alpha', top: -40 },
-      { id: 'beta', top: 900 },
-    ];
-    await renderAndRun(headings);
+  it('smooth-scrolls in-page links in CSS and turns it off for reduced motion', () => {
+    const global = readFileSync('src/styles/base/_global.scss', 'utf-8');
+    const a11y = readFileSync('src/styles/base/_accessibility.scss', 'utf-8');
 
-    document
-      .querySelector('a[href="#beta"]')
-      .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
-
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 900, behavior: 'auto' });
+    expect(global).toMatch(/html\s*\{[^}]*scroll-behavior:\s*smooth/);
+    expect(a11y).toMatch(/prefers-reduced-motion: reduce[\s\S]*scroll-behavior:\s*auto !important/);
   });
 
   it('suspends the scrollspy after a click and resumes it on a real user scroll', async () => {
@@ -436,6 +426,94 @@ describe('toc-scrollspy.js behaviour', () => {
     expect(activeIds()).toEqual(['beta']);
 
     window.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'PageDown' }));
+    expect(activeIds()).toEqual(['alpha']);
+  });
+
+  it('releases the lock when the click scroll ends, so any later scroll moves the highlight on', async () => {
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    await renderAndRun(headings);
+
+    document
+      .querySelector('a[href="#beta"]')
+      .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+    window.dispatchEvent(new window.Event('scroll'));
+    window.dispatchEvent(new window.Event('scrollend'));
+
+    // Unlocking alone keeps the clicked item (a short last section may never reach the anchor line)
+    expect(activeIds()).toEqual(['beta']);
+
+    // A scroll without wheel/touch/keys (scrollbar drag, in-text link, Back) now updates the spy
+    window.dispatchEvent(new window.Event('scroll'));
+    expect(activeIds()).toEqual(['alpha']);
+  });
+
+  it('releases the lock once scrolling stays idle, for browsers without scrollend', async () => {
+    // Only timeouts: faking requestAnimationFrame would defer the spy's stubbed frames
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    try {
+      const headings = [
+        { id: 'alpha', top: -40 },
+        { id: 'beta', top: 900 },
+      ];
+      await renderAndRun(headings);
+
+      document
+        .querySelector('a[href="#beta"]')
+        .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+      // Still scrolling: every scroll event pushes the unlock further away
+      for (let i = 0; i < 5; i++) {
+        vi.advanceTimersByTime(100);
+        window.dispatchEvent(new window.Event('scroll'));
+      }
+      expect(activeIds()).toEqual(['beta']);
+
+      vi.advanceTimersByTime(150);
+      window.dispatchEvent(new window.Event('scroll'));
+      expect(activeIds()).toEqual(['alpha']);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('releases the lock even when the click caused no scroll at all', async () => {
+    // Only timeouts: faking requestAnimationFrame would defer the spy's stubbed frames
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    try {
+      const headings = [
+        { id: 'alpha', top: -40 },
+        { id: 'beta', top: 900 },
+      ];
+      await renderAndRun(headings);
+
+      document
+        .querySelector('a[href="#beta"]')
+        .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+      vi.advanceTimersByTime(500);
+
+      window.dispatchEvent(new window.Event('scroll'));
+      expect(activeIds()).toEqual(['alpha']);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('leaves modified and non-primary clicks (new tab, new window) to the browser', async () => {
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    await renderAndRun(headings);
+
+    for (const init of [{ ctrlKey: true }, { metaKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }]) {
+      const event = new window.MouseEvent('click', { bubbles: true, cancelable: true, ...init });
+      document.querySelector('a[href="#beta"]').dispatchEvent(event);
+
+      expect(event.defaultPrevented, JSON.stringify(init)).toBe(false);
+    }
+    expect(scrollToMock).not.toHaveBeenCalled();
     expect(activeIds()).toEqual(['alpha']);
   });
 

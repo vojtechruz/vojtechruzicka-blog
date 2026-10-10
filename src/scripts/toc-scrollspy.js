@@ -12,6 +12,27 @@
   // When true, scroll-spy logic is suspended (e.g. during TOC-click initiated scrolling)
   let suppressAutoSpy = false;
 
+  // A TOC click locks the spy until the scroll it started has finished: unlocked on `scrollend`,
+  // or once no scroll event arrived for SCROLL_IDLE_MS (browsers without `scrollend`), or after
+  // UNLOCK_START_MS when the click caused no scroll at all (target already in place).
+  const SCROLL_IDLE_MS = 150;
+  const UNLOCK_START_MS = 500;
+  let unlockTimer = null;
+
+  function scheduleUnlock(ms) {
+    clearTimeout(unlockTimer);
+    unlockTimer = setTimeout(unlockSpy, ms);
+  }
+
+  // Release the lock without re-evaluating: the clicked item stays highlighted until the next
+  // scroll of any kind (scrollbar drag, autoscroll, in-text link, back button...) moves the spy on.
+  // Re-evaluating here would steal the highlight from a short section near the end of the page,
+  // whose heading cannot scroll up to the anchor line.
+  function unlockSpy() {
+    clearTimeout(unlockTimer);
+    suppressAutoSpy = false;
+  }
+
   // Detect actual scrollable container (might be nav.toc or a parent with overflow-y)
   let scrollEl = toc;
   while (scrollEl && scrollEl !== document.body) {
@@ -164,7 +185,8 @@
   let ticking = false;
   function onScroll() {
     if (suppressAutoSpy) {
-      // completely ignore scroll events while locked by click
+      // ignore the click-initiated scroll, but keep the lock only while it is still moving
+      scheduleUnlock(SCROLL_IDLE_MS);
       return;
     }
     if (ticking) {
@@ -223,17 +245,24 @@
     onScroll();
   });
 
+  // The click-initiated scroll has settled
+  window.addEventListener('scrollend', () => {
+    if (suppressAutoSpy) {
+      unlockSpy();
+    }
+  });
+
   // Helper: resume scroll-spy after a real user scroll interaction
   function resumeSpyFromUserInteraction() {
     if (!suppressAutoSpy) {
       return;
     }
 
-    suppressAutoSpy = false;
+    unlockSpy();
     onScroll();
   }
 
-  // Mouse wheel, touch scroll, and keyboard navigation all re-enable scroll-spy
+  // Mouse wheel, touch scroll, and keyboard navigation interrupt the click scroll: resume at once
   window.addEventListener('wheel', resumeSpyFromUserInteraction, { passive: true });
   window.addEventListener('touchstart', resumeSpyFromUserInteraction, { passive: true });
   window.addEventListener('keydown', (e) => {
@@ -243,8 +272,17 @@
     }
   });
 
-  // Clicks in the TOC: lock scroll-spy, highlight clicked item, scroll page with correct offset
+  // Clicks in the TOC: highlight the clicked item at once and lock the spy while the page scrolls.
+  // The scrolling itself is the browser's ordinary fragment navigation: scroll-margin-top keeps the
+  // heading clear of the header, `scroll-behavior` makes it smooth (instant with reduced motion),
+  // the heading becomes :target and Back returns to where the reader was.
   toc.addEventListener('click', (e) => {
+    // Ctrl/Cmd/Shift/Alt-click (new tab, new window, download) and non-primary buttons stay with
+    // the browser untouched.
+    if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+      return;
+    }
+
     const a = e.target.closest("a[href^='#']");
 
     if (!a) {
@@ -258,34 +296,16 @@
       return;
     }
 
-    // Take over scrolling so browser default doesn't fight with our offset logic
-    e.preventDefault();
-
     suppressAutoSpy = true;
-    setActive(id); // immediately highlight clicked item and do NOT let scroll-spy override it
+    scheduleUnlock(UNLOCK_START_MS);
+    setActive(id);
 
+    // Fragment navigation does not move focus; put it on the section so the next Tab continues in
+    // the content rather than in the sidebar.
     const targetHeading = document.getElementById(id);
-    if (targetHeading) {
-      const rect = targetHeading.getBoundingClientRect();
-      const absoluteY = window.scrollY + rect.top - offset;
-
-      // The CSS reduced-motion override (scroll-behavior: auto) does not reach a scripted scroll
-      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({
-        top: absoluteY,
-        behavior: reduceMotion ? 'auto' : 'smooth',
-      });
-
-      // Do what the default link action would have: put the fragment in the URL (replaceState, so
-      // hopping through the TOC does not pile up history entries) and move focus to the section,
-      // so the next Tab continues in the content rather than in the sidebar.
-      window.history.replaceState(null, '', href);
-      if (!targetHeading.hasAttribute('tabindex')) {
-        targetHeading.setAttribute('tabindex', '-1');
-      }
-      targetHeading.focus({ preventScroll: true });
+    if (!targetHeading.hasAttribute('tabindex')) {
+      targetHeading.setAttribute('tabindex', '-1');
     }
-    // scroll-spy will be re-enabled only when user scrolls (wheel/touch/keys),
-    // not on the programmatic scroll we just triggered.
+    targetHeading.focus({ preventScroll: true });
   });
 })();

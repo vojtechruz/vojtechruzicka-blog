@@ -1,6 +1,12 @@
 @use '../variables';
 @use '../utilities';
 
+// In-page links (TOC, heading permalinks, links within a post) glide to their target; headings keep
+// clear of the sticky header via scroll-margin-top. Reduced motion turns this off (_accessibility.scss).
+html {
+  scroll-behavior: smooth;
+}
+
 ::selection {
   background: var(--color-selection-bg);
   color: var(--color-selection-text);
