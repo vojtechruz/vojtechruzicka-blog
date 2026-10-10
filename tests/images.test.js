@@ -12,7 +12,7 @@ const POSTS_WITH_IMAGES = ['/css-position/', '/chrome-audit-lighthouse/', '/comm
 /**
  * Expectations are derived from the pipeline configuration (config/plugins/image.js),
  * not from the build output: with no env override the full production defaults
- * (avif + webp, four widths) are required, so silently dropping a format or width from
+ * (avif + webp, every configured width) are required, so silently dropping a format or width from
  * the defaults fails the tests. CI sets ELEVENTY_IMAGE_FORMATS / ELEVENTY_IMAGE_WIDTHS
  * at job level, so its lean build and this test see the same overrides.
  */

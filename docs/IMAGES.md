@@ -6,9 +6,10 @@ How build-time image processing works and how the persistent cache keeps builds 
 ## The pipeline
 
 Every image referenced from a post goes through the eleventy-img transform plugin, which generates responsive variants:
-**formats** `avif`, `webp` and the original format ("auto") × **widths** 400, 800, 1200 and the original size ("auto").
-With ~380 source images that is roughly **4 800 encoded files** per clean build — and AVIF encoding alone dominates the
-build time (it is 5–10× slower than webp).
+**formats** `avif`, `webp` and the original format ("auto") × **widths** 400, 800, 1200, 1600 and the original size
+("auto"); eleventy-img skips widths larger than the original. 1600 exists for DPR 2 screens (desktop, iPad), which would
+otherwise jump from 1200 to the full original (up to 4824 px). With ~380 source images that is roughly **5 100 encoded
+files** per clean build — and AVIF encoding alone dominates the build time (it is 5–10× slower than webp).
 
 Generated filenames follow `config/plugins/image.js` → `filenameFormat`:
 
@@ -95,7 +96,7 @@ the full defaults** — no env vars are set there.
 
 `tests/images.test.js` derives its expected `<source>` formats and `srcset` widths from the same resolved configuration
 (`resolveImageFormats()` / `resolveImageWidths()` exported by the plugin), not from whatever the build emitted. With no
-override that means AVIF + WebP and all four widths are **required**, so a change to the defaults fails the tests
+override that means AVIF + WebP and all configured widths are **required**, so a change to the defaults fails the tests
 locally and on Cloudflare; in CI the variables must stay at job level so the test step sees the same lean variant as the
 build step. Run the tests against a `_site/` built with the same env as the test process.
 

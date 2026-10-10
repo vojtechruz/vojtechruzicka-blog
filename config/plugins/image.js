@@ -22,7 +22,7 @@ function fromEnvList(name, defaults) {
 export const DEFAULT_IMAGE_FORMATS = ['avif', 'webp', 'auto'];
 
 /** Output image widths; 'auto' is the original size. */
-export const DEFAULT_IMAGE_WIDTHS = [400, 800, 1200, 'auto'];
+export const DEFAULT_IMAGE_WIDTHS = [400, 800, 1200, 1600, 'auto'];
 
 /**
  * The formats/widths a build with the current environment produces. Exported so
