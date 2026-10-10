@@ -35,8 +35,12 @@ describe('Table of contents – rendered output', () => {
     const nav = $('nav.toc');
 
     expect(nav.length).toBe(1);
-    expect(nav.attr('aria-label')).toBe('Table of contents');
-    expect(nav.find('.toc-heading').text().trim()).toBe('Table of contents');
+    // Named by its visible heading, so the landmark name and the text cannot drift apart
+    const labelId = nav.attr('aria-labelledby');
+    expect(nav.attr('aria-label')).toBeUndefined();
+    expect(labelId).toBeTruthy();
+    expect($(`#${labelId}`).length).toBe(1);
+    expect(nav.find(`#${labelId}.toc-heading`).text().trim()).toBe('Table of contents');
     expect(nav.find('> .toc-list > ol').length).toBe(1);
     expect(nav.find('> .toc-list > ol > li').length).toBeGreaterThan(1);
   });

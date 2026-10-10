@@ -63,6 +63,8 @@ $toc-indent-step: 1.25rem;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
 
   ol {
     @include utilities.reset-list;
@@ -91,24 +93,6 @@ $toc-indent-step: 1.25rem;
 
 .toc-list {
   padding-inline: 3px;
-  li a {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 100%;
-    display: block;
-    border-radius: var(--radius-xxs);
-    transition:
-      background-color 0.15s ease,
-      color 0.15s ease;
-    padding-inline: var(--gap-small);
-    padding-block-end: 3px;
-  }
-}
-
-.toc {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
 }
 
 .series-toc-divider {
@@ -119,13 +103,17 @@ $toc-indent-step: 1.25rem;
 }
 
 .toc-list a {
-  text-decoration: none;
   display: block;
-  padding: 4px 6px;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 4px var(--gap-small) 3px;
+  border-radius: var(--radius-xxs);
   font-size: 0.95rem;
   color: var(--color-text-muted);
   opacity: 0.9;
-
+  text-decoration: none;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;

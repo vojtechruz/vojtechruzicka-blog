@@ -132,8 +132,8 @@
 
 {% set tocHtml = content | toc %}
 {% if tocHtml and (tocHtml | trim) %}
-<nav class="toc" aria-label="Table of contents">
-  <p class="toc-heading">Table of contents</p>
+<nav class="toc" aria-labelledby="toc-heading">
+  <p class="toc-heading" id="toc-heading">Table of contents</p>
   <div class="toc-list">
     {{ tocHtml
     | stripNav
