@@ -29,7 +29,7 @@ The question or a command for the script, e.g. `overview --period 30d`, `breakdo
    ```
 
    It resolves the vault from its own location, so it works from the blog's working directory. The API key is in
-   `~/.plausible/config.json` (shared with `/sync-traffic`). If the script reports a missing key, tell the user to
+   `<Dropbox>/.secrets/plausible.json` (shared with `/sync-traffic`). If the script reports a missing key, tell the user to
    create the file and stop. Never ask for the key in chat.
 
 4. **Answer** with the numbers that matter for the question, not the raw dump. When the data points to a change in the

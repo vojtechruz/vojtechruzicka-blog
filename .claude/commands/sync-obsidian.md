@@ -15,7 +15,8 @@ Sync current blog post metadata into the Obsidian "Blog Articles" notes in the v
    - The script uses a local venv at `_tools/obsidian/.venv`. On Windows use
      `_tools/obsidian/.venv/Scripts/python`, on Mac/Linux use `_tools/obsidian/.venv/bin/python`. Use
      PowerShell `Test-Path` to check which exists.
-   - If neither exists, create the venv: `python -m venv _tools/obsidian/.venv`, then install:
+   - If neither exists, create the venv: `python -m venv _tools/obsidian/.venv` (`python3` on Linux), then install
+     (`bin/pip` on Linux):
      `_tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt`
    - If the venv exists but `python-frontmatter` is not installed (check with
      `_tools/obsidian/.venv/Scripts/pip show python-frontmatter`), run the install step.

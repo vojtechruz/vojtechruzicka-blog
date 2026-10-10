@@ -52,6 +52,9 @@ def find_vault() -> Path:
 # The vault root. Override with OBSIDIAN_VAULT.
 VAULT_ROOT = find_vault()
 
+# API keys shared by every computer: <Dropbox>/.secrets, next to the vault but outside any git repo.
+SECRETS_DIR = Path(os.environ.get("BLOG_SECRETS_DIR") or VAULT_ROOT.parent / ".secrets")
+
 BLOG_DIR = VAULT_ROOT / "Oblasti" / "Blog"
 
 

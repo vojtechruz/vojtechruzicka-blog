@@ -5,8 +5,9 @@ run the AI idea/post review workflow. Everything operates on plain markdown
 files in the vault — there is **no API and no auth token**.
 
 These scripts back the `/sync-obsidian`, `/sync-traffic`, `/review-ideas`, `/review-posts`
-and `/suggest-next` slash commands, but can also be run by hand. `/plausible` uses only
-`config.py` to find the vault and then runs the vault's `plausible-blog` skill.
+and `/suggest-next` slash commands, but can also be run by hand. `/plausible` and
+`/search-console` use only `config.py` to find the vault and then run the vault's
+`plausible-blog` and `search-console` skills.
 
 ## Vault layout
 
@@ -33,6 +34,7 @@ normally don't need a `.env` at all.
 ```bash
 python -m venv _tools/obsidian/.venv
 _tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt   # Windows
+_tools/obsidian/.venv/bin/pip install -r _tools/obsidian/requirements.txt       # Linux/Mac (python3 -m venv)
 ```
 
 ## Scripts
@@ -43,7 +45,7 @@ _tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt   
 | `fetch_ideas.py [--posts-dir PATH]` | Emit JSON of ideas + learning list (+ existing posts) for the review step. Each idea's `id` is its note path. |
 | `push_idea_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Feedback` callout + `AI Suggested Priority` / `AI Expected Effort` frontmatter into each idea note. |
 | `write_post_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Review` callout + `AI Update Priority` frontmatter into the article note matching each `slug`. |
-| `sync_traffic.py [--months N] [--dry-run]` | Write Plausible pageviews into article notes: `Views 6mo` frontmatter + a `# Traffic` callout with monthly numbers. Needs a Plausible Stats API key in `~/.plausible/config.json` (the only script that talks to an API). |
+| `sync_traffic.py [--months N] [--dry-run]` | Write Plausible pageviews into article notes: `Views 6mo` frontmatter + a `# Traffic` callout with monthly numbers. Needs a Plausible Stats API key in `<Dropbox>/.secrets/plausible.json` (the only script that talks to an API). |
 | `summarize_reviews.py` | Parse the AI Feedback callouts across all idea notes into compact JSON for `suggest-next`. |
 
 Shared helpers live in `config.py` (paths) and `vault_reviews.py` (frontmatter

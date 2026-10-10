@@ -9,9 +9,9 @@ Refresh Plausible traffic in the Obsidian "Blog Articles" notes.
 ## Steps
 
 1. **Check dependencies**
-   - Same venv as `/sync-obsidian`: `_tools/obsidian/.venv/Scripts/python` (create it per that command if
-     missing).
-   - Needs a Plausible **Stats API** key in `~/.plausible/config.json`
+   - Same venv as `/sync-obsidian`: `_tools/obsidian/.venv/Scripts/python` on Windows, `.venv/bin/python` on
+     Linux/Mac (create it per that command if missing).
+   - Needs a Plausible **Stats API** key in `<Dropbox>/.secrets/plausible.json`
      (`{"api_key": "...", "site_id": "vojtechruzicka.com"}`), shared with the vault's `plausible-blog`
      skill. If the script exits with "Missing Plausible API key", tell the user to create it and stop.
      Never ask for the key in chat.
