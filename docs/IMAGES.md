@@ -16,6 +16,12 @@ Generated filenames follow `config/plugins/image.js` → `filenameFormat`:
 <sanitized-name>-<content-hash>-<width>.<format>     e.g. featured-48QChAtSZE-800.webp
 ```
 
+The `<img>` fallback `src` points at the **largest** variant, not the smallest eleventy-img writes there:
+`config/html-transform/largest-img-src-transform.js` rewrites it to the widest `srcset` candidate. Browsers pick from
+`srcset` and never fetch `src`, but Google Images indexes `src`, so the smallest variant offered crawlers 400px
+thumbnails of 2600px screenshots. Image search impressions fell ~85% within a week of the Eleventy launch (end of April
+2026); this was one suspected cause, alongside every image URL changing and the Gatsby `/static/…` URLs answering 404.
+
 The `<content-hash>` (`id`) is computed from the **source image contents plus the processing options**. Verified
 empirically: writing two different images to the same path produces two different hashes. This property is what makes
 caching safe (see below).

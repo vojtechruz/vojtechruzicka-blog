@@ -137,6 +137,19 @@ describe('Responsive image pipeline', () => {
       }
     });
 
+    it('points the <img> fallback src at the largest srcset candidate, which crawlers index', () => {
+      // eleventy-img writes the smallest width into src; largest-img-src-transform.js swaps it.
+      for (const postPath of POSTS_WITH_IMAGES) {
+        const $ = loadPage(postPath);
+
+        for (const { $img } of collectPictures($, `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`)) {
+          const candidates = parseSrcset($img.attr('srcset'));
+          const largest = candidates.reduce((a, b) => (b.width > a.width ? b : a));
+          expect($img.attr('src'), `src is not the largest variant in ${postPath}`).toBe(largest.url);
+        }
+      }
+    });
+
     it('generates a matching variant of each source format for the same image', () => {
       const $ = loadPage('/css-position/');
       const { $pic, $img } = collectPictures($, IN_POST_SELECTOR)[0];

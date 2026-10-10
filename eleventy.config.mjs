@@ -17,6 +17,7 @@ import registerSitemapFilters from "./config/filters/sitemap.js";
 import registerShortcodes from "./config/shortcodes.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
+import { largestImgSrcTransform } from "./config/html-transform/largest-img-src-transform.js";
 import { mermaidTransform } from "./config/html-transform/mermaid-transform.js";
 import { wrapPicturesTransform } from "./config/html-transform/wrap-pictures-transform.js";
 import registerMarkdownPlugin from "./config/plugins/markdown.js";
@@ -76,6 +77,9 @@ export default async function (eleventyConfig) {
   eleventyConfig.addTransform("mermaid-svg", mermaidTransform);
 
   eleventyConfig.addTransform("lqip-svg", lqipSvgTransform);
+
+  // Point responsive <img src> at the largest srcset candidate, which is what crawlers index
+  eleventyConfig.addTransform("largest-img-src", largestImgSrcTransform);
 
   // Wrap <picture> in a div.image-wrapper (run after LQIP transform)
   eleventyConfig.addTransform("wrap-pictures", wrapPicturesTransform);
