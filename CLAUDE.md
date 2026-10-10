@@ -111,10 +111,10 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
    case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags
    need explicit lowercase mappings. Guarded by `tests/redirects.test.js`; details in docs/REDIRECTS.md.
 10. `src/sitemap.xml.njk` lists exactly the built pages whose computed `isIndexable` flag is true (the same flag
-    `components/robots-meta.njk` uses, so noindex pages such as archived posts and `/archive/` can never be listed).
-    `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for posts, the newest
-    listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on Cloudflare equals
-    the deploy time. Guarded by `tests/sitemap.test.js`; details in docs/SITEMAP.md.
+    `components/robots-meta.njk` uses, so noindex pages such as archived posts, `/archive/` and `/search/` can never
+    be listed). `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for
+    posts, the newest listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on
+    Cloudflare equals the deploy time. Guarded by `tests/sitemap.test.js`; details in docs/SITEMAP.md.
 11. Print styles (`src/styles/base/_print.scss`) are imported **last** in `main.scss`, swap the dark-only palette for a
     light one, hide interactive chrome, print link targets and replace embeds with their URL (the `codepen`, `youtube`
     and `video` shortcodes emit `data-print-url` for that). Guarded by `tests/print.test.js` (Playwright, emulated

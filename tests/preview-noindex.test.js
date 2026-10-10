@@ -62,6 +62,10 @@ describe('Robots directives', () => {
       expect(isIndexable({ page: { url: '/archive/old-post/' }, archivedStatus: 'archived' })).toBe(false);
       expect(isIndexable({ page: { url: '/archive/' } })).toBe(false);
     });
+
+    it('lets a page opt out with noindex in its frontmatter', () => {
+      expect(isIndexable({ page: { url: '/search/' }, noindex: true })).toBe(false);
+    });
   });
 
   describe('Per environment (component)', () => {
@@ -92,8 +96,8 @@ describe('Robots directives', () => {
       }
     });
 
-    it('still marks archived pages noindex, follow', () => {
-      for (const path of ['/archive/', '/archive/chrome-audit-lighthouse-2026-05/']) {
+    it('still marks archived pages and the search page noindex, follow', () => {
+      for (const path of ['/archive/', '/archive/chrome-audit-lighthouse-2026-05/', '/search/']) {
         const $ = loadPage(path);
 
         expect(headRobotsDirectives($), `${path} should stay noindex, follow`).toEqual(['noindex, follow']);

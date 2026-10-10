@@ -211,9 +211,11 @@ export default {
   // Single source of truth for "may search engines index this page". Drives both the robots meta
   // (components/robots-meta.njk) and sitemap membership (src/sitemap.xml.njk) so the two can never
   // disagree. Archived posts and the archive listing are noindex — their canonical points at the
-  // superseding article. The preview-deploy noindex is an environment override layered on top in
-  // the robots component, not a property of the page.
-  isIndexable: (d) => !d.archivedStatus && getPageKind(d).kind !== 'archive',
+  // superseding article. A page can also opt out with `noindex: true` in its frontmatter (the
+  // /search/ page: an empty search form is a thin page Google discovers but will not index).
+  // The preview-deploy noindex is an environment override layered on top in the robots component,
+  // not a property of the page.
+  isIndexable: (d) => !d.noindex && !d.archivedStatus && getPageKind(d).kind !== 'archive',
 
   // Reverse lookup: which archived posts point to this page via supersededBy.
   // Uses a pre-built map (historicalVersionsMap) to avoid accessing collections.all,

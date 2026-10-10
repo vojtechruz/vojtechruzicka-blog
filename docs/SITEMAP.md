@@ -14,11 +14,12 @@ excludes:
 | Excluded                        | Why                                                                                |
 | ------------------------------- | ---------------------------------------------------------------------------------- |
 | Archived posts and `/archive/`  | `noindex, follow`; their canonical points at the superseding article               |
+| `/search/`                      | `noindex: true` in its frontmatter; an empty search form is a thin page            |
 | Drafts                          | `config/drafts.js` drops them before they reach any collection (production builds) |
 | `/404.html`, feeds, the sitemap | `eleventyExcludeFromCollections: true` in their frontmatter                        |
 
 Everything else is in: posts, the home page **and its pagination** (`/pages/N/`, enabled by `addAllPagesToCollections`
-in `src/pages/index.njk`), topic pages, series pages, `/topics/`, `/series/`, `/about/` and `/search/`.
+in `src/pages/index.njk`), topic pages, series pages, `/topics/`, `/series/` and `/about/`.
 
 The preview-deploy `noindex, nofollow` is an environment override applied in the robots component only. A preview build
 therefore still emits a full sitemap with production URLs; that is harmless because preview `robots.txt` also points at
@@ -38,7 +39,7 @@ clones the repository fresh for every deploy, so a naive `page.date` would stamp
 | home, `/pages/N/`, `/topics/`, `/series/` | newest post `lastmod` site-wide                            |
 | topic page                                | newest `lastmod` among the posts carrying that topic       |
 | series page                               | newest `lastmod` among the posts in `seriesMetadata.posts` |
-| anything else (`/about/`, `/search/`)     | omitted — the element is optional and nothing tracks them  |
+| anything else (`/about/`)                 | omitted — the element is optional and nothing tracks them  |
 
 `changefreq` and `priority` are deliberately absent; Google ignores both.
 
@@ -56,7 +57,7 @@ frontmatter: a Nunjucks comment above it would emit a blank line and make the do
 
 `tests/sitemap.test.js` parses the built file as XML and checks, among other things, that the set of listed URLs equals
 the set of built `index.html` pages without a `noindex` robots meta, that every `lastmod` follows the table above, and
-that `/about/` and `/search/` carry none. `getSitemapLastmod` has unit tests in the same file.
+that `/about/` carries none and `/search/` is left out. `getSitemapLastmod` has unit tests in the same file.
 `tests/preview-noindex.test.js` covers `isIndexable` and the robots component; `tests/robots.test.js`,
 `tests/redirects.test.js` and `tests/caching-headers.test.js` cover the surrounding wiring.
 
