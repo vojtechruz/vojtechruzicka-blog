@@ -159,6 +159,47 @@ describe('Table of contents – rendered output', () => {
   });
 });
 
+describe('Table of contents – collapsed copy for narrow screens', () => {
+  it('opens every post that has a sidebar TOC with the same links, collapsed', () => {
+    for (const { frontmatter } of getAllPosts().filter((p) => !p.frontmatter.draftStatus && p.frontmatter.path)) {
+      const $ = loadPage(frontmatter.path);
+      const sidebarLinks = $('nav.toc .toc-list a')
+        .map((_, el) => $(el).attr('href'))
+        .get();
+      const mobile = $('article nav.toc-mobile');
+
+      expect(mobile.length, `${frontmatter.path}: mobile TOC presence should follow the sidebar TOC`).toBe(
+        sidebarLinks.length > 0 ? 1 : 0,
+      );
+      if (sidebarLinks.length) {
+        const mobileLinks = mobile
+          .find('.toc-list a')
+          .map((_, el) => $(el).attr('href'))
+          .get();
+        expect(mobileLinks, frontmatter.path).toEqual(sidebarLinks);
+        expect(mobile.find('details').attr('open'), `${frontmatter.path}: should start collapsed`).toBeUndefined();
+      }
+    }
+  });
+
+  // Both copies are in the DOM and only CSS decides which one shows; renderer-less checks (axe in
+  // jsdom) see both, so the landmark names must differ.
+  it('shows the same heading as the sidebar, under a distinct landmark name, out of the search index', () => {
+    const $ = loadPage('/css-flexbox/');
+    const mobile = $('nav.toc-mobile');
+    const visible = mobile.find('summary').text().trim();
+    const name = mobile.attr('aria-label');
+
+    expect(visible).toBe($('#toc-heading').text().trim());
+    expect(name, 'landmark names must differ').not.toBe($('nav.toc').attr('aria-label') || visible);
+    // WCAG 2.5.3 Label in Name: the accessible name contains the visible text
+    expect(name.startsWith(visible), `"${name}" should start with "${visible}"`).toBe(true);
+    expect(mobile.attr('data-pagefind-ignore')).toBeDefined();
+    // Not nav.toc: the scrollspy (querySelector('nav.toc')) must keep to the sidebar copy
+    expect(mobile.hasClass('toc')).toBe(false);
+  });
+});
+
 describe('Table of contents – empty-TOC guard', () => {
   const toc = getFilters(pluginTOC.configFunction, { tags: ['h2', 'h3'] }).get('toc');
   const stripNav = getFilters(registerTextFilters).get('stripNav');

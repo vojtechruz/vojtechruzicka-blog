@@ -69,6 +69,22 @@
 
     <hr class="post-header-divider" />
 
+    {# Below 1024 px the sidebar (and its TOC) is hidden: a collapsed copy of the TOC opens the article.
+       Not nav.toc, so the scrollspy keeps to the sidebar one; ignored by Pagefind (heading text twice).
+       Both copies are in the DOM, so the landmark names differ; the aria-label still starts with the
+       visible summary text (WCAG 2.5.3 Label in Name). #}
+    {% set mobileTocHtml = content | toc %}
+    {% if mobileTocHtml and (mobileTocHtml | trim) %}
+    <nav class="toc-mobile" aria-label="Table of contents (collapsible)" data-pagefind-ignore>
+      <details>
+        <summary>Table of contents</summary>
+        <div class="toc-list">
+          {{ mobileTocHtml | stripNav | safe }}
+        </div>
+      </details>
+    </nav>
+    {% endif %}
+
     {{ content | safe }}
 
     <hr class="divider">
@@ -77,6 +93,8 @@
   </article>
 
   {% include "components/social-share.njk" %}
+
+  {% include "components/series-nav.njk" %}
 
   {% if not series and not archivedStatus %}
     {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}

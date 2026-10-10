@@ -197,6 +197,103 @@ describe('Series TOC in built post pages', () => {
   });
 });
 
+describe('Previous/next part navigation in built post pages', () => {
+  /** Published series posts in series order, as the template sees them (drafts are not built). */
+  const publishedParts = (series) => series.posts.filter((url) => existsSync(path.join(SITE_DIR, url, 'index.html')));
+
+  it('links every part to its neighbours, with only one link on the first and last part', () => {
+    for (const series of seriesMetadata) {
+      const parts = publishedParts(series);
+      parts.forEach((postUrl, i) => {
+        const $ = loadPage(postUrl);
+        const nav = $('nav.series-nav');
+        expect(nav.length, `series-nav missing on ${postUrl}`).toBe(1);
+        expect(nav.find('a[rel="prev"]').attr('href'), `prev on ${postUrl}`).toBe(parts[i - 1]);
+        expect(nav.find('a[rel="next"]').attr('href'), `next on ${postUrl}`).toBe(parts[i + 1]);
+      });
+    }
+  });
+
+  it('names the neighbours by their series title and states the position in the series', () => {
+    for (const series of seriesMetadata) {
+      const parts = publishedParts(series);
+      parts.forEach((postUrl, i) => {
+        const $ = loadPage(postUrl);
+        const nav = $('nav.series-nav');
+        const position = nav.find('.series-nav-position').text().replace(/\s+/g, ' ').trim();
+        expect(position, `position on ${postUrl}`).toBe(
+          `Part ${i + 1} of ${parts.length} in the ${series.name} series`,
+        );
+        expect(nav.find('.series-nav-position a').attr('href')).toBe(`/series/${series.slug}/`);
+
+        // Same label as the sidebar series TOC uses for that post
+        const next = nav.find('a[rel="next"]');
+        if (next.length) {
+          const tocLabel = $(`nav.series-toc a[href="${parts[i + 1]}"]`)
+            .text()
+            .trim();
+          expect(next.find('.series-nav-title').text().trim(), `next title on ${postUrl}`).toBe(tocLabel);
+        }
+      });
+    }
+  });
+
+  it('shows one progress dot per part, linking to it, with the current one marked', () => {
+    for (const series of seriesMetadata) {
+      const parts = publishedParts(series);
+      parts.forEach((postUrl, i) => {
+        const $ = loadPage(postUrl);
+        const dots = $('nav.series-nav .series-nav-progress li');
+        expect(dots.length, `dots on ${postUrl}`).toBe(parts.length);
+        dots.each((j, li) => {
+          const $li = $(li);
+          const link = $li.find('a');
+          const state = j < i ? 'is-done' : j === i ? 'is-current' : 'is-ahead';
+          expect($li.hasClass(state), `dot ${j + 1} on ${postUrl} should be ${state}`).toBe(true);
+          expect(link.attr('href')).toBe(parts[j]);
+          // An empty link: the accessible name comes from aria-label
+          expect(link.attr('aria-label')).toMatch(new RegExp(`^Part ${j + 1}: \\S`));
+          expect(link.attr('aria-current')).toBe(j === i ? 'page' : undefined);
+        });
+      });
+    }
+  });
+
+  it('shows the featured image of the neighbouring parts', () => {
+    const $ = loadPage('/javafx-css/');
+    for (const rel of ['prev', 'next']) {
+      const card = $(`nav.series-nav a[rel="${rel}"]`);
+      expect(card.find('img.series-nav-image').attr('alt'), `${rel} image is decorative`).toBe('');
+    }
+  });
+
+  it('adds the excerpt only to a lone card (first and last part)', () => {
+    expect(loadPage('/javafx-css/')('nav.series-nav .series-nav-excerpt')).toHaveLength(0);
+    for (const url of ['/javafx-getting-started/', '/javafx-spring-boot/']) {
+      const excerpt = loadPage(url)('nav.series-nav .series-nav-excerpt');
+      expect(excerpt, url).toHaveLength(1);
+      expect(excerpt.text().trim().length, url).toBeGreaterThan(0);
+    }
+  });
+
+  it('is a separately named landmark, kept out of the search index', () => {
+    const $ = loadPage(seriesMetadata[0].posts[0]);
+    const label = $('nav.series-nav').attr('aria-label');
+    expect(label).toBeTruthy();
+    expect(label).not.toBe($('nav.series-toc').attr('aria-label'));
+    expect($('nav.series-nav').attr('data-pagefind-ignore')).toBeDefined();
+  });
+
+  it('non-series posts do not render it', () => {
+    const nonSeriesPosts = getAllPosts().filter(
+      (p) => !p.frontmatter.series && !p.frontmatter.draftStatus && p.frontmatter.path,
+    );
+    for (const { frontmatter } of nonSeriesPosts) {
+      expect(loadPage(frontmatter.path)('nav.series-nav').length, frontmatter.path).toBe(0);
+    }
+  });
+});
+
 // ---------------------------------------------------------------------------
 // Integration tests – series index pages (/series/<slug>/)
 // ---------------------------------------------------------------------------

@@ -17,6 +17,7 @@ const PAGES = {
   youtube: '/reactiveconf-2018/',
   video: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/',
   table: '/bit-manipulation-java-bitwise-bit-shift-operations/',
+  series: '/javafx-css/', // previous/next part navigation
   listing: '/pages/2/',
   search: '/search/',
 };
@@ -29,6 +30,8 @@ const HIDDEN_IN_PRINT = [
   '.reading-progress',
   '.social-share',
   '.related-posts',
+  '.series-nav',
+  '.toc-mobile',
   '#comments',
   '.sidebar',
   '.footer',
