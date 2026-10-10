@@ -17,6 +17,20 @@
 /tags/IDEA                                                /topics/intellij-idea/                              301
 /tags/IDEA/                                               /topics/intellij-idea/                              301
 
+# --- renamed topic: java-fx (Gatsby slug) -> javafx ---
+/tags/java-fx                                             /topics/javafx/                                     301
+/tags/java-fx/                                            /topics/javafx/                                     301
+/tags/JavaFX                                              /topics/javafx/                                     301
+/tags/JavaFX/                                             /topics/javafx/                                     301
+/topics/java-fx                                           /topics/javafx/                                     301
+/topics/java-fx/                                          /topics/javafx/                                     301
+/topics/JavaFX                                            /topics/javafx/                                     301
+/topics/JavaFX/                                           /topics/javafx/                                     301
+
+# --- capitalized topic URLs seen in inbound links ---
+/topics/Spring                                            /topics/spring/                                     301
+/topics/Spring/                                           /topics/spring/                                     301
+
 # --- legacy Gatsby tags (capitalized or renamed; must precede /tags/:topic) ---
 /tags/Java                                                /topics/java/                                       301
 /tags/Java/                                               /topics/java/                                       301
