@@ -171,7 +171,6 @@
 
     for (const a of links) {
       const isActive = a.hash === '#' + id;
-      a.classList.toggle('is-active', isActive);
       if (isActive) {
         a.setAttribute('aria-current', 'true');
       } else {

@@ -14,7 +14,7 @@ $toc-indent-step: 1.25rem;
     color: var(--color-text-muted);
   }
 
-  .series-current {
+  [aria-current='page'] {
     font-weight: 600;
     color: var(--color-text);
   }
@@ -148,7 +148,7 @@ $toc-indent-step: 1.25rem;
   background: rgba(255, 255, 255, 0.03);
 }
 
-.toc-list a.is-active,
+// The scrollspy marks the section in view (toc-scrollspy.js)
 .toc-list a[aria-current='true'] {
   color: var(--color-accent-subtle) !important;
   font-weight: 600;

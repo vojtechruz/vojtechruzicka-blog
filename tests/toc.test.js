@@ -277,7 +277,7 @@ describe('toc-scrollspy.js behaviour', () => {
 
   /** ids of currently active TOC links */
   function activeIds() {
-    return Array.from(document.querySelectorAll('a.is-active')).map((a) => a.getAttribute('href').slice(1));
+    return Array.from(document.querySelectorAll('a[aria-current="true"]')).map((a) => a.getAttribute('href').slice(1));
   }
 
   beforeEach(() => {
@@ -368,7 +368,7 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings, { tocMarkup });
 
     expect(activeIds()).toEqual(['alpha']);
-    expect(document.querySelector('a[href="#ghost"]').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a[href="#ghost"]').hasAttribute('aria-current')).toBe(false);
   });
 
   it('does not register scroll handling when the page has no TOC', async () => {
@@ -571,7 +571,7 @@ describe('toc-scrollspy.js behaviour', () => {
 
     expect(event.defaultPrevented).toBe(false);
     expect(scrollToMock).not.toHaveBeenCalled();
-    expect(document.querySelector('a.outside').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a.outside').hasAttribute('aria-current')).toBe(false);
   });
 
   it('only tracks links inside .toc-list, not other anchors in the TOC nav', async () => {
@@ -579,7 +579,7 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings, { extraLinks: '<a class="outside" href="#alpha">Skip</a>' });
 
     expect(activeIds()).toEqual(['alpha']);
-    expect(document.querySelector('a.outside').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a.outside').hasAttribute('aria-current')).toBe(false);
   });
 
   it('matches heading ids that contain characters special to CSS selectors', async () => {

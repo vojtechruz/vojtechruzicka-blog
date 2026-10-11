@@ -130,7 +130,20 @@ describe('Post front matter – series fields', () => {
 // Integration tests – series TOC on post pages
 // ---------------------------------------------------------------------------
 
+/**
+ * Non-series posts that this build produced. Checking the output rather than `draftStatus` also
+ * skips a post in src/posts/_drafts/ that lacks the field, and archived copies built elsewhere.
+ */
+function builtNonSeriesPosts() {
+  return getAllPosts().filter(
+    ({ frontmatter }) =>
+      !frontmatter.series && frontmatter.path && existsSync(path.join(SITE_DIR, frontmatter.path, 'index.html')),
+  );
+}
+
 describe('Series TOC in built post pages', () => {
+  const allPosts = getAllPosts();
+
   it('every series post renders a .series-toc nav', () => {
     for (const series of seriesMetadata) {
       for (const postUrl of series.posts) {
@@ -163,14 +176,27 @@ describe('Series TOC in built post pages', () => {
     }
   });
 
-  it('current post link has aria-current="page" and class series-current', () => {
+  it('current post link has aria-current="page"', () => {
     for (const series of seriesMetadata) {
       for (const postUrl of series.posts) {
         const $ = loadPage(postUrl);
         const currentLink = $('nav.series-toc a[aria-current="page"]');
         expect(currentLink.length, `no aria-current link on ${postUrl}`).toBe(1);
         expect(currentLink.attr('href'), `aria-current href wrong on ${postUrl}`).toBe(postUrl);
-        expect(currentLink.hasClass('series-current'), `series-current class missing on ${postUrl}`).toBe(true);
+      }
+    }
+  });
+
+  // seriesTitle (eleventyComputed.js): the title after its first ': ', else the whole title
+  it('labels each part by its short series title', () => {
+    for (const series of seriesMetadata) {
+      const $ = loadPage(series.posts[0]);
+      for (const postUrl of series.posts) {
+        const { frontmatter } = allPosts.find((p) => p.frontmatter.path === postUrl);
+        const label = $(`nav.series-toc a[href="${postUrl}"]`).text().trim();
+        const title = String(frontmatter.title);
+        const short = title.includes(': ') ? title.slice(title.indexOf(': ') + 2) : title;
+        expect(label, `label of ${postUrl}`).toBe(short);
       }
     }
   });
@@ -186,11 +212,7 @@ describe('Series TOC in built post pages', () => {
   });
 
   it('non-series posts do not render a .series-toc', () => {
-    const allPosts = getAllPosts();
-    const nonSeriesPosts = allPosts.filter(
-      (p) => !p.frontmatter.series && !p.frontmatter.draftStatus && p.frontmatter.path,
-    );
-    for (const { frontmatter } of nonSeriesPosts) {
+    for (const { frontmatter } of builtNonSeriesPosts()) {
       const $ = loadPage(frontmatter.path);
       expect($('nav.series-toc').length, `unexpected series-toc on ${frontmatter.path}`).toBe(0);
     }
@@ -285,10 +307,7 @@ describe('Previous/next part navigation in built post pages', () => {
   });
 
   it('non-series posts do not render it', () => {
-    const nonSeriesPosts = getAllPosts().filter(
-      (p) => !p.frontmatter.series && !p.frontmatter.draftStatus && p.frontmatter.path,
-    );
-    for (const { frontmatter } of nonSeriesPosts) {
+    for (const { frontmatter } of builtNonSeriesPosts()) {
       expect(loadPage(frontmatter.path)('nav.series-nav').length, frontmatter.path).toBe(0);
     }
   });
@@ -380,5 +399,55 @@ describe('Series listing page (/series/)', () => {
       const card = $(`.linked-series:has(a[href="/series/${series.slug}/"])`);
       expect(card.find('.front-post-excerpt').text().trim()).toBe(series.description);
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Integration tests – "Part x/y" badge on post cards (linkedPost shortcode)
+// ---------------------------------------------------------------------------
+
+describe('Series badge on post cards', () => {
+  /** Every post card on the page that links to a series part, with its badge. */
+  function seriesCards($) {
+    return $('.linked-post')
+      .map((_, card) => {
+        const href = $(card).find('.front-post-title a').attr('href');
+        const series = seriesMetadata.find((s) => s.posts.includes(href));
+        return series ? { href, series, badge: $(card).find('.series-part-label') } : null;
+      })
+      .get();
+  }
+
+  function expectBadges(urlPath, minCards) {
+    const cards = seriesCards(loadPage(urlPath));
+    expect(cards.length, `series cards on ${urlPath}`).toBeGreaterThanOrEqual(minCards);
+    for (const { href, series, badge } of cards) {
+      const part = series.posts.indexOf(href) + 1;
+      expect(badge.length, `badge on the ${href} card on ${urlPath}`).toBe(1);
+      expect(badge.text().replace(/\s+/g, ' ').trim()).toBe(`${series.name} · Part ${part}/${series.posts.length}`);
+      expect(badge.find('a').attr('href')).toBe(`/series/${series.slug}/`);
+    }
+  }
+
+  it('states the part on every card of a series index page', () => {
+    for (const series of seriesMetadata) {
+      expectBadges(`/series/${series.slug}/`, series.posts.length);
+    }
+  });
+
+  it('states the part on series cards of the homepage and topic pages', () => {
+    expectBadges('/', 0);
+    expectBadges('/topics/javafx/', 1);
+    expectBadges('/topics/angular/', 1);
+  });
+
+  it('is absent from cards of posts outside a series', () => {
+    const $ = loadPage('/');
+    $('.linked-post').each((_, card) => {
+      const href = $(card).find('.front-post-title a').attr('href');
+      if (!seriesMetadata.some((s) => s.posts.includes(href))) {
+        expect($(card).find('.series-part-label').length, href).toBe(0);
+      }
+    });
   });
 });
