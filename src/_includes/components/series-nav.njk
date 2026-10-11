@@ -46,7 +46,7 @@ Previous/next part of a series, below the article on every screen width
         </p>
 
         {% if parts.length >= 3 %}
-        <ol class="series-nav-progress" role="list">
+        <ol class="series-nav-progress">
           {% for part in parts %}
             {% set partLabel = "Part " + loop.index + ": " + (part.data.seriesTitle or part.data.title) %}
             <li class="{{ 'is-current' if loop.index0 == currentIndex else ('is-done' if loop.index0 < currentIndex else 'is-ahead') }}">
