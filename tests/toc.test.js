@@ -240,10 +240,11 @@ describe('toc-scrollspy.js behaviour', () => {
   /**
    * Build a TOC + heading DOM and run the scrollspy against it.
    * @param {{id: string, top: number, tag?: string}[]} headings
-   * @param {{extraLinks?: string, bodyHeight?: number, scrollY?: number, tocMarkup?: string}} options
+   * @param {{extraLinks?: string, bodyHeight?: number, scrollY?: number, tocMarkup?: string, setup?: () => void}} options
+   *   `setup` runs after the DOM is built and before the script, e.g. to give the TOC a layout
    */
   async function renderAndRun(headings, options = {}) {
-    const { extraLinks = '', bodyHeight = 5000, scrollY = 0, tocMarkup = null } = options;
+    const { extraLinks = '', bodyHeight = 5000, scrollY = 0, tocMarkup = null, setup = () => {} } = options;
 
     const items = headings.map((h) => `<li><a href="#${h.id}">${h.id}</a></li>`).join('');
     const body = headings.map((h) => `<${h.tag || 'h2'} id="${h.id}">${h.id}</${h.tag || 'h2'}>`).join('');
@@ -259,6 +260,7 @@ describe('toc-scrollspy.js behaviour', () => {
         : `${tocMarkup}<article>${body}</article>`;
 
     setScrollPosition(headings, scrollY, bodyHeight);
+    setup();
     await import('../src/scripts/toc-scrollspy.js?run=' + runCount++);
   }
 
@@ -592,5 +594,116 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings);
 
     expect(activeIds()).toEqual(['option-1.-follow%2C-explain']);
+  });
+
+  describe('keeping the active item in view inside a scrolling TOC', () => {
+    // The TOC box: 200 px tall, 1000 px of content. The active item is kept between 10 % from the
+    // top (20 px) and 25 % from the bottom (150 px) of the box; outside that band the TOC scrolls
+    // to put it 20 px from the top.
+    const VIEW = 200;
+    const CONTENT = 1000;
+    let tocScrollTo;
+
+    /**
+     * Lay out the sidebar TOC: nav.toc is the scroll container (overflow-y: auto, as in the CSS),
+     * scrolled to `scrollTop`, and each item sits at its `itemTops` offset within the content.
+     */
+    function layoutToc({ itemTops, scrollTop = 0, content = CONTENT }) {
+      const nav = document.querySelector('nav.toc');
+      nav.style.overflowY = 'auto';
+      Object.defineProperty(nav, 'clientHeight', { value: VIEW, configurable: true });
+      Object.defineProperty(nav, 'scrollHeight', { value: content, configurable: true });
+      Object.defineProperty(nav, 'scrollTop', { value: scrollTop, configurable: true });
+      nav.getBoundingClientRect = () => ({ top: 0, bottom: VIEW, left: 0, right: 0, height: VIEW, width: 0 });
+      tocScrollTo = vi.fn();
+      nav.scrollTo = tocScrollTo;
+      for (const [id, top] of Object.entries(itemTops)) {
+        const a = nav.querySelector(`a[href="#${id}"]`);
+        Object.defineProperty(a, 'offsetHeight', { value: 20, configurable: true });
+        // Viewport position = position in the content minus how far the TOC is scrolled
+        a.getBoundingClientRect = () => ({ top: top - scrollTop, bottom: top - scrollTop + 20, height: 20 });
+      }
+    }
+
+    // beta is the heading in view; alpha and gamma are only there to make a list
+    const headings = [
+      { id: 'alpha', top: -500 },
+      { id: 'beta', top: -10 },
+      { id: 'gamma', top: 900 },
+    ];
+
+    it('scrolls the TOC down when the active item is below the visible band', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 300, gamma: 320 } }) });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: 300 - VIEW * 0.1, behavior: 'auto' });
+    });
+
+    it('scrolls the TOC up when the active item is above the visible band', async () => {
+      // Scrolled to 500: the band is 520-650, beta at 400 is above it
+      await renderAndRun(headings, {
+        setup: () => layoutToc({ itemTops: { alpha: 0, beta: 400, gamma: 420 }, scrollTop: 500 }),
+      });
+
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: 400 - VIEW * 0.1, behavior: 'auto' });
+    });
+
+    it('does not scroll the TOC when the active item is already inside the band', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 60, gamma: 80 } }) });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+
+    it('stops at the end of the TOC instead of scrolling past it', async () => {
+      // 970 - 20 = 950 would overshoot; the furthest the TOC can scroll is 1000 - 200 = 800
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 970, gamma: 980 } }) });
+
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: CONTENT - VIEW, behavior: 'auto' });
+    });
+
+    it('does not scroll a TOC that fits without overflow', async () => {
+      await renderAndRun(headings, {
+        setup: () => layoutToc({ itemTops: { alpha: 0, beta: 300, gamma: 320 }, content: VIEW }),
+      });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+
+    it('leaves the TOC where it is after a click on one of its items', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 60, gamma: 300 } }) });
+      expect(tocScrollTo).not.toHaveBeenCalled();
+
+      // gamma is below the band, but the reader just clicked it, so it is in view
+      document.querySelector('a[href="#gamma"]').click();
+
+      expect(activeIds()).toEqual(['gamma']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('window resize', () => {
+    afterEach(() => {
+      document.documentElement.style.removeProperty('--offset-anchor-post');
+    });
+
+    it('re-reads the anchor offset and re-evaluates the active heading', async () => {
+      // beta sits 90 px from the top: above the 96 px anchor line, so it is the section in view
+      const headings = [
+        { id: 'alpha', top: -500 },
+        { id: 'beta', top: 90 },
+        { id: 'gamma', top: 900 },
+      ];
+      document.documentElement.style.setProperty('--offset-anchor-post', '96px');
+      await renderAndRun(headings);
+      expect(activeIds()).toEqual(['beta']);
+
+      // A narrower layout with a smaller sticky header: beta is now below the line
+      document.documentElement.style.setProperty('--offset-anchor-post', '40px');
+      window.dispatchEvent(new window.Event('resize'));
+
+      expect(activeIds()).toEqual(['alpha']);
+    });
   });
 });
