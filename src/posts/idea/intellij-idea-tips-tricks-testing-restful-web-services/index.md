@@ -311,7 +311,7 @@ Authorization: Bearer {{token}}
 ### Spring Boot Integration
 
 Since version 2018.2, IDEA's HTTP Client offers Spring Boot Integration. That is, as long as you have
-[Spring Boot Actuator](https://www.vojtechruzicka.com/spring-boot-actuator/) dependency.
+[Spring Boot Actuator](/spring-boot-actuator/) dependency.
 
 In such case, you can call endpoints of your application directly from your @Controller classes. Just click the green
 arrow icon next to your endpoint:

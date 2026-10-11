@@ -89,9 +89,9 @@ color is easy to read against its background.
 This category contains various miscellaneous items, such as using deprecated constructs, HTTP/2, HTTPS, console logging,
 password field handling and more. One item which I found really interesting and important is Detection of Javascript
 libraries with
-[known security vulnerabilities](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). This is
+[known security vulnerabilities](/detecting-dependencies-known-vulnerabilities/). This is
 based on integration with a third-party tool called
-[Snyk](https://www.vojtechruzicka.com/snyk-detecting-dependencies-with-known-vulnerabilities/).
+[Snyk](/snyk-detecting-dependencies-with-known-vulnerabilities/).
 
 ![Lighthouse Best Practices](./chrome-audit-best-practices.png)
 

@@ -115,8 +115,8 @@ After checking `instanceof`, after `&&`, we can use the `cat` variable already t
 
 The good news is that there is good support for this feature in IntelliJ IDEA, introduced in version
 [2020.1](https://blog.jetbrains.com/idea/2020/03/java-14-and-intellij-idea/) (along with support for other Java 14 new
-features, such as [Records](https://www.vojtechruzicka.com/java-records/) or
-[Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/))
+features, such as [Records](/java-records/) or
+[Enhanced Switch](/java-enhanced-switch/))
 
 ![IDEA pattern matching instanceof](idea-patter-matching-instanceof.png)
 
@@ -128,6 +128,6 @@ JEP for it, [there are no changes](https://bugs.openjdk.java.net/browse/JDK-8235
 
 ## Also new in Java 14
 
-- [Records](https://www.vojtechruzicka.com/java-records/)
-- [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/)
-- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks/)
+- [Records](/java-records/)
+- [Enhanced Switch](/java-enhanced-switch/)
+- [Text Blocks](/java-text-blocks/)

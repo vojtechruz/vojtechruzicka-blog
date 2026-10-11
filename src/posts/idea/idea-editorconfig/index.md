@@ -15,7 +15,7 @@ your codebase much cleaner, easier to read, and maintain.
 
 There are various approaches to this. One popular tool is [Prettier](https://prettier.io/). It is an opinionated code
 formatter, which can reformat your code to match certain rules. You can then run it directly in your IDE, as a part of
-CI or before each commit using [Git Hooks](https://www.vojtechruzicka.com/githooks-husky/).
+CI or before each commit using [Git Hooks](/githooks-husky/).
 
 Another popular and widespread tool is EditorConfig. The approach is slightly different from Prettier. You create
 `.editorconfig` file directly in your project with your desired settings. Your IDE then detects this file and loads its

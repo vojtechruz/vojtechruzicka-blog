@@ -10,7 +10,7 @@ needsReview: true
 ## Introduction
 
 Earlier, I published post
-[Detecting dependencies with known vulnerabilities](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/),
+[Detecting dependencies with known vulnerabilities](/detecting-dependencies-known-vulnerabilities/),
 where I was describing how important is to make sure your third-party dependencies contain no security vulnerabilities.
 And how to achieve it with OWASP Dependency-Check. This post describes another tool, which can be used to eliminate
 vulnerable dependencies - Snyk.
@@ -230,7 +230,7 @@ with Snyk IDEA plugin.
 
 Making sure your dependencies are up-to-date and contain no security vulnerabilities is very important and often
 overlooked. Snyk is a cool tool, which can help you with that. It is in some aspects similar to OWASP Dependency-Check
-[described in the previous article](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). It
+[described in the previous article](/detecting-dependencies-known-vulnerabilities/). It
 has some nice features on top of what Dependency Check offers. Integration with a wide range of cloud services and
 version control systems. What\'s great is that it not only finds the vulnerabilities but directly offers means to fix
 them in the form of updates or patches. Hell, it can even automatically create a Pull Request for that. The downside is

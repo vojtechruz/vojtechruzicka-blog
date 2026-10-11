@@ -75,7 +75,7 @@ After you achieve a basic level of proficiency with your IDE and already know wh
 is to increase your productivity. That is, you want to use the tool you are already familiar with more effectively. A
 major part of that is using the keyboard as much as you can instead of the mouse. Using keyboard shortcuts where
 possible. Great way to learn IntelliJ IDEA shortcuts is to use
-[Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/). Once you use mainly
+[Key Promoter plugin](/learning-intellij-idea-keyboard-shortcuts/). Once you use mainly
 keyboard, you are much more productive. The problem is, using a lot of keyboard shortcuts is not exactly presentation
 friendly. Your audience can get quickly confused and lose track of the core topic you are presenting about while trying
 to figure out what the hell just happened.
@@ -97,7 +97,7 @@ This is not only useful while presenting, but also when pair programming. This w
 actions and maybe even learn a thing or two. Last but not least, using this plugin can help you to learn new shortcuts
 because it shows the shortcut info even for actions triggered by the mouse. That means that eventually, you will learn
 shortcuts for actions that you currently use only by mouse. However, you may consider using
-[Key Promoter plugin](https://www.vojtechruzicka.com/learning-intellij-idea-keyboard-shortcuts/) for this scenario.
+[Key Promoter plugin](/learning-intellij-idea-keyboard-shortcuts/) for this scenario.
 
 ## Keyboard shortcuts
 

@@ -22,7 +22,7 @@ public databases of security vulnerabilities of third-party libraries, so it is 
 exploit.
 
 OWASP, Open Web Application Security Project, periodically releases
-[Top Ten list of Web Application Security Vulnerabilities](https://www.vojtechruzicka.com/owasp-top-ten-2017/).
+[Top Ten list of Web Application Security Vulnerabilities](/owasp-top-ten-2017/).
 \"[Using Components with Known Vulnerabilities](https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities)\"
 is one of the items on their latest list:
 

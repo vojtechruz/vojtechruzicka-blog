@@ -124,7 +124,7 @@ jshell> /vars
 ```
 
 If you are on Java 10 already, you can use
-[var instead of declaring the type explicitly](https://www.vojtechruzicka.com/java-10-var-local-variable-type-inference-jep-286/).
+[var instead of declaring the type explicitly](/java-10-var-local-variable-type-inference-jep-286/).
 
 ## Methods
 

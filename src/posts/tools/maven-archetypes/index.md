@@ -199,7 +199,7 @@ You can configure various options such as:
 - Java version
 - Maven / Gradle
 - Jar/War packaging
-- Dependencies such as DB, Security, Web, [Actuator](https://www.vojtechruzicka.com/spring-boot-actuator/) and many more
+- Dependencies such as DB, Security, Web, [Actuator](/spring-boot-actuator/) and many more
 
 You can see there is a lot of configuration options to choose from. Also, you can see that unlike with Maven archetypes,
 you can generate your project even when using Gradle.

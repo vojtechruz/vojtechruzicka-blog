@@ -89,7 +89,7 @@ It allows you to enable checking of commit messages as well. You can learn more 
 ## [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
 
 IDEA already has powerful tools for
-[analyzing your dependencies](https://www.vojtechruzicka.com/idea-analyzing-dependencies/) and potential problems with
+[analyzing your dependencies](/idea-analyzing-dependencies/) and potential problems with
 them, such as conflicts or cyclic dependencies.
 
 Maven helper offers an alternative UI, which shows your dependencies hierarchically. This can be easier to read and
@@ -102,7 +102,7 @@ navigate. Also, if you're using the community edition, this is your only option.
 Creating complex objects can be hard. Of course, you can stick with a simple POJO with a whole bunch of setters, but you
 cannot enforce that created objects have all the required fields and are not used in an incomplete state. To solve this,
 you need constructors. With more complex objects, this can lead to a whole bunch of
-[telescopic constructors](https://www.vojtechruzicka.com/avoid-telescoping-constructor-pattern/) with many parameters.
+[telescopic constructors](/avoid-telescoping-constructor-pattern/) with many parameters.
 In these cases, using a builder is much more appropriate.
 
 This plugin can automatically generate a builder for you from a POJO.

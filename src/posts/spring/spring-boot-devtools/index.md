@@ -247,7 +247,7 @@ Config declared in this file is applied to all the applications running DevTools
 Spring app using DevTools automatically launches a LiveReload server. Unfortunately, only one instance of this server
 can be running at the same time. To be more precise, just the first one will work. That applies not only to multiple
 instances of Spring apps with DevTools but to any other apps, which are also using LiverReload under the hood, such as
-[Gatsby](https://www.vojtechruzicka.com/gatsby-migration/) in development mode.
+[Gatsby](/gatsby-migration/) in development mode.
 
 If you want to configure your Spring app not to launch a LiveReload server, you can do it in your
 `application.properties`:

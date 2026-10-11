@@ -35,7 +35,7 @@ too much trouble.
 
 Fortunately, later, automatic tools became available, which could scan your dependencies and cross-check with
 vulnerability databases. One example can be
-[OWASP Dependency Check](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/). Later, even more
+[OWASP Dependency Check](/detecting-dependencies-known-vulnerabilities/). Later, even more
 powerful services appeared, most notably Snyk.
 
 {% linkedPost "/snyk-detecting-dependencies-with-known-vulnerabilities/" %}

@@ -17,7 +17,7 @@ security risks. It consists of [numerous projects](https://www.owasp.org/index.p
 focuses. Examples of such projects are OWASP
 [Application Security Verification Standard Project](https://www.owasp.org/index.php/Category:OWASP_Application_Security_Verification_Standard_Project),
 [OWASP Testing Guide](https://www.owasp.org/index.php/OWASP_Testing_Project) or
-[OWASP Dependency-Check](https://www.vojtechruzicka.com/detecting-dependencies-known-vulnerabilities/).
+[OWASP Dependency-Check](/detecting-dependencies-known-vulnerabilities/).
 
 ## OWASP Top Ten
 
