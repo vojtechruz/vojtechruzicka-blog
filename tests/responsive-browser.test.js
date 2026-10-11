@@ -5,7 +5,7 @@ import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
 
 /**
  * Layout checks that need a real browser (jsdom has no layout): narrow-phone overflow,
- * the search overlay width and the floating copy button over long code lines.
+ * the search overlay width, the floating copy button over long code lines and long TOC items.
  */
 
 let server;
@@ -102,6 +102,27 @@ describe('floating copy button', () => {
       );
       expect(paddings.length).toBeGreaterThan(0);
       expect(new Set(paddings)).toEqual(new Set(['20px']));
+    } finally {
+      await page.close();
+    }
+  }, 30000);
+});
+
+describe('sidebar table of contents', () => {
+  it('wraps a long heading instead of cutting it off with an ellipsis', async () => {
+    // /owasp-top-ten-2017/ has the longest TOC item (83 characters)
+    const page = await openPage('/owasp-top-ten-2017/', 1100);
+    try {
+      const cut = await page.$$eval('.sidebar .toc-list a', (links) =>
+        links.filter((a) => a.scrollWidth > a.clientWidth + 1).map((a) => a.textContent.trim()),
+      );
+      expect(cut).toEqual([]);
+      const longest = page.locator('.sidebar .toc-list a', { hasText: 'Insecure Direct Object References' });
+      const { height, lineHeight } = await longest.evaluate((a) => ({
+        height: a.getBoundingClientRect().height,
+        lineHeight: parseFloat(getComputedStyle(a).lineHeight),
+      }));
+      expect(height, 'the long item takes a second line').toBeGreaterThan(1.5 * lineHeight);
     } finally {
       await page.close();
     }

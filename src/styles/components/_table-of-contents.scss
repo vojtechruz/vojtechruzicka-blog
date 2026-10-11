@@ -108,11 +108,6 @@ $toc-indent-step: 1.25rem;
     padding: 0 var(--gap-small) var(--gap-small);
   }
 
-  // Room to wrap: no need for the sidebar's single-line ellipsis
-  .toc-list a {
-    white-space: normal;
-  }
-
   @include utilities.respond(large) {
     display: block;
   }
@@ -133,12 +128,10 @@ $toc-indent-step: 1.25rem;
   margin-block: 0;
 }
 
+// Long items wrap rather than end in an ellipsis: a title tooltip would not reach touch or
+// keyboard users, and the sidebar is wide enough that only a couple of headings need a 2nd line
 .toc-list a {
   display: block;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   padding: 4px var(--gap-small) 3px;
   border-radius: var(--radius-xxs);
   font-size: 0.95rem;
