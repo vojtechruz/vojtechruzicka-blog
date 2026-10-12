@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'fs';
+import { globSync } from 'glob';
 import { loadPage, SITE_DIR } from './helpers.js';
 import { resolveImageFormats, resolveImageWidths } from '../config/plugins/image.js';
 
@@ -28,6 +29,21 @@ const MODERN_SOURCE_TYPES = resolveImageFormats()
 /** Featured images are rendered inside the post <header>; in-post images are direct children of <article>. */
 const FEATURED_SELECTOR = 'main.post > article > header .image-wrapper > picture';
 const IN_POST_SELECTOR = 'main.post > article > .image-wrapper > picture';
+/** Both kinds share the plugin defaults: configured widths up to the original, the same `sizes`. */
+const ARTICLE_IMAGES_SELECTOR = `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`;
+
+/**
+ * Thumbnails on cards and in navigation override the default widths with `eleventy:widths`: exactly a
+ * 1x and a 2x candidate for their CSS size, never the original (config/shortcodes/linked-post.js,
+ * linked-series.js, linked-post-compact.js, components/series-nav.njk). Keyed by the `sizes` each declares.
+ */
+const THUMBNAIL_WIDTHS = {
+  '(max-width: 768px) 90px, 160px': [160, 320], // linkedPost / linkedSeries cards
+  '80px': [80, 160], // compact related-post cards
+  '56px': [80, 160], // series prev/next cards
+};
+/** `sizes` of featured and in-post images (defaultAttributes in config/plugins/image.js). */
+const ARTICLE_IMAGE_SIZES = '(min-width: 1024px) 800px, 100vw';
 
 /**
  * Parse a srcset attribute into [{ url, width }], preserving order.
@@ -175,7 +191,7 @@ describe('Responsive image pipeline', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
 
-        for (const { $pic, $img } of collectPictures($, IN_POST_SELECTOR)) {
+        for (const { $pic, $img } of collectPictures($, ARTICLE_IMAGES_SELECTOR)) {
           const srcsets = [
             ...$pic
               .find('source')
@@ -230,7 +246,7 @@ describe('Responsive image pipeline', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
 
-        for (const { $pic, $img } of collectPictures($, IN_POST_SELECTOR)) {
+        for (const { $pic, $img } of collectPictures($, ARTICLE_IMAGES_SELECTOR)) {
           const imgSizes = $img.attr('sizes');
           expect(imgSizes, `Missing sizes on <img> in ${postPath}`).toBeTruthy();
 
@@ -242,6 +258,98 @@ describe('Responsive image pipeline', () => {
     });
   });
 
+  describe('Card and navigation thumbnails', () => {
+    const builtPages = globSync('**/index.html', { cwd: SITE_DIR, posix: true })
+      .filter((file) => !file.startsWith('pagefind/'))
+      .map((file) => `/${file.replace(/index\.html$/, '')}`);
+
+    /** Every <picture> with a srcset in the build, with the page it is on. */
+    const allPictures = builtPages.flatMap((pagePath) => {
+      const $ = loadPage(pagePath);
+      return collectPictures($, 'picture')
+        .filter(({ $img }) => $img.attr('srcset'))
+        .map((picture) => ({ ...picture, $, pagePath }));
+    });
+    const thumbnails = allPictures.filter(({ $img }) => $img.attr('sizes') in THUMBNAIL_WIDTHS);
+
+    it('every responsive image in the build is either an article image or a known thumbnail kind', () => {
+      const unknown = allPictures
+        .filter(({ $img }) => !($img.attr('sizes') in THUMBNAIL_WIDTHS) && $img.attr('sizes') !== ARTICLE_IMAGE_SIZES)
+        .map(({ $img, pagePath }) => `${pagePath}: sizes="${$img.attr('sizes')}"`);
+
+      // A new image context needs its own widths and sizes decided, and an entry above.
+      expect(unknown).toEqual([]);
+    });
+
+    it.each(Object.keys(THUMBNAIL_WIDTHS))('thumbnails with sizes="%s" appear in the build', (sizes) => {
+      expect(thumbnails.filter(({ $img }) => $img.attr('sizes') === sizes).length).toBeGreaterThan(0);
+    });
+
+    it('offer exactly their 1x and 2x widths in every format, named by width', () => {
+      const problems = [];
+
+      for (const { $, $pic, $img, pagePath } of thumbnails) {
+        const sizes = $img.attr('sizes');
+        const expected = THUMBNAIL_WIDTHS[sizes];
+        const srcsets = [
+          ...$pic
+            .find('source')
+            .map((_, el) => $(el).attr('srcset'))
+            .get(),
+          $img.attr('srcset'),
+        ];
+
+        expect($pic.find('source').length, `${pagePath}: modern-format sources`).toBe(MODERN_SOURCE_TYPES.length);
+
+        for (const srcset of srcsets) {
+          const entries = parseSrcset(srcset);
+          const widths = entries.map((entry) => entry.width);
+          if (JSON.stringify(widths) !== JSON.stringify(expected)) {
+            problems.push(`${pagePath}: ${widths.join(',')} instead of ${expected.join(',')} (${sizes})`);
+          }
+          for (const { url, width } of entries) {
+            if (!new RegExp(`-${width}\\.[a-z0-9]+$`).test(url)) {
+              problems.push(`${pagePath}: ${url} is not named by its ${width}w descriptor`);
+            }
+          }
+        }
+      }
+
+      expect(problems).toEqual([]);
+    });
+
+    it('declare the same sizes on every <source> and fall back to the 2x candidate', () => {
+      for (const { $, $pic, $img, pagePath } of thumbnails) {
+        const sizes = $img.attr('sizes');
+        const largest = parseSrcset($img.attr('srcset')).at(-1);
+
+        $pic.find('source').each((_, el) => {
+          expect($(el).attr('sizes'), `${pagePath}: <source> sizes`).toBe(sizes);
+        });
+        expect($img.attr('src'), `${pagePath}: fallback src`).toBe(largest.url);
+        expect(Number($img.attr('width')), `${pagePath}: intrinsic width`).toBe(largest.width);
+        expect($img.attr('loading'), `${pagePath}: thumbnails are lazy`).toBe('lazy');
+      }
+    });
+
+    it('reference files that exist in the build output', () => {
+      const referenced = new Set();
+
+      for (const { $, $pic, $img } of thumbnails) {
+        referenced.add($img.attr('src'));
+        for (const el of [...$pic.find('source').toArray(), $img.get(0)]) {
+          for (const entry of parseSrcset($(el).attr('srcset'))) {
+            referenced.add(entry.url);
+          }
+        }
+      }
+
+      expect(referenced.size).toBeGreaterThan(50);
+      const missing = [...referenced].filter((url) => !existsSync(toOutputPath(url)));
+      expect(missing).toEqual([]);
+    });
+  });
+
   describe('Generated files on disk', () => {
     it('every srcset candidate and fallback src resolves to a real file in the build output', () => {
       const referenced = new Set();
@@ -249,7 +357,7 @@ describe('Responsive image pipeline', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
 
-        for (const { $pic, $img } of collectPictures($, IN_POST_SELECTOR)) {
+        for (const { $pic, $img } of collectPictures($, ARTICLE_IMAGES_SELECTOR)) {
           referenced.add($img.attr('src'));
           for (const entry of parseSrcset($img.attr('srcset'))) {
             referenced.add(entry.url);
