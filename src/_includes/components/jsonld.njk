@@ -3,6 +3,30 @@ isHome, isHomePaginated, isTopics, isTopic, isPost, publishedDate,
 modifiedDate, breadcrumbs, isAbout #}
 
 {% if isPost and not archivedStatus %}
+{# A series part says which series it belongs to and where: the same lookup and numbering as
+   series-nav.njk (published parts only), so `position` matches "Part x of y" on the page. #}
+{% set ldSeries = null %}
+{% set ldPosition = 0 %}
+{% if series %}
+  {% for meta in seriesMetadata %}
+    {% if meta.slug == series %}
+      {% set ldSeries = meta %}
+    {% endif %}
+  {% endfor %}
+  {% if ldSeries %}
+    {% set ldCount = 0 %}
+    {% for postUrl in ldSeries.posts %}
+      {% for post in collections.posts %}
+        {% if post.url == postUrl %}
+          {% set ldCount = ldCount + 1 %}
+          {% if post.url == page.url %}
+            {% set ldPosition = ldCount %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -19,7 +43,13 @@ modifiedDate, breadcrumbs, isAbout #}
   }{% if publishedDate %},
   "datePublished": {{ (publishedDate | toRfc3339) | dump | safe }}{% endif %}{% if modifiedDate %},
   "dateModified": {{ (modifiedDate | toRfc3339) | dump | safe }}{% endif %},
-  "url": {{ pageUrl | dump | safe }}
+  "url": {{ pageUrl | dump | safe }}{% if ldPosition %},
+  "isPartOf": {
+  "@type": "CreativeWorkSeries",
+  "name": {{ ldSeries.name | dump | safe }},
+  "url": {{ (site.url + "/series/" + ldSeries.slug + "/") | dump | safe }}
+  },
+  "position": {{ ldPosition }}{% endif %}
   }
 </script>
 

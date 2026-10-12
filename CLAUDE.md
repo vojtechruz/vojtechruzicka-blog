@@ -138,8 +138,10 @@ lean variant via `ELEVENTY_IMAGE_FORMATS`/`ELEVENTY_IMAGE_WIDTHS` env vars. Deta
 ## Logging changes to the Obsidian daily note
 
 Every change made to the blog in a session must be recorded in the Obsidian daily note for that day:
-`D:\Dropbox\Obsidian\Carpe Diem\<YYYY>\<YYYY-MM>\<YYYY-MM-DD>.md` (the vault's daily-notes setting is
-`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Create the note if it does not exist yet (first line is the navigation header
+`<vault>/Carpe Diem/<YYYY>/<YYYY-MM>/<YYYY-MM-DD>.md` (the vault's daily-notes setting is
+`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Get `<vault>` with `python _tools/obsidian/config.py` (`python3` on Linux,
+stdlib only); it finds Dropbox on Windows and Linux alike, so never hardcode `D:\Dropbox`. If it fails, ask the user
+for the vault path. Create the note if it does not exist yet (first line is the navigation header
 `← [[<prev day>]]  ·  [[<next day>]] →   ·   ↑ [[<YYYY>-W<week>]] · [[<YYYY-MM>]]`, then a blank line, then bullets).
 
 Format, matching the existing entries: one top-level bullet `- Blog` with one tab-indented sub-bullet per change,
