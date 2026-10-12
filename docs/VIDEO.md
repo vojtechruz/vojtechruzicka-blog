@@ -78,10 +78,10 @@ those: the `Video Playback` event counts only plays a reader started.
 
 ## Elsewhere
 
-- **Fallback link:** browsers without `<video>` support (and feed readers that drop the element but keep its content)
-  get a "download the video" link to the MP4, the one format every OS can open on its own.
+- **Fallback link:** browsers without `<video>` support get a "download the video" link to the MP4, the one format every
+  OS can open on its own.
 - **Print:** the figure carries `data-print-url` (the MP4); print styles replace the player with that URL. See
   docs/PRINT.md.
 - **Caching and CSP:** `/videos/*` is cached for a day (`src/static/_headers`); the CSP allows `media-src 'self'`.
-- **Feeds:** `feedContent` passes the `<video>` element through unchanged; a reader that drops it is left with the
-  fallback link above.
+- **Feeds:** `feedContent` replaces the figure with a "Video: {title}" line linking the MP4, since many readers drop
+  `<video>`. See docs/FEEDS.md.

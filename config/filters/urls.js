@@ -55,6 +55,8 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  * - {% linkedPost %} cards are site chrome whose layout depends on the site CSS -
  *   in a reader they fall apart into a bare heading, date and topic list. Reduce
  *   to a plain link, labelled with the card's eyebrow ("Related article").
+ * - {% video %} figures: many readers drop <video> (or never load its sources), leaving only the
+ *   "Your browser does not support…" text. Reduce to the clip's title and a link to the MP4.
  * - Heading permalink anchors (<a class="header-anchor">) are empty icon links
  *   that only make sense with the site CSS and JS; in a reader they are dead
  *   empty links, so drop them.
@@ -93,6 +95,21 @@ export function feedContent(html) {
     const $fallback = $('<p><em></em><a></a></p>');
     $fallback.find('em').text(`${label}: `);
     $fallback.find('a').attr('href', href).text(title);
+    $(el).replaceWith($fallback);
+  });
+
+  $('figure.video-embed-figure').each((_, el) => {
+    const $video = $(el).find('video').first();
+    const $sources = $(el).find('source');
+    const href = $sources.filter('[type="video/mp4"]').first().attr('src') || $sources.first().attr('src');
+    if (!href) {
+      $(el).remove();
+      return;
+    }
+    const title = ($video.attr('data-video-title') || '').trim();
+    const $fallback = $('<p><em></em> (<a>watch the video</a>)</p>');
+    $fallback.find('em').text(title && title !== 'Video' ? `Video: ${title}` : 'Video');
+    $fallback.find('a').attr('href', href);
     $(el).replaceWith($fallback);
   });
 
