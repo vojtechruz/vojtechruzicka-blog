@@ -138,7 +138,9 @@ function reportNotFound() {
     }
   });
 
-  // 7. Video Playback Tracking
+  // 7. Video Playback Tracking: plays the reader started. Clips that stand in for GIFs start on
+  // their own when scrolled into view (video-autoplay.js marks those plays `data-autoplaying`), and
+  // counting them would only measure scrolling.
   const trackVideoEvent = (video, type) => {
     const title = video.dataset.videoTitle || video.getAttribute('title') || 'Untitled Video';
     const src = video.currentSrc || video.querySelector('source')?.getAttribute('src') || 'Unknown Source';
@@ -154,7 +156,7 @@ function reportNotFound() {
   document.addEventListener(
     'play',
     (e) => {
-      if (e.target.tagName === 'VIDEO') {
+      if (e.target.tagName === 'VIDEO' && !('autoplaying' in e.target.dataset)) {
         trackVideoEvent(e.target, 'Play');
       }
     },

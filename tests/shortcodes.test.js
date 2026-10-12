@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { globSync } from 'glob';
-import { getAllPosts, loadPage, SITE_DIR } from './helpers.js';
+import { getAllPosts, loadPage, loadPageHtml, SITE_DIR } from './helpers.js';
 import badge from '../config/shortcodes/badge.js';
 import info from '../config/shortcodes/info.js';
 import warning from '../config/shortcodes/warning.js';
@@ -176,8 +176,29 @@ describe('Video Shortcode', () => {
     expect(await video('/videos/test.webm')).toContain('data-print-label="Video" data-print-url="/videos/test.mp4"');
   });
 
-  it('should link the fallback text to the first source', async () => {
-    expect(await video('/videos/test.mp4')).toContain('You can <a href="/videos/test.mp4">download the video</a>');
+  it('should link the fallback text to the mp4, even when the webm is listed first', async () => {
+    for (const input of ['/videos/test', '/videos/test.webm', '/videos/test.mp4']) {
+      expect(await video(input)).toContain('You can <a href="/videos/test.mp4">download the video</a>');
+    }
+    // No mp4 to offer: the only source
+    expect(await video('/videos/test.mov')).toContain('<a href="/videos/test.mov">');
+  });
+
+  it('should behave like an animated GIF by default: muted, looped, marked for autoplay', async () => {
+    const result = await video('/videos/test', 'Clip');
+    for (const attribute of ['muted', 'loop', 'data-autoplay', 'controls', 'playsinline']) {
+      expect(result, attribute).toMatch(new RegExp(`\\s${attribute}\\s`));
+    }
+    // Never the autoplay attribute itself: the script starts clips in view and honours reduced motion
+    expect(result).not.toMatch(/\sautoplay[\s=>]/);
+  });
+
+  it('should render a plain film player with animated=false', async () => {
+    const result = await video('/videos/talk', 'Talk', '', false, false);
+    for (const attribute of ['muted', 'loop', 'data-autoplay']) {
+      expect(result, attribute).not.toMatch(new RegExp(`\\s${attribute}\\s`));
+    }
+    expect(result).toMatch(/\scontrols\s/);
   });
 
   it('should include the poster only when given', async () => {
@@ -253,6 +274,19 @@ describe('Video files used by posts', () => {
     const base = src.replace(/\.(webm|mp4)$/, '');
     for (const ext of ['.webm', '.mp4']) {
       expect(existsSync(join('src/static', base + ext)), base + ext).toBe(true);
+    }
+  });
+
+  it('only posts with an animated clip load the autoplay script, and each of them does', () => {
+    const SCRIPT = /<script src="\/scripts\/video-autoplay\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
+    const built = getAllPosts()
+      .map(({ frontmatter }) => frontmatter.path)
+      .filter((url) => url && existsSync(join(SITE_DIR, url, 'index.html')));
+    const withClips = built.filter((url) => loadPageHtml(url).includes('data-autoplay'));
+
+    expect(withClips.length).toBeGreaterThan(0);
+    for (const url of built) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(withClips.includes(url));
     }
   });
 });

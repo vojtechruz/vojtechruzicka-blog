@@ -164,4 +164,5 @@
 {% block scripts %}
 <script src="{{ '/scripts/code-block.js' | assetUrl }}" defer></script>
 <script src="{{ '/scripts/header-anchor.js' | assetUrl }}" defer></script>
+{% if 'data-autoplay' in content %}<script src="{{ '/scripts/video-autoplay.js' | assetUrl }}" defer></script>{% endif %}
 {% endblock %}

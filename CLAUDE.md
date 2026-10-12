@@ -38,10 +38,11 @@ npx markdownlint-cli2 "src/**/*.md"
 - `config/collections/` — `posts` (sorted by date then series position), `topic-list`, `topic-stats`
 - `config/filters/` — Nunjucks filters for dates, URLs, text, sorting, pagination, related posts, topics
 - `config/plugins/` — esbuild (JS bundling), sass (SCSS → CSS via LightningCSS), image (eleventy-img + Shiki), markdown
-- `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}`, `{% warning/info/error/success %}` (short
-  inline notes with variant icon), `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants:
-  success/info/warning/error/update, optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}`
-  (post cards; in-body vs. listing behaviour in docs/SHORTCODES.md), `{% badge %}`
+- `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}` (silent clips that autoplay in view like GIFs;
+  encoding and options in docs/VIDEO.md), `{% warning/info/error/success %}` (short inline notes with variant icon),
+  `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants: success/info/warning/error/update,
+  optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}` (post cards; in-body vs. listing
+  behaviour in docs/SHORTCODES.md), `{% badge %}`
 - `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, table wrapping, Shiki
   `<pre>` tabindex removal, Mermaid → inline SVG (` ```mermaid ` fences render at build time via
   mermaid-isomorphic/Playwright; Chromium installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
@@ -111,14 +112,14 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
    case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags
    need explicit lowercase mappings. Guarded by `tests/redirects.test.js`; details in docs/REDIRECTS.md.
 10. `src/sitemap.xml.njk` lists exactly the built pages whose computed `isIndexable` flag is true (the same flag
-    `components/robots-meta.njk` uses, so noindex pages such as archived posts, `/archive/` and `/search/` can never
-    be listed). `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for
-    posts, the newest listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on
+    `components/robots-meta.njk` uses, so noindex pages such as archived posts, `/archive/` and `/search/` can never be
+    listed). `<lastmod>` comes from the `sitemapLastmod` filter (`config/utils/sitemap.js`): `dateModified` for posts,
+    the newest listed post for listing pages, omitted elsewhere — never Eleventy's file-date fallback, which on
     Cloudflare equals the deploy time. Guarded by `tests/sitemap.test.js`; details in docs/SITEMAP.md.
 11. Print styles (`src/styles/base/_print.scss`) are imported **last** in `main.scss`, swap the dark-only palette for a
     light one, hide interactive chrome, print link targets and replace embeds with their URL (the `codepen`, `youtube`
-    and `video` shortcodes emit `data-print-url` for that). Guarded by `tests/print.test.js` (Playwright, emulated
-    print media); details in docs/PRINT.md.
+    and `video` shortcodes emit `data-print-url` for that). Guarded by `tests/print.test.js` (Playwright, emulated print
+    media); details in docs/PRINT.md.
 
 ### Service worker
 
@@ -139,9 +140,9 @@ lean variant via `ELEVENTY_IMAGE_FORMATS`/`ELEVENTY_IMAGE_WIDTHS` env vars. Deta
 
 Every change made to the blog in a session must be recorded in the Obsidian daily note for that day:
 `<vault>/Carpe Diem/<YYYY>/<YYYY-MM>/<YYYY-MM-DD>.md` (the vault's daily-notes setting is
-`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Get `<vault>` with `python _tools/obsidian/config.py` (`python3` on Linux,
-stdlib only); it finds Dropbox on Windows and Linux alike, so never hardcode `D:\Dropbox`. If it fails, ask the user
-for the vault path. Create the note if it does not exist yet (first line is the navigation header
+`Carpe Diem/YYYY/YYYY-MM/YYYY-MM-DD`). Get `<vault>` with `python _tools/obsidian/config.py` (`python3` on Linux, stdlib
+only); it finds Dropbox on Windows and Linux alike, so never hardcode `D:\Dropbox`. If it fails, ask the user for the
+vault path. Create the note if it does not exist yet (first line is the navigation header
 `← [[<prev day>]]  ·  [[<next day>]] →   ·   ↑ [[<YYYY>-W<week>]] · [[<YYYY-MM>]]`, then a blank line, then bullets).
 
 Format, matching the existing entries: one top-level bullet `- Blog` with one tab-indented sub-bullet per change,

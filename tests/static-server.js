@@ -14,6 +14,8 @@ const CONTENT_TYPES = {
   '.jpg': 'image/jpeg',
   '.webp': 'image/webp',
   '.avif': 'image/avif',
+  '.webm': 'video/webm',
+  '.mp4': 'video/mp4',
 };
 
 /**
