@@ -14,6 +14,7 @@ import registerRelatedPostsFilter from "./config/filters/related-posts.js";
 import registerTopicsFilters from "./config/filters/topics.js";
 import registerAssetVersionFilter from "./config/filters/asset-version.js";
 import registerSitemapFilters from "./config/filters/sitemap.js";
+import registerSeriesFilters from "./config/filters/series.js";
 import registerShortcodes from "./config/shortcodes.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipSvgTransform } from "./config/html-transform/lqip-svg-transform.js";
@@ -67,6 +68,7 @@ export default async function (eleventyConfig) {
   registerTopicsFilters(eleventyConfig);
   registerAssetVersionFilter(eleventyConfig);
   registerSitemapFilters(eleventyConfig);
+  registerSeriesFilters(eleventyConfig);
 
   //ShortCodes
   registerShortcodes(eleventyConfig);

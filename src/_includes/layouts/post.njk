@@ -56,6 +56,12 @@
             <li><a class="topic-name" href="/topics/{{ topic | slugify }}/">{{topic}}</a></li>
             {% endfor %}
           </ul>
+          {# Which part of a series this is, up top: the series TOC is a sidebar (hidden below 1024 px)
+             and the previous/next navigation sits below the article. Same label as on post cards. #}
+          {% set headerPart = series | seriesPart(page.url, seriesMetadata, collections.posts) if series and not archivedStatus else null %}
+          {% if headerPart %}
+          <span class="series-part-label"><a title="View all posts in {{ headerPart.series.name }} series" href="/series/{{ headerPart.series.slug }}/">{{ headerPart.series.name }}</a> · Part {{ headerPart.position }}/{{ headerPart.total }}</span>
+          {% endif %}
         </div>
         {%if dateModified %}
         <div class="date-modified">Updated: {{dateModified | readableDate }}</div>

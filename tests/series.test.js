@@ -451,3 +451,29 @@ describe('Series badge on post cards', () => {
     });
   });
 });
+
+// ---------------------------------------------------------------------------
+// Integration tests – "Part x/y" badge in the post header
+// ---------------------------------------------------------------------------
+
+describe('Series badge in the post header', () => {
+  const publishedParts = (series) => series.posts.filter((url) => existsSync(path.join(SITE_DIR, url, 'index.html')));
+
+  it('states the series and the part on every part, like the cards and the navigation below', () => {
+    for (const series of seriesMetadata) {
+      const parts = publishedParts(series);
+      parts.forEach((postUrl, i) => {
+        const badge = loadPage(postUrl)('.post-metadata .series-part-label');
+        expect(badge.length, `header badge on ${postUrl}`).toBe(1);
+        expect(badge.text().replace(/\s+/g, ' ').trim()).toBe(`${series.name} · Part ${i + 1}/${parts.length}`);
+        expect(badge.find('a').attr('href')).toBe(`/series/${series.slug}/`);
+      });
+    }
+  });
+
+  it('is absent from posts outside a series', () => {
+    for (const { frontmatter } of builtNonSeriesPosts()) {
+      expect(loadPage(frontmatter.path)('.post-metadata .series-part-label').length, frontmatter.path).toBe(0);
+    }
+  });
+});
