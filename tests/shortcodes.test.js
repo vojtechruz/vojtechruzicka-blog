@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 import { globSync } from 'glob';
 import { getAllPosts, loadPage, SITE_DIR } from './helpers.js';
 import badge from '../config/shortcodes/badge.js';
@@ -139,25 +140,120 @@ describe('YouTube Shortcode', () => {
 });
 
 describe('Video Shortcode', () => {
+  // A real video in the repo, so ffprobe reads actual dimensions
+  const REAL_VIDEO =
+    '/videos/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/documentation-angulardoc-extension';
+
+  const sources = (html) => [...html.matchAll(/<source src="([^"]*)"(?: type="([^"]*)")?>/g)].map((m) => [m[1], m[2]]);
+
   it('should generate multiple sources for extensionless input', async () => {
     const result = await video('/videos/my-video');
-    expect(result).toContain('src="/videos/my-video.webm" type="video/webm"');
-    expect(result).toContain('src="/videos/my-video.mp4" type="video/mp4"');
+    expect(sources(result)).toEqual([
+      ['/videos/my-video.webm', 'video/webm'],
+      ['/videos/my-video.mp4', 'video/mp4'],
+    ]);
   });
 
   it('should handle mp4 input and add webm', async () => {
-    const result = await video('/videos/test.mp4');
-    expect(result).toContain('src="/videos/test.mp4" type="video/mp4"');
-    expect(result).toContain('src="/videos/test.webm" type="video/webm"');
+    expect(sources(await video('/videos/test.mp4'))).toEqual([
+      ['/videos/test.mp4', 'video/mp4'],
+      ['/videos/test.webm', 'video/webm'],
+    ]);
+  });
+
+  it('should handle webm input and add mp4, each source once', async () => {
+    expect(sources(await video('/videos/test.webm'))).toEqual([
+      ['/videos/test.webm', 'video/webm'],
+      ['/videos/test.mp4', 'video/mp4'],
+    ]);
+  });
+
+  it('should pass an unknown extension through as a single untyped source', async () => {
+    expect(sources(await video('/videos/test.mov'))).toEqual([['/videos/test.mov', undefined]]);
   });
 
   it('should expose the mp4 URL for print styles', async () => {
     expect(await video('/videos/test.webm')).toContain('data-print-label="Video" data-print-url="/videos/test.mp4"');
   });
 
-  it('should include poster and dimensions if available', async () => {
-    const result = await video('/videos/test', 'Title', '/posters/test.jpg');
-    expect(result).toContain('poster="/posters/test.jpg"');
+  it('should link the fallback text to the first source', async () => {
+    expect(await video('/videos/test.mp4')).toContain('You can <a href="/videos/test.mp4">download the video</a>');
+  });
+
+  it('should include the poster only when given', async () => {
+    expect(await video('/videos/test', 'Title', '/posters/test.jpg')).toContain('poster="/posters/test.jpg"');
+    expect(await video('/videos/test', 'Title')).not.toContain('poster=');
+  });
+
+  it('should read width and height of a local file with ffprobe', async () => {
+    expect(await video(REAL_VIDEO)).toMatch(/\swidth="900" height="474"/);
+  });
+
+  it('should omit width and height when the file does not exist', async () => {
+    const result = await video('/videos/does-not-exist');
+    expect(result).not.toMatch(/\swidth=/);
+    expect(result).not.toMatch(/\sheight=/);
+  });
+
+  it('should name the video by its title attribute without a caption', async () => {
+    const result = await video('/videos/test', 'Finding a dependency');
+    expect(result).toContain('title="Finding a dependency"');
+    expect(result).toContain('data-video-title="Finding a dependency"');
+    expect(result).not.toContain('<figcaption');
+    expect(result).not.toContain('aria-labelledby');
+  });
+
+  it('should default the title to "Video"', async () => {
+    expect(await video('/videos/test')).toContain('title="Video"');
+  });
+
+  it('should name the video by its visible caption with showCaption', async () => {
+    const result = await video('/videos/test', 'Finding a dependency', '', true);
+    const captionId = result.match(
+      /<figcaption id="([^"]+)" class="video-caption">Finding a dependency<\/figcaption>/,
+    )?.[1];
+
+    expect(captionId, 'figcaption with an id').toBeDefined();
+    expect(result).toContain(`aria-labelledby="${captionId}"`);
+    expect(result).not.toMatch(/<video[^>]*\stitle=/);
+  });
+
+  it('should give each captioned video its own stable caption id', async () => {
+    const id = async (...args) => (await video(...args)).match(/<figcaption id="([^"]+)"/)[1];
+
+    expect(await id('/videos/a', 'Same', '', true)).toBe(await id('/videos/a', 'Same', '', true));
+    expect(await id('/videos/a', 'Same', '', true)).not.toBe(await id('/videos/b', 'Same', '', true));
+    expect(await id('/videos/a', 'One', '', true)).not.toBe(await id('/videos/a', 'Two', '', true));
+  });
+
+  it('should escape the title, caption, poster and source URLs', async () => {
+    const nasty = '<b>"Tom & Jerry"</b>';
+    const plain = await video('/videos/a"b', nasty, '/p"x.jpg');
+    const captioned = await video('/videos/test', nasty, '', true);
+
+    expect(plain).not.toContain(nasty);
+    expect(plain).toContain('title="&lt;b&gt;&quot;Tom &amp; Jerry&quot;&lt;/b&gt;"');
+    expect(plain).toContain('data-video-title="&lt;b&gt;&quot;Tom &amp; Jerry&quot;&lt;/b&gt;"');
+    expect(plain).toContain('poster="/p&quot;x.jpg"');
+    expect(plain).toContain('src="/videos/a&quot;b.webm"');
+    expect(captioned).toContain('>&lt;b&gt;&quot;Tom &amp; Jerry&quot;&lt;/b&gt;</figcaption>');
+  });
+});
+
+describe('Video files used by posts', () => {
+  const calls = getAllPosts().flatMap(({ filePath }) =>
+    [...readFileSync(filePath, 'utf8').matchAll(/{%-?\s*video\s+["']([^"']+)["']/g)].map((m) => [m[1], filePath]),
+  );
+
+  it('posts embed videos', () => {
+    expect(calls.length).toBeGreaterThan(0);
+  });
+
+  it.each(calls)('%s has both a .webm and an .mp4 file', (src) => {
+    const base = src.replace(/\.(webm|mp4)$/, '');
+    for (const ext of ['.webm', '.mp4']) {
+      expect(existsSync(join('src/static', base + ext)), base + ext).toBe(true);
+    }
   });
 });
 
