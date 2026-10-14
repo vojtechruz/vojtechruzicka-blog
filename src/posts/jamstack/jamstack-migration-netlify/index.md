@@ -12,7 +12,7 @@ needsReview: true
 
 Recently I managed to finally get rid of WordPress and migrate my blog to JAM Stack, built with a static site generator
 called GatsbyJS. I described what JAM Stack is, how I migrated and how great Gatsby is in my previous post -
-[Migration to GatsbyJS and JAM stack from WordPress](https://www.vojtechruzicka.com/gatsby-migration/).
+[Migration to GatsbyJS and JAM stack from WordPress](/gatsby-migration/).
 
 This second post describes build and deployment process and how much it is better than the original WordPress setup or
 traditional GitHub Pages.

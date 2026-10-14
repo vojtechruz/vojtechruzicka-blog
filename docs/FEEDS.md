@@ -52,7 +52,7 @@ content is split across two CDATA sections by `feedContent`, so it cannot end th
 The body comes from `post.templateContent`, which is the post's HTML **before Eleventy transforms run**. Transforms
 (Mermaid → SVG, `<picture>` wrapping, eleventy-img URL rewriting) only run on `.html` outputs — the feed XML never sees
 them. So the raw `templateContent` contains site-internal artifacts that are broken or meaningless in a feed reader. The
-`feedContent` filter (`config/filters/urls.js`) fixes four of them, then `htmlToAbsoluteUrls` absolutizes the remaining
+`feedContent` filter (`config/filters/urls.js`) fixes five of them, then `htmlToAbsoluteUrls` absolutizes the remaining
 root-relative links.
 
 The pipeline in both templates (footer appended afterwards — see below):
@@ -84,18 +84,24 @@ eyebrow is a CSS `::before`, invisible in a reader. Left alone, a card collapses
 and excerpt. `feedContent` reduces each `.linked-post` to a single `<em>Related article: </em><a>…</a>` paragraph (the
 label now real text, not CSS), or removes it if the title/href can't be found.
 
-### 4. Decorative icons → removed
+### 4. Videos → title and link
+
+Many readers drop `<video>` or never load its sources, which leaves only the player's "Your browser does not support the
+video tag" text. `feedContent` reduces each `{% video %}` figure to an `<em>Video: {title}</em> (watch the video)`
+paragraph linking the MP4 (just "Video" when the clip has no title; removed if it has no source). See VIDEO.md.
+
+### 5. Decorative icons → removed
 
 The callout/msg SVG icons are `aria-hidden="true"` decoration that only sits inline via the component's flexbox CSS;
 without it they misalign above the title text. They carry no information, so `feedContent` drops every
 `svg[aria-hidden="true"]`, keeping the title and body. (The icons still get intrinsic `width`/`height` in
 `config/utils/icons.js` as defensive good practice.)
 
-### 5. Absolutize URLs
+### 6. Absolutize URLs
 
 `htmlToAbsoluteUrls` rewrites any remaining root-relative `href`/`src` (e.g. `/some-post/`) to absolute `https://…`
 URLs, since feed items are read off-site. It runs **after** `feedContent`, so links introduced by the fallbacks (the
-related-article link) get absolutized too.
+related-article and video links) get absolutized too.
 
 > Note: this filter is a deliberately small regex, not a full HTML parse — it only touches attributes starting with `/`.
 > A past bug dropped the closing quote (`href="…/p` instead of `href="…/p"`); there's now a regression test asserting
@@ -108,7 +114,7 @@ Full-text feeds lose the engagement chrome that lives _below_ the article on the
 
 - **Series line** (series posts only): "Part N of M in the {series} series" linking to the series page. Series
   membership is looked up in `seriesMetadata`. This is the only place series context reaches the feed — on the site it
-  lives in the sidebar.
+  lives in the post header, the sidebar and below the article.
 - **Discuss + read-on-site line**: a link to `{post}#comments` (readers never load Giscus) and a link back to the
   canonical post URL (attribution if the feed is scraped/republished).
 
@@ -125,7 +131,7 @@ like" is noise), social-follow links (spammy — the feed itself is the subscrip
 **not** by substring-matching the raw XML. Necessary because a post's full body can legitimately link to other posts
 (old or draft) — a naive `feed.includes('/other-post/')` would false-positive on those in-body links. The suite also
 asserts the built feeds contain no leaked `<pre class="mermaid">`, `<img>`, `<svg>`, `/src/posts/` paths, or
-`.linked-post` markup.
+`.linked-post` markup or `<video>`.
 
 ## Adding content that renders differently on the site
 

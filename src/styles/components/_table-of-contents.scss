@@ -14,7 +14,7 @@ $toc-indent-step: 1.25rem;
     color: var(--color-text-muted);
   }
 
-  .series-current {
+  [aria-current='page'] {
     font-weight: 600;
     color: var(--color-text);
   }
@@ -55,14 +55,11 @@ $toc-indent-step: 1.25rem;
 
 // TOC -----------------------------------------------------------------------------------------------------------------
 
-.toc {
+// Shared by the sidebar TOC and its collapsed copy above the article on narrow screens
+.toc,
+.toc-mobile {
   font-size: 0.95rem;
   line-height: 1.4;
-
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
 
   ol {
     @include utilities.reset-list;
@@ -79,9 +76,40 @@ $toc-indent-step: 1.25rem;
       padding-left: 0.75em;
     }
   }
+}
+
+.toc {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
 
   &:only-of-type {
     margin-top: var(--gap-small);
+  }
+}
+
+// Shown only where the sidebar is hidden (utilities.respond(large), same as .sidebar in _layout.scss)
+.toc-mobile {
+  display: none;
+  margin-block: var(--gap-medium);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--radius-sm);
+
+  summary {
+    padding: var(--gap-small) var(--gap-medium);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .toc-list {
+    padding: 0 var(--gap-small) var(--gap-small);
+  }
+
+  @include utilities.respond(large) {
+    display: block;
   }
 }
 
@@ -91,24 +119,6 @@ $toc-indent-step: 1.25rem;
 
 .toc-list {
   padding-inline: 3px;
-  li a {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 100%;
-    display: block;
-    border-radius: var(--radius-xxs);
-    transition:
-      background-color 0.15s ease,
-      color 0.15s ease;
-    padding-inline: var(--gap-small);
-    padding-block-end: 3px;
-  }
-}
-
-.toc {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
 }
 
 .series-toc-divider {
@@ -118,14 +128,16 @@ $toc-indent-step: 1.25rem;
   margin-block: 0;
 }
 
+// Long items wrap rather than end in an ellipsis: a title tooltip would not reach touch or
+// keyboard users, and the sidebar is wide enough that only a couple of headings need a 2nd line
 .toc-list a {
-  text-decoration: none;
   display: block;
-  padding: 4px 6px;
+  padding: 4px var(--gap-small) 3px;
+  border-radius: var(--radius-xxs);
   font-size: 0.95rem;
   color: var(--color-text-muted);
   opacity: 0.9;
-
+  text-decoration: none;
   transition:
     background-color 0.15s ease,
     color 0.15s ease;
@@ -136,7 +148,7 @@ $toc-indent-step: 1.25rem;
   background: rgba(255, 255, 255, 0.03);
 }
 
-.toc-list a.is-active,
+// The scrollspy marks the section in view (toc-scrollspy.js)
 .toc-list a[aria-current='true'] {
   color: var(--color-accent-subtle) !important;
   font-weight: 600;

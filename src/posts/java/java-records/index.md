@@ -270,6 +270,6 @@ information such as:
 
 ## Also new in Java 14
 
-- [Java Pattern Matching: InstanceOf](https://www.vojtechruzicka.com/java-pattern-matching-instanceof/)
-- [Enhanced Switch](https://www.vojtechruzicka.com/java-enhanced-switch/)
-- [Text Blocks](https://www.vojtechruzicka.com/java-text-blocks/)
+- [Java Pattern Matching: InstanceOf](/java-pattern-matching-instanceof/)
+- [Enhanced Switch](/java-enhanced-switch/)
+- [Text Blocks](/java-text-blocks/)

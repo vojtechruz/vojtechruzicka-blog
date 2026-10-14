@@ -112,5 +112,5 @@ Removing the last occurrence from your selection is the same shortcut with <kbd>
 ## Presentation assistant
 
 In case you're wondering how I am displaying keyboard shortcuts of the invoked commands on the screen on my gifs - it
-uses [Presentation Assistant Plugin](https://www.vojtechruzicka.com/intellij-idea-tips-tricks-presentations/), which is
+uses [Presentation Assistant Plugin](/intellij-idea-tips-tricks-presentations/), which is
 very useful during presentations and webinars.

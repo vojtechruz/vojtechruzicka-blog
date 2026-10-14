@@ -12,7 +12,7 @@ needsReview: true
 ## Creating objects
 
 In your applications, most of the time you don't work with
-[primitives](https://www.vojtechruzicka.com/javascript-primitives/) but rather with objects. You can directly create
+[primitives](/javascript-primitives/) but rather with objects. You can directly create
 objects with object literal like this:
 
 ```javascript

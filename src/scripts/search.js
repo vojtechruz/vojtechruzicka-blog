@@ -191,6 +191,65 @@
         window.addEventListener('keydown', onKey);
       }
 
+      const visible = (el) => !el.closest('[hidden], .pagefind-ui__hidden');
+
+      // Arrow keys between the input, the result links and "Load more" (Tab still works): ArrowDown
+      // from the input goes to the first result, ArrowUp from the first result back to the input.
+      // Enter on a focused result follows the link natively. Modified arrows (text selection) are
+      // left alone.
+      container.addEventListener('keydown', (e) => {
+        if ((e.key !== 'ArrowDown' && e.key !== 'ArrowUp') || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+          return;
+        }
+        const items = Array.from(container.querySelectorAll('.pagefind-ui__result-link, .pagefind-ui__button')).filter(
+          visible,
+        );
+        const down = e.key === 'ArrowDown';
+        let next;
+        if (e.target === input) {
+          next = down ? items.find((el) => el.matches('.pagefind-ui__result-link')) : null;
+        } else {
+          const index = items.indexOf(e.target);
+          if (index < 0) {
+            return;
+          }
+          next = down ? items[index + 1] : items[index - 1] || input;
+        }
+        if (next) {
+          e.preventDefault();
+          next.focus();
+        } else if (e.target !== input) {
+          // Past the end: stay put instead of scrolling the page behind the overlay
+          e.preventDefault();
+        }
+      });
+
+      // "Load more" keeps focus on itself while it moves below the new results; send focus to the
+      // first newly added result instead, so the reader continues where the list grew. Pagefind adds
+      // the result items first and fills in each link once its data has loaded. Capture phase: the
+      // count must be taken before Pagefind's own click handler on the button renders the new items.
+      container.addEventListener(
+        'click',
+        (e) => {
+          if (!e.target.closest('.pagefind-ui__button')) {
+            return;
+          }
+          const firstNew = container.querySelectorAll('.pagefind-ui__result').length;
+          const focusFirstNew = () => {
+            const item = container.querySelectorAll('.pagefind-ui__result')[firstNew];
+            const link = item?.querySelector('.pagefind-ui__result-link');
+            if (link) {
+              link.focus();
+            }
+            return Boolean(link);
+          };
+          const observer = new MutationObserver(() => focusFirstNew() && observer.disconnect());
+          observer.observe(container, { childList: true, subtree: true });
+          setTimeout(() => observer.disconnect(), 5000);
+        },
+        true,
+      );
+
       // Initial focus
       input?.focus({ preventScroll: true });
 

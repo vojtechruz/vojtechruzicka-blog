@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import seriesMetadata from '../src/_data/seriesMetadata.js';
 import { describe, it, expect } from 'vitest';
 import { loadPage, getAllPosts } from './helpers.js';
 import { getCanonicalUrl, getMetaDescriptionContent, getOgImage } from './queries/seo.js';
@@ -101,5 +104,38 @@ describe('BlogPosting JSON-LD', () => {
     expect(types).toContain('BreadcrumbList');
     expect(types).not.toContain('WebPage');
     expect(types).not.toContain('CollectionPage');
+  });
+});
+
+describe('BlogPosting JSON-LD of a series part', () => {
+  const siteUrl = siteConfig.url.replace(/\/$/, '');
+  const parts = seriesMetadata.flatMap((series) =>
+    series.posts.filter((url) => existsSync(join('_site', url, 'index.html'))).map((url) => ({ series, url })),
+  );
+
+  it('there are built series parts to check', () => {
+    expect(parts.length).toBeGreaterThan(0);
+  });
+
+  it.each(parts.map((p) => [p.url, p]))('%s names its series and its position in it', (_, { series, url }) => {
+    const $ = loadPage(url);
+    const post = blogPosting($);
+
+    expect(post.isPartOf).toEqual({
+      '@type': 'CreativeWorkSeries',
+      name: series.name,
+      url: `${siteUrl}/series/${series.slug}/`,
+    });
+    // Same numbering as the visible "Part x of y" below the article
+    const visible = $('.series-nav-position').text().match(/Part (\d+) of/);
+    expect(visible, 'Part x of y line').not.toBeNull();
+    expect(post.position).toBe(Number(visible[1]));
+  });
+
+  it.each(POSTS)('%s is not part of a series and carries neither field', (url) => {
+    const post = blogPosting(loadPage(url));
+
+    expect(post).not.toHaveProperty('isPartOf');
+    expect(post).not.toHaveProperty('position');
   });
 });

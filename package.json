@@ -18,7 +18,7 @@
     "search-index": "pagefind --site _site",
     "test": "vitest run",
     "test:watch": "vitest",
-    "validate": "npm run validate:html && npm run validate:css && npm run validate:js && npm run validate:md  && npm run validate:xml",
+    "validate": "npm run validate:html && npm run validate:css && npm run validate:js && npm run validate:md && npm run validate:xml && npm run validate:links",
     "validate:html": "html-validate \"_site/**/*.html\"",
     "validate:css": "stylelint \"src/styles/**/*.scss\"",
     "validate:js": "eslint .",

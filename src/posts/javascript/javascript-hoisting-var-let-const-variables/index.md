@@ -195,7 +195,7 @@ name of a variable which does multiple different things?
 While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about
 reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its
 properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to
-objects. In case of [primitives](https://www.vojtechruzicka.com/javascript-primitives/) such as numbers, strings or
+objects. In case of [primitives](/javascript-primitives/) such as numbers, strings or
 booleans, you are safe as they are immutable.
 
 ## let vs const

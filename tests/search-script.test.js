@@ -213,6 +213,102 @@ describe('search.js', () => {
       expect(tab(firstResult).defaultPrevented).toBe(false);
     });
 
+    it('moves between the input and the results with the arrow keys', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const [ui] = PagefindUIStub.instances;
+      ui.drawer.innerHTML = `
+        <a class="pagefind-ui__result-link" href="/a/">A</a>
+        <a class="pagefind-ui__result-link" href="/b/">B</a>
+        <button class="pagefind-ui__button" type="button">Load more</button>`;
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+      const [a, b] = ui.drawer.querySelectorAll('a');
+      const loadMore = ui.drawer.querySelector('button');
+      const press = (key, init = {}) => {
+        const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true, ...init });
+        document.activeElement.dispatchEvent(event);
+        return event;
+      };
+
+      ui.input.focus();
+      expect(press('ArrowUp').defaultPrevented, 'ArrowUp in the input keeps its caret behaviour').toBe(false);
+      expect(document.activeElement).toBe(ui.input);
+
+      expect(press('ArrowDown').defaultPrevented).toBe(true);
+      expect(document.activeElement).toBe(a);
+      press('ArrowDown');
+      expect(document.activeElement).toBe(b);
+      press('ArrowDown');
+      expect(document.activeElement, '"Load more" follows the results').toBe(loadMore);
+
+      // Past the end: stays, and the page behind does not scroll
+      expect(press('ArrowDown').defaultPrevented).toBe(true);
+      expect(document.activeElement).toBe(loadMore);
+
+      press('ArrowUp');
+      expect(document.activeElement).toBe(b);
+      press('ArrowUp');
+      expect(document.activeElement).toBe(a);
+      press('ArrowUp');
+      expect(document.activeElement).toBe(ui.input);
+
+      // Shift+arrow selects text in the input instead
+      expect(press('ArrowDown', { shiftKey: true }).defaultPrevented).toBe(false);
+      expect(document.activeElement).toBe(ui.input);
+    });
+
+    it('moves focus to the first newly loaded result after "Load more"', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const [ui] = PagefindUIStub.instances;
+      const result = (href) =>
+        `<li class="pagefind-ui__result">${href ? `<a class="pagefind-ui__result-link" href="${href}">${href}</a>` : ''}</li>`;
+      ui.drawer.innerHTML = `<ol class="pagefind-ui__results">${result('/a/')}${result('/b/')}</ol>
+        <button class="pagefind-ui__button" type="button">Load more</button>`;
+      ui.drawer.classList.remove('pagefind-ui__hidden');
+      await flush();
+      const list = ui.drawer.querySelector('ol');
+      const loadMore = ui.drawer.querySelector('button');
+
+      // Like Pagefind: the button's own handler adds empty result items right away, and each link
+      // appears once its data has loaded - here the second new one before the first.
+      loadMore.addEventListener('click', () => {
+        list.insertAdjacentHTML('beforeend', result() + result());
+        setTimeout(() => {
+          list.children[3].innerHTML = '<a class="pagefind-ui__result-link" href="/d/">d</a>';
+        }, 0);
+        setTimeout(() => {
+          list.children[2].innerHTML = '<a class="pagefind-ui__result-link" href="/c/">c</a>';
+        }, 5);
+      });
+
+      loadMore.focus();
+      loadMore.click();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+
+      expect(document.activeElement.getAttribute('href')).toBe('/c/');
+    });
+
+    it('leaves arrow keys alone while there are no visible results', async () => {
+      await loadScript('/about/', HEADER_CONTAINER);
+      document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+      await flush();
+
+      const [ui] = PagefindUIStub.instances;
+      ui.drawer.innerHTML = '<a class="pagefind-ui__result-link" href="/a/">A</a>'; // drawer still hidden
+      ui.input.focus();
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true });
+      ui.input.dispatchEvent(event);
+
+      expect(event.defaultPrevented).toBe(false);
+      expect(document.activeElement).toBe(ui.input);
+    });
+
     it('returns focus on Escape to the element that had it when the shortcut opened search', async () => {
       await loadScript('/about/', HEADER_CONTAINER + '<a id="origin" href="/x/">x</a>');
       const origin = document.getElementById('origin');
@@ -301,6 +397,17 @@ describe('search.js', () => {
       expect(window.location.pathname + window.location.search).toBe('/search/');
 
       expect(pushState).not.toHaveBeenCalled();
+    });
+
+    it('moves from the input to the results with the arrow keys too', async () => {
+      await loadScript('/search/?q=java', INLINE_CONTAINER);
+      const [ui] = PagefindUIStub.instances;
+      ui.drawer.innerHTML = '<a class="pagefind-ui__result-link" href="/a/">A</a>';
+
+      ui.input.focus();
+      ui.input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }));
+
+      expect(document.activeElement).toBe(ui.drawer.querySelector('a'));
     });
 
     it('renders inline: no backdrop, no body lock, Escape leaves the query alone', async () => {

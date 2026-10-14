@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from 'fs';
 import { getAllPosts, SITE_DIR } from './helpers.js';
 import { DOMParser } from '@xmldom/xmldom';
 import { feedContent, htmlToAbsoluteUrls, feedFooter } from '../config/filters/urls.js';
+import video from '../config/shortcodes/video.js';
 import { latestModifiedDate } from '../config/filters/dates.js';
 
 // Load feed config
@@ -153,6 +154,21 @@ describe('Feeds (RSS and Atom)', () => {
       expect(feedContent(card)).toBe('<p><em>See also: </em><a href="/javafx-css/">JavaFX CSS</a></p>');
     });
 
+    it('reduces a video to its title and a link to the MP4', async () => {
+      const figure = await video('/videos/x/clip', 'Resolving a <dependency>', '', true);
+      const result = feedContent(`<p>Before</p>${figure}<p>After</p>`).replace(/>\s+</g, '><');
+      expect(result).toBe(
+        '<p>Before</p><p><em>Video: Resolving a &lt;dependency&gt;</em> (<a href="/videos/x/clip.mp4">watch the video</a>)</p><p>After</p>',
+      );
+    });
+
+    it('labels a video without a title just "Video", and links its only source', async () => {
+      const figure = await video('/videos/x/clip.mov');
+      expect(feedContent(figure).trim()).toBe(
+        '<p><em>Video</em> (<a href="/videos/x/clip.mov">watch the video</a>)</p>',
+      );
+    });
+
     it('strips decorative callout/msg icons but keeps the title text', () => {
       const callout =
         '<div class="callout callout--success" role="note"><p class="callout-title">' +
@@ -205,6 +221,7 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not contain linkedPost card markup`).not.toContain('front-post-title');
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
         expect(content, `${name} feed should not contain heading permalink anchors`).not.toContain('header-anchor');
+        expect(content, `${name} feed should not contain video players`).not.toContain('<video');
       }
     });
   });

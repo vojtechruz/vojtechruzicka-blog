@@ -5,7 +5,9 @@ run the AI idea/post review workflow. Everything operates on plain markdown
 files in the vault — there is **no API and no auth token**.
 
 These scripts back the `/sync-obsidian`, `/sync-traffic`, `/review-ideas`, `/review-posts`
-and `/suggest-next` slash commands, but can also be run by hand.
+and `/suggest-next` slash commands, but can also be run by hand. `/plausible` and
+`/search-console` use only `config.py` to find the vault and then run the vault's
+`plausible-blog` and `search-console` skills.
 
 ## Vault layout
 
@@ -19,15 +21,20 @@ One markdown note per row; a note joins its Base via a `base: "[[X.base]]"`
 frontmatter link. The AI output lives inside each note as a callout —
 `> [!note]+ # AI Feedback` on ideas, `> [!note]+ # AI Review` on articles.
 
-Paths default to the current vault (`D:\Dropbox\Obsidian`) and can be overridden
-via environment variables — see `.env.example` and `config.py`. You normally
-don't need a `.env` at all.
+Paths default to `<Dropbox>/Obsidian` on the current computer. `config.py` finds
+the Dropbox folder the same way as the vault's `1sec` skill: `DROPBOX_ROOT`, the
+Dropbox client's `info.json`, then `~/Dropbox`, `D:\Dropbox`, `C:\Dropbox`. That
+makes it work on Windows (`D:\Dropbox`) and Linux (`~/Dropbox`) alike.
+`python _tools/obsidian/config.py` prints the vault it found. Every path can be
+overridden via environment variables, see `.env.example` and `config.py`. You
+normally don't need a `.env` at all.
 
 ## Setup
 
 ```bash
 python -m venv _tools/obsidian/.venv
 _tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt   # Windows
+_tools/obsidian/.venv/bin/pip install -r _tools/obsidian/requirements.txt       # Linux/Mac (python3 -m venv)
 ```
 
 ## Scripts
@@ -38,7 +45,7 @@ _tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt   
 | `fetch_ideas.py [--posts-dir PATH]` | Emit JSON of ideas + learning list (+ existing posts) for the review step. Each idea's `id` is its note path. |
 | `push_idea_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Feedback` callout + `AI Suggested Priority` / `AI Expected Effort` frontmatter into each idea note. |
 | `write_post_reviews.py <reviews.json> [--dry-run]` | Write the `# AI Review` callout + `AI Update Priority` frontmatter into the article note matching each `slug`. |
-| `sync_traffic.py [--months N] [--dry-run]` | Write Plausible pageviews into article notes: `Views 6mo` frontmatter + a `# Traffic` callout with monthly numbers. Needs a Plausible Stats API key in `~/.plausible/config.json` (the only script that talks to an API). |
+| `sync_traffic.py [--months N] [--dry-run]` | Write Plausible pageviews into article notes: `Views 6mo` frontmatter + a `# Traffic` callout with monthly numbers. Needs a Plausible Stats API key in `<Dropbox>/.secrets/plausible.json` (the only script that talks to an API). |
 | `summarize_reviews.py` | Parse the AI Feedback callouts across all idea notes into compact JSON for `suggest-next`. |
 
 Shared helpers live in `config.py` (paths) and `vault_reviews.py` (frontmatter

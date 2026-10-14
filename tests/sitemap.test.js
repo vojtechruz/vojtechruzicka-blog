@@ -149,9 +149,14 @@ describe('Sitemap (sitemap.xml)', () => {
 
   describe('Pages', () => {
     it('contains the core pages', () => {
-      for (const urlPath of ['/', '/about/', '/topics/', '/series/', '/search/']) {
+      for (const urlPath of ['/', '/about/', '/topics/', '/series/']) {
         expect(sitemap.entries.has(absolute(urlPath)), `missing ${urlPath}`).toBe(true);
       }
+    });
+
+    it('leaves out the search page, which is noindex', () => {
+      // An empty search form is a thin page: Google reported it "Discovered – currently not indexed".
+      expect(sitemap.entries.has(absolute('/search/'))).toBe(false);
     });
 
     it('contains a topic page for every topic of a published post', () => {
@@ -244,10 +249,8 @@ describe('Sitemap (sitemap.xml)', () => {
     it('is omitted on pages whose changes nothing tracks', () => {
       // Eleventy's fallback date for these is the file creation time, which on Cloudflare Pages
       // is the deploy time — a lastmod that moves on every deploy is worse than none.
-      for (const urlPath of ['/about/', '/search/']) {
-        expect(sitemap.entries.has(absolute(urlPath)), `${urlPath} missing`).toBe(true);
-        expect(sitemap.entries.get(absolute(urlPath)), `${urlPath} should have no lastmod`).toBeUndefined();
-      }
+      expect(sitemap.entries.has(absolute('/about/')), '/about/ missing').toBe(true);
+      expect(sitemap.entries.get(absolute('/about/')), '/about/ should have no lastmod').toBeUndefined();
     });
   });
 });

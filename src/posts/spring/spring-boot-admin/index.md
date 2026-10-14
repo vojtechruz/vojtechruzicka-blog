@@ -137,7 +137,7 @@ After exposing your Actuator endpoints, you should see much more information in 
 ![Admin with Actuator Endpoints exposed](spring-boot-admin-with-actuator.png)
 
 For a detailed tutorial on Spring Boot Actuator configuration check
-[this article](https://www.vojtechruzicka.com/spring-boot-actuator/).
+[this article](/spring-boot-actuator/).
 
 ## Security
 

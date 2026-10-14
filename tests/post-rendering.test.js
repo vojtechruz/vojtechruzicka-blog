@@ -162,4 +162,23 @@ describe('Post rendering (post.njk header)', () => {
       }
     });
   });
+
+  describe('Links to the blog itself', () => {
+    // Every built post page, archived copies included: they link to live posts too
+    const builtPosts = getAllPosts().filter(
+      ({ frontmatter }) => frontmatter.path && existsSync(`${SITE_DIR}${frontmatter.path}index.html`),
+    );
+
+    it('are root-relative, so the internal link check covers them and previews stay on the preview', () => {
+      for (const { filePath, frontmatter } of builtPosts) {
+        const $ = loadPage(frontmatter.path);
+        const absolute = getPostContent($)
+          .find('a[href]')
+          .map((_, a) => $(a).attr('href'))
+          .get()
+          .filter((href) => /^(?:https?:)?\/\/(?:www\.)?vojtechruzicka\.com(?:[/?#]|$)/i.test(href));
+        expect(absolute, `${filePath}: write /slug/ instead`).toEqual([]);
+      }
+    });
+  });
 });

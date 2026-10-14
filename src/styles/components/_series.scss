@@ -21,3 +21,186 @@
   font-size: 0.875rem;
   white-space: nowrap;
 }
+
+// Previous/next part below a series post (components/series-nav.njk)
+.series-nav {
+  --series-done: var(--color-link);
+  --series-current: var(--color-info);
+  --series-ahead: var(--color-border);
+
+  margin-block: var(--gap-medium) var(--gap-large);
+}
+
+.series-nav-position {
+  margin: 0 0 var(--gap-medium); // the dots, when shown, take over the spacing
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+// Progress: one dot per part, joined by a line that is lit up to the current part
+.series-nav-progress {
+  @include utilities.reset-list;
+
+  display: flex;
+  justify-content: center;
+  margin-block: calc(var(--gap-small) - var(--gap-medium)) var(--gap-medium);
+
+  li {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 2.5rem;
+  }
+
+  // Segment joining this dot to the previous one
+  li + li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+    background: var(--series-ahead);
+  }
+
+  li.is-done + li::before {
+    background: var(--series-done);
+  }
+
+  // 24 × 24 px target with a smaller dot drawn inside
+  a {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+
+    &::before {
+      content: '';
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: var(--series-ahead);
+      transition: transform 0.15s ease;
+    }
+
+    &:hover::before {
+      transform: scale(1.25);
+    }
+  }
+
+  .is-done a::before {
+    background: var(--series-done);
+  }
+
+  .is-current a::before {
+    width: 1rem;
+    height: 1rem;
+    background: var(--series-current);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--series-current) 25%, transparent);
+  }
+}
+
+// Two compact cards side by side, the next one mirrored to the right; stacked on phones
+.series-nav-links {
+  @include utilities.reset-list;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+
+  @include utilities.respond(small) {
+    grid-template-columns: 1fr;
+  }
+
+  > li > a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+      border-color: var(--color-link);
+
+      .series-nav-title {
+        color: var(--color-link-hover);
+      }
+    }
+  }
+
+  // Next mirrors Previous: image on the right
+  .series-nav-next > a {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  // First or last part: one card across the full width in the plain orientation,
+  // so it does not read as a missing half
+  > li:only-child {
+    grid-column: 1 / -1;
+
+    > a {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+
+  // eleventy-img wraps the image in <picture>, the transforms in a div.image-wrapper: that is the
+  // fixed-size box, and its overflow: hidden keeps the LQIP blur inside while the image loads
+  .image-wrapper {
+    flex: 0 0 auto;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-xxs);
+  }
+}
+
+.series-nav-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.series-nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.series-nav-direction {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.series-nav-title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-text-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  transition: color 0.15s ease;
+}
+
+// Only on the single full-width card (first or last part)
+.series-nav-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

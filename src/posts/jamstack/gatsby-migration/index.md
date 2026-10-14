@@ -19,7 +19,7 @@ stack later.
 So WordPress was the obvious choice for me because it is widespread, with a lot of resources and plugins available. And
 it worked well. More or less. There were issues though. Most notable one was performance. WordPress is sluggish.
 Especially once you add some plugins. The results of a
-[Lighthouse audit](https://www.vojtechruzicka.com/chrome-audit-lighthouse/) were disappointing:
+[Lighthouse audit](/chrome-audit-lighthouse/) were disappointing:
 
 ![lighthouse audit before](./chrome-audit-score-before.jpg)
 
@@ -50,7 +50,7 @@ The scalability is hard and expensive. When the traffic rises, its more complica
 load balancing, session replication, distributed caching not to mention difficult RDS scalability. And it's vulnerable.
 With so many moving parts, the attack surface is extensive. Ranging from Cross-Site-Scripting, SQL Injection to
 exploiting
-[security vulnerabilities in your libraries](https://www.vojtechruzicka.com/snyk-detecting-dependencies-with-known-vulnerabilities/).
+[security vulnerabilities in your libraries](/snyk-detecting-dependencies-with-known-vulnerabilities/).
 
 When you have just static HTML, CSS and Javascript files, it's much harder to compromise your site unless you gain
 complete access to your server. Since the content does not change, it is easy to cache. Instead of having just one

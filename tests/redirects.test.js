@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, readdirSync } from 'fs';
+import path from 'path';
 import { SITE_DIR } from './helpers.js';
 
 /**
@@ -42,6 +43,23 @@ function builtFileForTarget(target) {
 }
 
 const hasPlaceholder = (p) => p.includes(':') || p.includes('*');
+
+/**
+ * existsSync with exact-case matching of every path segment. Cloudflare matches redirect sources
+ * case-sensitively, so `/topics/JavaFX/` does not shadow `/topics/javafx/` — but on Windows and
+ * macOS the filesystem would report it as existing.
+ */
+function existsExactCase(file) {
+  const relative = path.relative(SITE_DIR, file);
+  let dir = SITE_DIR;
+  for (const segment of relative.split(path.sep)) {
+    if (!existsSync(dir) || !readdirSync(dir).includes(segment)) {
+      return false;
+    }
+    dir = path.join(dir, segment);
+  }
+  return true;
+}
 
 describe('_redirects file', () => {
   it('exists in source and is copied to the build output', () => {
@@ -88,7 +106,7 @@ describe('_redirects file', () => {
     for (const { source, lineNo } of checkable) {
       const shadowed = builtFileForTarget(source.endsWith('/') ? source : `${source}/`);
       expect(
-        existsSync(shadowed),
+        existsExactCase(shadowed),
         `line ${lineNo}: redirect source ${source} collides with a real page at ${shadowed}`,
       ).toBe(false);
     }

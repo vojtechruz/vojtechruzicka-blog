@@ -1,5 +1,5 @@
 ---
-title: 'Angular Tutorial 5: Component input and output'
+title: 'Angular Tutorial 5: Component Input and Output'
 date: '2020-07-24'
 topics: ['Angular']
 path: '/angular/05-component-input-output/'

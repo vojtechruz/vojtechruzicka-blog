@@ -42,7 +42,7 @@ It turns out you can achieve this easily with a tool called [Staticman](https://
 2. Since static sites have no backend, the form submits to a Staticman service instead.
 3. Staticman pushes the changes to your git repo.
 4. As usual, your site can be automatically
-   [rebuilt and redeployed](https://www.vojtechruzicka.com/jamstack-migration-netlify/) on code change.
+   [rebuilt and redeployed](/jamstack-migration-netlify/) on code change.
 5. The user-submitted data is now a core part of your static site.
 
 How great is that? Of course, you don't want users spamming your site, so Staticman offers you an option to moderate

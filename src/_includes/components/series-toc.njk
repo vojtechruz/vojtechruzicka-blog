@@ -24,7 +24,7 @@
               <li>
                 {% set tocTitle = post.data.seriesTitle or post.data.title %}
                 {% if post.url == page.url %}
-                  <a href="{{ post.url }}" aria-current="page" class="series-current">{{ tocTitle }}</a>
+                  <a href="{{ post.url }}" aria-current="page">{{ tocTitle }}</a>
                 {% else %}
                   <a href="{{ post.url }}">{{ tocTitle }}</a>
                 {% endif %}

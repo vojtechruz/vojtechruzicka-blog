@@ -1,5 +1,5 @@
 ---
-title: 'JavaFX Tutorial: Hello world'
+title: 'JavaFX Tutorial: Hello World'
 date: '2019-10-01'
 topics: ['Java', 'JavaFX']
 path: '/javafx-hello-world/'

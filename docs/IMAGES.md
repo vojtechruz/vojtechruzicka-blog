@@ -6,15 +6,22 @@ How build-time image processing works and how the persistent cache keeps builds 
 ## The pipeline
 
 Every image referenced from a post goes through the eleventy-img transform plugin, which generates responsive variants:
-**formats** `avif`, `webp` and the original format ("auto") × **widths** 400, 800, 1200 and the original size ("auto").
-With ~380 source images that is roughly **4 800 encoded files** per clean build — and AVIF encoding alone dominates the
-build time (it is 5–10× slower than webp).
+**formats** `avif`, `webp` and the original format ("auto") × **widths** 400, 800, 1200, 1600 and the original size
+("auto"); eleventy-img skips widths larger than the original. 1600 exists for DPR 2 screens (desktop, iPad), which would
+otherwise jump from 1200 to the full original (up to 4824 px). With ~380 source images that is roughly **5 100 encoded
+files** per clean build — and AVIF encoding alone dominates the build time (it is 5–10× slower than webp).
 
 Generated filenames follow `config/plugins/image.js` → `filenameFormat`:
 
 ```text
 <sanitized-name>-<content-hash>-<width>.<format>     e.g. featured-48QChAtSZE-800.webp
 ```
+
+The `<img>` fallback `src` points at the **largest** variant, not the smallest eleventy-img writes there:
+`config/html-transform/largest-img-src-transform.js` rewrites it to the widest `srcset` candidate. Browsers pick from
+`srcset` and never fetch `src`, but Google Images indexes `src`, so the smallest variant offered crawlers 400px
+thumbnails of 2600px screenshots. Image search impressions fell ~85% within a week of the Eleventy launch (end of April
+2026); this was one suspected cause, alongside every image URL changing and the Gatsby `/static/…` URLs answering 404.
 
 The `<content-hash>` (`id`) is computed from the **source image contents plus the processing options**. Verified
 empirically: writing two different images to the same path produces two different hashes. This property is what makes
@@ -89,7 +96,7 @@ the full defaults** — no env vars are set there.
 
 `tests/images.test.js` derives its expected `<source>` formats and `srcset` widths from the same resolved configuration
 (`resolveImageFormats()` / `resolveImageWidths()` exported by the plugin), not from whatever the build emitted. With no
-override that means AVIF + WebP and all four widths are **required**, so a change to the defaults fails the tests
+override that means AVIF + WebP and all configured widths are **required**, so a change to the defaults fails the tests
 locally and on Cloudflare; in CI the variables must stay at job level so the test step sees the same lean variant as the
 build step. Run the tests against a `_site/` built with the same env as the test process.
 

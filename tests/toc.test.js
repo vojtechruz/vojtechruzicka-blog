@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import pluginTOC from 'eleventy-plugin-nesting-toc';
 import { loadPage, loadPageHtml, getAllPosts, SITE_DIR } from './helpers.js';
 import registerTextFilters from '../config/filters/text.js';
@@ -35,8 +35,12 @@ describe('Table of contents – rendered output', () => {
     const nav = $('nav.toc');
 
     expect(nav.length).toBe(1);
-    expect(nav.attr('aria-label')).toBe('Table of contents');
-    expect(nav.find('.toc-heading').text().trim()).toBe('Table of contents');
+    // Named by its visible heading, so the landmark name and the text cannot drift apart
+    const labelId = nav.attr('aria-labelledby');
+    expect(nav.attr('aria-label')).toBeUndefined();
+    expect(labelId).toBeTruthy();
+    expect($(`#${labelId}`).length).toBe(1);
+    expect(nav.find(`#${labelId}.toc-heading`).text().trim()).toBe('Table of contents');
     expect(nav.find('> .toc-list > ol').length).toBe(1);
     expect(nav.find('> .toc-list > ol > li').length).toBeGreaterThan(1);
   });
@@ -155,6 +159,47 @@ describe('Table of contents – rendered output', () => {
   });
 });
 
+describe('Table of contents – collapsed copy for narrow screens', () => {
+  it('opens every post that has a sidebar TOC with the same links, collapsed', () => {
+    for (const { frontmatter } of getAllPosts().filter((p) => !p.frontmatter.draftStatus && p.frontmatter.path)) {
+      const $ = loadPage(frontmatter.path);
+      const sidebarLinks = $('nav.toc .toc-list a')
+        .map((_, el) => $(el).attr('href'))
+        .get();
+      const mobile = $('article nav.toc-mobile');
+
+      expect(mobile.length, `${frontmatter.path}: mobile TOC presence should follow the sidebar TOC`).toBe(
+        sidebarLinks.length > 0 ? 1 : 0,
+      );
+      if (sidebarLinks.length) {
+        const mobileLinks = mobile
+          .find('.toc-list a')
+          .map((_, el) => $(el).attr('href'))
+          .get();
+        expect(mobileLinks, frontmatter.path).toEqual(sidebarLinks);
+        expect(mobile.find('details').attr('open'), `${frontmatter.path}: should start collapsed`).toBeUndefined();
+      }
+    }
+  });
+
+  // Both copies are in the DOM and only CSS decides which one shows; renderer-less checks (axe in
+  // jsdom) see both, so the landmark names must differ.
+  it('shows the same heading as the sidebar, under a distinct landmark name, out of the search index', () => {
+    const $ = loadPage('/css-flexbox/');
+    const mobile = $('nav.toc-mobile');
+    const visible = mobile.find('summary').text().trim();
+    const name = mobile.attr('aria-label');
+
+    expect(visible).toBe($('#toc-heading').text().trim());
+    expect(name, 'landmark names must differ').not.toBe($('nav.toc').attr('aria-label') || visible);
+    // WCAG 2.5.3 Label in Name: the accessible name contains the visible text
+    expect(name.startsWith(visible), `"${name}" should start with "${visible}"`).toBe(true);
+    expect(mobile.attr('data-pagefind-ignore')).toBeDefined();
+    // Not nav.toc: the scrollspy (querySelector('nav.toc')) must keep to the sidebar copy
+    expect(mobile.hasClass('toc')).toBe(false);
+  });
+});
+
 describe('Table of contents – empty-TOC guard', () => {
   const toc = getFilters(pluginTOC.configFunction, { tags: ['h2', 'h3'] }).get('toc');
   const stripNav = getFilters(registerTextFilters).get('stripNav');
@@ -195,10 +240,11 @@ describe('toc-scrollspy.js behaviour', () => {
   /**
    * Build a TOC + heading DOM and run the scrollspy against it.
    * @param {{id: string, top: number, tag?: string}[]} headings
-   * @param {{extraLinks?: string, bodyHeight?: number, scrollY?: number, tocMarkup?: string}} options
+   * @param {{extraLinks?: string, bodyHeight?: number, scrollY?: number, tocMarkup?: string, setup?: () => void}} options
+   *   `setup` runs after the DOM is built and before the script, e.g. to give the TOC a layout
    */
   async function renderAndRun(headings, options = {}) {
-    const { extraLinks = '', bodyHeight = 5000, scrollY = 0, tocMarkup = null } = options;
+    const { extraLinks = '', bodyHeight = 5000, scrollY = 0, tocMarkup = null, setup = () => {} } = options;
 
     const items = headings.map((h) => `<li><a href="#${h.id}">${h.id}</a></li>`).join('');
     const body = headings.map((h) => `<${h.tag || 'h2'} id="${h.id}">${h.id}</${h.tag || 'h2'}>`).join('');
@@ -214,6 +260,7 @@ describe('toc-scrollspy.js behaviour', () => {
         : `${tocMarkup}<article>${body}</article>`;
 
     setScrollPosition(headings, scrollY, bodyHeight);
+    setup();
     await import('../src/scripts/toc-scrollspy.js?run=' + runCount++);
   }
 
@@ -232,7 +279,7 @@ describe('toc-scrollspy.js behaviour', () => {
 
   /** ids of currently active TOC links */
   function activeIds() {
-    return Array.from(document.querySelectorAll('a.is-active')).map((a) => a.getAttribute('href').slice(1));
+    return Array.from(document.querySelectorAll('a[aria-current="true"]')).map((a) => a.getAttribute('href').slice(1));
   }
 
   beforeEach(() => {
@@ -323,7 +370,7 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings, { tocMarkup });
 
     expect(activeIds()).toEqual(['alpha']);
-    expect(document.querySelector('a[href="#ghost"]').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a[href="#ghost"]').hasAttribute('aria-current')).toBe(false);
   });
 
   it('does not register scroll handling when the page has no TOC', async () => {
@@ -348,7 +395,7 @@ describe('toc-scrollspy.js behaviour', () => {
     addSpy.mockRestore();
   });
 
-  it('takes over TOC clicks: prevents default, highlights the target and scrolls with the anchor offset', async () => {
+  it('leaves the scrolling to the browser and highlights the clicked target at once', async () => {
     const headings = [
       { id: 'alpha', top: -40 },
       { id: 'beta', top: 900 },
@@ -359,19 +406,18 @@ describe('toc-scrollspy.js behaviour', () => {
     const event = new window.MouseEvent('click', { bubbles: true, cancelable: true });
     document.querySelector('a[href="#beta"]').dispatchEvent(event);
 
-    expect(event.defaultPrevented).toBe(true);
+    // Native fragment navigation: offset via scroll-margin-top, smoothness via scroll-behavior,
+    // a history entry and :target come with it
+    expect(event.defaultPrevented).toBe(false);
+    expect(scrollToMock).not.toHaveBeenCalled();
     expect(activeIds()).toEqual(['beta']);
-    // scrollY (200) + rect.top (900) - offset (0, no CSS var in jsdom)
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 1100, behavior: 'smooth' });
   });
 
-  it('moves focus to the clicked section and puts its fragment in the URL without a history entry', async () => {
+  it('moves focus to the clicked section', async () => {
     const headings = [
       { id: 'alpha', top: -40 },
       { id: 'beta', top: 900 },
     ];
-    window.history.replaceState(null, '', '/post/');
-    const lengthBefore = window.history.length;
     await renderAndRun(headings);
 
     const link = document.querySelector('a[href="#beta"]');
@@ -381,23 +427,14 @@ describe('toc-scrollspy.js behaviour', () => {
     const heading = document.getElementById('beta');
     expect(document.activeElement).toBe(heading);
     expect(heading.getAttribute('tabindex')).toBe('-1');
-    expect(window.location.pathname + window.location.hash).toBe('/post/#beta');
-    expect(window.history.length).toBe(lengthBefore);
   });
 
-  it('scrolls instantly when the reader prefers reduced motion', async () => {
-    vi.stubGlobal('matchMedia', (query) => ({ matches: query === '(prefers-reduced-motion: reduce)' }));
-    const headings = [
-      { id: 'alpha', top: -40 },
-      { id: 'beta', top: 900 },
-    ];
-    await renderAndRun(headings);
+  it('smooth-scrolls in-page links in CSS and turns it off for reduced motion', () => {
+    const global = readFileSync('src/styles/base/_global.scss', 'utf-8');
+    const a11y = readFileSync('src/styles/base/_accessibility.scss', 'utf-8');
 
-    document
-      .querySelector('a[href="#beta"]')
-      .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
-
-    expect(scrollToMock).toHaveBeenCalledWith({ top: 900, behavior: 'auto' });
+    expect(global).toMatch(/html\s*\{[^}]*scroll-behavior:\s*smooth/);
+    expect(a11y).toMatch(/prefers-reduced-motion: reduce[\s\S]*scroll-behavior:\s*auto !important/);
   });
 
   it('suspends the scrollspy after a click and resumes it on a real user scroll', async () => {
@@ -439,6 +476,94 @@ describe('toc-scrollspy.js behaviour', () => {
     expect(activeIds()).toEqual(['alpha']);
   });
 
+  it('releases the lock when the click scroll ends, so any later scroll moves the highlight on', async () => {
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    await renderAndRun(headings);
+
+    document
+      .querySelector('a[href="#beta"]')
+      .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+    window.dispatchEvent(new window.Event('scroll'));
+    window.dispatchEvent(new window.Event('scrollend'));
+
+    // Unlocking alone keeps the clicked item (a short last section may never reach the anchor line)
+    expect(activeIds()).toEqual(['beta']);
+
+    // A scroll without wheel/touch/keys (scrollbar drag, in-text link, Back) now updates the spy
+    window.dispatchEvent(new window.Event('scroll'));
+    expect(activeIds()).toEqual(['alpha']);
+  });
+
+  it('releases the lock once scrolling stays idle, for browsers without scrollend', async () => {
+    // Only timeouts: faking requestAnimationFrame would defer the spy's stubbed frames
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    try {
+      const headings = [
+        { id: 'alpha', top: -40 },
+        { id: 'beta', top: 900 },
+      ];
+      await renderAndRun(headings);
+
+      document
+        .querySelector('a[href="#beta"]')
+        .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+      // Still scrolling: every scroll event pushes the unlock further away
+      for (let i = 0; i < 5; i++) {
+        vi.advanceTimersByTime(100);
+        window.dispatchEvent(new window.Event('scroll'));
+      }
+      expect(activeIds()).toEqual(['beta']);
+
+      vi.advanceTimersByTime(150);
+      window.dispatchEvent(new window.Event('scroll'));
+      expect(activeIds()).toEqual(['alpha']);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('releases the lock even when the click caused no scroll at all', async () => {
+    // Only timeouts: faking requestAnimationFrame would defer the spy's stubbed frames
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+    try {
+      const headings = [
+        { id: 'alpha', top: -40 },
+        { id: 'beta', top: 900 },
+      ];
+      await renderAndRun(headings);
+
+      document
+        .querySelector('a[href="#beta"]')
+        .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true }));
+      vi.advanceTimersByTime(500);
+
+      window.dispatchEvent(new window.Event('scroll'));
+      expect(activeIds()).toEqual(['alpha']);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('leaves modified and non-primary clicks (new tab, new window) to the browser', async () => {
+    const headings = [
+      { id: 'alpha', top: -40 },
+      { id: 'beta', top: 900 },
+    ];
+    await renderAndRun(headings);
+
+    for (const init of [{ ctrlKey: true }, { metaKey: true }, { shiftKey: true }, { altKey: true }, { button: 1 }]) {
+      const event = new window.MouseEvent('click', { bubbles: true, cancelable: true, ...init });
+      document.querySelector('a[href="#beta"]').dispatchEvent(event);
+
+      expect(event.defaultPrevented, JSON.stringify(init)).toBe(false);
+    }
+    expect(scrollToMock).not.toHaveBeenCalled();
+    expect(activeIds()).toEqual(['alpha']);
+  });
+
   it('leaves non-fragment links inside the TOC to the browser', async () => {
     const headings = [{ id: 'alpha', top: -10 }];
     await renderAndRun(headings, { extraLinks: '<a class="outside" href="/elsewhere/">Elsewhere</a>' });
@@ -448,7 +573,7 @@ describe('toc-scrollspy.js behaviour', () => {
 
     expect(event.defaultPrevented).toBe(false);
     expect(scrollToMock).not.toHaveBeenCalled();
-    expect(document.querySelector('a.outside').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a.outside').hasAttribute('aria-current')).toBe(false);
   });
 
   it('only tracks links inside .toc-list, not other anchors in the TOC nav', async () => {
@@ -456,7 +581,7 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings, { extraLinks: '<a class="outside" href="#alpha">Skip</a>' });
 
     expect(activeIds()).toEqual(['alpha']);
-    expect(document.querySelector('a.outside').classList.contains('is-active')).toBe(false);
+    expect(document.querySelector('a.outside').hasAttribute('aria-current')).toBe(false);
   });
 
   it('matches heading ids that contain characters special to CSS selectors', async () => {
@@ -469,5 +594,116 @@ describe('toc-scrollspy.js behaviour', () => {
     await renderAndRun(headings);
 
     expect(activeIds()).toEqual(['option-1.-follow%2C-explain']);
+  });
+
+  describe('keeping the active item in view inside a scrolling TOC', () => {
+    // The TOC box: 200 px tall, 1000 px of content. The active item is kept between 10 % from the
+    // top (20 px) and 25 % from the bottom (150 px) of the box; outside that band the TOC scrolls
+    // to put it 20 px from the top.
+    const VIEW = 200;
+    const CONTENT = 1000;
+    let tocScrollTo;
+
+    /**
+     * Lay out the sidebar TOC: nav.toc is the scroll container (overflow-y: auto, as in the CSS),
+     * scrolled to `scrollTop`, and each item sits at its `itemTops` offset within the content.
+     */
+    function layoutToc({ itemTops, scrollTop = 0, content = CONTENT }) {
+      const nav = document.querySelector('nav.toc');
+      nav.style.overflowY = 'auto';
+      Object.defineProperty(nav, 'clientHeight', { value: VIEW, configurable: true });
+      Object.defineProperty(nav, 'scrollHeight', { value: content, configurable: true });
+      Object.defineProperty(nav, 'scrollTop', { value: scrollTop, configurable: true });
+      nav.getBoundingClientRect = () => ({ top: 0, bottom: VIEW, left: 0, right: 0, height: VIEW, width: 0 });
+      tocScrollTo = vi.fn();
+      nav.scrollTo = tocScrollTo;
+      for (const [id, top] of Object.entries(itemTops)) {
+        const a = nav.querySelector(`a[href="#${id}"]`);
+        Object.defineProperty(a, 'offsetHeight', { value: 20, configurable: true });
+        // Viewport position = position in the content minus how far the TOC is scrolled
+        a.getBoundingClientRect = () => ({ top: top - scrollTop, bottom: top - scrollTop + 20, height: 20 });
+      }
+    }
+
+    // beta is the heading in view; alpha and gamma are only there to make a list
+    const headings = [
+      { id: 'alpha', top: -500 },
+      { id: 'beta', top: -10 },
+      { id: 'gamma', top: 900 },
+    ];
+
+    it('scrolls the TOC down when the active item is below the visible band', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 300, gamma: 320 } }) });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: 300 - VIEW * 0.1, behavior: 'auto' });
+    });
+
+    it('scrolls the TOC up when the active item is above the visible band', async () => {
+      // Scrolled to 500: the band is 520-650, beta at 400 is above it
+      await renderAndRun(headings, {
+        setup: () => layoutToc({ itemTops: { alpha: 0, beta: 400, gamma: 420 }, scrollTop: 500 }),
+      });
+
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: 400 - VIEW * 0.1, behavior: 'auto' });
+    });
+
+    it('does not scroll the TOC when the active item is already inside the band', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 60, gamma: 80 } }) });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+
+    it('stops at the end of the TOC instead of scrolling past it', async () => {
+      // 970 - 20 = 950 would overshoot; the furthest the TOC can scroll is 1000 - 200 = 800
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 970, gamma: 980 } }) });
+
+      expect(tocScrollTo).toHaveBeenCalledWith({ top: CONTENT - VIEW, behavior: 'auto' });
+    });
+
+    it('does not scroll a TOC that fits without overflow', async () => {
+      await renderAndRun(headings, {
+        setup: () => layoutToc({ itemTops: { alpha: 0, beta: 300, gamma: 320 }, content: VIEW }),
+      });
+
+      expect(activeIds()).toEqual(['beta']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+
+    it('leaves the TOC where it is after a click on one of its items', async () => {
+      await renderAndRun(headings, { setup: () => layoutToc({ itemTops: { alpha: 0, beta: 60, gamma: 300 } }) });
+      expect(tocScrollTo).not.toHaveBeenCalled();
+
+      // gamma is below the band, but the reader just clicked it, so it is in view
+      document.querySelector('a[href="#gamma"]').click();
+
+      expect(activeIds()).toEqual(['gamma']);
+      expect(tocScrollTo).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('window resize', () => {
+    afterEach(() => {
+      document.documentElement.style.removeProperty('--offset-anchor-post');
+    });
+
+    it('re-reads the anchor offset and re-evaluates the active heading', async () => {
+      // beta sits 90 px from the top: above the 96 px anchor line, so it is the section in view
+      const headings = [
+        { id: 'alpha', top: -500 },
+        { id: 'beta', top: 90 },
+        { id: 'gamma', top: 900 },
+      ];
+      document.documentElement.style.setProperty('--offset-anchor-post', '96px');
+      await renderAndRun(headings);
+      expect(activeIds()).toEqual(['beta']);
+
+      // A narrower layout with a smaller sticky header: beta is now below the line
+      document.documentElement.style.setProperty('--offset-anchor-post', '40px');
+      window.dispatchEvent(new window.Event('resize'));
+
+      expect(activeIds()).toEqual(['alpha']);
+    });
   });
 });

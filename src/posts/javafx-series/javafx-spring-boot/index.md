@@ -29,7 +29,7 @@ which aims to integrate Spring and JavaFX. The setup is, fortunately, not that h
 Let's try with a plain simple Spring Boot project, and let's try to integrate JavaFX. You can generate a new project
 using [Spring Initializr](https://start.spring.io/). You don't need to add any dependencies here. If you want to avoid
 getting into setting up JavaFX as a dependency, select a Java version pre-11
-[as it still contains JavaFXas a part of the JDK](https://www.vojtechruzicka.com/javafx-getting-started/).
+[as it still contains JavaFXas a part of the JDK](/javafx-getting-started/).
 
 ### Adding a controller
 
@@ -81,7 +81,7 @@ When we generated our base Spring Boot application, the main application class w
 class annotated with `@SpringBootApplication`, which is used as an entry point to run the whole app.
 
 But wait! JavaFX also has its
-[main application class](https://www.vojtechruzicka.com/javafx-hello-world/#application-class), which is used as an
+[main application class](/javafx-hello-world/#application-class), which is used as an
 entry point for starting JavaFX applications.
 
 That's confusing. So which one should be actually used to run our app, which is both Spring Boot and JavaFX?

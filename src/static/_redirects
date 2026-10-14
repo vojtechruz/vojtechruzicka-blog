@@ -17,6 +17,20 @@
 /tags/IDEA                                                /topics/intellij-idea/                              301
 /tags/IDEA/                                               /topics/intellij-idea/                              301
 
+# --- renamed topic: java-fx (Gatsby slug) -> javafx ---
+/tags/java-fx                                             /topics/javafx/                                     301
+/tags/java-fx/                                            /topics/javafx/                                     301
+/tags/JavaFX                                              /topics/javafx/                                     301
+/tags/JavaFX/                                             /topics/javafx/                                     301
+/topics/java-fx                                           /topics/javafx/                                     301
+/topics/java-fx/                                          /topics/javafx/                                     301
+/topics/JavaFX                                            /topics/javafx/                                     301
+/topics/JavaFX/                                           /topics/javafx/                                     301
+
+# --- capitalized topic URLs seen in inbound links ---
+/topics/Spring                                            /topics/spring/                                     301
+/topics/Spring/                                           /topics/spring/                                     301
+
 # --- legacy Gatsby tags (capitalized or renamed; must precede /tags/:topic) ---
 /tags/Java                                                /topics/java/                                       301
 /tags/Java/                                               /topics/java/                                       301
@@ -63,6 +77,8 @@
 /javafx-fxml-                                             /javafx-fxml-scene-builder/                         301
 /avoid-telescoping-                                       /avoid-telescoping-constructor-pattern/             301
 /netlify-analytics-                                       /netlify-analytics/                                 301
+/owasp-top-10                                             /owasp-top-10-2025/                                 301
+/owasp-top-10/                                            /owasp-top-10-2025/                                 301
 
 # --- Gatsby hashed asset paths -> assets now live next to their post ---
 /b4ac1198c654c091ae4140e579688c44/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf /exam-notes-pivotal-certified-spring-professional/Core-Spring-4.2-4.3-Certification-Study-Guide.pdf 301

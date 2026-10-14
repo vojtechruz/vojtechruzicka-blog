@@ -1,5 +1,5 @@
 ---
-title: 'JavaFX Tutorial: Advanced layouts'
+title: 'JavaFX Tutorial: Advanced Layouts'
 date: '2019-10-04'
 topics: ['Java', 'JavaFX']
 path: '/javafx-layouts-advanced/'

@@ -56,6 +56,12 @@
             <li><a class="topic-name" href="/topics/{{ topic | slugify }}/">{{topic}}</a></li>
             {% endfor %}
           </ul>
+          {# Which part of a series this is, up top: the series TOC is a sidebar (hidden below 1024 px)
+             and the previous/next navigation sits below the article. Same label as on post cards. #}
+          {% set headerPart = series | seriesPart(page.url, seriesMetadata, collections.posts) if series and not archivedStatus else null %}
+          {% if headerPart %}
+          <span class="series-part-label"><a title="View all posts in {{ headerPart.series.name }} series" href="/series/{{ headerPart.series.slug }}/">{{ headerPart.series.name }}</a> · Part {{ headerPart.position }}/{{ headerPart.total }}</span>
+          {% endif %}
         </div>
         {%if dateModified %}
         <div class="date-modified">Updated: {{dateModified | readableDate }}</div>
@@ -69,6 +75,22 @@
 
     <hr class="post-header-divider" />
 
+    {# Below 1024 px the sidebar (and its TOC) is hidden: a collapsed copy of the TOC opens the article.
+       Not nav.toc, so the scrollspy keeps to the sidebar one; ignored by Pagefind (heading text twice).
+       Both copies are in the DOM, so the landmark names differ; the aria-label still starts with the
+       visible summary text (WCAG 2.5.3 Label in Name). #}
+    {% set mobileTocHtml = content | toc %}
+    {% if mobileTocHtml and (mobileTocHtml | trim) %}
+    <nav class="toc-mobile" aria-label="Table of contents (collapsible)" data-pagefind-ignore>
+      <details>
+        <summary>Table of contents</summary>
+        <div class="toc-list">
+          {{ mobileTocHtml | stripNav | safe }}
+        </div>
+      </details>
+    </nav>
+    {% endif %}
+
     {{ content | safe }}
 
     <hr class="divider">
@@ -77,6 +99,8 @@
   </article>
 
   {% include "components/social-share.njk" %}
+
+  {% include "components/series-nav.njk" %}
 
   {% if not series and not archivedStatus %}
     {% set currentPageObj = { url: page.url, data: { topics: topics, series: series, draftStatus: draftStatus, relatedPosts: relatedPosts } } %}
@@ -132,8 +156,8 @@
 
 {% set tocHtml = content | toc %}
 {% if tocHtml and (tocHtml | trim) %}
-<nav class="toc" aria-label="Table of contents">
-  <p class="toc-heading">Table of contents</p>
+<nav class="toc" aria-labelledby="toc-heading">
+  <p class="toc-heading" id="toc-heading">Table of contents</p>
   <div class="toc-list">
     {{ tocHtml
     | stripNav
@@ -146,4 +170,5 @@
 {% block scripts %}
 <script src="{{ '/scripts/code-block.js' | assetUrl }}" defer></script>
 <script src="{{ '/scripts/header-anchor.js' | assetUrl }}" defer></script>
+{% if 'data-autoplay' in content %}<script src="{{ '/scripts/video-autoplay.js' | assetUrl }}" defer></script>{% endif %}
 {% endblock %}

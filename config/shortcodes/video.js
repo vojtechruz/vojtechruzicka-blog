@@ -1,21 +1,23 @@
-// Local responsive video shortcode with optional WebM/MP4 sources and caption
+// Local responsive video shortcode with WebM/MP4 sources, optional poster and caption
 // Usage examples (Nunjucks):
-//   {% video "/videos/my-talk" %}                            {# expects /videos/my-talk.webm and /videos/my-talk.mp4 #}
-//   {% video "/videos/my-talk.mp4" %}                        {# will also try /videos/my-talk.webm #}
-//   {% video "/videos/my-talk", "My conference talk" %}
-//   {% video "/videos/my-talk", "My conference talk", "/images/my-talk-poster.jpg" %}
-//   {% video "/videos/my-talk", "My conference talk", "/images/my-talk-poster.jpg", "16:9", true %}
+//   {% video "/videos/my-clip" %}                            {# expects /videos/my-clip.webm and /videos/my-clip.mp4 #}
+//   {% video "/videos/my-clip.mp4" %}                        {# will also try /videos/my-clip.webm #}
+//   {% video "/videos/my-clip", "What the clip shows" %}
+//   {% video "/videos/my-clip", "What the clip shows", "/videos/my-clip-poster.jpg" %}
+//   {% video "/videos/my-clip", "What the clip shows", "", true %}         {# visible caption #}
+//   {% video "/videos/my-talk", "My conference talk", "", false, false %}  {# a film: sound, no autoplay #}
 //
-// Notes:
-// - Put your files under _eleventy/src/static so they are copied to the site root.
-//   Example path in repo: _eleventy/src/static/videos/my-talk.mp4 → site URL: /videos/my-talk.mp4
+// By default a video stands in for an animated GIF (silent screen recordings): muted and looped, and
+// src/scripts/video-autoplay.js plays it while it is in view, unless the reader prefers reduced motion.
+// Files live under src/static (copied to the site root): src/static/videos/<post>/<name>.{webm,mp4}.
+// Encoding and the full option list: docs/VIDEO.md.
 import { escapeHtml, hash } from '../utils/formatting.js';
 import ffprobe from 'ffprobe-static';
 import { execFileSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
-export default async function video(input, title = 'Video', poster = '', showCaption = false) {
+export default async function video(input, title = 'Video', poster = '', showCaption = false, animated = true) {
   const srcs = buildSources(String(input));
 
   // Detect dimensions
@@ -48,12 +50,17 @@ export default async function video(input, title = 'Video', poster = '', showCap
     .map((s) => `    <source src="${escapeHtml(s.src)}"${s.type ? ` type="${s.type}"` : ''}>`)
     .join('\n');
 
-  const fallbackLink = escapeHtml(srcs[0]?.src || '#');
+  // The mp4 is the one format every browser and OS can open on its own, so both the download link
+  // (only seen where <video> itself is unsupported, e.g. some feed readers) and the printed URL use it.
+  const mp4Src = (srcs.find((s) => s.type === 'video/mp4') || srcs[0])?.src;
+  const fallbackLink = escapeHtml(mp4Src || '#');
 
   // A printed <video> is just its first frame with player controls - print styles replace it with this
-  // site-relative URL, prefixed with the site origin there (_print.scss). Prefer the mp4, the format
-  // every browser can open directly.
-  const printUrl = escapeHtml((srcs.find((s) => s.type === 'video/mp4') || srcs[0])?.src || '');
+  // site-relative URL, prefixed with the site origin there (_print.scss).
+  const printUrl = escapeHtml(mp4Src || '');
+
+  // Autoplay needs `muted`; the controls stay, so a looping clip can always be paused (WCAG 2.2.2).
+  const animatedAttrs = animated ? '\n    muted\n    loop\n    data-autoplay' : '';
 
   return `
 <figure class="video-embed-figure" data-print-label="Video" data-print-url="${printUrl}">
@@ -61,7 +68,7 @@ export default async function video(input, title = 'Video', poster = '', showCap
     class="video-embed"
    ${aria}${sizeAttrs}${videoTitleAttr}
     controls
-    playsinline
+    playsinline${animatedAttrs}
     preload="metadata"${posterAttr}
   >
 ${sourcesHtml}

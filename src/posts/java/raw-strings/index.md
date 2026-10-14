@@ -93,7 +93,7 @@ Or even double-quotes "
 ```
 
 On JVM, also Groovy and Scala support raw strings using `"""`. Java is like usually late to the party (similar to
-introducing [JShell REPL](https://www.vojtechruzicka.com/jshell-repl/)) and only now, in version 12, introduces what is
+introducing [JShell REPL](/jshell-repl/)) and only now, in version 12, introduces what is
 already common both in other JVM and non-JVM languages.
 
 ## Raw String Literals in Java

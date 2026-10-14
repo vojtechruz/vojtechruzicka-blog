@@ -12,9 +12,10 @@ Recommend which blog post idea to work on next, using the AI reviews stored in t
 ### 1. Check dependencies
 
 - The scripts operate on local vault files — no tokens or `.env` are required.
-- Verify the venv at `_tools/obsidian/.venv/Scripts/python` exists. If missing, create it:
-  `python -m venv _tools/obsidian/.venv`, then
-  `_tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt`.
+- The scripts use a local venv at `_tools/obsidian/.venv`: `.venv/Scripts/python` on Windows,
+  `.venv/bin/python` on Linux/Mac. The commands below show the Windows path; on Linux swap `Scripts/` for `bin/`.
+  If neither exists, create it with `python -m venv _tools/obsidian/.venv` (`python3` on Linux) and install
+  `_tools/obsidian/requirements.txt` with that venv's `pip`.
 
 ### 2. Summarize the idea reviews
 

@@ -10,12 +10,13 @@ Sync current blog post metadata into the Obsidian "Blog Articles" notes in the v
 
 1. **Check dependencies**
    - The scripts operate on local vault files — no tokens or `.env` are required. (Paths default to
-     the vault at `D:\Dropbox\Obsidian`; override with `OBSIDIAN_VAULT` if needed — see
+     the vault at `<Dropbox>/Obsidian`, found automatically on Windows and Linux; override with `OBSIDIAN_VAULT` if needed — see
      `_tools/obsidian/.env.example`.)
    - The script uses a local venv at `_tools/obsidian/.venv`. On Windows use
      `_tools/obsidian/.venv/Scripts/python`, on Mac/Linux use `_tools/obsidian/.venv/bin/python`. Use
      PowerShell `Test-Path` to check which exists.
-   - If neither exists, create the venv: `python -m venv _tools/obsidian/.venv`, then install:
+   - If neither exists, create the venv: `python -m venv _tools/obsidian/.venv` (`python3` on Linux), then install
+     (`bin/pip` on Linux):
      `_tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt`
    - If the venv exists but `python-frontmatter` is not installed (check with
      `_tools/obsidian/.venv/Scripts/pip show python-frontmatter`), run the install step.

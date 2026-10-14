@@ -14,7 +14,8 @@ before the article was published, or before Plausible has any data for the
 site, are skipped. Two Stats API queries in total, whatever the number of posts.
 
 The API key is shared with the vault's `plausible-blog` skill:
-  ~/.plausible/config.json  {"api_key": "...", "site_id": "vojtechruzicka.com"}
+  <Dropbox>/.secrets/plausible.json  {"api_key": "...", "site_id": "vojtechruzicka.com"}
+  (shared with the vault's plausible-blog skill; synced by Dropbox, outside any git repo)
 or env PLAUSIBLE_API_KEY / PLAUSIBLE_SITE_ID (take precedence).
 
 Usage:
@@ -30,11 +31,11 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-from config import ARTICLES_DIR, TRAFFIC_CALLOUT_TITLE, VIEWS_MONTHS, VIEWS_PROP
+from config import ARTICLES_DIR, SECRETS_DIR, TRAFFIC_CALLOUT_TITLE, VIEWS_MONTHS, VIEWS_PROP
 import vault_reviews as vr
 
 API_URL = "https://plausible.io/api/v2/query"
-CONFIG_PATH = Path.home() / ".plausible" / "config.json"
+CONFIG_PATH = SECRETS_DIR / "plausible.json"
 DEFAULT_SITE_ID = "vojtechruzicka.com"
 
 BAR_WIDTH = 20

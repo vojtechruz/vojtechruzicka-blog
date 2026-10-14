@@ -1,5 +1,5 @@
 ---
-title: 'Angular Tutorial 4: Data binding'
+title: 'Angular Tutorial 4: Data Binding'
 date: '2020-07-23'
 topics: ['Angular']
 path: '/angular/04-data-binding/'

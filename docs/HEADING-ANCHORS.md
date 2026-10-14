@@ -31,8 +31,10 @@ Every heading in a post gets a stable `id` and an icon link that copies a deep l
 
 - **Not in the tab order.** An article can have dozens of headings; making each anchor a tab stop would make keyboard
   navigation miserable. Screen-reader users still reach the links in browse mode (they are in the accessibility tree
-  with a per-heading name). Sighted keyboard-only users currently have no way to copy a section link (the sidebar TOC
-  links do not update the URL either, see toc-scrollspy.js); that is the accepted cost.
+  with a per-heading name). Sighted keyboard-only users get a section link through the sidebar TOC instead: its links
+  are ordinary fragment navigation (toc-scrollspy.js only highlights and moves focus), so following one puts the
+  `#fragment` in the address bar. Below 1024 px, where the sidebar is hidden, there is no keyboard route; that is the
+  accepted cost.
 - **Icon hidden on wide screens until hover.** Keeps the article uncluttered; touch and narrow screens, which have no
   hover, show it permanently at reduced opacity.
 

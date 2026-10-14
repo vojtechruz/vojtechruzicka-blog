@@ -11,7 +11,7 @@ needsReview: true
 ## Searching static sites
 
 A few months ago I finally managed to migrate my blog from WordPress to a static site build with GatsbyJS and deployed
-on [Netlify](https://www.vojtechruzicka.com/jamstack-migration-netlify/).
+on [Netlify](/jamstack-migration-netlify/).
 
 {% linkedPost "/gatsby-migration/" %}
 

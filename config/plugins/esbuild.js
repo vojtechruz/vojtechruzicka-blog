@@ -12,6 +12,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/series-toc.js',
       'src/scripts/header-anchor.js',
       'src/scripts/nav.js',
+      'src/scripts/video-autoplay.js',
     ];
 
     await esbuild.build({

@@ -129,7 +129,7 @@ greetingFunction(); // Hi! My name is undefined / window / global
 ## In constructor functions
 
 When you are using
-[constructor functions with a new keyword](https://www.vojtechruzicka.com/javascript-constructor-functions-and-new-operator/),
+[constructor functions with a new keyword](/javascript-constructor-functions-and-new-operator/),
 _this_ behaves a bit differently than usual. In short, what _new_ operator does is that:
 
 1. It creates a new blank object.

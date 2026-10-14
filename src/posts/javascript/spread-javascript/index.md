@@ -162,7 +162,7 @@ doSomething.apply(null, myArray);
 ```
 
 The first parameter of the `apply` function is
-[what's supposed to be the value of "this"](https://www.vojtechruzicka.com/javascript-this-keyword/). The second one is
+[what's supposed to be the value of "this"](/javascript-this-keyword/). The second one is
 the array we want to pass into the function as arguments.
 
 With spread operator, you can achieve the same using:

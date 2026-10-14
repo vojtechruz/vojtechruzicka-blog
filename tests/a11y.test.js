@@ -19,6 +19,7 @@ const PAGES = [
   '/series/angular-tutorial/',
   '/css-flexbox/',
   '/angular/01-getting-started/',
+  '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/', // <video> embeds
   '/search/',
   '/archive/',
   '/archive/chrome-audit-lighthouse-2026-05/',

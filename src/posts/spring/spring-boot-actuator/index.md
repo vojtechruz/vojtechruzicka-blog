@@ -216,7 +216,7 @@ better. Let's examine various ways we can display more info.
 
 ## Build Properties
 
-In the article [I referenced at the beginning of this post](https://www.vojtechruzicka.com/spring-boot-version/), I
+In the article [I referenced at the beginning of this post](/spring-boot-version/), I
 describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring
 Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
 

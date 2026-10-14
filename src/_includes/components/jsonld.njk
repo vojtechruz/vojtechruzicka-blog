@@ -3,6 +3,9 @@ isHome, isHomePaginated, isTopics, isTopic, isPost, publishedDate,
 modifiedDate, breadcrumbs, isAbout #}
 
 {% if isPost and not archivedStatus %}
+{# A series part says which series it belongs to and where: the same lookup and numbering as
+   series-nav.njk (published parts only), so `position` matches "Part x of y" on the page. #}
+{% set ldPart = series | seriesPart(page.url, seriesMetadata, collections.posts) if series else null %}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -19,7 +22,13 @@ modifiedDate, breadcrumbs, isAbout #}
   }{% if publishedDate %},
   "datePublished": {{ (publishedDate | toRfc3339) | dump | safe }}{% endif %}{% if modifiedDate %},
   "dateModified": {{ (modifiedDate | toRfc3339) | dump | safe }}{% endif %},
-  "url": {{ pageUrl | dump | safe }}
+  "url": {{ pageUrl | dump | safe }}{% if ldPart %},
+  "isPartOf": {
+  "@type": "CreativeWorkSeries",
+  "name": {{ ldPart.series.name | dump | safe }},
+  "url": {{ (site.url + "/series/" + ldPart.series.slug + "/") | dump | safe }}
+  },
+  "position": {{ ldPart.position }}{% endif %}
   }
 </script>
 

@@ -10,7 +10,7 @@ needsReview: true
 ## Netlify Analytics
 
 Netlify is a cool service focused on building and deploying your static and
-[JAM Stack](https://www.vojtechruzicka.com/gatsby-migration/) sites. If you're interested you can read more about the
+[JAM Stack](/gatsby-migration/) sites. If you're interested you can read more about the
 service in one of my previous posts:
 
 {% linkedPost "/jamstack-migration-netlify/" %}

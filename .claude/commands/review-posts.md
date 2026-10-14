@@ -12,9 +12,10 @@ Parse `$ARGUMENTS` to determine mode:
 ## Step 0 — Check dependencies
 
 - The scripts operate on local vault files — no tokens or `.env` are required.
-- Ensure the venv at `_tools/obsidian/.venv/Scripts/python` exists (check with `Test-Path`). If missing,
-  create it: `python -m venv _tools/obsidian/.venv`, then
-  `_tools/obsidian/.venv/Scripts/pip install -r _tools/obsidian/requirements.txt`.
+- The scripts use a local venv at `_tools/obsidian/.venv`: `.venv/Scripts/python` on Windows,
+  `.venv/bin/python` on Linux/Mac. The commands below show the Windows path; on Linux swap `Scripts/` for `bin/`.
+  If neither exists, create it with `python -m venv _tools/obsidian/.venv` (`python3` on Linux) and install
+  `_tools/obsidian/requirements.txt` with that venv's `pip`.
 - Subagents only *produce* review text; the notes are written at the end by a Python script, so no vault
   write permissions are needed.
 
@@ -22,7 +23,7 @@ Parse `$ARGUMENTS` to determine mode:
 
 Run `/sync-traffic` (i.e. `_tools/obsidian/.venv/Scripts/python _tools/obsidian/sync_traffic.py`) so every
 article note has a fresh `Views 6mo` and `# Traffic` callout; the update priority below depends on it.
-If it fails (no Plausible API key in `~/.plausible/config.json`, network), warn the user and continue —
+If it fails (no Plausible API key in `<Dropbox>/.secrets/plausible.json`, network), warn the user and continue —
 the review then judges priority from the findings alone.
 
 ## Step 1 — Collect posts to review

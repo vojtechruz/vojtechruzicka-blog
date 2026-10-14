@@ -1,0 +1,84 @@
+{#
+Previous/next part of a series, below the article on every screen width
+--------------------------------------------------------------
+• The sidebar series TOC (series-toc.njk) is hidden below 1024 px, and on wide screens it sits
+  out of view by the time the reader finishes; this is the "continue reading" at the end.
+• Order comes from seriesMetadata.posts, filtered to collections.posts, so an unpublished part
+  is skipped and the numbering ("Part x of y") matches the series TOC.
+• The progress dots link to every part (24 × 24 px targets, named "Part n: title"); the two
+  compact cards repeat the previous/next part with a small featured-image thumbnail.
+• Its own landmark name, distinct from the sidebar's "Series navigation".
+--------------------------------------------------------------
+#}
+{% if series and not archivedStatus %}
+  {% set seriesMeta = null %}
+  {% for meta in seriesMetadata %}
+    {% if meta.slug == series %}
+      {% set seriesMeta = meta %}
+    {% endif %}
+  {% endfor %}
+
+  {% if seriesMeta %}
+    {% set parts = [] %}
+    {% for postUrl in seriesMeta.posts %}
+      {% for post in collections.posts %}
+        {% if post.url == postUrl %}
+          {% set _ = parts.push(post) %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+
+    {% set currentIndex = -1 %}
+    {% for part in parts %}
+      {% if part.url == page.url %}
+        {% set currentIndex = loop.index0 %}
+      {% endif %}
+    {% endfor %}
+
+    {% if currentIndex >= 0 %}
+      {% set prevPart = parts[currentIndex - 1] if currentIndex > 0 else null %}
+      {% set nextPart = parts[currentIndex + 1] if currentIndex + 1 < parts.length else null %}
+      {% set singleCard = not (prevPart and nextPart) %}
+      <nav class="series-nav" aria-label="Previous and next part" data-pagefind-ignore>
+        <p class="series-nav-position">
+          Part {{ currentIndex + 1 }} of {{ parts.length }} in the
+          <a href="/series/{{ seriesMeta.slug }}/">{{ seriesMeta.name }}</a> series
+        </p>
+
+        {% if parts.length >= 3 %}
+        <ol class="series-nav-progress">
+          {% for part in parts %}
+            {% set partLabel = "Part " + loop.index + ": " + (part.data.seriesTitle or part.data.title) %}
+            <li class="{{ 'is-current' if loop.index0 == currentIndex else ('is-done' if loop.index0 < currentIndex else 'is-ahead') }}">
+              <a href="{{ part.url }}" aria-label="{{ partLabel }}" title="{{ partLabel }}"
+                {% if loop.index0 == currentIndex %}aria-current="page"{% endif %}></a>
+            </li>
+          {% endfor %}
+        </ol>
+        {% endif %}
+
+        <ul class="series-nav-links" role="list">
+          {% for item in [{ part: prevPart, rel: 'prev', label: '← Previous', cls: 'series-nav-prev' }, { part: nextPart, rel: 'next', label: 'Next →', cls: 'series-nav-next' }] %}
+            {% if item.part %}
+            <li class="{{ item.cls }}">
+              <a href="{{ item.part.url }}" rel="{{ item.rel }}">
+                {% if item.part.data.featuredImage and item.part.data.postDir %}
+                <img class="series-nav-image" src="/../{{ item.part.data.postDir }}/{{ item.part.data.featuredImage }}" alt=""
+                  loading="lazy" decoding="async" sizes="56px" eleventy:widths="80,160">
+                {% endif %}
+                <span class="series-nav-text">
+                  <span class="series-nav-direction">{{ item.label }}</span>
+                  <span class="series-nav-title">{{ item.part.data.seriesTitle or item.part.data.title }}</span>
+                  {% if singleCard and item.part.data.excerpt %}
+                  <span class="series-nav-excerpt">{{ item.part.data.excerpt }}</span>
+                  {% endif %}
+                </span>
+              </a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+  {% endif %}
+{% endif %}
