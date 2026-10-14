@@ -20,6 +20,9 @@
   {% endif %}
 
   <meta name="apple-mobile-web-app-title" content="VR Blog" />
+  {# Mobile browser toolbar colour: the header's --color-surface-1, so the bar continues the header.
+     Keep in sync with theme_color in site.webmanifest (guarded by tests/manifest.test.js). #}
+  <meta name="theme-color" content="#111827">
   <link rel="manifest" href="{{ '/site.webmanifest' | assetUrl }}" />
   <link rel="stylesheet" href="{{ '/styles/main.css' | assetUrl }}">
   {# No-JS fallback for the mobile nav: the stylesheet collapses the menu behind
