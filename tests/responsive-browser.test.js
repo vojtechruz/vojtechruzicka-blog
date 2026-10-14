@@ -94,6 +94,25 @@ describe('floating copy button', () => {
     }
   }, 30000);
 
+  it('is a target of at least 24 × 24 px (WCAG 2.5.8)', async () => {
+    const page = await openPage('/css-flexbox/', 1280);
+    try {
+      const sizes = await page.$$eval('.copy-code-button', (buttons) =>
+        buttons.map((button) => {
+          const { width, height } = button.getBoundingClientRect();
+          return { width, height };
+        }),
+      );
+      expect(sizes.length).toBeGreaterThan(0);
+      for (const { width, height } of sizes) {
+        expect(width).toBeGreaterThanOrEqual(24);
+        expect(height).toBeGreaterThanOrEqual(24);
+      }
+    } finally {
+      await page.close();
+    }
+  }, 30000);
+
   it('gives every block with a floating button the extra top padding', async () => {
     const page = await openPage('/css-flexbox/', 1280);
     try {

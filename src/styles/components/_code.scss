@@ -94,7 +94,11 @@ pre.shiki span {
   background: transparent;
   color: inherit;
   cursor: pointer;
-  padding: 0.25rem 0.2rem 0.05rem 0.3rem;
+  /* 24 × 24 px with the 14 px icon and 1 px border (WCAG 2.5.8 target size); the extra room is at the
+     bottom so the icon itself stays where the first code line's padding expects it */
+  padding: 0.25rem 0.2rem 0.25rem 0.3rem;
+  min-width: 24px; /* rem paddings round to 23.98 px */
+  min-height: 24px;
   border-radius: var(--radius-xs);
   transition:
     background 0.2s,

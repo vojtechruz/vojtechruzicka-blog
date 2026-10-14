@@ -94,6 +94,26 @@ describe('copyWithFeedback', () => {
     expect(onReset).toHaveBeenCalledTimes(1);
   });
 
+  it('swaps the title too, so the hover tooltip agrees, and restores it after a repeated copy', async () => {
+    const button = makeButton();
+    button.setAttribute('title', 'Copy code to clipboard');
+    await copyWithFeedback(button, 'x');
+    expect(button.getAttribute('title')).toBe('Copied!');
+
+    vi.advanceTimersByTime(1000);
+    await copyWithFeedback(button, 'x');
+    vi.advanceTimersByTime(2000);
+    expect(button.getAttribute('title')).toBe('Copy code to clipboard');
+  });
+
+  it('adds no title to an element that had none', async () => {
+    const button = makeButton();
+    await copyWithFeedback(button, 'x');
+    expect(button.hasAttribute('title')).toBe(false);
+    vi.advanceTimersByTime(2000);
+    expect(button.hasAttribute('title')).toBe(false);
+  });
+
   it('restores an empty label on an element that had none', async () => {
     const button = makeButton(null);
     await copyWithFeedback(button, 'x');

@@ -235,6 +235,20 @@ describe('Code blocks in the build', () => {
     }
   });
 
+  // Copying reads pre.innerText, which includes the red "removed" lines of a diff block (`// [!code --]`,
+  // transformerNotationDiff), so a reader would paste code that should not be there. No post uses diff
+  // removals yet, so the copy script does not handle them; this fails the build the first time one does.
+  it('contain no removed diff lines, which the copy button would copy too', () => {
+    const offenders = pages.filter(({ $ }) => $('pre.shiki .line.diff.remove').length > 0).map(({ file }) => file);
+    expect(
+      offenders,
+      'A code block now uses `// [!code --]`. Before publishing, make the copy button skip removed lines: ' +
+        'in src/scripts/code-block.js clone the <pre>, drop its `.line.diff.remove` elements and copy the ' +
+        "clone's innerText (the +/- signs are CSS, not text), then test it in " +
+        'tests/code-block.test.js and delete this guard.',
+    ).toEqual([]);
+  });
+
   it('are not in the tab order unless they overflow (Shiki tabindex stripped at build)', () => {
     for (const { file, $ } of pages) {
       expect($('pre[tabindex]').length, file).toBe(0);
