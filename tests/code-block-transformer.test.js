@@ -1,5 +1,9 @@
 ﻿import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
+import { globSync } from 'glob';
+import { load } from 'cheerio';
 import { codeBlockTransformer } from '../config/markdown-transform/code-block-transformer.js';
+import { SITE_DIR } from './helpers.js';
 
 describe('codeBlockTransformer', () => {
   it('wraps pre in a container with data-language attribute', () => {
@@ -193,5 +197,47 @@ describe('codeBlockTransformer', () => {
 
     expect(mockRoot.children[0].tagName).toBe('div');
     expect(mockRoot.children.length).toBe(1);
+  });
+});
+
+describe('Code blocks in the build', () => {
+  const pages = globSync(`${SITE_DIR}/**/*.html`, { ignore: [`${SITE_DIR}/pagefind/**`] })
+    .map((file) => ({ file, $: load(readFileSync(file, 'utf-8')) }))
+    .filter(({ $ }) => $('pre.shiki').length > 0);
+  const SCRIPT = /^\/scripts\/code-block\.js(?:\?v=\w+)?$/;
+
+  it('exist', () => {
+    expect(pages.length).toBeGreaterThan(10);
+  });
+
+  it('sit in a container with exactly one copy button, after the code', () => {
+    for (const { file, $ } of pages) {
+      $('pre.shiki').each((_, pre) => {
+        const $container = $(pre).parent('.code-block-container');
+        expect($container.length, `${file}: <pre> outside a .code-block-container`).toBe(1);
+        const $buttons = $container.find('.copy-code-button');
+        expect($buttons.length, `${file}: copy buttons in one block`).toBe(1);
+        expect($buttons.attr('type')).toBe('button');
+        expect($buttons.attr('aria-label')).toBe('Copy code to clipboard');
+        if (!$container.children('.code-block-header').length) {
+          expect($(pre).next().is('.copy-code-button'), `${file}: floating button must follow the code`).toBe(true);
+        }
+      });
+    }
+  });
+
+  it('load the copy script on every page that has them', () => {
+    for (const { file, $ } of pages) {
+      const sources = $('script[src]')
+        .map((_, el) => $(el).attr('src'))
+        .get();
+      expect(sources.filter((src) => SCRIPT.test(src)).length, file).toBe(1);
+    }
+  });
+
+  it('are not in the tab order unless they overflow (Shiki tabindex stripped at build)', () => {
+    for (const { file, $ } of pages) {
+      expect($('pre[tabindex]').length, file).toBe(0);
+    }
   });
 });

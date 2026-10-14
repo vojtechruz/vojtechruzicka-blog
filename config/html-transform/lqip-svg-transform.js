@@ -87,29 +87,17 @@ function pickSmallestUrl($pic, $img) {
  * Compute adaptive mosaic grid (number of cells in width/height)
  * based on image aspect ratio.
  */
-function computeGrid(aspect) {
+export function computeGrid(aspect) {
   const base = Math.sqrt(CELLS_TOTAL * aspect);
-  let gridW = Math.max(MIN_SIDE_CELLS, Math.round(base));
-  let gridH = Math.max(MIN_SIDE_CELLS, Math.round(gridW / aspect));
-
-  // basic clamping to avoid extremes
-  gridW = Math.max(MIN_SIDE_CELLS, gridW);
-  gridH = Math.max(MIN_SIDE_CELLS, gridH);
+  const gridW = Math.max(MIN_SIDE_CELLS, Math.round(base));
+  const gridH = Math.max(MIN_SIDE_CELLS, Math.round(gridW / aspect));
 
   return { gridW, gridH };
 }
 
-// TODO this should fix cropping of images with weird aspect ratios
-// - .resize(gridW, gridH, { fit: "cover" })
-// + .resize(gridW, gridH, { fit: "inside" })
-// diff
-// Zkopírovat kód
-// - preserveAspectRatio="xMidYMid slice"
-// + preserveAspectRatio="xMidYMid meet"
-// diff
-// Zkopírovat kód
-// - background-size:cover;
-// + background-size:contain;
+// The mosaic is taken from the same crop as the picture (`fit: 'cover'` below, `slice` in the SVG):
+// cards show their image through `object-fit: cover`, and in-post images take their aspect ratio from
+// width/height, so the cells line up with what the reader eventually sees.
 
 /**
  * Build inline SVG mosaic (no blur filter).
@@ -121,9 +109,10 @@ function buildSvgFromRaw({ data, width, height, channels }) {
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const i = (y * width + x) * channels;
-      const r = channels === 1 ? data[i] : data[i];
-      const g = channels === 1 ? data[i] : data[i + 1];
-      const b = channels === 1 ? data[i] : data[i + 2];
+      // Greyscale (one channel) repeats the single value for g and b
+      const r = data[i];
+      const g = channels === 1 ? r : data[i + 1];
+      const b = channels === 1 ? r : data[i + 2];
       rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="#${to2(r)}${to2(g)}${to2(b)}"/>`;
     }
   }

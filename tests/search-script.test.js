@@ -176,6 +176,44 @@ describe('search.js', () => {
       expect(document.activeElement).toBe(ui.input);
     });
 
+    it.each([
+      ['a text input', '<input id="field" />'],
+      ['a textarea', '<textarea id="field"></textarea>'],
+      ['a select', '<select id="field"><option>a</option></select>'],
+      ['a contentEditable element', '<div id="field" contenteditable="true" tabindex="0"></div>'],
+    ])('leaves / and Ctrl+K alone while typing in %s', async (_, field) => {
+      await loadScript('/about/', HEADER_CONTAINER + field);
+      const el = document.getElementById('field');
+      // jsdom does not compute isContentEditable from the attribute; a browser does
+      if (el.hasAttribute('contenteditable')) {
+        Object.defineProperty(el, 'isContentEditable', { value: true });
+      }
+      el.focus();
+
+      for (const init of [{ key: '/' }, { key: 'k', ctrlKey: true }]) {
+        const event = new KeyboardEvent('keydown', { ...init, bubbles: true, cancelable: true });
+        el.dispatchEvent(event);
+        expect(event.defaultPrevented, `${init.key} must still type`).toBe(false);
+      }
+      await flush();
+
+      expect(PagefindUIStub.instances, 'search must not open').toHaveLength(0);
+      expect(document.activeElement).toBe(el);
+    });
+
+    it('does open on / from a focused button, outside any field', async () => {
+      await loadScript('/about/', HEADER_CONTAINER + '<button id="field">x</button>');
+      const el = document.getElementById('field');
+      el.focus();
+
+      const event = new KeyboardEvent('keydown', { key: '/', bubbles: true, cancelable: true });
+      el.dispatchEvent(event);
+      await flush();
+
+      expect(event.defaultPrevented).toBe(true);
+      expect(PagefindUIStub.instances).toHaveLength(1);
+    });
+
     it('traps Tab inside the open overlay, wrapping in both directions', async () => {
       await loadScript('/about/', HEADER_CONTAINER);
       document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
