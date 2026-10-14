@@ -170,5 +170,6 @@
 {% block scripts %}
 <script src="{{ '/scripts/code-block.js' | assetUrl }}" defer></script>
 <script src="{{ '/scripts/header-anchor.js' | assetUrl }}" defer></script>
+{% if '<pre' in content or '<table' in content %}<script src="{{ '/scripts/scroll-regions.js' | assetUrl }}" defer></script>{% endif %}
 {% if 'data-autoplay' in content %}<script src="{{ '/scripts/video-autoplay.js' | assetUrl }}" defer></script>{% endif %}
 {% endblock %}

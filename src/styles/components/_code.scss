@@ -64,7 +64,9 @@ pre.shiki span {
   /* Subtle inset to lift content */
   box-shadow: inset 0 1px 0 color-mix(in oklab, #fff 3%, transparent);
 
-  &:focus-within {
+  /* A focused scrollable block (src/scripts/scroll-regions.js) is ringed on the container: the pre's own
+     outline would be clipped by overflow: hidden. The copy button has its own ring, so not :focus-within. */
+  &:has(> pre:focus-visible) {
     @include utilities.focus-ring;
   }
 }

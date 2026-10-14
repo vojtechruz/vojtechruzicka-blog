@@ -44,7 +44,8 @@ npx markdownlint-cli2 "src/**/*.md"
   optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}` (post cards; in-body vs. listing
   behaviour in docs/SHORTCODES.md), `{% badge %}`
 - `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, table wrapping, Shiki
-  `<pre>` tabindex removal, Mermaid → inline SVG (` ```mermaid ` fences render at build time via
+  `<pre>` tabindex removal (only boxes that overflow get a tab stop back, at runtime via `src/scripts/scroll-regions.js`,
+  for code blocks, tables and diagrams alike), Mermaid → inline SVG (` ```mermaid ` fences render at build time via
   mermaid-isomorphic/Playwright; Chromium installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
 - `config/utils/` — shared markdown parser (heading ids via github-slugger, heading permalink anchors rendered with
   their aria-label/title/tabindex at parse time; details in docs/HEADING-ANCHORS.md) and formatting helpers

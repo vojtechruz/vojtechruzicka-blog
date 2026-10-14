@@ -24,6 +24,28 @@ describe('codeBlockTransformer', () => {
     expect(container.children).toContain(pre);
   });
 
+  it('puts the floating copy button after the code, so Tab reaches the block first', () => {
+    const pre = { tagName: 'pre', children: [] };
+    const mockRoot = { children: [pre] };
+
+    codeBlockTransformer.root.call({ options: { meta: '' } }, mockRoot);
+
+    const [first, second] = mockRoot.children[0].children;
+    expect(first).toBe(pre);
+    expect(second.properties.className).toContain('copy-code-button');
+  });
+
+  it('keeps a title header above the code', () => {
+    const pre = { tagName: 'pre', children: [] };
+    const mockRoot = { children: [pre] };
+
+    codeBlockTransformer.root.call({ options: { meta: 'title="app.js"' } }, mockRoot);
+
+    const [first, second] = mockRoot.children[0].children;
+    expect(first.properties.className).toContain('code-block-header');
+    expect(second).toBe(pre);
+  });
+
   it('uses "text" as default language if not provided', () => {
     const pre = { tagName: 'pre', children: [] };
     const mockRoot = { children: [pre] };

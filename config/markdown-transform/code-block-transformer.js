@@ -78,13 +78,12 @@ export const codeBlockTransformer = {
         children: headerChildren,
       };
 
-      containerChildren.push(header);
+      containerChildren.push(header, pre);
     } else {
-      // If no title, add copy button directly to container
-      containerChildren.push(copyButton);
+      // If no title, the copy button floats over the code's top right corner. It still follows the code
+      // in the DOM, so keyboard focus reaches the (scrollable) block first and its copy button second.
+      containerChildren.push(pre, copyButton);
     }
-
-    containerChildren.push(pre);
 
     // Wrap the pre in a container div
     const container = {

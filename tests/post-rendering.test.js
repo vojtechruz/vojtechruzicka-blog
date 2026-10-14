@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'fs';
-import { loadPage, getAllPosts, SITE_DIR } from './helpers.js';
+import { join } from 'path';
+import { loadPage, loadPageHtml, getAllPosts, SITE_DIR } from './helpers.js';
 import {
   getPostTitleText,
   getPostDate,
@@ -180,5 +181,22 @@ describe('Post rendering (post.njk header)', () => {
         expect(absolute, `${filePath}: write /slug/ instead`).toEqual([]);
       }
     });
+  });
+});
+
+describe('Scrollable box script', () => {
+  it('loads exactly on posts with a code block, table or diagram', () => {
+    const SCRIPT = /<script src="\/scripts\/scroll-regions\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
+    const BOX = /<pre class="shiki|class="table-wrapper"|class="mermaid-diagram"/;
+    const built = getAllPosts()
+      .map(({ frontmatter }) => frontmatter.path)
+      .filter((url) => url && existsSync(join(SITE_DIR, url, 'index.html')));
+    const withBoxes = built.filter((url) => BOX.test(loadPageHtml(url)));
+
+    expect(withBoxes.length).toBeGreaterThan(0);
+    expect(withBoxes.length, 'some posts have none').toBeLessThan(built.length);
+    for (const url of built) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(withBoxes.includes(url));
+    }
   });
 });
