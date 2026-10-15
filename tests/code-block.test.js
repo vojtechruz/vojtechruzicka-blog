@@ -136,6 +136,22 @@ describe('code-block.js interactivity', () => {
     expect(status.textContent).toBe('');
   });
 
+  it('copies Shiki lines joined by newlines, keeping blank lines', async () => {
+    // No newline text between the lines: the copy must come from the lines themselves, not from text
+    // that sits between them (which the innerText stand-in here, textContent, would pick up)
+    document.body.innerHTML = `
+      <div class="code-block-container" data-language="java">
+        <pre class="shiki"><code><span class="line"><span>class Cat {</span></span><span class="line"></span><span class="line"><span>  int lives;</span></span><span class="line"><span>}</span></span></code></pre>
+        <button class="copy-code-button" aria-label="Copy code to clipboard" type="button"></button>
+      </div>
+    `;
+
+    document.querySelector('.copy-code-button').click();
+    await vi.runAllTicks();
+
+    expect(writeTextMock).toHaveBeenCalledWith('class Cat {\n\n  int lives;\n}');
+  });
+
   it('handles clipboard failure gracefully', async () => {
     writeTextMock.mockRejectedValue(new Error('Clipboard error'));
 
