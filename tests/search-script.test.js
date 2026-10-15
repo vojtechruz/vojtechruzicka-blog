@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { initNav } from '../src/scripts/nav.js';
 
 /**
  * @vitest-environment jsdom
@@ -506,6 +507,93 @@ describe('search.js', () => {
       window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
       await flush();
       expect(ui.input.value).toBe('java');
+    });
+  });
+
+  describe('collapsed mobile menu', () => {
+    // The header search inside the menu, collapsed as _navigation.scss collapses it below 769 px
+    const MOBILE_HEADER = `
+      <style>.menu-container { display: none } .nav-open .menu-container { display: flex }</style>
+      <header class="main-navigation"><nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu"></button>
+        <div class="menu-container" id="nav-menu"><ul><li><a href="/">Home</a></li></ul>${HEADER_CONTAINER}</div>
+      </nav></header>
+      <main><button id="origin">Read more</button></main>`;
+
+    const nav = () => document.querySelector('.main-navigation');
+    const input = () => document.querySelector('#search .pagefind-ui__search-input');
+    const toggle = () => document.querySelector('.nav-toggle');
+    const press = (key, init = {}) =>
+      document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, ...init }));
+
+    async function openByShortcut() {
+      await loadScript('/about/', MOBILE_HEADER);
+      initNav(document);
+      document.getElementById('origin').focus();
+      press('k', { ctrlKey: true });
+      await flush();
+    }
+
+    it('opens the menu, so the shortcut can put focus in the search', async () => {
+      await openByShortcut();
+
+      expect(nav().classList.contains('nav-open')).toBe(true);
+      expect(toggle().getAttribute('aria-expanded')).toBe('true');
+      expect(document.activeElement).toBe(input());
+    });
+
+    it('leaves an open menu alone', async () => {
+      await loadScript('/about/', MOBILE_HEADER);
+      initNav(document);
+      toggle().click();
+      press('/');
+      await flush();
+
+      expect(nav().classList.contains('nav-open')).toBe(true);
+      expect(document.activeElement).toBe(input());
+    });
+
+    it('on Escape closes the menu it opened and returns focus to where the shortcut was pressed', async () => {
+      await openByShortcut();
+      press('Escape');
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement.id).toBe('origin');
+    });
+
+    it('also with results open: Escape closes them, the menu, and returns focus', async () => {
+      await openByShortcut();
+      PagefindUIStub.instances[0].triggerSearch('java');
+      await flush();
+      expect(document.body.classList.contains('search-open')).toBe(true);
+
+      press('Escape');
+      await flush();
+
+      expect(document.body.classList.contains('search-open')).toBe(false);
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement.id).toBe('origin');
+    });
+
+    it('forgets the origin once the menu is closed by hand, so a later Escape stays on the toggle', async () => {
+      await openByShortcut();
+      toggle().focus();
+      toggle().click(); // closed by hand
+      toggle().click(); // and reopened by hand
+      press('Escape');
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement).toBe(toggle());
+    });
+
+    it('does not open the menu where the search is visible (desktop)', async () => {
+      await loadScript('/about/', MOBILE_HEADER.replace('display: none', 'display: flex'));
+      initNav(document);
+      press('/');
+      await flush();
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement).toBe(input());
     });
   });
 

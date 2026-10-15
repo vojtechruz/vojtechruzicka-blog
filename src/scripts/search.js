@@ -362,11 +362,72 @@
       // isConnected: a container removed from the page must not claim the shortcut (or its origin)
       if (target?.isConnected) {
         const origin = document.activeElement;
-        if (origin && origin !== document.body && !target.contains(origin)) {
+        const hasOrigin = origin && origin !== document.body && !target.contains(origin);
+        if (hasOrigin) {
           shortcutOrigins.set(target, origin);
+        }
+        if (revealInMenu(target)) {
+          menuShortcutOrigin = hasOrigin ? origin : null;
         }
         openContainer(target).catch(console.error);
       }
     }
   });
+
+  // On narrow screens the header search sits in the collapsed menu (display: none), where its input
+  // cannot take focus and a shortcut would do nothing: open the menu first, through its own toggle
+  // (nav.js is a separate bundle). Returns whether it did.
+  function revealInMenu(container) {
+    const nav = container.closest('.main-navigation');
+    const menu = container.closest('.menu-container');
+    const toggle = nav?.querySelector('.nav-toggle');
+    if (!menu || !toggle || getComputedStyle(menu).display !== 'none') {
+      return false;
+    }
+    toggle.click();
+    return true;
+  }
+
+  // Where a shortcut was pressed when it had to open the menu. On Escape nav.js closes the menu and
+  // focuses its toggle; focus then goes back here instead, as it does when no menu was involved.
+  let menuShortcutOrigin = null;
+
+  const header = containers[0]?.closest('.main-navigation');
+  if (header) {
+    const toggle = header.querySelector('.nav-toggle');
+
+    // Opening or closing the menu by hand ends the shortcut's claim on it. (The shortcut's own toggle
+    // click lands here too, before the shortcut records its origin.)
+    toggle?.addEventListener('click', () => {
+      menuShortcutOrigin = null;
+    });
+
+    // Capture, before nav.js: does this Escape close the menu the shortcut opened, from inside it?
+    // Checked now, not tracked through focusout: hiding the menu blurs its input with no relatedTarget.
+    let escapeOrigin = null;
+    window.addEventListener(
+      'keydown',
+      (e) => {
+        const closesMenu =
+          e.key === 'Escape' &&
+          toggle?.getAttribute('aria-expanded') === 'true' &&
+          header.contains(document.activeElement);
+        escapeOrigin = closesMenu ? menuShortcutOrigin : null;
+      },
+      true,
+    );
+
+    // Bubbling, after nav.js has closed the menu and focused its toggle
+    window.addEventListener('keydown', () => {
+      const origin = escapeOrigin;
+      escapeOrigin = null;
+      if (!origin || document.activeElement !== toggle) {
+        return;
+      }
+      menuShortcutOrigin = null;
+      if (origin.isConnected) {
+        origin.focus();
+      }
+    });
+  }
 })();

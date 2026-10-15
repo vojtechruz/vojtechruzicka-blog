@@ -113,3 +113,35 @@ describe('Search input names', () => {
     }
   });
 });
+
+describe('Search shortcut on a narrow screen', () => {
+  it('opens the collapsed menu to reach the search, and Escape closes both and returns focus', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const input = page.locator('#search .pagefind-ui__search-input');
+      await expect.poll(() => input.isVisible()).toBe(false); // the menu starts collapsed
+
+      // Shortcut from a link in the page, the origin focus should return to
+      const origin = page.locator('main a[href]').first();
+      await origin.focus();
+      await page.keyboard.press('Control+k');
+
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      expect(await input.isVisible()).toBe(true);
+      expect(await page.locator('.nav-toggle').getAttribute('aria-expanded')).toBe('true');
+
+      // With results open, Escape clears them, closes the menu and goes back to the link
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+      await page.keyboard.press('Escape');
+
+      await expect.poll(() => input.isVisible()).toBe(false);
+      expect(await page.locator('.nav-toggle').getAttribute('aria-expanded')).toBe('false');
+      expect(await origin.evaluate((el) => el === document.activeElement)).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+});
