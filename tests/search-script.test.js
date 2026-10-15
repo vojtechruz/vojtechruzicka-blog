@@ -25,7 +25,7 @@ class PagefindUIStub {
     element.innerHTML = `
       <div class="pagefind-ui">
         <form class="pagefind-ui__form" role="search">
-          <input class="pagefind-ui__search-input" type="text" />
+          <input class="pagefind-ui__search-input" type="text" placeholder="Search…" title="Search…" />
         </form>
         <div class="pagefind-ui__drawer pagefind-ui__hidden"></div>
       </div>
@@ -107,6 +107,53 @@ describe('search.js', () => {
 
       const labels = PagefindUIStub.instances.map((ui) => ui.options.translations.search_label);
       expect(labels).toEqual(['Search the site', 'Search posts']);
+    });
+
+    describe('input names and the shortcut hint', () => {
+      const PAGE_SEARCH = `
+        <div class="js-pagefind" id="page-search" data-search-label="Search posts">
+          <div class="pagefind-ui"><form class="pagefind-ui__form"><input class="pagefind-ui__search-input" /></form></div>
+        </div>`;
+
+      const inputOf = (id) => document.querySelector(`#${id} .pagefind-ui__search-input`);
+
+      function expectLabels() {
+        const header = inputOf('search');
+        expect(header.getAttribute('aria-label')).toBe('Search the site');
+        expect(header.getAttribute('title')).toBe('Shortcut: / or Ctrl+K');
+        expect(header.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+
+        // The 404 page search is not what the shortcut opens: named after its form, no hint
+        const page = inputOf('page-search');
+        expect(page.getAttribute('aria-label')).toBe('Search posts');
+        expect(page.hasAttribute('title')).toBe(false);
+        expect(page.hasAttribute('aria-keyshortcuts')).toBe(false);
+      }
+
+      it('names each input after its form and hints the shortcut on the header input, before Pagefind loads', async () => {
+        await loadScript('/404.html', HEADER_CONTAINER + PAGE_SEARCH);
+        expect(PagefindUIStub.instances).toHaveLength(0);
+        expectLabels();
+      });
+
+      it('replaces the "Search…" title Pagefind gives its own inputs', async () => {
+        await loadScript('/404.html', HEADER_CONTAINER + PAGE_SEARCH);
+        document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+        document.getElementById('page-search').dispatchEvent(new Event('focusin', { bubbles: true }));
+        await flush();
+
+        expect(PagefindUIStub.instances).toHaveLength(2);
+        expectLabels();
+      });
+
+      it('shows ⌘K on a Mac', async () => {
+        vi.spyOn(navigator, 'platform', 'get').mockReturnValue('MacIntel');
+        await loadScript('/about/', HEADER_CONTAINER);
+
+        const input = inputOf('search');
+        expect(input.getAttribute('title')).toBe('Shortcut: / or ⌘K');
+        expect(input.getAttribute('aria-keyshortcuts')).toBe('/ Meta+K');
+      });
     });
 
     it('creates one instance even when several triggers fire for a single gesture', async () => {
@@ -478,6 +525,18 @@ describe('search.js', () => {
       await flush();
 
       expect(PagefindUIStub.instances.map((ui) => ui.options.element.id)).toEqual(['search-page', 'search']);
+    });
+
+    it('hints the shortcut on the header input, not on the /search/ page input', async () => {
+      await loadScript('/search/', HEADER_CONTAINER + INLINE_CONTAINER);
+
+      const inline = document.querySelector('#search-page .pagefind-ui__search-input');
+      expect(inline.getAttribute('aria-label')).toBe('Search posts');
+      expect(inline.hasAttribute('title')).toBe(false);
+      expect(inline.hasAttribute('aria-keyshortcuts')).toBe(false);
+      expect(document.querySelector('#search .pagefind-ui__search-input').getAttribute('aria-keyshortcuts')).toBe(
+        '/ Control+K',
+      );
     });
   });
 });

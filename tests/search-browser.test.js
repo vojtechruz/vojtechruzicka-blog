@@ -73,3 +73,43 @@ describe('Search results keyboard navigation', () => {
     }
   });
 });
+
+describe('Search input names', () => {
+  it('keep their names and the shortcut hint once the real Pagefind UI has taken over and searched', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/search/?q=java', { waitUntil: 'load' });
+      await page.locator('#search-page .pagefind-ui__result-link').first().waitFor();
+
+      // Open the header search by its shortcut and search, so Pagefind re-renders around the input
+      // (shortcuts are ignored inside a field, and /search/ may have put focus in its own input)
+      await page.evaluate(() => document.activeElement?.blur());
+      await page.keyboard.press('Control+k');
+      await page.waitForFunction(() => document.activeElement?.closest('#search'));
+      await page.keyboard.type('spring');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      const attrs = (selector) =>
+        page.locator(selector).evaluate((el) => ({
+          name: el.getAttribute('aria-label'),
+          title: el.getAttribute('title'),
+          keys: el.getAttribute('aria-keyshortcuts'),
+        }));
+      // Two search inputs on the page, both rendered by Pagefind (no pre-rendered placeholder left)
+      expect(await page.locator('.pagefind-ui__search-input').count()).toBe(2);
+      expect(await attrs('#search .pagefind-ui__search-input')).toEqual({
+        name: 'Search the site',
+        title: 'Shortcut: / or Ctrl+K',
+        keys: '/ Control+K',
+      });
+      expect(await attrs('#search-page .pagefind-ui__search-input')).toEqual({
+        name: 'Search posts',
+        title: null,
+        keys: null,
+      });
+    } finally {
+      await context.close();
+    }
+  });
+});
