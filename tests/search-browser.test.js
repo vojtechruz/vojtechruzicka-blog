@@ -145,3 +145,46 @@ describe('Search shortcut on a narrow screen', () => {
     }
   });
 });
+
+describe('Search overlay focus trap', () => {
+  it('keeps Tab and Shift+Tab inside the open overlay, wrapping at both ends', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.keyboard.press('Control+k');
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      // What really takes focus, by layout: every element Tab visits from the input
+      const where = () =>
+        page.evaluate(() => {
+          const el = document.activeElement;
+          return { inside: Boolean(el.closest('#search')), input: el.matches('.pagefind-ui__search-input') };
+        });
+      const stops = await page.$$eval(
+        '#search :is(a[href], button, input)',
+        (els) => els.filter((el) => el.checkVisibility() && !el.disabled).length,
+      );
+      expect(stops).toBeGreaterThan(3);
+
+      // A full lap and a bit: never leaves the overlay, and comes back round to the input
+      let backAtInput = false;
+      for (let i = 0; i < stops + 2; i++) {
+        await page.keyboard.press('Tab');
+        const now = await where();
+        expect(now.inside, `Tab ${i + 1}`).toBe(true);
+        backAtInput ||= now.input;
+      }
+      expect(backAtInput, 'Tab wraps from the last stop to the input').toBe(true);
+
+      // Backwards from the input wraps to the last stop, still inside
+      await page.locator('#search .pagefind-ui__search-input').focus();
+      await page.keyboard.press('Shift+Tab');
+      expect(await where()).toEqual({ inside: true, input: false });
+    } finally {
+      await context.close();
+    }
+  });
+});
