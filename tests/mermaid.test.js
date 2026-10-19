@@ -84,7 +84,7 @@ describe('mermaidTransform', () => {
     const $ = cheerio.load(output);
     const style = $('.mermaid-diagram svg style').text();
 
-    expect(style).toContain('Inter');
+    expect(style).toContain('system-ui');
     expect(style).toContain('#c7d2da'); // --color-text
   });
 

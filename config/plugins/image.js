@@ -69,11 +69,12 @@ export default function registerImagePlugin(eleventyConfig) {
     defaultAttributes: {
       loading: 'lazy',
       decoding: 'async',
-      // Featured and in-post images fill the text column: .content is max-width 70ch with padding, 615 px
-      // with the 18 px system font; 680 px leaves room for fonts with wider glyphs. Below 768 px they span
+      // Featured and in-post images fill the text column: .content is max-width 70ch with padding, so its
+      // width follows the system font: 615 px with Segoe UI (Windows), 738 px with DejaVu Sans (Linux).
+      // 760 px covers both and picks the same candidate as 615 at DPR 1, 1.5 and 2. Below 768 px they span
       // the viewport. (The former `(min-width: 1024px) 800px, 100vw` sent 768-1023 px tablets the
       // full-size original at DPR 2.)
-      sizes: '(min-width: 768px) 680px, 100vw',
+      sizes: '(min-width: 768px) 760px, 100vw',
     },
     filenameFormat: imageFilename,
   });

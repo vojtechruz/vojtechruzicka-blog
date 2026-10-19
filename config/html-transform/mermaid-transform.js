@@ -21,7 +21,7 @@ import { load } from 'cheerio';
  * SVG output has these baked in as inline styles, so the values must be kept in sync
  * with the CSS custom properties manually.
  */
-const BLOG_FONT_STACK = "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+const BLOG_FONT_STACK = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
 
 export const MERMAID_CONFIG = {
   theme: 'base',

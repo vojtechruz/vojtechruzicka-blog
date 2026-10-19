@@ -43,7 +43,7 @@ const THUMBNAIL_WIDTHS = {
   '56px': [80, 160], // series prev/next cards
 };
 /** `sizes` of featured and in-post images (defaultAttributes in config/plugins/image.js). */
-const ARTICLE_IMAGE_SIZES = '(min-width: 768px) 680px, 100vw';
+const ARTICLE_IMAGE_SIZES = '(min-width: 768px) 760px, 100vw';
 
 /**
  * Parse a srcset attribute into [{ url, width }], preserving order.
