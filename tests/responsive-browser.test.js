@@ -165,8 +165,19 @@ describe('search field outline', () => {
     async (url) => {
       const page = await openPage(url, 1280);
       try {
+        // The resting outline, not the focus ring: /search/ focuses its field once Pagefind UI loads, and
+        // the border fades to transparent over a transition, so measure unfocused with transitions off
+        await page.addStyleTag({ content: '*, *::before { transition: none !important; }' });
+        if (url === '/search/') {
+          await page.waitForFunction(() => document.activeElement?.matches('.pagefind-ui__search-input'));
+        }
+        await page.evaluate(() => document.activeElement?.blur());
         const fields = await page.$$eval('.pagefind-ui__search-input', (inputs) => {
-          const rgb = (color) => color.match(/[\d.]+/g).slice(0, 3).map(Number);
+          const rgb = (color) =>
+            color
+              .match(/[\d.]+/g)
+              .slice(0, 3)
+              .map(Number);
           const opaque = (color) => !/rgba\(.*,\s*0\)|transparent/.test(color);
           // The colour behind an element: the nearest ancestor that paints a background
           const behind = (el) => {
