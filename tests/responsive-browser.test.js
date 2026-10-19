@@ -147,3 +147,92 @@ describe('sidebar table of contents', () => {
     }
   }, 30000);
 });
+
+describe('search field outline', () => {
+  const luminance = ([r, g, b]) => {
+    const lin = (c) => ((c /= 255) <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+    return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+  };
+  const contrast = (a, b) => {
+    const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  };
+
+  // The outline is what shows where to type (the placeholder disappears with the first letter), so it
+  // needs 3:1 (WCAG 1.4.11) against both the field and the bar or page around it
+  it.each(['/', '/search/', '/404.html'])(
+    'contrasts at least 3:1 with what it separates on %s',
+    async (url) => {
+      const page = await openPage(url, 1280);
+      try {
+        const fields = await page.$$eval('.pagefind-ui__search-input', (inputs) => {
+          const rgb = (color) => color.match(/[\d.]+/g).slice(0, 3).map(Number);
+          const opaque = (color) => !/rgba\(.*,\s*0\)|transparent/.test(color);
+          // The colour behind an element: the nearest ancestor that paints a background
+          const behind = (el) => {
+            for (let node = el.parentElement; node; node = node.parentElement) {
+              const bg = getComputedStyle(node).backgroundColor;
+              if (opaque(bg)) {
+                return rgb(bg);
+              }
+            }
+            return rgb(getComputedStyle(document.documentElement).backgroundColor);
+          };
+          return inputs
+            .filter((input) => input.checkVisibility())
+            .map((input) => {
+              const style = getComputedStyle(input);
+              return { border: rgb(style.borderTopColor), field: rgb(style.backgroundColor), around: behind(input) };
+            });
+        });
+        expect(fields.length).toBeGreaterThan(0);
+        for (const { border, field, around } of fields) {
+          expect(contrast(border, field), 'outline vs field').toBeGreaterThanOrEqual(3);
+          expect(contrast(border, around), 'outline vs surroundings').toBeGreaterThanOrEqual(3);
+        }
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+});
+
+describe('article image sizes', () => {
+  // `sizes` tells the browser how wide an image will render before any CSS is in, and picks the srcset
+  // candidate from it: it must not understate the real width (blurry) nor overstate it by much (a
+  // bigger download; `100vw` once sent 768-1023 px tablets the full-size original). Checked on a
+  // featured and in-post images at a phone, both tablet ends and desktop widths.
+  it.each([390, 768, 1023, 1280, 1920])(
+    'match the rendered width at %i px',
+    async (width) => {
+      const page = await openPage('/idea-compare-files-and-folders/', width);
+      try {
+        const images = await page.$$eval('.post-header-featured-image, .content .image-wrapper img', (imgs) =>
+          imgs.map((img) => {
+            // The width the sizes attribute declares for this viewport: first matching media condition
+            const declared = img
+              .getAttribute('sizes')
+              .split(',')
+              .map((entry) => entry.trim().match(/^(\(.+\))?\s*(\d+)(px|vw)$/))
+              .find(([, media]) => !media || matchMedia(media).matches);
+            const [, , value, unit] = declared;
+            return {
+              rendered: img.getBoundingClientRect().width,
+              declared: unit === 'vw' ? (innerWidth * value) / 100 : Number(value),
+            };
+          }),
+        );
+        expect(images.length).toBeGreaterThan(2);
+        // Hidden ones (card thumbnails under 480 px) are lazy and never download
+        for (const { rendered, declared } of images.filter((image) => image.rendered > 0)) {
+          expect(declared, 'sizes understates the width').toBeGreaterThanOrEqual(rendered);
+          expect(declared, 'sizes overstates the width by more than 25 %').toBeLessThanOrEqual(rendered * 1.25);
+        }
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+});

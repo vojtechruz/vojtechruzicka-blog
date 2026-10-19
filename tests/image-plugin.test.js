@@ -118,7 +118,7 @@ describe('registerImagePlugin', () => {
     expect(options.defaultAttributes).toEqual({
       loading: 'lazy',
       decoding: 'async',
-      sizes: '(min-width: 1024px) 800px, 100vw',
+      sizes: '(min-width: 768px) 680px, 100vw',
     });
   });
 });

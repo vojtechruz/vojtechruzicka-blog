@@ -69,7 +69,11 @@ export default function registerImagePlugin(eleventyConfig) {
     defaultAttributes: {
       loading: 'lazy',
       decoding: 'async',
-      sizes: '(min-width: 1024px) 800px, 100vw',
+      // Featured and in-post images fill the text column: .content is max-width 70ch with padding, 615 px
+      // with the 18 px system font; 680 px leaves room for fonts with wider glyphs. Below 768 px they span
+      // the viewport. (The former `(min-width: 1024px) 800px, 100vw` sent 768-1023 px tablets the
+      // full-size original at DPR 2.)
+      sizes: '(min-width: 768px) 680px, 100vw',
     },
     filenameFormat: imageFilename,
   });

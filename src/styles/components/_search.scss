@@ -12,7 +12,8 @@
     border-radius: var(--radius-sm);
 
     background: var(--color-surface-1);
-    border: 1px solid var(--color-border);
+    // Not --color-border (1.6:1): the outline is what shows where to type, so it needs 3:1 (WCAG 1.4.11)
+    border: 1px solid var(--color-border-control);
     color: var(--color-text);
     font-size: 0.95rem;
     line-height: 1.4;
