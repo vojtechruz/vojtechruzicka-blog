@@ -1,0 +1,101 @@
+@use '../utilities';
+
+// Enlarged in-post images (src/scripts/lightbox.js): the script wraps each zoomable <picture> in a
+// button and shows the image in a modal <dialog>.
+
+.lightbox-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: zoom-in;
+
+  &:focus-visible {
+    @include utilities.focus-ring;
+  }
+}
+
+// .image-wrapper clips its content (the LQIP blur), which would cut off the ring drawn outside the
+// button; while the button has keyboard focus the ring shows outside the image, as everywhere else
+.image-wrapper:has(> .lightbox-trigger:focus-visible) {
+  overflow: visible;
+}
+
+.lightbox {
+  // Fills the viewport; the image is centred in it, 1rem from every edge (MARGIN in lightbox.js)
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 1rem;
+  border: 0;
+  background: transparent;
+  cursor: zoom-out;
+
+  &[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  picture {
+    display: contents;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    object-fit: contain;
+    // The in-page rendition (set by the script) shows, scaled up, until the large candidate is in
+    background: center / contain no-repeat;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &:focus-visible {
+    @include utilities.focus-ring($radius: 50%);
+  }
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open],
+  .lightbox[open]::backdrop {
+    animation: lightbox-fade-in 0.15s ease-out;
+  }
+}
+
+@keyframes lightbox-fade-in {
+  from {
+    opacity: 0;
+  }
+}

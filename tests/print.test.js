@@ -136,6 +136,26 @@ describe('Print styles', () => {
     expect(await pseudoContent('.post-topics a', '::after')).toBe('none');
   });
 
+  it('keep in-post images that the lightbox wrapped in a button', async () => {
+    // A wide viewport, where the lightbox wraps images (the 794 px page above is too narrow for it)
+    const wide = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    try {
+      await wide.goto(baseUrl + '/idea-compare-files-and-folders/', { waitUntil: 'load' });
+      await wide.waitForSelector('.lightbox-trigger');
+      await wide.emulateMedia({ media: 'print' });
+      const images = await wide.$$eval('main.post > article > .image-wrapper img', (imgs) =>
+        imgs.map((img) => ({
+          wrapped: Boolean(img.closest('.lightbox-trigger')),
+          height: img.getBoundingClientRect().height,
+        })),
+      );
+      expect(images.some(({ wrapped }) => wrapped)).toBe(true);
+      expect(images.filter(({ height }) => height === 0)).toEqual([]);
+    } finally {
+      await wide.close();
+    }
+  });
+
   it('replace embeds with their URL', async () => {
     await open(PAGES.post);
     expect(await pseudoContent('.codepen-embed-figure', '::before')).toContain('https://codepen.io/vojtechruz/pen/');

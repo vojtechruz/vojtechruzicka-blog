@@ -27,6 +27,24 @@ The `<content-hash>` (`id`) is computed from the **source image contents plus th
 empirically: writing two different images to the same path produces two different hashes. This property is what makes
 caching safe (see below).
 
+### `sizes` and the lightbox
+
+Featured and in-post images fill the text column, `70ch` wide, so its pixel width follows the reader's system font
+(615 px with Segoe UI, 738 px with DejaVu Sans). `ARTICLE_IMAGE_SIZES` in `config/plugins/image.js` declares
+`(min-width: 768px) 760px, 100vw` to cover both. In-post images are lazy and lead with `auto`
+(`auto, (min-width: 768px) 760px, 100vw`), so Chromium uses their real width; `auto` is only valid on lazy images, so the
+eager featured image gets the plain value through the `articleImageSizes` global in `post.njk`. Guarded by
+`tests/images.test.js` and the Playwright checks in `tests/responsive-browser.test.js`.
+
+The full-width variants (`'auto'` width) exist mainly for the **lightbox** (`src/scripts/lightbox.js`, loaded on posts
+with images): an in-post image the dialog would show at least 1.25× larger than the column gets wrapped in a button
+(re-evaluated on resize, so phones usually get none: there the image already spans the screen and pinch-zoom applies).
+The click opens a native modal `<dialog>` with a copy of the `<picture>` whose `sizes` is the exact width it will show
+at, so the large candidate downloads only on demand; the in-page rendition stands in as a scaled-up background until
+it arrives. Escape, the focus trap and focus return come from the dialog; a click anywhere closes it. Print styles keep
+the button visible (they otherwise hide every `<button>`). Tests: `tests/lightbox-script.test.js` (jsdom),
+`tests/lightbox-browser.test.js` and `tests/print.test.js` (Playwright).
+
 ## The build cache
 
 eleventy-img **skips encoding when the expected output file already exists**. The cache exploits that:

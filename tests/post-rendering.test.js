@@ -184,6 +184,30 @@ describe('Post rendering (post.njk header)', () => {
   });
 });
 
+describe('Image lightbox script', () => {
+  it('loads on every post with an in-post image, and not on posts without images', () => {
+    const SCRIPT = /<script src="\/scripts\/lightbox\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
+    const built = getAllPosts()
+      .map(({ frontmatter }) => frontmatter.path)
+      .filter((url) => url && existsSync(join(SITE_DIR, url, 'index.html')));
+    // The template tests for any <img> in the content: in-post images, but also linkedPost card
+    // thumbnails, where the script finds nothing to do and stops. The featured image is in the header.
+    const inPostImages = (url) => loadPage(url)('main.post > article > .image-wrapper').length;
+    const contentImages = (url) => loadPage(url)('main.post > article img').not('article > header img').length;
+    const withInPostImages = built.filter((url) => inPostImages(url) > 0);
+    const withoutImages = built.filter((url) => contentImages(url) === 0);
+
+    expect(withInPostImages.length).toBeGreaterThan(0);
+    expect(withoutImages.length, 'some posts have no images').toBeGreaterThan(0);
+    for (const url of withInPostImages) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(true);
+    }
+    for (const url of withoutImages) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(false);
+    }
+  });
+});
+
 describe('Scrollable box script', () => {
   it('loads exactly on posts with a code block, table or diagram', () => {
     const SCRIPT = /<script src="\/scripts\/scroll-regions\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;

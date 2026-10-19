@@ -14,6 +14,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/nav.js',
       'src/scripts/video-autoplay.js',
       'src/scripts/scroll-regions.js',
+      'src/scripts/lightbox.js',
     ];
 
     await esbuild.build({
