@@ -222,9 +222,11 @@ describe('article image sizes', () => {
         const images = await page.$$eval('.post-header-featured-image, .content .image-wrapper img', (imgs) =>
           imgs.map((img) => {
             // The width the sizes attribute declares for this viewport: first matching media condition
+            // (skipping `auto`: this checks the fallback for browsers without it)
             const declared = img
               .getAttribute('sizes')
               .split(',')
+              .filter((entry) => entry.trim() !== 'auto')
               .map((entry) => entry.trim().match(/^(\(.+\))?\s*(\d+)(px|vw)$/))
               .find(([, media]) => !media || matchMedia(media).matches);
             const [, , value, unit] = declared;
@@ -246,4 +248,35 @@ describe('article image sizes', () => {
     },
     30000,
   );
+});
+
+describe('sizes="auto" on lazy in-post images', () => {
+  it('picks the candidate from the rendered width, not from the declared fallback', async () => {
+    // In-post images stretched to 1000 px: with `auto` Chromium needs a candidate of at least 1000w,
+    // while the fallback (760 px at this viewport) would settle for 800w. Works with the lean CI widths
+    // (800 + original) too. The style is appended to the stylesheet itself, so it is in place before
+    // any lazy image starts loading.
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    try {
+      await page.route('**/styles/main.css*', async (route) => {
+        const response = await route.fetch();
+        const stretch =
+          'main.post > article > .image-wrapper img { width: 1000px !important; max-width: none !important; }';
+        await route.fulfill({ response, body: `${await response.text()}\n${stretch}` });
+      });
+      await page.goto(server.baseUrl + '/idea-compare-files-and-folders/');
+      const img = page.locator('main.post > article > .image-wrapper > picture > img').first();
+      const widths = (await img.getAttribute('srcset')).match(/\d+(?=w)/g).map(Number);
+      const expected = Math.min(...widths.filter((w) => w >= 1000));
+      expect(expected).toBeGreaterThan(Math.min(...widths.filter((w) => w >= 760)));
+
+      await img.scrollIntoViewIfNeeded();
+      await expect.poll(() => img.evaluate((el) => el.complete && el.currentSrc), { timeout: 10000 }).toBeTruthy();
+      expect(Math.round(await img.evaluate((el) => el.getBoundingClientRect().width))).toBe(1000);
+      const picked = Number((await img.evaluate((el) => el.currentSrc)).match(/-(\d+)\.\w+$/)[1]);
+      expect(picked).toBe(expected);
+    } finally {
+      await page.close();
+    }
+  }, 30000);
 });

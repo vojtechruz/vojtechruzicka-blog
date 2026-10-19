@@ -56,7 +56,26 @@ export function imageFilename(id, src, width, format) {
   return `${filenameSanitized}-${id}-${width}.${format}`;
 }
 
+/**
+ * `sizes` of featured and in-post images. They fill the text column: .content is max-width 70ch with
+ * padding, so its width follows the system font: 615 px with Segoe UI (Windows), 738 px with DejaVu Sans
+ * (Linux). 760 px covers both and picks the same candidate as 615 at DPR 1, 1.5 and 2. Below 768 px they
+ * span the viewport. (The former `(min-width: 1024px) 800px, 100vw` sent 768-1023 px tablets the
+ * full-size original at DPR 2.)
+ */
+export const ARTICLE_IMAGE_SIZES = '(min-width: 768px) 760px, 100vw';
+
+/**
+ * In-post images are lazy, so they also lead with `auto`: by the time they load the layout is known and
+ * the browser uses their real width (Chromium 126+). Browsers without it skip the entry and fall back to
+ * ARTICLE_IMAGE_SIZES. `auto` is only valid with loading="lazy", so the eager featured image (post.njk)
+ * sets ARTICLE_IMAGE_SIZES itself, from the `articleImageSizes` global.
+ */
+export const LAZY_ARTICLE_IMAGE_SIZES = `auto, ${ARTICLE_IMAGE_SIZES}`;
+
 export default function registerImagePlugin(eleventyConfig) {
+  eleventyConfig.addGlobalData('articleImageSizes', ARTICLE_IMAGE_SIZES);
+
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
     // output image formats
     formats: resolveImageFormats(),
@@ -69,12 +88,7 @@ export default function registerImagePlugin(eleventyConfig) {
     defaultAttributes: {
       loading: 'lazy',
       decoding: 'async',
-      // Featured and in-post images fill the text column: .content is max-width 70ch with padding, so its
-      // width follows the system font: 615 px with Segoe UI (Windows), 738 px with DejaVu Sans (Linux).
-      // 760 px covers both and picks the same candidate as 615 at DPR 1, 1.5 and 2. Below 768 px they span
-      // the viewport. (The former `(min-width: 1024px) 800px, 100vw` sent 768-1023 px tablets the
-      // full-size original at DPR 2.)
-      sizes: '(min-width: 768px) 760px, 100vw',
+      sizes: LAZY_ARTICLE_IMAGE_SIZES,
     },
     filenameFormat: imageFilename,
   });

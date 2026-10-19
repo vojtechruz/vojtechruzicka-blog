@@ -42,8 +42,9 @@ const THUMBNAIL_WIDTHS = {
   '80px': [80, 160], // compact related-post cards
   '56px': [80, 160], // series prev/next cards
 };
-/** `sizes` of featured and in-post images (defaultAttributes in config/plugins/image.js). */
+/** `sizes` of featured images, and of the lazy in-post ones led by `auto` (config/plugins/image.js). */
 const ARTICLE_IMAGE_SIZES = '(min-width: 768px) 760px, 100vw';
+const LAZY_ARTICLE_IMAGE_SIZES = `auto, ${ARTICLE_IMAGE_SIZES}`;
 
 /**
  * Parse a srcset attribute into [{ url, width }], preserving order.
@@ -256,6 +257,25 @@ describe('Responsive image pipeline', () => {
         }
       }
     });
+
+    it('measures lazy in-post images with sizes="auto"; the eager featured image declares its width', () => {
+      for (const postPath of POSTS_WITH_IMAGES) {
+        const $ = loadPage(postPath);
+        const featured = collectPictures($, FEATURED_SELECTOR);
+        const inPost = collectPictures($, IN_POST_SELECTOR);
+        expect(featured.length, postPath).toBe(1);
+        expect(inPost.length, postPath).toBeGreaterThan(0);
+
+        for (const { $img } of featured) {
+          expect($img.attr('loading'), postPath).toBe('eager');
+          expect($img.attr('sizes'), postPath).toBe(ARTICLE_IMAGE_SIZES);
+        }
+        for (const { $img } of inPost) {
+          expect($img.attr('loading'), postPath).toBe('lazy');
+          expect($img.attr('sizes'), postPath).toBe(LAZY_ARTICLE_IMAGE_SIZES);
+        }
+      }
+    });
   });
 
   describe('Card and navigation thumbnails', () => {
@@ -274,11 +294,22 @@ describe('Responsive image pipeline', () => {
 
     it('every responsive image in the build is either an article image or a known thumbnail kind', () => {
       const unknown = allPictures
-        .filter(({ $img }) => !($img.attr('sizes') in THUMBNAIL_WIDTHS) && $img.attr('sizes') !== ARTICLE_IMAGE_SIZES)
+        .filter(
+          ({ $img }) =>
+            !($img.attr('sizes') in THUMBNAIL_WIDTHS) &&
+            ![ARTICLE_IMAGE_SIZES, LAZY_ARTICLE_IMAGE_SIZES].includes($img.attr('sizes')),
+        )
         .map(({ $img, pagePath }) => `${pagePath}: sizes="${$img.attr('sizes')}"`);
 
       // A new image context needs its own widths and sizes decided, and an entry above.
       expect(unknown).toEqual([]);
+    });
+
+    it('uses sizes="auto" only on lazy images, the only ones it is valid on', () => {
+      const eagerAuto = allPictures
+        .filter(({ $img }) => /^\s*auto\b/i.test($img.attr('sizes')) && $img.attr('loading') !== 'lazy')
+        .map(({ pagePath }) => pagePath);
+      expect(eagerAuto).toEqual([]);
     });
 
     it.each(Object.keys(THUMBNAIL_WIDTHS))('thumbnails with sizes="%s" appear in the build', (sizes) => {
