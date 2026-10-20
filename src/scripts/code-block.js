@@ -26,17 +26,14 @@ import { copyWithFeedback } from './clipboard.js';
 
     copyWithFeedback(button, code, {
       copiedAriaLabel: 'Copied!',
-      onShow: (fresh) => {
-        if (fresh) {
-          button.dataset.originalText = status ? status.innerText : 'Copy';
-        }
+      onShow: () => {
         if (status) {
-          status.innerText = 'Copied!';
+          status.textContent = 'Copied!';
         }
       },
       onReset: () => {
         if (status) {
-          status.innerText = button.dataset.originalText;
+          status.textContent = '';
         }
       },
       onError: (err) => console.error('Failed to copy code: ', err),

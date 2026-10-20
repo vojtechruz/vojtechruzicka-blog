@@ -67,6 +67,11 @@
   color: var(--color-link);
 }
 
+/* The copied state's green (copied-tooltip mixin) wins over the revealed link colour above */
+:is(h1, h2, h3, h4, h5, h6) > .header-anchor.copied {
+  color: var(--color-success);
+}
+
 /* Touch devices have no hover: keep the icon discoverable at all times */
 @media (hover: none) {
   .header-anchor {

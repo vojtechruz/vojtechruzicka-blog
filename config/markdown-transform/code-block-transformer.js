@@ -48,8 +48,10 @@ export const codeBlockTransformer = {
         {
           type: 'element',
           tagName: 'span',
+          // Empty: the button is the icon alone, in a title header as over bare code, so every copy button
+          // looks the same; src/scripts/code-block.js shows "Copied!" here after a copy
           properties: { className: ['copy-status'] },
-          children: [{ type: 'text', value: title ? 'Copy' : '' }],
+          children: [],
         },
       ],
     };

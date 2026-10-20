@@ -29,7 +29,7 @@ describe('code-block.js interactivity', () => {
           <span class="code-block-title">test.js</span>
           <button class="copy-code-button" aria-label="Copy code to clipboard" type="button" title="Copy code to clipboard">
             <span class="copy-icon"></span>
-            <span class="copy-status">Copy</span>
+            <span class="copy-status"></span>
           </button>
         </div>
         <pre><code>console.log("hello");</code></pre>

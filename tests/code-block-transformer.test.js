@@ -128,8 +128,9 @@ describe('codeBlockTransformer', () => {
     const copyButton = header.children.find((c) => c.properties?.className?.includes('copy-code-button'));
     expect(copyButton).toBeDefined();
 
+    // Icon only, like the floating button over code without a title
     const statusSpan = copyButton.children.find((c) => c.properties?.className?.includes('copy-status'));
-    expect(statusSpan.children[0].value).toBe('Copy');
+    expect(statusSpan.children).toEqual([]);
   });
 
   it('adds copy button directly to container if no title is present', () => {
@@ -144,7 +145,7 @@ describe('codeBlockTransformer', () => {
     expect(copyButton).toBeDefined();
 
     const statusSpan = copyButton.children.find((c) => c.properties?.className?.includes('copy-status'));
-    expect(statusSpan.children[0].value).toBe('');
+    expect(statusSpan.children).toEqual([]);
   });
 
   it('extracts title correctly when meta is an object with __raw', () => {
