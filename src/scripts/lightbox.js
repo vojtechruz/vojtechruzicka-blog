@@ -60,7 +60,6 @@
     // A fresh image: eager, no LQIP mosaic or blur, the in-page rendition shown until the large one loads
     large.removeAttribute('class');
     large.removeAttribute('style');
-    large.removeAttribute('onload');
     large.removeAttribute('loading');
     large.setAttribute('sizes', sizes);
     // Sized up front (height from the width/height aspect ratio), so the placeholder shows at once

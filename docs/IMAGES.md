@@ -45,6 +45,39 @@ arrives. Escape, the focus trap and focus return come from the dialog; a click a
 button visible (they otherwise hide every `<button>`). Tests: `tests/lightbox-script.test.js` (jsdom),
 `tests/lightbox-browser.test.js` and `tests/print.test.js` (Playwright).
 
+### Placeholders (LQIP) and the image wrapper
+
+Two HTML transforms finish every `<picture>` after eleventy-img:
+
+1. `config/html-transform/lqip-transform.js` reads the smallest candidate of each picture and puts a placeholder behind
+   the `<img>` as an inline style, plus `class="lqip"`:
+   - **Featured and in-post images** get a tiny lossy WebP of the same crop, about 160 pixels in the image's aspect
+     ratio (`computeGrid`), as a `data:` URI `background-image` (~100–250 bytes). The browser scales it up and the 60 px
+     CSS blur turns it into a soft preview.
+   - **Thumbnails** (every length in `sizes` is in px and at most 200: post cards, compact related posts, series
+     navigation) get only their average colour as `background-color`; at 56–160 px a blurred image looks the same.
+
+   Placeholders are cached per image for the build (most thumbnails repeat on many pages). They used to be SVG mosaics,
+   one `<rect>` per cell, ~13 KB each: two thirds of all HTML (21 MB), 533 of 611 KB on `/topics/java/`. Now the whole
+   site's placeholders take ~90 KB and the HTML is ~7 MB; `tests/images.test.js` fails any page where they exceed 10 %.
+
+2. `config/html-transform/wrap-pictures-transform.js` wraps each picture in `div.image-wrapper` (and a captioned one in
+   a figure, below). A `div` cannot sit inside `<p>`, so the pictures of a paragraph move out together, in source order:
+   a paragraph of images only is replaced, one with text keeps its text and gets the wrappers right after it.
+
+`src/styles/components/_image-wrapper.scss` blurs the `.lqip` image over a dark `--lqip-bg-color`. `src/scripts/lqip.js`
+(every page, deferred) ends that state: it listens for `load` and `error` in the capture phase, and on start marks the
+images that finished before it ran (`complete`; `naturalWidth` 0 means failed). On `[data-loaded]` the blur fades out
+and the whole background goes (`!important`, it is inline), so the transparent parts of a PNG show the page and not the
+placeholder. On `[data-failed]` (a 404 or a network error) blur and background go at once and a dashed outline marks the
+reserved space, so the browser's broken-image box with the alt text is readable and does not pass for an image still
+loading. A script rather than an inline `onload` keeps `'unsafe-hashes'` out of the CSP (docs/SECURITY-HEADERS.md); the
+cost is that an image loaded before the script stays blurred until it runs. Without JavaScript the `<noscript>` style in
+`base.njk` drops blur and background at once, and print styles do the same. Tests: `tests/lqip-transform.test.js` (unit,
+synthetic images), `tests/images.test.js` (built pages), `tests/lqip-browser.test.js` (Playwright: placeholder until
+load, nothing after, a failed image, an image loaded before the script, no blur without JS),
+`tests/wrap-pictures.test.js`.
+
 ### Captions
 
 A markdown image title becomes a visible caption: `![alt](./x.png "Caption")` renders as

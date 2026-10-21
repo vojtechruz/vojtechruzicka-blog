@@ -37,7 +37,7 @@ function inPostImage({ width = 2000, height = 1000, rendered = 615, alt = 'IDE s
   wrapper.className = 'image-wrapper';
   wrapper.innerHTML = `<picture>
       <source type="image/avif" srcset="/p/x-800.avif 800w, /p/x-${width}.avif ${width}w" sizes="auto, 760px">
-      <img class="lqip" style="background-image: url(data:x)" onload="this.dataset.loaded=1;" loading="lazy"
+      <img class="lqip" style="background-image: url(data:x)" loading="lazy"
         decoding="async" src="/p/x-${width}.png" alt="${alt}" width="${width}" height="${height}"
         srcset="/p/x-800.png 800w, /p/x-${width}.png ${width}w" sizes="auto, 760px">
     </picture>`;
@@ -176,8 +176,8 @@ describe('lightbox.js: the dialog', () => {
       .forEach((source) => expect(source.getAttribute('sizes')).toBe('1248px'));
     expect(large.getAttribute('srcset')).toBe(img.getAttribute('srcset'));
     expect(large.style.backgroundImage).toContain('/p/x-2000.png');
-    // Not lazy (it is meant to load now), no LQIP blur, mosaic or onload
-    for (const attribute of ['loading', 'class', 'onload']) {
+    // Not lazy (it is meant to load now), no LQIP blur or placeholder
+    for (const attribute of ['loading', 'class']) {
       expect(large.hasAttribute(attribute), attribute).toBe(false);
     }
     // The page image itself is untouched

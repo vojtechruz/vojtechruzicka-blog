@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import sharp from 'sharp';
 import { globSync } from 'glob';
 import { loadPage, SITE_DIR } from './helpers.js';
 import { resolveImageFormats, resolveImageWidths } from '../config/plugins/image.js';
@@ -123,7 +124,6 @@ describe('Responsive image pipeline', () => {
 
       expect(alts).toEqual(['typedoc-1', 'typedoc-2']);
     });
-  });
 
     // `![alt](x.png "Caption")`: the markdown title survives eleventy-img and becomes the caption
     it('renders a captioned image as a figure with a figcaption, with no title tooltip left', () => {
@@ -139,6 +139,7 @@ describe('Responsive image pipeline', () => {
         expect(loadPage(postPath)('article img[title]').length, postPath).toBe(0);
       }
     });
+  });
 
   describe('Modern formats (image plugin)', () => {
     it('emits modern-format sources before the original-format <img> fallback', () => {
@@ -328,6 +329,19 @@ describe('Responsive image pipeline', () => {
       expect(eagerAuto).toEqual([]);
     });
 
+    it('gives thumbnails only their average colour as the LQIP placeholder, other images a tiny WebP', () => {
+      // lqip-transform.js: at 56-160 px a blurred image is indistinguishable from one colour
+      const wrong = allPictures
+        .filter(({ $img }) => {
+          const style = $img.attr('style') || '';
+          return thumbnails.some((thumbnail) => thumbnail.$img === $img)
+            ? !/^display:block;background-color:#[0-9a-f]{6};$/.test(style)
+            : !style.includes("background-image:url('data:image/webp;base64,");
+        })
+        .map(({ $img, pagePath }) => `${pagePath}: sizes="${$img.attr('sizes')}" style="${$img.attr('style')}"`);
+      expect(wrong).toEqual([]);
+    });
+
     it.each(Object.keys(THUMBNAIL_WIDTHS))('thumbnails with sizes="%s" appear in the build', (sizes) => {
       expect(thumbnails.filter(({ $img }) => $img.attr('sizes') === sizes).length).toBeGreaterThan(0);
     });
@@ -425,11 +439,13 @@ describe('Responsive image pipeline', () => {
     });
   });
 
-  describe('LQIP placeholders (lqip-svg-transform)', () => {
-    it('adds the lqip class and an inline SVG background to every image', () => {
+  describe('LQIP placeholders (lqip-transform)', () => {
+    const WEBP_PLACEHOLDER = /background-image:url\('data:image\/webp;base64,([^']+)'\)/;
+
+    it('puts a tiny inline WebP behind every featured and in-post image', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
-        const pictures = collectPictures($, `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`);
+        const pictures = collectPictures($, ARTICLE_IMAGES_SELECTOR);
 
         expect(pictures.length).toBeGreaterThan(0);
 
@@ -437,28 +453,40 @@ describe('Responsive image pipeline', () => {
           expect($img.hasClass('lqip'), `Missing lqip class in ${postPath}`).toBe(true);
 
           const style = $img.attr('style') || '';
-          expect(style, `Missing LQIP background in ${postPath}`).toContain('background-image:url(');
-          expect(style, `LQIP should be an inline SVG data URI in ${postPath}`).toContain('data:image/svg+xml;base64,');
+          expect(style, `LQIP should be an inline WebP data URI in ${postPath}`).toMatch(WEBP_PLACEHOLDER);
           expect(style).toContain('background-size:cover');
         }
       }
     });
 
-    it('encodes a real SVG mosaic sized to the image aspect ratio', () => {
+    it('encodes a WebP of about 160 pixels in the aspect ratio of the image, in a few hundred bytes', async () => {
       const $ = loadPage('/css-position/');
       const { $img } = collectPictures($, IN_POST_SELECTOR)[0];
-      const base64 = /data:image\/svg\+xml;base64,([^')]+)/.exec($img.attr('style'))[1];
-      const svg = Buffer.from(base64, 'base64').toString('utf-8');
+      const webp = Buffer.from(WEBP_PLACEHOLDER.exec($img.attr('style'))[1], 'base64');
+      const { format, width, height } = await sharp(webp).metadata();
 
-      expect(svg).toContain('<svg');
-      expect(svg).toContain('<rect');
-
-      const [, gridWidth, gridHeight] = /viewBox="0 0 (\d+) (\d+)"/.exec(svg).map(Number);
+      expect(format).toBe('webp');
+      expect(width * height).toBeGreaterThan(100);
+      expect(width * height).toBeLessThan(400);
       const imageAspect = Number($img.attr('width')) / Number($img.attr('height'));
-      expect(Math.abs(gridWidth / gridHeight - imageAspect)).toBeLessThan(imageAspect * 0.3);
+      expect(Math.abs(width / height - imageAspect)).toBeLessThan(imageAspect * 0.3);
+      expect(webp.length).toBeLessThan(400);
+    });
 
-      // One <rect> per mosaic cell.
-      expect(svg.match(/<rect/g).length).toBe(gridWidth * gridHeight);
+    it('keeps placeholders a small part of every page', () => {
+      // The old SVG mosaics were ~13 KB each and two thirds of all HTML (a topic page: 533 of 611 KB)
+      const pages = globSync(`${SITE_DIR}/**/*.html`);
+      expect(pages.length).toBeGreaterThan(100);
+      const over = [];
+      for (const file of pages) {
+        const html = readFileSync(file, 'utf8');
+        const placeholders = [...html.matchAll(/background-(?:image:url\('data:[^']*'\)|color:#[0-9a-f]{6})/g)];
+        const bytes = placeholders.reduce((sum, [match]) => sum + match.length, 0);
+        if (bytes > html.length * 0.1) {
+          over.push(`${file}: ${bytes} of ${html.length} bytes`);
+        }
+      }
+      expect(over).toEqual([]);
     });
   });
 

@@ -1,4 +1,4 @@
-// config/html-transform/lqip-svg-transform.js
+// config/html-transform/lqip-transform.js
 // ESM module
 
 import path from 'node:path';
@@ -9,7 +9,7 @@ import { load } from 'cheerio';
 /**
  * LQIP results are deterministic per (image URL, grid size), and the same featured
  * image appears on many pages (homepage, topic/series listings, related posts).
- * Cache the generated data-URI so each image is decoded and mosaicked only once
+ * Cache the generated placeholder so each image is decoded only once
  * per build instead of once per page it appears on.
  */
 const lqipCache = new Map();
@@ -21,16 +21,30 @@ const OUTPUT_DIR = process.env.ELEVENTY_OUTPUT_DIR || '_site';
 const PROJECT_ROOT = process.cwd();
 
 /**
- * Approximate total number of cells in the mosaic.
+ * Approximate total number of pixels in the placeholder image.
  * The grid (width x height) will adapt to image aspect ratio.
- * 160 ≈ 16×10 for 16:10 aspect ratio — tweak to your liking.
+ * 160 ≈ 16×10 for 16:10 aspect ratio.
  */
 const CELLS_TOTAL = 160;
 
 /**
- * Minimum number of cells on the shorter side, to avoid being too coarse.
+ * Minimum number of pixels on the shorter side, to avoid being too coarse.
  */
 const MIN_SIDE_CELLS = 8;
+
+/**
+ * Lossy WebP quality of the placeholder. Under the 60 px blur the colour error (~4/255 on average)
+ * is invisible, and a 16×10 image comes out at ~100–180 bytes.
+ */
+const WEBP_QUALITY = 80;
+
+/**
+ * Images displayed at most this wide (every length in `sizes` is in px and no larger) are
+ * thumbnails: post cards, compact linked posts, series navigation. They get a single average
+ * colour instead of an image - at 56–160 px the difference is not visible, and they are most of
+ * the pictures on listing pages.
+ */
+const THUMBNAIL_MAX_PX = 200;
 
 /** Convert 0–255 to two-digit hex */
 function to2(v) {
@@ -84,7 +98,7 @@ function pickSmallestUrl($pic, $img) {
 }
 
 /**
- * Compute adaptive mosaic grid (number of cells in width/height)
+ * Compute the adaptive placeholder size (pixels in width/height)
  * based on image aspect ratio.
  */
 export function computeGrid(aspect) {
@@ -95,43 +109,56 @@ export function computeGrid(aspect) {
   return { gridW, gridH };
 }
 
-// The mosaic is taken from the same crop as the picture (`fit: 'cover'` below, `slice` in the SVG):
-// cards show their image through `object-fit: cover`, and in-post images take their aspect ratio from
-// width/height, so the cells line up with what the reader eventually sees.
+// The placeholder is taken from the same crop as the picture (`fit: 'cover'` below, `background-size:
+// cover` on the <img>): cards show their image through `object-fit: cover`, and in-post images take
+// their aspect ratio from width/height, so the placeholder lines up with what the reader eventually sees.
 
 /**
- * Build inline SVG mosaic (no blur filter).
- * Uses viewBox matching pixel grid and preserveAspectRatio="xMidYMid slice"
- * to avoid stretching.
+ * Whether the <img> is a thumbnail by its `sizes`: every slot length is in px and at most
+ * THUMBNAIL_MAX_PX (`auto` is ignored). No `sizes`, or a viewport-relative length, means a large image.
  */
-function buildSvgFromRaw({ data, width, height, channels }) {
-  let rects = '';
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const i = (y * width + x) * channels;
-      // Greyscale (one channel) repeats the single value for g and b
-      const r = data[i];
-      const g = channels === 1 ? r : data[i + 1];
-      const b = channels === 1 ? r : data[i + 2];
-      rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="#${to2(r)}${to2(g)}${to2(b)}"/>`;
-    }
+export function isThumbnail(sizes) {
+  if (!sizes) {
+    return false;
   }
+  const lengths = sizes
+    .split(',')
+    .map((entry) => entry.trim().split(/\s+/).pop())
+    .filter((length) => length !== 'auto');
+  return (
+    lengths.length > 0 &&
+    lengths.every((length) => /^\d+(\.\d+)?px$/.test(length) && parseFloat(length) <= THUMBNAIL_MAX_PX)
+  );
+}
 
-  return `
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 ${width} ${height}"
-     preserveAspectRatio="xMidYMid slice">
-  <g>${rects}</g>
-</svg>`.trim();
+/** The average colour of the image, as #rrggbb (alpha ignored, like the image placeholder's RGB). */
+async function averageColor(buf) {
+  const data = await sharp(buf)
+    .toColorspace('srgb')
+    .removeAlpha()
+    .resize(1, 1, { fit: 'fill', kernel: 'cubic' })
+    .raw()
+    .toBuffer();
+  return `#${to2(data[0])}${to2(data[1])}${to2(data[2] ?? data[0])}`;
+}
+
+/** A tiny lossy WebP of the image, gridW × gridH pixels, as a data URI. Transparency is kept. */
+async function tinyImage(buf, gridW, gridH) {
+  const webp = await sharp(buf)
+    .toColorspace('srgb')
+    .resize(gridW, gridH, { fit: 'cover' })
+    .webp({ quality: WEBP_QUALITY, smartSubsample: true, effort: 6 })
+    .toBuffer();
+  return `data:image/webp;base64,${webp.toString('base64')}`;
 }
 
 /**
  * --- Eleventy Transform ---
  * Runs on every generated HTML page.
- * Finds <picture> tags, generates a tiny SVG LQIP from the smallest image,
- * and injects it as background-image on the <img>.
+ * Finds <picture> tags and puts a placeholder behind each <img>, read from its smallest candidate:
+ * a tiny blurred image for in-post and featured images, an average colour for thumbnails.
  */
-export async function lqipSvgTransform(content, outputPath) {
+export async function lqipTransform(content, outputPath) {
   if (!outputPath || !outputPath.endsWith('.html') || !content.includes('<picture')) {
     return content;
   }
@@ -156,42 +183,25 @@ export async function lqipSvgTransform(content, outputPath) {
     jobs.push(
       (async () => {
         try {
+          const thumbnail = isThumbnail($img.attr('sizes'));
+
           // Determine aspect ratio from width/height attributes if present
           const wAttr = parseInt($img.attr('width') || '', 10);
           const hAttr = parseInt($img.attr('height') || '', 10);
           const aspect = wAttr && hAttr ? wAttr / hAttr : 16 / 9;
-
-          // Compute adaptive grid size
           const { gridW, gridH } = computeGrid(aspect);
 
-          // Reuse the cached mosaic when this image was already processed on another page.
+          // Reuse the placeholder when this image was already processed on another page.
           // Cache the in-flight promise (not just the result) so concurrent pages
           // referencing the same image do not start duplicate sharp pipelines.
-          const cacheKey = `${smallest}|${gridW}x${gridH}`;
+          const cacheKey = thumbnail ? `${smallest}|color` : `${smallest}|${gridW}x${gridH}`;
           if (!lqipCache.has(cacheKey)) {
             lqipCache.set(
               cacheKey,
               (async () => {
                 // Load image buffer (origin in serve mode, built file otherwise)
                 const buf = await getBufferForSmallestPath(smallest);
-
-                // Downsample and extract raw RGB data
-                const { data, info } = await sharp(buf)
-                  .toColorspace('srgb')
-                  .resize(gridW, gridH, { fit: 'cover' })
-                  .raw({ depth: 'uchar' })
-                  .toBuffer({ resolveWithObject: true });
-
-                // Build SVG mosaic
-                const svg = buildSvgFromRaw({
-                  data,
-                  width: info.width,
-                  height: info.height,
-                  channels: info.channels,
-                });
-
-                // Base64-encode to avoid escaping issues
-                return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+                return thumbnail ? averageColor(buf) : tinyImage(buf, gridW, gridH);
               })().catch((e) => {
                 // Do not cache failures - let a later page retry
                 lqipCache.delete(cacheKey);
@@ -199,23 +209,23 @@ export async function lqipSvgTransform(content, outputPath) {
               }),
             );
           }
-          const svgUrl = await lqipCache.get(cacheKey);
+          const placeholder = await lqipCache.get(cacheKey);
 
-          // Apply background LQIP to <img>
+          // Apply the placeholder as the <img> background; the author's own style goes last, so it wins
           const prevImgStyle = $img.attr('style') || '';
           $img.attr(
             'style',
-            `display:block;` +
-              `background-image:url('${svgUrl}');` +
-              `background-size:cover;` +
-              `background-position:center;` +
-              `background-repeat:no-repeat;` +
-              prevImgStyle,
+            thumbnail
+              ? `display:block;background-color:${placeholder};${prevImgStyle}`
+              : `display:block;` +
+                  `background-image:url('${placeholder}');` +
+                  `background-size:cover;` +
+                  `background-position:center;` +
+                  `background-repeat:no-repeat;` +
+                  prevImgStyle,
           );
 
-          // Optional fade-in hook: add CSS class + data-loaded flag
-          const existingOnload = $img.attr('onload') || '';
-          $img.attr('onload', existingOnload + 'this.dataset.loaded=1;');
+          // src/scripts/lqip.js ends the placeholder once the image loads (or fails)
           $img.addClass('lqip');
         } catch (e) {
           console.error('LQIP error for', smallest, e);

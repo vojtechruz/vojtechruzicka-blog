@@ -106,23 +106,20 @@ switched off in the dashboard, remove both origins from the CSP again.
 
 ### Inline code hashes
 
-Two pieces of inline code are allowlisted by sha256 hash instead of `'unsafe-inline'`:
+One piece of inline code is allowlisted by sha256 hash instead of `'unsafe-inline'`: **the Plausible init snippet** in
+`src/_includes/components/analytics.njk` — hash of the exact text between `<script>` and `</script>`, LF line endings.
 
-1. **The Plausible init snippet** in `src/_includes/components/analytics.njk` — hash of the exact text between
-   `<script>` and `</script>`, LF line endings.
-2. **The LQIP `onload` attribute** (`this.dataset.loaded=1;`) emitted by `config/html-transform/lqip-svg-transform.js` —
-   attribute hashes additionally require `'unsafe-hashes'` in `script-src`.
-
-**When either piece of code changes, the hash in `src/static/_headers` must be regenerated** — otherwise browsers block
-it silently in production (analytics stops reporting / LQIP placeholders never fade out). Regenerate with:
+**When that snippet changes, the hash in `src/static/_headers` must be regenerated** — otherwise browsers block it
+silently in production and analytics stops reporting. Regenerate with:
 
 ```bash
-# Plausible snippet
 node -e "const{createHash}=require('crypto');const s=require('fs').readFileSync('src/_includes/components/analytics.njk','utf8').replace(/\r\n/g,'\n');console.log('sha256-'+createHash('sha256').update(/<script>([\s\S]*?)<\/script>/.exec(s)[1]).digest('base64'))"
-
-# An event-handler attribute (hash of the attribute value, exactly as emitted)
-node -e "console.log('sha256-'+require('crypto').createHash('sha256').update('this.dataset.loaded=1;').digest('base64'))"
 ```
+
+**No inline event handlers** (`onload="…"` and the like): they would need `'unsafe-hashes'` in `script-src`, which the
+policy deliberately lacks. Attach the listener from a bundled script instead. LQIP placeholders used to be ended by an
+allowlisted `onload` attribute; `src/scripts/lqip.js` does it now (2026-10-21). `tests/security-headers.test.js` fails
+on any inline handler in the build and on `'unsafe-hashes'` in the CSP.
 
 ### Violation reporting
 

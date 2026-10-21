@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
-import { createHash } from 'crypto';
 import { globSync } from 'glob';
 import { SITE_DIR, parseHeaders } from './helpers.js';
 
@@ -98,28 +97,22 @@ describe('Security headers (Content Security Policy)', () => {
     expect(sources('style-src')).toContain('https://giscus.app');
   });
 
-  it('allowlists every inline event handler by its hash', () => {
-    // config/html-transform/lqip-svg-transform.js emits onload="this.dataset.loaded=1;" on every
-    // image. Editing that string without regenerating the sha256 in the CSP would make browsers
-    // block the handler, leaving LQIP placeholders permanently visible — silently, and only in
-    // production, because local dev never serves _headers. Same for any handler added later.
-    // (The inline Plausible snippet has the equivalent guard in tests/analytics.test.js.)
-    const handlers = new Set();
+  it("has no inline event handlers, so script-src needs no 'unsafe-hashes'", () => {
+    // The CSP allows none: a handler such as onload="…" would be blocked silently, and only in
+    // production, because local dev never serves _headers. LQIP placeholders used to be ended by
+    // an allowlisted onload attribute; src/scripts/lqip.js does it now. Use a script instead.
+    // (The inline Plausible snippet is allowlisted by hash, guarded in tests/analytics.test.js.)
+    const handlers = [];
     for (const file of htmlFiles) {
       const html = readFileSync(file, 'utf-8');
       // Anchored to a real tag start: an unescaped "<tagname" cannot occur inside escaped
       // code samples, so attribute-lookalikes in post content do not match.
-      for (const [, code] of html.matchAll(/<[a-z][^>]*\son[a-z]+="([^"]+)"/gi)) {
-        handlers.add(code);
+      for (const [handler] of html.matchAll(/<[a-z][^>]*\son[a-z]+="[^"]+"/gi)) {
+        handlers.push(`${file}: ${handler.slice(0, 120)}`);
       }
     }
-    expect(handlers.size, 'expected at least the LQIP onload handler in the build output').toBeGreaterThan(0);
-    expect(sources('script-src'), "inline event handlers need 'unsafe-hashes'").toContain("'unsafe-hashes'");
-
-    for (const code of handlers) {
-      const hash = `'sha256-${createHash('sha256').update(code, 'utf-8').digest('base64')}'`;
-      expect(sources('script-src'), `inline handler "${code}" needs ${hash} in script-src`).toContain(hash);
-    }
+    expect(handlers).toEqual([]);
+    expect(sources('script-src')).not.toContain("'unsafe-hashes'");
   });
 });
 
