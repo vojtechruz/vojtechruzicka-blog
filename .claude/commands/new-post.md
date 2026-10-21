@@ -68,4 +68,7 @@ Leave the body empty — just a blank line after the frontmatter closing `---`.
 Tell the user:
 - The full path of the created file
 - A reminder to add a `featured.png` image to the same directory
+- How to write in-post images: `![alt](./file.png)`, where alt describes what the image shows; a visible caption goes
+  in the quoted title, `![alt](./file.png "Caption")`, only where it adds information the image and the text around it
+  do not (where to look, which side is which, source/credit) and never repeating the alt text
 - That they can run `/review-posts <path>` once the post has content worth reviewing

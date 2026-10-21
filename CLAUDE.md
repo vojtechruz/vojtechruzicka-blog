@@ -93,7 +93,8 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 ### Key data flow
 
 1. Markdown posts → markdown-it parser (with custom plugins for callouts, TOC) → HTML
-2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images
+2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images (an image title,
+   `![alt](x.png "Caption")`, becomes a `<figure>` with a visible `<figcaption>`; when to caption is in docs/IMAGES.md)
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
 4. Pagefind indexes `_site/` after build for client-side search. Only `<main data-pagefind-body>` (set by the three
    layouts) is indexed; `src/pages/search.njk` (`/search/?q=`, the homepage `SearchAction` target) omits the attribute

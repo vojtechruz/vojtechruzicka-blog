@@ -29,21 +29,43 @@ caching safe (see below).
 
 ### `sizes` and the lightbox
 
-Featured and in-post images fill the text column, `70ch` wide, so its pixel width follows the reader's system font
-(615 px with Segoe UI, 738 px with DejaVu Sans). `ARTICLE_IMAGE_SIZES` in `config/plugins/image.js` declares
+Featured and in-post images fill the text column, `70ch` wide, so its pixel width follows the reader's system font (615
+px with Segoe UI, 738 px with DejaVu Sans). `ARTICLE_IMAGE_SIZES` in `config/plugins/image.js` declares
 `(min-width: 768px) 760px, 100vw` to cover both. In-post images are lazy and lead with `auto`
-(`auto, (min-width: 768px) 760px, 100vw`), so Chromium uses their real width; `auto` is only valid on lazy images, so the
-eager featured image gets the plain value through the `articleImageSizes` global in `post.njk`. Guarded by
+(`auto, (min-width: 768px) 760px, 100vw`), so Chromium uses their real width; `auto` is only valid on lazy images, so
+the eager featured image gets the plain value through the `articleImageSizes` global in `post.njk`. Guarded by
 `tests/images.test.js` and the Playwright checks in `tests/responsive-browser.test.js`.
 
 The full-width variants (`'auto'` width) exist mainly for the **lightbox** (`src/scripts/lightbox.js`, loaded on posts
 with images): an in-post image the dialog would show at least 1.25× larger than the column gets wrapped in a button
 (re-evaluated on resize, so phones usually get none: there the image already spans the screen and pinch-zoom applies).
 The click opens a native modal `<dialog>` with a copy of the `<picture>` whose `sizes` is the exact width it will show
-at, so the large candidate downloads only on demand; the in-page rendition stands in as a scaled-up background until
-it arrives. Escape, the focus trap and focus return come from the dialog; a click anywhere closes it. Print styles keep
-the button visible (they otherwise hide every `<button>`). Tests: `tests/lightbox-script.test.js` (jsdom),
+at, so the large candidate downloads only on demand; the in-page rendition stands in as a scaled-up background until it
+arrives. Escape, the focus trap and focus return come from the dialog; a click anywhere closes it. Print styles keep the
+button visible (they otherwise hide every `<button>`). Tests: `tests/lightbox-script.test.js` (jsdom),
 `tests/lightbox-browser.test.js` and `tests/print.test.js` (Playwright).
+
+### Captions
+
+A markdown image title becomes a visible caption: `![alt](./x.png "Caption")` renders as
+
+```html
+<figure class="image-figure">
+  <div class="image-wrapper">
+    <picture>…<img alt="alt" /></picture>
+  </div>
+  <figcaption class="image-caption">Caption</figcaption>
+</figure>
+```
+
+eleventy-img keeps the `title` on the `<img>`; `config/html-transform/wrap-pictures-transform.js` then builds the figure
+and drops the attribute, so the caption is not a hover tooltip too. Alt and caption have different jobs and must not
+repeat each other (a screen reader reads both): alt describes the image for someone who cannot see it, the caption adds
+information for every reader. Captions are optional and belong only where they add something (where to look, which side
+is which, a source or credit); `/review-draft` checks which images deserve one. The lightbox finds captioned images too,
+the feed keeps the caption after the "Image: alt" line (`feedContent` in `config/filters/urls.js`), and print styles
+keep a figure on one page. Tests: `tests/wrap-pictures.test.js`, `tests/images.test.js` (the captioned spread in
+`/java-by-comparison-book-review/`), `tests/feeds.test.js`, `tests/lightbox-script.test.js`.
 
 ## The build cache
 

@@ -6,7 +6,12 @@
 // on demand. The native modal dialog provides the focus trap, Escape and focus return; a click
 // anywhere closes it. Without JS the images stay as they are.
 (() => {
-  const images = Array.from(document.querySelectorAll('main.post > article > .image-wrapper > picture > img'));
+  // In-post images, captioned (figure.image-figure) or not; not the featured image or post cards
+  const images = Array.from(
+    document.querySelectorAll(
+      ':is(main.post > article, main.post > article > .image-figure) > .image-wrapper > picture > img',
+    ),
+  );
   if (!images.length || typeof HTMLDialogElement !== 'function') {
     return;
   }

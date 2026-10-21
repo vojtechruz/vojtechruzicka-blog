@@ -101,6 +101,17 @@ describe('lightbox.js: which images get the zoom button', () => {
     expect(trigger(img)).toBeNull();
   });
 
+  it('wraps a captioned image (figure.image-figure) too', async () => {
+    const img = inPostImage();
+    const wrapper = img.closest('.image-wrapper');
+    const figure = document.createElement('figure');
+    figure.className = 'image-figure';
+    wrapper.replaceWith(figure);
+    figure.append(wrapper);
+    await loadScript();
+    expect(trigger(img)).not.toBeNull();
+  });
+
   it('ignores images outside the article body (cards, featured image)', async () => {
     document.body.innerHTML =
       '<main class="post"><article><header><div class="image-wrapper"><picture>' +

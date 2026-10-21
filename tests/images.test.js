@@ -28,7 +28,8 @@ const MODERN_SOURCE_TYPES = resolveImageFormats()
 
 /** Featured images are rendered inside the post <header>; in-post images are direct children of <article>. */
 const FEATURED_SELECTOR = 'main.post > article > header .image-wrapper > picture';
-const IN_POST_SELECTOR = 'main.post > article > .image-wrapper > picture';
+/** In-post images, uncaptioned or in a captioned figure (wrap-pictures-transform.js) */
+const IN_POST_SELECTOR = ':is(main.post > article, main.post > article > .image-figure) > .image-wrapper > picture';
 /** Both kinds share the plugin defaults: configured widths up to the original, the same `sizes`. */
 const ARTICLE_IMAGES_SELECTOR = `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`;
 
@@ -123,6 +124,21 @@ describe('Responsive image pipeline', () => {
       expect(alts).toEqual(['typedoc-1', 'typedoc-2']);
     });
   });
+
+    // `![alt](x.png "Caption")`: the markdown title survives eleventy-img and becomes the caption
+    it('renders a captioned image as a figure with a figcaption, with no title tooltip left', () => {
+      const $ = loadPage('/java-by-comparison-book-review/');
+      const $figure = $('main.post > article > figure.image-figure');
+      expect($figure.length).toBe(1);
+      expect($figure.find('> .image-wrapper > picture > img').attr('alt')).toMatch(/^Two facing pages/);
+      expect($figure.find('> figcaption.image-caption').text()).toBe(
+        'A two-page spread from Java by Comparison (The Pragmatic Bookshelf)',
+      );
+
+      for (const postPath of POSTS_WITH_IMAGES) {
+        expect(loadPage(postPath)('article img[title]').length, postPath).toBe(0);
+      }
+    });
 
   describe('Modern formats (image plugin)', () => {
     it('emits modern-format sources before the original-format <img> fallback', () => {

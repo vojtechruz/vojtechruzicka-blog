@@ -120,6 +120,20 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('Diagram available in the original article.');
     });
 
+    it('keeps an image caption (markdown title) after the alt text, as text for every reader', () => {
+      const result = feedContent(
+        '<p><img src="/x.png" alt="Settings dialog" title="Applies to all projects &amp; modules"></p>',
+      );
+      expect(result).not.toContain('<img');
+      expect(result).toContain('<em>Image: Settings dialog</em><br><span>Applies to all projects &amp; modules</span>');
+    });
+
+    it('keeps the caption of a decorative image (empty alt)', () => {
+      const result = feedContent('<p><img src="/x.png" alt="" title="Source: the book"></p>');
+      expect(result).toContain('<span>Source: the book</span>');
+      expect(result).not.toContain('Image:');
+    });
+
     it('replaces images with their alt text', () => {
       const result = feedContent('<p>Text</p><img src="/../src/posts/x/pic.png" alt="Architecture overview">');
       expect(result).not.toContain('<img');

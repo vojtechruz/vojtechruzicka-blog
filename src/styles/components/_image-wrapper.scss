@@ -27,3 +27,16 @@
     }
   }
 }
+
+// Captioned in-post image (`![alt](x.png "Caption")`, wrap-pictures-transform.js); the caption matches
+// the video, CodePen and Mermaid ones
+.image-figure {
+  margin-inline: 0;
+
+  .image-caption {
+    margin-top: var(--gap-small);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+}

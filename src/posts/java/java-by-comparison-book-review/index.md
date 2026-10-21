@@ -34,7 +34,7 @@ changed and why is it better.
 What is really useful is that the layout of the book consistently keeps each item just on two pages - on the left you
 can see the problem and on the right the solution. This makes it really easy to compare both at the same time.
 
-![Comparison: Before and after](comparison.png)
+![Two facing pages of one item: the problem code and its description on the left, the fixed code and the explanation on the right](comparison.png "A two-page spread from Java by Comparison (The Pragmatic Bookshelf)")
 
 I find this format very suitable. First of all, you have specific examples with code, both before and after applying the
 recommended best practices, which is way easier to understand than just an abstract recommendation. Having the problem

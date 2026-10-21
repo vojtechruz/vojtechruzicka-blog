@@ -120,12 +120,23 @@ export function feedContent(html) {
 
   $('img').each((_, el) => {
     const alt = ($(el).attr('alt') || '').trim();
-    if (!alt) {
+    // A markdown title is the image's visible caption (wrap-pictures-transform.js); it is text for
+    // every reader, so it stays even when the image itself is decorative
+    const caption = ($(el).attr('title') || '').trim();
+    if (!alt && !caption) {
       $(el).remove();
       return;
     }
-    const $fallback = $('<p><em></em></p>');
-    $fallback.find('em').text(`Image: ${alt}`);
+    const $fallback = $('<p></p>');
+    if (alt) {
+      $fallback.append($('<em></em>').text(`Image: ${alt}`));
+    }
+    if (caption) {
+      if (alt) {
+        $fallback.append('<br>');
+      }
+      $fallback.append($('<span></span>').text(caption));
+    }
     $(el).replaceWith($fallback);
   });
 
