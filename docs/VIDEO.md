@@ -38,8 +38,9 @@ ffmpeg -i in.gif -vf "$VF" -c:v libvpx-vp9 -b:v 0 -crf 33 -row-mt 1 -tile-column
 `-an` drops audio: the clips are silent, and an audio track would only add bytes. A screen recording (`.mov`, `.mkv`)
 works as input the same way as a GIF.
 
-The script also writes `<name>-poster.jpg`, but no embed passes a poster: with `preload="metadata"` the browser shows
-the first frame on its own.
+No poster image is generated or passed: with `preload="metadata"` the browser shows the first frame on its own. The
+script wrote `<name>-poster.jpg` files until 2026-10-24; none was ever used, so they were deleted. The `poster` option
+stays for a clip whose first frame is not a good preview.
 
 ## Options
 

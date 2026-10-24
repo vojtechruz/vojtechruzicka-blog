@@ -43,14 +43,12 @@ else {
         $baseName = $gif.BaseName
         $mp4Path     = Join-Path $outDir ($baseName + '.mp4')
         $webmPath    = Join-Path $outDir ($baseName + '.webm')
-        $posterPath  = Join-Path $outDir ($baseName + '-poster.jpg')
 
         # Common filter chain
         $vf = "crop=trunc(iw/2)*2:trunc(ih/2)*2,scale='min($MaxWidth,iw)':-2:flags=lanczos"
 
         $doMp4    = $ForceRebuild -or !(Test-Path $mp4Path)  -or ((Get-Item $mp4Path).LastWriteTime  -lt $gif.LastWriteTime)
         $doWebm   = $ForceRebuild -or !(Test-Path $webmPath) -or ((Get-Item $webmPath).LastWriteTime -lt $gif.LastWriteTime)
-        $doPoster = $ForceRebuild -or !(Test-Path $posterPath) -or ((Get-Item $posterPath).LastWriteTime -lt $gif.LastWriteTime)
 
         if ($doMp4) {
             Write-Host "Processing MP4: $($gif.Name)"
@@ -72,20 +70,13 @@ else {
                 $webmPath
         }
 
-        if ($doPoster) {
-            Write-Host "Processing Poster: $($gif.Name)"
-            & $FfmpegExe -y -hide_banner `
-                -i $gif.FullName -frames:v 1 -q:v 2 `
-                $posterPath
-        }
-
         $results += [pscustomobject]@{
             Post          = $directoryName
             File          = $gif.Name
             SourceSize    = Get-FileSize $gif.FullName
             Mp4Size       = Get-FileSize $mp4Path
             WebmSize      = Get-FileSize $webmPath
-            Updated       = ($doMp4 -or $doWebm -or $doPoster)
+            Updated       = ($doMp4 -or $doWebm)
         }
     }
 
