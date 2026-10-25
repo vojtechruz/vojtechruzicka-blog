@@ -36,18 +36,34 @@ async function audit(urlPath) {
     url: `https://www.vojtechruzicka.com${urlPath}`,
   });
   const { window } = dom;
+  // axe's modal check calls elementFromPoint, which jsdom lacks; without it page-level rules
+  // (landmark-one-main, page-has-heading-one) throw and end up in `incomplete` instead of running.
+  // null means "nothing covers that point", so no modal counts as open.
+  window.document.elementFromPoint = () => null;
   window.eval(axeSource);
 
   try {
     const results = await window.axe.run(window.document, {
       runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'] },
       rules: Object.fromEntries(RULES_NEEDING_A_RENDERER.map((rule) => [rule, { enabled: false }])),
-      resultTypes: ['violations'],
+      resultTypes: ['violations', 'incomplete'],
     });
-    return results.violations;
+    return { violations: results.violations, errored: erroredRules(results.incomplete) };
   } finally {
     window.close();
   }
+}
+
+// Rules axe could not run because they threw. axe files them under `incomplete`, so without this
+// check a broken rule would pass silently. Other incomplete results (cross-origin CodePen frames,
+// video captions) need a human and are deliberately not asserted.
+function erroredRules(incomplete) {
+  return incomplete.flatMap((result) => {
+    const error = result.nodes
+      .flatMap((node) => [...node.any, ...node.all, ...node.none])
+      .find((check) => check.id === 'error-occurred');
+    return error ? [`${result.id}: ${error.data?.message ?? 'unknown error'}`] : [];
+  });
 }
 
 function describeViolations(violations) {
@@ -62,9 +78,23 @@ function describeViolations(violations) {
     .join('\n');
 }
 
+// Both tests below read the same run of a page
+const audits = new Map();
+const auditOnce = (url) => {
+  if (!audits.has(url)) {
+    audits.set(url, audit(url));
+  }
+  return audits.get(url);
+};
+
 describe('axe-core accessibility audit', () => {
   it.each(PAGES)('%s has no WCAG A/AA or best-practice violations', async (url) => {
-    const violations = await audit(url);
+    const { violations } = await auditOnce(url);
     expect(violations, `\n${describeViolations(violations)}`).toEqual([]);
+  });
+
+  it.each(PAGES)('%s runs every axe rule without an error', async (url) => {
+    const { errored } = await auditOnce(url);
+    expect(errored).toEqual([]);
   });
 });

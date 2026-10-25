@@ -120,6 +120,20 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('Diagram available in the original article.');
     });
 
+    it('keeps an image caption (markdown title) after the alt text, as text for every reader', () => {
+      const result = feedContent(
+        '<p><img src="/x.png" alt="Settings dialog" title="Applies to all projects &amp; modules"></p>',
+      );
+      expect(result).not.toContain('<img');
+      expect(result).toContain('<em>Image: Settings dialog</em><br><span>Applies to all projects &amp; modules</span>');
+    });
+
+    it('keeps the caption of a decorative image (empty alt)', () => {
+      const result = feedContent('<p><img src="/x.png" alt="" title="Source: the book"></p>');
+      expect(result).toContain('<span>Source: the book</span>');
+      expect(result).not.toContain('Image:');
+    });
+
     it('replaces images with their alt text', () => {
       const result = feedContent('<p>Text</p><img src="/../src/posts/x/pic.png" alt="Architecture overview">');
       expect(result).not.toContain('<img');
@@ -192,6 +206,17 @@ describe('Feeds (RSS and Atom)', () => {
       expect(result).toContain('<h2 id="what-is-owasp">What is OWASP? </h2>');
     });
 
+    it('strips the code-block copy button but keeps the code', () => {
+      const block =
+        '<div class="code-block-container" data-language="js"><pre class="shiki"><code>let a = 1;</code></pre>' +
+        '<button class="copy-code-button" aria-label="Copy code to clipboard" type="button">' +
+        '<span class="copy-icon"><svg aria-hidden="true"></svg></span><span class="copy-status"></span></button></div>';
+      const result = feedContent(block);
+
+      expect(result).not.toContain('<button');
+      expect(result).toContain('<pre class="shiki"><code>let a = 1;</code></pre>');
+    });
+
     it('keeps a literal "]]>" from closing the surrounding CDATA section', () => {
       const result = feedContent('<pre><code><![CDATA[x]]></code></pre><script>if (a]]>b) {}</script>');
 
@@ -222,6 +247,7 @@ describe('Feeds (RSS and Atom)', () => {
         expect(content, `${name} feed should not contain decorative svg icons`).not.toContain('<svg');
         expect(content, `${name} feed should not contain heading permalink anchors`).not.toContain('header-anchor');
         expect(content, `${name} feed should not contain video players`).not.toContain('<video');
+        expect(content, `${name} feed should not contain code-block copy buttons`).not.toContain('copy-code-button');
       }
     });
   });

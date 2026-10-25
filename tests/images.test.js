@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import sharp from 'sharp';
 import { globSync } from 'glob';
 import { loadPage, SITE_DIR } from './helpers.js';
 import { resolveImageFormats, resolveImageWidths } from '../config/plugins/image.js';
@@ -28,7 +29,8 @@ const MODERN_SOURCE_TYPES = resolveImageFormats()
 
 /** Featured images are rendered inside the post <header>; in-post images are direct children of <article>. */
 const FEATURED_SELECTOR = 'main.post > article > header .image-wrapper > picture';
-const IN_POST_SELECTOR = 'main.post > article > .image-wrapper > picture';
+/** In-post images, uncaptioned or in a captioned figure (wrap-pictures-transform.js) */
+const IN_POST_SELECTOR = ':is(main.post > article, main.post > article > .image-figure) > .image-wrapper > picture';
 /** Both kinds share the plugin defaults: configured widths up to the original, the same `sizes`. */
 const ARTICLE_IMAGES_SELECTOR = `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`;
 
@@ -42,8 +44,9 @@ const THUMBNAIL_WIDTHS = {
   '80px': [80, 160], // compact related-post cards
   '56px': [80, 160], // series prev/next cards
 };
-/** `sizes` of featured and in-post images (defaultAttributes in config/plugins/image.js). */
-const ARTICLE_IMAGE_SIZES = '(min-width: 1024px) 800px, 100vw';
+/** `sizes` of featured images, and of the lazy in-post ones led by `auto` (config/plugins/image.js). */
+const ARTICLE_IMAGE_SIZES = '(min-width: 768px) 760px, 100vw';
+const LAZY_ARTICLE_IMAGE_SIZES = `auto, ${ARTICLE_IMAGE_SIZES}`;
 
 /**
  * Parse a srcset attribute into [{ url, width }], preserving order.
@@ -120,6 +123,21 @@ describe('Responsive image pipeline', () => {
         .filter((alt) => alt.startsWith('typedoc-'));
 
       expect(alts).toEqual(['typedoc-1', 'typedoc-2']);
+    });
+
+    // `![alt](x.png "Caption")`: the markdown title survives eleventy-img and becomes the caption
+    it('renders a captioned image as a figure with a figcaption, with no title tooltip left', () => {
+      const $ = loadPage('/java-by-comparison-book-review/');
+      const $figure = $('main.post > article > figure.image-figure');
+      expect($figure.length).toBe(1);
+      expect($figure.find('> .image-wrapper > picture > img').attr('alt')).toMatch(/^Two facing pages/);
+      expect($figure.find('> figcaption.image-caption').text()).toBe(
+        'A two-page spread from Java by Comparison (The Pragmatic Bookshelf)',
+      );
+
+      for (const postPath of POSTS_WITH_IMAGES) {
+        expect(loadPage(postPath)('article img[title]').length, postPath).toBe(0);
+      }
     });
   });
 
@@ -256,6 +274,25 @@ describe('Responsive image pipeline', () => {
         }
       }
     });
+
+    it('measures lazy in-post images with sizes="auto"; the eager featured image declares its width', () => {
+      for (const postPath of POSTS_WITH_IMAGES) {
+        const $ = loadPage(postPath);
+        const featured = collectPictures($, FEATURED_SELECTOR);
+        const inPost = collectPictures($, IN_POST_SELECTOR);
+        expect(featured.length, postPath).toBe(1);
+        expect(inPost.length, postPath).toBeGreaterThan(0);
+
+        for (const { $img } of featured) {
+          expect($img.attr('loading'), postPath).toBe('eager');
+          expect($img.attr('sizes'), postPath).toBe(ARTICLE_IMAGE_SIZES);
+        }
+        for (const { $img } of inPost) {
+          expect($img.attr('loading'), postPath).toBe('lazy');
+          expect($img.attr('sizes'), postPath).toBe(LAZY_ARTICLE_IMAGE_SIZES);
+        }
+      }
+    });
   });
 
   describe('Card and navigation thumbnails', () => {
@@ -274,11 +311,35 @@ describe('Responsive image pipeline', () => {
 
     it('every responsive image in the build is either an article image or a known thumbnail kind', () => {
       const unknown = allPictures
-        .filter(({ $img }) => !($img.attr('sizes') in THUMBNAIL_WIDTHS) && $img.attr('sizes') !== ARTICLE_IMAGE_SIZES)
+        .filter(
+          ({ $img }) =>
+            !($img.attr('sizes') in THUMBNAIL_WIDTHS) &&
+            ![ARTICLE_IMAGE_SIZES, LAZY_ARTICLE_IMAGE_SIZES].includes($img.attr('sizes')),
+        )
         .map(({ $img, pagePath }) => `${pagePath}: sizes="${$img.attr('sizes')}"`);
 
       // A new image context needs its own widths and sizes decided, and an entry above.
       expect(unknown).toEqual([]);
+    });
+
+    it('uses sizes="auto" only on lazy images, the only ones it is valid on', () => {
+      const eagerAuto = allPictures
+        .filter(({ $img }) => /^\s*auto\b/i.test($img.attr('sizes')) && $img.attr('loading') !== 'lazy')
+        .map(({ pagePath }) => pagePath);
+      expect(eagerAuto).toEqual([]);
+    });
+
+    it('gives thumbnails only their average colour as the LQIP placeholder, other images a tiny WebP', () => {
+      // lqip-transform.js: at 56-160 px a blurred image is indistinguishable from one colour
+      const wrong = allPictures
+        .filter(({ $img }) => {
+          const style = $img.attr('style') || '';
+          return thumbnails.some((thumbnail) => thumbnail.$img === $img)
+            ? !/^display:block;background-color:#[0-9a-f]{6};$/.test(style)
+            : !style.includes("background-image:url('data:image/webp;base64,");
+        })
+        .map(({ $img, pagePath }) => `${pagePath}: sizes="${$img.attr('sizes')}" style="${$img.attr('style')}"`);
+      expect(wrong).toEqual([]);
     });
 
     it.each(Object.keys(THUMBNAIL_WIDTHS))('thumbnails with sizes="%s" appear in the build', (sizes) => {
@@ -378,11 +439,13 @@ describe('Responsive image pipeline', () => {
     });
   });
 
-  describe('LQIP placeholders (lqip-svg-transform)', () => {
-    it('adds the lqip class and an inline SVG background to every image', () => {
+  describe('LQIP placeholders (lqip-transform)', () => {
+    const WEBP_PLACEHOLDER = /background-image:url\('data:image\/webp;base64,([^']+)'\)/;
+
+    it('puts a tiny inline WebP behind every featured and in-post image', () => {
       for (const postPath of POSTS_WITH_IMAGES) {
         const $ = loadPage(postPath);
-        const pictures = collectPictures($, `${FEATURED_SELECTOR}, ${IN_POST_SELECTOR}`);
+        const pictures = collectPictures($, ARTICLE_IMAGES_SELECTOR);
 
         expect(pictures.length).toBeGreaterThan(0);
 
@@ -390,28 +453,40 @@ describe('Responsive image pipeline', () => {
           expect($img.hasClass('lqip'), `Missing lqip class in ${postPath}`).toBe(true);
 
           const style = $img.attr('style') || '';
-          expect(style, `Missing LQIP background in ${postPath}`).toContain('background-image:url(');
-          expect(style, `LQIP should be an inline SVG data URI in ${postPath}`).toContain('data:image/svg+xml;base64,');
+          expect(style, `LQIP should be an inline WebP data URI in ${postPath}`).toMatch(WEBP_PLACEHOLDER);
           expect(style).toContain('background-size:cover');
         }
       }
     });
 
-    it('encodes a real SVG mosaic sized to the image aspect ratio', () => {
+    it('encodes a WebP of about 160 pixels in the aspect ratio of the image, in a few hundred bytes', async () => {
       const $ = loadPage('/css-position/');
       const { $img } = collectPictures($, IN_POST_SELECTOR)[0];
-      const base64 = /data:image\/svg\+xml;base64,([^')]+)/.exec($img.attr('style'))[1];
-      const svg = Buffer.from(base64, 'base64').toString('utf-8');
+      const webp = Buffer.from(WEBP_PLACEHOLDER.exec($img.attr('style'))[1], 'base64');
+      const { format, width, height } = await sharp(webp).metadata();
 
-      expect(svg).toContain('<svg');
-      expect(svg).toContain('<rect');
-
-      const [, gridWidth, gridHeight] = /viewBox="0 0 (\d+) (\d+)"/.exec(svg).map(Number);
+      expect(format).toBe('webp');
+      expect(width * height).toBeGreaterThan(100);
+      expect(width * height).toBeLessThan(400);
       const imageAspect = Number($img.attr('width')) / Number($img.attr('height'));
-      expect(Math.abs(gridWidth / gridHeight - imageAspect)).toBeLessThan(imageAspect * 0.3);
+      expect(Math.abs(width / height - imageAspect)).toBeLessThan(imageAspect * 0.3);
+      expect(webp.length).toBeLessThan(400);
+    });
 
-      // One <rect> per mosaic cell.
-      expect(svg.match(/<rect/g).length).toBe(gridWidth * gridHeight);
+    it('keeps placeholders a small part of every page', () => {
+      // The old SVG mosaics were ~13 KB each and two thirds of all HTML (a topic page: 533 of 611 KB)
+      const pages = globSync(`${SITE_DIR}/**/*.html`);
+      expect(pages.length).toBeGreaterThan(100);
+      const over = [];
+      for (const file of pages) {
+        const html = readFileSync(file, 'utf8');
+        const placeholders = [...html.matchAll(/background-(?:image:url\('data:[^']*'\)|color:#[0-9a-f]{6})/g)];
+        const bytes = placeholders.reduce((sum, [match]) => sum + match.length, 0);
+        if (bytes > html.length * 0.1) {
+          over.push(`${file}: ${bytes} of ${html.length} bytes`);
+        }
+      }
+      expect(over).toEqual([]);
     });
   });
 

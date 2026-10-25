@@ -79,3 +79,44 @@ describe('Sidebar TOC when the page is opened at a section', () => {
     }
   });
 });
+
+describe('Sidebar TOC from the keyboard', () => {
+  it('Enter on an entry scrolls to the section, records its #hash and moves focus there', async () => {
+    // A post without embeds: the Tab after the heading must land on a link, not in a third-party iframe
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/spring-boot-actuator/', { waitUntil: 'load' });
+      const hashes = await page.$$eval('nav.toc a[href^="#"]', (links) => links.map((a) => a.hash));
+      const hash = hashes[Math.floor(hashes.length / 2)];
+      const link = page.locator(`nav.toc a[href="${hash}"]`);
+      await link.focus();
+      await page.keyboard.press('Enter');
+
+      await page.waitForFunction((h) => location.hash === h, hash);
+      // Focus reaches the heading because the script makes it focusable (tabindex="-1"): Chromium then
+      // focuses a focusable fragment target by itself, so the script's own focus() is a backstop here
+      expect(await page.evaluate(() => document.activeElement.id)).toBe(decodeURIComponent(hash.slice(1)));
+      expect(await link.getAttribute('aria-current')).not.toBeNull();
+      // The heading ends up near the top of the viewport, below the header
+      await expect
+        .poll(() => page.evaluate(() => document.activeElement.getBoundingClientRect().top), { timeout: 5000 })
+        .toBeLessThan(200);
+
+      // The next Tab continues in the content after the heading, not back in the sidebar
+      await page.keyboard.press('Tab');
+      const next = await page.evaluate(() => {
+        const heading = document.querySelector(':target');
+        const el = document.activeElement;
+        return {
+          inToc: Boolean(el.closest('nav.toc')),
+          inArticle: Boolean(el.closest('main')),
+          afterHeading: Boolean(heading.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING),
+        };
+      });
+      expect(next).toEqual({ inToc: false, inArticle: true, afterHeading: true });
+    } finally {
+      await context.close();
+    }
+  });
+});

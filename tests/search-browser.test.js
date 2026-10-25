@@ -73,3 +73,118 @@ describe('Search results keyboard navigation', () => {
     }
   });
 });
+
+describe('Search input names', () => {
+  it('keep their names and the shortcut hint once the real Pagefind UI has taken over and searched', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/search/?q=java', { waitUntil: 'load' });
+      await page.locator('#search-page .pagefind-ui__result-link').first().waitFor();
+
+      // Open the header search by its shortcut and search, so Pagefind re-renders around the input
+      // (shortcuts are ignored inside a field, and /search/ may have put focus in its own input)
+      await page.evaluate(() => document.activeElement?.blur());
+      await page.keyboard.press('Control+k');
+      await page.waitForFunction(() => document.activeElement?.closest('#search'));
+      await page.keyboard.type('spring');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      const attrs = (selector) =>
+        page.locator(selector).evaluate((el) => ({
+          name: el.getAttribute('aria-label'),
+          title: el.getAttribute('title'),
+          keys: el.getAttribute('aria-keyshortcuts'),
+        }));
+      // Two search inputs on the page, both rendered by Pagefind (no pre-rendered placeholder left)
+      expect(await page.locator('.pagefind-ui__search-input').count()).toBe(2);
+      expect(await attrs('#search .pagefind-ui__search-input')).toEqual({
+        name: 'Search the site',
+        title: 'Shortcut: / or Ctrl+K',
+        keys: '/ Control+K',
+      });
+      expect(await attrs('#search-page .pagefind-ui__search-input')).toEqual({
+        name: 'Search posts',
+        title: null,
+        keys: null,
+      });
+    } finally {
+      await context.close();
+    }
+  });
+});
+
+describe('Search shortcut on a narrow screen', () => {
+  it('opens the collapsed menu to reach the search, and Escape closes both and returns focus', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const input = page.locator('#search .pagefind-ui__search-input');
+      await expect.poll(() => input.isVisible()).toBe(false); // the menu starts collapsed
+
+      // Shortcut from a link in the page, the origin focus should return to
+      const origin = page.locator('main a[href]').first();
+      await origin.focus();
+      await page.keyboard.press('Control+k');
+
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      expect(await input.isVisible()).toBe(true);
+      expect(await page.locator('.nav-toggle').getAttribute('aria-expanded')).toBe('true');
+
+      // With results open, Escape clears them, closes the menu and goes back to the link
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+      await page.keyboard.press('Escape');
+
+      await expect.poll(() => input.isVisible()).toBe(false);
+      expect(await page.locator('.nav-toggle').getAttribute('aria-expanded')).toBe('false');
+      expect(await origin.evaluate((el) => el === document.activeElement)).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+});
+
+describe('Search overlay focus trap', () => {
+  it('keeps Tab and Shift+Tab inside the open overlay, wrapping at both ends', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.keyboard.press('Control+k');
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      // What really takes focus, by layout: every element Tab visits from the input
+      const where = () =>
+        page.evaluate(() => {
+          const el = document.activeElement;
+          return { inside: Boolean(el.closest('#search')), input: el.matches('.pagefind-ui__search-input') };
+        });
+      const stops = await page.$$eval(
+        '#search :is(a[href], button, input)',
+        (els) => els.filter((el) => el.checkVisibility() && !el.disabled).length,
+      );
+      expect(stops).toBeGreaterThan(3);
+
+      // A full lap and a bit: never leaves the overlay, and comes back round to the input
+      let backAtInput = false;
+      for (let i = 0; i < stops + 2; i++) {
+        await page.keyboard.press('Tab');
+        const now = await where();
+        expect(now.inside, `Tab ${i + 1}`).toBe(true);
+        backAtInput ||= now.input;
+      }
+      expect(backAtInput, 'Tab wraps from the last stop to the input').toBe(true);
+
+      // Backwards from the input wraps to the last stop, still inside
+      await page.locator('#search .pagefind-ui__search-input').focus();
+      await page.keyboard.press('Shift+Tab');
+      expect(await where()).toEqual({ inside: true, input: false });
+    } finally {
+      await context.close();
+    }
+  });
+});

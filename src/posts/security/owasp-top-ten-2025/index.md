@@ -7,7 +7,7 @@ excerpt:
   'OWASP released the 2025 edition of the Top 10 Web Application Security Risks. What are the changes since 2021,
   and is your application vulnerable?'
 relatedPosts: ['/owasp-top-ten-2017/', '/snyk-detecting-dependencies-with-known-vulnerabilities/', '/detecting-dependencies-known-vulnerabilities/', '/preventing-clickjacking/']
-featuredImage: './featured.png'
+featuredImage: './featured.jpg'
 ---
 
 At the end of 2025, OWASP released a new edition of its Top 10 Web Application Security Risks. It has been four years since

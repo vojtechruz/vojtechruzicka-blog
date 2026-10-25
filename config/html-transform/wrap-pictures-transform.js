@@ -12,6 +12,10 @@ import { load } from 'cheerio';
  * All pictures of one paragraph are moved together, in source order — handling them one at a
  * time used to reverse two images written side by side (`![a](a.png) ![b](b.png)`).
  *
+ * A picture whose <img> has a title (markdown `![alt](x.png "Caption")`) becomes a captioned figure:
+ * <figure class="image-figure"><div class="image-wrapper">…</div><figcaption class="image-caption">
+ * Caption</figcaption></figure>. The title attribute is dropped, so the caption is not also a tooltip.
+ *
  * Safety:
  * - Only runs on .html outputs that actually contain a <picture>
  * - Skips wrapping if the immediate parent is already a div.image-wrapper
@@ -22,6 +26,19 @@ export async function wrapPicturesTransform(content, outputPath) {
   }
 
   const $ = load(content);
+
+  /** The wrapper for one picture, inside a captioned figure when its image has a title. */
+  const wrap = (pic) => {
+    const $wrapper = $('<div class="image-wrapper"></div>').append(pic);
+    const $img = $(pic).children('img').first();
+    const caption = ($img.attr('title') || '').trim();
+    if (!caption) {
+      return $wrapper;
+    }
+    $img.removeAttr('title');
+    const $caption = $('<figcaption class="image-caption"></figcaption>').text(caption);
+    return $('<figure class="image-figure"></figure>').append($wrapper, $caption);
+  };
 
   // Whitespace text and comments do not count as paragraph content
   const isIgnorable = (node) => node.type === 'comment' || (node.type === 'text' && (node.data || '').trim() === '');
@@ -41,7 +58,7 @@ export async function wrapPicturesTransform(content, outputPath) {
         .contents()
         .toArray()
         .every((node) => pictures.includes(node) || isIgnorable(node));
-      const wrappers = pictures.map((pic) => $('<div class="image-wrapper"></div>').append(pic));
+      const wrappers = pictures.map(wrap);
 
       if (onlyPictures) {
         $parent.replaceWith(wrappers);
@@ -52,7 +69,9 @@ export async function wrapPicturesTransform(content, outputPath) {
     }
 
     // Default: just wrap the picture in place
-    $pic.wrap('<div class="image-wrapper"></div>');
+    const $placeholder = $('<span></span>');
+    $pic.replaceWith($placeholder);
+    $placeholder.replaceWith(wrap(el));
   });
 
   return $.html();

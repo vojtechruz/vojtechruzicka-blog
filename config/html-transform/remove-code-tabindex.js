@@ -8,7 +8,9 @@
  *
  * This Eleventy transform runs on the final rendered HTML and removes any
  * tabindex attributes from all <pre> elements, ensuring that code blocks
- * are not inserted into the tab order.
+ * are not inserted into the tab order. Blocks that are wider than the column
+ * get a tab stop back in the browser (src/scripts/scroll-regions.js), so the
+ * keyboard can still scroll them.
  */
 
 export function stripPreTabindex(content, outputPath) {

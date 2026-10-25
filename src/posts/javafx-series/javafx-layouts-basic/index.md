@@ -148,7 +148,7 @@ of the items. That means the first item is in back, the next is on top of it and
 
 This can be useful, for example, for having an image and then having some text or button on top of it.
 
-![Stack Pane](stack-pane.png)
+![Stack Pane](stack-pane.jpg)
 
 The following example shows StackPane in FXML:
 

@@ -97,7 +97,7 @@ describe('resolveImageWidths / resolveImageFormats', () => {
 describe('registerImagePlugin', () => {
   function registeredOptions() {
     const addPlugin = vi.fn();
-    registerImagePlugin({ addPlugin });
+    registerImagePlugin({ addPlugin, addGlobalData: vi.fn() });
     expect(addPlugin).toHaveBeenCalledTimes(1);
     return addPlugin.mock.calls[0][1];
   }
@@ -118,7 +118,14 @@ describe('registerImagePlugin', () => {
     expect(options.defaultAttributes).toEqual({
       loading: 'lazy',
       decoding: 'async',
-      sizes: '(min-width: 1024px) 800px, 100vw',
+      sizes: 'auto, (min-width: 768px) 760px, 100vw',
     });
+  });
+
+  it('exposes the eager sizes to templates, without auto (valid only on lazy images)', () => {
+    const addGlobalData = vi.fn();
+    registerImagePlugin({ addPlugin: vi.fn(), addGlobalData });
+
+    expect(addGlobalData).toHaveBeenCalledWith('articleImageSizes', '(min-width: 768px) 760px, 100vw');
   });
 });

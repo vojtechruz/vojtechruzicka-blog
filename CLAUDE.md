@@ -43,9 +43,11 @@ npx markdownlint-cli2 "src/**/*.md"
   `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants: success/info/warning/error/update,
   optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}` (post cards; in-body vs. listing
   behaviour in docs/SHORTCODES.md), `{% badge %}`
-- `config/html-transform/` — post-processing transforms: LQIP SVG injection, `<picture>` wrapping, table wrapping, Shiki
-  `<pre>` tabindex removal, Mermaid → inline SVG (` ```mermaid ` fences render at build time via
-  mermaid-isomorphic/Playwright; Chromium installs automatically via the npm `prebuild` hook — see docs/MERMAID.md)
+- `config/html-transform/` — post-processing transforms: LQIP placeholders (tiny WebP, average colour on thumbnails),
+  `<picture>` wrapping, table wrapping, Shiki `<pre>` tabindex removal (only boxes that overflow get a tab stop back, at
+  runtime via `src/scripts/scroll-regions.js`, for code blocks, tables and diagrams alike), Mermaid → inline SVG
+  (` ```mermaid ` fences render at build time via mermaid-isomorphic/Playwright; Chromium installs automatically via the
+  npm `prebuild` hook — see docs/MERMAID.md)
 - `config/utils/` — shared markdown parser (heading ids via github-slugger, heading permalink anchors rendered with
   their aria-label/title/tabindex at parse time; details in docs/HEADING-ANCHORS.md) and formatting helpers
 
@@ -92,7 +94,8 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
 ### Key data flow
 
 1. Markdown posts → markdown-it parser (with custom plugins for callouts, TOC) → HTML
-2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images
+2. HTML transforms run post-render: LQIP placeholders, `<picture>` wrapping for responsive images (an image title,
+   `![alt](x.png "Caption")`, becomes a `<figure>` with a visible `<figcaption>`; when to caption is in docs/IMAGES.md)
 3. esbuild bundles `src/scripts/` → `_site/scripts/`
 4. Pagefind indexes `_site/` after build for client-side search. Only `<main data-pagefind-body>` (set by the three
    layouts) is indexed; `src/pages/search.njk` (`/search/?q=`, the homepage `SearchAction` target) omits the attribute
@@ -105,8 +108,8 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
    through the `assetUrl` filter (`config/utils/asset-version.js`), which appends a `?v=<content hash>` so long-cached
    (`immutable`) assets invalidate on change. Details in docs/CACHING.md.
 8. Security headers (HSTS, CSP, etc.) also live in `src/static/_headers`. The CSP must stay on a **single line**
-   (Cloudflare drops multiline header values) and allowlists two inline-code hashes — the Plausible init snippet and the
-   LQIP `onload` attribute — which must be regenerated when that code changes. Guarded by
+   (Cloudflare drops multiline header values) and allowlists one inline-code hash — the Plausible init snippet — which
+   must be regenerated when it changes; inline event handlers (`onload="…"`) are not allowed at all. Guarded by
    `tests/security-headers.test.js` and `tests/analytics.test.js`; details in docs/SECURITY-HEADERS.md.
 9. Legacy Gatsby-era URLs are 301-redirected by `src/static/_redirects` (Cloudflare Pages format). Matching is exact —
    case-sensitive, no trailing-slash normalization — so page rules need both slash variants and old capitalized tags

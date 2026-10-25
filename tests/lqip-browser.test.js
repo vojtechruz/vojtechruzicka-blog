@@ -5,9 +5,9 @@ import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
 
 /**
  * LQIP placeholder lifecycle in a real browser (src/styles/components/_image-wrapper.scss).
- * The mosaic is an inline background-image on the <img>; once the image has loaded it must go,
+ * The placeholder is an inline background-image on the <img> (a tiny WebP); once the image has loaded it must go,
  * or the transparent parts of a PNG (here a macOS window screenshot with its drop shadow) keep
- * showing the coloured blocks. jsdom cannot load images or compute the cascade, hence Playwright.
+ * showing the blurred placeholder. jsdom cannot load images or compute the cascade, hence Playwright.
  */
 
 // ignore-files.png: ~28 % transparent / semi-transparent pixels (window shadow)
@@ -38,7 +38,7 @@ const placeholderStyle = () =>
   });
 
 describe('LQIP placeholder', () => {
-  it('shows the blurred mosaic until the image loads, then removes it', async () => {
+  it('shows the blurred placeholder until the image loads, then removes it', async () => {
     // Hold the image back so the placeholder state can be observed
     let releaseImage;
     const imageHeld = new Promise((resolve) => (releaseImage = resolve));
@@ -51,14 +51,14 @@ describe('LQIP placeholder', () => {
     await page.$eval(IMAGE, (img) => img.scrollIntoView());
 
     const before = await placeholderStyle();
-    expect(before.image).toMatch(/^url\("data:image\/svg\+xml/);
+    expect(before.image).toMatch(/^url\("data:image\/webp;base64,/);
     expect(before.filter).toMatch(/^blur\(/);
 
     releaseImage();
     await page.waitForSelector(`${IMAGE}[data-loaded]`);
 
     const after = await placeholderStyle();
-    expect(after.image.slice(0, 40), 'mosaic still set after load').toBe('none');
+    expect(after.image.slice(0, 40), 'placeholder still set after load').toBe('none');
     expect(after.color).toBe('rgba(0, 0, 0, 0)');
     // the blur fades out over --lqip-transition-duration
     await page.waitForFunction(
@@ -67,8 +67,57 @@ describe('LQIP placeholder', () => {
     );
   }, 30000);
 
+  it('drops the placeholder at once when the image fails, so the alt text is readable', async () => {
+    const failing = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    try {
+      await failing.route('**/ignore-files-*', (route) => route.fulfill({ status: 404 }));
+      await failing.goto(server.baseUrl + PAGE);
+      await failing.$eval(IMAGE, (img) => img.scrollIntoView());
+      await failing.waitForSelector(`${IMAGE}[data-failed]`);
+
+      const style = await failing.$eval(IMAGE, (img) => {
+        const computed = getComputedStyle(img);
+        return {
+          loaded: img.hasAttribute('data-loaded'),
+          image: computed.backgroundImage,
+          color: computed.backgroundColor,
+          filter: computed.filter,
+        };
+      });
+      expect(style).toEqual({ loaded: false, image: 'none', color: 'rgba(0, 0, 0, 0)', filter: 'none' });
+    } finally {
+      await failing.close();
+    }
+  }, 30000);
+
+  it('ends the placeholder of an image that loaded before lqip.js ran', async () => {
+    // A cached image can finish before the deferred script registers its listeners
+    const early = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    try {
+      let releaseScript;
+      const scriptHeld = new Promise((resolve) => (releaseScript = resolve));
+      await early.route('**/scripts/lqip.js*', async (route) => {
+        await scriptHeld;
+        await route.continue();
+      });
+      await early.goto(server.baseUrl + PAGE, { waitUntil: 'commit' });
+      await early.waitForSelector(IMAGE);
+      await early.$eval(IMAGE, (img) => img.scrollIntoView());
+      await early.waitForFunction((selector) => {
+        const img = document.querySelector(selector);
+        return img.complete && img.naturalWidth > 0;
+      }, IMAGE);
+      expect(await early.$eval(IMAGE, (img) => img.hasAttribute('data-loaded'))).toBe(false);
+
+      releaseScript();
+      await early.waitForSelector(`${IMAGE}[data-loaded]`);
+    } finally {
+      await early.close();
+    }
+  }, 30000);
+
   it('shows the image unblurred when JavaScript is disabled', async () => {
-    // The onload handler that sets data-loaded never runs; the <noscript> style in base.njk takes over
+    // lqip.js never sets data-loaded; the <noscript> style in base.njk takes over
     const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1280, height: 900 } });
     try {
       const noJsPage = await context.newPage();
@@ -78,7 +127,7 @@ describe('LQIP placeholder', () => {
         return { loaded: img.hasAttribute('data-loaded'), image: computed.backgroundImage, filter: computed.filter };
       });
       expect(style.loaded).toBe(false);
-      expect(style.image.slice(0, 40), 'mosaic set without JS').toBe('none');
+      expect(style.image.slice(0, 40), 'placeholder set without JS').toBe('none');
       expect(style.filter).toBe('none');
     } finally {
       await context.close();

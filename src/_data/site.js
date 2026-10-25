@@ -44,12 +44,11 @@ export default {
     email: 'vojtech.ruz@gmail.com',
   },
 
-  // Plausible serves a per-site script whose filename encodes the site, so preview deploys load
-  // a different script than production and preview traffic stays out of the production stats.
-  // These IDs come from the Plausible dashboard — the generic /js/script.js is deliberately unused.
+  // Plausible serves a per-site script whose filename encodes the site; the ID comes from the
+  // Plausible dashboard — the generic /js/script.js is deliberately unused. Only production loads
+  // it: preview deploys have no analytics (their Plausible site was deleted on 2026-10-25).
   plausible: {
     scriptUrl: 'https://plausible.io/js/pa-xtcFmLVm-99urf6LDF4kZ.js',
-    previewScriptUrl: 'https://plausible.io/js/pa-8BjKElQFX2XyqZAcaSGoy.js',
   },
 
   defaultShareImage: '/default-share.jpg',

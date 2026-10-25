@@ -1,13 +1,7 @@
-{% if not isLocalDevelopment %}
+{# Production only: local dev and preview deploys carry no analytics at all. #}
+{% if not isLocalDevelopment and not isPreview %}
 <!-- Plausible Analytics -->
-
-{% if isPreview %}
-  <!-- Preview -->
-  <script async src="{{ site.plausible.previewScriptUrl }}"></script>
-{% else %}
-  <!-- Production -->
-  <script async src="{{ site.plausible.scriptUrl }}"></script>
-{% endif %}
+<script async src="{{ site.plausible.scriptUrl }}"></script>
 
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

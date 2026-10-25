@@ -18,7 +18,6 @@
       "camelCaseSvgKeywords": true,
       "ignoreKeywords": [
         "currentColor",
-        "Inter",
         "Roboto",
         "SFMono-Regular",
         "Menlo",

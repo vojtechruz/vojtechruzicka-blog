@@ -17,23 +17,23 @@ import { copyWithFeedback } from './clipboard.js';
       return;
     }
 
-    // innerText preserves newlines and ignores the Shiki token markup.
-    const code = pre.innerText;
+    // Shiki renders one <span class="line"> per line, so join their text. innerText would depend on layout:
+    // in the grid of _code.scss an empty line is visible (min-height) yet innerText drops it, so blank lines
+    // inside the code went missing from the copy. A block without Shiki lines falls back to innerText.
+    const lines = pre.querySelectorAll('.line');
+    const code = lines.length ? Array.from(lines, (line) => line.textContent).join('\n') : pre.innerText;
     const status = button.querySelector('.copy-status');
 
     copyWithFeedback(button, code, {
       copiedAriaLabel: 'Copied!',
-      onShow: (fresh) => {
-        if (fresh) {
-          button.dataset.originalText = status ? status.innerText : 'Copy';
-        }
+      onShow: () => {
         if (status) {
-          status.innerText = 'Copied!';
+          status.textContent = 'Copied!';
         }
       },
       onReset: () => {
         if (status) {
-          status.innerText = button.dataset.originalText;
+          status.textContent = '';
         }
       },
       onError: (err) => console.error('Failed to copy code: ', err),

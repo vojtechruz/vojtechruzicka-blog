@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { initNav } from '../src/scripts/nav.js';
 
 /**
  * @vitest-environment jsdom
@@ -25,7 +26,7 @@ class PagefindUIStub {
     element.innerHTML = `
       <div class="pagefind-ui">
         <form class="pagefind-ui__form" role="search">
-          <input class="pagefind-ui__search-input" type="text" />
+          <input class="pagefind-ui__search-input" type="text" placeholder="Search…" title="Search…" />
         </form>
         <div class="pagefind-ui__drawer pagefind-ui__hidden"></div>
       </div>
@@ -109,6 +110,53 @@ describe('search.js', () => {
       expect(labels).toEqual(['Search the site', 'Search posts']);
     });
 
+    describe('input names and the shortcut hint', () => {
+      const PAGE_SEARCH = `
+        <div class="js-pagefind" id="page-search" data-search-label="Search posts">
+          <div class="pagefind-ui"><form class="pagefind-ui__form"><input class="pagefind-ui__search-input" /></form></div>
+        </div>`;
+
+      const inputOf = (id) => document.querySelector(`#${id} .pagefind-ui__search-input`);
+
+      function expectLabels() {
+        const header = inputOf('search');
+        expect(header.getAttribute('aria-label')).toBe('Search the site');
+        expect(header.getAttribute('title')).toBe('Shortcut: / or Ctrl+K');
+        expect(header.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+
+        // The 404 page search is not what the shortcut opens: named after its form, no hint
+        const page = inputOf('page-search');
+        expect(page.getAttribute('aria-label')).toBe('Search posts');
+        expect(page.hasAttribute('title')).toBe(false);
+        expect(page.hasAttribute('aria-keyshortcuts')).toBe(false);
+      }
+
+      it('names each input after its form and hints the shortcut on the header input, before Pagefind loads', async () => {
+        await loadScript('/404.html', HEADER_CONTAINER + PAGE_SEARCH);
+        expect(PagefindUIStub.instances).toHaveLength(0);
+        expectLabels();
+      });
+
+      it('replaces the "Search…" title Pagefind gives its own inputs', async () => {
+        await loadScript('/404.html', HEADER_CONTAINER + PAGE_SEARCH);
+        document.getElementById('search').dispatchEvent(new Event('focusin', { bubbles: true }));
+        document.getElementById('page-search').dispatchEvent(new Event('focusin', { bubbles: true }));
+        await flush();
+
+        expect(PagefindUIStub.instances).toHaveLength(2);
+        expectLabels();
+      });
+
+      it('shows ⌘K on a Mac', async () => {
+        vi.spyOn(navigator, 'platform', 'get').mockReturnValue('MacIntel');
+        await loadScript('/about/', HEADER_CONTAINER);
+
+        const input = inputOf('search');
+        expect(input.getAttribute('title')).toBe('Shortcut: / or ⌘K');
+        expect(input.getAttribute('aria-keyshortcuts')).toBe('/ Meta+K');
+      });
+    });
+
     it('creates one instance even when several triggers fire for a single gesture', async () => {
       await loadScript('/about/', HEADER_CONTAINER);
       const container = document.getElementById('search');
@@ -174,6 +222,44 @@ describe('search.js', () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: '/', bubbles: true }));
       await flush();
       expect(document.activeElement).toBe(ui.input);
+    });
+
+    it.each([
+      ['a text input', '<input id="field" />'],
+      ['a textarea', '<textarea id="field"></textarea>'],
+      ['a select', '<select id="field"><option>a</option></select>'],
+      ['a contentEditable element', '<div id="field" contenteditable="true" tabindex="0"></div>'],
+    ])('leaves / and Ctrl+K alone while typing in %s', async (_, field) => {
+      await loadScript('/about/', HEADER_CONTAINER + field);
+      const el = document.getElementById('field');
+      // jsdom does not compute isContentEditable from the attribute; a browser does
+      if (el.hasAttribute('contenteditable')) {
+        Object.defineProperty(el, 'isContentEditable', { value: true });
+      }
+      el.focus();
+
+      for (const init of [{ key: '/' }, { key: 'k', ctrlKey: true }]) {
+        const event = new KeyboardEvent('keydown', { ...init, bubbles: true, cancelable: true });
+        el.dispatchEvent(event);
+        expect(event.defaultPrevented, `${init.key} must still type`).toBe(false);
+      }
+      await flush();
+
+      expect(PagefindUIStub.instances, 'search must not open').toHaveLength(0);
+      expect(document.activeElement).toBe(el);
+    });
+
+    it('does open on / from a focused button, outside any field', async () => {
+      await loadScript('/about/', HEADER_CONTAINER + '<button id="field">x</button>');
+      const el = document.getElementById('field');
+      el.focus();
+
+      const event = new KeyboardEvent('keydown', { key: '/', bubbles: true, cancelable: true });
+      el.dispatchEvent(event);
+      await flush();
+
+      expect(event.defaultPrevented).toBe(true);
+      expect(PagefindUIStub.instances).toHaveLength(1);
     });
 
     it('traps Tab inside the open overlay, wrapping in both directions', async () => {
@@ -424,6 +510,93 @@ describe('search.js', () => {
     });
   });
 
+  describe('collapsed mobile menu', () => {
+    // The header search inside the menu, collapsed as _navigation.scss collapses it below 769 px
+    const MOBILE_HEADER = `
+      <style>.menu-container { display: none } .nav-open .menu-container { display: flex }</style>
+      <header class="main-navigation"><nav>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu"></button>
+        <div class="menu-container" id="nav-menu"><ul><li><a href="/">Home</a></li></ul>${HEADER_CONTAINER}</div>
+      </nav></header>
+      <main><button id="origin">Read more</button></main>`;
+
+    const nav = () => document.querySelector('.main-navigation');
+    const input = () => document.querySelector('#search .pagefind-ui__search-input');
+    const toggle = () => document.querySelector('.nav-toggle');
+    const press = (key, init = {}) =>
+      document.activeElement.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true, ...init }));
+
+    async function openByShortcut() {
+      await loadScript('/about/', MOBILE_HEADER);
+      initNav(document);
+      document.getElementById('origin').focus();
+      press('k', { ctrlKey: true });
+      await flush();
+    }
+
+    it('opens the menu, so the shortcut can put focus in the search', async () => {
+      await openByShortcut();
+
+      expect(nav().classList.contains('nav-open')).toBe(true);
+      expect(toggle().getAttribute('aria-expanded')).toBe('true');
+      expect(document.activeElement).toBe(input());
+    });
+
+    it('leaves an open menu alone', async () => {
+      await loadScript('/about/', MOBILE_HEADER);
+      initNav(document);
+      toggle().click();
+      press('/');
+      await flush();
+
+      expect(nav().classList.contains('nav-open')).toBe(true);
+      expect(document.activeElement).toBe(input());
+    });
+
+    it('on Escape closes the menu it opened and returns focus to where the shortcut was pressed', async () => {
+      await openByShortcut();
+      press('Escape');
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement.id).toBe('origin');
+    });
+
+    it('also with results open: Escape closes them, the menu, and returns focus', async () => {
+      await openByShortcut();
+      PagefindUIStub.instances[0].triggerSearch('java');
+      await flush();
+      expect(document.body.classList.contains('search-open')).toBe(true);
+
+      press('Escape');
+      await flush();
+
+      expect(document.body.classList.contains('search-open')).toBe(false);
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement.id).toBe('origin');
+    });
+
+    it('forgets the origin once the menu is closed by hand, so a later Escape stays on the toggle', async () => {
+      await openByShortcut();
+      toggle().focus();
+      toggle().click(); // closed by hand
+      toggle().click(); // and reopened by hand
+      press('Escape');
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement).toBe(toggle());
+    });
+
+    it('does not open the menu where the search is visible (desktop)', async () => {
+      await loadScript('/about/', MOBILE_HEADER.replace('display: none', 'display: flex'));
+      initNav(document);
+      press('/');
+      await flush();
+
+      expect(nav().classList.contains('nav-open')).toBe(false);
+      expect(document.activeElement).toBe(input());
+    });
+  });
+
   describe('mixed page (header + inline container)', () => {
     it('initialises only the inline container up front and leaves the header lazy', async () => {
       await loadScript('/search/?q=java', HEADER_CONTAINER + INLINE_CONTAINER);
@@ -440,6 +613,18 @@ describe('search.js', () => {
       await flush();
 
       expect(PagefindUIStub.instances.map((ui) => ui.options.element.id)).toEqual(['search-page', 'search']);
+    });
+
+    it('hints the shortcut on the header input, not on the /search/ page input', async () => {
+      await loadScript('/search/', HEADER_CONTAINER + INLINE_CONTAINER);
+
+      const inline = document.querySelector('#search-page .pagefind-ui__search-input');
+      expect(inline.getAttribute('aria-label')).toBe('Search posts');
+      expect(inline.hasAttribute('title')).toBe(false);
+      expect(inline.hasAttribute('aria-keyshortcuts')).toBe(false);
+      expect(document.querySelector('#search .pagefind-ui__search-input').getAttribute('aria-keyshortcuts')).toBe(
+        '/ Control+K',
+      );
     });
   });
 });

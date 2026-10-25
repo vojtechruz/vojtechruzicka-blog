@@ -8,6 +8,31 @@
   // Element that had focus when a keyboard shortcut opened a container; Escape returns there
   const shortcutOrigins = new WeakMap();
 
+  // The shortcuts below, as the header input announces them: in its tooltip and in aria-keyshortcuts
+  const isMac = /mac|iphone|ipad/i.test(navigator.userAgentData?.platform || navigator.platform || '');
+  const SHORTCUT_HINT = `Shortcut: / or ${isMac ? '⌘K' : 'Ctrl+K'}`;
+  const KEY_SHORTCUTS = `/ ${isMac ? 'Meta' : 'Control'}+K`;
+
+  // Distinct landmark names: /search/ and 404 have a second search form besides the header one.
+  // The label comes from renderSearch (data-search-label); /search/ renders its own markup.
+  const searchLabel = (container) =>
+    container.dataset.searchLabel || (container.hasAttribute('data-search-inline') ? 'Search posts' : 'Search the site');
+
+  // Name an input after its search form. Pagefind names its input only by a title copied from the
+  // placeholder ("Search…"); here the title instead tells the shortcut, on the input the shortcut opens.
+  function labelInput(container, input, opensOnShortcut) {
+    if (!input) {
+      return;
+    }
+    input.setAttribute('aria-label', searchLabel(container));
+    if (opensOnShortcut) {
+      input.setAttribute('title', SHORTCUT_HINT);
+      input.setAttribute('aria-keyshortcuts', KEY_SHORTCUTS);
+    } else {
+      input.removeAttribute('title');
+    }
+  }
+
   function loadJS(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script'); // classic script, NOT type="module"
@@ -75,9 +100,7 @@
         one_result: "Found 1 result for '[SEARCH_TERM]'.",
         many_results: "Found [COUNT] results for '[SEARCH_TERM]'.",
         zero_results: "No results found for '[SEARCH_TERM]'.",
-        // Distinct landmark names: /search/ and 404 have a second search form besides the header one.
-        // The label comes from renderSearch (data-search-label); /search/ renders its own markup.
-        search_label: container.dataset.searchLabel || (inline ? 'Search posts' : 'Search the site'),
+        search_label: searchLabel(container),
         clear_search: '×',
         load_more: 'Load more',
       },
@@ -87,6 +110,7 @@
     queueMicrotask(() => {
       const drawer = container.querySelector('.pagefind-ui__drawer');
       const input = container.querySelector('.pagefind-ui__search-input');
+      labelInput(container, input, container === containers[0]);
 
       if (inline) {
         // Run the query carried in the URL (`/search/?q=term`, the SearchAction target)
@@ -279,7 +303,10 @@
   const containers = Array.from(document.querySelectorAll('.js-pagefind, #search'));
 
   // Attach lazy-init triggers per container (include pointerdown for better touch support)
-  containers.forEach((container) => {
+  containers.forEach((container, i) => {
+    // The shortcuts open the first container
+    labelInput(container, container.querySelector('.pagefind-ui__search-input'), i === 0);
+
     // The dedicated search page is the whole point of the visit: initialise it
     // right away so a `?q=` query from the URL runs without any interaction.
     if (container.hasAttribute('data-search-inline')) {
@@ -335,11 +362,72 @@
       // isConnected: a container removed from the page must not claim the shortcut (or its origin)
       if (target?.isConnected) {
         const origin = document.activeElement;
-        if (origin && origin !== document.body && !target.contains(origin)) {
+        const hasOrigin = origin && origin !== document.body && !target.contains(origin);
+        if (hasOrigin) {
           shortcutOrigins.set(target, origin);
+        }
+        if (revealInMenu(target)) {
+          menuShortcutOrigin = hasOrigin ? origin : null;
         }
         openContainer(target).catch(console.error);
       }
     }
   });
+
+  // On narrow screens the header search sits in the collapsed menu (display: none), where its input
+  // cannot take focus and a shortcut would do nothing: open the menu first, through its own toggle
+  // (nav.js is a separate bundle). Returns whether it did.
+  function revealInMenu(container) {
+    const nav = container.closest('.main-navigation');
+    const menu = container.closest('.menu-container');
+    const toggle = nav?.querySelector('.nav-toggle');
+    if (!menu || !toggle || getComputedStyle(menu).display !== 'none') {
+      return false;
+    }
+    toggle.click();
+    return true;
+  }
+
+  // Where a shortcut was pressed when it had to open the menu. On Escape nav.js closes the menu and
+  // focuses its toggle; focus then goes back here instead, as it does when no menu was involved.
+  let menuShortcutOrigin = null;
+
+  const header = containers[0]?.closest('.main-navigation');
+  if (header) {
+    const toggle = header.querySelector('.nav-toggle');
+
+    // Opening or closing the menu by hand ends the shortcut's claim on it. (The shortcut's own toggle
+    // click lands here too, before the shortcut records its origin.)
+    toggle?.addEventListener('click', () => {
+      menuShortcutOrigin = null;
+    });
+
+    // Capture, before nav.js: does this Escape close the menu the shortcut opened, from inside it?
+    // Checked now, not tracked through focusout: hiding the menu blurs its input with no relatedTarget.
+    let escapeOrigin = null;
+    window.addEventListener(
+      'keydown',
+      (e) => {
+        const closesMenu =
+          e.key === 'Escape' &&
+          toggle?.getAttribute('aria-expanded') === 'true' &&
+          header.contains(document.activeElement);
+        escapeOrigin = closesMenu ? menuShortcutOrigin : null;
+      },
+      true,
+    );
+
+    // Bubbling, after nav.js has closed the menu and focused its toggle
+    window.addEventListener('keydown', () => {
+      const origin = escapeOrigin;
+      escapeOrigin = null;
+      if (!origin || document.activeElement !== toggle) {
+        return;
+      }
+      menuShortcutOrigin = null;
+      if (origin.isConnected) {
+        origin.focus();
+      }
+    });
+  }
 })();

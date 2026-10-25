@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'fs';
-import { loadPage, getAllPosts, SITE_DIR } from './helpers.js';
+import { join } from 'path';
+import { loadPage, loadPageHtml, getAllPosts, SITE_DIR } from './helpers.js';
 import {
   getPostTitleText,
   getPostDate,
@@ -180,5 +181,47 @@ describe('Post rendering (post.njk header)', () => {
         expect(absolute, `${filePath}: write /slug/ instead`).toEqual([]);
       }
     });
+  });
+});
+
+describe('Image lightbox script', () => {
+  it('loads on every post with an in-post image, and not on posts without images', () => {
+    const SCRIPT = /<script src="\/scripts\/lightbox\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
+    const built = getAllPosts()
+      .map(({ frontmatter }) => frontmatter.path)
+      .filter((url) => url && existsSync(join(SITE_DIR, url, 'index.html')));
+    // The template tests for any <img> in the content: in-post images, but also linkedPost card
+    // thumbnails, where the script finds nothing to do and stops. The featured image is in the header.
+    const inPostImages = (url) =>
+      loadPage(url)(':is(main.post > article, main.post > article > .image-figure) > .image-wrapper').length;
+    const contentImages = (url) => loadPage(url)('main.post > article img').not('article > header img').length;
+    const withInPostImages = built.filter((url) => inPostImages(url) > 0);
+    const withoutImages = built.filter((url) => contentImages(url) === 0);
+
+    expect(withInPostImages.length).toBeGreaterThan(0);
+    expect(withoutImages.length, 'some posts have no images').toBeGreaterThan(0);
+    for (const url of withInPostImages) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(true);
+    }
+    for (const url of withoutImages) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(false);
+    }
+  });
+});
+
+describe('Scrollable box script', () => {
+  it('loads exactly on posts with a code block, table or diagram', () => {
+    const SCRIPT = /<script src="\/scripts\/scroll-regions\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
+    const BOX = /<pre class="shiki|class="table-wrapper"|class="mermaid-diagram"/;
+    const built = getAllPosts()
+      .map(({ frontmatter }) => frontmatter.path)
+      .filter((url) => url && existsSync(join(SITE_DIR, url, 'index.html')));
+    const withBoxes = built.filter((url) => BOX.test(loadPageHtml(url)));
+
+    expect(withBoxes.length).toBeGreaterThan(0);
+    expect(withBoxes.length, 'some posts have none').toBeLessThan(built.length);
+    for (const url of built) {
+      expect(SCRIPT.test(loadPageHtml(url)), url).toBe(withBoxes.includes(url));
+    }
   });
 });

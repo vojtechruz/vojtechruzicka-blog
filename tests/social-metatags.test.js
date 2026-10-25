@@ -27,6 +27,7 @@ import {
   getArticleProperties,
 } from './queries/seo.js';
 import siteConfig from '../src/_data/site.js';
+import seriesMetadata from '../src/_data/seriesMetadata.js';
 import { getPostTopicNames } from './queries/post.js';
 
 // A published post with a featured image, used as the representative article page.
@@ -180,6 +181,23 @@ describe('Social meta tags', () => {
       } else {
         expect(getCanonicalUrl($)).toBe(getOgUrl($));
       }
+    });
+  });
+
+  // A series page has no featured image of its own; without a cover in seriesMetadata it borrows
+  // the first post's featured image (as its card on the site does) instead of the generic default.
+  describe('series pages', () => {
+    it.each(seriesMetadata.map((s) => s.slug))('/series/%s/ shares its own generated og-image.jpg', async (slug) => {
+      const url = `/series/${slug}/`;
+      const $ = loadPage(url);
+      expect(getOgImage($)).toBe(`${siteConfig.url}${url}og-image.jpg`);
+      expect(getOgImageAlt($)).toBe(`${seriesMetadata.find((s) => s.slug === slug).name} Series`);
+
+      const sharp = (await import('sharp')).default;
+      const imagePath = `${SITE_DIR}${url}og-image.jpg`;
+      expect(existsSync(imagePath), `Missing ${imagePath}`).toBe(true);
+      const { width, height } = await sharp(imagePath).metadata();
+      expect(`${width}x${height}`).toBe(`${OG_IMAGE_WIDTH}x${OG_IMAGE_HEIGHT}`);
     });
   });
 

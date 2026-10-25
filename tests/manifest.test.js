@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
-import { SITE_DIR } from './helpers.js';
+import { SITE_DIR, loadPage } from './helpers.js';
 
 // Guards the web app manifest: it must stay valid JSON, keep the fields browsers
 // need for installability, and reference icons that actually ship. `npm run
@@ -39,5 +39,26 @@ describe('Web app manifest (site.webmanifest)', () => {
       const file = `${SITE_DIR}${icon.src}`;
       expect(existsSync(file), `icon file missing in build output: ${icon.src}`).toBe(true);
     }
+  });
+
+  // The site is dark-only: browser chrome (toolbar, installed-app title bar) takes the header colour and
+  // the launch splash the page background, read from the same tokens the stylesheet uses.
+  const token = (name) => {
+    const match = readFileSync('src/styles/_variables.scss', 'utf-8').match(
+      new RegExp(`--${name}:\\s*(#[0-9a-f]{3,8})`, 'i'),
+    );
+    return match?.[1].toLowerCase();
+  };
+
+  it('matches the dark palette: theme_color is the header, background_color the page', () => {
+    expect(manifest.theme_color.toLowerCase()).toBe(token('color-surface-1'));
+    expect(manifest.background_color.toLowerCase()).toBe(token('color-surface-0'));
+  });
+
+  it.each(['/', '/css-flexbox/', '/404.html'])('%s sets the same theme-color for the browser toolbar', (url) => {
+    const $ = loadPage(url);
+    const meta = $('meta[name="theme-color"]');
+    expect(meta.length).toBe(1);
+    expect(meta.attr('content').toLowerCase()).toBe(manifest.theme_color.toLowerCase());
   });
 });

@@ -69,7 +69,7 @@
       </div>
 
       <img src="./{{featuredImage}}" alt="" aria-hidden="true" class="post-header-featured-image" loading="eager"
-        fetchpriority="high" decoding="async">
+        fetchpriority="high" decoding="async" sizes="{{ articleImageSizes }}">
       <div class="post-header-excerpt">{{excerpt}}</div>
     </header>
 
@@ -170,5 +170,7 @@
 {% block scripts %}
 <script src="{{ '/scripts/code-block.js' | assetUrl }}" defer></script>
 <script src="{{ '/scripts/header-anchor.js' | assetUrl }}" defer></script>
+{% if '<pre' in content or '<table' in content %}<script src="{{ '/scripts/scroll-regions.js' | assetUrl }}" defer></script>{% endif %}
 {% if 'data-autoplay' in content %}<script src="{{ '/scripts/video-autoplay.js' | assetUrl }}" defer></script>{% endif %}
+{% if '<img' in content %}<script src="{{ '/scripts/lightbox.js' | assetUrl }}" defer></script>{% endif %}
 {% endblock %}

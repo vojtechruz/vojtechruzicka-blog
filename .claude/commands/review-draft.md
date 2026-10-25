@@ -55,6 +55,29 @@ Ideas that would meaningfully improve the post but are not outright errors:
 - Diagrams, tables, or code comparisons that would help
 - Sections that could be cut without loss
 
+### G. Images: alt text and captions
+
+Find every image in the body (`![alt](./file.png)` or `![alt](./file.png "Caption")`). Open each image file with the
+Read tool so you see what it shows, and read the text around it. For each image decide:
+
+- **Alt text** — does it describe what the image shows, for a reader who cannot see it? Flag alt texts that are a file
+  name (`typedoc-1`), a bare label (`Screenshot`) or empty on an informative image, and propose a concrete replacement.
+- **Does it deserve a caption?** A caption (the quoted markdown title, rendered as a visible `<figcaption>`) is worth
+  adding only when it tells every reader something the image and the surrounding text do not:
+  - where to look on a busy screenshot, or what changed (`The highlighted entry appears only after a restart`)
+  - which side is which in a comparison or before/after image
+  - a key or explanation a diagram needs
+  - the source or credit of an image that is not the author's (book page, someone else's diagram)
+  - an image the text refers to from a distance (`as the diagram above shows`)
+  - the one takeaway of the section, for readers who skim images and captions
+- **No caption** for a screenshot that simply illustrates the sentence right before it; suggesting one there only adds
+  noise. Do not propose captions for most images by default.
+- **Existing captions** — flag a caption that repeats the alt text (screen readers read both), repeats the preceding
+  sentence, or is filler (`Screenshot of the settings dialog`).
+
+List only the images that need a change: the image file, then the proposed alt text and/or caption as ready-to-paste
+markdown, e.g. `![Settings dialog with *.iml in the ignored list](./ignored.png "The pattern applies to all projects")`.
+
 ## Step 3 — Output format
 
 Print the review directly in the conversation. Use this structure:
@@ -79,6 +102,9 @@ Print the review directly in the conversation. Use this structure:
 ...
 
 ### F. Suggestions & improvements
+...
+
+### G. Images: alt text and captions
 ...
 
 ---

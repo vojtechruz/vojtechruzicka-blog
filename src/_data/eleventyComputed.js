@@ -5,6 +5,7 @@ import path from 'path';
 import Image from '@11ty/eleventy-img';
 import { isLocalDevelopment, isPreview } from '../../config/env-utils.js';
 import { slugify } from '../../config/utils/formatting.js';
+import { featuredImagePathForUrl } from '../../config/utils/post-source.js';
 
 const AVOID = new Set(['blog', 'post', 'misc', 'general']);
 
@@ -256,11 +257,15 @@ export default {
 
     if (kind === 'series') {
       const series = d.currentSeries;
-      if (!series?.image) {
+      if (!series) {
         return undefined;
       }
-      const src = path.resolve('src', 'images', 'series', series.slug, series.image);
-      return generateOgImage(src, `/series/${series.slug}/`);
+      // Without a cover image, use the first post's featured image — the same fallback as the
+      // series card on the site (linkedSeries), so the shared card matches what the site shows.
+      const src = series.image
+        ? path.resolve('src', 'images', 'series', series.slug, series.image)
+        : featuredImagePathForUrl(series.posts[0]);
+      return src ? generateOgImage(src, `/series/${series.slug}/`) : undefined;
     }
 
     return undefined;
@@ -279,7 +284,13 @@ export default {
 
   // Alt text for the social card image. Featured images are decorative in the page itself, but
   // on a card the image carries the article, so it needs a label.
-  imageAlt: (d) => d.featuredImageAlt || (d.featuredImage ? d.title : null) || d.site?.defaultShareImageAlt,
+  // A series card shows a cover or a borrowed post image, so it is labelled with the series title.
+  imageAlt: (d) => {
+    // Mirrors the source choice in ogImage; not read from d.ogImage, which is not yet resolved here.
+    const series = getPageKind(d).kind === 'series' ? d.currentSeries : null;
+    const seriesImage = Boolean(series && (series.image || featuredImagePathForUrl(series.posts[0])));
+    return d.featuredImageAlt || (d.featuredImage || seriesImage ? d.title : null) || d.site?.defaultShareImageAlt;
+  },
 
   // Headline for link preview cards. The home page's own title ("Latest posts") is a poor card
   // headline when someone shares the site root, so use the site name there instead.

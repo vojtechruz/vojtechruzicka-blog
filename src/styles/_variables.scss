@@ -34,6 +34,7 @@
   /* ===== BORDERS & DIVIDERS ===== */
   --color-border: #2a3a54; /* Subtle, but still visible on dark backgrounds */
   --color-border-muted: #233046; /* Subtle, but still visible on dark backgrounds */
+  --color-border-control: #64748b; /* Form field outlines: at least 3:1 on every surface (WCAG 1.4.11) */
   --hr-color: #233046; /* Divider lines inside content */
 
   /* ===== ELEVATION (Shadows) ===== */
@@ -68,8 +69,8 @@
   --color-selection-text: #ffffff; /* Text color when selected */
 
   /* ===== TYPOGRAPHY ===== */
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --underline-offset: 0.15em;
 

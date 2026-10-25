@@ -60,6 +60,68 @@ describe('wrapPicturesTransform', () => {
     expect($('li > div.image-wrapper > picture').length).toBe(1);
   });
 
+  describe('captions (markdown `![alt](x.png "Caption")`)', () => {
+    const captioned = (alt, title) =>
+      `<picture><source type="image/avif" srcset="${alt}.avif"><img src="${alt}.png" alt="${alt}" title="${title}"></picture>`;
+
+    it('turns an image title into a figure with a figcaption, and drops the title', async () => {
+      const $ = await transform(`<p>before</p><p>${captioned('a', 'Where to click')}</p><p>after</p>`);
+
+      const $figure = $('body > figure.image-figure');
+      expect(
+        $figure
+          .children()
+          .toArray()
+          .map((el) => el.tagName + '.' + el.attribs.class),
+      ).toEqual(['div.image-wrapper', 'figcaption.image-caption']);
+      expect($figure.find('figcaption').text()).toBe('Where to click');
+      expect($figure.find('div.image-wrapper > picture > img').attr('alt')).toBe('a');
+      expect($('img[title]').length).toBe(0);
+      expect(
+        $('body > *')
+          .toArray()
+          .map((el) => el.tagName),
+      ).toEqual(['p', 'figure', 'p']);
+    });
+
+    it('captions only the images that have a title, keeping source order', async () => {
+      const $ = await transform(`<p>Look: ${pic('first')} ${captioned('second', 'Second')}</p>`);
+
+      expect(wrappedAlts($)).toEqual(['first', 'second']);
+      expect(
+        $('body > *')
+          .toArray()
+          .map((el) => el.tagName),
+      ).toEqual(['p', 'div', 'figure']);
+      expect($('figure img').attr('alt')).toBe('second');
+    });
+
+    it('captions a picture outside a paragraph in place', async () => {
+      const $ = await transform(`<ul><li>${captioned('a', 'In a list')}</li></ul>`);
+      expect($('li > figure.image-figure > div.image-wrapper > picture').length).toBe(1);
+      expect($('li figcaption').text()).toBe('In a list');
+    });
+
+    it('keeps the caption text as text', async () => {
+      const $ = await transform(`<p>${captioned('a', 'a &lt;b&gt; &amp; c')}</p>`);
+      expect($('figcaption').text()).toBe('a <b> & c');
+      expect($('figcaption b').length).toBe(0);
+    });
+
+    it('ignores a blank title', async () => {
+      const $ = await transform(`<p>${captioned('a', '  ')}</p>`);
+      expect($('figure').length).toBe(0);
+      expect(wrappedAlts($)).toEqual(['a']);
+    });
+
+    it('is idempotent', async () => {
+      const once = await wrapPicturesTransform(pageWith(`<p>${captioned('a', 'Cap')}</p>`), 'page/index.html');
+      const $ = cheerio.load(await wrapPicturesTransform(once, 'page/index.html'));
+      expect($('figure').length).toBe(1);
+      expect($('figcaption').text()).toBe('Cap');
+    });
+  });
+
   it('is idempotent - does not double-wrap', async () => {
     const once = await wrapPicturesTransform(pageWith(`<p>${pic('a')} ${pic('b')}</p>`), 'page/index.html');
     const $ = cheerio.load(await wrapPicturesTransform(once, 'page/index.html'));

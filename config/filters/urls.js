@@ -60,6 +60,8 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  * - Heading permalink anchors (<a class="header-anchor">) are empty icon links
  *   that only make sense with the site CSS and JS; in a reader they are dead
  *   empty links, so drop them.
+ * - Code-block copy buttons work only with the site JS; in a reader they are
+ *   empty dead buttons, so drop them (the code itself stays).
  * - Decorative icons (callout/msg SVGs, aria-hidden) rely on flexbox to sit
  *   inline with their title; without CSS they misalign above the text. They
  *   carry no information, so drop them.
@@ -115,17 +117,31 @@ export function feedContent(html) {
 
   $('a.header-anchor').remove();
 
+  // The code-block copy button needs the site JS; in a reader it is an empty, dead <button>.
+  $('.copy-code-button').remove();
+
   // Decorative icons only look right with the component's flexbox CSS - drop them.
   $('svg[aria-hidden="true"]').remove();
 
   $('img').each((_, el) => {
     const alt = ($(el).attr('alt') || '').trim();
-    if (!alt) {
+    // A markdown title is the image's visible caption (wrap-pictures-transform.js); it is text for
+    // every reader, so it stays even when the image itself is decorative
+    const caption = ($(el).attr('title') || '').trim();
+    if (!alt && !caption) {
       $(el).remove();
       return;
     }
-    const $fallback = $('<p><em></em></p>');
-    $fallback.find('em').text(`Image: ${alt}`);
+    const $fallback = $('<p></p>');
+    if (alt) {
+      $fallback.append($('<em></em>').text(`Image: ${alt}`));
+    }
+    if (caption) {
+      if (alt) {
+        $fallback.append('<br>');
+      }
+      $fallback.append($('<span></span>').text(caption));
+    }
     $(el).replaceWith($fallback);
   });
 

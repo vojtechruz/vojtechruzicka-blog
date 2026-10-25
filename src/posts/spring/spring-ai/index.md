@@ -6,7 +6,7 @@ path: '/spring-ai/'
 excerpt:
   'How to get started with Spring AI and easily integrate Artificial Intelligence functionality into your Spring Boot
   application.'
-featuredImage: featured.png
+featuredImage: featured.jpg
 needsReview: true
 ---
 

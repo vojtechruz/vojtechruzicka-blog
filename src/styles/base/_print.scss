@@ -83,6 +83,12 @@ $site-url: 'https://www.vojtechruzicka.com';
     display: none !important;
   }
 
+  // ...except the lightbox's button around an in-post image (src/scripts/lightbox.js): it is the image
+  .lightbox-trigger {
+    display: block !important;
+    cursor: auto;
+  }
+
   .print-header {
     display: block;
     margin: 0 0 var(--gap-medium);
@@ -223,7 +229,7 @@ $site-url: 'https://www.vojtechruzicka.com';
 
   .lqip {
     filter: none !important;
-    background-image: none !important;
+    background: none !important;
   }
 
   // Page breaks
