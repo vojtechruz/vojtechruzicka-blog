@@ -76,6 +76,13 @@
         transform 0.2s ease,
         opacity 0.2s ease;
 
+      // Forced colors (Windows contrast themes) replace backgrounds with the page's Canvas colour,
+      // which would hide bars drawn as backgrounds; paint them in the system button text colour.
+      @media (forced-colors: active) {
+        forced-color-adjust: none;
+        background: ButtonText;
+      }
+
       &:nth-child(1) {
         top: 0;
       }
