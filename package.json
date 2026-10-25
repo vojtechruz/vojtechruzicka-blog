@@ -26,6 +26,7 @@
     "validate:xml": "node scripts/validate-xml.mjs",
     "validate:links": "cd _site && linkinator . --retry-errors --config ../linkinator.config.json",
     "validate:links:external": "cd _site && linkinator . --retry-errors --config ../linkinator.config.external.json",
+    "a11y:all": "node scripts/a11y-all.mjs",
     "format": "npm run format:md && npm run format:css && npm run format:js",
     "format:md": "prettier --write \"**/*.md\"",
     "format:css": "prettier --write \"**/*.scss\"",

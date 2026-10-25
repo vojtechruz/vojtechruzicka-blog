@@ -11,6 +11,7 @@ npm test             # Run Vitest unit tests
 npm run validate     # Full validation: HTML, CSS, JS lint + MD + XML + links
 npm run format       # Prettier formatting
 npm run lighthouse   # Lighthouse CI audit (requires a running server)
+npm run a11y:all     # axe audit of every built page (~1.5 min; npm test covers one page per kind)
 ```
 
 Run a single test file:
