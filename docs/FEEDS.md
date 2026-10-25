@@ -97,6 +97,10 @@ without it they misalign above the title text. They carry no information, so `fe
 `svg[aria-hidden="true"]`, keeping the title and body. (The icons still get intrinsic `width`/`height` in
 `config/utils/icons.js` as defensive good practice.)
 
+The code-block copy button goes too: it needs the site JS, and once its icon is stripped a reader would show an empty,
+dead `<button>` under every code block. The code itself is kept; Shiki's colours are CSS variables, so readers show it
+as plain monospace text. Heading permalink anchors are removed for the same reason.
+
 ### 6. Absolutize URLs
 
 `htmlToAbsoluteUrls` rewrites any remaining root-relative `href`/`src` (e.g. `/some-post/`) to absolute `https://…`
