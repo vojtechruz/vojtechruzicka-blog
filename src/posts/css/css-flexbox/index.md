@@ -4,7 +4,7 @@ date: '2020-04-24'
 dateModified: '2020-05-08'
 topics: ['CSS']
 path: '/css-flexbox/'
-featuredImage: 'css-flexbox.png'
+featuredImage: 'css-flexbox.jpg'
 excerpt:
   'Flexbox is a powerful layout tool, which allows you to automatically arrange and size items inside a container.'
 needsReview: true
@@ -560,7 +560,7 @@ Learning Flexbox is way more fun if there are zombies involved. Instead of readi
 zombies with your crossbow, while learning Flexbox. Try [Flexbox Zombies](https://mastery.games/flexboxzombies/) browser
 game. It is for free.
 
-![Flexbox Zombies](flexbox-zombies.png)
+![Flexbox Zombies](flexbox-zombies.jpg)
 
 Want some more practice? You can check other games helping you to master Flexbox, such as
 [Flexbox Defense](http://www.flexboxdefense.com/) - a tower defense game where you position your towers using CSS and

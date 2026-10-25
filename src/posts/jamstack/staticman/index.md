@@ -6,7 +6,7 @@ topics: ['JAMStack']
 path: '/staticman/'
 excerpt: 'How to make your JAMStack site truly static even with user-generated content such as comments.'
 needsReview: true
-featuredImage: 'featured.png'
+featuredImage: 'featured.jpg'
 ---
 
 ## Dynamic content in static sites

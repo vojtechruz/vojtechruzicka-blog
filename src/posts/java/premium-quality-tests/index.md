@@ -3,7 +3,7 @@ title: Premium Quality Tests
 date: '2017-05-02'
 topics: ['Testing']
 path: '/premium-quality-tests/'
-featuredImage: './premium.png'
+featuredImage: './premium.jpg'
 excerpt:
   'Test quality is just as important as that of production code. Tests should not be excluded from quality checks and
   the same quality rules should be applied.'
