@@ -118,6 +118,9 @@ cached, and must stay that way. Their filename is stable rather than content-has
 so a restored copy would satisfy eleventy-img's "output already exists" check and a post whose featured image changed
 would keep sharing the old card forever. They are re-encoded on every build instead, which costs a few seconds.
 
+Series pages get a social card too (`/series/<slug>/og-image.jpg`): from the series cover in `seriesMetadata.js` when it
+has one, otherwise from the first post's featured image — the same fallback the series card on the site uses.
+
 Measured effect (local, full production formats): cold build **328 s** → warm build **21.6 s**.
 
 ### Why a stale cache can never serve wrong content
