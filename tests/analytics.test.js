@@ -14,7 +14,7 @@ const template = readFileSync(TEMPLATE_PATH, 'utf-8');
 /** Pages that must carry analytics in the build output. */
 const PAGES = ['/', '/java-records/'];
 
-const { scriptUrl, previewScriptUrl } = siteConfig.plausible;
+const { scriptUrl } = siteConfig.plausible;
 
 /**
  * Render the analytics component on its own for a given environment.
@@ -43,32 +43,22 @@ describe('Analytics (Plausible)', () => {
       }
     });
 
-    it('loads the preview script on preview deploys', () => {
-      const html = render({ isPreview: true });
-
-      expect(html).toContain(previewScriptUrl);
-      expect(html, 'preview deploys must not report into production stats').not.toContain(scriptUrl);
+    it('emits nothing at all on preview deploys', () => {
+      // Preview traffic must not land in production stats, and there is no separate preview site.
+      expect(render({ isPreview: true }).trim()).toBe('');
     });
 
     it('loads the production script outside preview and local development', () => {
-      const html = render({ isPreview: false });
-
-      expect(html).toContain(scriptUrl);
-      expect(html).not.toContain(previewScriptUrl);
+      expect(render({ isPreview: false })).toContain(scriptUrl);
     });
   });
 
   describe('Configuration', () => {
-    it('keeps the script URLs in site.js rather than hardcoded in the template', () => {
-      for (const url of [scriptUrl, previewScriptUrl]) {
-        expect(url).toMatch(/^https:\/\/plausible\.io\/js\/\S+\.js$/);
-        expect(template, `${url} should be read from site.js, not inlined in the template`).not.toContain(url);
-      }
-    });
-
-    it('uses a distinct script per environment', () => {
-      // Same script in both slots would silently merge preview traffic into production stats.
-      expect(previewScriptUrl).not.toBe(scriptUrl);
+    it('keeps the script URL in site.js rather than hardcoded in the template', () => {
+      expect(scriptUrl).toMatch(/^https:\/\/plausible\.io\/js\/\S+\.js$/);
+      expect(template, `${scriptUrl} should be read from site.js, not inlined in the template`).not.toContain(
+        scriptUrl,
+      );
     });
   });
 
@@ -81,9 +71,7 @@ describe('Analytics (Plausible)', () => {
           .get();
 
         expect(sources, `${path} should load exactly one Plausible script`).toHaveLength(1);
-        expect([scriptUrl, previewScriptUrl], `${path}: ${sources[0]} is not a configured script URL`).toContain(
-          sources[0],
-        );
+        expect(sources[0], `${path}: ${sources[0]} is not the configured script URL`).toBe(scriptUrl);
       }
     });
 

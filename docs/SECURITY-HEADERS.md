@@ -142,8 +142,8 @@ Instead, violations are reported through Plausible, which the site already loads
 So a broken policy in production shows up in Plausible rather than only in visitors' consoles. The events are recorded
 either way, but the dashboard lists them only once `CSP Violation` is added as a custom-event goal (Plausible site
 settings → Goals); without it, query them through the Stats API by the `directive` property (the vault's
-`plausible-blog` skill: `query` with dimension `event:props:directive`). Note this covers production and preview deploys
-only — analytics is disabled locally, and `_headers` is not served by the dev server anyway.
+`plausible-blog` skill: `query` with dimension `event:props:directive`). Note this covers production only — analytics is
+disabled locally and on preview deploys, and `_headers` is not served by the dev server anyway.
 
 Changing that inline snippet **changes its CSP hash** — see [Inline code hashes](#inline-code-hashes) above and
 regenerate, or `tests/analytics.test.js` will fail.
