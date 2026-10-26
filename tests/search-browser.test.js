@@ -215,6 +215,30 @@ describe('Escape in the search overlay on a wide screen', () => {
     }
   });
 
+  // Nothing typed: no results are open, but Pagefind still blurs the input on Escape
+  it.each([
+    ['from a link', true],
+    ['with nothing focused', false],
+  ])('keeps a focus when Escape is pressed before typing anything, opened %s', async (_, fromLink) => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const origin = page.locator('main a[href]').first();
+      if (fromLink) {
+        await origin.focus();
+      }
+      await page.keyboard.press('/');
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.press('Escape');
+      const onInput = await page.evaluate(() => document.activeElement.matches('#search .pagefind-ui__search-input'));
+      const onOrigin = await origin.evaluate((el) => el === document.activeElement);
+      expect(fromLink ? onOrigin : onInput).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+
   it('keeps focus in the emptied input when nothing had focus before', async () => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
