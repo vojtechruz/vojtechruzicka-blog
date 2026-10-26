@@ -56,6 +56,11 @@
   color: var(--color-link-hover);
 }
 
+// The button sits flush with the field's right edge, so the usual outside ring stuck out of the field
+.pagefind-ui .pagefind-ui__search-clear:focus-visible {
+  outline-offset: -2px;
+}
+
 .pagefind-ui__suppressed {
   display: none !important;
 }
@@ -122,15 +127,23 @@
     no-repeat center/contain;
   mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>')
     no-repeat center/contain;
+
+  /* Forced colors turn the masked background into Canvas, invisible on the page; use the text colour */
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
 }
 
+// Centred in the 36 px field with a 4 px gap on every side, so its inset focus ring sits evenly inside
+// the field: 0.5rem is the form's padding (none on the 404 page, see _layout.scss)
 .pagefind-ui .pagefind-ui__search-clear {
   position: absolute;
-  right: 0.75rem;
-  top: calc(0.5rem + 19px);
+  right: calc(0.5rem + 4px);
+  top: calc(0.5rem + 18px);
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   background: transparent;

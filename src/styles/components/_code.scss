@@ -134,6 +134,12 @@ pre.shiki span {
     height: 14px;
   }
 
+  // The button sits in the corner of a block that clips its overflow, so a ring outside it was cut off
+  // at the block's edge: draw it inside
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+
   &.copied {
     color: var(--color-success) !important;
   }

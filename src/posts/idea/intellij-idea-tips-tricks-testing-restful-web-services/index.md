@@ -29,18 +29,18 @@ This feature has been in IDEA for quite some time. You can access the REST clien
 
 This opens a new tool window called REST client.
 
-![idea-rest-client](./idea-rest-client.png)
+![IntelliJ IDEA REST Client with a POST request, a Content-Type header and a file as the request body](./idea-rest-client.png)
 
 The usage is pretty straightforward and similar to many other HTTP clients. First, you need to specify an HTTP method
 (GET/POST/PUT/\...), target URL and path. You can provide additional data on the `Request` tab, such as HTTP headers,
 request parameters, and body. You can also specify cookies to be sent on a separate `Cookies` tab.
 
-![Cookies](./cookies.png)
+![Cookies tab of the REST Client with two cookies to be sent](./cookies.png)
 
 And then you just hit `Submit Request`. IDEA sends a new HTTP request to the target location and displays the response
 received in the `Response` tab. Response headers can be viewed in the `Response Headers` tab.
 
-![Response](./response.png)
+![Response tab of the REST Client with the returned JSON and the response code](./response.png)
 
 And that's pretty much it. On top of this, the client offers some additional features such as:
 
@@ -83,12 +83,12 @@ templates filled with example requests by accessing `Tools → HTTP Client → O
 The simplest thing you can do is just to type a URL and click Run icon in the gutter. Or alternatively, <kbd>Alt</kbd> +
 <kbd>Enter</kbd> and `Run`.
 
-![run](./run.png)
+![HTTP request file with a URL and the Run icon in the gutter](./run.png)
 
 When no HTTP method is specified, it assumes you want to use GET. No headers or parameters are sent. Then the response
 is displayed:
 
-![response-httprequest](./response-httprequest.png)
+![Run window with the GET request, the response headers and the JSON body](./response-httprequest.png)
 
 ### HTTP Methods and headers
 
@@ -221,7 +221,8 @@ the IDEA editor and when you press <kbd>Tab</kbd> key, IDEA expands it to a code
 news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just
 change parameters such as URL or request body.
 
-{% video "/videos/intellij-idea-tips-tricks-testing-restful-web-services/idea-http-client-live-template" %}
+{% video "/videos/intellij-idea-tips-tricks-testing-restful-web-services/idea-http-client-live-template",
+  "Generating an HTTP request from a live template in the IntelliJ IDEA HTTP client" %}
 
 | Template | Usage                                     |
 | -------- | ----------------------------------------- |
@@ -387,7 +388,7 @@ information is also shown in scratch files, but not in physical `.http` files. W
 times, the response info is preserved for each invocation. Then you can easily compare two of the responses by IDEA's
 integrated DIFF tool.
 
-![compare](./compare.png)
+![HTTP request file with saved responses and a menu for comparing them](./compare.png)
 
 It is nice that the same history and log are used both for the new editor based HTTP Request files and the old REST
 Client, which runs in a separate tool window.

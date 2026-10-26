@@ -55,7 +55,8 @@ which the documentation should be generated to (here it is `docs/typedoc`). The 
 containing the source code (here `src/app`). There are many more config parameters you can use (see the
 [docs](https://github.com/TypeStrong/typedoc)).
 
-![typedoc-1](./documentation-typedoc.png) ![typedoc-2](./documentation-typedoc-2.png)
+![TypeDoc page for the HeroService class listing its constructor, properties and methods](./documentation-typedoc.png)
+![TypeDoc detail of the checkIfUserCanVote method with its description and boolean return value](./documentation-typedoc-2.png)
 
 TypeDoc contains two themes out of the box. The default one and 'minimal'. To specify a theme use `--theme` option
 followed by the name of the predefined theme or a path to a custom one.
@@ -95,23 +96,23 @@ Once you run the compodoc command it will automatically generate your documentat
 Unlike TypeDoc, Compodoc understands that your app is an Angular application. That means it understands all the concepts
 such as components, pipes or directives. Below, you can see the generated documentation for a component.
 
-![compodoc](./documentation-compodoc.png)
+![Compodoc page for HeroDetailComponent with its file, metadata, properties, methods and constructor](./documentation-compodoc.png)
 
 You can see all the properties, constructors, and methods of the selected component. What's more, you can also view the
 component's source code, HTML template or resulting DOM structure. Since Angular applications consist of modules, it is
 vital to be able to document them and their relationships. Compodoc allows you to do that. You can even see
 relationships of each module in a nice diagram.
 
-![compodoc-modules](./documentation-compodoc-modules.png)
+![Compodoc diagram of AppModule with its declarations, imports and bootstrap component](./documentation-compodoc-modules.png)
 
 Compodoc also allows you to see a nice diagram of your application's routing, which is always handy.
 
-![compodoc-routes](./documentation-compodoc-routes.png)
+![Compodoc diagram of the application routes from the root through HeroesModule to the hero list and detail](./documentation-compodoc-routes.png)
 
 One more feature worth mentioning is a documentation coverage, which allows you to measure how well commented your
 application is.
 
-![compodoc-coverage](./documentation-compodoc-coverage.png)
+![Compodoc documentation coverage table with the share of documented statements per file](./documentation-compodoc-coverage.png)
 
 You can check sample Compodoc generated documentation - try the official live
 [demo](https://compodoc.github.io/compodoc-demo-todomvc-angular/).
@@ -132,7 +133,8 @@ CompoDoc they cannot right away generate HTML documentation. Currently, they are
 during the development process on your local machine. For documentation purposes, we still have to wait for re-launch of
 the original AngularDoc. So let us stay tuned. This is a brief demo of AngularDoc VS Code Extension:
 
-{% video "/videos/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/documentation-angulardoc-extension" %}
+{% video "/videos/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/documentation-angulardoc-extension",
+  "AngularDoc VS Code extension showing the module overview, classes, routes and imports of an app" %}
 
 ## Conclusion
 

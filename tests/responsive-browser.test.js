@@ -2,9 +2,10 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium } from 'playwright';
 import { serveSite } from './static-server.js';
 import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
+import { measureOverflow } from './overflow.js';
 
 /**
- * Layout checks that need a real browser (jsdom has no layout): narrow-phone overflow,
+ * Layout checks that need a real browser (jsdom has no layout): horizontal overflow,
  * the search overlay width, the floating copy button over long code lines and long TOC items.
  */
 
@@ -28,17 +29,37 @@ async function openPage(path, width) {
   return page;
 }
 
-describe('narrow phone (320 px)', () => {
-  it('long inline code does not widen the page', async () => {
-    // /css-flexbox/ has `justify-content: space-between;` inline, which overflowed by 10 px with nowrap
-    const page = await openPage('/css-flexbox/', 320);
-    try {
-      const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
-      expect(scrollWidth).toBeLessThanOrEqual(320);
-    } finally {
-      await page.close();
-    }
-  }, 30000);
+// One page of every kind, plus the content that tends to overflow: long inline code (/css-flexbox/
+// overflowed by 10 px with nowrap), tables, a Mermaid diagram, video. Every built page runs through
+// the same check with `npm run overflow:all` (scripts/overflow-all.mjs).
+const OVERFLOW_PAGES = [
+  '/',
+  '/pages/5/', // widest pagination: Previous, 1 … 3 4 5 6 7 … 10, Next
+  '/css-flexbox/',
+  '/angular/02-building-blocks/', // tables and code
+  '/owasp-top-10-2025/', // Mermaid diagram
+  '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/', // <video> embeds
+  '/topics/',
+  '/search/',
+  '/404.html',
+];
+
+describe('no horizontal overflow', () => {
+  describe.each([320, 390, 768, 1024])('at %i px', (width) => {
+    it.each(OVERFLOW_PAGES)(
+      '%s does not scroll sideways',
+      async (path) => {
+        const page = await openPage(path, width);
+        try {
+          const { overflow, culprits } = await measureOverflow(page);
+          expect(overflow, `sticks out: ${culprits.join(', ')}`).toBeLessThanOrEqual(0);
+        } finally {
+          await page.close();
+        }
+      },
+      30000,
+    );
+  });
 });
 
 describe('search overlay', () => {
@@ -209,6 +230,72 @@ describe('search field outline', () => {
   );
 });
 
+describe('focus rings of buttons inside a box', () => {
+  // Gaps between the focus ring and the box around the button. A ring drawn outside these buttons stuck
+  // out of the search field and was cut off by the code block's overflow: hidden; both are now inset.
+  const ringGaps = (page, boxSelector) =>
+    page.evaluate((boxSelector) => {
+      const button = document.activeElement;
+      const style = getComputedStyle(button);
+      const spread = parseFloat(style.outlineOffset) + parseFloat(style.outlineWidth);
+      const ring = button.getBoundingClientRect();
+      const around = button.closest(boxSelector);
+      const box = (around.querySelector('.pagefind-ui__search-input') ?? around).getBoundingClientRect();
+      return {
+        top: ring.top - spread - box.top,
+        right: box.right - ring.right - spread,
+        bottom: box.bottom - ring.bottom - spread,
+      };
+    }, boxSelector);
+
+  // The header field at both layouts and the 404 one (no form padding); even gaps all round
+  it.each([
+    ['/', 390],
+    ['/', 1280],
+    ['/404.html', 1280],
+  ])(
+    'search clear button on %s at %i px: inside the field, evenly',
+    async (path, width) => {
+      const page = await openPage(path, width);
+      try {
+        if (path === '/') {
+          await page.keyboard.press('/');
+        } else {
+          await page.locator('.search-404 .pagefind-ui__search-input').focus();
+        }
+        await page.waitForFunction(() => document.activeElement?.matches('.pagefind-ui__search-input'));
+        await page.keyboard.type('java');
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll('.pagefind-ui__search-clear')].some((button) => button.checkVisibility()),
+        );
+        await page.keyboard.press('Tab');
+        const gaps = await ringGaps(page, '.pagefind-ui');
+        expect(Math.min(gaps.top, gaps.right, gaps.bottom)).toBeGreaterThanOrEqual(0);
+        expect(
+          Math.max(gaps.top, gaps.right, gaps.bottom) - Math.min(gaps.top, gaps.right, gaps.bottom),
+        ).toBeLessThanOrEqual(1);
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+
+  it('code copy button: inside the code block', async () => {
+    const page = await openPage('/angular/02-building-blocks/', 1280);
+    try {
+      const button = page.locator('.code-block-container > .copy-code-button').first();
+      await page.keyboard.press('Tab'); // keyboard modality, so focus() below is :focus-visible
+      await button.focus();
+      const gaps = await ringGaps(page, '.code-block-container');
+      expect(gaps.top).toBeGreaterThanOrEqual(0);
+      expect(gaps.right).toBeGreaterThanOrEqual(0);
+    } finally {
+      await page.close();
+    }
+  }, 30000);
+});
+
 describe('article image sizes', () => {
   // `sizes` tells the browser how wide an image will render before any CSS is in, and picks the srcset
   // candidate from it: it must not understate the real width (blurry) nor overstate it by much (a
@@ -279,4 +366,32 @@ describe('sizes="auto" on lazy in-post images', () => {
       await page.close();
     }
   }, 30000);
+});
+
+describe('sticky header', () => {
+  // The skip link lands on <main>, and the next Tab focuses the breadcrumbs. Without html's
+  // scroll-padding-top they sat hidden under the sticky header and the browser did not scroll, as
+  // the element counted as in view (WCAG 2.4.11 Focus Not Obscured).
+  it.each([320, 1280])(
+    'does not cover the element focused after the skip link at %i px',
+    async (width) => {
+      const page = await openPage('/angular/02-building-blocks/', width);
+      try {
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.keyboard.press('Tab');
+        await page.keyboard.press('Enter');
+        await page.keyboard.press('Tab');
+        const { navBottom, focusTop, tag } = await page.evaluate(() => ({
+          navBottom: document.querySelector('.main-navigation').getBoundingClientRect().bottom,
+          focusTop: document.activeElement.getBoundingClientRect().top,
+          tag: document.activeElement.tagName,
+        }));
+        expect(tag).toBe('A');
+        expect(focusTop).toBeGreaterThanOrEqual(navBottom);
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
 });

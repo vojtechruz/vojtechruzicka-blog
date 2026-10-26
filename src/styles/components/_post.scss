@@ -61,6 +61,12 @@ article {
   padding-bottom: var(--gap-xlarge);
 }
 
+// A long unbreakable word in the article (link text like getSession(false).invalidate(), a bare
+// URL) breaks mid-word instead of widening the page on a phone
+.post article {
+  overflow-wrap: break-word;
+}
+
 .post blockquote {
   margin: var(--gap-medium) 0;
   padding: 1.2rem 1.6rem;

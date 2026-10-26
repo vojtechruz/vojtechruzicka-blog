@@ -26,7 +26,7 @@ To enter Unload modules dialog, right-click a file or module in your Project Vie
 the dialog, you can see all the modules in the current project, and you can assign them to either _Loaded Modules_ or
 _Unloaded Modules_ category.
 
-![unload-modules](./unload-modules.png)
+![Load/Unload Modules dialog in IntelliJ IDEA with loaded modules on the left and unloaded ones on the right](./unload-modules.png)
 
 IntelliJ IDEA is smart enough to warn you that if you are loading a previously unloaded module, you may also want to
 load its modules it is depending on. You can learn more about this feature in
@@ -44,7 +44,7 @@ pattern in:
 Settings → Editor → File Types → Ignore Files and Folders
 ```
 
-![ignore-files](./ignore-files.png)
+![IntelliJ IDEA File Types settings with the list of ignored files and folders](./ignore-files.png)
 
 Note that some of the common candidates for exclusion are already presented - such as internal directories for Version
 Control Systems. If you need more fine-grained control over exclusion, you can do that also on Project level. Go to
@@ -52,7 +52,7 @@ Control Systems. If you need more fine-grained control over exclusion, you can d
 also exclude files by a pattern for the current module in the bottom part of the window - _Exclude files_. Note that you
 can also exclude folders directly from the Project Tree's context menu - `Mark Directory As → Excluded`.
 
-![modules-exclude](./modules-exclude.png)
+![Project Structure dialog marking folders of a module as Excluded](./modules-exclude.png)
 
 ## Antivirus Exclusion
 
@@ -80,7 +80,7 @@ By entering this mode, you can disable the inspections and other CPU hungry task
 better performance and increased battery life. Power Saving mode can be toggled using Hector (Hector, the Inspector)
 icon in the lower right corner of the window, in the status bar.
 
-![hector](./hector.png)
+![Hector popup in the status bar with the highlighting level slider and the Power Save Mode checkbox](./hector.png)
 
 In addition to toggling of the Power Saving mode, you can set the level of inspections there:
 
@@ -93,7 +93,7 @@ Depending on your setting, the Hector icon will indicate the current level of hi
 When you are in Power Saving mode, you don't have to give up your precious inspections. You can just run them on demand
 instead of constant real-time evaluation using `Analyze → Inspect Code` or `Run Inspection by Name...`.
 
-![inspections](./inspections.png)
+![Inspection results listing warnings by category with a description of the selected inspection](./inspections.png)
 
 ## Disk Defragmentation
 

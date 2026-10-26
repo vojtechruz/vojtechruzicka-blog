@@ -52,14 +52,14 @@ Then you provide education and years of experience. Then your areas of expertise
 development and such. And then programming languages. And that's it. All the data provided is used for matchmaking so
 Pramp can find you best match possible for your interviews.
 
-![pramp-registration](./registration.png)
+![Pramp registration form asking for city, education, years of experience and areas of expertise](./registration.png)
 
 ### Scheduling an Interview
 
 Once you are registered you can schedule an interview. You are provided with a number of available time slots which you
 can choose from:
 
-![pramp-scheduling](./scheduling-interview.png)
+![Pramp dialog for scheduling an interview with available time slots for the coming days](./scheduling-interview.png)
 
 Once you schedule an interview, the application will choose the best possible match for you from the other users.
 Multiple factors are taken into consideration such as your education, work experience, preferred languages or interview
@@ -82,7 +82,7 @@ There is an IDE, in which you are supposed to code your solution to the given pr
 your choice - Java, Python, Ruby, PHP, Go, C, C++, C\#, Swift, Clojure and Haskell. The contents of the IDE are
 synchronized, so your interviewer can see you typing in the real-time and can also edit the contents as needed.
 
-![pramp-interview-session](./interview.png)
+![Pramp interview session with the question on the left, a shared Java editor and video of both participants](./interview.png)
 
 Once you are finished, you can swap the roles. The interview usually takes an hour - 30 mins for each. At any time you
 can either run the code to check whether there are any compile problems or run test cases to verify your algorithm. Of
@@ -110,7 +110,7 @@ interviewer.
 
 They do the same for you. The result may look something like this:
 
-![pramp-review](./performance-review-feedback.png)
+![Pramp feedback from a peer with star ratings for problem solving, coding and communication](./performance-review-feedback.png)
 
 ### Aftermath
 
@@ -119,7 +119,7 @@ can see detailed feedback on your performance. But most importantly, you can get
 peer. You can see the task, but also the suggested answer and hints, so you can get back to the problem, check for a
 better solution or just try to solve it again, in a better way.
 
-![pramp-dashboard](./pramp-dashboard.png)
+![Pramp dashboard with the interviewer rating and a table of past practice interviews and their ratings](./pramp-dashboard.png)
 
 ## Additional Resources
 

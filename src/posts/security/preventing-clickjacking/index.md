@@ -101,7 +101,7 @@ The image below shows the compatibility ([see more](http://caniuse.com/#feat=x-f
 header. Green represents full compatibility. Striped brown represents just `DENY` and `SAMEORIGIN`, but unsupported
 `ALLOW-FROM`.
 
-![x-frame-options-compatibility](x-frame-options-compatibility-table.png)
+![Browser support table for X-Frame-Options, partial without ALLOW-FROM in all current browsers](x-frame-options-compatibility-table.png)
 
 Based on the current stats (10/2023) just 0.7% of users will have full compatibility and the rest does not support
 `ALLOW-FROM`. That means you should stick only with `DENY` and `SAME-ORIGIN`, which currently has 97.34% support.
@@ -117,7 +117,7 @@ levels - 1 and 2. It is the level 2 which adds `frame-ancestors` directive, whic
 `X-Frame-Options`. Level 2 is now finally [widely supported](https://caniuse.com/contentsecuritypolicy2) - currently
 96.21% of the clients.
 
-![content-security-policy-level-2](./content-security-policy-lvl-2.png)
+![Browser support table for Content Security Policy Level 2, supported everywhere except Opera Mini](./content-security-policy-lvl-2.png)
 
 Frame-ancestors specifies sources, from which elements frame, iframe, object, embed and applet can be loaded.
 
