@@ -34,7 +34,8 @@ After this, you can access the Coverage from the Command Menu:
 
 Then type `Show Coverage`.
 
-{% video "/videos/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools/show-coverage" %}
+{% video "/videos/measuring-javascript-and-css-coverage-with-google-chrome-developer-tools/show-coverage",
+  "Opening the Coverage tab with the Show Coverage command in Chrome DevTools" %}
 
 Alternatively, you can show the `Coverage` tab from Dev Tools menu by choosing `More tools → Coverage`.
 

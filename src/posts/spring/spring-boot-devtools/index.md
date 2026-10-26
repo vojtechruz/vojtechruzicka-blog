@@ -116,7 +116,7 @@ gradle bootRun
 whenever you make changes in your files such as HTML, CSS, images and more. It even pre-processes files as needed - that
 means automatically compiling your SASS or LESS files.
 
-{% video "/videos/spring-boot-devtools/live-reload" %}
+{% video "/videos/spring-boot-devtools/live-reload", "LiveReload updating the browser after a stylesheet change" %}
 
 Spring DevTools automatically launch a local instance of LiveReload server, which monitors your files. All you need to
 do is to install a [browser extension](http://livereload.com/extensions/), and you're good to go. It is not only useful

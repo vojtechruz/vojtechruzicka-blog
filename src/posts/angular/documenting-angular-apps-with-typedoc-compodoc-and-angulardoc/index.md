@@ -132,7 +132,8 @@ CompoDoc they cannot right away generate HTML documentation. Currently, they are
 during the development process on your local machine. For documentation purposes, we still have to wait for re-launch of
 the original AngularDoc. So let us stay tuned. This is a brief demo of AngularDoc VS Code Extension:
 
-{% video "/videos/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/documentation-angulardoc-extension" %}
+{% video "/videos/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/documentation-angulardoc-extension",
+  "AngularDoc VS Code extension showing the module overview, classes, routes and imports of an app" %}
 
 ## Conclusion
 

@@ -18,12 +18,14 @@ Whenever you have an existing expression, you can append a specific postfix afte
 Let's say you have a list of strings called `items`. You can then type `items.for` and then press <kbd>Tab</kbd>. It
 creates a `for-each` iterating over the items.
 
-{% video "/videos/intellij-idea-tips-tricks-postfix-code-completion/postfix" %}
+{% video "/videos/intellij-idea-tips-tricks-postfix-code-completion/postfix",
+  "Expanding items.for into a for-each loop with postfix completion" %}
 
 Pretty cool, right? Note that the resulting `for-each` has the proper type of items - that is String. Or let's have
 another example - `.try` postfix. It surrounds an expression with a try-catch block.
 
-{% video "/videos/intellij-idea-tips-tricks-postfix-code-completion/postfix-try" %}
+{% video "/videos/intellij-idea-tips-tricks-postfix-code-completion/postfix-try",
+  "Surrounding an expression with try-catch using the .try postfix" %}
 
 You can see it is able to properly determine type of the exception from the method and in case there are multiple
 exceptions it will add catch block for each of them.

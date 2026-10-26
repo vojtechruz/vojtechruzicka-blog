@@ -34,12 +34,14 @@ corner of the layout.
 Anchor `TOP = 10`, `RIGHT = 10` means that the component will stay in the top right corner of the layout in the distance
 10 from both edges.
 
-{% video "/videos/javafx-layouts-advanced/anchor-pane-corners" %}
+{% video "/videos/javafx-layouts-advanced/anchor-pane-corners",
+  "AnchorPane keeping components in their corners while the window is resized" %}
 
 In the example above, the size of each component stays the same on resizing. However, if you define anchor points in the
 opposite directions, you can make your component grow/shrink on resizing.
 
-{% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize" %}
+{% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize",
+  "AnchorPane stretching a button anchored to both left and right as the window is resized" %}
 
 You can have various combinations like this:
 
@@ -316,7 +318,8 @@ dependent on the width of the component inside.
 
 The center has a dynamic size and fills the rest of the space not occupied by other sections. Let's look at an example:
 
-{% video "/videos/javafx-layouts-advanced/borderpane-resizing" %}
+{% video "/videos/javafx-layouts-advanced/borderpane-resizing",
+  "BorderPane regions adapting as the window is resized" %}
 
 ## What's next
 

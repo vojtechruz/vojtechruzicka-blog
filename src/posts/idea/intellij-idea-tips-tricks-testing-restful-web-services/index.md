@@ -221,7 +221,8 @@ the IDEA editor and when you press <kbd>Tab</kbd> key, IDEA expands it to a code
 news is that there are also templates for the HTTP client. This allows you to easily generate requests and then just
 change parameters such as URL or request body.
 
-{% video "/videos/intellij-idea-tips-tricks-testing-restful-web-services/idea-http-client-live-template" %}
+{% video "/videos/intellij-idea-tips-tricks-testing-restful-web-services/idea-http-client-live-template",
+  "Generating an HTTP request from a live template in the IntelliJ IDEA HTTP client" %}
 
 | Template | Usage                                     |
 | -------- | ----------------------------------------- |

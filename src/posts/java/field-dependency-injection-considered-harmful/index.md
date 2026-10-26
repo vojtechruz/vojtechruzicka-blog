@@ -177,7 +177,8 @@ Since this article was published, IDEA introduced some sweet support for detecti
 can automatically remove the `@Autowired` annotation from the field and instead create a constructor with `@Autowired`
 dependency, effectively replacing field injection with constructor injection.
 
-{% video "/videos/field-dependency-injection-considered-harmful/idea-field-injection" %}
+{% video "/videos/field-dependency-injection-considered-harmful/idea-field-injection",
+  "IntelliJ IDEA replacing field injection with constructor injection" %}
 
 ## Conclusion
 

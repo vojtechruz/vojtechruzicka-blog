@@ -57,7 +57,7 @@ stays for a clip whose first frame is not a good preview.
 | `animated`    | `true` (default): behaves like an animated GIF, see below. `false` for a real film (sound, no autoplay, no loop) |
 
 Leaving `title` at its default makes every clip on the page an indistinguishable "Video" for screen readers: give each
-one a short description.
+one a short description. `tests/shortcodes.test.js` fails on a post whose video has no title (or a one-word one).
 
 ## GIF behaviour (`animated`)
 

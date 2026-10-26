@@ -110,7 +110,8 @@ Mac) and Then press <kbd>4</kbd> (View Mode). From the subsequent popup menu, yo
 Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel
 or color schemes.
 
-{% video "/videos/intellij-idea-tips-tricks-presentations/quick-switch-theme" %}
+{% video "/videos/intellij-idea-tips-tricks-presentations/quick-switch-theme",
+  "Entering Presentation Mode through the Quick Switch Scheme popup" %}
 
 ## Mouse wheel zoom
 

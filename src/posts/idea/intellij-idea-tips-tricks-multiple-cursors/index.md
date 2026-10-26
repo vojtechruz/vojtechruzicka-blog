@@ -17,7 +17,8 @@ This feature is the oldest one, which was available even before the introduction
 It allows you to select a block of text and then start typing with multiple cursors starting on each selected line at
 the beginning of the selected block.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/column-selection" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/column-selection",
+  "Column selection in IntelliJ IDEA, typing on several lines at once" %}
 
 You can then move the cursor, as usual, using the arrow keys and even commands like <kbd>Home</kbd> or <kbd>End</kbd>.
 Note that after I used <kbd>End</kbd> key (go to the end of the line), the cursor was properly placed at the end of each
@@ -42,7 +43,8 @@ The commands are issued by pressing <kbd>Ctrl</kbd> (or <kbd>⌥</kbd> on Mac), 
 While still holding <kbd>Ctrl</kbd>, you can press <kbd>↑</kbd> and <kbd>↓</kbd> arrows to clone cursor to the line
 above or below.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/clone-caret" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/clone-caret",
+  "Cloning the caret to the lines above and below" %}
 
 ## Multiple Cursors
 
@@ -56,7 +58,8 @@ new cursor on that location in addition to all the already existing cursors. Unl
 be anywhere and don't need to be vertically aligned. Pressing <kbd>Esc</kbd> will exit multiple cursors mode and will
 leave you with your first original single cursor.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/multiple-cursors-mouse" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/multiple-cursors-mouse",
+  "Adding cursors anywhere in the file with Alt+Shift+click" %}
 
 ## Multi-selection
 
@@ -65,7 +68,8 @@ and then start typing. This has several advantages. You can replace multiple blo
 ones. Also, when copying/cutting the selected blocks into the clipboard, you can later paste the results into a new
 place when still using multiple cursors and each copied block will be pasted to the corresponding cursor.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/multi-selection" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/multi-selection",
+  "Selecting several blocks of text and editing them together" %}
 
 This selection can be achieved by holding:
 
@@ -80,7 +84,8 @@ Another way of selecting multiple blocks of text with multiple cursors is `Selec
 selects all the other occurrences in the current file of the already selected text. In case no text is selected, the
 closest word to the current cursor is selected.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/select-all-occurences" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/select-all-occurences",
+  "Selecting all occurrences of the selected text" %}
 
 This command can be triggered by
 
@@ -93,7 +98,8 @@ In some cases, you may want more fine-grained control instead of selecting ALL t
 
 When you have a part of text selected, you can add the next occurrence of this string to your selection.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/add-occurrence" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/add-occurrence",
+  "Adding the next occurrence of the selected text to the selection" %}
 
 The shortcut is:
 
@@ -107,7 +113,8 @@ Removing the last occurrence from your selection is the same shortcut with <kbd>
 - <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>J</kbd> On Linux and Windows
 - <kbd>⇧</kbd> + <kbd>⌃</kbd> + <kbd>G</kbd> on Mac.
 
-{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/remove-occurrence" %}
+{% video "/videos/intellij-idea-tips-tricks-multiple-cursors/remove-occurrence",
+  "Removing the last added occurrence from the selection" %}
 
 ## Presentation assistant
 
