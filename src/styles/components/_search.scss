@@ -56,6 +56,11 @@
   color: var(--color-link-hover);
 }
 
+// The button sits flush with the field's right edge, so the usual outside ring stuck out of the field
+.pagefind-ui .pagefind-ui__search-clear:focus-visible {
+  outline-offset: -2px;
+}
+
 .pagefind-ui__suppressed {
   display: none !important;
 }

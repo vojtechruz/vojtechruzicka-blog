@@ -230,6 +230,41 @@ describe('search field outline', () => {
   );
 });
 
+describe('search clear button', () => {
+  // The × sits flush with the field's right edge; the usual ring 2 px outside it stuck out of the field
+  it.each([390, 1280])(
+    'keeps its focus ring inside the search field at %i px',
+    async (width) => {
+      const page = await openPage('/', width);
+      try {
+        await page.keyboard.press('/');
+        await page.waitForFunction(() => document.activeElement?.matches('.pagefind-ui__search-input'));
+        await page.keyboard.type('java');
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll('.pagefind-ui__search-clear')].some((button) => button.checkVisibility()),
+        );
+        await page.keyboard.press('Tab');
+        const { ring, field } = await page.evaluate(() => {
+          const button = document.activeElement;
+          const style = getComputedStyle(button);
+          const spread = parseFloat(style.outlineOffset) + parseFloat(style.outlineWidth);
+          const box = button.getBoundingClientRect();
+          return {
+            ring: { top: box.top - spread, right: box.right + spread, bottom: box.bottom + spread },
+            field: button.closest('.pagefind-ui').querySelector('.pagefind-ui__search-input').getBoundingClientRect(),
+          };
+        });
+        expect(ring.top).toBeGreaterThanOrEqual(field.top);
+        expect(ring.bottom).toBeLessThanOrEqual(field.bottom);
+        expect(ring.right).toBeLessThanOrEqual(field.right);
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+});
+
 describe('article image sizes', () => {
   // `sizes` tells the browser how wide an image will render before any CSS is in, and picks the srcset
   // candidate from it: it must not understate the real width (blurry) nor overstate it by much (a
