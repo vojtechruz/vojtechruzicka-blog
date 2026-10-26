@@ -135,13 +135,15 @@
   }
 }
 
+// Centred in the 36 px field with a 4 px gap on every side, so its inset focus ring sits evenly inside
+// the field: 0.5rem is the form's padding (none on the 404 page, see _layout.scss)
 .pagefind-ui .pagefind-ui__search-clear {
   position: absolute;
-  right: 0.75rem;
-  top: calc(0.5rem + 19px);
+  right: calc(0.5rem + 4px);
+  top: calc(0.5rem + 18px);
   transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: grid;
   place-items: center;
   background: transparent;

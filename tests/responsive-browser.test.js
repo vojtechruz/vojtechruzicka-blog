@@ -230,39 +230,70 @@ describe('search field outline', () => {
   );
 });
 
-describe('search clear button', () => {
-  // The × sits flush with the field's right edge; the usual ring 2 px outside it stuck out of the field
-  it.each([390, 1280])(
-    'keeps its focus ring inside the search field at %i px',
-    async (width) => {
-      const page = await openPage('/', width);
+describe('focus rings of buttons inside a box', () => {
+  // Gaps between the focus ring and the box around the button. A ring drawn outside these buttons stuck
+  // out of the search field and was cut off by the code block's overflow: hidden; both are now inset.
+  const ringGaps = (page, boxSelector) =>
+    page.evaluate((boxSelector) => {
+      const button = document.activeElement;
+      const style = getComputedStyle(button);
+      const spread = parseFloat(style.outlineOffset) + parseFloat(style.outlineWidth);
+      const ring = button.getBoundingClientRect();
+      const around = button.closest(boxSelector);
+      const box = (around.querySelector('.pagefind-ui__search-input') ?? around).getBoundingClientRect();
+      return {
+        top: ring.top - spread - box.top,
+        right: box.right - ring.right - spread,
+        bottom: box.bottom - ring.bottom - spread,
+      };
+    }, boxSelector);
+
+  // The header field at both layouts and the 404 one (no form padding); even gaps all round
+  it.each([
+    ['/', 390],
+    ['/', 1280],
+    ['/404.html', 1280],
+  ])(
+    'search clear button on %s at %i px: inside the field, evenly',
+    async (path, width) => {
+      const page = await openPage(path, width);
       try {
-        await page.keyboard.press('/');
+        if (path === '/') {
+          await page.keyboard.press('/');
+        } else {
+          await page.locator('.search-404 .pagefind-ui__search-input').focus();
+        }
         await page.waitForFunction(() => document.activeElement?.matches('.pagefind-ui__search-input'));
         await page.keyboard.type('java');
         await page.waitForFunction(() =>
           [...document.querySelectorAll('.pagefind-ui__search-clear')].some((button) => button.checkVisibility()),
         );
         await page.keyboard.press('Tab');
-        const { ring, field } = await page.evaluate(() => {
-          const button = document.activeElement;
-          const style = getComputedStyle(button);
-          const spread = parseFloat(style.outlineOffset) + parseFloat(style.outlineWidth);
-          const box = button.getBoundingClientRect();
-          return {
-            ring: { top: box.top - spread, right: box.right + spread, bottom: box.bottom + spread },
-            field: button.closest('.pagefind-ui').querySelector('.pagefind-ui__search-input').getBoundingClientRect(),
-          };
-        });
-        expect(ring.top).toBeGreaterThanOrEqual(field.top);
-        expect(ring.bottom).toBeLessThanOrEqual(field.bottom);
-        expect(ring.right).toBeLessThanOrEqual(field.right);
+        const gaps = await ringGaps(page, '.pagefind-ui');
+        expect(Math.min(gaps.top, gaps.right, gaps.bottom)).toBeGreaterThanOrEqual(0);
+        expect(
+          Math.max(gaps.top, gaps.right, gaps.bottom) - Math.min(gaps.top, gaps.right, gaps.bottom),
+        ).toBeLessThanOrEqual(1);
       } finally {
         await page.close();
       }
     },
     30000,
   );
+
+  it('code copy button: inside the code block', async () => {
+    const page = await openPage('/angular/02-building-blocks/', 1280);
+    try {
+      const button = page.locator('.code-block-container > .copy-code-button').first();
+      await page.keyboard.press('Tab'); // keyboard modality, so focus() below is :focus-visible
+      await button.focus();
+      const gaps = await ringGaps(page, '.code-block-container');
+      expect(gaps.top).toBeGreaterThanOrEqual(0);
+      expect(gaps.right).toBeGreaterThanOrEqual(0);
+    } finally {
+      await page.close();
+    }
+  }, 30000);
 });
 
 describe('article image sizes', () => {

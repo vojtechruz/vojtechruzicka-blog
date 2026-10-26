@@ -79,6 +79,11 @@ body {
       padding-left: 0;
       padding-right: 0;
     }
+
+    // The same 4 px gap from the field's edge as in the header, without the form padding
+    .pagefind-ui__search-clear {
+      right: 4px;
+    }
   }
 }
 

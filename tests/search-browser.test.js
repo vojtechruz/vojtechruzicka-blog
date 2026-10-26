@@ -188,3 +188,47 @@ describe('Search overlay focus trap', () => {
     }
   });
 });
+
+describe('Escape in the search overlay on a wide screen', () => {
+  // Pagefind's own Escape handler on the input clears the query and blurs the input before ours runs;
+  // focus used to end up on <body>, with no visible focus anywhere
+  const openAndEscape = async (page) => {
+    await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+    await page.keyboard.type('java');
+    await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+    await page.keyboard.press('Escape');
+    await expect.poll(() => page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
+  };
+
+  it('returns focus to the link the shortcut was pressed on', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const origin = page.locator('main a[href]').first();
+      await origin.focus();
+      await page.keyboard.press('/');
+      await openAndEscape(page);
+      expect(await origin.evaluate((el) => el === document.activeElement)).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+
+  it('keeps focus in the emptied input when nothing had focus before', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.keyboard.press('/');
+      await openAndEscape(page);
+      const state = await page.evaluate(() => ({
+        input: document.activeElement.matches('#search .pagefind-ui__search-input'),
+        value: document.activeElement.value,
+      }));
+      expect(state).toEqual({ input: true, value: '' });
+    } finally {
+      await context.close();
+    }
+  });
+});
