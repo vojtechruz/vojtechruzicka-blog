@@ -2,9 +2,10 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium } from 'playwright';
 import { serveSite } from './static-server.js';
 import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
+import { measureOverflow } from './overflow.js';
 
 /**
- * Layout checks that need a real browser (jsdom has no layout): narrow-phone overflow,
+ * Layout checks that need a real browser (jsdom has no layout): horizontal overflow,
  * the search overlay width, the floating copy button over long code lines and long TOC items.
  */
 
@@ -28,17 +29,37 @@ async function openPage(path, width) {
   return page;
 }
 
-describe('narrow phone (320 px)', () => {
-  it('long inline code does not widen the page', async () => {
-    // /css-flexbox/ has `justify-content: space-between;` inline, which overflowed by 10 px with nowrap
-    const page = await openPage('/css-flexbox/', 320);
-    try {
-      const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
-      expect(scrollWidth).toBeLessThanOrEqual(320);
-    } finally {
-      await page.close();
-    }
-  }, 30000);
+// One page of every kind, plus the content that tends to overflow: long inline code (/css-flexbox/
+// overflowed by 10 px with nowrap), tables, a Mermaid diagram, video. Every built page runs through
+// the same check with `npm run overflow:all` (scripts/overflow-all.mjs).
+const OVERFLOW_PAGES = [
+  '/',
+  '/pages/5/', // widest pagination: Previous, 1 … 3 4 5 6 7 … 10, Next
+  '/css-flexbox/',
+  '/angular/02-building-blocks/', // tables and code
+  '/owasp-top-10-2025/', // Mermaid diagram
+  '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/', // <video> embeds
+  '/topics/',
+  '/search/',
+  '/404.html',
+];
+
+describe('no horizontal overflow', () => {
+  describe.each([320, 390, 768, 1024])('at %i px', (width) => {
+    it.each(OVERFLOW_PAGES)(
+      '%s does not scroll sideways',
+      async (path) => {
+        const page = await openPage(path, width);
+        try {
+          const { overflow, culprits } = await measureOverflow(page);
+          expect(overflow, `sticks out: ${culprits.join(', ')}`).toBeLessThanOrEqual(0);
+        } finally {
+          await page.close();
+        }
+      },
+      30000,
+    );
+  });
 });
 
 describe('search overlay', () => {

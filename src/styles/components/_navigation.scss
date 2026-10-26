@@ -250,4 +250,24 @@
   a:hover {
     text-decoration: underline;
   }
+
+  // Previous + up to seven page numbers + Next need ~540 px, wider than a phone: the numbers get a
+  // tighter (still 32 px) box and keep the first row, Previous and Next wrap below them together.
+  @include utilities.respond(medium) {
+    flex-wrap: wrap;
+    row-gap: var(--gap-small);
+
+    a,
+    .current {
+      min-width: 2rem;
+      min-height: 2rem;
+      padding: 0 0.25rem;
+    }
+
+    .pagination-prev,
+    .pagination-next {
+      order: 1;
+      min-height: 2.5rem;
+    }
+  }
 }
