@@ -10,16 +10,17 @@
 // - touch devices (no hover): the icon is always faintly visible
 // - narrow screens (no gutter): the icon sits inline after the heading text
 
-/* Better scroll positioning when jumping to headings */
+/* Better scroll positioning when jumping to headings; html's scroll-padding-top already clears the
+   sticky header, so the margin is only the rest of the offset (the scrollspy reads the full one) */
 :is(h2, h3, h4)[id] {
-  scroll-margin-top: var(--offset-anchor);
+  scroll-margin-top: calc(var(--offset-anchor) - var(--offset-nav));
 }
 
 .post :is(h1, h2, h3, h4, h5, h6) {
   /* containing block for the gutter icon */
   position: relative;
   /* prevents the heading from sitting under the fixed nav when scrolled to */
-  scroll-margin-top: var(--offset-anchor-post);
+  scroll-margin-top: calc(var(--offset-anchor-post) - var(--offset-nav));
 }
 
 .header-anchor {

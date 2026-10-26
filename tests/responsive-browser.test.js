@@ -301,3 +301,31 @@ describe('sizes="auto" on lazy in-post images', () => {
     }
   }, 30000);
 });
+
+describe('sticky header', () => {
+  // The skip link lands on <main>, and the next Tab focuses the breadcrumbs. Without html's
+  // scroll-padding-top they sat hidden under the sticky header and the browser did not scroll, as
+  // the element counted as in view (WCAG 2.4.11 Focus Not Obscured).
+  it.each([320, 1280])(
+    'does not cover the element focused after the skip link at %i px',
+    async (width) => {
+      const page = await openPage('/angular/02-building-blocks/', width);
+      try {
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.keyboard.press('Tab');
+        await page.keyboard.press('Enter');
+        await page.keyboard.press('Tab');
+        const { navBottom, focusTop, tag } = await page.evaluate(() => ({
+          navBottom: document.querySelector('.main-navigation').getBoundingClientRect().bottom,
+          focusTop: document.activeElement.getBoundingClientRect().top,
+          tag: document.activeElement.tagName,
+        }));
+        expect(tag).toBe('A');
+        expect(focusTop).toBeGreaterThanOrEqual(navBottom);
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+});
