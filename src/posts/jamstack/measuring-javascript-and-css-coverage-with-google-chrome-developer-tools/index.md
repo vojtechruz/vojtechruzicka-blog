@@ -39,11 +39,11 @@ Then type `Show Coverage`.
 
 Alternatively, you can show the `Coverage` tab from Dev Tools menu by choosing `More tools → Coverage`.
 
-![enable-code-coverage](./enable-code-coverage.png)
+![Chrome DevTools menu with More tools and Coverage selected](./enable-code-coverage.png)
 
 When you manage to open the coverage tab, it will look like this:
 
-![coverage-tab](./coverage-tab.png)
+![Empty Coverage tab with the record and reload buttons](./coverage-tab.png)
 
 ## Capturing Code Coverage
 
@@ -52,7 +52,7 @@ execute the desired use case. That is - you start to navigate the application, c
 you are finished you just press the button again to stop recording and show the coverage results. This is an example of
 coverage results from browsing stackoverflow.com:
 
-![stack-overflow-coverage](./stack-overflow-coverage.png)
+![Coverage results for stackoverflow.com with the unused bytes of each JS and CSS file, 84 % unused in total](./stack-overflow-coverage.png)
 
 As you can see the table shows all the JS and CSS files which were downloaded during my session there. Each file
 contains information how big portion of the file was actually used in my session - both as percentage and size in bytes.
@@ -61,7 +61,7 @@ On the very bottom in the status bar, there is a summary. You can tell that whol
 This is a nice overview, but you can actually display a per-line report of each of these files by double-clicking a row
 in the summary table:
 
-![per-line-coverage](./per-line-coverage.png)
+![CSS file with a red or green bar next to each line marking unused and used code](./per-line-coverage.png)
 
 Green lines mean that the code on the line was executed fully, red lines were not used during the recording session at
 all. Red/green lines were executed partially - only some fraction of the code was used, but not all.

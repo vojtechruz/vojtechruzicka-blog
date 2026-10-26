@@ -168,7 +168,7 @@ The builder is fortunately quite easy to generate. The best way is to use your f
 is a nice plugin for IntelliJ IDEA [innerbuilder](https://github.com/analytically/innerbuilder), which can be used to
 generate inner class builders from your classes.
 
-![inner-builder-generator](inner-builder-generator.png)
+![innerbuilder plugin dialog selecting the fields of a Person class for the generated builder](inner-builder-generator.png)
 
 ## Conclusion
 

@@ -32,7 +32,7 @@ With a modifier you can for example mark that element is disabled, smaller or la
 
 ## Example
 
-![BEM](bem-block-element-modifier.png)
+![Blog page with its blocks, elements and modifiers outlined in green, red and blue](bem-block-element-modifier.png)
 
 In the image above, blocks are marked by green, elements by red and modifiers by blue. You can see that elements are
 only inside blocks, not standalone. Both main navigation items and follow buttons make sense only within their

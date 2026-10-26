@@ -303,7 +303,7 @@ To access JShell from IDEA, go to `Tools → JShell Console...`.
 What's also useful is that you can prepare all the code in advance and then just run it on demand rather than in the
 interactive console mode, which is often much more convenient.
 
-![jshell-idea](./jshell-idea.png)
+![JShell console in IntelliJ IDEA with a code snippet and its evaluated results, including an error](./jshell-idea.png)
 
 Unlike when running directly from the console, IDEA automatically adds your current project to the classpath so you can
 work with your custom classes out of the box with no setup needed.

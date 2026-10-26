@@ -48,7 +48,7 @@ solutions and tests, which verify whether each task is successfully completed.
 Let's open a course in a normal way, as a student for now. Instead of project files as usual, you see all the chapters
 and the individual tasks contained in them.
 
-![Tasks](tasks.png)
+![Kotlin Koans course in IntelliJ IDEA with finished tasks in green, a failed one in red and the rest not started](tasks.png)
 
 As you can see, that IDEA tracks your progress and shows you what is already finished (green), what is failed (red) and
 what is yet to be completed (empty checkboxes).

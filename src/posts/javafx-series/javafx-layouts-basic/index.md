@@ -110,7 +110,7 @@ hbox.setPadding(new Insets(10, 10, 10, 10));
 VBox is very similar to HBox, but instead of displaying the components inside horizontally in a row, it displays them
 vertically in a column:
 
-![VBox](vbox.png)
+![Diagram of a VBox with four children stacked vertically](vbox.png)
 
 You can still set the spacing and padding in the same way as with HBox.
 

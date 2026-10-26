@@ -134,7 +134,7 @@ Jenkins Continuous Integration.
 This way you can integrate Dependency check as a part of your Jenkins job and check generated reports after it is run.
 You can, for example, schedule nightly check of your vulnerabilities to make sure your application stays secure.
 
-![dependency-check-jenkins](categories.png)
+![Jenkins Dependency-Check result with 153 warnings by priority and a breakdown by CWE category](categories.png)
 
 ### Sonar Integration
 
@@ -142,7 +142,7 @@ To have a constant overview of your current vulnerable dependencies and their ch
 [Dependency Check SonarQube plugin](https://github.com/stevespringett/dependency-check-sonar-plugin), which adds a
 widget to the Sonar dashboard.
 
-![dependency-check-sonar](dashboard-widget.png)
+![SonarQube widget with inherited risk, vulnerable dependencies and vulnerabilities by severity](dashboard-widget.png)
 
 ## UPDATE: Alternatives
 

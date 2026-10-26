@@ -167,7 +167,7 @@ Fortunately, this is easy.
 
 Next to each configuration section such as `[Java]` or `[*]`, you can see a small eye icon.
 
-![Preview](preview.png)
+![Eye icon in the gutter next to an EditorConfig section in IntelliJ IDEA](preview.png)
 
 When you click it, you can select a file, which will be used to preview your changes. Whenever you make changes to the
 config file, it will be reflected in your preview file.
@@ -185,7 +185,7 @@ For example, you can have settings for all files `[*]` on the top of your config
 only `[*.java]`, which overrides some of the general config properties. In such case, IDEA offers you a nice
 visualization with icons in the gutter area. Similar to the case when you override methods from a parent class.
 
-`![Overrides](overrides.png)
+`![Gutter icons in an EditorConfig file with a tooltip saying the section is overridden by the Java section](overrides.png)
 
 A tooltip offers an explanation of what section is overriding or overridden. By clicking the icon, you can navigate to
 that section. This works both inside one file as well as across the whole hierarchy.

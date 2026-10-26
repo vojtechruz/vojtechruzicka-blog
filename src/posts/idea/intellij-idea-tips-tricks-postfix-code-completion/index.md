@@ -58,7 +58,7 @@ postfixes: <kbd>Ctrl</kbd> + <kbd>J</kbd> (or <kbd>⌘</kbd> + <kbd>J</kbd> on M
 shows items relevant to the given context, not all the existing templates. That means - if you open it when the cursor
 is next to a collection type, it will only show postfixes applicable to a collection.
 
-![show-actions-postfix-code-completion](./show-actions-postfix-code-completion.png)
+![Postfix completion popup after items. listing the templates available for the expression](./show-actions-postfix-code-completion.png)
 
 ## Configuration
 
@@ -70,7 +70,7 @@ Editor → General → Postfix Completion
 
 You can disable individual templates or the feature as a whole.
 
-![settings-postfix-code-completion](./settings-postfix-code-completion.png)
+![Postfix Completion settings with the list of Java templates and a before and after preview](./settings-postfix-code-completion.png)
 
 ## Writing Custom postfix templates
 
@@ -104,7 +104,7 @@ The plugin adds a new section in `Settings` under `Editor → Custom Postfix Tem
 the templates and also edit it in case you want to alter them or add your own. What's handy is that the plugin will show
 you a DIFF against the default state, so you can tell what you've changed.
 
-![postfix-completion-custom-templates](./postfix-completion-custom-templates.png)
+![Custom Postfix Templates plugin settings with the template definitions from the plugin](./postfix-completion-custom-templates.png)
 
 ## Conclusion
 

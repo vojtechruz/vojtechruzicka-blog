@@ -96,7 +96,7 @@ that it will bring and about the benefits you will reap. Not directly, like with
 having a blog can boost your credibility, how it can be used as a marketing channel for your products (books in author's
 case) or services.
 
-![cover](./cover.png)
+![Cover of 256 Bloghacks by Yegor Bugayenko with a drawing of a tomato](./cover.png)
 
 ## Conclusion
 

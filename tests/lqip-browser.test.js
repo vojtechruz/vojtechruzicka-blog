@@ -12,7 +12,7 @@ import { configurePlaywrightBrowserPath } from '../config/env-utils.js';
 
 // ignore-files.png: ~28 % transparent / semi-transparent pixels (window shadow)
 const PAGE = '/intellij-idea-tips-tricks-improving-performance/';
-const IMAGE = 'img.lqip[alt="ignore-files"]';
+const IMAGE = 'img.lqip[src*="/ignore-files-"]';
 
 let server;
 let browser;

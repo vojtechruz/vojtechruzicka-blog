@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { existsSync, readFileSync } from 'fs';
 import sharp from 'sharp';
 import { globSync } from 'glob';
-import { loadPage, SITE_DIR } from './helpers.js';
+import { getAllPosts, loadPage, SITE_DIR } from './helpers.js';
 import { resolveImageFormats, resolveImageWidths } from '../config/plugins/image.js';
 
 /**
@@ -113,16 +113,19 @@ describe('Responsive image pipeline', () => {
       }
     });
 
-    // Two images written side by side in one paragraph (`![typedoc-1](…) ![typedoc-2](…)`) used to
-    // come out reversed; unit coverage of the transform is in wrap-pictures.test.js.
+    // Two images written side by side in one paragraph (the two TypeDoc screenshots) used to come
+    // out reversed; unit coverage of the transform is in wrap-pictures.test.js.
     it('keeps side-by-side images of one paragraph in source order', () => {
       const $ = loadPage('/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/');
       const alts = $(`${IN_POST_SELECTOR} > img`)
         .toArray()
         .map((img) => $(img).attr('alt'))
-        .filter((alt) => alt.startsWith('typedoc-'));
+        .filter((alt) => alt.startsWith('TypeDoc '));
 
-      expect(alts).toEqual(['typedoc-1', 'typedoc-2']);
+      expect(alts).toEqual([
+        'TypeDoc page for the HeroService class listing its constructor, properties and methods',
+        'TypeDoc detail of the checkIfUserCanVote method with its description and boolean return value',
+      ]);
     });
 
     // `![alt](x.png "Caption")`: the markdown title survives eleventy-img and becomes the caption
@@ -542,5 +545,21 @@ describe('Responsive image pipeline', () => {
         }
       }
     });
+  });
+});
+
+describe('Alt texts of in-post images', () => {
+  const images = getAllPosts().flatMap(({ filePath }) =>
+    [...readFileSync(filePath, 'utf8').matchAll(/!\[([^\]]*)\]\(([^)\s]+)/g)].map((m) => [m[2], m[1], filePath]),
+  );
+
+  it('posts contain images', () => {
+    expect(images.length).toBeGreaterThan(0);
+  });
+
+  // The alt text is what a screen reader reads instead of the image, so a file name (`typedoc-1`,
+  // `compodoc-modules`) says nothing; a description is at least two words.
+  it.each(images)('%s has a descriptive alt text', (src, alt) => {
+    expect(alt).toMatch(/\S+\s+\S+/);
   });
 });

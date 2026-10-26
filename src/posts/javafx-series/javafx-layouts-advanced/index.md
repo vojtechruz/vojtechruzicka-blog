@@ -79,7 +79,7 @@ GridPane is a layout that allows you to organize your components into a grid. Un
 [TilePane](/javafx-layouts-basic/#tilepane), which is adding components one after another, here you need to specify the
 coordinates of the target location in your grid when adding a new component.
 
-![GridPane](grid-pane.png)
+![GridPane with buttons in 10 columns and 5 rows, each labelled with its coordinates](grid-pane.png)
 
 ```xml
 <GridPane>
@@ -265,7 +265,7 @@ BorderPane is a layout with five sections:
 - Left
 - Center
 
-![BorderPane](borderpane.png)
+![Diagram of the BorderPane sections Top, Left, Center, Right and Bottom](borderpane.png)
 
 You can assign components to the individual sections of the BorderPane:
 

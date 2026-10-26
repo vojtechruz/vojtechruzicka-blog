@@ -167,7 +167,7 @@ however, this feature is currently very limited.
 Multirun plugin does support running multiple configurations at once with much more sophisticated options. This can be
 very useful when running both Backend and Frontend at once, testing multiple modules, and so on.
 
-![Multirun](multirun.png)
+![Multirun configuration in IntelliJ IDEA starting a frontend and a Spring Boot application after a Maven build](multirun.png)
 
 ## [IDEA Mind Map](https://plugins.jetbrains.com/plugin/8045-idea-mind-map/)
 

@@ -136,7 +136,7 @@ When you finish creating your first project, it becomes available on your main d
 all the projects. You have a single place from which you can edit your settings, navigate to your site, CMS, or git
 repository.
 
-![Dashboard](stackbit-dashboard.png)
+![Stackbit dashboard with a live project built from Azimuth, Gatsby, Netlify CMS, GitHub and Netlify](stackbit-dashboard.png)
 
 But the dashboard is not the only place you can manage your site from. If you go directly to your site and are logged in
 to Stackbit, you can see a special Stackbit button, where you can manage the site directly without going to your
