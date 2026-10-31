@@ -21,7 +21,7 @@ eleventyComputed:
   {% if currentSeries.topics %}
     <ul class="post-topics" aria-label="Topics">
       {% for topic in currentSeries.topics %}
-        <li><a href="/topics/{{ topic | slugify }}/"><span class="topic-name">{{ topic }}</span></a></li>
+        <li><a href="/topics/{{ topic | slugify }}/" aria-label="Topic: {{ topic }}"><span class="topic-name">{{ topic }}</span></a></li>
       {% endfor %}
     </ul>
   {% endif %}

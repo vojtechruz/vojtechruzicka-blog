@@ -28,7 +28,8 @@ export default function linkedSeries(slug) {
     .map((topic) => {
       const name = String(topic);
       const topicSlug = slugify(name);
-      return `<li><a href="/topics/${topicSlug}/"><span class="topic-name">${escapeHtml(name)}</span></a></li>`;
+      // Named "Topic: …": NVDA read a tag reached by Tab or L as just its name
+      return `<li><a href="/topics/${topicSlug}/" aria-label="Topic: ${escapeHtml(name)}"><span class="topic-name">${escapeHtml(name)}</span></a></li>`;
     })
     .join('');
 

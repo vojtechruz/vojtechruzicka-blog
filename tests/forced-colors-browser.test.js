@@ -71,4 +71,66 @@ describe.each(['light', 'dark'])('forced colors, %s theme', (colorScheme) => {
     },
     30000,
   );
+
+  // The theme forces the text dark (MarkText on <mark>) but kept a transparent or dropped background behind it
+  it.each([
+    {
+      name: 'search result highlights',
+      path: '/search/?q=java',
+      selector: '#search-page .pagefind-ui__result-excerpt mark',
+    },
+    {
+      name: 'highlighted code lines',
+      path: '/angular/02-building-blocks/',
+      selector: 'pre.shiki .line.highlighted span',
+    },
+  ])(
+    '$name are readable against what is behind them',
+    async ({ path, selector }) => {
+      const page = await browser.newPage({
+        viewport: { width: 390, height: 800 },
+        forcedColors: 'active',
+        colorScheme,
+      });
+      try {
+        await page.goto(server.baseUrl + path);
+        const { text, background } = await page
+          .locator(selector)
+          .first()
+          .evaluate((el) => {
+            // The nearest ancestor with a painted background is what the text sits on
+            let node = el;
+            let own = getComputedStyle(node).backgroundColor;
+            while (node.parentElement && (own === 'transparent' || /^rgba\(.*, 0\)$/.test(own))) {
+              node = node.parentElement;
+              own = getComputedStyle(node).backgroundColor;
+            }
+            return { text: getComputedStyle(el).color, background: own };
+          });
+        expect(text).not.toBe(background);
+      } finally {
+        await page.close();
+      }
+    },
+    30000,
+  );
+
+  // The theme dropped the line's tint, leaving only a thin stripe to tell a highlighted line apart
+  it('highlighted code lines keep a solid background of their own', async () => {
+    const page = await browser.newPage({ viewport: { width: 390, height: 800 }, forcedColors: 'active', colorScheme });
+    try {
+      await page.goto(server.baseUrl + '/angular/02-building-blocks/');
+      const { line, page: pageBackground } = await page
+        .locator('pre.shiki .line.highlighted')
+        .first()
+        .evaluate((el) => ({
+          line: getComputedStyle(el).backgroundColor,
+          page: getComputedStyle(document.body).backgroundColor,
+        }));
+      expect(line).toMatch(/^rgb\(/);
+      expect(line).not.toBe(pageBackground);
+    } finally {
+      await page.close();
+    }
+  }, 30000);
 });

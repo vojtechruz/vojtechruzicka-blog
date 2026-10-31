@@ -52,11 +52,11 @@
       <div class="post-metadata" data-pagefind-ignore>
         <div class="post-metadata-primary" >
           <span class="date-published">{{date | readableDate}}</span>
-          {# NVDA announced the list only as "list, 1 item"; an aria-label on a list it does not read #}
-          <span class="visually-hidden">Topics:</span>
-          <ul class="post-topics">
+          {# NVDA announced the list only as "list, 1 item" and a tag reached by Tab or L as just its name;
+             the link's own name says what it is in every reading mode (same as in linkedPost cards) #}
+          <ul class="post-topics" aria-label="Topics">
             {% for topic in topics %}
-            <li><a class="topic-name" href="/topics/{{ topic | slugify }}/">{{topic}}</a></li>
+            <li><a class="topic-name" href="/topics/{{ topic | slugify }}/" aria-label="Topic: {{ topic }}">{{topic}}</a></li>
             {% endfor %}
           </ul>
           {# Which part of a series this is, up top: the series TOC is a sidebar (hidden below 1024 px)

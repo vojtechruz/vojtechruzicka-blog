@@ -73,13 +73,19 @@ describe('Topics functionality', () => {
       expect(topicLink.text()).toBe(testTopicName);
     });
 
-    // NVDA announced the bare list as "list, 1 item"; the label is text, which it reads, not an aria-label
-    it('names the topic list for screen readers with hidden text right before it', () => {
-      const $ = loadPage(testPostPath);
-      const label = $('.post-topics').prev();
+    // NVDA announced the bare list as "list, 1 item", and a tag reached by Tab or L as just its name
+    it.each([
+      ['post header', testPostPath],
+      ['linkedPost cards', '/'],
+      ['linkedSeries cards', '/series/'],
+      ['series page', '/series/javafx/'],
+    ])('names every topic link "Topic: …" in the %s', (_, path) => {
+      const $ = loadPage(path);
+      const links = $('.post-topics a');
 
-      expect(label.is('.visually-hidden')).toBe(true);
-      expect(label.text()).toBe('Topics:');
+      expect(links.length).toBeGreaterThan(0);
+      links.each((_, el) => expect($(el).attr('aria-label')).toBe(`Topic: ${$(el).text().trim()}`));
+      $('.post-topics').each((_, el) => expect($(el).attr('aria-label')).toBe('Topics'));
     });
 
     // Pagefind excerpts began with the date, topics and series part after the title
