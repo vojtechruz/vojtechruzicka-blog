@@ -122,7 +122,8 @@ describe('search.js', () => {
         const header = inputOf('search');
         expect(header.getAttribute('aria-label')).toBe('Search the site');
         expect(header.getAttribute('title')).toBe('Shortcut: / or Ctrl+K');
-        expect(header.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+        // Only in the title: as aria-keyshortcuts too, NVDA announced the shortcut twice
+        expect(header.hasAttribute('aria-keyshortcuts')).toBe(false);
 
         // The 404 page search is not what the shortcut opens: named after its form, no hint
         const page = inputOf('page-search');
@@ -153,7 +154,6 @@ describe('search.js', () => {
 
         const input = inputOf('search');
         expect(input.getAttribute('title')).toBe('Shortcut: / or ⌘K');
-        expect(input.getAttribute('aria-keyshortcuts')).toBe('/ Meta+K');
       });
     });
 
@@ -621,9 +621,8 @@ describe('search.js', () => {
       const inline = document.querySelector('#search-page .pagefind-ui__search-input');
       expect(inline.getAttribute('aria-label')).toBe('Search posts');
       expect(inline.hasAttribute('title')).toBe(false);
-      expect(inline.hasAttribute('aria-keyshortcuts')).toBe(false);
-      expect(document.querySelector('#search .pagefind-ui__search-input').getAttribute('aria-keyshortcuts')).toBe(
-        '/ Control+K',
+      expect(document.querySelector('#search .pagefind-ui__search-input').getAttribute('title')).toBe(
+        'Shortcut: / or Ctrl+K',
       );
     });
   });

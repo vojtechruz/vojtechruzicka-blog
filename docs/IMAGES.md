@@ -78,6 +78,12 @@ synthetic images), `tests/images.test.js` (built pages), `tests/lqip-browser.tes
 load, nothing after, a failed image, an image loaded before the script, no blur without JS),
 `tests/wrap-pictures.test.js`.
 
+### Alt text
+
+Every in-post image needs an alt text that describes what it shows, at least two words: a screen reader reads it instead
+of the image, and a file name such as `typedoc-1` tells the reader nothing. `tests/images.test.js` fails on a post with
+an empty or one-word alt.
+
 ### Captions
 
 A markdown image title becomes a visible caption: `![alt](./x.png "Caption")` renders as

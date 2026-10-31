@@ -87,6 +87,7 @@
 
   /* ===== OFFSETS (sticky, anchors) ===== */
   --offset-sidebar: 3.5rem; /* TOC sticky top offset */
+  --offset-nav: 5rem; /* Sticky header (~71 px) plus a gap: nothing scrolled into view lands under it */
   --offset-anchor: 7rem; /* Global heading anchor scroll offset */
   --offset-anchor-post: 6rem; /* Post page heading anchor scroll offset */
 

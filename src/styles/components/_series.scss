@@ -102,6 +102,34 @@
     background: var(--series-current);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--series-current) 25%, transparent);
   }
+
+  /* Forced colors turn the dots' and segments' backgrounds into Canvas, so the stepper vanished: draw it in
+     system colours, done parts filled, parts ahead as rings, the current one in Highlight */
+  @media (forced-colors: active) {
+    li + li::before,
+    li.is-done + li::before {
+      forced-color-adjust: none;
+      background: CanvasText;
+    }
+
+    a::before,
+    .is-done a::before {
+      forced-color-adjust: none;
+      box-sizing: border-box;
+      border: 2px solid LinkText;
+      background: LinkText;
+    }
+
+    .is-ahead a::before {
+      background: Canvas;
+    }
+
+    .is-current a::before {
+      border-color: Highlight;
+      background: Highlight;
+      box-shadow: none;
+    }
+  }
 }
 
 // Two compact cards side by side, the next one mirrored to the right; stacked on phones

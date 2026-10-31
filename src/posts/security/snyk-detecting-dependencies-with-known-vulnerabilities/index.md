@@ -196,26 +196,26 @@ to be supported soon). Notifications about new vulnerabilities can be delivered 
 Let's closely look how such integration works. We\'ll use Github as an example. After authenticating with your GitHub
 account, you will see your project in the Projects section of the Snyk webpage.
 
-![snyk-project](snyk-project.jpg)
+![Snyk project page listing the dependency files of a GitHub repository with high, medium and low issue counts](snyk-project.jpg)
 
 It shows all your dependencies and issues by severity. It will not only monitor your master branch, but it will also
 check all the pull requests to be sure that they do not introduce any new vulnerabilities.
 
-![snyk-pr-check](./snyk-pr-check.jpg)
+![GitHub pull request with a failing Snyk check for a new vulnerability in pom.xml](./snyk-pr-check.jpg)
 
 What's even cooler, after testing your project Snyk will check its database whether there are any solutions for the
 issues found. That is - if it can find any new versions fixing the vulnerabilities found. Or at least, if there are any
 patches. If there is something, what can be done, it creates automatically a Pull Request, which introduces the fix. How
 cool is that? You can see an [example Pull Request on GitHub](https://github.com/vojtechruz/snyk-example/pull/2):
 
-![snyk-pull-request-github](./snyk-pull-request-github.jpg)
+![Pull request opened by snyk-bot that upgrades vulnerable dependencies](./snyk-pull-request-github.jpg)
 
 As with the Wizard, this is unfortunately only available for NPM projects though. Hopefully, other types will also be
 supported soon.
 
 If your project is free of vulnerabilities, you can even include this nice badge:
 
-![snyk-badge](./snyk-badge.jpg)
+![Badge showing 0 vulnerabilities](./snyk-badge.jpg)
 
 ## IDE Integration
 

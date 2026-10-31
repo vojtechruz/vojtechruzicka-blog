@@ -75,7 +75,7 @@ describe('Search results keyboard navigation', () => {
 });
 
 describe('Search input names', () => {
-  it('keep their names and the shortcut hint once the real Pagefind UI has taken over and searched', async () => {
+  it('keep their names, the shortcut hint and the clear button name once the real Pagefind UI has taken over and searched', async () => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
     try {
@@ -101,13 +101,19 @@ describe('Search input names', () => {
       expect(await attrs('#search .pagefind-ui__search-input')).toEqual({
         name: 'Search the site',
         title: 'Shortcut: / or Ctrl+K',
-        keys: '/ Control+K',
+        // The title is read as the description: NVDA announced the shortcut twice with aria-keyshortcuts too
+        keys: null,
       });
       expect(await attrs('#search-page .pagefind-ui__search-input')).toEqual({
         name: 'Search posts',
         title: null,
         keys: null,
       });
+      // Pagefind's only content for the button is "×", which screen readers read as "times"
+      expect(await page.locator('#search .pagefind-ui__search-clear').getAttribute('aria-label')).toBe('Clear search');
+      expect(await page.locator('#search-page .pagefind-ui__search-clear').getAttribute('aria-label')).toBe(
+        'Clear search',
+      );
     } finally {
       await context.close();
     }
@@ -183,6 +189,74 @@ describe('Search overlay focus trap', () => {
       await page.locator('#search .pagefind-ui__search-input').focus();
       await page.keyboard.press('Shift+Tab');
       expect(await where()).toEqual({ inside: true, input: false });
+    } finally {
+      await context.close();
+    }
+  });
+});
+
+describe('Escape in the search overlay on a wide screen', () => {
+  // Pagefind's own Escape handler on the input clears the query and blurs the input before ours runs;
+  // focus used to end up on <body>, with no visible focus anywhere
+  const openAndEscape = async (page) => {
+    await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+    await page.keyboard.type('java');
+    await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+    await page.keyboard.press('Escape');
+    await expect.poll(() => page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
+  };
+
+  it('returns focus to the link the shortcut was pressed on', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const origin = page.locator('main a[href]').first();
+      await origin.focus();
+      await page.keyboard.press('/');
+      await openAndEscape(page);
+      expect(await origin.evaluate((el) => el === document.activeElement)).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+
+  // Nothing typed: no results are open, but Pagefind still blurs the input on Escape
+  it.each([
+    ['from a link', true],
+    ['with nothing focused', false],
+  ])('keeps a focus when Escape is pressed before typing anything, opened %s', async (_, fromLink) => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      const origin = page.locator('main a[href]').first();
+      if (fromLink) {
+        await origin.focus();
+      }
+      await page.keyboard.press('/');
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.press('Escape');
+      const onInput = await page.evaluate(() => document.activeElement.matches('#search .pagefind-ui__search-input'));
+      const onOrigin = await origin.evaluate((el) => el === document.activeElement);
+      expect(fromLink ? onOrigin : onInput).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+
+  it('keeps focus in the emptied input when nothing had focus before', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.keyboard.press('/');
+      await openAndEscape(page);
+      const state = await page.evaluate(() => ({
+        input: document.activeElement.matches('#search .pagefind-ui__search-input'),
+        value: document.activeElement.value,
+      }));
+      expect(state).toEqual({ input: true, value: '' });
     } finally {
       await context.close();
     }

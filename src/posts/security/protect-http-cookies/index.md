@@ -143,7 +143,7 @@ compatible and will be ignored by older browsers.
 
 ## Minimize Cookie Availability
 
-![protect-cookies-2](./protect-cookies-2.jpg)
+![Chocolate cookies next to a cup of coffee](./protect-cookies-2.jpg)
 
 ### Don't Share cookies with subdomains
 

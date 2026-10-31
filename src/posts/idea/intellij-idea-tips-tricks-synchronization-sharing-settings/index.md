@@ -38,7 +38,7 @@ And enter the URL of your git repo. If you are just starting an empty repo will 
 Repository this way, you can always check whether your local settings should overwrite those on the server, vice versa
 or if they should be merged.
 
-![settings-repo](./settings-repo.jpg)
+![Settings Repository dialog with a GitHub upstream URL and Merge, Overwrite Local and Overwrite Remote buttons](./settings-repo.jpg)
 
 And that's it, you're done. In most cases. However, IDEA offers a neat feature - you can actually define multiple
 Settings Repositories. What is it good for? Well, maybe there are some settings you want to share with your teammates to
@@ -59,7 +59,7 @@ Settings → Tools → Settings Repository
 Here you can see your primary repository, which you set up earlier. Underneath you can configure additional secondary
 repositories:
 
-![settings-repo-more](./settings-repo-more.jpg)
+![Settings Repository settings with Auto Sync and a dialog adding a read-only source repository](./settings-repo-more.jpg)
 
 Note that you can also disable automatic synchronization and use just sync on demand by `VCS → Sync Settings`.
 
@@ -80,42 +80,42 @@ have one, you can [create a JetBrains account](https://account.jetbrains.com/log
 JetBrains account, you'll need to Log in to IDEA using it. Just head to `Help → Register`. Then you just need to select
 `Activate new License with JetBrains Account` and enter your credentials. Then click `Activate`.
 
-![idea-registration](./idea-registration.png)
+![IntelliJ IDEA License Activation dialog with JetBrains Account selected](./idea-registration.png)
 
 Before you link your IDE to JetBrains account, your status bar in the lower-right part of the window should look
 something like this:
 
-![idea-settings-without-login](./idea-settings-without-login.jpg)
+![IntelliJ IDEA status bar before linking a JetBrains account](./idea-settings-without-login.jpg)
 
 After your JetBrains account is linked, you should see a new Gears icon which is used to manage Settings
 synchronization:
 
-![idea-settings-after-login-ok](./idea-settings-after-login-ok.jpg)
+![IntelliJ IDEA status bar with the new gears icon for settings sync](./idea-settings-after-login-ok.jpg)
 
 If you click it, you'll be able to enable the settings synchronization:
 
-![idea-settings-enable-sync](./idea-settings-enable-sync.jpg)
+![Gears icon menu in the status bar with the Enable Sync option](./idea-settings-enable-sync.jpg)
 
 When you enable it on another machine, you'll be prompted how to manage settings conflict. You can either select to
 overwrite your local settings with the setting from the JetBrains account or vice versa.
 
-![idea-settings-reenable](./idea-settings-reenable.jpg)
+![IDE Settings Sync dialog offering to get settings from the account or keep and sync local settings](./idea-settings-reenable.jpg)
 
 Installed plugin synchronization is handled separately from the rest of the settings. You can either manually trigger
 plugin sync or enable silent automatic synchronization of your plugins in the background.
 
-![plugins-changed-in-another-idea](./plugins-changed-in-another-idea.jpg)
+![Status bar menu offering to sync plugins changed in another IDE](./plugins-changed-in-another-idea.jpg)
 
 If you prefer manual synchronization, you can have fine-grained control of what plugins are synchronized and how. That
 means you can decide for individual plugins and you can even force installation or uninstallation of plugins or your
 other instances of IDEA.
 
-![idea-settings-sync-plugins](./idea-settings-sync-plugins.jpg)
+![Sync Plugins dialog choosing for each plugin whether to install, uninstall, enable or skip it](./idea-settings-sync-plugins.jpg)
 
 And of course, if you no longer want to keep certain IDE instance synchronized, you can disable the synchronization
 using the gears icon in the status bar.
 
-![idea-settings-disable](./idea-settings-disable.jpg)
+![Dialog confirming that settings sync will be disabled for this IDE](./idea-settings-disable.jpg)
 
 ## EditorConfig
 

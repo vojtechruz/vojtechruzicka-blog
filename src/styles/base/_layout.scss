@@ -72,9 +72,17 @@ body {
   .pagefind-ui {
     width: 35ch;
 
+    // 35ch depends on the font; with a wide fallback font it outgrew a 320 px phone
+    max-width: 100%;
+
     .pagefind-ui__form {
       padding-left: 0;
       padding-right: 0;
+    }
+
+    // The same 4 px gap from the field's edge as in the header, without the form padding
+    .pagefind-ui__search-clear {
+      right: 4px;
     }
   }
 }

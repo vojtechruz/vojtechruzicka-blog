@@ -180,11 +180,12 @@ the Lighthouse audit score and compare new Gatsby site to my good old WordPress.
 
 ### Audit score before migration
 
-![before](./chrome-audit-score-before.jpg) ![before-details](./chrome-audit-performance-metrics.jpg)
+![Lighthouse scores of the old WordPress site: Performance 26, PWA 27, Accessibility 81, Best Practices 63, SEO 90](./chrome-audit-score-before.jpg)
+![Lighthouse metrics of the old WordPress site, first meaningful paint at 4.9 s and first interactive at 17.8 s](./chrome-audit-performance-metrics.jpg)
 
 ### Audit score after migration
 
-![after](./results.png)
+![Lighthouse scores of the Gatsby site: Performance 97, all other categories 100, first meaningful paint at 750 ms](./results.png)
 
 Quite a difference, right? Long story short - Gatsby is great. You should give it a try, especially if you are a
 front-end developer. And keep watching its development as I am sure we can look forward to even more awesomeness in the

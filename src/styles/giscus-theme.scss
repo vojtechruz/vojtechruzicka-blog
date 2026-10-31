@@ -107,6 +107,15 @@ button[disabled] {
   cursor: not-allowed;
 }
 
+/* The site's focus ring (--color-focus-ring in _variables.scss), set apart from the element by a gap:
+   giscus' own ring is in the accent blue, nearly invisible on the blue "Sign in with GitHub" button.
+   !important because the theme's place among giscus' stylesheets is not ours to choose. */
+:is(a, button, summary, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid #93c5fd !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
 button,
 a {
   transition:

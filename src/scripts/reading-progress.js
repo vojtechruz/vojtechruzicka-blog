@@ -79,7 +79,6 @@
     }
 
     barInner.style.transform = `scaleX(${ratio})`;
-    bar.setAttribute('aria-valuenow', String(percent));
   }
 
   // Recalculate when the viewport or the article changes size - images, web fonts and embeds

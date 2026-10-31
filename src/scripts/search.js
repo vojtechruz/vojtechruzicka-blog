@@ -8,15 +8,16 @@
   // Element that had focus when a keyboard shortcut opened a container; Escape returns there
   const shortcutOrigins = new WeakMap();
 
-  // The shortcuts below, as the header input announces them: in its tooltip and in aria-keyshortcuts
+  // The shortcuts below, as the header input announces them in its tooltip. Not also in
+  // aria-keyshortcuts: screen readers read the title as the description, so NVDA said them twice.
   const isMac = /mac|iphone|ipad/i.test(navigator.userAgentData?.platform || navigator.platform || '');
   const SHORTCUT_HINT = `Shortcut: / or ${isMac ? '⌘K' : 'Ctrl+K'}`;
-  const KEY_SHORTCUTS = `/ ${isMac ? 'Meta' : 'Control'}+K`;
 
   // Distinct landmark names: /search/ and 404 have a second search form besides the header one.
   // The label comes from renderSearch (data-search-label); /search/ renders its own markup.
   const searchLabel = (container) =>
-    container.dataset.searchLabel || (container.hasAttribute('data-search-inline') ? 'Search posts' : 'Search the site');
+    container.dataset.searchLabel ||
+    (container.hasAttribute('data-search-inline') ? 'Search posts' : 'Search the site');
 
   // Name an input after its search form. Pagefind names its input only by a title copied from the
   // placeholder ("Search…"); here the title instead tells the shortcut, on the input the shortcut opens.
@@ -27,7 +28,6 @@
     input.setAttribute('aria-label', searchLabel(container));
     if (opensOnShortcut) {
       input.setAttribute('title', SHORTCUT_HINT);
-      input.setAttribute('aria-keyshortcuts', KEY_SHORTCUTS);
     } else {
       input.removeAttribute('title');
     }
@@ -111,6 +111,8 @@
       const drawer = container.querySelector('.pagefind-ui__drawer');
       const input = container.querySelector('.pagefind-ui__search-input');
       labelInput(container, input, container === containers[0]);
+      // Pagefind renders the clear_search text as the button's only content; "×" alone was read as "times"
+      container.querySelector('.pagefind-ui__search-clear')?.setAttribute('aria-label', 'Clear search');
 
       if (inline) {
         // Run the query carried in the URL (`/search/?q=term`, the SearchAction target)
@@ -144,8 +146,7 @@
 
         // Close the open instance. `restoreFocus` (keyboard close) sends focus back to where a
         // shortcut was pressed, or keeps it in the now empty input; a backdrop click just blurs.
-        const closeCurrent = (restoreFocus = false) => {
-          const origin = shortcutOrigins.get(container);
+        const closeCurrent = (restoreFocus = false, origin = shortcutOrigins.get(container)) => {
           if (input) {
             input.value = '';
             input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -153,7 +154,8 @@
               input.blur();
             } else if (origin?.isConnected) {
               origin.focus();
-            } else {
+            } else if (input.checkVisibility?.() ?? true) {
+              // Not when Escape also closed the collapsed menu around it: nav.js has focused the toggle
               input.focus({ preventScroll: true });
             }
           }
@@ -206,13 +208,26 @@
           mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
         }
 
-        // ESC closes if this instance is open
-        const onKey = (e) => {
-          if (e.key === 'Escape' && isOpen()) {
-            closeCurrent(true);
+        // ESC closes this instance if open; in its input it also applies with no results (nothing typed).
+        // Pagefind's own Escape handler on the input runs first: it clears the query and blurs the input,
+        // which drops the shortcut origin (focusout) and can hide the drawer, leaving focus on <body>. So
+        // read the state in the capture phase, before Pagefind, and restore focus once the event has
+        // bubbled past it.
+        let escape = null;
+        window.addEventListener(
+          'keydown',
+          (e) => {
+            const applies = e.key === 'Escape' && (isOpen() || (input && document.activeElement === input));
+            escape = applies ? { origin: shortcutOrigins.get(container) } : null;
+          },
+          true,
+        );
+        window.addEventListener('keydown', () => {
+          if (escape) {
+            closeCurrent(true, escape.origin);
+            escape = null;
           }
-        };
-        window.addEventListener('keydown', onKey);
+        });
       }
 
       const visible = (el) => !el.closest('[hidden], .pagefind-ui__hidden');

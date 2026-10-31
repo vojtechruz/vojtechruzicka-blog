@@ -277,6 +277,16 @@ describe('Video files used by posts', () => {
     }
   });
 
+  // The title is the clip's accessible name (and its analytics label); these are silent screen
+  // recordings, so it is their only text alternative (WCAG 1.2.1), and the default "Video" says nothing.
+  it.each(calls)('%s has a descriptive title', (src, filePath) => {
+    const escaped = src.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const call = readFileSync(filePath, 'utf8').match(
+      new RegExp(`{%-?\\s*video\\s+["']${escaped}["']\\s*,\\s*["']([^"']*)["']`),
+    );
+    expect(call?.[1] ?? '', 'missing title').toMatch(/\S+\s+\S+/);
+  });
+
   it('only posts with an animated clip load the autoplay script, and each of them does', () => {
     const SCRIPT = /<script src="\/scripts\/video-autoplay\.js(?:\?v=[^"]*)?" defer(?:="")?><\/script>/;
     const built = getAllPosts()

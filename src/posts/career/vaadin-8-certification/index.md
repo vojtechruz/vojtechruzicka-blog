@@ -27,13 +27,13 @@ usually, it can be done faster.
 Before the exam starts, you will receive a warm-up question, which will show you what it looks like and what are the
 controls available.
 
-![vaadin-sample-question](./vaadin-sample-question.png)
+![Vaadin certification exam warm-up question with a countdown timer and answer checkboxes](./vaadin-sample-question.png)
 
 ## Pausing the exam
 
 Fortunately, the exam can be paused after each question. Clicking the Close button will trigger the following dialog:
 
-![vaadin-pause](./vaadin-pause.png)
+![Dialog asking whether to suspend the Vaadin certification exam](./vaadin-pause.png)
 
 You need to make sure you already marked the answer to the current question and then click Close to suspend the exam.
 Otherwise, the current question would be marked as with an empty answer. When Resuming the exam, you will continue with

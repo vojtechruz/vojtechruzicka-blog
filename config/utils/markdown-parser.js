@@ -14,12 +14,14 @@ import { codeBlockTransformer } from '../markdown-transform/code-block-transform
  * Rendered here rather than patched by an HTML transform so the feed
  * (post.templateContent, which is pre-transform) and the page see the same
  * markup:
- * - no aria-hidden, and an aria-label naming the section so screen-reader
- *   users get a distinct link per heading instead of dozens of identical ones
- * - a title equal to the accessible name, so the mouse tooltip and what a
- *   screen reader announces agree
+ * - aria-hidden="true": inside the heading the link's name became part of the
+ *   heading's, so NVDA read "Data binding Copy link to this section: Data
+ *   binding" for every heading; screen-reader users reach sections via the TOC
+ * - a title (and an equal aria-label, which the shared copy feedback in
+ *   clipboard.js swaps) naming the section for the mouse tooltip
  * - tabindex="-1": deliberately out of the tab order, because an article has
- *   dozens of headings and each would otherwise become a tab stop
+ *   dozens of headings and each would otherwise become a tab stop; it also
+ *   keeps the hidden link from receiving keyboard focus (axe aria-hidden-focus)
  */
 export const HEADER_ANCHOR_LABEL_PREFIX = 'Copy link to this section: ';
 
@@ -30,7 +32,7 @@ function renderHeaderAnchor(slug, opts, state, idx) {
     class: 'header-anchor',
     symbol: '',
     placement: 'after',
-    renderAttrs: () => ({ 'aria-label': label, title: label, tabindex: '-1' }),
+    renderAttrs: () => ({ 'aria-hidden': 'true', 'aria-label': label, title: label, tabindex: '-1' }),
   })(slug, opts, state, idx);
 }
 

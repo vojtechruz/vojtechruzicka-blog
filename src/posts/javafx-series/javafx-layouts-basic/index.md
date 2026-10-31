@@ -110,7 +110,7 @@ hbox.setPadding(new Insets(10, 10, 10, 10));
 VBox is very similar to HBox, but instead of displaying the components inside horizontally in a row, it displays them
 vertically in a column:
 
-![VBox](vbox.png)
+![Diagram of a VBox with four children stacked vertically](vbox.png)
 
 You can still set the spacing and padding in the same way as with HBox.
 
@@ -234,7 +234,7 @@ Items don't necessarily need to have the same size as they do have in the image 
 
 Note how the position of the components is recalculated if you change the size of the container:
 
-{% video "/videos/javafx-layouts-basic/flowpane-resizing" %}
+{% video "/videos/javafx-layouts-basic/flowpane-resizing", "FlowPane rearranging components on resize" %}
 
 You can set the internal padding of this layout in the same way as for HBox and VBox. Spacing is a little bit different
 though. Instead of just one property for spacing, you need to have separate horizontal and vertical spacing as the items

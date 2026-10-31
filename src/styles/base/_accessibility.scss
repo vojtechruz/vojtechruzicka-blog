@@ -1,9 +1,10 @@
 @use '../variables';
 @use '../utilities';
 
-// Focus outline
-:where(a, button, input, textarea, select, [tabindex]) :focus-visible,
-:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+// Focus outline, for everything Tab can reach: an element left out (summary, video) falls back to
+// the browser's own white ring
+:where(a, button, input, textarea, select, summary, video, [tabindex]) :focus-visible,
+:where(a, button, input, textarea, select, summary, video, [tabindex]):focus-visible {
   @include utilities.focus-ring;
 }
 

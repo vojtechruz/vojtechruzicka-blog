@@ -297,17 +297,20 @@ The good news is that IDEA already has nice support for the extended switch.
 In the example below, you can see a quick-fix for replacing the traditional switch with a switch expression. Note that
 IDEA also automatically adds a default branch, so all the possible inputs are covered.
 
-{% video "/videos/java-enhanced-switch/idea-replace-with-switch-expression" %}
+{% video "/videos/java-enhanced-switch/idea-replace-with-switch-expression",
+  "IntelliJ IDEA converting a switch statement to a switch expression" %}
 
 IDEA also warns you when your switch is not compliant, such as in a case where you don't cover all the possible input
 values. Moreover, it offers you a quick fix:
 
-{% video "/videos/java-enhanced-switch/idea-add-default-branch" %}
+{% video "/videos/java-enhanced-switch/idea-add-default-branch",
+  "IntelliJ IDEA quick fix adding the missing default branch to a switch" %}
 
 If idea detects you have multiple `case` branches with the same behavior, it will warn you and offer you to merge these
 branches together:
 
-{% video "/videos/java-enhanced-switch/idea-merge-branches" %}
+{% video "/videos/java-enhanced-switch/idea-merge-branches",
+  "IntelliJ IDEA merging switch branches with the same behavior" %}
 
 ## History
 

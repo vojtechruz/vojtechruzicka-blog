@@ -34,12 +34,14 @@ corner of the layout.
 Anchor `TOP = 10`, `RIGHT = 10` means that the component will stay in the top right corner of the layout in the distance
 10 from both edges.
 
-{% video "/videos/javafx-layouts-advanced/anchor-pane-corners" %}
+{% video "/videos/javafx-layouts-advanced/anchor-pane-corners",
+  "AnchorPane keeping components in their corners while the window is resized" %}
 
 In the example above, the size of each component stays the same on resizing. However, if you define anchor points in the
 opposite directions, you can make your component grow/shrink on resizing.
 
-{% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize" %}
+{% video "/videos/javafx-layouts-advanced/anchor-pane-horizontal-resize",
+  "AnchorPane stretching a button anchored to both left and right as the window is resized" %}
 
 You can have various combinations like this:
 
@@ -77,7 +79,7 @@ GridPane is a layout that allows you to organize your components into a grid. Un
 [TilePane](/javafx-layouts-basic/#tilepane), which is adding components one after another, here you need to specify the
 coordinates of the target location in your grid when adding a new component.
 
-![GridPane](grid-pane.png)
+![GridPane with buttons in 10 columns and 5 rows, each labelled with its coordinates](grid-pane.png)
 
 ```xml
 <GridPane>
@@ -263,7 +265,7 @@ BorderPane is a layout with five sections:
 - Left
 - Center
 
-![BorderPane](borderpane.png)
+![Diagram of the BorderPane sections Top, Left, Center, Right and Bottom](borderpane.png)
 
 You can assign components to the individual sections of the BorderPane:
 
@@ -316,7 +318,8 @@ dependent on the width of the component inside.
 
 The center has a dynamic size and fills the rest of the space not occupied by other sections. Let's look at an example:
 
-{% video "/videos/javafx-layouts-advanced/borderpane-resizing" %}
+{% video "/videos/javafx-layouts-advanced/borderpane-resizing",
+  "BorderPane regions adapting as the window is resized" %}
 
 ## What's next
 

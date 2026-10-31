@@ -77,6 +77,8 @@ describe('BlogPosting JSON-LD', () => {
     const untouched = getAllPosts().find(
       ({ filePath, frontmatter }) =>
         !frontmatter.dateModified &&
+        !frontmatter.draftStatus &&
+        !frontmatter.archivedStatus &&
         frontmatter.path &&
         !filePath.includes('_drafts') &&
         !filePath.includes('archives'),
@@ -127,7 +129,9 @@ describe('BlogPosting JSON-LD of a series part', () => {
       url: `${siteUrl}/series/${series.slug}/`,
     });
     // Same numbering as the visible "Part x of y" below the article
-    const visible = $('.series-nav-position').text().match(/Part (\d+) of/);
+    const visible = $('.series-nav-position')
+      .text()
+      .match(/Part (\d+) of/);
     expect(visible, 'Part x of y line').not.toBeNull();
     expect(post.position).toBe(Number(visible[1]));
   });

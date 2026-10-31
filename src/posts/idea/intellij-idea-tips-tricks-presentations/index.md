@@ -16,7 +16,7 @@ Since IntelliJ IDEA 13, you can switch to Presentation Mode by clicking `View �
 switches to full screen and everything is hidden except for the main editor window. The font size is increased so it is
 better readable from a distance.
 
-![intellij-idea-presentation-mode](./intellij-idea-presentation-mode.png)
+![IntelliJ IDEA in Presentation Mode showing only the editor with an enlarged font](./intellij-idea-presentation-mode.png)
 
 The font size in Presentation Mode can be configured in Settings under:
 
@@ -24,7 +24,7 @@ The font size in Presentation Mode can be configured in Settings under:
 Appearance & Behavior → Appearance → Presentation Mode
 ```
 
-![intellij-idea-presentation-mode-font-size](./intellij-idea-presentation-mode-font-size.png)
+![Appearance settings with the Presentation Mode font size set to 24](./intellij-idea-presentation-mode-font-size.png)
 
 ## Distraction Free Mode
 
@@ -36,7 +36,7 @@ Mode, it does not increase the font size, but it rather keeps it unchanged. Addi
 so you can use it even in a small window. That may be useful when having code editor on half of the screen and something
 else (like a browser window or terminal) in the other half.
 
-![intellij-idea-distraction-free-mode](./intellij-idea-distractio-free-mode-1.png)
+![IntelliJ IDEA in Distraction Free Mode with centered code and all tool windows hidden](./intellij-idea-distractio-free-mode-1.png)
 
 As the name suggests, it is intended as a convenient way to hide all the visual clutter, when you need to focus just on
 some particular piece of code. After the Presentation mode was introduced, many were using it not only for presenting
@@ -86,7 +86,7 @@ Fortunately, there is a nice tool, which helps you exactly with this issue. It i
 whether with the keyboard or mouse), it shows the action name and a keyboard shortcut associated with the action. What's
 more, it shows the shortcut both for Mac and Linux/Windows.
 
-![intellij-idea-presentation-assistant](./presentation-assistant.png)
+![Presentation Assistant popup naming the Extend Selection action with its Mac and Windows/Linux shortcuts](./presentation-assistant.png)
 
 This is obviously very handy when having a presentation as the audience exactly knows which actions are you triggering
 using the keyboard and what shortcut is associated with them. Usually, this way they can learn not only about your main
@@ -110,7 +110,8 @@ Mac) and Then press <kbd>4</kbd> (View Mode). From the subsequent popup menu, yo
 Distraction Free mode. This shortcut is also useful for quickly switching keyboard layouts, code styles, look and feel
 or color schemes.
 
-{% video "/videos/intellij-idea-tips-tricks-presentations/quick-switch-theme" %}
+{% video "/videos/intellij-idea-tips-tricks-presentations/quick-switch-theme",
+  "Entering Presentation Mode through the Quick Switch Scheme popup" %}
 
 ## Mouse wheel zoom
 
