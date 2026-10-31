@@ -40,6 +40,12 @@
   }
 }
 
+// Images on consecutive markdown lines share a paragraph and would touch: two screenshots with white
+// backgrounds then read as one image
+.image-wrapper + .image-wrapper {
+  margin-top: var(--gap-medium);
+}
+
 // Captioned in-post image (`![alt](x.png "Caption")`, wrap-pictures-transform.js); the caption matches
 // the video, CodePen and Mermaid ones
 .image-figure {
