@@ -12,16 +12,14 @@ const POST_PATH = '/break-java-generics-naming-convention/';
 const NON_POST_PATHS = ['/', '/about/', '/topics/', '/topics/java/', '/archive/', '/series/', '/pages/2/'];
 
 describe('Reading progress — rendered markup', () => {
-  it('renders the progressbar with a complete accessibility contract', () => {
+  // As a progressbar NVDA announced "Reading progress, 0" at the top of every article
+  it('renders the bar hidden from assistive tech, without a progressbar role', () => {
     const $ = loadPage(POST_PATH);
     const bar = $('#reading-progress');
 
     expect(bar.length).toBe(1);
-    expect(bar.attr('role')).toBe('progressbar');
-    expect(bar.attr('aria-label')).toBe('Reading progress');
-    expect(bar.attr('aria-valuemin')).toBe('0');
-    expect(bar.attr('aria-valuemax')).toBe('100');
-    expect(bar.attr('aria-valuenow')).toBe('0');
+    expect(bar.attr('aria-hidden')).toBe('true');
+    expect(bar.attr('role')).toBeUndefined();
   });
 
   it('starts hidden so it is not announced before the script measures the article', () => {
@@ -30,12 +28,11 @@ describe('Reading progress — rendered markup', () => {
     expect($('#reading-progress').attr('hidden')).toBeDefined();
   });
 
-  it('exposes exactly one decorative inner bar that is hidden from assistive tech', () => {
+  it('has exactly one inner bar', () => {
     const $ = loadPage(POST_PATH);
     const inner = $('#reading-progress .reading-progress__bar');
 
     expect(inner.length).toBe(1);
-    expect(inner.attr('aria-hidden')).toBe('true');
     // The inner bar is purely visual: it must carry no text content of its own.
     expect(inner.text().trim()).toBe('');
   });
@@ -91,9 +88,8 @@ describe('reading-progress.js behaviour', () => {
   const TOTAL = ARTICLE_HEIGHT - VIEWPORT_HEIGHT;
 
   const BAR_MARKUP = `
-    <div id="reading-progress" class="reading-progress" role="progressbar" aria-label="Reading progress"
-      aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden>
-      <span class="reading-progress__bar" aria-hidden="true"></span>
+    <div id="reading-progress" class="reading-progress" aria-hidden="true" hidden>
+      <span class="reading-progress__bar"></span>
     </div>`;
 
   function setScrollY(value) {
@@ -148,7 +144,11 @@ describe('reading-progress.js behaviour', () => {
     flushRaf();
   }
 
-  const valueNow = () => document.getElementById('reading-progress').getAttribute('aria-valuenow');
+  // The drawn progress in whole percent, read from the inner bar's scaleX (none drawn yet: 0)
+  const valueNow = () => {
+    const scale = document.querySelector('.reading-progress__bar').style.transform.match(/scaleX\((.*)\)/);
+    return String(Math.round(Number(scale?.[1] ?? 0) * 100));
+  };
 
   // Each test imports a fresh copy of the IIFE, which registers window listeners.
   // Track them so a previous instance cannot react to a later test's events.

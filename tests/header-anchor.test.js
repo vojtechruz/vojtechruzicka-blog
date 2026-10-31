@@ -21,7 +21,7 @@ describe('heading anchors — markdown output', () => {
 
     expect(html).toBe(
       '<h2 id="whats-next">What\'s next? ' +
-        '<a class="header-anchor" href="#whats-next" ' +
+        '<a class="header-anchor" href="#whats-next" aria-hidden="true" ' +
         `aria-label="${HEADER_ANCHOR_LABEL_PREFIX}What's next?" ` +
         `title="${HEADER_ANCHOR_LABEL_PREFIX}What's next?" tabindex="-1"></a></h2>`,
     );
@@ -49,11 +49,13 @@ describe('heading anchors — markdown output', () => {
     expect(html).toContain('href="#example-2"');
   });
 
-  it('does not hide the anchor from assistive tech or make the heading focusable', async () => {
+  // Inside the heading, the link's name became part of the heading's: NVDA read
+  // "Section Copy link to this section: Section" in its heading list
+  it('hides the anchor from assistive tech, keeping it unfocusable and the heading too', async () => {
     const md = await getMarkdownParser();
     const html = md.render('## Section');
 
-    expect(html).not.toContain('aria-hidden');
+    expect(html).toMatch(/<a[^>]*aria-hidden="true"/);
     expect(html).not.toMatch(/<h2[^>]*tabindex/);
     expect(html).toMatch(/<a[^>]*tabindex="-1"/);
   });
@@ -85,7 +87,7 @@ describe('heading anchors — built posts', () => {
         expect(anchor.attr('aria-label'), where).toBe(label);
         expect(anchor.attr('title'), where).toBe(label);
         expect(anchor.attr('tabindex'), where).toBe('-1');
-        expect(anchor.attr('aria-hidden'), where).toBeUndefined();
+        expect(anchor.attr('aria-hidden'), where).toBe('true');
         expect(anchor.text(), where).toBe('');
         expect($(el).children().last().is('a.header-anchor'), `${where}: anchor is not the last child`).toBe(true);
         expect($(el).attr('tabindex'), where).toBeUndefined();

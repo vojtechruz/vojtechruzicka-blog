@@ -25,10 +25,10 @@
     </span>
   </div>
   {% endif %}
-  <!-- Reading progress bar -->
-  <div id="reading-progress" class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0"
-    aria-valuemax="100" aria-valuenow="0" hidden>
-    <span class="reading-progress__bar" aria-hidden="true"></span>
+  {# Reading progress bar: visual only. As a progressbar NVDA announced "Reading progress, 0" at the top of
+     every article, while a screen-reader user knows where they are from the reading position anyway. #}
+  <div id="reading-progress" class="reading-progress" aria-hidden="true" hidden>
+    <span class="reading-progress__bar"></span>
   </div>
   <article {% if draftStatus or archivedStatus %}data-pagefind-ignore{% else %}data-pagefind-body{% endif %}>
     <header>
@@ -48,9 +48,12 @@
 
       <h1 class="post-header">{{ title }}</h1>
 
-      <div class="post-metadata">
+      {# Out of the search index: Pagefind excerpts began with the date, topics and series part after the title #}
+      <div class="post-metadata" data-pagefind-ignore>
         <div class="post-metadata-primary" >
           <span class="date-published">{{date | readableDate}}</span>
+          {# NVDA announced the list only as "list, 1 item"; an aria-label on a list it does not read #}
+          <span class="visually-hidden">Topics:</span>
           <ul class="post-topics">
             {% for topic in topics %}
             <li><a class="topic-name" href="/topics/{{ topic | slugify }}/">{{topic}}</a></li>

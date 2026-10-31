@@ -72,6 +72,22 @@ describe('Topics functionality', () => {
       expect(topicLink.length).toBe(1);
       expect(topicLink.text()).toBe(testTopicName);
     });
+
+    // NVDA announced the bare list as "list, 1 item"; the label is text, which it reads, not an aria-label
+    it('names the topic list for screen readers with hidden text right before it', () => {
+      const $ = loadPage(testPostPath);
+      const label = $('.post-topics').prev();
+
+      expect(label.is('.visually-hidden')).toBe(true);
+      expect(label.text()).toBe('Topics:');
+    });
+
+    // Pagefind excerpts began with the date, topics and series part after the title
+    it('keeps the date, topics and series part out of the search index', () => {
+      const $ = loadPage(testPostPath);
+
+      expect($('.post-metadata').is('[data-pagefind-ignore]')).toBe(true);
+    });
   });
 
   describe('Linked Post Topics (linkedPost shortcode)', () => {

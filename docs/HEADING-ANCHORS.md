@@ -10,8 +10,9 @@ Every heading in a post gets a stable `id` and an icon link that copies a deep l
     library), so deep links shared before the Eleventy migration keep resolving, and copied permalinks contain no
     percent-encoding. Repeated headings get a `-1`, `-2` suffix. Do not change the slugger: every id is a public URL.
   - `permalink` is a custom renderer that appends an empty `<a class="header-anchor">` after the heading text with
-    `href="#<id>"`, `aria-label` and `title` both set to `Copy link to this section: <heading text>`, and
-    `tabindex="-1"`. Headings themselves carry no `tabindex` (`tabIndex: false`).
+    `href="#<id>"`, `aria-hidden="true"`, `aria-label` and `title` both set to
+    `Copy link to this section: <heading text>`, and `tabindex="-1"`. Headings themselves carry no `tabindex`
+    (`tabIndex: false`).
 - The anchors are rendered at parse time, not fixed up by an HTML transform, so `post.templateContent` (used by the
   feeds) and the final page carry the same markup. `feedContent` (`config/filters/urls.js`) removes them from feed
   items, where an empty link is useless.
@@ -29,12 +30,16 @@ Every heading in a post gets a stable `id` and an icon link that copies a deep l
 
 ## Deliberate trade-offs
 
+- **Hidden from screen readers.** A link inside a heading adds its name to the heading's, so NVDA's heading list and `H`
+  navigation read "Data binding Copy link to this section: Data binding" for every section. `aria-hidden` keeps headings
+  clean at the cost of the copy feature for screen-reader users, who get section links through the TOC. The alternative,
+  a link next to the heading instead of inside it, would need a wrapper around every heading and could no longer sit
+  right after the last word on narrow screens. `tabindex="-1"` keeps the hidden link out of keyboard focus, so axe's
+  `aria-hidden-focus` passes.
 - **Not in the tab order.** An article can have dozens of headings; making each anchor a tab stop would make keyboard
-  navigation miserable. Screen-reader users still reach the links in browse mode (they are in the accessibility tree
-  with a per-heading name). Sighted keyboard-only users get a section link through the sidebar TOC instead: its links
-  are ordinary fragment navigation (toc-scrollspy.js only highlights and moves focus), so following one puts the
-  `#fragment` in the address bar. Below 1024 px, where the sidebar is hidden, there is no keyboard route; that is the
-  accepted cost.
+  navigation miserable. Sighted keyboard-only users get a section link through the sidebar TOC instead: its links are
+  ordinary fragment navigation (toc-scrollspy.js only highlights and moves focus), so following one puts the `#fragment`
+  in the address bar. Below 1024 px, where the sidebar is hidden, there is no keyboard route; that is the accepted cost.
 - **Icon hidden on wide screens until hover.** Keeps the article uncluttered; touch and narrow screens, which have no
   hover, show it permanently at reduced opacity.
 

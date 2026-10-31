@@ -75,7 +75,7 @@ describe('Search results keyboard navigation', () => {
 });
 
 describe('Search input names', () => {
-  it('keep their names and the shortcut hint once the real Pagefind UI has taken over and searched', async () => {
+  it('keep their names, the shortcut hint and the clear button name once the real Pagefind UI has taken over and searched', async () => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
     try {
@@ -101,13 +101,19 @@ describe('Search input names', () => {
       expect(await attrs('#search .pagefind-ui__search-input')).toEqual({
         name: 'Search the site',
         title: 'Shortcut: / or Ctrl+K',
-        keys: '/ Control+K',
+        // The title is read as the description: NVDA announced the shortcut twice with aria-keyshortcuts too
+        keys: null,
       });
       expect(await attrs('#search-page .pagefind-ui__search-input')).toEqual({
         name: 'Search posts',
         title: null,
         keys: null,
       });
+      // Pagefind's only content for the button is "×", which screen readers read as "times"
+      expect(await page.locator('#search .pagefind-ui__search-clear').getAttribute('aria-label')).toBe('Clear search');
+      expect(await page.locator('#search-page .pagefind-ui__search-clear').getAttribute('aria-label')).toBe(
+        'Clear search',
+      );
     } finally {
       await context.close();
     }

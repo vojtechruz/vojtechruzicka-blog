@@ -27,6 +27,19 @@ const ICONS = [
   { name: 'hamburger menu bars', path: '/css-flexbox/', selector: '.nav-toggle-bar' },
   { name: 'heading permalink icon', path: '/css-flexbox/', selector: 'h2 .header-anchor', pseudo: '::before' },
   { name: 'search field magnifier', path: '/search/', selector: '#search-page .pagefind-ui__form', pseudo: '::before' },
+  // Parts ahead are rings (Canvas fill, LinkText border), so only the filled dots and the segment are compared
+  ...['is-done', 'is-current'].map((state) => ({
+    name: `series stepper ${state} dot`,
+    path: '/angular/04-data-binding/',
+    selector: `.series-nav-progress .${state} a`,
+    pseudo: '::before',
+  })),
+  {
+    name: 'series stepper segment',
+    path: '/angular/04-data-binding/',
+    selector: '.series-nav-progress li + li',
+    pseudo: '::before',
+  },
 ];
 
 // A light and a dark contrast theme, so an icon cannot pass by happening to match only one of them

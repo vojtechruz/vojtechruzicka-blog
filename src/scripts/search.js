@@ -8,10 +8,10 @@
   // Element that had focus when a keyboard shortcut opened a container; Escape returns there
   const shortcutOrigins = new WeakMap();
 
-  // The shortcuts below, as the header input announces them: in its tooltip and in aria-keyshortcuts
+  // The shortcuts below, as the header input announces them in its tooltip. Not also in
+  // aria-keyshortcuts: screen readers read the title as the description, so NVDA said them twice.
   const isMac = /mac|iphone|ipad/i.test(navigator.userAgentData?.platform || navigator.platform || '');
   const SHORTCUT_HINT = `Shortcut: / or ${isMac ? '⌘K' : 'Ctrl+K'}`;
-  const KEY_SHORTCUTS = `/ ${isMac ? 'Meta' : 'Control'}+K`;
 
   // Distinct landmark names: /search/ and 404 have a second search form besides the header one.
   // The label comes from renderSearch (data-search-label); /search/ renders its own markup.
@@ -28,7 +28,6 @@
     input.setAttribute('aria-label', searchLabel(container));
     if (opensOnShortcut) {
       input.setAttribute('title', SHORTCUT_HINT);
-      input.setAttribute('aria-keyshortcuts', KEY_SHORTCUTS);
     } else {
       input.removeAttribute('title');
     }
@@ -112,6 +111,8 @@
       const drawer = container.querySelector('.pagefind-ui__drawer');
       const input = container.querySelector('.pagefind-ui__search-input');
       labelInput(container, input, container === containers[0]);
+      // Pagefind renders the clear_search text as the button's only content; "×" alone was read as "times"
+      container.querySelector('.pagefind-ui__search-clear')?.setAttribute('aria-label', 'Clear search');
 
       if (inline) {
         // Run the query carried in the URL (`/search/?q=term`, the SearchAction target)
