@@ -106,6 +106,26 @@ describe('Image lightbox', () => {
     }
   });
 
+  // Two white screenshots on consecutive markdown lines touched and read as one image, with the focus
+  // ring seemingly covering only part of it
+  it('keeps a gap between images that follow each other', async () => {
+    const page = await openPage('/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/', {
+      width: 1280,
+      height: 800,
+    });
+    try {
+      const gaps = await page.$$eval(`${IN_POST} + .image-wrapper`, (wrappers) =>
+        wrappers.map((el) => el.getBoundingClientRect().top - el.previousElementSibling.getBoundingClientRect().bottom),
+      );
+      expect(gaps.length).toBeGreaterThan(0);
+      for (const gap of gaps) {
+        expect(gap).toBeGreaterThanOrEqual(16);
+      }
+    } finally {
+      await page.close();
+    }
+  });
+
   it('shows the image larger, downloading a candidate for that size only on demand', async () => {
     const page = await openPage('/idea-compare-files-and-folders/', { width: 1280, height: 800 });
     try {
