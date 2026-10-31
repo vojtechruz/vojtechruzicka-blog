@@ -22,6 +22,7 @@ describe('Homepage', () => {
   const published = getAllPosts().filter(
     ({ filePath, frontmatter }) =>
       frontmatter.path &&
+      !frontmatter.draftStatus &&
       !filePath.includes('_drafts') &&
       !filePath.includes('archives') &&
       !frontmatter.archivedStatus,

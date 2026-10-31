@@ -75,8 +75,11 @@
 /javascript-constuctor-functions-and-new-operator         /javascript-constructor-functions-and-new-operator/ 301
 /javascript-constuctor-functions-and-new-operator/        /javascript-constructor-functions-and-new-operator/ 301
 /javafx-fxml-                                             /javafx-fxml-scene-builder/                         301
+/javafx-fxml-/                                            /javafx-fxml-scene-builder/                         301
 /avoid-telescoping-                                       /avoid-telescoping-constructor-pattern/             301
+/avoid-telescoping-/                                      /avoid-telescoping-constructor-pattern/             301
 /netlify-analytics-                                       /netlify-analytics/                                 301
+/netlify-analytics-/                                      /netlify-analytics/                                 301
 /owasp-top-10                                             /owasp-top-10-2025/                                 301
 /owasp-top-10/                                            /owasp-top-10-2025/                                 301
 
