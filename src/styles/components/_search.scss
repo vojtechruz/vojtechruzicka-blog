@@ -201,6 +201,14 @@
   color: var(--color-accent-subtle);
   background-color: transparent;
   font-weight: 600;
+
+  /* Forced colors keep the transparent background but force the text to MarkText (dark), so the matched
+     words vanished on a dark theme: give them the system highlight pair (opted out, or it is forced too) */
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background-color: Mark;
+    color: MarkText;
+  }
 }
 
 .pagefind-ui__results {

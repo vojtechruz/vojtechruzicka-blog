@@ -27,6 +27,23 @@ pre.shiki .line.highlighted {
   margin-left: calc(-1 * var(--code-pad-x));
   margin-right: calc(-1 * var(--code-pad-x));
   padding-left: calc(var(--code-pad-x) - 3px);
+
+  /* Forced colors drop the background, leaving only the thin stripe: mark the line the way search
+     results mark matches, opted out so the system highlight pair is not forced away as well */
+  @media (forced-colors: active) {
+    &,
+    &.diff.add,
+    &.diff.remove {
+      background: Mark;
+      border-left-color: MarkText;
+    }
+
+    &,
+    & span {
+      forced-color-adjust: none;
+      color: MarkText;
+    }
+  }
 }
 
 /* Inline code (non-Shiki) */

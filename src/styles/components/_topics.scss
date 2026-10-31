@@ -15,7 +15,7 @@
   gap: calc(var(--gap-small) * 1.5);
 
   .topic-name::before {
-    content: '#';
+    content: '#' / ''; /* decorative: not read as "number" before the topic */
   }
 
   a {
