@@ -5,6 +5,7 @@ topics: ['Security']
 path: '/snyk-detecting-dependencies-with-known-vulnerabilities/'
 excerpt: 'How to detect and fix security vulnerabilities in your dependencies using Snyk?'
 needsReview: true
+repository: 'https://github.com/vojtechruz/snyk-example'
 ---
 
 ## Introduction

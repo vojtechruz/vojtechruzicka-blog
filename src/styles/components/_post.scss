@@ -269,6 +269,34 @@ article {
     opacity: 0.5;
   }
 
+  // The article's repository (`repository` front matter): a quiet chip beside the topics, for whoever came
+  // for the code; the full card is below the article (components/repository-card.njk)
+  .post-repo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    &:hover {
+      border-color: var(--color-accent);
+      color: var(--color-text-heading);
+    }
+  }
+
   .date-modified {
     font-size: 0.9rem;
   }

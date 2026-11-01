@@ -7,6 +7,7 @@ excerpt:
   'PostgreSQL 9.4 added support for JSONB data type. Hibernate, however, currently does not support out of the box
   mapping for it. This post describes how to implement custom mapping for JSONB in Spring Boot application.'
 needsReview: true
+repository: 'https://github.com/vojtechruz/jsonb-hibernate-example'
 ---
 
 ## JSONB

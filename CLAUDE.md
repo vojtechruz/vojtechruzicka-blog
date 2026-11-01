@@ -49,6 +49,8 @@ npx markdownlint-cli2 "src/**/*.md"
   `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants: success/info/warning/error/update,
   optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}` (post cards; in-body vs. listing
   behaviour in docs/SHORTCODES.md), `{% badge %}`
+- `config/filters/repositories.js` — `repository` front matter (GitHub URL or list) → header chip and card below the
+  article; archived copies link an `archive/<slug>` tag via `repositoryRef` (docs/REPOSITORIES.md)
 - `config/html-transform/` — post-processing transforms: LQIP placeholders (tiny WebP, average colour on thumbnails),
   `<picture>` wrapping, table wrapping, Shiki `<pre>` tabindex removal (only boxes that overflow get a tab stop back, at
   runtime via `src/scripts/scroll-regions.js`, for code blocks, tables and diagrams alike), Mermaid → inline SVG

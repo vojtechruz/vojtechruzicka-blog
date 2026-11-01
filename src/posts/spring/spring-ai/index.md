@@ -8,6 +8,7 @@ excerpt:
   application.'
 featuredImage: featured.jpg
 needsReview: true
+repository: 'https://github.com/vojtechruz/spring-ai-demo'
 ---
 
 {% info %} At the time of writing this article (4/2024), 1.0.0 version of Spring AI is not yet released. You can already

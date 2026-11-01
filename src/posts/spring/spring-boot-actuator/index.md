@@ -7,6 +7,7 @@ excerpt:
   'Monitor and manage your application in production with Spring Boot Actuator 2.x. Gather metrics or check health
   easily.'
 needsReview: true
+repository: 'https://github.com/vojtechruz/spring-boot-actuator-example'
 ---
 
 ## Basic build information

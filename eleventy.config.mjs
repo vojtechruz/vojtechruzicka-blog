@@ -15,6 +15,7 @@ import registerTopicsFilters from "./config/filters/topics.js";
 import registerAssetVersionFilter from "./config/filters/asset-version.js";
 import registerSitemapFilters from "./config/filters/sitemap.js";
 import registerSeriesFilters from "./config/filters/series.js";
+import registerRepositoryFilters from "./config/filters/repositories.js";
 import registerShortcodes from "./config/shortcodes.js";
 import registerCodepenArchive from "./config/codepen-archive.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
@@ -70,6 +71,7 @@ export default async function (eleventyConfig) {
   registerAssetVersionFilter(eleventyConfig);
   registerSitemapFilters(eleventyConfig);
   registerSeriesFilters(eleventyConfig);
+  registerRepositoryFilters(eleventyConfig);
 
   //ShortCodes
   registerShortcodes(eleventyConfig);

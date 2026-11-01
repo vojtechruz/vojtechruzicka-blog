@@ -6,6 +6,7 @@ topics: ['Git']
 path: '/commitlint/'
 excerpt: 'Automatically check and enforce your commit conventions either with various available configurations.'
 needsReview: true
+repository: 'https://github.com/vojtechruz/commitlint-example'
 ---
 
 ## Commit conventions

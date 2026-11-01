@@ -65,6 +65,11 @@
           {% if headerPart %}
           <span class="series-part-label"><a title="View all posts in {{ headerPart.series.name }} series" href="/series/{{ headerPart.series.slug }}/">{{ headerPart.series.name }}</a> · Part {{ headerPart.position }}/{{ headerPart.total }}</span>
           {% endif %}
+          {# The article's code, up top for whoever came for it; the full card is below the article #}
+          {% set headerRepo = (repository | repositories(repositoryRef))[0] %}
+          {% if headerRepo %}
+          <a class="post-repo-link" href="{{ headerRepo.href }}" aria-label="{{ headerRepo.label }} on GitHub: {{ headerRepo.name }}">{% include "icons/github.njk" %}On GitHub</a>
+          {% endif %}
         </div>
         {%if dateModified %}
         <div class="date-modified">Updated: {{dateModified | readableDate }}</div>
@@ -97,6 +102,7 @@
     {{ content | safe }}
 
     {% if 'codepen-facade' in content %}{% include "components/codepen-download.njk" %}{% endif %}
+    {% include "components/repository-card.njk" %}
 
     <hr class="divider">
 
