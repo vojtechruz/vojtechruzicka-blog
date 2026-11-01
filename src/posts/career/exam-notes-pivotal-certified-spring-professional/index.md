@@ -8,6 +8,9 @@ excerpt:
   'Study materials and an exam review for Pivotal Certified Spring Professional Exam 4.2, with flashcards and study
   notes.'
 needsReview: true
+repository:
+  - url: 'https://github.com/vojtechruz/spring-core-cert-notes-4.2'
+    label: 'Study notes for the certification'
 ---
 
 ## Resources

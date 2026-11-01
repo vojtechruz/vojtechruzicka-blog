@@ -1,0 +1,19 @@
+{# The article's GitHub repositories (`repository` in front matter, config/filters/repositories.js), below the
+   article next to the examples download; the post header has a compact link to the first one. An archived
+   copy links the tag of its archiving date. Out of the search index, a plain div (see codepen-download.njk).
+   Styles: src/styles/components/_resource-cards.scss #}
+{% set repos = repository | repositories(repositoryRef) %}
+{% if repos.length %}
+<div class="resource-card repository-card" data-pagefind-ignore>
+  {% for repo in repos %}
+  <div class="resource-card-row">
+    <div class="resource-card-icon" aria-hidden="true">{% include "icons/github.njk" %}</div>
+    <div>
+      <p class="resource-card-title">{{ repo.label }}</p>
+      <p class="resource-card-description"><code>{{ repo.name }}</code>{% if repositoryRef and archivedDate %} · the code as of {{ archivedDate | readableDate }}{% endif %}</p>
+    </div>
+    <a class="resource-card-button" href="{{ repo.href }}">View <span class="visually-hidden">{{ repo.name }} </span>on GitHub</a>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

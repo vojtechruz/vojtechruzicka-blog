@@ -30,6 +30,7 @@
 @use 'components/series';
 @use 'components/breadcrumbs';
 @use 'components/mermaid';
+@use 'components/resource-cards';
 
 // Last on purpose: print overrides must win over component rules of equal specificity
 @use 'base/print';

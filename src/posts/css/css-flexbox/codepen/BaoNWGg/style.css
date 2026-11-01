@@ -1,0 +1,24 @@
+.flex-container {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+}
+.flex-container div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  background-color: darkorange;
+  margin: 10px;
+}
+.flex-container .first {
+  order: -1;
+}
+.flex-container .second {
+  order: 1;
+}
+.flex-container .third {
+  order: 2;
+}
+.flex-container p {
+  text-align: center;
+}

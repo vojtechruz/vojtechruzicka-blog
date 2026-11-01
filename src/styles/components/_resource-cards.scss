@@ -1,0 +1,111 @@
+@use '../variables';
+@use '../utilities';
+
+// Cards below an article that hand the reader something to take away: the CodePen examples zip
+// (components/codepen-download.njk) and the article's GitHub repositories (components/repository-card.njk).
+// The callout family - elevated surface, accent stripe - with one action per row.
+.resource-card {
+  margin: var(--gap-large) 0;
+  padding-left: 3px;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-sm);
+
+  // Two cards in a row read as one group
+  & + & {
+    margin-top: calc(-1 * var(--gap-large) + var(--gap-medium));
+  }
+}
+
+.resource-card-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--gap-medium);
+
+  // Several repositories: one card, a hairline between them
+  & + & {
+    border-top: 1px solid var(--color-border-muted);
+  }
+}
+
+.resource-card-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  // Filled glyphs (the GitHub mark) take the accent; outline icons keep their own fill="none"
+  svg:not([fill]) {
+    fill: currentColor;
+  }
+}
+
+.resource-card-title {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-heading);
+}
+
+.resource-card-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.resource-card-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-small);
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-surface-0);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    @include utilities.focus-ring;
+  }
+}
+
+.resource-card-size {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+// Phone: the text beside the icon, the button full width under both
+@media (max-width: variables.$breakpoint-small) {
+  .resource-card-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .resource-card-button {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox: align-items overriden by align-self</title>
+  <!-- https://codepen.io/vojtechruz/pen/yLYJmeP -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<p class="caption">align-items: flex-end; some items overriden with align-self</p>
+<div class="flex-container">
+  <div class="a">
+    align self not defined
+  </div>
+  <div class="b">
+    align self not defined
+  </div>
+  <div class="c">
+    align self not defined
+  </div>
+  <div class="d overriden">
+    align-self: stretch;
+  </div>
+  <div class="e overriden">
+    align-self: flex-start;
+  </div>
+
+</div>
+</body>
+</html>

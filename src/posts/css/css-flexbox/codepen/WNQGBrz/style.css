@@ -1,0 +1,45 @@
+.flex-container-small,
+.flex-container-medium,
+.flex-container-large {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+.flex-container-small div,
+.flex-container-medium div,
+.flex-container-large div {
+  border: 1px solid black;
+  height: 35px;
+  background-color: darkorange;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  whitespace: wrap;
+}
+
+.flex-container-small {
+  width: 50%;
+}
+
+.flex-container-medium {
+  width: 70%;
+}
+
+.flex-container-large {
+  width: 100%;
+}
+
+.shrink-1 {
+  flex-shrink: 1;
+}
+
+.small {
+  width: 200px;
+}
+
+.large {
+  width: 600px;
+}

@@ -5,6 +5,10 @@ topics: ['Spring', 'REST' , 'Java']
 path: '/documenting-spring-boot-rest-api-swagger-springfox/'
 excerpt: 'How to document your Spring Boot REST APIs using Swagger with SpringFox?'
 needsReview: true
+repository:
+  - url: 'https://github.com/vojtechruz/springfox-example'
+  - url: 'https://github.com/vojtechruz/rest-docs-starter'
+    label: 'Starter project to follow along'
 ---
 
 ## Swagger and SpringFox

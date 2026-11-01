@@ -34,7 +34,7 @@ export async function audit(urlPath) {
 }
 
 // Rules axe could not run because they threw. axe files them under `incomplete`, so without this
-// check a broken rule would pass silently. Other incomplete results (cross-origin CodePen frames,
+// check a broken rule would pass silently. Other incomplete results (cross-origin frames,
 // video captions) need a human and are deliberately not asserted.
 function erroredRules(incomplete) {
   return incomplete.flatMap((result) => {

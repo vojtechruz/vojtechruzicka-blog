@@ -1,0 +1,45 @@
+.flex-container-small,
+.flex-container-medium,
+.flex-container-large {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+.flex-container-small div,
+.flex-container-medium div,
+.flex-container-large div {
+  border: 1px solid black;
+  height: 48px;
+  background-color: darkorange;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  whitespace: wrap;
+}
+
+.flex-container-small {
+  width: 60%;
+}
+
+.flex-container-medium {
+  width: 75%;
+}
+
+.flex-container-large {
+  width: 100%;
+}
+
+.grow-0 {
+  flex-grow: 0;
+}
+
+.grow-1 {
+  flex-grow: 1;
+}
+
+.grow-3 {
+  flex-grow: 3;
+}

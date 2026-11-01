@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox - flex-grow: sum less than 1</title>
+  <!-- https://codepen.io/vojtechruz/pen/yLYarGj -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="caption">width: 60%; flex-grow sum: 0.6</div>
+<div class="flex-container-small">
+  <div class="grow-0"> flex-grow: 0; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+  <div class="grow-2"> flex-grow: 0.4; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+</div>
+<div class="caption">width: 75%; flex-grow sum: 0.6</div>
+<div class="flex-container-medium">
+  <div class="grow-0"> flex-grow: 0; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+  <div class="grow-2"> flex-grow: 0.4; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+</div>
+<div class="caption">width: 100%; flex-grow sum: 0.6</div>
+<div class="flex-container-large">
+  <div class="grow-0"> flex-grow: 0; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+  <div class="grow-2"> flex-grow: 0.4; </div>
+  <div class="grow-1"> flex-grow: 0.1; </div>
+</div>
+</body>
+</html>

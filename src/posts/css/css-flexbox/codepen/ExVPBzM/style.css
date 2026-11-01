@@ -1,0 +1,22 @@
+.flex-container {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+.flex-container div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  background-color: darkorange;
+  margin: 5px;
+}
+.flex-container p {
+  text-align: center;
+  margin: 0;
+  margin-top: 0.3em;
+}
+
+.caption {
+  text-align: center;
+}

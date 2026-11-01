@@ -43,7 +43,8 @@ The click opens a native modal `<dialog>` with a copy of the `<picture>` whose `
 at, so the large candidate downloads only on demand; the in-page rendition stands in as a scaled-up background until it
 arrives. Escape, the focus trap and focus return come from the dialog; a click anywhere closes it. Print styles keep the
 button visible (they otherwise hide every `<button>`). Tests: `tests/lightbox-script.test.js` (jsdom),
-`tests/lightbox-browser.test.js` and `tests/print.test.js` (Playwright).
+`tests/lightbox-browser.test.js` and `tests/print.test.js` (Playwright). CodePen posters are not wrapped: the same
+script shows their **Enlarge** button in the embed's title bar under the same 1.25× rule ([CODEPEN.md](CODEPEN.md)).
 
 ### Placeholders (LQIP) and the image wrapper
 

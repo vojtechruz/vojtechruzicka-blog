@@ -1,0 +1,41 @@
+.box {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  position: fixed;
+  padding-left: 5px;
+}
+
+.first {
+  top: 40%;
+  left: 40%;
+  background: darkorange;
+  z-index: 3;
+}
+
+.second {
+  top: 34%;
+  left: 42%;
+  background: #ffa333;
+  z-index: 2;
+}
+
+.third {
+  top: 28%;
+  left: 44%;
+  background: #ffba66;
+  z-index: 1;
+}
+
+.fourth {
+  top: 22%;
+  left: 46%;
+  background: #ffd199;
+}
+
+.fifth {
+  top: 16%;
+  left: 48%;
+  background: #ffe8cc;
+  z-index: -1;
+}

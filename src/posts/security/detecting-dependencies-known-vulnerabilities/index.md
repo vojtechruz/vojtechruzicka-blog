@@ -9,6 +9,7 @@ excerpt:
   'How to automatically detect vulnerable third-party libraries as a part of your build process, integrate it with CI
   and track vulnerable dependencies over time?'
 needsReview: true
+repository: 'https://github.com/vojtechruz/dependency-check-example'
 ---
 
 ## Vulnerable Dependencies

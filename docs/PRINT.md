@@ -29,7 +29,8 @@ piece of interactive chrome should be added to the list (and to `HIDDEN_IN_PRINT
   `site.url` - tested). Skipped for permalinks, image links, topic links, in-page and `mailto:` links.
 - **Embed URLs:** the `codepen`, `youtube` and `video` shortcodes put `data-print-label` / `data-print-url` on their
   `<figure>`; print hides the iframe / player and shows `Label: URL` via `::before`. A new embed shortcode should follow
-  the same pattern.
+  the same pattern. A CodePen not yet run also keeps its result screenshot under the URL, without its title bar's
+  controls (CODEPEN.md).
 
 ## Checking manually
 

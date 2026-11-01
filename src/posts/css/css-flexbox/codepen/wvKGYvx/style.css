@@ -1,0 +1,39 @@
+.flex-container-space-between,
+.flex-container-space-around,
+.flex-container-space-evenly {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+.flex-container-space-between div,
+.flex-container-space-around div,
+.flex-container-space-evenly div {
+  border: 1px solid black;
+  width: 48px;
+  height: 48px;
+  background-color: darkorange;
+}
+.flex-container-space-between p,
+.flex-container-space-around p,
+.flex-container-space-evenly p {
+  text-align: center;
+}
+
+.flex-container-space-between {
+  justify-content: space-between;
+}
+
+.flex-container-space-around {
+  justify-content: space-around;
+}
+
+.flex-container-space-evenly {
+  justify-content: space-evenly;
+}
+
+.caption {
+  text-align: center;
+}

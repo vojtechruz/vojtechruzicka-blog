@@ -29,6 +29,9 @@ Show the user:
 - The archive destination: `src/posts/archives/<archive-slug>/index.md` → `/archive/<archive-slug>/`
 - That all asset files (images, etc.) alongside the original will be copied into the archive directory
 - That the original file will be reset for a rewrite at the same URL
+- If the frontmatter has `repository`: that a tag `archive/<archive-slug>` will be created in each listed GitHub
+  repository (on the current head of its default branch), so the archived copy keeps linking the code it was written
+  for. This writes to other repositories — list them by name.
 
 Ask for confirmation before proceeding.
 
@@ -52,12 +55,31 @@ Create `src/posts/archives/<archive-slug>/index.md` by taking the **full origina
 - Add `archivedStatus: 'archived'`
 - Add `supersededBy: '/<slug>/'`
 - Add `archivedDate: <today's date as YYYY-MM-DD>`
+- If `repository` is present, keep it and add `repositoryRef: 'archive/<archive-slug>'` (the tag from Step 5b)
 - Remove `draftStatus` if present (archives are always built regardless of draft status)
 - Remove `needsReview` if present
 
 Leave the body **unchanged** — the full original content must be preserved.
 
 Use the **Write tool** (not git mv or cp) so git sees this as a new file. Git will detect content similarity to the original automatically.
+
+## Step 5b — Tag the code repositories
+
+Only when the frontmatter has `repository` (a URL or a list of `{ url, label }`; see docs/REPOSITORIES.md). For each
+repository `<owner>/<repo>`:
+
+```bash
+sha=$(gh api repos/<owner>/<repo>/commits/HEAD --jq .sha)
+gh api repos/<owner>/<repo>/git/refs -f ref=refs/tags/archive/<archive-slug> -f sha=$sha
+```
+
+A lightweight tag on the default branch's head: unlike a branch nobody commits to it by accident, and GitHub serves
+`/tree/archive/<archive-slug>` and its ZIP download like any branch. If the tag already exists (HTTP 422), check that
+it points at the same commit and say so instead of moving it. If a repository cannot be tagged (no access, renamed),
+stop and tell the user before going on — an archived copy must not link a tag that does not exist.
+
+`tests/repositories.test.js` checks that every archived copy with `repository` has
+`repositoryRef: 'archive/<its directory name>'`.
 
 ## Step 6 — Reset the original file
 
@@ -84,7 +106,9 @@ Rules:
 - Set `date` to today (the rewrite date)
 - Set `featuredImage` to `'./featured.jpg'` (reset; author will replace)
 - Add `draftStatus: 'draft'` and `needsReview: true`
-- Drop all other frontmatter fields (`dateModified`, `series`, `relatedPosts`, `archivedStatus`, etc.)
+- Keep `repository` if present: the rewrite usually builds on the same repository, whose default branch then moves on
+  with it (remove it if the rewrite will not use that code)
+- Drop all other frontmatter fields (`dateModified`, `series`, `relatedPosts`, `archivedStatus`, `repositoryRef`, etc.)
 - Body is a single blank line — nothing else
 
 ## Step 7 — Report
@@ -92,6 +116,7 @@ Rules:
 Tell the user:
 - Archive created at `src/posts/archives/<archive-slug>/index.md` → `/archive/<archive-slug>/`
 - Original reset at `<original path>`
+- The tags created in the code repositories (with the commit they point at), if any
 - The year-month in the archive slug (`<slug>-YYYY-MM`) keeps each archived version distinct; if the same post is archived again later the new archive will get its own date-based slug
 - Links to all archived versions (with their `archivedDate`) will automatically appear at the bottom of the rewritten post (computed from `supersededBy` in each archive copy — no frontmatter needed on the live post)
 

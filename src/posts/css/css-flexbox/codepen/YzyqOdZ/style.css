@@ -1,0 +1,40 @@
+.flex-container-start,
+.flex-container-end,
+.flex-container-center {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+.flex-container-start div,
+.flex-container-end div,
+.flex-container-center div {
+  border: 1px solid black;
+  width: 48px;
+  height: 48px;
+  background-color: darkorange;
+  margin: 5px;
+}
+.flex-container-start p,
+.flex-container-end p,
+.flex-container-center p {
+  text-align: center;
+}
+
+.flex-container-start {
+  justify-content: flex-start;
+}
+
+.flex-container-end {
+  justify-content: flex-end;
+}
+
+.flex-container-center {
+  justify-content: center;
+}
+
+.caption {
+  text-align: center;
+}

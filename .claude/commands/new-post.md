@@ -61,6 +61,9 @@ draftStatus: 'draft'
 
 Omit `draftStatus` if the post is not a draft.
 
+If the post comes with example code in a GitHub repository, add `repository: 'https://github.com/vojtechruz/<repo>'`
+(the layout then links it in the header and below the article; docs/REPOSITORIES.md).
+
 Leave the body empty — just a blank line after the frontmatter closing `---`.
 
 ## Step 4 — Confirm

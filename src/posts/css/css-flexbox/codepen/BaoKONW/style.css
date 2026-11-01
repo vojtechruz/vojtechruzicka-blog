@@ -1,0 +1,45 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+.main .rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.main .rows .row {
+  background-color: #ffba66;
+  display: flex;
+  border: 1px solid black;
+  width: 300px;
+}
+.main .rows .row-reverse {
+  flex-direction: row-reverse;
+}
+.main .columns {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.main .columns .column {
+  background-color: #ffba66;
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+  width: 42px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 15px;
+  height: 200px;
+}
+.main .columns .column-reverse {
+  flex-direction: column-reverse;
+}
+.main .item {
+  border: 1px solid black;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background-color: darkorange;
+}

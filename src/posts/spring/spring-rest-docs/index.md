@@ -5,6 +5,10 @@ topics: ['Spring', 'REST', 'Java']
 path: '/spring-rest-docs/'
 excerpt: 'Test driven REST API documentation as an alternative to traditional Swagger docs.'
 needsReview: true
+repository:
+  - url: 'https://github.com/vojtechruz/spring-rest-docs-example'
+  - url: 'https://github.com/vojtechruz/rest-docs-starter'
+    label: 'Starter project to follow along'
 ---
 
 ## SpringFox And Swagger

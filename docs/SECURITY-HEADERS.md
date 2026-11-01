@@ -77,7 +77,7 @@ CSP was once wrapped for readability and simply not served at all, with no error
 | `https://plausible.io`                  | `script-src`, `connect-src`            | Analytics script + event reporting (`src/_includes/components/analytics.njk`) |
 | `https://giscus.app`                    | `script-src`, `frame-src`, `style-src` | Comments — see the note below the table                                       |
 | `https://www.youtube-nocookie.com`      | `frame-src`                            | `{% youtube %}` shortcode (always emits the nocookie domain)                  |
-| `https://codepen.io`                    | `frame-src`                            | `{% codepen %}` shortcode                                                     |
+| `https://codepen.io`                    | `frame-src`                            | `{% codepen %}` shortcode, iframe created on click (CODEPEN.md)               |
 | `https://static.cloudflareinsights.com` | `script-src`                           | Cloudflare Web Analytics (RUM) beacon — see below                             |
 | `https://cloudflareinsights.com`        | `connect-src`                          | The beacon's event reporting endpoint (`/cdn-cgi/rum`)                        |
 

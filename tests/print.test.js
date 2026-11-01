@@ -40,6 +40,7 @@ const HIDDEN_IN_PRINT = [
   '.post-header-featured-image',
   '.front-post-image', // card thumbnails (in-body linkedPost cards, listings)
   '.codepen-embed',
+  '.codepen-actions', // a CodePen's "Run demo" and "Enlarge" bar
   '.yt-embed',
   '.video-embed',
   'input',
@@ -159,6 +160,11 @@ describe('Print styles', () => {
   it('replace embeds with their URL', async () => {
     await open(PAGES.post);
     expect(await pseudoContent('.codepen-embed-figure', '::before')).toContain('https://codepen.io/vojtechruz/pen/');
+    // ...and a CodePen also shows what the demo looks like
+    const poster = page.locator('.codepen-embed-figure .codepen-poster').first();
+    await poster.scrollIntoViewIfNeeded();
+    expect(await poster.isVisible()).toBe(true);
+    expect((await poster.boundingBox()).height).toBeGreaterThan(100);
 
     await open(PAGES.youtube);
     expect(await pseudoContent('.yt-embed-figure', '::before')).toContain('https://www.youtube.com/watch?v=');
