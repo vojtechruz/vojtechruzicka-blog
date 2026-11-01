@@ -77,6 +77,7 @@ $site-url: 'https://www.vojtechruzicka.com';
   .linked-post-compact-image,
   .search-404,
   .section-404:has(+ .search-404),
+  .examples-download,
   input,
   button {
     // !important: the featured image carries an inline display:block from the LQIP transform
@@ -131,10 +132,28 @@ $site-url: 'https://www.vojtechruzicka.com';
 
   // Embeds print as empty boxes (iframes) or a bare first frame (video) - replace them with
   // their URL. The shortcodes put it on the figure (data-print-label / data-print-url).
+  // A CodePen not yet run keeps its result screenshot under the URL, without the bar's controls.
   .codepen-embed,
+  .codepen-actions,
   .yt-embed,
   .video-embed {
     display: none !important;
+  }
+
+  // Block, not the screen grid: the URL line (::before below) would become a grid cell
+  .codepen-embed-figure {
+    display: block;
+    border: 0;
+
+    .codepen-caption {
+      padding: var(--gap-small) 0;
+      border: 0;
+    }
+  }
+
+  .codepen-facade {
+    border: 1px solid var(--color-border);
+    break-inside: avoid;
   }
 
   [data-print-url]::before {

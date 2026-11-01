@@ -90,6 +90,9 @@ Many readers drop `<video>` or never load its sources, which leaves only the pla
 video tag" text. `feedContent` reduces each `{% video %}` figure to an `<em>Video: {title}</em> (watch the video)`
 paragraph linking the MP4 (just "Video" when the clip has no title; removed if it has no source). See VIDEO.md.
 
+A `{% codepen %}` figure is a screenshot under a button only the site JS can run, so it becomes an
+`<em>Interactive demo: {title}</em> (open the demo on CodePen)` paragraph linking the pen. See CODEPEN.md.
+
 ### 5. Decorative icons → removed
 
 The callout/msg SVG icons are `aria-hidden="true"` decoration that only sits inline via the component's flexbox CSS;

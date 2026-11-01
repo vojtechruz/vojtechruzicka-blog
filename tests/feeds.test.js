@@ -4,6 +4,7 @@ import { getAllPosts, SITE_DIR } from './helpers.js';
 import { DOMParser } from '@xmldom/xmldom';
 import { feedContent, htmlToAbsoluteUrls, feedFooter } from '../config/filters/urls.js';
 import video from '../config/shortcodes/video.js';
+import codepen from '../config/shortcodes/codepen.js';
 import { latestModifiedDate } from '../config/filters/dates.js';
 
 // Load feed config
@@ -180,6 +181,19 @@ describe('Feeds (RSS and Atom)', () => {
       const figure = await video('/videos/x/clip.mov');
       expect(feedContent(figure).trim()).toBe(
         '<p><em>Video</em> (<a href="/videos/x/clip.mov">watch the video</a>)</p>',
+      );
+    });
+
+    it('reduces a CodePen to its title and a link to the pen', () => {
+      const figure = codepen.call(
+        { page: { inputPath: './src/posts/css/css-position/index.md' } },
+        'mdJamVb',
+        'Position <relative>',
+      );
+      const result = feedContent(`<p>Before</p>${figure}<p>After</p>`).replace(/>\s+</g, '><');
+      expect(result).toBe(
+        '<p>Before</p><p><em>Interactive demo: Position &lt;relative&gt;</em> ' +
+          '(<a href="https://codepen.io/vojtechruz/pen/mdJamVb">open the demo on CodePen</a>)</p><p>After</p>',
       );
     });
 

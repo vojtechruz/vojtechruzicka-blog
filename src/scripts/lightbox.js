@@ -4,7 +4,8 @@
 // an image changes size (rotation, window resize). The enlarged image is a new <img> with the in-page
 // picture's srcsets and a `sizes` for the size it will show at, so the large candidate downloads only
 // on demand. The native modal dialog provides the focus trap, Escape and focus return; a click
-// anywhere closes it. Without JS the images stay as they are.
+// anywhere closes it. Without JS the images stay as they are. CodePen posters (codepen shortcode) open
+// from their own "Enlarge" button instead, shown under the same rule.
 (() => {
   // In-post images, captioned (figure.image-figure) or not; not the featured image or post cards
   const images = Array.from(
@@ -12,7 +13,12 @@
       ':is(main.post > article, main.post > article > .image-figure) > .image-wrapper > picture > img',
     ),
   );
-  if (!images.length || typeof HTMLDialogElement !== 'function') {
+  // CodePen posters (codepen shortcode) are not wrapped: their own "Enlarge" button in the title bar
+  // opens them, so the poster itself stays a picture to look at
+  const posters = Array.from(document.querySelectorAll('button.codepen-enlarge'))
+    .map((button) => ({ button, img: button.closest('figure')?.querySelector('img.codepen-poster') }))
+    .filter(({ img }) => img);
+  if ((!images.length && !posters.length) || typeof HTMLDialogElement !== 'function') {
     return;
   }
 
@@ -48,11 +54,11 @@
     return Math.max(1, Math.round(Math.min(width, maxWidth, height ? (maxHeight * width) / height : Infinity)));
   }
 
-  function open(img) {
+  function open(img, trigger, label) {
     if (!dialog) {
       buildDialog();
     }
-    opener = img.closest('.lightbox-trigger');
+    opener = trigger;
     const sizes = `${displayWidth(img)}px`;
     const picture = img.closest('picture').cloneNode(true);
     picture.querySelectorAll('source').forEach((source) => source.setAttribute('sizes', sizes));
@@ -65,7 +71,7 @@
     // Sized up front (height from the width/height aspect ratio), so the placeholder shows at once
     large.style.width = sizes;
     large.style.backgroundImage = `url("${img.currentSrc || img.src}")`;
-    dialog.setAttribute('aria-label', img.alt || 'Image');
+    dialog.setAttribute('aria-label', label || img.alt || 'Image');
     dialog.prepend(picture);
     document.body.classList.add('lightbox-open');
     dialog.showModal();
@@ -97,18 +103,30 @@
     button.className = 'lightbox-trigger';
     button.setAttribute('aria-haspopup', 'dialog');
     button.setAttribute('aria-label', img.alt ? `Enlarge image: ${img.alt}` : 'Enlarge image');
-    button.addEventListener('click', () => open(img));
+    button.addEventListener('click', () => open(img, button));
     picture.replaceWith(button);
     button.appendChild(picture);
   }
 
+  // Each image's re-evaluation: in-post images get or lose their wrapping button, posters show or hide theirs
+  const updates = new Map(images.map((img) => [img, () => update(img)]));
+  posters.forEach(({ button, img }) => {
+    const label = `Screenshot: ${img.closest('.codepen-facade')?.dataset.codepenTitle || 'CodePen demo'}`;
+    button.addEventListener('click', () => open(img, button, label));
+    updates.set(img, () => {
+      if (!window.matchMedia?.('print').matches) {
+        button.hidden = !zoomable(img);
+      }
+    });
+  });
+
   // The image's own size (the column) and the viewport (the dialog) both decide
-  const updateAll = () => images.forEach(update);
+  const updateAll = () => updates.forEach((run) => run());
   window.addEventListener('resize', updateAll);
   if ('ResizeObserver' in window) {
     // Also fires once per image right after observe(), which does the initial pass
-    const observer = new ResizeObserver((entries) => entries.forEach(({ target }) => update(target)));
-    images.forEach((img) => observer.observe(img));
+    const observer = new ResizeObserver((entries) => entries.forEach(({ target }) => updates.get(target)?.()));
+    updates.forEach((_, img) => observer.observe(img));
   } else {
     updateAll();
   }

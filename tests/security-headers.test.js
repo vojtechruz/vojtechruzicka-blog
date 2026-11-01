@@ -91,6 +91,12 @@ describe('Security headers (Content Security Policy)', () => {
     expect(sources('frame-src')).toContain('https://giscus.app');
   });
 
+  it('keeps codepen.io in frame-src even though no static page references it', () => {
+    // CodePen embeds are click-to-load (src/scripts/codepen.js): the iframe exists only after the
+    // reader runs a demo, so the built pages above never show it.
+    expect(sources('frame-src')).toContain('https://codepen.io');
+  });
+
   it('keeps giscus.app in style-src even though no static page references it', () => {
     // The giscus script also injects <link href="https://giscus.app/default.css"> at runtime.
     // Without it every post with comments fires a CSP Violation (2026-08-30 .. 2026-09-19).

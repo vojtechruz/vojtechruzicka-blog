@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexbox - flex-shrink: item size matters</title>
+  <!-- https://codepen.io/vojtechruz/pen/WNQGBrz -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="caption">width: 100%;</div>
+<div class="flex-container-large">
+  <div class="shrink-1 small"> flex-shrink: 1; </div>
+  <div class="shrink-1 large"> flex-shrink: 1; </div>
+</div>
+<div class="caption">width: 70%;</div>
+<div class="flex-container-medium">
+  <div class="shrink-1 small"> flex-shrink: 1; </div>
+  <div class="shrink-1 large"> flex-shrink: 1; </div>
+</div>
+<div class="caption">width: 50%;</div>
+<div class="flex-container-small">
+  <div class="shrink-1 small"> flex-shrink: 1; </div>
+  <div class="shrink-1 large"> flex-shrink: 1; </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.header {
+  position: fixed;
+  background-color: darkorange;
+  text-align: center;
+  width: 100%;
+  top: 0px;
+}
+
+.footer {
+  position: fixed;
+  background-color: darkorange;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+}
+
+p {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}

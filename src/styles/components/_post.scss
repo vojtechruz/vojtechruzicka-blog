@@ -102,6 +102,12 @@ article {
   border: 0;
 }
 
+// Not inline: the line box's descender gap under it would make the figure grow when the iframe
+// replaces the CodePen poster
+.codepen-embed {
+  display: block;
+}
+
 .yt-embed,
 .video-embed {
   height: auto;
@@ -122,13 +128,120 @@ article {
   margin-inline: 0;
 }
 
+// A CodePen (codepen shortcode) is framed like a code block with a title: the caption on the left of the
+// bar, the controls on the right, the demo under them - so the controls never cover the demo.
 .codepen-embed-figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   margin-inline: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+
+  .codepen-caption,
+  .codepen-actions {
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    // Taller than a control (line-height 1.2 below), so the bar keeps its height when "Run demo"
+    // replaces the poster and both buttons go
+    min-height: 2.5rem;
+    padding: 0.3rem 0.5rem;
+    background: var(--color-surface-2);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
 
   .codepen-caption {
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
-    text-align: center;
+    grid-column: 1;
+    letter-spacing: 0.025em;
+  }
+
+  .codepen-actions {
+    grid-column: 2;
+    gap: 0.25rem;
+
+    // No caption: the bar is the controls alone, on the right
+    &:first-child {
+      grid-column: 1 / -1;
+      justify-content: flex-end;
+    }
+  }
+
+  // A demo already run (src/scripts/codepen.js): nothing left to run or enlarge, but the controls keep
+  // their room, so the caption beside them wraps as before and the demo does not move. The controls,
+  // not their container: that is half of the bar, its background has to stay
+  &.codepen-running .codepen-actions > * {
+    visibility: hidden;
+  }
+
+  .codepen-facade,
+  .codepen-embed {
+    grid-column: 1 / -1;
+  }
+}
+
+// Bar controls, styled like the code block's copy button; the ring is drawn inside, as the frame clips
+.codepen-enlarge,
+.codepen-run,
+.codepen-open {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: color-mix(in oklab, var(--color-bg-highlight) 28%, transparent);
+    border-color: var(--color-border);
+    color: var(--color-text-heading);
+  }
+
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.codepen-run {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+// Click-to-load stand-in for the iframe (src/scripts/codepen.js): the pen's result as a screenshot, at
+// the iframe's height so nothing moves when it loads. White like a pen's result; on a phone the desktop
+// screenshot shrinks to fit, from the top.
+.codepen-facade {
+  background: #fff;
+
+  .image-wrapper,
+  picture,
+  .codepen-poster {
+    display: block;
+    height: 100%;
+  }
+
+  .codepen-poster {
+    width: 100%;
+    object-fit: contain;
+    object-position: top;
   }
 }
 

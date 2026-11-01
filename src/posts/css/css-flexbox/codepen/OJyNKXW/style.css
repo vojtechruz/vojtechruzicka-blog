@@ -1,0 +1,58 @@
+.main {
+  display: flex;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: flex-end;
+}
+
+.section {
+  margin: 2px;
+}
+
+.box {
+  border: 1px solid black;
+  background-color: #ffba66;
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px;
+}
+.box div {
+  background-color: orange;
+  border: 1px solid black;
+  min-width: 12px;
+  min-height: 12px;
+  margin: 2px;
+}
+
+.caption {
+  text-align: center;
+}
+
+.flex-start {
+  align-content: flex-start;
+}
+
+.flex-end {
+  align-content: flex-end;
+}
+
+.center {
+  align-content: center;
+}
+
+.space-around {
+  align-content: space-around;
+}
+
+.space-between {
+  align-content: space-between;
+}
+
+.space-evenly {
+  align-content: space-evenly;
+}
+
+.stretch {
+  align-content: stretch;
+}

@@ -1,0 +1,21 @@
+{# All of the article's CodePen demos in one zip, below the article. The zip is built from the committed
+   backups (config/codepen-archive.js); nothing renders when the article has no pen with a backup.
+   Out of the search index: it is the same text on every article with demos. A plain div with a <p> title,
+   not an aside with a heading: the sidebar is the page's complementary landmark, and article headings are
+   the article's own (each gets a permalink anchor). The link names itself in full instead. #}
+{% set examples = page.inputPath | codepenArchive(page.fileSlug, title, page.url, site.url) %}
+{% if examples %}
+<div class="examples-download" data-pagefind-ignore>
+  <div class="examples-download-icon" aria-hidden="true">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"/><path d="M10 4h1M10 6h1M10 8h1M10 10h1"/><rect x="9" y="12" width="3" height="4" rx="1"/></svg>
+  </div>
+  <div class="examples-download-text">
+    <p class="examples-download-title">All examples from this article</p>
+    <p class="examples-download-description">{{ examples.count }} demos as plain HTML{% if examples.hasJs %}, CSS and JavaScript{% else %} and CSS{% endif %} files. Open any <code>index.html</code> in a browser: it works offline, without CodePen.</p>
+  </div>
+  <a class="examples-download-button" href="{{ examples.href }}" download>
+    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
+    Download <span class="visually-hidden">all examples as </span>ZIP <span class="examples-download-size">({{ (examples.size / 1024) | round(0, "ceil") }}&nbsp;kB)</span>
+  </a>
+</div>
+{% endif %}

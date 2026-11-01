@@ -13,6 +13,8 @@ npm run format       # Prettier formatting
 npm run lighthouse   # Lighthouse CI audit (requires a running server)
 npm run a11y:all     # axe audit of every built page (~1.5 min; npm test covers one page per kind)
 npm run overflow:all # every built page at 320/390 px must not scroll sideways (npm test: one page per kind)
+npm run codepen:screenshots # posters for new {% codepen %} pens (hits cdpn.io; docs/CODEPEN.md)
+npm run codepen:backup      # commit-able code backup of new pens; the build zips it per article (docs/CODEPEN.md)
 ```
 
 Run a single test file:
@@ -40,8 +42,10 @@ npx markdownlint-cli2 "src/**/*.md"
 - `config/collections/` — `posts` (sorted by date then series position), `topic-list`, `topic-stats`
 - `config/filters/` — Nunjucks filters for dates, URLs, text, sorting, pagination, related posts, topics
 - `config/plugins/` — esbuild (JS bundling), sass (SCSS → CSS via LightningCSS), image (eleventy-img + Shiki), markdown
-- `config/shortcodes/` — `{% youtube %}`, `{% codepen %}`, `{% video %}` (silent clips that autoplay in view like GIFs;
-  encoding and options in docs/VIDEO.md), `{% warning/info/error/success %}` (short inline notes with variant icon),
+- `config/shortcodes/` — `{% youtube %}`, `{% codepen %}` (click-to-load: a result screenshot until the reader runs it;
+  posters via `npm run codepen:screenshots`, code backups in `codepen/<id>/` via `npm run codepen:backup`, zipped per
+  article for download; docs/CODEPEN.md), `{% video %}` (silent clips that autoplay in view like GIFs; encoding and
+  options in docs/VIDEO.md), `{% warning/info/error/success %}` (short inline notes with variant icon),
   `{% callout "variant", "Title", "date?" %}` (titled multiline panels; variants: success/info/warning/error/update,
   optional date), `{% linkedPost %}`, `{% linkedPostCompact %}`, `{% linkedSeries %}` (post cards; in-body vs. listing
   behaviour in docs/SHORTCODES.md), `{% badge %}`

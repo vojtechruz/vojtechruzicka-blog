@@ -96,6 +96,8 @@
 
     {{ content | safe }}
 
+    {% if 'codepen-facade' in content %}{% include "components/codepen-download.njk" %}{% endif %}
+
     <hr class="divider">
 
 
@@ -176,4 +178,5 @@
 {% if '<pre' in content or '<table' in content %}<script src="{{ '/scripts/scroll-regions.js' | assetUrl }}" defer></script>{% endif %}
 {% if 'data-autoplay' in content %}<script src="{{ '/scripts/video-autoplay.js' | assetUrl }}" defer></script>{% endif %}
 {% if '<img' in content %}<script src="{{ '/scripts/lightbox.js' | assetUrl }}" defer></script>{% endif %}
+{% if 'codepen-facade' in content %}<script src="{{ '/scripts/codepen.js' | assetUrl }}" defer></script>{% endif %}
 {% endblock %}

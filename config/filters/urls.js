@@ -57,6 +57,8 @@ export function htmlToAbsoluteUrls(html, base = site.url) {
  *   to a plain link, labelled with the card's eyebrow ("Related article").
  * - {% video %} figures: many readers drop <video> (or never load its sources), leaving only the
  *   "Your browser does not support…" text. Reduce to the clip's title and a link to the MP4.
+ * - {% codepen %} facades: a screenshot under a "Run demo" button that only the site JS can run.
+ *   Reduce to the pen's title and a link to it on CodePen.
  * - Heading permalink anchors (<a class="header-anchor">) are empty icon links
  *   that only make sense with the site CSS and JS; in a reader they are dead
  *   empty links, so drop them.
@@ -111,6 +113,19 @@ export function feedContent(html) {
     const title = ($video.attr('data-video-title') || '').trim();
     const $fallback = $('<p><em></em> (<a>watch the video</a>)</p>');
     $fallback.find('em').text(title && title !== 'Video' ? `Video: ${title}` : 'Video');
+    $fallback.find('a').attr('href', href);
+    $(el).replaceWith($fallback);
+  });
+
+  $('figure.codepen-embed-figure').each((_, el) => {
+    const href = $(el).attr('data-print-url');
+    if (!href) {
+      $(el).remove();
+      return;
+    }
+    const title = ($(el).find('.codepen-facade').attr('data-codepen-title') || '').trim();
+    const $fallback = $('<p><em></em> (<a>open the demo on CodePen</a>)</p>');
+    $fallback.find('em').text(title ? `Interactive demo: ${title}` : 'Interactive demo');
     $fallback.find('a').attr('href', href);
     $(el).replaceWith($fallback);
   });

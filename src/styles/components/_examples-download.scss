@@ -1,0 +1,87 @@
+@use '../variables';
+@use '../utilities';
+
+// "All examples from this article" (components/codepen-download.njk): the article's CodePen demos as one
+// zip. A card in the callout family - elevated surface, accent stripe - with the download as its one action.
+.examples-download {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--gap-medium);
+  margin: var(--gap-large) 0;
+  padding: var(--gap-medium);
+  padding-left: calc(var(--gap-medium) + 3px);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.examples-download-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+}
+
+.examples-download-title {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-heading);
+}
+
+.examples-download-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.examples-download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-small);
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-surface-0);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    @include utilities.focus-ring;
+  }
+}
+
+.examples-download-size {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+// Phone: the text beside the icon, the button full width under both
+@media (max-width: variables.$breakpoint-small) {
+  .examples-download {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .examples-download-button {
+    grid-column: 1 / -1;
+  }
+}

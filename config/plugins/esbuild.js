@@ -16,6 +16,7 @@ export default function registerEsbuildPlugin(eleventyConfig) {
       'src/scripts/scroll-regions.js',
       'src/scripts/lightbox.js',
       'src/scripts/lqip.js',
+      'src/scripts/codepen.js',
     ];
 
     await esbuild.build({

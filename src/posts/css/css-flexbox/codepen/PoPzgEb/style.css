@@ -1,0 +1,48 @@
+.flex-container-start,
+.flex-container-end,
+.flex-container-center,
+.flex-container-stretch {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  height: 43px;
+}
+.flex-container-start div,
+.flex-container-end div,
+.flex-container-center div,
+.flex-container-stretch div {
+  border: 1px solid black;
+  background-color: darkorange;
+  margin: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.flex-container-start p,
+.flex-container-end p,
+.flex-container-center p,
+.flex-container-stretch p {
+  text-align: center;
+}
+
+.flex-container-start {
+  align-items: flex-start;
+}
+
+.flex-container-end {
+  align-items: flex-end;
+}
+
+.flex-container-center {
+  align-items: center;
+}
+
+.flex-container-stretch {
+  align-items: stretch;
+}
+
+.caption {
+  text-align: center;
+}

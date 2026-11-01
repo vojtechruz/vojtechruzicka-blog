@@ -1,0 +1,53 @@
+.flex-container {
+  display: flex;
+  background-color: #ffba66;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  height: 88vh;
+}
+.flex-container div {
+  border: 1px solid black;
+  background-color: darkorange;
+  margin: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.a, .b, .c, .d, .e, .f {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+}
+
+.a {
+  align-self: flex-start;
+}
+
+.b {
+  align-self: flex-end;
+}
+
+.c {
+  align-self: center;
+}
+
+.d {
+  align-self: stretch;
+}
+
+.e {
+  align-self: baseline;
+  height: 80px;
+}
+
+.f {
+  align-self: baseline;
+  height: 60px;
+}
+
+.caption {
+  text-align: center;
+  margin: 0;
+}

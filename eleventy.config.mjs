@@ -16,6 +16,7 @@ import registerAssetVersionFilter from "./config/filters/asset-version.js";
 import registerSitemapFilters from "./config/filters/sitemap.js";
 import registerSeriesFilters from "./config/filters/series.js";
 import registerShortcodes from "./config/shortcodes.js";
+import registerCodepenArchive from "./config/codepen-archive.js";
 import pluginTOC from "eleventy-plugin-nesting-toc";
 import { lqipTransform } from "./config/html-transform/lqip-transform.js";
 import { largestImgSrcTransform } from "./config/html-transform/largest-img-src-transform.js";
@@ -72,6 +73,9 @@ export default async function (eleventyConfig) {
 
   //ShortCodes
   registerShortcodes(eleventyConfig);
+
+  // Per-article zip of the CodePen backups (config/codepen-archive.js, docs/CODEPEN.md)
+  registerCodepenArchive(eleventyConfig);
 
   // Markdown configuration extracted to config/plugins/markdown.js
 

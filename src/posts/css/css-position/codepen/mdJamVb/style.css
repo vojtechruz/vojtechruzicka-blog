@@ -1,0 +1,52 @@
+.container {
+  padding 20px;
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  width: 590px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box {
+  border: 1px solid black;
+  background-color: darkorange;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  display: inline-block;
+  align-self: center;
+  margin-left: -1px;
+  margin-top: -1px;
+}
+
+.original-box {
+  border: 1px dotted gray;
+  background-color: lightgray;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  display: inline-block;
+  align-self: center;
+  margin: 15px;
+}
+
+.top {
+  top: 20px;
+  position: relative;
+}
+
+.bottom {
+  bottom: 20px;
+  position: relative;
+}
+
+.left {
+  left: 20px;  
+  position: relative;
+}
+
+.right {
+  right: 20px;
+  position: relative;
+}

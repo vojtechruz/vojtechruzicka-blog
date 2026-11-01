@@ -1,0 +1,38 @@
+.box {
+  background-color: darkorange;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+}
+
+.container {
+  text-align: center;
+  background-color: lightgray;
+  border: 1px solid darkgray;
+  position: static;
+  top: 150px;
+
+}
+
+.top {
+  top: 20px;
+}
+
+.left {
+  left: 20px;
+}
+
+.bottom {
+  bottom: 20px;
+}
+
+.right {
+  right: 20px;
+}
+
+.container-caption {
+  position:absolute;
+  top:0px;
+  width:100%;
+}

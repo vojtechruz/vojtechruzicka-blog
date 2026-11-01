@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS: Position absolute - undefined parent height</title>
+  <!-- https://codepen.io/vojtechruz/pen/JjdxrBw -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="container-caption">position: static; top: 150px; no height defined</div>
+  <div class="box left top">
+    position: absolute;  
+    top:&nbsp;20px;
+    left:&nbsp;20px;
+  </div>
+    <div class="box bottom right">
+    position: absolute;  
+    bottom: 20px;
+    right: 20px;
+  </div>
+</div>
+</body>
+</html>
