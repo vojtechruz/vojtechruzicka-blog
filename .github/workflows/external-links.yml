@@ -1,0 +1,102 @@
+name: External links
+
+# Monthly check of the links to other sites. Not part of CI: external sites are flaky and the run takes about
+# six minutes, so a push would fail for reasons that have nothing to do with it. The result lands in a single
+# "Broken external links" issue (label broken-links), updated by every run and closed by the first clean one.
+# docs/LINKS.md
+on:
+  schedule:
+    - cron: '17 6 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: external-links
+  cancel-in-progress: true
+
+jobs:
+  external-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    # The same lean, production-shaped build as CI (see ci.yml for why each variable is there)
+    env:
+      ELEVENTY_IMAGE_FORMATS: webp,auto
+      ELEVENTY_IMAGE_WIDTHS: 800,auto
+      DEPLOY_ENV: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright Chromium (Mermaid diagram rendering)
+        run: npx playwright install --with-deps chromium
+
+      # Read-only: CI owns the image cache and keeps it current
+      - name: Restore image cache
+        uses: actions/cache/restore@v6
+        with:
+          path: .cache/image-mirror
+          key:
+            images-${{ hashFiles('src/posts/**/*.jpg', 'src/posts/**/*.jpeg', 'src/posts/**/*.png',
+            'src/posts/**/*.gif', 'config/plugins/image.js') }}
+          restore-keys: |
+            images-
+
+      - name: Build site
+        run: npm run build
+
+      # linkinator exits 1 on any broken link; the report step decides what that means. --silent keeps npm's
+      # banner out of the JSON.
+      - name: Check external links
+        run: npm run --silent validate:links:external -- --format json > linkinator.json || true
+
+      - name: Open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create broken-links --color d73a4a --description "Found by the external link check" --force
+          existing=$(gh issue list --label broken-links --state open --limit 1 --json number --jq '.[0].number // empty')
+
+          set +e
+          node scripts/broken-links-report.mjs linkinator.json > report.md
+          code=$?
+          set -e
+
+          if [ "$code" -eq 2 ]; then
+            echo "No broken external links."
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --comment "The check found no broken external links: $RUN_URL"
+            fi
+            exit 0
+          fi
+          if [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+
+          cat report.md
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --body-file report.md
+            gh issue comment "$existing" --body "$(head -n 1 report.md) The list above is updated: $RUN_URL"
+          else
+            gh issue create --title "Broken external links" --label broken-links --body-file report.md
+          fi

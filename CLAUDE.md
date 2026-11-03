@@ -8,7 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev          # Start local dev server (http://localhost:8080)
 npm run build        # Production build (minification, image optimization)
 npm test             # Run Vitest unit tests
-npm run validate     # Full validation: HTML, CSS, JS lint + MD + XML + links
+npm run validate     # Full validation: HTML, CSS, JS lint + MD + XML + internal links
+npm run validate:links:external # links to other sites (~6 min); monthly workflow files an issue (docs/LINKS.md)
 npm run format       # Prettier formatting
 npm run lighthouse   # Lighthouse CI audit (requires a running server)
 npm run a11y:all     # axe audit of every built page (~1.5 min; npm test covers one page per kind)

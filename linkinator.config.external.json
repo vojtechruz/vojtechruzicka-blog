@@ -1,8 +1,14 @@
 {
   "recurse": true,
   "timeout": 30000,
-  "skip": [
-    "http://localhost:4200"
-  ],
+  "concurrency": 25,
+  "retryErrors": true,
+  "retryErrorsCount": 3,
+  "retryErrorsJitter": 2000,
+  "statusCodes": {
+    "403": "warn",
+    "429": "warn"
+  },
+  "skip": ["http://localhost:4200"],
   "verbosity": "error"
 }
