@@ -34,10 +34,11 @@ readable JSON.
 
 The config tunes the check against false alarms:
 
-- `statusCodes`: `403` and `429` are warnings, not broken links. Some sites (Medium, LinkedIn, X, sites behind
-  Cloudflare) block bots, and a bot block is answered by a protection layer in front of the site. It means the site is
-  alive, but says nothing about the page, because a deleted page gets the same answer. linkinator itself already skips
-  LinkedIn's `999` and a Cloudflare challenge (`403` with `cf-mitigated`).
+- `statusCodes`: `401` (a page behind a login, such as the reCAPTCHA admin), `403` and `429` are warnings, not broken
+  links. Some sites (Medium, LinkedIn, X, sites behind Cloudflare) block bots, and a bot block is answered by a
+  protection layer in front of the site. It means the site is alive, but says nothing about the page, because a deleted
+  page gets the same answer. linkinator itself already skips LinkedIn's `999` and a Cloudflare challenge (`403` with
+  `cf-mitigated`).
 - No site is skipped. Even a site that blocks bots is still checked, so a domain that is gone (no response, DNS failure)
   or a page that answers `404` is reported. Do not circumvent the blocking (headless browser, a spoofed client); a site
   that blocks bots does not want to be crawled.

@@ -6,6 +6,7 @@
   "retryErrorsCount": 3,
   "retryErrorsJitter": 2000,
   "statusCodes": {
+    "401": "warn",
     "403": "warn",
     "429": "warn"
   },

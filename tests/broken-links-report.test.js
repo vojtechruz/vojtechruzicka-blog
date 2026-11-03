@@ -105,7 +105,7 @@ describe('external link check setup', () => {
   // A bot block (403, 429) says the site is alive, not whether the page is: a warning, not an issue. Every
   // site is still checked, so a domain that is gone gets reported even when it used to block bots.
   it('treats bot blocks as warnings instead of skipping sites', () => {
-    expect(config.statusCodes).toEqual({ 403: 'warn', 429: 'warn' });
+    expect(config.statusCodes).toEqual({ 401: 'warn', 403: 'warn', 429: 'warn' });
     expect(config.skip).toEqual(['http://localhost:4200']);
   });
 
