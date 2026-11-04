@@ -75,6 +75,20 @@ a preview deploy `noindex, nofollow`.
 counterproductive: a `Disallow`ed URL can still be indexed URL-only, and a blocked crawler would never fetch the page to
 read the `noindex` tag.
 
+### Cloudflare managed `robots.txt` in production
+
+On the production domain, Cloudflare's **managed `robots.txt`** (dashboard: AI Crawl Control) is enabled, and that is
+deliberate. The edge serves a "Cloudflare Managed Content" block in front of `src/static/robots.txt`. The block holds
+Content Signals (`Content-Signal: search=yes,ai-train=no,use=reference`) and a `Disallow: /` for each known AI-training
+crawler (GPTBot, ClaudeBot, CCBot, Google-Extended, …). Our own file follows it unchanged, `Sitemap` line included, so
+search engines still crawl and index everything. The preview `*.pages.dev` domains do not get the block.
+
+The cost is known and accepted: Lighthouse does not recognise the `Content-Signal` directive, so its `robots-txt` audit
+fails ("Unknown directive") and the **production SEO score is 92 instead of 100**. That is a lint-level finding, not an
+indexing problem. CI does not see it, because Lighthouse there runs over `_site` with the repo's own `robots.txt`.
+Decided on 2026-11-02 to keep blocking the AI-training crawlers rather than chase the 100. Do not "fix" the score by
+turning the managed file off, and do not copy the block into the repo.
+
 ## Draft inclusion and the `INCLUDE_DRAFTS` trap
 
 `config/draft-utils.js` decides which drafts a build contains, and the `INCLUDE_DRAFTS` env var **overrides every other

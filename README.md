@@ -33,7 +33,7 @@ Then follow these steps:
 - `npm run test`: Run Vitest unit tests (most of them assert against `_site/`, so build first).
 - `npm run validate`: Run all validation checks (HTML, CSS, JS, Markdown, XML, internal links).
 - `npm run validate:links`: Check internal links in `_site/` (runs in CI); `npm run validate:links:external` also checks
-  every outbound link (slow, run on demand).
+  every outbound link (slow; a monthly workflow runs it and reports to a `broken-links` issue, see `docs/LINKS.md`).
 - `npm run lighthouse`: Lighthouse CI audit of the built site (`lighthouserc.json`); needs a running server, e.g. after
   `npm run dev` in another terminal.
 - `npm run format`: Format the codebase using Prettier.
