@@ -60,8 +60,8 @@ export function formatReport(result, { siteUrl = SITE_URL, runUrl } = {}) {
       `${pages.length} page${pages.length === 1 ? '' : 's'}.`,
     '',
     'Replace a link with its new address; when the whole site is gone, link a Wayback Machine snapshot from the ' +
-      'time the article was written; drop a link only when it adds nothing. Sites that block bots belong in ' +
-      '`skip` in `linkinator.config.external.json` (docs/LINKS.md).',
+      'time the article was written; drop a link only when it adds nothing. Bot blocks (401, 403, 429) are only ' +
+      'warnings and never appear here: everything listed is really unreachable (docs/LINKS.md).',
     '',
     ...(runUrl ? [`Run: ${runUrl}`, ''] : []),
   ];

@@ -56,6 +56,9 @@ describe('formatReport', () => {
     );
     expect(body).toMatch(/^The scheduled external link check found \*\*2 broken links\*\* on 1 page\./);
     expect(body).toContain('Run: https://github.com/o/r/actions/runs/1');
+    // The advice matches the config: bot blocks are warnings, no site is skipped (docs/LINKS.md)
+    expect(body).toContain('Bot blocks (401, 403, 429) are only warnings');
+    expect(body).not.toContain('skip');
     expect(body).toContain(
       `### ${SITE}/post/\n\n- \`404\` <https://gone.example/x>\n- \`404\` <https://gone.example/y>`,
     );
