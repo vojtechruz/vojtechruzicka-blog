@@ -217,9 +217,9 @@ better. Let's examine various ways we can display more info.
 
 ## Build Properties
 
-In the article [I referenced at the beginning of this post](/spring-boot-version/), I
-describe how to obtain information about the artifact and its build properties. The idea is simple, configure Spring
-Boot Maven/Gradle plugin to generate `build-info.properties` file, which contains the required information.
+In the article [I referenced at the beginning of this post](/spring-boot-version/), I describe how to obtain information
+about the artifact and its build properties. The idea is simple, configure Spring Boot Maven/Gradle plugin to generate
+`build-info.properties` file, which contains the required information.
 
 What's great is that if you do use Actuator, it automatically detects `build-info.properties` file and displays its
 contents through the `/info` endpoint. All you need to do is to add a simple config to your Spring Boot Maven/Gradle
@@ -462,7 +462,8 @@ In version 1.x there was a special security configuration just for Actuator endp
 Spring Security directly as you would for any other endpoint. It is much simpler and more consistent.
 
 The old version of Actuator used to have proprietary metrics, but 2.x uses [Micrometer](https://micrometer.io/). This
-was later [backported](https://micrometer.io/docs/ref/spring/1.5) even to 1.x.
+was later [backported](https://github.com/micrometer-metrics/micrometer/tree/1.3.x/micrometer-spring-legacy) even to
+1.x.
 
 There were some new endpoints introduced, some were renamed to more descriptive names. The configuration properties were
 also reworked and are now neatly grouped together by common prefix.
