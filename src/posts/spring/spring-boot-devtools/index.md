@@ -112,16 +112,17 @@ gradle bootRun
 
 ## Live Reload
 
-[LiveReload](http://livereload.com/) is a useful tool, which allows you to instantly update your page in browser
-whenever you make changes in your files such as HTML, CSS, images and more. It even pre-processes files as needed - that
-means automatically compiling your SASS or LESS files.
+[LiveReload](https://web.archive.org/web/20181101003436/http://livereload.com:80/) is a useful tool, which allows you to
+instantly update your page in browser whenever you make changes in your files such as HTML, CSS, images and more. It
+even pre-processes files as needed - that means automatically compiling your SASS or LESS files.
 
 {% video "/videos/spring-boot-devtools/live-reload", "LiveReload updating the browser after a stylesheet change" %}
 
 Spring DevTools automatically launch a local instance of LiveReload server, which monitors your files. All you need to
-do is to install a [browser extension](http://livereload.com/extensions/), and you're good to go. It is not only useful
-for developing frontend of your application (in case you distribute it as a part of your Spring app artifact), but it
-can also be used to monitor and reload output of your REST API.
+do is to install a
+[browser extension](https://chromewebstore.google.com/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei), and you're
+good to go. It is not only useful for developing frontend of your application (in case you distribute it as a part of
+your Spring app artifact), but it can also be used to monitor and reload output of your REST API.
 
 ## Properties override
 

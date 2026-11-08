@@ -129,7 +129,7 @@ be really small anyway, which reduces the scope of the variables within and decr
 
 Because it is a good practice to minimize the scope a variable is accessible in and _var_ can be accessed in the whole
 function scope, there were historically some workarounds to address this. One of them is IFFE, which represents
-[Immediately Invoked Function Expression](http://adripofjavascript.com/blog/drips/an-introduction-to-iffes-immediately-invoked-function-expressions.html).
+[Immediately Invoked Function Expression](https://web.archive.org/web/20180212114535/http://adripofjavascript.com:80/blog/drips/an-introduction-to-iffes-immediately-invoked-function-expressions.html).
 It is an artificial way to create a new local encapsulated scope. What you basically do is surround a block of code by a
 function expression and immediately call that function. Variables inside are not accessible from the surrounding code.
 
@@ -195,8 +195,8 @@ name of a variable which does multiple different things?
 While this is a useful concept, you need to be aware of some limitations. The only restriction const provides is about
 reassignment. That does not mean object assigned to a const variable is not immutable! You can still change its
 properties, delete them or add new ones. You just cannot assign a completely different object. Note that applies only to
-objects. In case of [primitives](/javascript-primitives/) such as numbers, strings or
-booleans, you are safe as they are immutable.
+objects. In case of [primitives](/javascript-primitives/) such as numbers, strings or booleans, you are safe as they are
+immutable.
 
 ## let vs const
 

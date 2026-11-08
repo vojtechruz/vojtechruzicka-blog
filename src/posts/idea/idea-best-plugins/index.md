@@ -88,9 +88,8 @@ It allows you to enable checking of commit messages as well. You can learn more 
 
 ## [Maven Helper](https://plugins.jetbrains.com/plugin/7179-maven-helper)
 
-IDEA already has powerful tools for
-[analyzing your dependencies](/idea-analyzing-dependencies/) and potential problems with
-them, such as conflicts or cyclic dependencies.
+IDEA already has powerful tools for [analyzing your dependencies](/idea-analyzing-dependencies/) and potential problems
+with them, such as conflicts or cyclic dependencies.
 
 Maven helper offers an alternative UI, which shows your dependencies hierarchically. This can be easier to read and
 navigate. Also, if you're using the community edition, this is your only option.
@@ -102,8 +101,8 @@ navigate. Also, if you're using the community edition, this is your only option.
 Creating complex objects can be hard. Of course, you can stick with a simple POJO with a whole bunch of setters, but you
 cannot enforce that created objects have all the required fields and are not used in an incomplete state. To solve this,
 you need constructors. With more complex objects, this can lead to a whole bunch of
-[telescopic constructors](/avoid-telescoping-constructor-pattern/) with many parameters.
-In these cases, using a builder is much more appropriate.
+[telescopic constructors](/avoid-telescoping-constructor-pattern/) with many parameters. In these cases, using a builder
+is much more appropriate.
 
 This plugin can automatically generate a builder for you from a POJO.
 
@@ -161,7 +160,7 @@ The plugin currently supports Spring, JAX-RS, and Micronaut.
 ## [Multirun](https://plugins.jetbrains.com/plugin/7248-multirun/)
 
 IDEA
-[does support running multiple tasks (configurations) at once](https://www.jetbrains.com/help/rider/Creating_Compound_Run_Debug_Configuration.html),
+[does support running multiple tasks (configurations) at once](https://www.jetbrains.com/help/idea/run-debug-configuration-compound.html),
 however, this feature is currently very limited.
 
 Multirun plugin does support running multiple configurations at once with much more sophisticated options. This can be

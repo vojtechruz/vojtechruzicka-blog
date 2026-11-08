@@ -489,9 +489,9 @@ The resulting snippet is `request-parameters.adoc`.
 ## More documentation options
 
 That's of course not all you can document.
-[There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/) - HTTP hearers, hypermedia links or
-multipart requests. However, the pattern is still the same. Include a method in your tests, run the tests, include the
-generated snippet in your AsciiDoc and finally run the maven build.
+[There's more](https://docs.spring.io/spring-restdocs/docs/current/reference/htmlsingle/) - HTTP hearers, hypermedia
+links or multipart requests. However, the pattern is still the same. Include a method in your tests, run the tests,
+include the generated snippet in your AsciiDoc and finally run the maven build.
 
 ## Spring Auto Rest Docs
 

@@ -115,7 +115,7 @@ NaN === NaN; //false
 ```
 
 You can use
-[isNaN or Number.IsNaN](http://adripofjavascript.com/blog/drips/the-problem-with-testing-for-nan-in-javascript.html)
+[isNaN or Number.IsNaN](https://web.archive.org/web/20180128224643/http://adripofjavascript.com:80/blog/drips/the-problem-with-testing-for-nan-in-javascript.html)
 (ES6+) instead of direct comparison.
 
 ### Boolean
@@ -127,7 +127,7 @@ Boolean type contains just two values: `true` and `false`.
 This is a new primitive type introduced in ES6. There is no symbol literal, so all the symbols need to be created using
 `Symbol()` function. Each symbol is unique, which makes them ideal for use as object properties to avoid clashes. Or in
 other cases where you need to have unique values. For more info, see
-[this post](http://exploringjs.com/es6/ch_symbols.html).
+[this post](https://web.archive.org/web/20180202115949/http://exploringjs.com:80/es6/ch_symbols.html).
 
 ### Null & Undefined
 

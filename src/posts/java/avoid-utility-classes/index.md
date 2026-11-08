@@ -57,9 +57,10 @@ interface. You lose that flexibility completely.
 
 Since you have a hard dependency on the Util Class, you cannot easily provide a mock implementation. That makes testing
 rather difficult. You cannot isolate dependencies on Utility Classes and test just your class in isolation. Therefore
-you are testing all your static dependencies as well. [Miško Hevery](http://misko.hevery.com/about/) has a nice article
-about that -
-[Static Methods are Death to Testability](http://misko.hevery.com/2008/12/15/static-methods-are-death-to-testability/).
+you are testing all your static dependencies as well.
+[Miško Hevery](https://web.archive.org/web/20170501142455/http://misko.hevery.com:80/about/) has a nice article about
+that -
+[Static Methods are Death to Testability](https://web.archive.org/web/20170501132242/http://misko.hevery.com:80/2008/12/15/static-methods-are-death-to-testability/).
 
 ### Inversion of Control
 

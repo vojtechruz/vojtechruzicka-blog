@@ -59,14 +59,15 @@ you don't like it, there are still alternatives.
 ## Algolia DocSearch
 
 {% callout "warning", "Outdated section", "2022-02" %}
-The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is
-version 3 [available](https://docsearch.algolia.com/docs/DocSearch-v3). One major change is that you can now apply not
-only with technical documentation site, but also a technical blog. It now also offers react components out of the box.
-The configuration and code examples are no longer up to date, please refer to the official documentation instead.
+The following section covers Docsearch v2 and is no longer up to date. As of 2/2020 there is version 3
+[available](https://web.archive.org/web/20211025012554/https://docsearch.algolia.com/docs/docsearch-v3/). One major
+change is that you can now apply not only with technical documentation site, but also a technical blog. It now also
+offers react components out of the box. The configuration and code examples are no longer up to date, please refer to
+the official documentation instead.
 {% endcallout %}
 
-[Algolia DocSearch](https://community.algolia.com/docsearch/) is similar to Google Custom Search in a way that you don't
-need to download the whole search index to the client and that the search is provided by third-party service.
+[Algolia DocSearch](https://docsearch.algolia.com/) is similar to Google Custom Search in a way that you don't need to
+download the whole search index to the client and that the search is provided by third-party service.
 
 There are some advantages over Google Search though. First of all, no ads. Also, everything integrates with the look and
 feel of your site nicely as you just mark a text input on your page as a search box to be handled by DocSearch. It then
@@ -79,7 +80,7 @@ indexed for you automatically.
 ### Requesting access
 
 The first step you need to make is to request DocSearch for your site. Just fill a simple form on
-[their website](https://community.algolia.com/docsearch/).
+[their website](https://docsearch.algolia.com/).
 
 ![DocSearch Request](./docsearch-form.png)
 

@@ -189,7 +189,8 @@ to minimize the cookie's lifespan to decrease the time when the cookie is vulner
 
 Cookie lifespan is, if not specified, just for one session. That means until the user closes their browser. Well, at
 least in theory. These days browsers usually have some mechanisms for session restoration or continue to run in the
-background, so you [cannot depend](http://blog.petersondave.com/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/)
+background, so you
+[cannot depend](https://web.archive.org/web/20180103113044/http://blog.petersondave.com:80/cookies/Session-Cookies-in-Chrome-Firefox-and-Sitecore/)
 on session cookies being immediately wiped.
 
 You can specify cookie expiration or lifespan using `Max-Age` and `Expires`

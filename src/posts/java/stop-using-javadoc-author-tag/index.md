@@ -122,6 +122,6 @@ still be handy to have one centralized file where you can look up who is respons
 ## Conclusion
 
 I suggest you stop using the @author tag, same as
-[Apache](http://www.theinquirer.net/inquirer/news/1037207/apache-enforces-the-removal-of-author-tags) or
-[Gradle](https://github.com/gradle/gradle/commit/a1b9612fa06f90f20b115cede557e22287501034) did. If you keep using it, at
-least be sure to keep the info always up to date.
+[Apache](https://web.archive.org/web/20160312153533/http://www.theinquirer.net/inquirer/news/1037207/apache-enforces-the-removal-of-author-tags)
+or [Gradle](https://github.com/gradle/gradle/commit/a1b9612fa06f90f20b115cede557e22287501034) did. If you keep using it,
+at least be sure to keep the info always up to date.

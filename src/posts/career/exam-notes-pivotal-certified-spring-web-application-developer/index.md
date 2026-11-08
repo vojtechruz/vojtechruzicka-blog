@@ -37,7 +37,7 @@ still fresh.~~
 - The exam consists of 50 multiple choice questions (usually single correct answer, rarely multiple), where 38 (76%)
   must be answered correctly to pass.
 - It is computer based and the interface is easy to understand and navigate.
-- It can be taken in a [Pearson Vue certified test center](http://home.pearsonvue.com/test-taker.aspx).
+- It can be taken in a [Pearson Vue certified test center](https://www.pearsonvue.com/us/en/test-takers.html).
 - **UPDATE:** The exam can now be taken also remotely using [examslocal.com](https://www.examslocal.com), for more info
   see the [FAQ](http://it.psionline.com/exam-faqs/pivotal-faq).
 - There are 90 minutes to complete the test, which is more than enough - it can safely be completed in half the time
