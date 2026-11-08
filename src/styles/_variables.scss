@@ -106,3 +106,8 @@ $breakpoint-small: 480px;
 $breakpoint-medium: 768px;
 $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1280px;
+
+// The compact header (logo + hamburger, one row) that hides while scrolling down: below $breakpoint-large,
+// where the sidebar goes too and the full header (~880-1040 px depending on the system font) would wrap to
+// two rows, or a short screen such as a phone in landscape, where it would take a third of the height. Mirrored by COMPACT_NAV_QUERY in src/scripts/nav.js and the <noscript> block in base.njk.
+$query-compact-nav: '(max-width: 1024px), (max-height: 500px)';

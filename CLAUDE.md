@@ -133,6 +133,13 @@ settings and the full per-environment matrix are in docs/DEPLOYMENT.md.
     and `video` shortcodes emit `data-print-url` for that). Guarded by `tests/print.test.js` (Playwright, emulated print
     media); details in docs/PRINT.md.
 
+### Header
+
+On a compact screen, `(max-width: 1024px), (max-height: 500px)` (phones in either orientation, tablets upright; the
+sidebar goes below the same width), the header is one row (logo + hamburger) that hides on scrolling down and returns on
+scrolling up (`src/scripts/nav.js`). Without JS it is not sticky there. The query is written in three places that must
+match: SCSS, `nav.js` and the `<noscript>` block in `base.njk`. Details in docs/NAVIGATION.md.
+
 ### Service worker
 
 The site has no service worker of its own. `src/static/sw.js` is a temporary self-destroying worker that unregisters the

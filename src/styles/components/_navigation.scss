@@ -149,8 +149,15 @@
   }
 }
 
-@include utilities.respond(medium) {
+@media #{variables.$query-compact-nav} {
   .main-navigation {
+    // Out of the way while reading: src/scripts/nav.js adds .nav-hidden on scrolling down and removes it
+    // on scrolling up. Shown, the header has no transform at all - a transformed ancestor would become
+    // the containing block of the search drawer (position: fixed) inside it. Never hidden while the
+    // search is open. Without JS the header is not sticky here (the <noscript> block in base.njk).
+    // Reduced motion: the global rule in base/_accessibility.scss makes it instant.
+    transition: transform 0.2s ease;
+
     // The links + search wrap onto their own full-width line under the top bar.
     .menu-container {
       flex-basis: 100%;
@@ -194,6 +201,10 @@
     &.nav-open .menu-container {
       display: flex;
     }
+  }
+
+  body:not(.search-open) .main-navigation.nav-hidden {
+    transform: translateY(-100%);
   }
 }
 
