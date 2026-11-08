@@ -5,6 +5,7 @@ import shikiMarkdownPlugin from '@shikijs/markdown-it';
 import { transformerMetaHighlight, transformerNotationDiff } from '@shikijs/transformers';
 import { dataLanguageTransformer } from '../markdown-transform/data-language-transformer.js';
 import { codeBlockTransformer } from '../markdown-transform/code-block-transformer.js';
+import { archivedLinksPlugin } from '../markdown-transform/archived-links.js';
 
 /**
  * Heading permalink: an empty <a class="header-anchor"> appended after the
@@ -75,7 +76,9 @@ export async function getMarkdownParser() {
       tabIndex: false,
       permalink: renderHeaderAnchor,
     })
-    .use(shikiPlugin);
+    .use(shikiPlugin)
+    // Wayback Machine links get an "archived copy" cue (config/markdown-transform/archived-links.js)
+    .use(archivedLinksPlugin);
 
   // Custom renderer for code blocks to avoid double wrapping with <pre><code>
   // since Shiki and our code-block-transformer already provide the necessary wrapping.

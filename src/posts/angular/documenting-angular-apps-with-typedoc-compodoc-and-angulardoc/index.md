@@ -1,7 +1,7 @@
 ---
 title: 'Documenting Angular apps: TypeDoc, CompoDoc and AngularDoc'
 date: '2017-12-18'
-topics: ['Angular','Javascript']
+topics: ['Angular', 'Javascript']
 path: '/documenting-angular-apps-with-typedoc-compodoc-and-angulardoc/'
 excerpt:
   There are several tools which you can use to document your Angular 2+ app. Let's compare them so you can decide what
@@ -64,9 +64,8 @@ followed by the name of the predefined theme or a path to a custom one.
 ## CompoDoc
 
 While you can use TypeDoc to document Angular apps, it will treat your code as any other plain TypeScript app. That
-means no Angular specific documentation. But there is a whole lot to be documented.
-[Compodoc](https://compodoc.app/) solves this, it is focused on Angular apps specifically giving you a
-much more tailored solution.
+means no Angular specific documentation. But there is a whole lot to be documented. [Compodoc](https://compodoc.app/)
+solves this, it is focused on Angular apps specifically giving you a much more tailored solution.
 
 ### Getting started with CompoDoc
 
@@ -122,8 +121,8 @@ You can check sample Compodoc generated documentation - try the official live
 There used to be another tool for documenting Angular applications called AngularDoc. It was similar to CompoDoc in a
 way that it would recognize both TypeScript and Angular-specific features. It could directly scan your Github repo and
 generate documentation available on AngularDoc site. At this time (Dec 2017) it is unfortunately unavailable as it is
-being reworked (the [website](https://angulardoc.io/main) still exists but you cannot register). According to the
-authors, we have something great to look forward to.
+being reworked (the [website](https://web.archive.org/web/20170807102955/http://angulardoc.io:80/main) still exists but
+you cannot register). According to the authors, we have something great to look forward to.
 
 In the meantime, there are two similar products by the same company, which are still available and can be used. The
 first one is an [extension](https://marketplace.visualstudio.com/items?itemName=AngularDoc.angulardoc-vscode) of Visual

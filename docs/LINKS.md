@@ -59,3 +59,25 @@ Run it locally with `npm run build` then `npm run validate:links:external`; add 
 - The whole site is gone: link a [Wayback Machine](https://web.archive.org/) snapshot from the time the article was
   written.
 - Delete a link only when it adds nothing to the article.
+- A domain that changed owners (now a parked page, a domain sale or spam) counts as gone even when it answers 200: link
+  a snapshot taken before the domain changed hands. The link check cannot catch these on its own.
+- Nothing worth linking is left (no snapshot, or a blank one): remove the link and keep the text. When the sentence
+  sends the reader to the source ("there was a survey…"), add a short note that it is no longer online. Dead links are
+  never kept with a marker.
+
+### Archived-link cue
+
+Every Markdown link to a snapshot (`https://web.archive.org/web/<timestamp>/<url>`) is marked automatically by
+`config/markdown-transform/archived-links.js`; authors only paste the Wayback URL. The snapshot date comes from the
+timestamp:
+
+- a small history icon after the link text (`src/styles/components/_archived-link.scss`), held on the last word by a
+  word joiner
+- a `title` tooltip ("The original page is no longer available. This is an archived copy from March 2017 (Wayback
+  Machine).") unless the link already has one
+- visually hidden " (archived copy, March 2017)" inside the link, so screen readers hear it as part of the link name.
+  Feeds ship without the site CSS, so feed readers show this text instead of the icon (docs/FEEDS.md).
+- print hides the icon; the printed URL already says `web.archive.org` (docs/PRINT.md)
+
+It is rendered by the Markdown parser, not an HTML transform, so the page and the feed get the same markup. Links
+written as raw HTML `<a>` are not marked. Guarded by `tests/archived-links.test.js`.
