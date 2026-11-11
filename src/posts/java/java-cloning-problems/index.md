@@ -68,10 +68,11 @@ public Object clone() throws CloneNotSupportedException {
 
 Note that the clone method returns Object. The caller would then need to cast the object every time the method is
 called. Fortunately, since Java 5, you can
-[change the return type](https://www.java-tips.org/covariant-return-types.html) of an overriding method as long as the
-new type is a subtype of the original type. That means, If you are writing the clone method for a Person class, you can
-return directly Person. You still need to cast inside the clone method, but you remove this burden from the callers.
-Also, it is valid to [remove exception](https://www.javatpoint.com/exception-handling-with-method-overriding)
+[change the return type](https://web.archive.org/web/20170106040426/http://www.java-tips.org:80/covariant-return-types.html)
+of an overriding method as long as the new type is a subtype of the original type. That means, If you are writing the
+clone method for a Person class, you can return directly Person. You still need to cast inside the clone method, but you
+remove this burden from the callers. Also, it is valid to
+[remove exception](https://web.archive.org/web/20170207220850/http://javatpoint.com:80/exception-handling-with-method-overriding)
 declaration from an overriding method. Therefore, we can safely remove the checked exception
 (`throws CloneNotSupportedException`) to make the usage a bit more convenient - callers are not forced to catch checked
 exception `CloneNotSupportedException` anymore.

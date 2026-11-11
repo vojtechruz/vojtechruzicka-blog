@@ -40,6 +40,14 @@
         display: flex !important;
       }
 
+      /* Without nav.js the compact header cannot hide on scroll, and expanded it is the whole menu:
+         let it scroll away with the page ($query-compact-nav in _variables.scss) */
+      @media (max-width: 1024px), (max-height: 500px) {
+        .main-navigation {
+          position: static !important;
+        }
+      }
+
       .lqip {
         filter: none !important;
         background: none !important;

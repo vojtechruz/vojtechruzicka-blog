@@ -213,7 +213,7 @@ module, which will be used by third parties, this can be an issue. Especially if
 security risks or other unexpected behavior of your module.
 
 You can read more about preventing this in
-[Reflection Proofing the Java Singleton Pattern when using Lazy Loading](http://technonstop.com/java-singleton-reflection-and-lazy-initialization).
+[Reflection Proofing the Java Singleton Pattern when using Lazy Loading](https://web.archive.org/web/20160904200507/http://technonstop.com:80/java-singleton-reflection-and-lazy-initialization).
 
 ## Conclusion
 

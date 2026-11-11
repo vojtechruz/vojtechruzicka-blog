@@ -132,9 +132,9 @@ to handle post-authentication Session ID change is:
 
 1. Copy the required data from the old session
 2. Invalidate the old session -
-   [httpServletRequest.getSession(false).invalidate()](<https://javaee-spec.java.net/nonav/javadocs/javax/servlet/http/HttpSession.html#invalidate()>);
+   [httpServletRequest.getSession(false).invalidate()](https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSession.html#invalidate--);
 3. Create a new session, which is assigned a different JSESSIONID -
-   [getSession()](<https://javaee-spec.java.net/nonav/javadocs/javax/servlet/http/HttpServletRequest.html#getSession()>)
+   [getSession()](https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getSession--)
 4. Save the copied data from the old session in the new session.
 
 ### Servlet 3.1 and higher

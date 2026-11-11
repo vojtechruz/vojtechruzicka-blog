@@ -156,8 +156,8 @@ they provide two options - var and val. Var is meant for variables, which can be
 is the equivalent of Java's final keyword).
 
 Why does not Java offer the same? Actually, when the JEP-286 was discussed, there were both variants on the table. There
-was a [survey](https://www.surveymonkey.com/results/SM-FLWGS5PW/) with about 2500 respondents, which was supposed to
-gather preferences on which option should be chosen. Including some other naming conventions such as let or auto.
+was a survey (its results are no longer online) with about 2500 respondents, which was supposed to gather preferences on
+which option should be chosen. Including some other naming conventions such as let or auto.
 
 While var + val variant was a clear winner by a number of votes (48% vs 23%), it was rejected in favor of var only. To
 [quote Brian Goetz](http://mail.openjdk.java.net/pipermail/platform-jep-discuss/2016-December/000066.html):

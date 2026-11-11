@@ -110,7 +110,7 @@ There are currently 20 plugins available, featured on the Netlify site. Here are
 
 ## Additional resources
 
-- [Introducing Netlify Build Plugins](https://www.netlify.com/build/plugins-beta/)
+- [Introducing Netlify Build Plugins](https://web.archive.org/web/20200426181339/https://www.netlify.com/build/plugins-beta/)
 - [What's a Netlify Build Plugin Series](https://www.netlify.com/blog/2020/04/30/whats-a-netlify-build-plugin-series-part-1-using-build-plugins/)
 - [Build plugins documentation](https://docs.netlify.com/configure-builds/build-plugins/)
 - [How to make your own build plugin](https://www.netlify.com/blog/2019/10/16/creating-and-using-your-first-netlify-build-plugin/)

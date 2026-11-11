@@ -34,7 +34,7 @@ public class MyServlet extends HttpServlet {
 ```
 
 For more info about replacing web.xml with annotations see
-[Servlet 3.0 Tutorial: @WebListener, @WebServlet, @WebFilter and @WebInitParam](http://blog.caucho.com/2009/10/06/servlet-30-tutorial-weblistener-webservlet-webfilter-and-webinitparam/).
+[Servlet 3.0 Tutorial: @WebListener, @WebServlet, @WebFilter and @WebInitParam](https://web.archive.org/web/20180329200520/http://blog.caucho.com:80/2009/10/06/servlet-30-tutorial-weblistener-webservlet-webfilter-and-webinitparam/).
 
 ## web.xml and Spring MVC
 

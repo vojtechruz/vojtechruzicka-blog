@@ -33,8 +33,9 @@ previous versions were 2013, 2010 and 2007.
 
 ## Top Ten 2017, the first attempt
 
-The [first attempt](https://www.owasp.org/images/3/3c/OWASP_Top_10_-_2017_Release_Candidate1_English.pdf) to release
-OWASP Top Ten 2017 was in April 2017. It was
+The
+[first attempt](https://web.archive.org/web/20170910025208/https://www.owasp.org/images/3/3c/OWASP_Top_10_-_2017_Release_Candidate1_English.pdf)
+to release OWASP Top Ten 2017 was in April 2017. It was
 [heavily criticized](https://danielmiessler.com/blog/comments-owasp-top-10-2017-draft/) and the release was rescheduled
 after the first Release Candidate. What was wrong?
 

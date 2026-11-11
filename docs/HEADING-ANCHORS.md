@@ -45,8 +45,10 @@ Every heading in a post gets a stable `id` and an icon link that copies a deep l
 
 ## Tests
 
-- `tests/header-anchor.test.js`: markdown renderer output (slugs, attributes, de-duplication), built post markup (every
-  heading has exactly one well-formed anchor, ids are clean slugs, script loaded with `defer`, bundle shipped) and jsdom
-  click behaviour (copy, feedback, reset, default navigation kept, clipboard failure).
+- `tests/header-anchor-markdown.test.js`: markdown renderer output (slugs, attributes, de-duplication). Runs in Node,
+  not jsdom: the parser loads Shiki, whose WASM decoding needs `Blob#stream`, which jsdom's `Blob` lacks.
+- `tests/header-anchor.test.js`: built post markup (every heading has exactly one well-formed anchor, ids are clean
+  slugs, script loaded with `defer`, bundle shipped) and jsdom click behaviour (copy, feedback, reset, default
+  navigation kept, clipboard failure).
 - `tests/feeds.test.js`: anchors are stripped from feed content.
 - `tests/toc.test.js` and `tests/a11y.test.js` rely on the heading ids and anchor names indirectly.

@@ -26,8 +26,8 @@ box.
 
 While GitHub pages are good and will do the job, there is one service, which is in my opinion much better. It offers
 much more while keeping the simplicity. It's called Netlify.
-[This blog post](https://www.netlify.com/github-pages-vs-netlify/) provides a useful comparison of GitHub Pages and
-Netlify.
+[This blog post](https://web.archive.org/web/20171201015055/https://www.netlify.com/github-pages-vs-netlify/) provides a
+useful comparison of GitHub Pages and Netlify.
 
 ## Netlify to the rescue
 

@@ -18,8 +18,9 @@ media against the built `_site/`).
 ## What is hidden
 
 Navigation, breadcrumbs, pagination, reading progress, social share, related posts, comments, sidebar (TOC, series),
-footer, heading permalinks, copy-code buttons, the featured image, post-card thumbnails, form inputs and buttons. A new
-piece of interactive chrome should be added to the list (and to `HIDDEN_IN_PRINT` in the test).
+footer, heading permalinks, the archived-link icon (the printed `web.archive.org` URL says it already), copy-code
+buttons, the featured image, post-card thumbnails, form inputs and buttons. A new piece of interactive chrome should be
+added to the list (and to `HIDDEN_IN_PRINT` in the test).
 
 ## What is added
 

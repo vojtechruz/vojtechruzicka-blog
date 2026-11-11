@@ -77,6 +77,6 @@ you already passed the original one.
 
 - [Official Vaadin Docs](https://vaadin.com/docs/-/part/framework/introduction/intro-overview.html)
 - [Vaadin Tutorial](https://vaadin.com/docs/-/part/framework/tutorial.html)
-- [Vaadin JavaDoc](https://vaadin.com/api/)
+- [Vaadin JavaDoc](https://javadoc.io/doc/com.vaadin/vaadin-server/latest/index.html)
 - [Vaadin Training Catalog](https://vaadin.com/training)
 - [Vaadin Certification Webinar Video (for version 7)](https://www.youtube.com/watch?v=4qBg-jJZmRc)

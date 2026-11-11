@@ -39,14 +39,18 @@ The config tunes the check against false alarms:
   protection layer in front of the site. It means the site is alive, but says nothing about the page, because a deleted
   page gets the same answer. linkinator itself already skips LinkedIn's `999` and a Cloudflare challenge (`403` with
   `cf-mitigated`).
-- No site is skipped. Even a site that blocks bots is still checked, so a domain that is gone (no response, DNS failure)
-  or a page that answers `404` is reported. Do not circumvent the blocking (headless browser, a spoofed client); a site
-  that blocks bots does not want to be crawled.
+- No site is skipped, with one exception below. Even a site that blocks bots is still checked, so a domain that is gone
+  (no response, DNS failure) or a page that answers `404` is reported. Do not circumvent the blocking (headless browser,
+  a spoofed client); a site that blocks bots does not want to be crawled.
 - What stays undetected is a deleted page on a site that blocks every bot. Only clicking such links in a browser now and
   then finds those.
 - `retryErrors` with `retryErrorsCount: 3` and `retryErrorsJitter: 2000`: 5xx and connection errors get three more
   tries, spread out.
 - `concurrency: 25` instead of linkinator's default 100, so small sites do not throttle the burst.
+- Wayback Machine snapshots (`^https?://web\.archive\.org/web/`) are skipped. A snapshot never changes and is opened in
+  a browser before it is linked (see "Fixing a broken link"), so a monthly check finds nothing new; it only produced "no
+  response" false alarms when the archive throttled the burst from the runner. Links to the archive's other pages are
+  still checked.
 - `/archive/` pages are checked too, because an archived copy's links are part of what it preserves.
 
 Run it locally with `npm run build` then `npm run validate:links:external`; add `-- --format json > links.json` and
@@ -59,3 +63,25 @@ Run it locally with `npm run build` then `npm run validate:links:external`; add 
 - The whole site is gone: link a [Wayback Machine](https://web.archive.org/) snapshot from the time the article was
   written.
 - Delete a link only when it adds nothing to the article.
+- A domain that changed owners (now a parked page, a domain sale or spam) counts as gone even when it answers 200: link
+  a snapshot taken before the domain changed hands. The link check cannot catch these on its own.
+- Nothing worth linking is left (no snapshot, or a blank one): remove the link and keep the text. When the sentence
+  sends the reader to the source ("there was a survey…"), add a short note that it is no longer online. Dead links are
+  never kept with a marker.
+
+### Archived-link cue
+
+Every Markdown link to a snapshot (`https://web.archive.org/web/<timestamp>/<url>`) is marked automatically by
+`config/markdown-transform/archived-links.js`; authors only paste the Wayback URL. The snapshot date comes from the
+timestamp:
+
+- a small history icon after the link text (`src/styles/components/_archived-link.scss`), held on the last word by a
+  word joiner
+- a `title` tooltip ("The original page is no longer available. This is an archived copy from March 2017 (Wayback
+  Machine).") unless the link already has one
+- visually hidden " (archived copy, March 2017)" inside the link, so screen readers hear it as part of the link name.
+  Feeds ship without the site CSS, so feed readers show this text instead of the icon (docs/FEEDS.md).
+- print hides the icon; the printed URL already says `web.archive.org` (docs/PRINT.md)
+
+It is rendered by the Markdown parser, not an HTML transform, so the page and the feed get the same markup. Links
+written as raw HTML `<a>` are not marked. Guarded by `tests/archived-links.test.js`.

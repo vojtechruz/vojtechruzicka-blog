@@ -56,6 +56,9 @@ describe('formatReport', () => {
     );
     expect(body).toMatch(/^The scheduled external link check found \*\*2 broken links\*\* on 1 page\./);
     expect(body).toContain('Run: https://github.com/o/r/actions/runs/1');
+    // The advice matches the config: bot blocks are warnings, no site is skipped (docs/LINKS.md)
+    expect(body).toContain('Bot blocks (401, 403, 429) are only warnings');
+    expect(body).not.toContain('skip');
     expect(body).toContain(
       `### ${SITE}/post/\n\n- \`404\` <https://gone.example/x>\n- \`404\` <https://gone.example/y>`,
     );
@@ -106,7 +109,19 @@ describe('external link check setup', () => {
   // site is still checked, so a domain that is gone gets reported even when it used to block bots.
   it('treats bot blocks as warnings instead of skipping sites', () => {
     expect(config.statusCodes).toEqual({ 401: 'warn', 403: 'warn', 429: 'warn' });
-    expect(config.skip).toEqual(['http://localhost:4200']);
+    expect(config.skip).toEqual(['http://localhost:4200', '^https?://web\\.archive\\.org/web/']);
+  });
+
+  // A snapshot never changes and is opened in a browser before it is linked; checking it monthly only
+  // produced "no response" false alarms when the archive throttled the runner. The archive's own pages are
+  // still checked.
+  it('skips Wayback Machine snapshots but not the rest of web.archive.org', () => {
+    const skip = config.skip.map((pattern) => new RegExp(pattern));
+    const skipped = (url) => skip.some((re) => re.test(url));
+    expect(skipped('https://web.archive.org/web/20170308124216/http://getbem.com/')).toBe(true);
+    expect(skipped('http://web.archive.org/web/2017/https://example.com/')).toBe(true);
+    expect(skipped('https://web.archive.org/')).toBe(false);
+    expect(skipped('https://example.com/?ref=https://web.archive.org/web/1/x')).toBe(false);
   });
 
   it('retries errors with a lower concurrency than the default 100', () => {

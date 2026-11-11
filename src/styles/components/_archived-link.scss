@@ -1,0 +1,25 @@
+// Link to a Wayback Machine snapshot: config/markdown-transform/archived-links.js adds
+// a.archived-link with a title tooltip and an empty .archived-link-cue (holding visually
+// hidden "(archived copy, <date>)" text) that draws a small history icon after the link
+// text. The icon sits on the cue, not on a::after, which print uses for the link target.
+// Details in docs/LINKS.md ("Archived-link cue").
+
+.archived-link-cue::before {
+  content: '';
+  display: inline-block;
+  inline-size: 0.95em;
+  block-size: 0.95em;
+  margin-inline-start: 0.2em;
+  vertical-align: -0.1em;
+  background: currentColor;
+  opacity: 0.8;
+  /* Lucide "history": a clock turned back */
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'><path d='M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8'/><path d='M3 3v5h5'/><path d='M12 7v5l4 2'/></svg>")
+    no-repeat center / 100% 100%;
+
+  /* Forced colors turn the masked background into Canvas, invisible on the page; use the link colour */
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background: LinkText;
+  }
+}

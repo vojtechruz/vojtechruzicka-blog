@@ -128,14 +128,15 @@ It is well worth the effort as it allows you to reveal serialization problems be
 ## UPDATE: Sonar Rule
 
 Originally Sonar contained a rule for handling serialVersionUID:
-["Serializable" classes should have a "serialVersionUID"](https://rules.sonarsource.com/java/RSPEC-2057). If you're not
-a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring it.
+["Serializable" classes should have a "serialVersionUID"](https://web.archive.org/web/20251207162656/https://rules.sonarsource.com/java/RSPEC-2057/).
+If you're not a fan of an explicit declaration, you would disable the rule. However, it did not enforce NOT declaring
+it.
 
 Fortunately, thanks to
 [Jens Bannmann](https://community.sonarsource.com/t/serializable-classes-should-use-auto-generated-version-ids/1217),
 there is a new rule which enforces **omitting** serialVersionUID in Serializable classes, so it is always
 auto-generated:
-["serialVersionUID" should not be declared blindly](https://rules.sonarsource.com/java/type/Code%20Smell/RSPEC-4926).
+["serialVersionUID" should not be declared blindly](https://web.archive.org/web/20250912072555/https://rules.sonarsource.com/java/RSPEC-4926/).
 
 So no matter what your preference is regarding serialVersionUID, you now have a Sonar rule to support it. Alternatively,
 if you prefer, you can even configure both rules to be active at the same time, each for a different part of your app,

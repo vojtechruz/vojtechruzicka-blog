@@ -104,7 +104,13 @@ The code-block copy button goes too: it needs the site JS, and once its icon is 
 dead `<button>` under every code block. The code itself is kept; Shiki's colours are CSS variables, so readers show it
 as plain monospace text. Heading permalink anchors are removed for the same reason.
 
-### 6. Absolutize URLs
+### 6. Archived links → text instead of icon
+
+Wayback Machine links carry a visually hidden " (archived copy, March 2017)" inside the link
+(config/markdown-transform/archived-links.js). Readers have no site CSS, so they show that text where the site shows the
+history icon. Nothing in `feedContent` needs to change for it (docs/LINKS.md).
+
+### 7. Absolutize URLs
 
 `htmlToAbsoluteUrls` rewrites any remaining root-relative `href`/`src` (e.g. `/some-post/`) to absolute `https://…`
 URLs, since feed items are read off-site. It runs **after** `feedContent`, so links introduced by the fallbacks (the

@@ -137,6 +137,6 @@ BEM is not the only CSS methodology out there. Examples of some other very popul
 
 ## Further Reading
 
-- [Official BEM Site](http://getbem.com/)
+- [Official BEM Site](https://web.archive.org/web/20170308124216/http://getbem.com/)
 - [A New Front-End Methodology: BEM](https://www.smashingmagazine.com/2012/04/a-new-front-end-methodology-bem/)
 - [The Evolution Of The BEM Methodology](https://www.smashingmagazine.com/2013/02/the-history-of-the-bem-methodology/)

@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { JSDOM } from 'jsdom';
 import { loadPage, loadPageHtml, SITE_DIR } from './helpers.js';
 import { getBrand, getLogo, getNavToggle, getMenu, getNavLinks } from './queries/header.js';
-import { initNav } from '../src/scripts/nav.js';
+import { initNav, COMPACT_NAV_QUERY } from '../src/scripts/nav.js';
 
 // ---------------------------------------------------------------------------
 // 1. Markup contract — the built HTML the CSS + JS enhancement depend on.
@@ -118,15 +118,16 @@ describe('Navigation — toggle interaction', () => {
     window = dom.window;
     document = window.document;
 
-    // jsdom has no matchMedia; capture the change handler so we can simulate a
-    // resize past the desktop breakpoint.
-    fireMediaChange = null;
+    // jsdom has no matchMedia; capture the change handlers so we can simulate leaving the
+    // compact layout (wider, or taller after rotating).
+    const handlers = [];
+    fireMediaChange = (event) => handlers.forEach((handler) => handler(event));
     window.matchMedia = (media) => ({
       media,
-      matches: false,
+      matches: true,
       addEventListener: (type, handler) => {
         if (type === 'change') {
-          fireMediaChange = handler;
+          handlers.push(handler);
         }
       },
       removeEventListener: () => {},
@@ -180,11 +181,19 @@ describe('Navigation — toggle interaction', () => {
     expect(nav.classList.contains('nav-open')).toBe(false);
   });
 
-  it('resets to closed when the viewport grows past the mobile breakpoint', () => {
+  it('resets to closed when the viewport leaves the compact layout', () => {
     click(btn);
     expect(nav.classList.contains('nav-open')).toBe(true);
-    fireMediaChange({ matches: true });
+    fireMediaChange({ matches: false });
     expect(nav.classList.contains('nav-open')).toBe(false);
+  });
+
+  it('watches the same compact query as the styles and the no-JS fallback', () => {
+    expect(COMPACT_NAV_QUERY).toBe('(max-width: 1024px), (max-height: 500px)');
+    const scss = readFileSync('src/styles/_variables.scss', 'utf-8');
+    expect(scss).toContain(`$query-compact-nav: '${COMPACT_NAV_QUERY}';`);
+    const base = readFileSync('src/_includes/layouts/base.njk', 'utf-8');
+    expect(base).toContain(`@media ${COMPACT_NAV_QUERY} {`);
   });
 
   it('is a no-op (and does not throw) when the toggle is absent', () => {

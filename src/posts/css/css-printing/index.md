@@ -30,8 +30,8 @@ you can achieve it like this:
 ```
 
 Having separate stylesheet just for printing can be useful, if you want to
-[load it dynamically](http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml), only when needed, or you prefer
-your print styles to be completely separated.
+[load it dynamically](https://web.archive.org/web/20200403081035/http://www.javascriptkit.com:80/javatutors/loadjavascriptcss.shtml),
+only when needed, or you prefer your print styles to be completely separated.
 
 ## Media queries
 
