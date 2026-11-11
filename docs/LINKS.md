@@ -39,14 +39,18 @@ The config tunes the check against false alarms:
   protection layer in front of the site. It means the site is alive, but says nothing about the page, because a deleted
   page gets the same answer. linkinator itself already skips LinkedIn's `999` and a Cloudflare challenge (`403` with
   `cf-mitigated`).
-- No site is skipped. Even a site that blocks bots is still checked, so a domain that is gone (no response, DNS failure)
-  or a page that answers `404` is reported. Do not circumvent the blocking (headless browser, a spoofed client); a site
-  that blocks bots does not want to be crawled.
+- No site is skipped, with one exception below. Even a site that blocks bots is still checked, so a domain that is gone
+  (no response, DNS failure) or a page that answers `404` is reported. Do not circumvent the blocking (headless browser,
+  a spoofed client); a site that blocks bots does not want to be crawled.
 - What stays undetected is a deleted page on a site that blocks every bot. Only clicking such links in a browser now and
   then finds those.
 - `retryErrors` with `retryErrorsCount: 3` and `retryErrorsJitter: 2000`: 5xx and connection errors get three more
   tries, spread out.
 - `concurrency: 25` instead of linkinator's default 100, so small sites do not throttle the burst.
+- Wayback Machine snapshots (`^https?://web\.archive\.org/web/`) are skipped. A snapshot never changes and is opened in
+  a browser before it is linked (see "Fixing a broken link"), so a monthly check finds nothing new; it only produced "no
+  response" false alarms when the archive throttled the burst from the runner. Links to the archive's other pages are
+  still checked.
 - `/archive/` pages are checked too, because an archived copy's links are part of what it preserves.
 
 Run it locally with `npm run build` then `npm run validate:links:external`; add `-- --format json > links.json` and

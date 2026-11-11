@@ -10,6 +10,6 @@
     "403": "warn",
     "429": "warn"
   },
-  "skip": ["http://localhost:4200"],
+  "skip": ["http://localhost:4200", "^https?://web\\.archive\\.org/web/"],
   "verbosity": "error"
 }
