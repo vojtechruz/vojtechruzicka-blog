@@ -53,8 +53,12 @@ outside the tap's handler and does not bring it back). Now:
 - If the script is still loading (slow connection), whatever was typed into the placeholder carries over to Pagefind's
   input and runs as a search.
 
-Guarded by `tests/search-browser.test.js` ("Search overlay position": phone portrait and landscape, desktop; "Search
-loading before the first keystroke": loading on menu open, early keystrokes on a delayed script).
+Closing the menu with results open (its toggle is an X by then and looks like the overlay's close button) closes the
+search too: the results went with the menu, but the backdrop stayed over the page. The toggle's hover colour applies
+only under `(hover: hover)`; a touch screen kept it orange after the tap.
+
+Guarded by `tests/search-browser.test.js` ("Search overlay position": phone portrait and landscape, closing with the
+menu, desktop; "Search loading before the first keystroke": loading on menu open, early keystrokes on a delayed script).
 
 ## Without JavaScript
 

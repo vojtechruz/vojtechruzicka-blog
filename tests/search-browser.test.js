@@ -272,6 +272,35 @@ describe('Search overlay position', () => {
     }
   });
 
+  // With results open the menu toggle is an X that looks like the overlay's close button. Closing the
+  // menu hid the results with it, but the search stayed open and its backdrop covered the page.
+  it('closes with the menu when the menu toggle is tapped', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.tap('.nav-toggle');
+      await page.locator('#search .pagefind-ui__drawer').waitFor({ state: 'attached' });
+      await page.tap('#search .pagefind-ui__search-input');
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      await page.tap('.nav-toggle');
+      await expect.poll(() => page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
+      await expect
+        .poll(() => page.evaluate(() => getComputedStyle(document.querySelector('.backdrop-search')).visibility))
+        .toBe('hidden');
+      expect(await page.locator('.nav-toggle').getAttribute('aria-expanded')).toBe('false');
+
+      // Reopening the menu shows an empty search, not the stale results
+      await page.tap('.nav-toggle');
+      expect(await page.locator('#search .pagefind-ui__search-input').inputValue()).toBe('');
+      expect(await page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
+    } finally {
+      await context.close();
+    }
+  });
+
   it('keeps its place under the header on a wide screen', async () => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
