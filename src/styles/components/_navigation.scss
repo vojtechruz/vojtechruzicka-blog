@@ -50,8 +50,12 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
 
-    &:hover {
-      color: var(--color-accent);
+    // Only with a real pointer: a touch screen keeps :hover on the tapped button, which then stayed
+    // orange after closing the menu
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-accent);
+      }
     }
 
     &:focus-visible {

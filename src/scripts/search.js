@@ -228,6 +228,22 @@
           mo.observe(drawer, { attributes: true, attributeFilter: ['class'] });
         }
 
+        // In the compact header the search sits in the menu. Closing the menu around open results (its
+        // toggle, an X by then, looks like the overlay's own close button) hid the input and the results
+        // with it, but Pagefind still counted them open, so the backdrop stayed over the page: close the
+        // search too. Only on the open-to-closed change: the class also flips for .nav-hidden.
+        const nav = container.closest('.main-navigation');
+        if (nav) {
+          let menuOpen = nav.classList.contains('nav-open');
+          new MutationObserver(() => {
+            const wasOpen = menuOpen;
+            menuOpen = nav.classList.contains('nav-open');
+            if (wasOpen && !menuOpen && isOpen()) {
+              closeCurrent();
+            }
+          }).observe(nav, { attributes: true, attributeFilter: ['class'] });
+        }
+
         // ESC closes this instance if open; in its input it also applies with no results (nothing typed).
         // Pagefind's own Escape handler on the input runs first: it clears the query and blurs the input,
         // which drops the shortcut origin (focusout) and can hide the drawer, leaving focus on <body>. So
