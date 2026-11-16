@@ -57,7 +57,9 @@
     return bootAssetsPromise;
   }
 
-  async function initContainer(container) {
+  // `focus: false` loads the search ahead of use (opening the compact menu) without moving focus
+  // into it, which on a phone would also pop up the keyboard
+  async function initContainer(container, { focus = true } = {}) {
     if (!container || container.dataset.pagefindInited === '1') {
       return;
     }
@@ -85,6 +87,13 @@
     // flow instead of the header overlay: no backdrop, no body lock, and the query
     // is read from / written to the URL so a search can be linked to.
     const inline = container.hasAttribute('data-search-inline');
+
+    // Whatever was typed into the pre-rendered placeholder while the assets loaded carries over to
+    // Pagefind's input, which replaces it (otherwise the first letters of a quick query were lost)
+    const placeholder = container.querySelector('.pagefind-ui__search-input');
+    const typedEarly = placeholder?.value.trim() || '';
+    // Focus moves to the new input when the search was asked for, or the placeholder already had it
+    const takeFocus = focus || (placeholder && document.activeElement === placeholder);
 
     // Clear any placeholder content
     container.innerHTML = '';
@@ -193,6 +202,16 @@
           }
         });
 
+        // The overlay floats at a fixed offset from the top, which clears the desktop header but not
+        // the input in the open compact menu (below the menu links): start it under the input instead,
+        // so the query stays visible while results are shown. The CSS keeps the larger of the two.
+        const placeDrawer = () => {
+          if (drawer && input) {
+            drawer.style.setProperty('--search-input-bottom', `${Math.round(input.getBoundingClientRect().bottom)}px`);
+          }
+        };
+        window.addEventListener('resize', () => isOpen() && placeDrawer(), { passive: true });
+
         // Observe open/close state for this instance
         const mo = new MutationObserver(() => {
           const open = isOpen();
@@ -200,6 +219,7 @@
           backdrop.classList.toggle('is-visible', open);
 
           if (open) {
+            placeDrawer();
             input?.focus();
           }
         });
@@ -290,7 +310,13 @@
       );
 
       // Initial focus
-      input?.focus({ preventScroll: true });
+      if (takeFocus) {
+        input?.focus({ preventScroll: true });
+      }
+      if (typedEarly && input && !input.value) {
+        ui.triggerSearch(typedEarly);
+        input.value = typedEarly;
+      }
 
       // Plausible search tracking
       input?.addEventListener('blur', (e) => {
@@ -332,6 +358,17 @@
     const triggerEvents = ['pointerdown', 'click', 'focusin', 'mouseenter'];
     const onTrigger = () => initContainer(container).catch(console.error);
     triggerEvents.forEach((ev) => container.addEventListener(ev, onTrigger, { once: true }));
+
+    // In the compact header the search sits in the collapsed menu, and a touch screen has no hover
+    // to start loading early: start when the menu opens, so Pagefind's input is in place before the
+    // first tap. Replacing the input under the finger dropped the first letters, and on iOS closed
+    // the keyboard (focus() outside the tap's own handler does not bring it back).
+    container
+      .closest('.main-navigation')
+      ?.querySelector('.nav-toggle')
+      ?.addEventListener('click', () => initContainer(container, { focus: false }).catch(console.error), {
+        once: true,
+      });
   });
 
   // Open a container on demand: initialise it on first use, and on every later

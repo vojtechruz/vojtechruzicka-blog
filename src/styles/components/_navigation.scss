@@ -206,6 +206,13 @@
   body:not(.search-open) .main-navigation.nav-hidden {
     transform: translateY(-100%);
   }
+
+  // While the results are open, the menu links make way for them: the input moves up under the top
+  // bar and the overlay starts below it (search.js), keeping the query visible with room for results
+  // even on a phone held sideways. The overlay's focus trap keeps the links out of reach meanwhile.
+  body.search-open .main-navigation .menu-items {
+    display: none;
+  }
 }
 
 @include utilities.respond(small) {

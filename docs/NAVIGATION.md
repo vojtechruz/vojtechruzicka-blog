@@ -31,6 +31,31 @@ rule in `base/_accessibility.scss`.
 `--offset-nav` (the `scroll-padding-top` that keeps link targets clear of the header) stays as it is. A jump down hides
 the header and leaves a small gap above the target; a jump up shows it, and the padding is needed.
 
+## Search in the compact menu
+
+On a compact screen the search input sits in the open menu, under the links. The results overlay (`.pagefind-ui__drawer`
+in `src/styles/components/_search.scss`) normally floats `12dvh` from the top, which clears the full header but covered
+this input, so the query vanished as soon as the results appeared. Two changes keep it in view:
+
+- While the results are open (`body.search-open`), the menu links are hidden, so the input moves up under the top bar.
+  The links are behind the overlay and out of the focus trap's reach anyway; they come back when the search closes.
+- `src/scripts/search.js` measures the input when the overlay opens (and on resize) into `--search-input-bottom`. The
+  overlay starts at `max(12dvh, input bottom + 0.5rem)` and its height shrinks to end 1rem above the viewport bottom, so
+  a phone held sideways still has room for results. On the full header the input ends above `12dvh` and nothing moves.
+
+The input in the page is a pre-rendered placeholder that Pagefind replaces once `pagefind-ui.js` has loaded. A desktop
+starts loading on hover; a touch screen has no hover, so the first tap used to load it and the input was swapped under
+the finger: the first letters typed were lost, and iOS closed the keyboard (a `focus()` call after the async load is
+outside the tap's handler and does not bring it back). Now:
+
+- Opening the compact menu starts loading, without moving focus into the search, so Pagefind's input is in place before
+  the tap. The tap focuses it natively and the keyboard stays.
+- If the script is still loading (slow connection), whatever was typed into the placeholder carries over to Pagefind's
+  input and runs as a search.
+
+Guarded by `tests/search-browser.test.js` ("Search overlay position": phone portrait and landscape, desktop; "Search
+loading before the first keystroke": loading on menu open, early keystrokes on a delayed script).
+
 ## Without JavaScript
 
 The compact layout collapses the menu in CSS, so that enhancing it causes no layout shift. The `<noscript>` block in

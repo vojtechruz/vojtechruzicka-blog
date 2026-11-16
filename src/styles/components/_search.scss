@@ -72,12 +72,15 @@
 .pagefind-ui__drawer {
   position: fixed !important;
   z-index: var(--z-overlay);
-  top: 12dvh;
+  // Below the search input, which search.js measures into --search-input-bottom when the overlay
+  // opens: in the open compact menu the input sits under the menu links, lower than 12dvh
+  top: max(12dvh, var(--search-input-bottom, 0px) + 0.5rem);
   left: 50%;
   transform: translateX(-50%);
   // The 560px floor alone overflowed phones; never wider than the viewport minus a 1rem gutter each side
   width: min(clamp(560px, 80vw, 820px), calc(100vw - 2rem));
-  max-height: 75dvh;
+  // Ends 1rem above the bottom edge at most, however far down it starts
+  max-height: min(75dvh, 100dvh - max(12dvh, var(--search-input-bottom, 0px) + 0.5rem) - 1rem);
   overflow: auto;
   scrollbar-gutter: stable both-edges;
 
@@ -224,12 +227,19 @@
   backdrop-filter: blur(5px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.15s ease;
+  // Hidden for real once faded out: mobile browsers can keep painting the blur of a transparent
+  // element, leaving a grey layer over the page after the search closes (the × on a phone)
+  visibility: hidden;
+  transition:
+    opacity 0.15s ease,
+    visibility 0s linear 0.15s;
 }
 
 .backdrop-search.is-visible {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
+  transition: opacity 0.15s ease;
 }
 
 /* when open, block page scrolling */

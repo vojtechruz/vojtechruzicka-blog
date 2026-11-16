@@ -152,6 +152,147 @@ describe('Search shortcut on a narrow screen', () => {
   });
 });
 
+describe('Search loading before the first keystroke', () => {
+  // The pre-rendered input is a placeholder that Pagefind replaces once its script has loaded. On a touch
+  // screen nothing loaded it before the tap, so the input was swapped under the finger: the first letters
+  // typed were lost, and iOS closed the keyboard.
+  it('loads when the compact menu opens, without moving focus into the search', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.tap('.nav-toggle');
+      await page.locator('#search .pagefind-ui__drawer').waitFor({ state: 'attached' });
+      expect(await page.evaluate(() => document.activeElement?.matches('.nav-toggle'))).toBe(true);
+
+      // The input under the finger is already Pagefind's own: the tap focuses it and typing just works
+      await page.tap('#search .pagefind-ui__search-input');
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+      expect(await page.locator('#search .pagefind-ui__search-input').inputValue()).toBe('java');
+    } finally {
+      await context.close();
+    }
+  });
+
+  it('keeps what was typed into the placeholder while the script was still loading', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      // A slow connection: the placeholder takes the keystrokes before Pagefind arrives
+      await page.route('**/pagefind/pagefind-ui.js', async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        await route.continue();
+      });
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'domcontentloaded' });
+      await page.locator('#search .pagefind-ui__search-input').click();
+      await page.keyboard.type('java');
+      expect(await page.locator('#search .pagefind-ui__drawer').count()).toBe(0); // still the placeholder
+
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+      const input = page.locator('#search .pagefind-ui__search-input');
+      expect(await input.inputValue()).toBe('java');
+      expect(await input.evaluate((el) => el === document.activeElement)).toBe(true);
+      expect(await page.locator('#search .pagefind-ui__message').textContent()).toContain("'java'");
+    } finally {
+      await context.close();
+    }
+  });
+});
+
+describe('Search overlay position', () => {
+  // Where the overlay starts, and whether the input is still the element on top at its own centre
+  const layout = (page) =>
+    page.evaluate(() => {
+      const input = document.querySelector('#search .pagefind-ui__search-input').getBoundingClientRect();
+      const drawer = document.querySelector('#search .pagefind-ui__drawer').getBoundingClientRect();
+      const hit = document.elementFromPoint(input.left + input.width / 2, input.top + input.height / 2);
+      return {
+        inputBottom: input.bottom,
+        drawerTop: drawer.top,
+        drawerBottom: drawer.bottom,
+        inputOnTop: Boolean(hit?.closest('.pagefind-ui__search-input, .pagefind-ui__search-clear')),
+      };
+    });
+
+  // In the open compact menu the input sits under the menu links, far below the overlay's usual 12dvh:
+  // the overlay used to cover it, so the query disappeared as soon as the results appeared
+  it('opens below the input in the compact menu, leaving the query visible', async () => {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.tap('.nav-toggle');
+      await page.tap('#search .pagefind-ui__search-input');
+      // The tap loads Pagefind, which replaces the pre-rendered input; type once it has taken over
+      await page.locator('#search .pagefind-ui__drawer').waitFor({ state: 'attached' });
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      const { inputBottom, drawerTop, drawerBottom, inputOnTop } = await layout(page);
+      expect(drawerTop).toBeGreaterThanOrEqual(inputBottom);
+      expect(inputOnTop).toBe(true);
+      expect(drawerBottom).toBeLessThanOrEqual(844);
+      // The menu links make way, so the input sits right under the top bar
+      expect(await page.locator('.main-navigation .menu-items').isVisible()).toBe(false);
+      expect(inputBottom).toBeLessThan(150);
+    } finally {
+      await context.close();
+    }
+  });
+
+  it('leaves room for the results on a phone held sideways', async () => {
+    const context = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.tap('.nav-toggle');
+      await page.tap('#search .pagefind-ui__search-input');
+      await page.locator('#search .pagefind-ui__drawer').waitFor({ state: 'attached' });
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      const { inputBottom, drawerTop, drawerBottom, inputOnTop } = await layout(page);
+      expect(drawerTop).toBeGreaterThanOrEqual(inputBottom);
+      expect(inputOnTop).toBe(true);
+      expect(drawerBottom - drawerTop).toBeGreaterThan(150);
+
+      // Clearing the query closes the results and brings the menu links back, menu still open
+      await page.tap('#search .pagefind-ui__search-clear');
+      await expect.poll(() => page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
+      expect(await page.locator('.main-navigation .menu-items').isVisible()).toBe(true);
+      // The backdrop is not just transparent but gone: a transparent blur could stay painted on a phone
+      await expect
+        .poll(() => page.evaluate(() => getComputedStyle(document.querySelector('.backdrop-search')).visibility))
+        .toBe('hidden');
+    } finally {
+      await context.close();
+    }
+  });
+
+  it('keeps its place under the header on a wide screen', async () => {
+    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await context.newPage();
+    try {
+      await page.goto(server.baseUrl + '/about/', { waitUntil: 'load' });
+      await page.keyboard.press('Control+k');
+      await page.waitForFunction(() => document.activeElement?.matches('#search .pagefind-ui__search-input'));
+      await page.keyboard.type('java');
+      await page.locator('#search .pagefind-ui__result-link').first().waitFor();
+
+      const { inputBottom, drawerTop, inputOnTop } = await layout(page);
+      // 12dvh of 900 px: the header input ends above it, so the overlay does not move
+      expect(drawerTop).toBeCloseTo(108, 0);
+      expect(inputBottom).toBeLessThan(drawerTop);
+      expect(inputOnTop).toBe(true);
+    } finally {
+      await context.close();
+    }
+  });
+});
+
 describe('Search overlay focus trap', () => {
   it('keeps Tab and Shift+Tab inside the open overlay, wrapping at both ends', async () => {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
