@@ -95,7 +95,7 @@ Having a secure HTTPS connection enabled on a site like a blog, where no sensiti
 pointless. However, there are several good reasons to use HTTPS anyway.
 
 First of all, sites using HTTPS get a
-[ranking boost](https://webmasters.googleblog.com/2014/08/https-as-ranking-signal.html) in search results on Google.
+[ranking boost](https://developers.google.com/search/blog/2014/08/https-as-ranking-signal) in search results on Google.
 That means your site is displayed above the similar sites not using HTTPS, which can bring much traffic. Moreover,
 Google Chrome is going to show "Not Secure" on all the pages not using HTTPS
 [soon enough](https://blog.chromium.org/2018/05/evolving-chromes-security-indicators.html), which can scare off your
