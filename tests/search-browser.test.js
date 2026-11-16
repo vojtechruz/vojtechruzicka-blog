@@ -263,6 +263,10 @@ describe('Search overlay position', () => {
       await page.tap('#search .pagefind-ui__search-clear');
       await expect.poll(() => page.evaluate(() => document.body.classList.contains('search-open'))).toBe(false);
       expect(await page.locator('.main-navigation .menu-items').isVisible()).toBe(true);
+      // The backdrop is not just transparent but gone: a transparent blur could stay painted on a phone
+      await expect
+        .poll(() => page.evaluate(() => getComputedStyle(document.querySelector('.backdrop-search')).visibility))
+        .toBe('hidden');
     } finally {
       await context.close();
     }
